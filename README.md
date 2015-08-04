@@ -32,7 +32,7 @@ Keep side effects on functions that handle interaction (dispatch call) and async
 import React, { PropTypes } from 'react'
 
 /**
- * This function adds two numbers...
+ * This function adds two numbers.
  */
 export function add(n1: number, n2: number): number {
   return n1 + n2
