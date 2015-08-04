@@ -15,13 +15,13 @@ export function add(n1: number, n2: number): number {
 export default React.createClass({
   displayName: 'App',
   propTypes: {
-    children: PropTypes.func
+    children: PropTypes.func,
   },
   render(): any {
     return (
       <div>
-        The result was: {add(1, '1')}
+        The result was: {add(1, 2)}
       </div>
     );
-  }
+  },
 });
