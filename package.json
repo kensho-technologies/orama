@@ -6,6 +6,7 @@
   "scripts": {
     "prestart": "npm prune && npm install",
     "start": "parallelshell 'npm run dev-server' 'npm run test:watch'",
+    "start:flow": "parallelshell 'npm run dev-server' 'npm run test:watch' 'npm run flow'",
     "check": "npm run lint && npm run test",
     "build": "npm run clean && npm run build:lib && npm run build:webpack",
     "dev-server": "webpack-dev-server --hot --inline --display-error-details --colors --config webpack.config.js --content-base ./dist",
@@ -13,9 +14,10 @@
     "build:lib": "babel src --out-dir lib",
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.js",
     "lint": "eslint src",
-    "test": "babel-node ./node_modules/.bin/tape src/**/*-test.js | faucet",
+    "test": "babel-node ./node_modules/.bin/tape src/**/*-test.js | tap-min",
     "test:watch": "onchange src/**/*.js -- npm test",
-    "test:cov": "babel-istanbul cover --report text --report html ./node_modules/.bin/tape -- src/**/*-test.js"
+    "test:cov": "babel-istanbul cover --report text --report html ./node_modules/.bin/tape -- src/**/*-test.js",
+    "flow": "onchange src/**/*.js -- flow"
   },
   "repository": {
     "type": "git",
@@ -32,11 +34,11 @@
     "eslint": "1.0.0",
     "eslint-config-airbnb": "0.0.7",
     "eslint-plugin-react": "3.2.0",
-    "faucet": "0.0.1",
     "onchange": "1.1.0",
     "parallelshell": "2.0.0",
     "react-hot-loader": "1.2.8",
     "rimraf": "2.4.2",
+    "tap-min": "1.0.0",
     "tape": "4.0.2",
     "webpack": "1.10.5",
     "webpack-dev-server": "1.10.1"
