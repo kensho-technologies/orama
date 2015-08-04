@@ -16,7 +16,7 @@
     "lint": "eslint src",
     "test": "babel-node ./node_modules/.bin/tape src/**/*-test.js | tap-min",
     "test:watch": "onchange src/**/*.js -- npm test",
-    "test:cov": "babel-istanbul cover --report text --report html ./node_modules/.bin/tape -- src/**/*-test.js",
+    "test:cov": "babel-istanbul cover --report text --report lcovonly --report html ./node_modules/.bin/tape -- src/**/*-test.js",
     "flow": "onchange src/**/*.js -- flow"
   },
   "repository": {
