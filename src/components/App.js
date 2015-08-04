@@ -1,12 +1,12 @@
 /* @flow */
 
-import React, { PropTypes } from 'react';
+import React, { PropTypes } from 'react'
 
 /**
  * This function adds two numbers...
  */
 export function add(n1: number, n2: number): number {
-  return n1 + n2;
+  return n1 + n2
 }
 
 /**
@@ -22,6 +22,6 @@ export default React.createClass({
       <div>
         The result was: {add(1, 2)}
       </div>
-    );
+    )
   },
-});
+})

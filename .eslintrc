@@ -2,8 +2,7 @@
   "extends": "eslint-config-airbnb",
   "env": {
     "browser": true,
-    "node": true,
-    "mocha": true
+    "node": true
   },
   "rules": {
     "react/jsx-uses-react": 2,
@@ -12,7 +11,10 @@
 
     // Disable until Flow supports let and const
     "no-var": 0,
-    "vars-on-top": 0
+    "vars-on-top": 0,
+
+    // Babel adds semicolons
+    "semi": [2, "never"]
   },
   "plugins": [
     "react"
