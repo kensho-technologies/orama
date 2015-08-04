@@ -1,4 +1,6 @@
 ## Explorer
+[![Build Status](https://travis-ci.org/luiscarli/explorer.svg)](https://travis-ci.org/luiscarli/explorer)
+[![Coverage Status](https://coveralls.io/repos/luiscarli/explorer/badge.svg?branch=master&service=github)](https://coveralls.io/github/luiscarli/explorer?branch=master)
 
 **Scripts**
 ```bash
