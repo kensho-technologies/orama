@@ -31,6 +31,7 @@
     "babel-eslint": "4.0.5",
     "babel-istanbul": "0.2.10",
     "babel-loader": "5.3.2",
+    "coveralls": "2.11.3",
     "eslint": "1.0.0",
     "eslint-config-airbnb": "0.0.7",
     "eslint-plugin-react": "3.2.0",
