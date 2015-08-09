@@ -31,7 +31,7 @@ export function getComponents(data) {
     var value = data[key]
     return (`${acc}
 ### ${value.displayName}
-[${key}](${key})
+[${key}](../${key})
 
 *${value.description}*
 

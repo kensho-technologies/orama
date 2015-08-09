@@ -4,7 +4,7 @@
 - [Chart](#Chart)
 
 ### App
-[src/components/App.js](src/components/App.js)
+[src/components/App.js](../src/components/App.js)
 
 *General component description.
 @example blahblah*
@@ -15,7 +15,7 @@ children | func | false |  |
 
 
 ### Chart
-[src/components/Chart.js](src/components/Chart.js)
+[src/components/Chart.js](../src/components/Chart.js)
 
 *Component description*
 
