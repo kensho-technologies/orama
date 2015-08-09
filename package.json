@@ -15,9 +15,11 @@
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.js",
     "lint": "eslint src",
     "test": "babel-node ./node_modules/.bin/tape src/**/*-test.js | tap-min",
-    "test:watch": "onchange src/**/*.js -- npm test",
+    "test:watch": "onchange src -- npm test",
     "test:cov": "babel-istanbul cover --report text --report lcovonly --report html ./node_modules/.bin/tape -- src/**/*-test.js",
-    "flow": "onchange src/**/*.js -- flow"
+    "flow": "onchange src/**/*.js -- flow",
+    "doc:jsdoc": "jsdoc src/**/*.js -c .jsdocrc -t templates/haruki -d console > dist/jsdoc.json",
+    "doc:react": "react-docgen src | babel-node src/scripts/reactdocToMd.js > docs/components.md"
   },
   "repository": {
     "type": "git",
@@ -26,15 +28,16 @@
   "author": "Luis Carli",
   "license": "MIT",
   "devDependencies": {
-    "babel": "5.8.20",
-    "babel-core": "5.8.20",
+    "babel": "5.8.21",
+    "babel-core": "5.8.21",
     "babel-eslint": "4.0.5",
     "babel-istanbul": "0.2.10",
     "babel-loader": "5.3.2",
     "coveralls": "2.11.3",
-    "eslint": "1.0.0",
+    "eslint": "1.1.0",
     "eslint-config-airbnb": "0.0.7",
-    "eslint-plugin-react": "3.2.0",
+    "eslint-plugin-react": "3.2.1",
+    "jsdoc-babel": "0.1.0",
     "onchange": "1.1.0",
     "parallelshell": "2.0.0",
     "react-hot-loader": "1.2.8",
@@ -45,7 +48,10 @@
     "webpack-dev-server": "1.10.1"
   },
   "dependencies": {
+    "d3-scale": "0.1.1",
     "ramda": "0.17.1",
-    "react": "0.13.3"
+    "react": "0.13.3",
+    "react-redux": "0.6.0",
+    "redux": "1.0.0-rc"
   }
 }

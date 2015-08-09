@@ -5,6 +5,7 @@
     "node": true
   },
   "rules": {
+    "no-use-before-define": [2, "nofunc"],
     "react/display-name": 2,
     "react/jsx-max-props-per-line": [1, {maximum: 2}],
     "react/jsx-no-duplicate-props": 2,
@@ -19,7 +20,35 @@
     "react/no-unknown-property": 2,
     "react/prop-types": 2,
     "react/react-in-jsx-scope": 2,
-    "react/sort-comp": 2,
+    "react/sort-comp": [2, {
+      order: [
+        'lifecycle',
+        'everything-else',
+        'render'
+      ],
+      groups: {
+        lifecycle: [
+          'displayName',
+          'mixins',
+          'propTypes',
+          'contextTypes',
+          'childContextTypes',
+          'statics',
+          'defaultProps',
+          'constructor',
+          'getDefaultProps',
+          'getInitialState',
+          'getChildContext',
+          'componentWillMount',
+          'componentDidMount',
+          'componentWillReceiveProps',
+          'shouldComponentUpdate',
+          'componentWillUpdate',
+          'componentDidUpdate',
+          'componentWillUnmount'
+        ]
+      }
+    }],
     "react/wrap-multilines": 2,
 
     // Disable until Flow supports let and const
