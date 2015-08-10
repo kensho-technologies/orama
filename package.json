@@ -7,7 +7,7 @@
     "prestart": "npm prune && npm install",
     "start": "parallelshell 'npm run dev-server' 'npm run test:watch'",
     "start:flow": "parallelshell 'npm run dev-server' 'npm run test:watch' 'npm run flow'",
-    "check": "npm run lint && npm run test:cov",
+    "check": "npm run lint && npm run test",
     "build": "npm run clean && npm run build:lib && npm run build:webpack",
     "dev-server": "webpack-dev-server --hot --inline --display-error-details --colors --config webpack.config.js --content-base ./dist",
     "clean": "rimraf lib dist/bundle.js",
