@@ -1,5 +1,5 @@
 
-import getComponents from './reactdocToMd-utils'
+import getComponents from './reactdocUtils'
 
 var jsonString = ''
 process.stdin.setEncoding('utf8')
