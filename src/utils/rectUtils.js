@@ -6,8 +6,8 @@ import R from 'ramda'
  * @namespace  /utils/rectUtils
  */
 
-var baseRect = {x: 0, y: 0, width: 0, height: 0}
-var baseMargin = {left: 0, right: 0, top: 0, bottom: 0}
+export var rectBase = {x: 0, y: 0, width: 0, height: 0}
+export var marginBase = {left: 0, right: 0, top: 0, bottom: 0}
 
 /**
  * Inset a `Rect | Size` by a margin
@@ -16,8 +16,8 @@ var baseMargin = {left: 0, right: 0, top: 0, bottom: 0}
  * @return {Rect}
  */
 export function marginInsetRect(marginInput, rectInput) {
-  var rect = R.merge(baseRect, rectInput)
-  var margin = R.merge(baseMargin, marginInput)
+  var rect = R.merge(rectBase, rectInput)
+  var margin = R.merge(marginBase, marginInput)
   return {
     x: rect.x + margin.left,
     y: rect.y + margin.top,
@@ -32,7 +32,7 @@ export function marginInsetRect(marginInput, rectInput) {
  * @return {number}
  */
 export function getMaxX(rectInput) {
-  var rect = R.merge(baseRect, rectInput)
+  var rect = R.merge(rectBase, rectInput)
   return rect.x + rect.width
 }
 
@@ -42,6 +42,6 @@ export function getMaxX(rectInput) {
  * @return {number}
  */
 export function getMaxY(rectInput) {
-  var rect = R.merge(baseRect, rectInput)
+  var rect = R.merge(rectBase, rectInput)
   return rect.y + rect.height
 }

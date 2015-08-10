@@ -3,6 +3,12 @@ import test from 'tape'
 
 import * as rectUtils from './rectUtils'
 
+test('rectBase and marginBse should exist', t => {
+  t.ok(rectUtils.rectBase)
+  t.ok(rectUtils.marginBase)
+  t.end()
+})
+
 test('marginInsetRect should work', t => {
   t.ok(rectUtils.marginInsetRect)
   t.deepEqual(
