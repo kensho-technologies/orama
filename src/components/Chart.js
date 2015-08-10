@@ -29,8 +29,8 @@ var styles = {
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
-function getScales(dimensions, bound) {
-  var scales
+
+function getScales() {
 }
 
 /**
@@ -64,7 +64,6 @@ export var Chart = React.createClass({
   },
   canvasRender() {
     var {
-      data,
       dimensions,
       margin,
       size,

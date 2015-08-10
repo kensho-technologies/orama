@@ -22,7 +22,7 @@ export function marginInsetRect(marginInput, rectInput) {
     x: rect.x + margin.left,
     y: rect.y + margin.top,
     width: rect.width - margin.left - margin.right,
-    height: rect.height - margin.top - margin.bottom
+    height: rect.height - margin.top - margin.bottom,
   }
 }
 
