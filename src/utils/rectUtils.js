@@ -11,6 +11,8 @@ export var marginBase = {left: 0, right: 0, top: 0, bottom: 0}
 
 /**
  * Inset a `Rect | Size` by a margin
+ * @namespace  /utils/rectUtils
+ *
  * @param  {Margin} marginInput {left: number, right: number, top: number, bottom: number}
  * @param  {Rect | Size} rectInput
  * @return {Rect}
@@ -28,6 +30,8 @@ export function marginInsetRect(marginInput, rectInput) {
 
 /**
  * Get the maximum `x` of a `Rect`
+ * @namespace  /utils/rectUtils
+ *
  * @param  {Rect} rectInput
  * @return {number}
  */
@@ -38,6 +42,8 @@ export function getMaxX(rectInput) {
 
 /**
  * Get the maximum `y` of a `Rect`
+ * @namespace  /utils/rectUtils
+ *
  * @param  {Rect} rectInput
  * @return {number}
  */
