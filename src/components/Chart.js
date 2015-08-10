@@ -40,9 +40,9 @@ export var Chart = React.createClass({
     /**
      * The size of the chart
      */
-    size: PropTypes.object,
-    margin: PropTypes.object,
     dimensions: PropTypes.object,
+    margin: PropTypes.object,
+    size: PropTypes.object,
   },
   getDefaultProps() {
     return {

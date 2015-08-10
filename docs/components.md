@@ -22,7 +22,7 @@ children | func | false |  |
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 data |  | false | [] | undefined
-dimensions | object | false |  | 
+dimensions | object | false |  | The size of the chart
 margin | object | false | {  left: 80, right: 20,  top: 20, bottom: 50,} | 
-size | object | false | {  width: 600,  height: 400,} | The size of the chart
+size | object | false | {  width: 600,  height: 400,} | 
 

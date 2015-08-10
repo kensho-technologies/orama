@@ -5,14 +5,14 @@ import R from 'ramda'
 
 import Chart from './Chart'
 /**
- * Funtions for blah blah blah
- * @namespace Chart
+ * Funtions for the App component
+ * @namespace .src/components/App
  */
 
 /**
  * Generate random number between min (inclusive) and max (inclusive)
  *
- * @memberOf Chart
+ * @memberOf .src/components/App
  * @param  {number} min
  * @param  {number} max
  * @return {number}     random number
@@ -29,6 +29,23 @@ var styles = {
   },
 }
 
+/**
+ * Generate random data
+ * @memberOf .src/components/App
+ *
+ * @example
+ * var dataArray = randomData()
+ * dataArray.length
+ * // 0
+ * dataArray[0]
+ * // { prop1: Number, prop2: Number, prop3: Number }
+ *
+ * @example
+ * randomData()
+ * // { prop1: Number, prop2: Number, prop3: Number }
+ *
+ * @return {Object} Object with random data
+ */
 function randomData() {
   return R.map(() => {
     return {
