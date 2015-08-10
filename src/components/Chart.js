@@ -3,6 +3,8 @@ import React from 'react'
 import R from 'ramda'
 import { connect } from 'react-redux'
 
+import * as rectUtils from '../utils/rectUtils'
+
 var {findDOMNode, PropTypes} = React
 
 var styles = {
@@ -37,9 +39,6 @@ function getScales(dimensions, bound) {
 export var Chart = React.createClass({
   displayName: 'Chart',
   propTypes: {
-    /**
-     * The size of the chart
-     */
     dimensions: PropTypes.object,
     margin: PropTypes.object,
     size: PropTypes.object,
@@ -71,6 +70,7 @@ export var Chart = React.createClass({
       size,
     } = this.props
 
+    var plotRect = rectUtils.marginInsetRect(margin, size)
     getScales(dimensions, size)
 
     var ctx = findDOMNode(this.refs.canvas).getContext('2d')
@@ -83,10 +83,10 @@ export var Chart = React.createClass({
     ctx.strokeRect(0, 0, size.width, size.height)
     ctx.beginPath()
     ctx.rect(
-      margin.left,
-      margin.top,
-      size.width - margin.left - margin.right,
-      size.height - margin.top - margin.bottom
+      plotRect.x,
+      plotRect.y,
+      plotRect.width,
+      plotRect.height
     )
     ctx.closePath()
     ctx.fill()
@@ -95,8 +95,8 @@ export var Chart = React.createClass({
     R.forEach(() => {
       ctx.beginPath()
       ctx.arc(
-        randomInt(margin.left, size.width - margin.right),
-        randomInt(margin.top, size.height - margin.bottom),
+        randomInt(plotRect.x, rectUtils.getMaxX(plotRect)),
+        randomInt(plotRect.y, rectUtils.getMaxY(plotRect)),
         2, 0, 2 * Math.PI
       )
       ctx.closePath()
