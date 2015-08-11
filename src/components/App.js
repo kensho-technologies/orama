@@ -65,6 +65,7 @@ var dimensions = {
   y: {
     domain: [0, 100],
     name: 'prop2',
+    type: 'linear',
     selector: ['prop2'],
   },
 }

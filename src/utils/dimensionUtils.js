@@ -25,19 +25,19 @@ export const RANGE_LINEAR_COLOR = ['#ffffd9', '#081d58']
 const RANGE_ORDINAL_COLOR = ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3', '#a6d854', '#ffd92f', '#e5c494', '#b3b3b3']
 
 /**
- * Merge default ranges to the dimensions
+ * Merge default ranges to the dimensions (curried)
  * @param  {Object} dimensions
  * @param  {Object} rectInput  rect Object
  * @return {Object}            new dimensions object
  */
-export function mergeRanges(dimensions, rectInput) {
+export const mergeRanges = R.curry((rectInput, dimensions) => {
   const rect = R.merge(rectUtils.rectBase, rectInput)
   const mapDimensions = R.mapObjIndexed((dimension, key) => {
     const range = getRange(key, dimension, rect)
     return R.merge({range}, dimension)
   })
   return mapDimensions(dimensions)
-}
+})
 
 /**
  * Merge new scales to the dimensions object
@@ -85,7 +85,7 @@ export function getRange(key, dimension, rect) {
     }
     break
   default:
-    throw new Error('scaleUtils.getRange: invalid key')
+    throw new Error(`scaleUtils.getRange invalid key "${key}"`)
   }
 }
 

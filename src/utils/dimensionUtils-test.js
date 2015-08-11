@@ -7,11 +7,11 @@ import * as dimUtils from './dimensionUtils'
 test('dimUtils.mergeRanges', t => {
   t.ok(dimUtils.mergeRanges)
   t.deepEqual(
-    dimUtils.mergeRanges({x: {}}, {width: 100}),
+    dimUtils.mergeRanges({width: 100}, {x: {}}),
     {x: {range: [0, 100]}}
   )
   t.deepEqual(
-    dimUtils.mergeRanges({y: {}}, {height: 100}),
+    dimUtils.mergeRanges({height: 100}, {y: {}}),
     {y: {range: [0, 100]}}
   )
   t.end()
