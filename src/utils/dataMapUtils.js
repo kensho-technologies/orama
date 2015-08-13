@@ -37,13 +37,13 @@ export function mapToPoints(dimensions, data) {
   }, data)
 }
 
-function getMap(key, dimension) {
+export function getMap(dimension) {
   if (!dimension) return noop
-  const range = R.prop(range, dimension)
+  const range = R.prop('range', dimension)
   if (!range) return noop
   const mapRange = () => range[0] + (range[1] - range[0]) / 2
-  const path = R.prop(path, dimension)
-  const scale = R.prop(scale, dimension)
-  if (!path || !scale) return mapRange
-  return R.pipe(path, scale)
+  const pathArray = R.prop('path', dimension)
+  const scale = R.prop('scale', dimension)
+  if (!pathArray || !scale) return mapRange
+  return R.pipe(R.path(pathArray), scale)
 }
