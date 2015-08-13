@@ -56,3 +56,16 @@ test('dimUtils.getRange', t => {
   t.throws(dimUtils.getRange)
   t.end()
 })
+
+test('dimUtils.getDomain', t => {
+  t.ok(dimUtils.getDomain)
+  t.throws(dimUtils.getDomain)
+  t.deepEqual(
+    dimUtils.getDomain(
+      {path: ['a']},
+      [{a: 0}, {a: 1}, {a: 2}]
+    ),
+    [0, 2]
+  )
+  t.end()
+})

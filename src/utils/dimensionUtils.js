@@ -1,6 +1,7 @@
 
 import R from 'ramda'
 import d3Scale from 'd3-scale'
+import d3Arrays from 'd3-arrays'
 import * as rectUtils from './rectUtils'
 
 export const DIMENSION_BASE = {
@@ -23,6 +24,14 @@ const SCALE_TYPES = [
 ]
 export const RANGE_LINEAR_COLOR = ['#ffffd9', '#081d58']
 const RANGE_ORDINAL_COLOR = ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3', '#a6d854', '#ffd92f', '#e5c494', '#b3b3b3']
+
+export const mergeDomains = R.curry((data, dimensions) => {
+  const mapDimensions = R.mapObj(dimension => {
+    const domain = []
+    return R.merge({domain}, dimension)
+  })
+  return mapDimensions(dimensions)
+})
 
 /**
  * Merge default ranges to the dimensions (curried)
@@ -97,4 +106,10 @@ export function getRange(key, dimension, rect) {
 export function getScaleForType(type) {
   if (R.contains(type, SCALE_TYPES)) return d3Scale[type]()
   throw new Error('scaleUtils.getScaleForType: invalid scale type')
+}
+
+export function getDomain(dimension, data) {
+  const path = R.prop('path', dimension)
+  if (!path) throw new Error('getDomain: missing path on dimension')
+  return d3Arrays.extent(data, R.path(path))
 }
