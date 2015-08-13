@@ -57,16 +57,14 @@ function randomData() {
 }
 var dimensions = {
   x: {
-    domain: [0, 100],
     name: 'prop1',
-    selector: ['prop1'],
+    path: ['prop1'],
     type: 'linear',
   },
   y: {
-    domain: [0, 100],
     name: 'prop2',
+    path: ['prop2'],
     type: 'linear',
-    selector: ['prop2'],
   },
 }
 
@@ -83,9 +81,13 @@ export default React.createClass({
     return (
       <div style={styles.appContainer}>
         <Chart
-            data={randomData}
+            data={randomData()}
             dimensions={dimensions}
             size={{ width: 600, height: 400 }}
+            margin={{
+              left: 80, right: 30,
+              top: 30, bottom: 50,
+            }}
             />
       </div>
     )

@@ -4,6 +4,9 @@ import R from 'ramda'
 import { connect } from 'react-redux'
 
 import * as rectUtils from '../utils/rectUtils'
+import * as canvasUtils from '../utils/canvasUtils'
+import * as dimUtils from '../utils/dimensionUtils'
+import * as dataMapUtils from '../utils/dataMapUtils'
 
 var {findDOMNode, PropTypes} = React
 
@@ -26,22 +29,16 @@ var styles = {
   },
 }
 
-function randomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min
-}
-
-function getScales() {
-}
-
 /**
  * Component description
  */
 export var Chart = React.createClass({
   displayName: 'Chart',
   propTypes: {
-    dimensions: PropTypes.object,
-    margin: PropTypes.object,
-    size: PropTypes.object,
+    data: PropTypes.array.isRequired,
+    dimensions: PropTypes.object.isRequired,
+    margin: PropTypes.object.isRequired,
+    size: PropTypes.object.isRequired,
   },
   getDefaultProps() {
     return {
@@ -64,13 +61,20 @@ export var Chart = React.createClass({
   },
   canvasRender() {
     var {
+      data,
       dimensions,
       margin,
       size,
     } = this.props
 
-    var plotRect = rectUtils.marginInsetRect(margin, size)
-    getScales(dimensions, size)
+    const plotRect = rectUtils.marginInset(margin, size)
+    const expandedDim = R.pipe(
+      dimUtils.mergeDomains(data),
+      dimUtils.mergeRanges(plotRect),
+      dimUtils.mergeScales
+    )(dimensions)
+
+    const mappedData = dataMapUtils.mapToPoints(expandedDim, data)
 
     var ctx = findDOMNode(this.refs.canvas).getContext('2d')
     ctx.fillStyle = 'lightgray'
@@ -78,29 +82,15 @@ export var Chart = React.createClass({
     ctx.globalAlpha = 1
     ctx.lineWidth = 2
 
-    ctx.clearRect(0, 0, size.width, size.height)
-    ctx.strokeRect(0, 0, size.width, size.height)
-    ctx.beginPath()
-    ctx.rect(
-      plotRect.x,
-      plotRect.y,
-      plotRect.width,
-      plotRect.height
-    )
-    ctx.closePath()
-    ctx.fill()
+    canvasUtils.clearRect(ctx, size)
+    canvasUtils.strokeRect(ctx, size)
+    canvasUtils.fillRect(ctx, rectUtils.inset(-10, plotRect))
 
-    ctx.globalAlpha = 0.3
-    R.forEach(() => {
-      ctx.beginPath()
-      ctx.arc(
-        randomInt(plotRect.x, rectUtils.getMaxX(plotRect)),
-        randomInt(plotRect.y, rectUtils.getMaxY(plotRect)),
-        2, 0, 2 * Math.PI
-      )
-      ctx.closePath()
-      ctx.stroke()
-    }, R.range(0, 10000))
+    ctx.globalAlpha = 0.8
+    R.forEach(d => {
+      ctx.fillStyle = d.color || 'black'
+      ctx.fill(d.path2D)
+    }, mappedData)
   },
   render() {
     return (
