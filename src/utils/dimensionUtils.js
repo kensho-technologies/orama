@@ -27,11 +27,17 @@ const RANGE_ORDINAL_COLOR = ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3', '#a6d85
 
 export const mergeDomains = R.curry((data, dimensions) => {
   const mapDimensions = R.mapObj(dimension => {
-    const domain = []
+    const domain = getDomain(dimension, data)
     return R.merge({domain}, dimension)
   })
   return mapDimensions(dimensions)
 })
+
+export function getDomain(dimension, data) {
+  const path = R.prop('path', dimension)
+  if (!path) throw new Error('getDomain: missing path on dimension')
+  return d3Arrays.extent(data, R.path(path))
+}
 
 /**
  * Merge default ranges to the dimensions (curried)
@@ -47,30 +53,6 @@ export const mergeRanges = R.curry((rectInput, dimensions) => {
   })
   return mapDimensions(dimensions)
 })
-
-/**
- * Merge new scales to the dimensions object
- * @param  {Object} dimensions
- * @return {Object}            new dimensions object
- */
-export function mergeScales(dimensions) {
-  return R.mapObj(dimension => {
-    const scale = getScaleForDimension(dimension)
-    return R.merge(dimension, {scale})
-  }, dimensions)
-}
-
-/**
- * Get new scale according to the dimension options
- * @param  {Object} dimension
- * @return {function}           new d3 scale
- */
-export function getScaleForDimension(dimension) {
-  var scale = getScaleForType(dimension.type)
-    .domain(dimension.domain)
-    .range(dimension.range)
-  return scale
-}
 
 /**
  * Get default range according to options
@@ -99,6 +81,30 @@ export function getRange(key, dimension, rect) {
 }
 
 /**
+ * Merge new scales to the dimensions object
+ * @param  {Object} dimensions
+ * @return {Object}            new dimensions object
+ */
+export function mergeScales(dimensions) {
+  return R.mapObj(dimension => {
+    const scale = getScaleForDimension(dimension)
+    return R.merge(dimension, {scale})
+  }, dimensions)
+}
+
+/**
+ * Get new scale according to the dimension options
+ * @param  {Object} dimension
+ * @return {function}           new d3 scale
+ */
+export function getScaleForDimension(dimension) {
+  var scale = getScaleForType(dimension.type)
+    .domain(dimension.domain)
+    .range(dimension.range)
+  return scale
+}
+
+/**
  * Return a new d3 scale according to the input type
  * @param  {string} type The string needs to be one of the SCALE_TYPES: ['linear', 'log', 'ordinal', 'pow', 'quantile', 'quantize', 'threshold', 'time' ]
  * @return {function}      return a new d3 scale
@@ -106,10 +112,4 @@ export function getRange(key, dimension, rect) {
 export function getScaleForType(type) {
   if (R.contains(type, SCALE_TYPES)) return d3Scale[type]()
   throw new Error('scaleUtils.getScaleForType: invalid scale type')
-}
-
-export function getDomain(dimension, data) {
-  const path = R.prop('path', dimension)
-  if (!path) throw new Error('getDomain: missing path on dimension')
-  return d3Arrays.extent(data, R.path(path))
 }
