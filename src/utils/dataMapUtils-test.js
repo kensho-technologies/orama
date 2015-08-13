@@ -9,14 +9,14 @@ import * as dataMapUtils from './dataMapUtils'
 test('dataMapUtils', t => {
   t.ok(dataMapUtils)
   t.throws(R.partial(dataMapUtils.checkSchema, {
-      x: React.PropTypes.shape({
-        scale: React.PropTypes.func.isRequired,
-      }).isRequired,
-    }, {}))
+    x: React.PropTypes.shape({
+      scale: React.PropTypes.func.isRequired,
+    }).isRequired,
+  }, {}))
   t.ok(dataMapUtils.checkSchema({
-      x: React.PropTypes.shape({
-        scale: React.PropTypes.func.isRequired,
-      }).isRequired,
-    }, {x: {scale: function(){}}}))
+    x: React.PropTypes.shape({
+      scale: React.PropTypes.func.isRequired,
+    }).isRequired,
+  }, {x: {scale: () => {}}}))
   t.end()
 })
