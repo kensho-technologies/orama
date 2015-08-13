@@ -3,24 +3,24 @@ import test from 'tape'
 
 import * as rectUtils from './rectUtils'
 
-test('rectBase and marginBse should exist', t => {
+test('rectUtils.rectBase, rectUtils.marginBase', t => {
   t.ok(rectUtils.rectBase)
   t.ok(rectUtils.marginBase)
   t.end()
 })
 
-test('marginInsetRect should work', t => {
-  t.ok(rectUtils.marginInsetRect)
+test('rectUtils.marginInset', t => {
+  t.ok(rectUtils.marginInset)
   t.deepEqual(
-    rectUtils.marginInsetRect({}, {}),
+    rectUtils.marginInset({}, {}),
     {x: 0, y: 0, width: 0, height: 0}
   )
-  var rect = rectUtils.marginInsetRect({}, {width: 100, height: 100})
+  var rect = rectUtils.marginInset({}, {width: 100, height: 100})
   t.deepEqual(
     rect,
     {x: 0, y: 0, width: 100, height: 100}
   )
-  var rect2 = rectUtils.marginInsetRect(
+  var rect2 = rectUtils.marginInset(
     {left: 10, top: 10},
     {width: 100, height: 100}
   )
@@ -31,7 +31,16 @@ test('marginInsetRect should work', t => {
   t.end()
 })
 
-test('getMaxX should work', t => {
+test('rectUtils.inset', t => {
+  t.ok(rectUtils.inset)
+  t.deepEqual(
+    rectUtils.inset(10, {width: 100, height: 100}),
+    {x: 10, y: 10, width: 80, height: 80}
+  )
+  t.end()
+})
+
+test('rectUtils.getMaxX', t => {
   t.ok(rectUtils.getMaxX)
   t.deepEqual(rectUtils.getMaxX({}), 0)
   t.deepEqual(
@@ -41,7 +50,7 @@ test('getMaxX should work', t => {
   t.end()
 })
 
-test('getMaxY should work', t => {
+test('rectUtils.getMaxY', t => {
   t.ok(rectUtils.getMaxY)
   t.deepEqual(rectUtils.getMaxY({}), 0)
   t.deepEqual(

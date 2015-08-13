@@ -17,7 +17,7 @@ export var marginBase = {left: 0, right: 0, top: 0, bottom: 0}
  * @param  {Rect | Size} rectInput
  * @return {Rect}
  */
-export function marginInsetRect(marginInput, rectInput) {
+export function marginInset(marginInput, rectInput) {
   var rect = R.merge(rectBase, rectInput)
   var margin = R.merge(marginBase, marginInput)
   return {
@@ -25,6 +25,26 @@ export function marginInsetRect(marginInput, rectInput) {
     y: rect.y + margin.top,
     width: rect.width - margin.left - margin.right,
     height: rect.height - margin.top - margin.bottom,
+  }
+}
+
+/**
+ * Inset a `Rect` on each side by `value`
+ * @namespace  /utils/rectUtils
+ * @example
+ * rectUtils.insetRect(10, {x: 0, y: 0, width: 100, height: 100})
+ * // {x: 10, y: 10, width: 80, height: 80}
+ * @param {number} value
+ * @param {Rect} rectInput
+ * @return {Rect}
+ */
+export function inset(value, rectInput) {
+  var rect = R.merge(rectBase, rectInput)
+  return {
+    x: rect.x + value,
+    y: rect.y + value,
+    width: rect.width - value * 2,
+    height: rect.height - value * 2,
   }
 }
 
