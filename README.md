@@ -1,14 +1,13 @@
 ## Explorer
-[![Build Status](https://travis-ci.org/luiscarli/explorer.svg)](https://travis-ci.org/luiscarli/explorer)
-[![Coverage Status](https://coveralls.io/repos/luiscarli/explorer/badge.svg?branch=master&service=github)](https://coveralls.io/github/luiscarli/explorer?branch=master)
+[![Build Status](https://travis-ci.org/kensho/explorer.svg)](https://travis-ci.org/luiscarli/explorer)
 
 **Scripts**
 ```bash
 $ npm start
-# install missing dependecies, 
+# install missing dependecies,
 # start a hot reload development server on http://localhost:3000/
 # and execute unit tests on source change
-$ npm run start:flow 
+$ npm run start:flow
 # same as above, and also runs flow checks on source change
 
 $ npm run check
