@@ -3,6 +3,7 @@ import R from 'ramda'
 import d3Scale from 'd3-scale'
 import d3Arrays from 'd3-arrays'
 import * as rectUtils from './rectUtils'
+import * as ticksUtils from './ticksUtils'
 
 export const DIMENSION_BASE = {
   name: 'dimensionBase',
@@ -86,8 +87,8 @@ export function getRange(key, dimension, rect) {
  * @return {Object}            new dimensions object
  */
 export function mergeScales(dimensions) {
-  return R.mapObj(dimension => {
-    const scale = getScaleForDimension(dimension)
+  return R.mapObjIndexed((dimension, key) => {
+    const scale = getScaleForDimension(dimension, key)
     return R.merge(dimension, {scale})
   }, dimensions)
 }
@@ -97,10 +98,16 @@ export function mergeScales(dimensions) {
  * @param  {Object} dimension
  * @return {function}           new d3 scale
  */
-export function getScaleForDimension(dimension) {
+export function getScaleForDimension(dimension, key) {
   var scale = getScaleForType(dimension.type)
     .domain(dimension.domain)
     .range(dimension.range)
+  if (key === 'x') {
+    scale.nice(ticksUtils.getXCount(dimension.range)) // should contains a count
+  }
+  if (key === 'y') {
+    scale.nice(ticksUtils.getYCount(dimension.range)) // should contains a count
+  }
   return scale
 }
 

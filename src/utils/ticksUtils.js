@@ -1,8 +1,8 @@
 
 import * as dimUtils from './dimensionUtils'
 
-const TICKS_X_SPACE = 80
-const TICKS_Y_SPACE = 65
+const TICKS_X_SPACE = 100
+const TICKS_Y_SPACE = 90
 
 export function getXMappedData(dimensions) {
   const ticks = getXTicks(dimensions)
@@ -21,7 +21,7 @@ export function getXMappedData(dimensions) {
 export function getTicks(dimension, count) {
   if (dimension.type === 'linear') {
     const scale = dimUtils.getScaleForType(dimension.type)
-    scale.domain(dimension.domain)
+    scale.domain(dimension.domain).nice(count)
     return scale.ticks(count)
   }
 }
@@ -31,7 +31,7 @@ export function getXTicks(dimensions, plotRect) {
   const range = plotRect ?
     [plotRect.x, plotRect.x + plotRect.width] :
     dimension.range
-  const count = (range[1] - range[0]) / TICKS_X_SPACE
+  const count = getXCount(range)
   return getTicks(dimension, count)
 }
 
@@ -40,6 +40,14 @@ export function getYTicks(dimensions, plotRect) {
   const range = plotRect ?
     [plotRect.y, plotRect.y + plotRect.height] :
     dimension.range
-  const count = (range[0] - range[1]) / TICKS_Y_SPACE
+  const count = getYCount(range)
   return getTicks(dimension, count)
+}
+
+export function getXCount(range) {
+  return (range[1] - range[0]) / TICKS_X_SPACE
+}
+
+export function getYCount(range) {
+  return (range[0] - range[1]) / TICKS_Y_SPACE
 }
