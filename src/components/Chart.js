@@ -136,7 +136,10 @@ export var Chart = React.createClass({
       ctx.fillText(d, scale(d), utils.rect.getMaxY(plotRect) + 22)
     }, xTicks)
 
-    ctx.globalAlpha = 0.8
+    ctx.beginPath()
+    ctx.rect(plotRect.x - 10, plotRect.y - 10, plotRect.width + 20, plotRect.height + 20)
+    ctx.clip()
+    ctx.globalAlpha = 0.75
     R.forEach(d => {
       ctx.fillStyle = d.color || 'black'
       ctx.fill(d.path2D)

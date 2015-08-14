@@ -30,7 +30,7 @@ export function mapToPoints(dimensions, data) {
     const x = xMap(d)
     const y = yMap(d)
     const path2D = new Path2D()
-    path2D.arc(x, y, 4, 0, 2 * Math.PI)
+    path2D.arc(x, y, 5, 0, 2 * Math.PI)
     return {
       x, y, d, path2D,
     }

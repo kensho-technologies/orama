@@ -23,7 +23,7 @@ export function randomInt(min, max) {
 
 var styles = {
   appContainer: {
-    maxWidth: 800,
+    maxWidth: 700,
     margin: 'auto',
     paddingTop: 50,
   },
@@ -83,7 +83,7 @@ export default React.createClass({
         <Chart
             data={randomData()}
             dimensions={dimensions}
-            size={{ width: 600, height: 400 }}
+            size={{ width: 700, height: 500 }}
             margin={{
               left: 80, right: 30,
               top: 30, bottom: 50,
