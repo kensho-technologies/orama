@@ -66,7 +66,7 @@ export function getRange(key, dimension, rect) {
   case 'x':
     return [rect.x, rectUtils.getMaxX(rect)]
   case 'y':
-    return [rect.y, rectUtils.getMaxY(rect)]
+    return [rectUtils.getMaxY(rect), rect.y]
   case 'color':
     switch (dimension.type) {
     case 'ordinal':

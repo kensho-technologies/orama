@@ -39,7 +39,7 @@ test('dimUtils.mergeRanges', t => {
   )
   t.deepEqual(
     dimUtils.mergeRanges({height: 100}, {y: {}}),
-    {y: {range: [0, 100]}}
+    {y: {range: [100, 0]}}
   )
   t.end()
 })
