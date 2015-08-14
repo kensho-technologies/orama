@@ -3,10 +3,7 @@ import React from 'react'
 import R from 'ramda'
 import { connect } from 'react-redux'
 
-import * as rectUtils from '../utils/rectUtils'
-import * as canvasUtils from '../utils/canvasUtils'
-import * as dimUtils from '../utils/dimensionUtils'
-import * as dataMapUtils from '../utils/dataMapUtils'
+import utils from '../utils/utils'
 
 var {findDOMNode, PropTypes} = React
 
@@ -67,24 +64,77 @@ export var Chart = React.createClass({
       size,
     } = this.props
 
-    const plotRect = rectUtils.marginInset(margin, size)
+    const plotRect = utils.rect.marginInset(margin, size)
     const expandedDim = R.pipe(
-      dimUtils.mergeDomains(data),
-      dimUtils.mergeRanges(plotRect),
-      dimUtils.mergeScales
+      utils.dim.mergeDomains(data),
+      utils.dim.mergeRanges(plotRect),
+      utils.dim.mergeScales
     )(dimensions)
 
-    const mappedData = dataMapUtils.mapToPoints(expandedDim, data)
+    const mappedData = utils.map.mapToPoints(expandedDim, data)
 
     var ctx = findDOMNode(this.refs.canvas).getContext('2d')
-    ctx.fillStyle = 'lightgray'
+    ctx.fillStyle = 'hsl(0, 0%, 90%)'
     ctx.strokeStyle = 'black'
     ctx.globalAlpha = 1
     ctx.lineWidth = 2
 
-    canvasUtils.clearRect(ctx, size)
-    canvasUtils.strokeRect(ctx, size)
-    canvasUtils.fillRect(ctx, rectUtils.inset(-10, plotRect))
+    utils.canvas.clearRect(ctx, size)
+    // utils.canvas.strokeRect(ctx, size)
+    utils.canvas.fillRect(ctx, utils.rect.inset(-10, plotRect))
+
+    ctx.font = '14px sans-serif'
+    ctx.textAlign = 'end'
+    ctx.textBaseline = 'middle'
+    const yTicks = utils.ticks.getYTicks(expandedDim)
+    R.forEach(d => {
+      if (d === 0) {
+        ctx.lineWidth = 3
+      } else {
+        ctx.lineWidth = 1
+      }
+      const scale = expandedDim.y.scale
+      ctx.strokeStyle = 'lightgray'
+      ctx.beginPath()
+      ctx.moveTo(plotRect.x - 20, scale(d))
+      ctx.lineTo(plotRect.x - 10, scale(d))
+      ctx.closePath()
+      ctx.stroke()
+      ctx.strokeStyle = 'white'
+      ctx.beginPath()
+      ctx.moveTo(plotRect.x - 10, scale(d))
+      ctx.lineTo(utils.rect.getMaxX(plotRect) + 10, scale(d))
+      ctx.closePath()
+      ctx.stroke()
+      ctx.fillStyle = 'black'
+      ctx.fillText(d, plotRect.x - 25, scale(d))
+    }, yTicks)
+
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'top'
+    const xTicks = utils.ticks.getXTicks(expandedDim)
+    R.forEach(d => {
+      if (d === 0) {
+        ctx.lineWidth = 3
+      } else {
+        ctx.lineWidth = 1
+      }
+      const scale = expandedDim.x.scale
+      ctx.strokeStyle = 'lightgray'
+      ctx.beginPath()
+      ctx.moveTo(scale(d), utils.rect.getMaxY(plotRect) + 10 )
+      ctx.lineTo(scale(d), utils.rect.getMaxY(plotRect) + 20 )
+      ctx.closePath()
+      ctx.stroke()
+      ctx.strokeStyle = 'white'
+      ctx.beginPath()
+      ctx.moveTo(scale(d), plotRect.y - 10 )
+      ctx.lineTo(scale(d), utils.rect.getMaxY(plotRect) + 10 )
+      ctx.closePath()
+      ctx.stroke()
+      ctx.fillStyle = 'black'
+      ctx.fillText(d, scale(d), utils.rect.getMaxY(plotRect) + 22)
+    }, xTicks)
 
     ctx.globalAlpha = 0.8
     R.forEach(d => {
@@ -96,7 +146,6 @@ export var Chart = React.createClass({
     return (
       <div style={styles.container}>
         <div style={styles.label}>
-          Axis Label
         </div>
         <canvas
             height={this.props.size.height}
