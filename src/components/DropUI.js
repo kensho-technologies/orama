@@ -1,9 +1,12 @@
 
 import React from 'react'
 
+import DropCard from './DropCard'
+
 const styles = {
   container: {
     minWidth: 200,
+    maxWidth: 200,
   },
   item: {
     fontSize: 15,
@@ -30,9 +33,15 @@ export default React.createClass({
     return (
       <div style={styles.container}>
         <div style={styles.item}>x</div>
-        <div style={styles.item2}>space</div>
+        <DropCard
+            text={this.props.xProp}
+            setText={this.props.setXProp}
+            />
         <div style={styles.item}>y</div>
-        <div style={styles.item2}>space</div>
+        <DropCard
+            text={this.props.yProp}
+            setText={this.props.setYProp}
+            />
       </div>
     )
   },

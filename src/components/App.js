@@ -6,29 +6,7 @@ import {csv} from 'd3-xhr'
 import HTML5Backend from 'react-dnd/modules/backends/HTML5'
 import { DragDropContext } from 'react-dnd'
 
-import Chart from './Chart'
-import DataList from './DataList'
-import DropUI from './DropUI'
-
-var styles = {
-  appContainer: {
-    margin: 50,
-    display: 'flex',
-  },
-}
-
-var dimensions = {
-  x: {
-    name: 'prop1',
-    path: ['Number of Days Positive'],
-    type: 'linear',
-  },
-  y: {
-    name: 'prop2',
-    path: ['Cumulative Percent Return'],
-    type: 'linear',
-  },
-}
+import Vis from './Vis'
 
 export function parseString(string) {
   if (/%$/.test(string)) {
@@ -65,18 +43,8 @@ export const App = React.createClass({
   },
   render(): any {
     return (
-      <div style={styles.appContainer}>
-        <DataList data={this.state.data}/>
-        <DropUI/>
-        <Chart
-            data={this.state.data}
-            dimensions={dimensions}
-            size={{ width: 700, height: 500 }}
-            margin={{
-              left: 80, right: 30,
-              top: 15, bottom: 50,
-            }}
-            />
+      <div>
+        <Vis data={this.state.data}/>
       </div>
     )
   },
