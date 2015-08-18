@@ -51,10 +51,10 @@ export var Chart = React.createClass({
     }
   },
   componentDidMount() {
-    this.canvasRender()
+    this.renderCanvas()
   },
   componentDidUpdate() {
-    this.canvasRender()
+    this.renderCanvas()
   },
   renderCanvas() {
     var {
