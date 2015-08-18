@@ -1,64 +1,21 @@
-{
-  "extends": "eslint-config-airbnb",
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "rules": {
-    "no-use-before-define": [2, "nofunc"],
-    "react/display-name": 2,
-    "react/jsx-max-props-per-line": [1, {maximum: 2}],
-    "react/jsx-no-duplicate-props": 2,
-    "react/jsx-no-undef": 2,
-    "react/jsx-quotes": [2, "single"],
-    "react/jsx-sort-prop-types": 2,
-    "react/jsx-uses-react": 2,
-    "react/jsx-uses-vars": 2,
-    "react/no-did-mount-set-state": 2,
-    "react/no-did-update-set-state": 2,
-    "react/no-multi-comp": 2,
-    "react/no-unknown-property": 2,
-    "react/prop-types": 2,
-    "react/react-in-jsx-scope": 2,
-    "react/sort-comp": [2, {
-      order: [
-        'lifecycle',
-        'everything-else',
-        'render'
-      ],
-      groups: {
-        lifecycle: [
-          'displayName',
-          'mixins',
-          'propTypes',
-          'contextTypes',
-          'childContextTypes',
-          'statics',
-          'defaultProps',
-          'constructor',
-          'getDefaultProps',
-          'getInitialState',
-          'getChildContext',
-          'componentWillMount',
-          'componentDidMount',
-          'componentWillReceiveProps',
-          'shouldComponentUpdate',
-          'componentWillUpdate',
-          'componentDidUpdate',
-          'componentWillUnmount'
-        ]
-      }
-    }],
-    "react/wrap-multilines": 2,
+---
+extends: eslint-config-airbnb
 
-    // Disable until Flow supports let and const
-    "no-var": 0,
-    "vars-on-top": 0,
-
-    // Babel adds semicolons
-    "semi": [2, "never"]
-  },
-  "plugins": [
-    "react"
-  ]
-}
+rules:
+  react/display-name: 2
+  react/jsx-max-props-per-line:
+    - 1
+    - {"maximum": 2}
+  react/jsx-no-duplicate-props: 2
+  react/jsx-quotes:
+    - 2
+    - single
+  react/jsx-sort-prop-types: 2
+  react/jsx-no-undef: 2
+  no-use-before-define: 0
+  new-cap: 0
+  no-var: 0
+  vars-on-top: 0
+  semi:
+    - 2
+    - never
