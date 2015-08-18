@@ -56,7 +56,7 @@ export var Chart = React.createClass({
   componentDidUpdate() {
     this.canvasRender()
   },
-  canvasRender() {
+  renderCanvas() {
     var {
       data,
       dimensions,
@@ -136,6 +136,7 @@ export var Chart = React.createClass({
       ctx.fillText(d, scale(d), utils.rect.getMaxY(plotRect) + 22)
     }, xTicks)
 
+    ctx.save()
     ctx.beginPath()
     ctx.rect(plotRect.x - 10, plotRect.y - 10, plotRect.width + 20, plotRect.height + 20)
     ctx.clip()
@@ -144,6 +145,7 @@ export var Chart = React.createClass({
       ctx.fillStyle = d.color || 'black'
       ctx.fill(d.path2D)
     }, mappedData)
+    ctx.restore()
   },
   render() {
     return (

@@ -2,94 +2,84 @@
 
 import React, { PropTypes } from 'react'
 import R from 'ramda'
+import {csv} from 'd3-xhr'
+import HTML5Backend from 'react-dnd/modules/backends/HTML5'
+import { DragDropContext } from 'react-dnd'
 
 import Chart from './Chart'
-/**
- * Funtions for the App component
- * @namespace .src/components/App
- */
-
-/**
- * Generate random number between min (inclusive) and max (inclusive)
- *
- * @memberOf .src/components/App
- * @param  {number} min
- * @param  {number} max
- * @return {number}     random number
- */
-export function randomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min
-}
+import DataList from './DataList'
+import DropUI from './DropUI'
 
 var styles = {
   appContainer: {
-    maxWidth: 700,
-    margin: 'auto',
-    paddingTop: 50,
+    margin: 50,
+    display: 'flex',
   },
 }
 
-/**
- * Generate random data
- * @memberOf .src/components/App
- *
- * @example
- * var dataArray = randomData()
- * dataArray.length
- * // 0
- * dataArray[0]
- * // { prop1: Number, prop2: Number, prop3: Number }
- *
- * @example
- * randomData()
- * // { prop1: Number, prop2: Number, prop3: Number }
- *
- * @return {Object} Object with random data
- */
-function randomData() {
-  return R.map(() => {
-    return {
-      prop1: randomInt(0, 100),
-      prop2: randomInt(50, 200),
-      prop3: randomInt(50, 200),
-    }
-  }, R.range(0, 100))
-}
 var dimensions = {
   x: {
     name: 'prop1',
-    path: ['prop1'],
+    path: ['Number of Days Positive'],
     type: 'linear',
   },
   y: {
     name: 'prop2',
-    path: ['prop2'],
+    path: ['Cumulative Percent Return'],
     type: 'linear',
   },
 }
 
+export function parseString(string) {
+  if (/%$/.test(string)) {
+    return +string.replace(/%$/, '')
+  }
+  const number = Number(string)
+  if (typeof number === 'number' && !isNaN(number)) {
+    return number
+  }
+  if (/^\d\d\/\d\d\/\d\d\d\d$/.test(string)) {
+    return new Date(string)
+  }
+  return string
+}
+
+const parseCsv = R.map(R.mapObj(parseString))
+
 /**
- * General component description.
- * @example blahblah
+ * App component
  */
-export default React.createClass({
+export const App = React.createClass({
   displayName: 'App',
   propTypes: {
     children: PropTypes.func,
   },
+  getInitialState() {
+    return {}
+  },
+  componentDidMount() {
+    csv('study-results.csv', (e, csvData) => {
+      const data = parseCsv(csvData)
+      this.setState({data})
+    })
+  },
   render(): any {
     return (
       <div style={styles.appContainer}>
+        <DataList data={this.state.data}/>
+        <DropUI/>
         <Chart
-            data={randomData()}
+            data={this.state.data}
             dimensions={dimensions}
             size={{ width: 700, height: 500 }}
             margin={{
               left: 80, right: 30,
-              top: 30, bottom: 50,
+              top: 15, bottom: 50,
             }}
             />
       </div>
     )
   },
 })
+
+export default DragDropContext(HTML5Backend)(App)
