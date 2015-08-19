@@ -2,8 +2,14 @@
 import R from 'ramda'
 import d3Scale from 'd3-scale'
 import d3Arrays from 'd3-arrays'
+
 import * as rectUtils from './rectUtils'
 import * as ticksUtils from './ticksUtils'
+
+/**
+ * Module for manipulating `dimension` representations
+ * @namespace  /utils/dimensionUtils
+ */
 
 export const DIMENSION_BASE = {
   name: 'dimensionBase',

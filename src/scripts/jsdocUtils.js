@@ -10,15 +10,28 @@ export default function getDoc(jsdocData) {
   ])
 }
 
-function getNamespacesNames(namespacesData) {
+export function getNamespacesNames(namespacesData) {
+  if (!R.isArrayLike(namespacesData)) return undefined
   return R.join('\n', R.map(genNamespaceNameString, namespacesData))
 }
 
-function genNamespaceNameString(d) {
+/**
+ * Create a markdown link string from a namespace object
+ * {
+ *   "name": string,
+ *   "description": string,
+ *   "access": string,
+ *   "virtual": bool
+ * }
+ * @param  {object} d
+ * @return {string}
+ */
+export function genNamespaceNameString(d) {
   return `- [${d.name}](#${d.name})`
 }
 
 function getNamespaces(namespacesData) {
+  if (!R.isArrayLike(namespacesData)) return undefined
   return R.join('', R.map(genNamespaceString, namespacesData))
 }
 
@@ -31,6 +44,7 @@ ${getFunctions(d.functions, R.last(d.name.split('/')) || d.name)}`
 }
 
 function getFunctions(functionsData, namespace = '') {
+  if (!R.isArrayLike(functionsData)) return '**No functions have been defined on this namespace.**\n\n'
   return R.join('', R.map(genFunctionString.bind(this, namespace), functionsData))
 }
 

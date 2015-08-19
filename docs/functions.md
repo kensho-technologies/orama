@@ -1,38 +1,57 @@
 # Modules
-- [.src/components/App](#.src/components/App)
+- [/utils/dimensionUtils](#/utils/dimensionUtils)
+- [/utils/rectUtils](#/utils/rectUtils)
 
-## .src/components/App
+## /utils/dimensionUtils
 
-Funtions for the App component
+Module for manipulating `dimension` representations
 
-### App.randomInt(min, max)
+**No functions have been defined on this namespace.**
 
-Generate random number between min (inclusive) and max (inclusive)
+## /utils/rectUtils
 
-Parameter | Type | Default | Optional | Description
---------- | ---- | ------- | -------- | -----------
-min | number |  |  | 
-max | number |  |  | 
-*Returns* | *number* | | | *random number*
+Module for manipulating `Rect` representations
 
-### App.randomData()
+### rectUtils.marginInset(marginInput, rectInput)
 
-Generate random data
+Inset a `Rect | Size` by a margin
 
 Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
-*Returns* | *Object* | | | *Object with random data*
+marginInput | Margin |  |  | {left: number, right: number, top: number, bottom: number}
+rectInput | Rect,Size |  |  | 
+*Returns* | *Rect* | | | **
+
+### rectUtils.inset(value, rectInput)
+
+Inset a `Rect` on each side by `value`
+
+Parameter | Type | Default | Optional | Description
+--------- | ---- | ------- | -------- | -----------
+value | number |  |  | 
+rectInput | Rect |  |  | 
+*Returns* | *Rect* | | | **
 
 
 ```jsx
-var dataArray = randomData()
-dataArray.length
-// 0
-dataArray[0]
-// { prop1: Number, prop2: Number, prop3: Number }
+rectUtils.insetRect(10, {x: 0, y: 0, width: 100, height: 100})
+// {x: 10, y: 10, width: 80, height: 80}
 ```
+### rectUtils.getMaxX(rectInput)
 
-```jsx
-randomData()
-// { prop1: Number, prop2: Number, prop3: Number }
-```
+Get the maximum `x` of a `Rect`
+
+Parameter | Type | Default | Optional | Description
+--------- | ---- | ------- | -------- | -----------
+rectInput | Rect |  |  | 
+*Returns* | *number* | | | **
+
+### rectUtils.getMaxY(rectInput)
+
+Get the maximum `y` of a `Rect`
+
+Parameter | Type | Default | Optional | Description
+--------- | ---- | ------- | -------- | -----------
+rectInput | Rect |  |  | 
+*Returns* | *number* | | | **
+
