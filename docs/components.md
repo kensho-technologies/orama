@@ -2,12 +2,16 @@
 
 - [App](#App)
 - [Chart](#Chart)
+- [DataList](#DataList)
+- [DropCard](#DropCard)
+- [DropUI](#DropUI)
+- [PropCard](#PropCard)
+- [Vis](#Vis)
 
 ### App
 [src/components/App.js](../src/components/App.js)
 
-*General component description.
-@example blahblah*
+*App component*
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
@@ -21,8 +25,61 @@ children | func | false |  |
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
-data |  | false | [] | undefined
-dimensions | object | false |  | The size of the chart
-margin | object | false | {  left: 80, right: 20,  top: 20, bottom: 50,} | 
-size | object | false | {  width: 600,  height: 400,} | 
+data | array | true | [] | 
+dimensions | object | true |  | 
+margin | object | true | {  left: 80, right: 20,  top: 20, bottom: 50,} | 
+size | object | true | {  width: 600,  height: 400,} | 
+
+
+### DataList
+[src/components/DataList.js](../src/components/DataList.js)
+
+
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+data | array | false | [] | 
+
+
+### DropCard
+[src/components/DropCard.js](../src/components/DropCard.js)
+
+
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+canDrop | bool | false |  | 
+connectDropTarget | func | false |  | 
+isOver | bool | false |  | 
+
+
+### DropUI
+[src/components/DropUI.js](../src/components/DropUI.js)
+
+
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+
+
+### PropCard
+[src/components/PropCard.js](../src/components/PropCard.js)
+
+
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+connectDragSource | func | false |  | 
+isDragging | bool | false |  | 
+text | string | false |  | 
+
+
+### Vis
+[src/components/Vis.js](../src/components/Vis.js)
+
+
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+data | array | false | [] | 
 

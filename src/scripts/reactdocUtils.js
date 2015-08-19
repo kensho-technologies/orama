@@ -17,11 +17,14 @@ export default function getComponents(data) {
   }, '', keys)
   var components = R.reduce((acc, key) => {
     var value = data[key]
+    var description = value.description ?
+        `*${value.description}*` :
+        ''
     return (`${acc}
 ### ${value.displayName}
 [${key}](../${key})
 
-*${value.description}*
+${description}
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
