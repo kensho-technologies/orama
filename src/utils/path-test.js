@@ -1,19 +1,19 @@
 
 import test from 'tape'
 
-import * as path from './path'
+import path, * as pathUtils from './path'
 
-test('path.path', t => {
+test('path', t => {
   t.deepEqual(
-    typeof path.path(),
+    typeof path(),
     'object'
   )
   t.end()
 })
 
-test('path.pathMock', t => {
+test('pathUtils.pathMock', t => {
   t.deepEqual(
-    typeof path.pathMock(),
+    typeof pathUtils.pathMock(),
     'object'
   )
   t.end()
