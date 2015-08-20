@@ -1,6 +1,7 @@
 # Components 
 
 - [App](#App)
+- [CanvasRender](#CanvasRender)
 - [Chart](#Chart)
 - [Chart2](#Chart2)
 - [DataList](#DataList)
@@ -17,6 +18,17 @@
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 children | func | false |  | 
+
+
+### CanvasRender
+[src/components/CanvasRender.js](../src/components/CanvasRender.js)
+
+
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+plotRect | object | false |  | 
+size | object | false |  | 
 
 
 ### Chart
@@ -39,8 +51,9 @@ size | object | true | {  width: 600,  height: 400,} |
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
-data | array | false |  | 
-size | shape | false | {width: 600, height: 400} | Size of the plot
+data | array | false | [] | 
+margin |  | false | {  left: 80, right: 30,  top: 15, bottom: 50,} | undefined
+size | shape | false | {width: 700, height: 500} | 
 xProp | string | false |  | 
 yProp | string | false |  | 
 

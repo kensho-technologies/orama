@@ -45,7 +45,10 @@ ${getFunctions(d.functions, R.last(d.name.split('/')) || d.name)}`
 
 function getFunctions(functionsData, namespace = '') {
   if (!R.isArrayLike(functionsData)) return '**No functions have been defined on this namespace.**\n\n'
-  return R.join('', R.map(genFunctionString.bind(this, namespace), functionsData))
+  return R.join('', R.map(
+    genFunctionString.bind(this, namespace),
+    R.sortBy(R.prop('name'), functionsData)
+  ))
 }
 
 function genFunctionString(namespace, d) {
