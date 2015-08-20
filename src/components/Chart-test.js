@@ -4,12 +4,12 @@ import test from 'tape'
 import React from 'react'
 import renderComponent from '../renderComponentTest'
 
-import * as ChartUtils from './Chart'
+import Chart from './Chart'
 
 test('App should exist and render', (t) => {
-  t.ok(ChartUtils.Chart)
+  t.ok(Chart)
   var component = renderComponent(
-    <ChartUtils.Chart
+    <Chart
         data={[]}
         dimensions={{}}
         margin={{}}

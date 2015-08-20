@@ -2,6 +2,7 @@
 import React, {PropTypes} from 'react'
 
 import Chart from './Chart'
+import Chart2 from './Chart2'
 import DataList from './DataList'
 import DropUI from './DropUI'
 
@@ -54,15 +55,22 @@ export default React.createClass({
             setXProp={this.onXPropChange}
             setYProp={this.onYPropChange}
             />
-        <Chart
-            data={this.props.data}
-            dimensions={newDimensions}
-            size={{ width: 700, height: 500 }}
-            margin={{
-              left: 80, right: 30,
-              top: 15, bottom: 50,
-            }}
-            />
+        <div>
+          <Chart
+              data={this.props.data}
+              dimensions={newDimensions}
+              size={{ width: 700, height: 500 }}
+              margin={{
+                left: 80, right: 30,
+                top: 15, bottom: 50,
+              }}
+              />
+          <Chart2
+              data={this.props.data}
+              xProp={this.state.xProp}
+              yProp={this.state.yProp}
+              />
+        </div>
       </div>
     )
   },

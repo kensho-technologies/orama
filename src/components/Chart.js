@@ -1,7 +1,6 @@
 
 import React from 'react'
 import R from 'ramda'
-import { connect } from 'react-redux'
 
 import utils from '../utils/utils'
 
@@ -29,7 +28,7 @@ var styles = {
 /**
  * Component description
  */
-export var Chart = React.createClass({
+export default React.createClass({
   displayName: 'Chart',
   propTypes: {
     data: PropTypes.array.isRequired,
@@ -162,5 +161,3 @@ export var Chart = React.createClass({
     )
   },
 })
-
-export default connect(state => state)(Chart)
