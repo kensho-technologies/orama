@@ -60,26 +60,26 @@ test('rectUtils.getMaxY', t => {
   t.end()
 })
 
-test('rectUtils.getDomainX', t => {
+test('rectUtils.getRangeX', t => {
   t.deepEqual(
-    rectUtils.getDomainX(),
+    rectUtils.getRangeX(),
     [0, 0]
   )
   t.deepEqual(
-    rectUtils.getDomainX({x: 50, width: 100}),
+    rectUtils.getRangeX({x: 50, width: 100}),
     [50, 150]
   )
   t.end()
 })
 
-test('rectUtils.getDomainY', t => {
+test('rectUtils.getRangeY', t => {
   t.deepEqual(
-    rectUtils.getDomainY(),
+    rectUtils.getRangeY(),
     [0, 0]
   )
   t.deepEqual(
-    rectUtils.getDomainY({y: 50, height: 100}),
-    [50, 150]
+    rectUtils.getRangeY({y: 50, height: 100}),
+    [150, 50]
   )
   t.end()
 })

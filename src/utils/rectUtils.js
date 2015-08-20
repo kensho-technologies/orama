@@ -77,7 +77,7 @@ export function getMaxY(rectInput) {
  * @param  {Rect} rectInput
  * @return {Range}
  */
-export function getDomainX(rectInput) {
+export function getRangeX(rectInput) {
   var rect = R.merge(rectBase, rectInput)
   return [rect.x, getMaxX(rect)]
 }
@@ -87,7 +87,7 @@ export function getDomainX(rectInput) {
  * @param  {Rect} rectInput
  * @return {Range}
  */
-export function getDomainY(rectInput) {
+export function getRangeY(rectInput) {
   var rect = R.merge(rectBase, rectInput)
-  return [rect.y, getMaxY(rect)]
+  return [getMaxY(rect), rect.y]
 }
