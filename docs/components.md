@@ -2,6 +2,7 @@
 
 - [App](#App)
 - [Chart](#Chart)
+- [Chart2](#Chart2)
 - [DataList](#DataList)
 - [DropCard](#DropCard)
 - [DropUI](#DropUI)
@@ -29,6 +30,19 @@ data | array | true | [] |
 dimensions | object | true |  | 
 margin | object | true | {  left: 80, right: 20,  top: 20, bottom: 50,} | 
 size | object | true | {  width: 600,  height: 400,} | 
+
+
+### Chart2
+[src/components/Chart2.js](../src/components/Chart2.js)
+
+
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+data | array | false |  | 
+size | shape | false | {width: 600, height: 400} | Size of the plot
+xProp | string | false |  | 
+yProp | string | false |  | 
 
 
 ### DataList
