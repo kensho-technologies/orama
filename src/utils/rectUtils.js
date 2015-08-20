@@ -71,3 +71,23 @@ export function getMaxY(rectInput) {
   var rect = R.merge(rectBase, rectInput)
   return rect.y + rect.height
 }
+
+/**
+ * Get the x `range` of a `Rect`
+ * @param  {Rect} rectInput
+ * @return {Range}
+ */
+export function getDomainX(rectInput) {
+  var rect = R.merge(rectBase, rectInput)
+  return [rect.x, getMaxX(rect)]
+}
+
+/**
+ * Get the y `range` of a `Rect`
+ * @param  {Rect} rectInput
+ * @return {Range}
+ */
+export function getDomainY(rectInput) {
+  var rect = R.merge(rectBase, rectInput)
+  return [rect.y, getMaxY(rect)]
+}
