@@ -5,7 +5,7 @@
   "main": "src/components/App.js",
   "scripts": {
     "prestart": "npm prune && npm install",
-    "start": "parallelshell 'npm run dev-server' 'npm run test:watch' && npm outdated",
+    "start": "parallelshell 'npm run dev-server' 'npm run test:watch' 'npm outdated'",
     "start:flow": "parallelshell 'npm run dev-server' 'npm run test:watch' 'npm run flow'",
     "check": "npm run lint && npm run test",
     "build": "npm run clean && npm run build:lib && npm run build:webpack",
@@ -35,7 +35,7 @@
     "babel-loader": "5.3.2",
     "coveralls": "2.11.4",
     "d3-arrays": "0.0.4",
-    "eslint": "1.2.0",
+    "eslint": "1.2.1",
     "eslint-config-airbnb": "0.0.7",
     "eslint-plugin-react": "3.2.3",
     "isparta": "3.0.3",
