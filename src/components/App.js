@@ -39,6 +39,14 @@ export const App = React.createClass({
     csv('study-results.csv', (e, csvData) => {
       const data = parseCsv(csvData)
       this.setState({data})
+      // stress test
+      // const dataR = R.map(() => {
+      //   return {
+      //     p1: Math.random(),
+      //     p2: Math.random(),
+      //   }
+      // }, R.range(0, 10000))
+      // this.setState({data: dataR})
     })
   },
   render(): any {
