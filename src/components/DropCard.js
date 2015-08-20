@@ -28,6 +28,8 @@ export var DropCard = React.createClass({
     canDrop: PropTypes.bool,
     connectDropTarget: PropTypes.func,
     isOver: PropTypes.bool,
+    setText: PropTypes.func,
+    text: PropTypes.string,
   },
   getDefaultProps() {
     return {

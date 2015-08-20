@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, {PropTypes} from 'react'
 
 import DropCard from './DropCard'
 
@@ -24,6 +24,10 @@ const styles = {
 export default React.createClass({
   displayName: 'DropUI',
   propTypes: {
+    setXProp: PropTypes.func,
+    setYProp: PropTypes.func,
+    xProp: PropTypes.string,
+    yProp: PropTypes.string,
   },
   getDefaultProps() {
     return {

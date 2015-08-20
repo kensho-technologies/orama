@@ -5,14 +5,23 @@ import R from 'ramda'
 
 import utils from '../utils/utils'
 
+const styles = {
+  canvas: {
+    position: 'absolute',
+    display: 'block',
+  },
+}
+
 export default React.createClass({
   displayName: 'CanvasRender',
   propTypes: {
     plotRect: PropTypes.object,
+    renderData: PropTypes.array,
     size: PropTypes.object,
   },
   getDefaultProps() {
     return {
+      renderData: [],
     }
   },
   componentDidMount() {
@@ -27,20 +36,15 @@ export default React.createClass({
     utils.canvas.clearRect(ctx, this.props.size)
     utils.canvas.fillRect(ctx, utils.rect.inset(-10, this.props.plotRect))
 
-    R.map(typeGroup => {
-      const points = R.map(pointD => {
-        return {
-          x: this.props.xMap(pointD),
-          y: this.props.yMap(pointD),
-          raw: pointD,
-        }
-      }, typeGroup.values)
-      return points
+    R.forEach(d => {
+      ctx.fillStyle = d.fill || 'black'
+      ctx.fill(d.path2D)
     }, this.props.renderData)
   },
   render() {
     return (
       <canvas
+          style={styles.canvas}
           height={this.props.size.height}
           ref='canvas'
           width={this.props.size.width}
