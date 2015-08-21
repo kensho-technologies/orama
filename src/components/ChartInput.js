@@ -6,15 +6,20 @@ import utils from '../utils/utils'
 
 const styles = {
   tooltip: {
-    position: 'absolute',
+    background: 'hsl(0, 0%, 45%)',
+    // border: '2px solid gray',
+    color: 'hsl(0, 0%, 100%)',
+    fontFamily: 'sans-serif',
+    margin: 13,
+    maxWidth: 300,
+    padding: '9px 10px',
     pointerEvents: 'none',
-    background: 'lightgray',
-    padding: 10,
-    border: '1px solid black',
+    position: 'fixed',
   },
   canvas: {
-    position: 'absolute',
     display: 'block',
+    position: 'absolute',
+    cursor: 'pointer',
   },
 }
 
@@ -56,7 +61,7 @@ export default React.createClass({
       if (ctx.isPointInPath(d.path2D, mouse.x, mouse.y)) {
         this.setState({
           hoverData: d,
-          mouse,
+          mouse: {x: evt.clientX, y: evt.clientY},
         })
         return true
       }
@@ -66,7 +71,7 @@ export default React.createClass({
       if (ctx.isPointInStroke(d.path2D, mouse.x, mouse.y)) {
         this.setState({
           hoverData: d,
-          mouse,
+          mouse: {x: evt.clientX, y: evt.clientY},
         })
         return true
       }
@@ -83,9 +88,10 @@ export default React.createClass({
     var ctx = findDOMNode(this.refs.canvas).getContext('2d')
     ctx.fillStyle = 'hsl(0, 50%, 20%)'
     utils.canvas.clearRect(ctx, this.props.size)
+    ctx.lineWidth = 2
     if (hoverData) {
-      ctx.fillStyle = 'red'
-      ctx.fill(hoverData.path2D)
+      ctx.strokeStyle = 'black'
+      ctx.stroke(hoverData.path2D)
     }
   },
   render() {
@@ -100,8 +106,8 @@ export default React.createClass({
             width={this.props.size.width}
             />
         {this.state.hoverData &&
-          <div style={R.merge(styles.tooltip, {top: this.state.mouse.y + 20, left: this.state.mouse.x + 20})}>
-            Tooltip
+          <div style={R.merge(styles.tooltip, {top: this.state.mouse.y, left: this.state.mouse.x})}>
+            <div>{this.state.hoverData.label}</div>
           </div>
         }
       </div>
