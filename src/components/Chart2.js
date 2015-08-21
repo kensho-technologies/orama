@@ -4,9 +4,12 @@ import React, {PropTypes} from 'react'
 import d3Arrays from 'd3-arrays'
 import d3Scale from 'd3-scale'
 import utils from '../utils/utils'
+import linearRegression from 'simple-statistics/src/linear_regression'
+import regressionLine from 'simple-statistics/src/linear_regression_line'
 
 import CanvasRender from './CanvasRender'
 import ChartInput from './ChartInput'
+import ChartBackground from './ChartBackground'
 
 export default React.createClass({
   displayName: 'Chart2',
@@ -32,18 +35,33 @@ export default React.createClass({
     const plotRect = utils.rect.marginInset(margin, size)
     const xRange = utils.rect.getRangeX(plotRect)
     const xDomain = d3Arrays.extent(data, R.prop(xProp))
+    const xTickCount = utils.ticks.getXCount(xRange)
     const xScale = d3Scale.linear()
       .domain(xDomain)
       .range(xRange)
-      .nice(utils.ticks.getXCount(xRange))
+      .nice(xTickCount)
     const xMap = R.pipe(R.prop(xProp), xScale)
     const yRange = utils.rect.getRangeY(plotRect)
     const yDomain = d3Arrays.extent(data, R.prop(yProp))
+    const yTickCount = utils.ticks.getYCount(yRange)
     const yScale = d3Scale.linear()
       .domain(yDomain)
       .range(yRange)
-      .nice(utils.ticks.getYCount(yRange))
+      .nice(yTickCount)
     const yMap = R.pipe(R.prop(yProp), yScale)
+
+    const regressionData = R.map(d => {
+      return [R.prop(xProp, d), R.prop(yProp, d)]
+    }, data)
+    const rlGen = regressionLine(linearRegression(regressionData))
+    const rlPath2D = utils.path()
+    rlPath2D.moveTo(xScale(xDomain[0]), yScale(rlGen(xDomain[0])))
+    rlPath2D.lineTo(xScale(xDomain[1]), yScale(rlGen(xDomain[1])))
+    const rlRenderData = {
+      label: 'Regression Line',
+      path2D: rlPath2D,
+      type: 'line',
+    }
 
     const renderData = R.map(pointD => {
       const x = xMap(pointD)
@@ -51,24 +69,34 @@ export default React.createClass({
       const path2D = utils.path()
       path2D.arc(x, y, 5, 0, 2 * Math.PI)
       return {
-        type: 'point',
+        label: 'point',
         path2D,
         raw: pointD,
+        type: 'area',
         x,
         y,
       }
     }, data)
+    renderData.push(rlRenderData)
 
     return (
       <div style={{position: 'relative'}}>
+        <ChartBackground
+            plotRect={plotRect}
+            size={this.props.size}
+            xScale={xScale}
+            xTickCount={xTickCount}
+            yScale={yScale}
+            yTickCount={yTickCount}
+            />
         <CanvasRender
             plotRect={plotRect}
             renderData={renderData}
             size={this.props.size}
-            xScale={xScale}
-            yScale={yScale}
             xMap={xMap}
+            xScale={xScale}
             yMap={yMap}
+            yScale={yScale}
             />
         <ChartInput
             plotRect={plotRect}

@@ -56,15 +56,6 @@ export default React.createClass({
             setYProp={this.onYPropChange}
             />
         <div>
-          <Chart
-              data={this.props.data}
-              dimensions={newDimensions}
-              size={{ width: 700, height: 500 }}
-              margin={{
-                left: 80, right: 30,
-                top: 15, bottom: 50,
-              }}
-              />
           <Chart2
               data={this.props.data}
               xProp={this.state.xProp}
