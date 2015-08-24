@@ -58,9 +58,19 @@ ${d.description}
 
 Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
-${getParameters(d.parameters)}*Returns* | *${d.returns.type}* | | | *${d.returns.description}*
+${getParameters(d.parameters)}*Returns* | ${getReturnsTypeString(d.returns)} | | | ${getReturnsDescriptionString(d.returns)}
 
 ${getExamples(d.examples)}`
+}
+
+function getReturnsDescriptionString(returns) {
+  if (!returns || !returns.description) return ''
+  return `*${returns.description}*`
+}
+
+function getReturnsTypeString(returns) {
+  if (!returns || !returns.type) return ''
+  return `*${returns.type}*`
 }
 
 function getParametersNames(parametersData) {

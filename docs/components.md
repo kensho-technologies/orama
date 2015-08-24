@@ -1,12 +1,16 @@
 # Components 
 
 - [App](#App)
+- [BottomLabel](#BottomLabel)
 - [CanvasRender](#CanvasRender)
 - [Chart](#Chart)
 - [Chart2](#Chart2)
+- [ChartBackground](#ChartBackground)
+- [ChartInput](#ChartInput)
 - [DataList](#DataList)
 - [DropCard](#DropCard)
 - [DropUI](#DropUI)
+- [LeftLabel](#LeftLabel)
 - [PropCard](#PropCard)
 - [Vis](#Vis)
 
@@ -20,6 +24,17 @@ Prop | Type | Required | Default | Description
 children | func | false |  | 
 
 
+### BottomLabel
+[src/components/BottomLabel.js](../src/components/BottomLabel.js)
+
+*Component that position and style the bottom label of the `Chart` component*
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+plotRect | object | true | {x: 0, y: 0, width: 0, height: 0} | 
+text | string | false | '' | 
+
+
 ### CanvasRender
 [src/components/CanvasRender.js](../src/components/CanvasRender.js)
 
@@ -28,6 +43,7 @@ children | func | false |  |
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 plotRect | object | false |  | 
+renderData | array | false | [] | 
 size | object | false |  | 
 
 
@@ -52,10 +68,38 @@ size | object | true | {  width: 600,  height: 400,} |
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 data | array | false | [] | 
-margin |  | false | {  left: 80, right: 30,  top: 15, bottom: 50,} | undefined
-size | shape | false | {width: 700, height: 500} | 
+margin | object | false | {  left: 80, right: 30,  top: 15, bottom: 60,} | 
+size | object | false | {width: 700, height: 500} | 
+xName | string | false |  | 
 xProp | string | false |  | 
+yName | string | false |  | 
 yProp | string | false |  | 
+
+
+### ChartBackground
+[src/components/ChartBackground.js](../src/components/ChartBackground.js)
+
+
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+plotRect | object | false |  | 
+size | object | false |  | 
+xScale | func | false |  | 
+xTickCount | number | false |  | 
+yScale | func | false |  | 
+yTickCount | number | false |  | 
+
+
+### ChartInput
+[src/components/ChartInput.js](../src/components/ChartInput.js)
+
+
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+renderData | array | false | [] | 
+size | object | false |  | 
 
 
 ### DataList
@@ -78,6 +122,8 @@ Prop | Type | Required | Default | Description
 canDrop | bool | false |  | 
 connectDropTarget | func | false |  | 
 isOver | bool | false |  | 
+setText | func | false |  | 
+text | string | false |  | 
 
 
 ### DropUI
@@ -87,6 +133,21 @@ isOver | bool | false |  |
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
+setXProp | func | false |  | 
+setYProp | func | false |  | 
+xProp | string | false |  | 
+yProp | string | false |  | 
+
+
+### LeftLabel
+[src/components/LeftLabel.js](../src/components/LeftLabel.js)
+
+*Component that position and style the bottom label of the `Chart` component*
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+plotRect | object | true | {x: 0, y: 0, width: 0, height: 0} | 
+text | string | false | '' | 
 
 
 ### PropCard
