@@ -20,6 +20,7 @@ const styles = {
     display: 'block',
     position: 'absolute',
     cursor: 'pointer',
+    userSelect: 'none',
   },
 }
 
@@ -80,6 +81,17 @@ export default React.createClass({
       this.setState({hoverData: undefined})
     }
   },
+  onClick() {
+    // if (this.state.hoverData) {
+    // }
+  },
+  onMouseDown(evt) {
+    evt.preventDefault()
+  },
+  onMouseUp() {
+  },
+  onDrag() {
+  },
   onMouseLeave() {
     this.setState({hoverData: undefined})
   },
@@ -101,6 +113,10 @@ export default React.createClass({
             height={this.props.size.height}
             onMouseMove={this.onMouseMove}
             onMouseLeave={this.onMouseLeave}
+            onMouseDown={this.onMouseDown}
+            onMouseUp={this.onMouseUp}
+            onClick={this.onClick}
+            onDrag={this.onDrag}
             ref='canvas'
             style={styles.canvas}
             width={this.props.size.width}

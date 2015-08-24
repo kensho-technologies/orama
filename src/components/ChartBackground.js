@@ -2,7 +2,9 @@
 import React, {findDOMNode, PropTypes} from 'react'
 
 import utils from '../utils/utils'
+import {getStyleVars} from '../utils/styleVars'
 
+const styleVars = getStyleVars()
 const styles = {
   canvas: {
     position: 'absolute',
@@ -33,11 +35,11 @@ export default React.createClass({
   renderCanvas() {
     const {plotRect, xScale, xTickCount, yScale, yTickCount} = this.props
     const ctx = findDOMNode(this.refs.canvas).getContext('2d')
-    ctx.fillStyle = 'hsl(0, 0%, 90%)'
+    ctx.fillStyle = styleVars.axis.background
     utils.canvas.clearRect(ctx, this.props.size)
     utils.canvas.fillRect(ctx, utils.rect.inset(-10, this.props.plotRect))
 
-    ctx.font = '14px sans-serif'
+    ctx.font = `${styleVars.axis.tickFontSize}px sans-serif`
     ctx.textAlign = 'center'
     ctx.textBaseline = 'top'
     const xTicks = xScale.ticks(xTickCount)
@@ -108,7 +110,6 @@ export default React.createClass({
       ctx.fillStyle = 'black'
       ctx.fillText(d, plotRect.x - 26, yScale(d))
     }, yTicks)
-
   },
   render() {
     return (

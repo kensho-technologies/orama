@@ -1,7 +1,6 @@
 
 import React, {PropTypes} from 'react'
 
-import Chart from './Chart'
 import Chart2 from './Chart2'
 import DataList from './DataList'
 import DropUI from './DropUI'
@@ -36,16 +35,6 @@ export default React.createClass({
     this.setState({yProp: text})
   },
   render() {
-    const newDimensions = {
-      x: {
-        path: [this.state.xProp],
-        type: 'linear',
-      },
-      y: {
-        path: [this.state.yProp],
-        type: 'linear',
-      },
-    }
     return (
       <div style={styles.visContainer}>
         <DataList data={this.props.data}/>
