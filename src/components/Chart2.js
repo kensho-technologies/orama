@@ -7,9 +7,11 @@ import utils from '../utils/utils'
 import linearRegression from 'simple-statistics/src/linear_regression'
 import regressionLine from 'simple-statistics/src/linear_regression_line'
 
+import BottomLabel from './BottomLabel'
 import CanvasRender from './CanvasRender'
-import ChartInput from './ChartInput'
 import ChartBackground from './ChartBackground'
+import ChartInput from './ChartInput'
+import LeftLabel from './LeftLabel'
 
 export default React.createClass({
   displayName: 'Chart2',
@@ -17,7 +19,9 @@ export default React.createClass({
     data: PropTypes.array,
     margin: PropTypes.object,
     size: PropTypes.object,
+    xName: PropTypes.string,
     xProp: PropTypes.string,
+    yName: PropTypes.string,
     yProp: PropTypes.string,
   },
   getDefaultProps() {
@@ -25,7 +29,7 @@ export default React.createClass({
       data: [],
       margin: {
         left: 80, right: 30,
-        top: 15, bottom: 50,
+        top: 15, bottom: 60,
       },
       size: {width: 700, height: 500},
     }
@@ -78,9 +82,12 @@ export default React.createClass({
       }
     }, data)
     renderData.push(rlRenderData)
-
+    const containerStyle = {
+      position: 'relative',
+      height: this.props.size.height,
+    }
     return (
-      <div style={{position: 'relative'}}>
+      <div style={containerStyle}>
         <ChartBackground
             plotRect={plotRect}
             size={this.props.size}
@@ -102,6 +109,14 @@ export default React.createClass({
             plotRect={plotRect}
             renderData={renderData}
             size={this.props.size}
+            />
+        <LeftLabel
+            text={this.props.yName || this.props.yProp}
+            plotRect={plotRect}
+            />
+        <BottomLabel
+            text={this.props.xName || this.props.xProp}
+            plotRect={plotRect}
             />
       </div>
     )
