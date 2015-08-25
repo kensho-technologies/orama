@@ -1,11 +1,12 @@
 
 import React, { PropTypes } from 'react'
+import R from 'ramda'
 
 import PropCard from './PropCard'
 
 const styles = {
   container: {
-    maxWidth: 200,
+    minWidth: 200,
   },
 }
 

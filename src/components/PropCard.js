@@ -1,6 +1,7 @@
 
 import React, { PropTypes } from 'react'
 import { DragSource } from 'react-dnd'
+import R from 'ramda'
 
 const styles = {
   item: {

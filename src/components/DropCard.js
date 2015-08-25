@@ -1,5 +1,6 @@
 
 import React, {PropTypes} from 'react'
+import R from 'ramda'
 
 import { DropTarget } from 'react-dnd'
 

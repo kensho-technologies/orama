@@ -15,6 +15,7 @@ const styles = {
     padding: '9px 10px',
     pointerEvents: 'none',
     position: 'fixed',
+    zIndex: 900,
   },
   canvas: {
     display: 'block',
@@ -28,7 +29,7 @@ export default React.createClass({
   displayName: 'ChartInput',
   propTypes: {
     renderData: PropTypes.array,
-    size: PropTypes.object,
+    size: PropTypes.object.isRequired,
   },
   getDefaultProps() {
     return {

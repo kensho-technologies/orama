@@ -1,5 +1,6 @@
 
 import React, {findDOMNode, PropTypes} from 'react'
+import R from 'ramda'
 
 import utils from '../utils/utils'
 import {getStyleVars} from '../utils/styleVars'
@@ -16,7 +17,7 @@ export default React.createClass({
   displayName: 'ChartBackground',
   propTypes: {
     plotRect: PropTypes.object,
-    size: PropTypes.object,
+    size: PropTypes.object.isRequired,
     xScale: PropTypes.func,
     xTickCount: PropTypes.number,
     yScale: PropTypes.func,
