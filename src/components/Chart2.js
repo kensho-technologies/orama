@@ -37,7 +37,7 @@ export default React.createClass({
     }
   },
   render() {
-    const {data, xProp, yProp, margin, size} = this.props
+    const {data, xProp, yProp, colorProp, margin, size} = this.props
     const plotRect = utils.rect.marginInset(margin, size)
     const xRange = utils.rect.getRangeX(plotRect)
     const xDomain = d3Arrays.extent(data, R.prop(xProp))
@@ -47,6 +47,7 @@ export default React.createClass({
       .range(xRange)
       .nice(xTickCount)
     const xMap = R.pipe(R.prop(xProp), xScale)
+
     const yRange = utils.rect.getRangeY(plotRect)
     const yDomain = d3Arrays.extent(data, R.prop(yProp))
     const yTickCount = utils.ticks.getYCount(yRange)
@@ -55,6 +56,13 @@ export default React.createClass({
       .range(yRange)
       .nice(yTickCount)
     const yMap = R.pipe(R.prop(yProp), yScale)
+
+    const cRange = utils.dim.RANGE_LINEAR_COLOR
+    const cDomain = d3Arrays.extent(data, R.prop(colorProp))
+    const cScale = d3Scale.linear()
+      .domain(cDomain)
+      .range(cRange)
+    const cMap = R.pipe(R.prop(colorProp), cScale)
 
     const regressionData = R.map(d => {
       return [R.prop(xProp, d), R.prop(yProp, d)]
@@ -72,10 +80,12 @@ export default React.createClass({
     const renderData = R.map(pointD => {
       const x = xMap(pointD)
       const y = yMap(pointD)
+      const c = R.prop(colorProp, pointD) && cMap(pointD)
       const path2D = utils.path()
       path2D.arc(x, y, 5, 0, 2 * Math.PI)
       return {
         label: pointD.Name || 'point',
+        fill: c,
         path2D,
         raw: pointD,
         type: 'area',

@@ -39,6 +39,9 @@ export default React.createClass({
   onYPropChange(text) {
     this.setState({yProp: text})
   },
+  onColorPropChange(text) {
+    this.setState({colorProp: text})
+  },
   render() {
     const {data} = this.props
     const {groupProp} = this.state
@@ -53,6 +56,7 @@ export default React.createClass({
               key={d[0]}
               title={d[0]}
               data={d[1]}
+              colorProp={this.state.colorProp}
               xProp={this.state.xProp}
               yProp={this.state.yProp}
               />
@@ -75,6 +79,8 @@ export default React.createClass({
             setGroupProp={this.onGroupPropChange}
             setXProp={this.onXPropChange}
             setYProp={this.onYPropChange}
+            setColorProp={this.onColorPropChange}
+            colorProp={this.state.colorProp}
             xProp={this.state.xProp}
             yProp={this.state.yProp}
             />

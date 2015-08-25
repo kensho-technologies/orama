@@ -53,6 +53,11 @@ export default React.createClass({
             text={this.props.groupProp}
             setText={this.props.setGroupProp}
             />
+        <div style={styles.item}>color</div>
+        <DropCard
+            text={this.props.colorProp}
+            setText={this.props.setColorProp}
+            />
       </div>
     )
   },
