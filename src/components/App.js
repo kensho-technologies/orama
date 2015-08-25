@@ -36,7 +36,7 @@ export const App = React.createClass({
     return {}
   },
   componentDidMount() {
-    csv('study-results.csv', (e, csvData) => {
+    csv('study-results2.csv', (e, csvData) => {
       const data = parseCsv(csvData)
       this.setState({data})
       // stress test
