@@ -1,5 +1,6 @@
 
 import React, {PropTypes} from 'react'
+import R from 'ramda'
 
 import d3Arrays from 'd3-arrays'
 import d3Scale from 'd3-scale'
@@ -19,6 +20,7 @@ export default React.createClass({
     data: PropTypes.array,
     margin: PropTypes.object,
     size: PropTypes.object,
+    title: PropTypes.string,
     xName: PropTypes.string,
     xProp: PropTypes.string,
     yName: PropTypes.string,
@@ -31,7 +33,7 @@ export default React.createClass({
         left: 80, right: 30,
         top: 15, bottom: 60,
       },
-      size: {width: 700, height: 500},
+      size: {width: 500, height: 400},
     }
   },
   render() {
@@ -73,7 +75,7 @@ export default React.createClass({
       const path2D = utils.path()
       path2D.arc(x, y, 5, 0, 2 * Math.PI)
       return {
-        label: 'point',
+        label: pointD.Name || 'point',
         path2D,
         raw: pointD,
         type: 'area',
@@ -83,41 +85,45 @@ export default React.createClass({
     }, data)
     renderData.push(rlRenderData)
     const containerStyle = {
-      position: 'relative',
       height: this.props.size.height,
+      position: 'relative',
+      width: this.props.size.width,
     }
     return (
-      <div style={containerStyle}>
-        <ChartBackground
-            plotRect={plotRect}
-            size={this.props.size}
-            xScale={xScale}
-            xTickCount={xTickCount}
-            yScale={yScale}
-            yTickCount={yTickCount}
-            />
-        <CanvasRender
-            plotRect={plotRect}
-            renderData={renderData}
-            size={this.props.size}
-            xMap={xMap}
-            xScale={xScale}
-            yMap={yMap}
-            yScale={yScale}
-            />
-        <ChartInput
-            plotRect={plotRect}
-            renderData={renderData}
-            size={this.props.size}
-            />
-        <LeftLabel
-            text={this.props.yName || this.props.yProp}
-            plotRect={plotRect}
-            />
-        <BottomLabel
-            text={this.props.xName || this.props.xProp}
-            plotRect={plotRect}
-            />
+      <div>
+        <div style={{fontWeight: 'bold', fontSize: 17, marginLeft: this.props.margin.left}}>{this.props.title}</div>
+        <div style={containerStyle}>
+          <ChartBackground
+              plotRect={plotRect}
+              size={this.props.size}
+              xScale={xScale}
+              xTickCount={xTickCount}
+              yScale={yScale}
+              yTickCount={yTickCount}
+              />
+          <CanvasRender
+              plotRect={plotRect}
+              renderData={renderData}
+              size={this.props.size}
+              xMap={xMap}
+              xScale={xScale}
+              yMap={yMap}
+              yScale={yScale}
+              />
+          <ChartInput
+              plotRect={plotRect}
+              renderData={renderData}
+              size={this.props.size}
+              />
+          <LeftLabel
+              text={this.props.yName || this.props.yProp}
+              plotRect={plotRect}
+              />
+          <BottomLabel
+              text={this.props.xName || this.props.xProp}
+              plotRect={plotRect}
+              />
+        </div>
       </div>
     )
   },

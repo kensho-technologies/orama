@@ -24,6 +24,8 @@ const styles = {
 export default React.createClass({
   displayName: 'DropUI',
   propTypes: {
+    groupProp: PropTypes.string,
+    setGroupProp: PropTypes.func,
     setXProp: PropTypes.func,
     setYProp: PropTypes.func,
     xProp: PropTypes.string,
@@ -45,6 +47,11 @@ export default React.createClass({
         <DropCard
             text={this.props.yProp}
             setText={this.props.setYProp}
+            />
+        <div style={styles.item}>group</div>
+        <DropCard
+            text={this.props.groupProp}
+            setText={this.props.setGroupProp}
             />
       </div>
     )

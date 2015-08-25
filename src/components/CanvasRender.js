@@ -22,6 +22,7 @@ export default React.createClass({
   getDefaultProps() {
     return {
       renderData: [],
+      size: {width: 0, height: 0},
     }
   },
   componentDidMount() {
@@ -40,6 +41,7 @@ export default React.createClass({
     ctx.rect(plotRect.x - 10, plotRect.y - 10, plotRect.width + 20, plotRect.height + 20)
     ctx.clip()
     ctx.lineWidth = 2
+    ctx.globalAlpha = 0.85
     R.forEach(d => {
       ctx.fillStyle = d.fill || 'steelblue'
       ctx.strokeStyle = d.stroke || 'steelblue'
