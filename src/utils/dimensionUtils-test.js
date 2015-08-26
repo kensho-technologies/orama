@@ -4,6 +4,38 @@ import test from 'tape'
 import {rectBase} from './rectUtils'
 import * as dimUtils from './dimensionUtils'
 
+test('dimUtils.getType', t => {
+  t.deepEqual(
+    dimUtils.getType([{a: 1}, {a: 2}], 'a'),
+    'linear'
+  )
+  t.end()
+})
+
+test('dimUtils.getColorScale', t => {
+  t.deepEqual(
+    dimUtils.getColorScale('ordinal', [1, 2, 3]).domain(),
+    [1, 2, 3]
+  )
+  t.deepEqual(
+    dimUtils.getColorScale('linear', [1, 3]).domain(),
+    [1, 3]
+  )
+  t.end()
+})
+
+test('dimUtils.getDomain', t => {
+  t.deepEqual(
+    dimUtils.getDomain('ordinal', [{t: 'a'}, {t: 'b'}], 't'),
+    ['a', 'b']
+  )
+  t.deepEqual(
+    dimUtils.getDomain('linear', [{t: 1}, {t: 2}], 't'),
+    [1, 2]
+  )
+  t.end()
+})
+
 test('dimUtils.getRange', t => {
   t.ok(dimUtils.getRange)
   t.deepEqual(
@@ -19,12 +51,6 @@ test('dimUtils.getRange', t => {
     dimUtils.RANGE_LINEAR_COLOR
   )
   t.throws(dimUtils.getRange)
-  t.end()
-})
-
-test('dimUtils.getScaleForDimension', t => {
-  t.ok(dimUtils.getScaleForDimension)
-  t.equal(typeof dimUtils.getScaleForDimension(dimUtils.DIMENSION_BASE), 'function')
   t.end()
 })
 

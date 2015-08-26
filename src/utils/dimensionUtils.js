@@ -1,6 +1,7 @@
 
 import R from 'ramda'
 import d3Scale from 'd3-scale'
+import d3Arrays from 'd3-arrays'
 
 import * as rectUtils from './rectUtils'
 import * as ticksUtils from './ticksUtils'
@@ -10,14 +11,6 @@ import * as ticksUtils from './ticksUtils'
  * @namespace  /utils/dimensionUtils
  */
 
-export const DIMENSION_BASE = {
-  name: 'dimensionBase',
-  type: 'linear',
-  path: [undefined],
-  domain: [0, 1],
-  range: [0, 1],
-  // rangeType: 'points' | 'roundPoint' | 'bands' | 'roundBands',
-}
 const SCALE_TYPES = [
   'linear',
   'log',
@@ -31,7 +24,17 @@ const SCALE_TYPES = [
 export const RANGE_LINEAR_COLOR = ['#edf8b1', '#2c7fb8']
 const RANGE_ORDINAL_COLOR = ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3', '#a6d854', '#ffd92f', '#e5c494', '#b3b3b3']
 
+/**
+ * Get the scale type to be used for a dimension on the data.
+ * It access the data objects using the prop, and checks if all the variables are of the same type.
+ * @memberOf  /utils/dimensionUtils
+ *
+ * @param  {[type]} data [description]
+ * @param  {[type]} prop [description]
+ * @return {[type]}      [description]
+ */
 export function getType(data, prop) {
+  // TODO(L): get type most used instead of the one present across all properties.
   const getProp = R.prop(prop)
   let type
   R.any(d => {
@@ -47,16 +50,47 @@ export function getType(data, prop) {
   if (type === 'number') return 'linear'
   if (type === 'string') return 'ordinal'
   if (type === 'object') return 'time'
-  return undefined
+  return 'ordinal'
+}
+
+export function getColorScale(type, domain) {
+  switch (type) {
+  case 'ordinal':
+    const scaleOrdinal = d3Scale.ordinal()
+      .domain(domain)
+      .range(RANGE_ORDINAL_COLOR)
+    scaleOrdinal.ticks = () => domain
+    return scaleOrdinal
+  case 'linear':
+  default:
+    return d3Scale.linear()
+      .domain(domain)
+      .range(RANGE_LINEAR_COLOR)
+  }
+}
+
+
+export function getDomain(type, data, prop) {
+  switch (type) {
+  case 'ordinal':
+    return R.uniq(R.map(R.prop(prop), data))
+  default:
+    return d3Arrays.extent(data, R.prop(prop))
+
+  }
 }
 
 export function getAxisScale(type, domain, range, tickCount) {
   switch (type) {
   case 'ordinal':
-    const scaleOrdinal = d3Scale.linear()
+    const scaleOrdinal = d3Scale.ordinal()
       .domain(domain)
       .rangePoints(range)
-    scale.ticks = () => domain
+    if (domain[0] === undefined) {
+      scaleOrdinal.ticks = () => ['']
+    } else {
+      scaleOrdinal.ticks = () => domain
+    }
     return scaleOrdinal
   case 'linear':
   default:
@@ -76,6 +110,8 @@ export function getAxisScale(type, domain, range, tickCount) {
 
 /**
  * Get default range according to options
+ * @memberOf  /utils/dimensionUtils
+ *
  * @param  {string} key       dimension name
  * @param  {Object} dimension
  * @param  {Object} rect
@@ -102,6 +138,8 @@ export function getRange(key, dimension, rect) {
 
 /**
  * Get new scale according to the dimension options
+ * @memberOf  /utils/dimensionUtils
+ *
  * @param  {Object} dimension
  * @return {function}           new d3 scale
  */
@@ -120,6 +158,8 @@ export function getScaleForDimension(dimension, key) {
 
 /**
  * Return a new d3 scale according to the input type
+ * @memberOf  /utils/dimensionUtils
+ *
  * @param  {string} type The string needs to be one of the SCALE_TYPES: ['linear', 'log', 'ordinal', 'pow', 'quantile', 'quantize', 'threshold', 'time' ]
  * @return {function}      return a new d3 scale
  */
