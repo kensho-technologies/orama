@@ -5,7 +5,7 @@
   "main": "src/components/App.js",
   "scripts": {
     "prestart": "npm prune && npm install",
-    "start": "parallelshell 'npm run dev-server' 'npm run test:watch' 'npm outdated'",
+    "start": "parallelshell 'npm run dev-server' 'npm run test:watch' 'npm run lint:watch' 'npm outdated'",
     "start:flow": "parallelshell 'npm run dev-server' 'npm run test:watch' 'npm run flow'",
     "check": "npm run lint && npm run test",
     "build": "npm run clean && npm run build:lib && npm run build:webpack",
@@ -14,7 +14,8 @@
     "build:lib": "babel src --out-dir lib",
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.js",
     "lint": "eslint src",
-    "test": "babel-node ./node_modules/.bin/tape src/**/*-test.js | tap-min",
+    "lint:watch": "onchange src -- eslint src",
+    "test": "date +'%T' && babel-node ./node_modules/.bin/tape src/**/*-test.js | tap-min",
     "test:watch": "onchange src -- npm test",
     "test:cov": "babel-node ./node_modules/.bin/isparta cover --report text --report lcovonly --report html ./node_modules/.bin/tape -- src/**/*-test.js",
     "flow": "onchange src/**/*.js -- flow",
@@ -31,7 +32,7 @@
   "devDependencies": {
     "babel": "5.8.21",
     "babel-core": "5.8.22",
-    "babel-eslint": "4.0.10",
+    "babel-eslint": "4.1.0",
     "babel-loader": "5.3.2",
     "coveralls": "2.11.4",
     "d3-arrays": "0.0.4",
@@ -58,7 +59,7 @@
     "ramda": "0.17.1",
     "react": "0.13.3",
     "react-dnd": "1.1.5",
-    "react-redux": "1.0.0",
+    "react-redux": "1.0.1",
     "redux": "1.0.1",
     "simple-statistics": "1.0.0"
   }
