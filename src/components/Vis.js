@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 
-import Chart2 from './Chart2'
+import Chart from './Chart'
 import DataList from './DataList'
 import DropUI from './DropUI'
 
@@ -52,11 +52,11 @@ export default React.createClass({
         if (d[1].length < 2) return undefined
         if (d[0] === '0') return undefined
         return (
-          <Chart2
+          <Chart
+              colorProp={this.state.colorProp}
+              data={d[1]}
               key={d[0]}
               title={d[0]}
-              data={d[1]}
-              colorProp={this.state.colorProp}
               xProp={this.state.xProp}
               yProp={this.state.yProp}
               />
@@ -64,7 +64,8 @@ export default React.createClass({
       }, pairs)
     } else {
       chartElements = (
-        <Chart2
+        <Chart
+            colorProp={this.state.colorProp}
             data={this.props.data}
             xProp={this.state.xProp}
             yProp={this.state.yProp}
@@ -75,12 +76,12 @@ export default React.createClass({
       <div style={styles.visContainer}>
         <DataList data={this.props.data}/>
         <DropUI
+            colorProp={this.state.colorProp}
             groupProp={this.state.groupProp}
+            setColorProp={this.onColorPropChange}
             setGroupProp={this.onGroupPropChange}
             setXProp={this.onXPropChange}
             setYProp={this.onYPropChange}
-            setColorProp={this.onColorPropChange}
-            colorProp={this.state.colorProp}
             xProp={this.state.xProp}
             yProp={this.state.yProp}
             />

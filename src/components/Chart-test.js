@@ -6,16 +6,8 @@ import renderComponent from '../renderComponentTest'
 
 import Chart from './Chart'
 
-test('App should exist and render', (t) => {
-  t.ok(Chart)
-  var component = renderComponent(
-    <Chart
-        data={[]}
-        dimensions={{}}
-        margin={{}}
-        size={{}}
-        />
-  )
+test('Chart', t => {
+  var component = renderComponent(<Chart/>)
   t.equal(component.type, 'div')
   t.end()
 })

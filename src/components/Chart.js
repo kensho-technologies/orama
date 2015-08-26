@@ -1,162 +1,137 @@
 
-import React from 'react'
+import React, {PropTypes} from 'react'
 import R from 'ramda'
 
+import d3Arrays from 'd3-arrays'
+import d3Scale from 'd3-scale'
 import utils from '../utils/utils'
+import linearRegression from 'simple-statistics/src/linear_regression'
+import regressionLine from 'simple-statistics/src/linear_regression_line'
 
-var {findDOMNode, PropTypes} = React
+import BottomLabel from './BottomLabel'
+import CanvasRender from './CanvasRender'
+import ChartBackground from './ChartBackground'
+import ChartInput from './ChartInput'
+import LeftLabel from './LeftLabel'
 
-var styles = {
-  container: {
-    position: 'relative',
-  },
-  canvas: {
-    display: 'block',
-  },
-  label: {
-    position: 'absolute',
-    transform: 'rotate(-90deg) translateY(100%)',
-    bottom: 30,
-    left: 10,
-    width: 400 - 60,
-    fontSize: 16,
-    textAlign: 'center',
-    transformOrigin: 'left bottom',
-  },
-}
-
-/**
- * Component description
- */
 export default React.createClass({
   displayName: 'Chart',
   propTypes: {
-    data: PropTypes.array.isRequired,
-    dimensions: PropTypes.object.isRequired,
-    margin: PropTypes.object.isRequired,
-    size: PropTypes.object.isRequired,
+    colorProp: PropTypes.string,
+    data: PropTypes.array,
+    margin: PropTypes.object,
+    size: PropTypes.object,
+    title: PropTypes.string,
+    xName: PropTypes.string,
+    xProp: PropTypes.string,
+    yName: PropTypes.string,
+    yProp: PropTypes.string,
   },
   getDefaultProps() {
     return {
-      size: {
-        width: 600,
-        height: 400,
-      },
-      margin: {
-        left: 80, right: 20,
-        top: 20, bottom: 50,
-      },
       data: [],
+      margin: {
+        left: 80, right: 30,
+        top: 15, bottom: 60,
+      },
+      size: {width: 500, height: 400},
     }
   },
-  componentDidMount() {
-    this.renderCanvas()
-  },
-  componentDidUpdate() {
-    this.renderCanvas()
-  },
-  renderCanvas() {
-    var {
-      data,
-      dimensions,
-      margin,
-      size,
-    } = this.props
-
-    const plotRect = utils.rect.marginInset(margin, size)
-    const expandedDim = R.pipe(
-      utils.dim.mergeDomains(data),
-      utils.dim.mergeRanges(plotRect),
-      utils.dim.mergeScales
-    )(dimensions)
-
-    const mappedData = utils.map.mapToPoints(expandedDim, data)
-
-    var ctx = findDOMNode(this.refs.canvas).getContext('2d')
-    ctx.fillStyle = 'hsl(0, 0%, 90%)'
-    ctx.strokeStyle = 'black'
-    ctx.globalAlpha = 1
-    ctx.lineWidth = 2
-
-    utils.canvas.clearRect(ctx, size)
-    // utils.canvas.strokeRect(ctx, size)
-    utils.canvas.fillRect(ctx, utils.rect.inset(-10, plotRect))
-
-    ctx.font = '14px sans-serif'
-    ctx.textAlign = 'end'
-    ctx.textBaseline = 'middle'
-    const yTicks = utils.ticks.getYTicks(expandedDim)
-    R.forEach(d => {
-      if (d === 0) {
-        ctx.lineWidth = 3
-      } else {
-        ctx.lineWidth = 1
-      }
-      const scale = expandedDim.y.scale
-      ctx.strokeStyle = 'lightgray'
-      ctx.beginPath()
-      ctx.moveTo(plotRect.x - 20, scale(d))
-      ctx.lineTo(plotRect.x - 10, scale(d))
-      ctx.closePath()
-      ctx.stroke()
-      ctx.strokeStyle = 'white'
-      ctx.beginPath()
-      ctx.moveTo(plotRect.x - 10, scale(d))
-      ctx.lineTo(utils.rect.getMaxX(plotRect) + 10, scale(d))
-      ctx.closePath()
-      ctx.stroke()
-      ctx.fillStyle = 'black'
-      ctx.fillText(d, plotRect.x - 25, scale(d))
-    }, yTicks)
-
-    ctx.textAlign = 'center'
-    ctx.textBaseline = 'top'
-    const xTicks = utils.ticks.getXTicks(expandedDim)
-    R.forEach(d => {
-      if (d === 0) {
-        ctx.lineWidth = 3
-      } else {
-        ctx.lineWidth = 1
-      }
-      const scale = expandedDim.x.scale
-      ctx.strokeStyle = 'lightgray'
-      ctx.beginPath()
-      ctx.moveTo(scale(d), utils.rect.getMaxY(plotRect) + 10 )
-      ctx.lineTo(scale(d), utils.rect.getMaxY(plotRect) + 20 )
-      ctx.closePath()
-      ctx.stroke()
-      ctx.strokeStyle = 'white'
-      ctx.beginPath()
-      ctx.moveTo(scale(d), plotRect.y - 10 )
-      ctx.lineTo(scale(d), utils.rect.getMaxY(plotRect) + 10 )
-      ctx.closePath()
-      ctx.stroke()
-      ctx.fillStyle = 'black'
-      ctx.fillText(d, scale(d), utils.rect.getMaxY(plotRect) + 22)
-    }, xTicks)
-
-    ctx.save()
-    ctx.beginPath()
-    ctx.rect(plotRect.x - 10, plotRect.y - 10, plotRect.width + 20, plotRect.height + 20)
-    ctx.clip()
-    ctx.globalAlpha = 0.75
-    R.forEach(d => {
-      ctx.fillStyle = d.color || 'black'
-      ctx.fill(d.path2D)
-    }, mappedData)
-    ctx.restore()
-  },
   render() {
+    const {data, xProp, yProp, colorProp, margin, size} = this.props
+    const plotRect = utils.rect.marginInset(margin, size)
+
+    const xType = utils.dim.getType(data, xProp)
+    console.log(xType)
+    const xRange = utils.rect.getRangeX(plotRect)
+    const xDomain = d3Arrays.extent(data, R.prop(xProp))
+    const xTickCount = utils.ticks.getXCount(xRange)
+    const xScale = utils.dim.getAxisScale(null, xDomain, xRange, xTickCount)
+    const xMap = R.pipe(R.prop(xProp), xScale)
+
+    const yDomain = d3Arrays.extent(data, R.prop(yProp))
+    const yRange = utils.rect.getRangeY(plotRect)
+    const yTickCount = utils.ticks.getYCount(yRange)
+    const yScale = utils.dim.getAxisScale(null, yDomain, yRange, yTickCount)
+    const yMap = R.pipe(R.prop(yProp), yScale)
+
+    const cRange = utils.dim.RANGE_LINEAR_COLOR
+    const cDomain = d3Arrays.extent(data, R.prop(colorProp))
+    const cScale = d3Scale.linear()
+      .domain(cDomain)
+      .range(cRange)
+    const cMap = R.pipe(R.prop(colorProp), cScale)
+
+    const regressionData = R.map(d => {
+      return [R.prop(xProp, d), R.prop(yProp, d)]
+    }, data)
+    const rlGen = regressionLine(linearRegression(regressionData))
+    const rlPath2D = utils.path()
+    rlPath2D.moveTo(xScale(xDomain[0]), yScale(rlGen(xDomain[0])))
+    rlPath2D.lineTo(xScale(xDomain[1]), yScale(rlGen(xDomain[1])))
+    const rlRenderData = {
+      label: 'Regression Line',
+      path2D: rlPath2D,
+      type: 'line',
+    }
+
+    const renderData = R.map(pointD => {
+      const x = xMap(pointD)
+      const y = yMap(pointD)
+      const c = R.prop(colorProp, pointD) && cMap(pointD)
+      const path2D = utils.path()
+      path2D.arc(x, y, 5, 0, 2 * Math.PI)
+      return {
+        label: pointD.Name || 'point',
+        fill: c,
+        path2D,
+        raw: pointD,
+        type: 'area',
+        x,
+        y,
+      }
+    }, data)
+    renderData.push(rlRenderData)
+    const containerStyle = {
+      height: this.props.size.height,
+      position: 'relative',
+      width: this.props.size.width,
+    }
     return (
-      <div style={styles.container}>
-        <div style={styles.label}>
+      <div>
+        <div style={{fontWeight: 'bold', fontSize: 17, marginLeft: this.props.margin.left}}>{this.props.title}</div>
+        <div style={containerStyle}>
+          <ChartBackground
+              plotRect={plotRect}
+              size={this.props.size}
+              xScale={xScale}
+              xTickCount={xTickCount}
+              yScale={yScale}
+              yTickCount={yTickCount}
+              />
+          <CanvasRender
+              plotRect={plotRect}
+              renderData={renderData}
+              size={this.props.size}
+              xMap={xMap}
+              xScale={xScale}
+              yMap={yMap}
+              yScale={yScale}
+              />
+          <ChartInput
+              plotRect={plotRect}
+              renderData={renderData}
+              size={this.props.size}
+              />
+          <LeftLabel
+              text={this.props.yName || this.props.yProp}
+              plotRect={plotRect}
+              />
+          <BottomLabel
+              text={this.props.xName || this.props.xProp}
+              plotRect={plotRect}
+              />
         </div>
-        <canvas
-            height={this.props.size.height}
-            ref='canvas'
-            style={styles.canvas}
-            width={this.props.size.width}
-            />
       </div>
     )
   },

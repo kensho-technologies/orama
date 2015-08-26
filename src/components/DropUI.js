@@ -24,7 +24,9 @@ const styles = {
 export default React.createClass({
   displayName: 'DropUI',
   propTypes: {
+    colorProp: PropTypes.string,
     groupProp: PropTypes.string,
+    setColorProp: PropTypes.func,
     setGroupProp: PropTypes.func,
     setXProp: PropTypes.func,
     setYProp: PropTypes.func,
