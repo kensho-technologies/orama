@@ -7,6 +7,7 @@ import PropCard from './PropCard'
 const styles = {
   container: {
     minWidth: 200,
+    maxWidth: 250,
   },
 }
 

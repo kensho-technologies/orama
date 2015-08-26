@@ -2,8 +2,6 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 
-import d3Arrays from 'd3-arrays'
-import d3Scale from 'd3-scale'
 import utils from '../utils/utils'
 import linearRegression from 'simple-statistics/src/linear_regression'
 import regressionLine from 'simple-statistics/src/linear_regression_line'
@@ -42,25 +40,23 @@ export default React.createClass({
     const plotRect = utils.rect.marginInset(margin, size)
 
     const xType = utils.dim.getType(data, xProp)
-    console.log(xType)
     const xRange = utils.rect.getRangeX(plotRect)
-    const xDomain = d3Arrays.extent(data, R.prop(xProp))
+    const xDomain = utils.dim.getDomain(xType, data, xProp)
     const xTickCount = utils.ticks.getXCount(xRange)
-    const xScale = utils.dim.getAxisScale(null, xDomain, xRange, xTickCount)
+    const xScale = utils.dim.getAxisScale(xType, xDomain, xRange, xTickCount)
     const xMap = R.pipe(R.prop(xProp), xScale)
 
-    const yDomain = d3Arrays.extent(data, R.prop(yProp))
+    const yType = utils.dim.getType(data, yProp)
     const yRange = utils.rect.getRangeY(plotRect)
+    const yDomain = utils.dim.getDomain(yType, data, yProp)
     const yTickCount = utils.ticks.getYCount(yRange)
-    const yScale = utils.dim.getAxisScale(null, yDomain, yRange, yTickCount)
+    const yScale = utils.dim.getAxisScale(yType, yDomain, yRange, yTickCount)
     const yMap = R.pipe(R.prop(yProp), yScale)
 
-    const cRange = utils.dim.RANGE_LINEAR_COLOR
-    const cDomain = d3Arrays.extent(data, R.prop(colorProp))
-    const cScale = d3Scale.linear()
-      .domain(cDomain)
-      .range(cRange)
-    const cMap = R.pipe(R.prop(colorProp), cScale)
+    const colorType = utils.dim.getType(data, colorProp)
+    const colorDomain = utils.dim.getDomain(colorType, data, colorProp)
+    const colorScale = utils.dim.getColorScale(colorType, colorDomain)
+    const colorMap = R.pipe(R.prop(colorProp), colorScale)
 
     const regressionData = R.map(d => {
       return [R.prop(xProp, d), R.prop(yProp, d)]
@@ -78,7 +74,7 @@ export default React.createClass({
     const renderData = R.map(pointD => {
       const x = xMap(pointD)
       const y = yMap(pointD)
-      const c = R.prop(colorProp, pointD) && cMap(pointD)
+      const c = R.prop(colorProp, pointD) && colorMap(pointD)
       const path2D = utils.path()
       path2D.arc(x, y, 5, 0, 2 * Math.PI)
       return {
@@ -92,6 +88,7 @@ export default React.createClass({
       }
     }, data)
     renderData.push(rlRenderData)
+
     const containerStyle = {
       height: this.props.size.height,
       position: 'relative',
