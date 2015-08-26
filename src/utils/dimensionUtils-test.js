@@ -4,46 +4,6 @@ import test from 'tape'
 import {rectBase} from './rectUtils'
 import * as dimUtils from './dimensionUtils'
 
-test('dimUtils.mergeDomains', t => {
-  t.ok(dimUtils.mergeDomains)
-  t.deepEqual(
-    dimUtils.mergeDomains(
-      [{a: 0}, {a: 1}, {a: 2}],
-      {
-        x: {path: ['a']},
-      }
-    ),
-    { x: { domain: [ 0, 2 ], path: [ 'a' ] } }
-  )
-  t.end()
-})
-
-test('dimUtils.getDomain', t => {
-  t.ok(dimUtils.getDomain)
-  t.throws(dimUtils.getDomain)
-  t.deepEqual(
-    dimUtils.getDomain(
-      {path: ['a']},
-      [{a: 0}, {a: 1}, {a: 2}]
-    ),
-    [0, 2]
-  )
-  t.end()
-})
-
-test('dimUtils.mergeRanges', t => {
-  t.ok(dimUtils.mergeRanges)
-  t.deepEqual(
-    dimUtils.mergeRanges({width: 100}, {x: {}}),
-    {x: {range: [0, 100]}}
-  )
-  t.deepEqual(
-    dimUtils.mergeRanges({height: 100}, {y: {}}),
-    {y: {range: [100, 0]}}
-  )
-  t.end()
-})
-
 test('dimUtils.getRange', t => {
   t.ok(dimUtils.getRange)
   t.deepEqual(
@@ -59,15 +19,6 @@ test('dimUtils.getRange', t => {
     dimUtils.RANGE_LINEAR_COLOR
   )
   t.throws(dimUtils.getRange)
-  t.end()
-})
-
-test('dimUtils.mergeScales', t => {
-  t.ok(dimUtils.mergeScales)
-  t.equal(
-    typeof dimUtils.mergeScales({x: dimUtils.DIMENSION_BASE}).x.scale,
-    'function'
-  )
   t.end()
 })
 

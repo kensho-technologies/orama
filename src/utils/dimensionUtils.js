@@ -1,7 +1,6 @@
 
 import R from 'ramda'
 import d3Scale from 'd3-scale'
-import d3Arrays from 'd3-arrays'
 
 import * as rectUtils from './rectUtils'
 import * as ticksUtils from './ticksUtils'
@@ -32,34 +31,48 @@ const SCALE_TYPES = [
 export const RANGE_LINEAR_COLOR = ['#edf8b1', '#2c7fb8']
 const RANGE_ORDINAL_COLOR = ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3', '#a6d854', '#ffd92f', '#e5c494', '#b3b3b3']
 
-export const mergeDomains = R.curry((data, dimensions) => {
-  const mapDimensions = R.mapObj(dimension => {
-    const domain = getDomain(dimension, data)
-    return R.merge({domain}, dimension)
-  })
-  return mapDimensions(dimensions)
-})
-
-export function getDomain(dimension, data) {
-  const path = R.prop('path', dimension)
-  if (!path) throw new Error('getDomain: missing path on dimension')
-  return d3Arrays.extent(data, R.path(path))
+export function getType(data, prop) {
+  const getProp = R.prop(prop)
+  let type
+  R.any(d => {
+    if (type === undefined) {
+      type = typeof getProp(d)
+      return false
+    }
+    if (type !== typeof getProp(d)) {
+      type = 'mixed'
+      return true
+    }
+  }, data)
+  if (type === 'number') return 'linear'
+  if (type === 'string') return 'ordinal'
+  if (type === 'object') return 'time'
+  return undefined
 }
 
-/**
- * Merge default ranges to the dimensions (curried)
- * @param  {Object} dimensions
- * @param  {Object} rectInput  rect Object
- * @return {Object}            new dimensions object
- */
-export const mergeRanges = R.curry((rectInput, dimensions) => {
-  const rect = R.merge(rectUtils.rectBase, rectInput)
-  const mapDimensions = R.mapObjIndexed((dimension, key) => {
-    const range = getRange(key, dimension, rect)
-    return R.merge({range}, dimension)
-  })
-  return mapDimensions(dimensions)
-})
+export function getAxisScale(type, domain, range, tickCount) {
+  switch (type) {
+  case 'ordinal':
+    const scaleOrdinal = d3Scale.linear()
+      .domain(domain)
+      .rangePoints(range)
+    scale.ticks = () => domain
+    return scaleOrdinal
+  case 'linear':
+  default:
+    if (domain[0] === domain[1]) {
+      const midRange = range[0] + (range[1] - range[0]) / 2
+      const scale = () => midRange
+      scale.ticks = () => [domain[0] || '']
+      return scale
+    }
+    return d3Scale.linear()
+      .domain(domain)
+      .range(range)
+      .nice(tickCount)
+
+  }
+}
 
 /**
  * Get default range according to options
@@ -85,18 +98,6 @@ export function getRange(key, dimension, rect) {
   default:
     throw new Error(`scaleUtils.getRange invalid key "${key}"`)
   }
-}
-
-/**
- * Merge new scales to the dimensions object
- * @param  {Object} dimensions
- * @return {Object}            new dimensions object
- */
-export function mergeScales(dimensions) {
-  return R.mapObjIndexed((dimension, key) => {
-    const scale = getScaleForDimension(dimension, key)
-    return R.merge(dimension, {scale})
-  }, dimensions)
 }
 
 /**
