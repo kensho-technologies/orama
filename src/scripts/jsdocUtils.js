@@ -27,10 +27,15 @@ export function getNamespacesNames(namespacesData) {
  * @return {string}
  */
 export function genNamespaceNameString(d) {
-  return `**[${d.name}](#${d.name.replace(/\//, '')})**\t\t
+  return `**[${d.name}](#${getAnchorString(d.name)})**\t\t
 ${d.description}
 `
 }
+
+export function getAnchorString(name) {
+  return R.toLower(name.replace(/\//g, ''))
+}
+
 
 function getNamespaces(namespacesData) {
   if (!R.isArrayLike(namespacesData)) return undefined

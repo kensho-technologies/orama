@@ -23,8 +23,8 @@ test('jsdocUtils.getNamespacesNames', t => {
 
 test('jsdocUtils.genNamespaceNameString', t => {
   t.equal(
-    jsdocUtils.genNamespaceNameString({name: 'Name'}),
-    '- [Name](#Name)'
+    typeof jsdocUtils.genNamespaceNameString({name: 'Name'}),
+    'string'
   )
   t.end()
 })

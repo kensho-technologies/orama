@@ -1,16 +1,15 @@
 # Modules
-**[/utils/dimensionUtils](#utils/dimensionUtils)**		
+**[/utils/dimensionUtils](#utilsdimensionutils)**		
 Module for manipulating `dimension` representations
 
-**[/utils/path](#utils/path)**		
-Path
+**[/utils/path](#utilspath)**		
 Returns a Path2D object if the constructor exists, otherwise returns a mocking object.
 This way we can keep running and testing on node code that uses Path2D
 
-**[/utils/rectUtils](#utils/rectUtils)**		
+**[/utils/rectUtils](#utilsrectutils)**		
 Module for manipulating `Rect` representations
 
-**[/utils/styleVars](#utils/styleVars)**		
+**[/utils/styleVars](#utilsstylevars)**		
 Module for manipulating `Rect` representations
 
 
@@ -87,7 +86,6 @@ prop | string |  |  |
 # [/utils/path](../src/utils/path.js)
 *[Test spec file](../src/utils/path-test.js)*
 
-Path
 Returns a Path2D object if the constructor exists, otherwise returns a mocking object.
 This way we can keep running and testing on node code that uses Path2D
 
