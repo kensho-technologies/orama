@@ -30,5 +30,5 @@ $ npm run build
 
 - [Structure of the Components on the library](/docs/componentsStructure.md)
 - [Development Guide for new Components and Modules](/docs/development.md)
-- [Components Docs](/docs/components.md)
-- [Functions Modules](/docs/functions.md)
+- [Docs for Components](/docs/components.md)
+- [Docs Functions Modules](/docs/functions.md)

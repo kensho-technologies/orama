@@ -1,11 +1,21 @@
 # Modules
-- [/utils/dimensionUtils](#utils/dimensionUtils)
-- [/utils/path](#utils/path)
-- [/utils/rectUtils](#utils/rectUtils)
-- [/utils/styleVars](#utils/styleVars)
+**[/utils/dimensionUtils](#utils/dimensionUtils)**		
+Module for manipulating `dimension` representations
+
+**[/utils/path](#utils/path)**		
+Path
+Returns a Path2D object if the constructor exists, otherwise returns a mocking object.
+This way we can keep running and testing on node code that uses Path2D
+
+**[/utils/rectUtils](#utils/rectUtils)**		
+Module for manipulating `Rect` representations
+
+**[/utils/styleVars](#utils/styleVars)**		
+Module for manipulating `Rect` representations
+
 
 ---
-# [/utils/dimensionUtils](../src/utils/dimensionUtils)
+# [/utils/dimensionUtils](../src/utils/dimensionUtils.js)
 *[Test spec file](../src/utils/dimensionUtils-test.js)*
 
 Module for manipulating `dimension` representations
@@ -74,7 +84,7 @@ prop | string |  |  |
 *Returns* | *string* | | | 
 
 ---
-# [/utils/path](../src/utils/path)
+# [/utils/path](../src/utils/path.js)
 *[Test spec file](../src/utils/path-test.js)*
 
 Path
@@ -98,7 +108,7 @@ Parameter | Type | Default | Optional | Description
 *Returns* | *Object* | | | 
 
 ---
-# [/utils/rectUtils](../src/utils/rectUtils)
+# [/utils/rectUtils](../src/utils/rectUtils.js)
 *[Test spec file](../src/utils/rectUtils-test.js)*
 
 Module for manipulating `Rect` representations
@@ -147,7 +157,7 @@ rectInput | Rect,Size |  |  |
 *Returns* | *Rect* | | | 
 
 ---
-# [/utils/styleVars](../src/utils/styleVars)
+# [/utils/styleVars](../src/utils/styleVars.js)
 *[Test spec file](../src/utils/styleVars-test.js)*
 
 Module for manipulating `Rect` representations
