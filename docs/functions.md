@@ -1,16 +1,81 @@
 # Modules
-- [/utils/dimensionUtils](#/utils/dimensionUtils)
-- [/utils/path](#/utils/path)
-- [/utils/rectUtils](#/utils/rectUtils)
-- [/utils/styleVars](#/utils/styleVars)
+- [/utils/dimensionUtils](#utils/dimensionUtils)
+- [/utils/path](#utils/path)
+- [/utils/rectUtils](#utils/rectUtils)
+- [/utils/styleVars](#utils/styleVars)
 
-## /utils/dimensionUtils
+---
+# [/utils/dimensionUtils](../src/utils/dimensionUtils)
+*[Test spec file](../src/utils/dimensionUtils-test.js)*
 
 Module for manipulating `dimension` representations
 
-**No functions have been defined on this namespace.**
+### dimensionUtils.getColorScale(type, domain)
 
-## /utils/path
+Returns scales specific for color mapping.
+According to type it pre-fills the range of colors
+
+Parameter | Type | Default | Optional | Description
+--------- | ---- | ------- | -------- | -----------
+type | string |  |  | 'linear' or 'ordinal'
+domain | Array |  |  | the data domain to be used on the scale
+*Returns* | *function* | | | *d3 scale function*
+
+
+```jsx
+const colorScale = getColorScale('linear', [0, 100])
+colorScale(100) // '#2c7fb8'
+```
+### dimensionUtils.getRange(key, dimension, rect)
+
+Get default range according to options
+
+Parameter | Type | Default | Optional | Description
+--------- | ---- | ------- | -------- | -----------
+key | string |  |  | dimension name
+dimension | Object |  |  | 
+rect | Object |  |  | 
+*Returns* | *Array* | | | *range array*
+
+### dimensionUtils.getScaleForDimension(dimension)
+
+Get new scale according to the dimension options
+
+Parameter | Type | Default | Optional | Description
+--------- | ---- | ------- | -------- | -----------
+dimension | Object |  |  | 
+*Returns* | *function* | | | *new d3 scale*
+
+### dimensionUtils.getScaleForType(type)
+
+Return a new d3 scale according to the input type
+
+Parameter | Type | Default | Optional | Description
+--------- | ---- | ------- | -------- | -----------
+type | string |  |  | The string needs to be one of the SCALE_TYPES: ['linear', 'log', 'ordinal', 'pow', 'quantile', 'quantize', 'threshold', 'time' ]
+*Returns* | *function* | | | *return a new d3 scale*
+
+
+```jsx
+const scale = getScaleForType('linear')
+
+scale.domain([0, 100])
+	.range([20, 400])
+```
+### dimensionUtils.getType(data, prop)
+
+Get the scale type to be used for a dimension on the data.
+It access the data objects using the prop, and checks if all the variables are of the same type.
+
+Parameter | Type | Default | Optional | Description
+--------- | ---- | ------- | -------- | -----------
+data | Array |  |  | 
+prop | string |  |  | 
+*Returns* | *string* | | | 
+
+---
+# [/utils/path](../src/utils/path)
+*[Test spec file](../src/utils/path-test.js)*
 
 Path
 Returns a Path2D object if the constructor exists, otherwise returns a mocking object.
@@ -32,7 +97,9 @@ Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
 *Returns* | *Object* | | | 
 
-## /utils/rectUtils
+---
+# [/utils/rectUtils](../src/utils/rectUtils)
+*[Test spec file](../src/utils/rectUtils-test.js)*
 
 Module for manipulating `Rect` representations
 
@@ -79,7 +146,9 @@ marginInput | Margin |  |  | {left: number, right: number, top: number, bottom: 
 rectInput | Rect,Size |  |  | 
 *Returns* | *Rect* | | | 
 
-## /utils/styleVars
+---
+# [/utils/styleVars](../src/utils/styleVars)
+*[Test spec file](../src/utils/styleVars-test.js)*
 
 Module for manipulating `Rect` representations
 

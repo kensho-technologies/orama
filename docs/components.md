@@ -4,7 +4,6 @@
 - [BottomLabel](#BottomLabel)
 - [CanvasRender](#CanvasRender)
 - [Chart](#Chart)
-- [Chart2](#Chart2)
 - [ChartBackground](#ChartBackground)
 - [ChartInput](#ChartInput)
 - [DataList](#DataList)
@@ -44,32 +43,21 @@ Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 plotRect | object | false |  | 
 renderData | array | false | [] | 
-size | object | false |  | 
+size | object | false | {width: 0, height: 0} | 
 
 
 ### Chart
 [src/components/Chart.js](../src/components/Chart.js)
 
-*Component description*
-
-Prop | Type | Required | Default | Description
----- | ---- | -------- | ------- | -----------
-data | array | true | [] | 
-dimensions | object | true |  | 
-margin | object | true | {  left: 80, right: 20,  top: 20, bottom: 50,} | 
-size | object | true | {  width: 600,  height: 400,} | 
-
-
-### Chart2
-[src/components/Chart2.js](../src/components/Chart2.js)
-
 
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
+colorProp | string | false |  | 
 data | array | false | [] | 
 margin | object | false | {  left: 80, right: 30,  top: 15, bottom: 60,} | 
-size | object | false | {width: 700, height: 500} | 
+size | object | false | {width: 500, height: 400} | 
+title | string | false |  | 
 xName | string | false |  | 
 xProp | string | false |  | 
 yName | string | false |  | 
@@ -84,7 +72,7 @@ yProp | string | false |  |
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 plotRect | object | false |  | 
-size | object | false |  | 
+size | object | true |  | 
 xScale | func | false |  | 
 xTickCount | number | false |  | 
 yScale | func | false |  | 
@@ -99,7 +87,7 @@ yTickCount | number | false |  |
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 renderData | array | false | [] | 
-size | object | false |  | 
+size | object | true |  | 
 
 
 ### DataList
@@ -133,6 +121,10 @@ text | string | false |  |
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
+colorProp | string | false |  | 
+groupProp | string | false |  | 
+setColorProp | func | false |  | 
+setGroupProp | func | false |  | 
 setXProp | func | false |  | 
 setYProp | func | false |  | 
 xProp | string | false |  | 

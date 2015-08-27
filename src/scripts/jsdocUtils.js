@@ -27,7 +27,7 @@ export function getNamespacesNames(namespacesData) {
  * @return {string}
  */
 export function genNamespaceNameString(d) {
-  return `- [${d.name}](#${d.name})`
+  return `- [${d.name}](#${d.name.replace(/\//, '')})`
 }
 
 function getNamespaces(namespacesData) {
@@ -36,7 +36,8 @@ function getNamespaces(namespacesData) {
 }
 
 function genNamespaceString(d) {
-  return `## ${d.name}
+  return `---\n# [${d.name}](../src${d.name})
+*[Test spec file](../src${d.name}-test.js)*
 
 ${d.description}
 
