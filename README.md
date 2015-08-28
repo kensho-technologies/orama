@@ -28,7 +28,7 @@ $ npm run build
 
 **More Information**
 
-- [Structure of the Components on the library](/docs/componentsStructure.md)
 - [Development Guide for new Components and Modules](/docs/development.md)
 - [Docs for Components](/docs/components.md)
 - [Docs Functions Modules](/docs/functions.md)
+- [Structure of the Components on the library](/docs/componentsStructure.md)
