@@ -6,7 +6,7 @@ import {csv} from 'd3-xhr'
 import HTML5Backend from 'react-dnd/modules/backends/HTML5'
 import { DragDropContext } from 'react-dnd'
 
-import Vis from './Vis'
+import Vis from '../Vis'
 
 export function parseString(string) {
   if (/%$/.test(string)) {

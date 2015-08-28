@@ -3,9 +3,9 @@
 import test from 'tape'
 
 import React from 'react'
-import renderComponent from '../renderComponentTest'
+import renderComponent from '../../renderComponentTest'
 
-import * as localUtils from './App'
+import * as localUtils from './'
 
 test('App should exist and render', t => {
   t.ok(localUtils.App)

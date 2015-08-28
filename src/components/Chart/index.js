@@ -2,15 +2,15 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 
-import utils from '../utils/utils'
+import utils from '../../utils/utils'
 import linearRegression from 'simple-statistics/src/linear_regression'
 import regressionLine from 'simple-statistics/src/linear_regression_line'
 
-import BottomLabel from './BottomLabel'
-import CanvasRender from './CanvasRender'
-import ChartBackground from './ChartBackground'
-import ChartInput from './ChartInput'
-import LeftLabel from './LeftLabel'
+import BottomLabel from '../BottomLabel'
+import CanvasRender from '../CanvasRender'
+import ChartBackground from '../ChartBackground'
+import ChartInput from '../ChartInput'
+import LeftLabel from '../LeftLabel'
 
 export default React.createClass({
   displayName: 'Chart',
@@ -40,15 +40,15 @@ export default React.createClass({
     const plotRect = utils.rect.marginInset(margin, size)
 
     const xType = utils.dim.getType(data, xProp)
-    const xRange = utils.rect.getRangeX(plotRect)
     const xDomain = utils.dim.getDomain(xType, data, xProp)
+    const xRange = utils.rect.getRangeX(plotRect)
     const xTickCount = utils.ticks.getXCount(xRange)
     const xScale = utils.dim.getAxisScale(xType, xDomain, xRange, xTickCount)
     const xMap = R.pipe(R.prop(xProp), xScale)
 
     const yType = utils.dim.getType(data, yProp)
-    const yRange = utils.rect.getRangeY(plotRect)
     const yDomain = utils.dim.getDomain(yType, data, yProp)
+    const yRange = utils.rect.getRangeY(plotRect)
     const yTickCount = utils.ticks.getYCount(yRange)
     const yScale = utils.dim.getAxisScale(yType, yDomain, yRange, yTickCount)
     const yMap = R.pipe(R.prop(yProp), yScale)

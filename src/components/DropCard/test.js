@@ -2,9 +2,9 @@
 import test from 'tape'
 
 import React from 'react'
-import renderComponent from '../renderComponentTest'
+import renderComponent from '../../renderComponentTest'
 
-import {DropCard} from './DropCard'
+import {DropCard} from './'
 
 const identity = (d) => d
 

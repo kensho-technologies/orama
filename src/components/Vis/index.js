@@ -2,9 +2,9 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 
-import Chart from './Chart'
-import DataList from './DataList'
-import DropUI from './DropUI'
+import Chart from '../Chart'
+import DataList from '../DataList'
+import DropUI from '../DropUI'
 
 var styles = {
   visContainer: {
@@ -59,6 +59,11 @@ export default React.createClass({
               title={d[0]}
               xProp={this.state.xProp}
               yProp={this.state.yProp}
+              margin={{
+                left: 70, right: 20,
+                top: 20, bottom: 60,
+              }}
+              size={{width: 300, height: 300}}
               />
         )
       }, pairs)
@@ -69,6 +74,11 @@ export default React.createClass({
             data={this.props.data}
             xProp={this.state.xProp}
             yProp={this.state.yProp}
+            margin={{
+              left: 210, right: 20,
+              top: 20, bottom: 60,
+            }}
+            size={{width: 500, height: 400}}
             />
       )
     }

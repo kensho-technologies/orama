@@ -2,8 +2,8 @@
 import React, {findDOMNode, PropTypes} from 'react'
 import R from 'ramda'
 
-import utils from '../utils/utils'
-import {getStyleVars} from '../utils/styleVars'
+import utils from '../../utils/utils'
+import {getStyleVars} from '../../utils/styleVars'
 
 const styleVars = getStyleVars()
 const styles = {

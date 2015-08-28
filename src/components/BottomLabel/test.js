@@ -2,9 +2,9 @@
 import test from 'tape'
 
 import React from 'react'
-import renderComponent from '../renderComponentTest'
+import renderComponent from '../../renderComponentTest'
 
-import BottomLabel from './BottomLabel'
+import BottomLabel from './'
 
 test('BottomLabel', t => {
   var component = renderComponent(<BottomLabel/>)

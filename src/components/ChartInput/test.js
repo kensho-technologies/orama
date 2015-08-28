@@ -2,9 +2,9 @@
 import test from 'tape'
 
 import React from 'react'
-import renderComponent from '../renderComponentTest'
+import renderComponent from '../../renderComponentTest'
 
-import ChartInput from './ChartInput'
+import ChartInput from './'
 
 test('ChartInput', t => {
   var component = renderComponent(<ChartInput size={{width: 0, height: 0}}/>)

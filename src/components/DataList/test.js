@@ -2,9 +2,9 @@
 import test from 'tape'
 
 import React from 'react'
-import renderComponent from '../renderComponentTest'
+import renderComponent from '../../renderComponentTest'
 
-import DataList from './DataList'
+import DataList from './'
 
 test('DataList', t => {
   var component = renderComponent(<DataList/>)

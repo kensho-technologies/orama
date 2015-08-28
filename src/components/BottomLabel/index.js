@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 
-import {getStyleVars} from '../utils/styleVars'
+import {getStyleVars} from '../../utils/styleVars'
 
 const styleVars = getStyleVars()
 const styles = {

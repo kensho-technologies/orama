@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 
-import DropCard from './DropCard'
+import DropCard from '../DropCard'
 
 const styles = {
   container: {

@@ -2,9 +2,9 @@
 import test from 'tape'
 
 import React from 'react'
-import renderComponent from '../renderComponentTest'
+import renderComponent from '../../renderComponentTest'
 
-import Chart from './Chart'
+import Chart from './'
 
 test('Chart', t => {
   var component = renderComponent(<Chart/>)

@@ -2,9 +2,9 @@
 import test from 'tape'
 
 import React from 'react'
-import renderComponent from '../renderComponentTest'
+import renderComponent from '../../renderComponentTest'
 
-import CanvasRender from './CanvasRender'
+import CanvasRender from './'
 
 test('CanvasRender', t => {
   var component = renderComponent(<CanvasRender/>)

@@ -2,9 +2,9 @@
 import test from 'tape'
 
 import React from 'react'
-import renderComponent from '../renderComponentTest'
+import renderComponent from '../../renderComponentTest'
 
-import DropUI from './DropUI'
+import DropUI from './'
 
 test('DropUI', t => {
   var component = renderComponent(<DropUI/>)
