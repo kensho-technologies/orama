@@ -29,9 +29,9 @@ const RANGE_ORDINAL_COLOR = ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3', '#a6d85
  * It access the data objects using the prop, and checks if all the variables are of the same type.
  * @memberOf  /utils/dimensionUtils
  *
- * @param  {[type]} data [description]
- * @param  {[type]} prop [description]
- * @return {[type]}      [description]
+ * @param  {Array} data
+ * @param  {string} prop
+ * @return {string}
  */
 export function getType(data, prop) {
   // TODO(L): get type most used instead of the one present across all properties.
@@ -53,6 +53,19 @@ export function getType(data, prop) {
   return 'ordinal'
 }
 
+/**
+ * Returns scales specific for color mapping.
+ * According to type it pre-fills the range of colors
+ * @memberOf  /utils/dimensionUtils
+ *
+ * @example
+ * const colorScale = getColorScale('linear', [0, 100])
+ * colorScale(100) // '#2c7fb8'
+ *
+ * @param  {string} type - 'linear' or 'ordinal'
+ * @param  {Array} domain - the data domain to be used on the scale
+ * @return {function}        d3 scale function
+ */
 export function getColorScale(type, domain) {
   switch (type) {
   case 'ordinal':
@@ -159,6 +172,11 @@ export function getScaleForDimension(dimension, key) {
 /**
  * Return a new d3 scale according to the input type
  * @memberOf  /utils/dimensionUtils
+ * @example
+ * const scale = getScaleForType('linear')
+ *
+ * scale.domain([0, 100])
+ * 	.range([20, 400])
  *
  * @param  {string} type The string needs to be one of the SCALE_TYPES: ['linear', 'log', 'ordinal', 'pow', 'quantile', 'quantize', 'threshold', 'time' ]
  * @return {function}      return a new d3 scale

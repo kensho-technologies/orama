@@ -1,5 +1,6 @@
 
 import test from 'tape'
+import _ from 'lodash'
 
 import {rectBase} from './rectUtils'
 import * as dimUtils from './dimensionUtils'
@@ -36,6 +37,19 @@ test('dimUtils.getDomain', t => {
   t.end()
 })
 
+test('dimUtils.getAxisScale', t => {
+  const scale = dimUtils.getAxisScale('linear', [0, 10], [])
+  t.deepEqual(
+    typeof scale,
+    'function'
+  )
+  t.deepEqual(
+    _.isArray(scale.ticks(2)),
+    true
+  )
+  t.end()
+})
+
 test('dimUtils.getRange', t => {
   t.ok(dimUtils.getRange)
   t.deepEqual(
@@ -44,7 +58,8 @@ test('dimUtils.getRange', t => {
   )
   t.deepEqual(
     dimUtils.getRange('y', {}, rectBase),
-    [0, 0]
+    [0, 0],
+    'array of numbers'
   )
   t.deepEqual(
     dimUtils.getRange('color', {}, rectBase),

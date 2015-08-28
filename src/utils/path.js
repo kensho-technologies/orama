@@ -1,6 +1,5 @@
 
 /**
- * Path
  * Returns a Path2D object if the constructor exists, otherwise returns a mocking object.
  * This way we can keep running and testing on node code that uses Path2D
  * @namespace /utils/path
