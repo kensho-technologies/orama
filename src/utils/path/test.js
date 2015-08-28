@@ -1,7 +1,7 @@
 
 import test from 'tape'
 
-import path, * as pathUtils from './path'
+import path, * as pathUtils from './'
 
 test('path', t => {
   t.deepEqual(

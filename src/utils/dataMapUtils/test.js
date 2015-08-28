@@ -5,7 +5,7 @@ import R from 'ramda'
 import React from 'react'
 import d3Scale from 'd3-scale'
 
-import * as dataMapUtils from './dataMapUtils'
+import * as dataMapUtils from './'
 
 test('dataMapUtils', t => {
   t.ok(dataMapUtils)

@@ -1,7 +1,7 @@
 
 import test from 'tape'
 
-import * as rectUtils from './rectUtils'
+import * as rectUtils from './'
 
 test('rectUtils.rectBase, rectUtils.marginBase', t => {
   t.ok(rectUtils.rectBase)

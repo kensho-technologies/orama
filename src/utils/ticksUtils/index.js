@@ -1,5 +1,5 @@
 
-import * as dimUtils from './dimensionUtils'
+import * as dimUtils from '../dimensionUtils'
 
 const TICKS_X_SPACE = 100
 const TICKS_Y_SPACE = 90

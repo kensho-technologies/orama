@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 
-import utils from '../../utils/utils'
+import utils from '../../utils'
 import linearRegression from 'simple-statistics/src/linear_regression'
 import regressionLine from 'simple-statistics/src/linear_regression_line'
 

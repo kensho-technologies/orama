@@ -1,7 +1,7 @@
 
 import test from 'tape'
 
-import * as styleVars from './styleVars'
+import * as styleVars from './'
 
 test('styleVars.getStyleVars', t => {
   t.equal(

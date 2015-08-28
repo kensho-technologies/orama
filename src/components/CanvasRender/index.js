@@ -3,7 +3,7 @@ import React, {findDOMNode, PropTypes} from 'react'
 
 import R from 'ramda'
 
-import utils from '../../utils/utils'
+import utils from '../../utils'
 
 const styles = {
   canvas: {

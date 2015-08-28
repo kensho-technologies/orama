@@ -2,8 +2,8 @@
 import test from 'tape'
 import _ from 'lodash'
 
-import {rectBase} from './rectUtils'
-import * as dimUtils from './dimensionUtils'
+import {rectBase} from '../rectUtils'
+import * as dimUtils from '../dimensionUtils'
 
 test('dimUtils.getType', t => {
   t.deepEqual(

@@ -1,7 +1,7 @@
 
 import R from 'ramda'
 
-import {rectBase} from './rectUtils'
+import {rectBase} from '../rectUtils'
 
 export function clearRect(ctx, rectInput) {
   var rect = R.merge(rectBase, rectInput)

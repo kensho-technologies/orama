@@ -3,8 +3,8 @@ import R from 'ramda'
 import d3Scale from 'd3-scale'
 import d3Arrays from 'd3-arrays'
 
-import * as rectUtils from './rectUtils'
-import * as ticksUtils from './ticksUtils'
+import * as rectUtils from '../rectUtils'
+import * as ticksUtils from '../ticksUtils'
 
 /**
  * Module for manipulating `dimension` representations
