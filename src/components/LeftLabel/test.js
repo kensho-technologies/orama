@@ -2,7 +2,7 @@
 import test from 'tape'
 
 import React from 'react'
-import {renderComponent} from '../../assertionHelpers'
+import renderComponent from '../../renderComponentTest'
 
 import LeftLabel from './'
 
