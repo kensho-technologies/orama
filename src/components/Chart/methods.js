@@ -4,22 +4,30 @@ import R from 'ramda'
 
 const defaultMargin = {
   left: 20, right: 20,
-  top: 20, bottom: 20,
+  top: 20, bottom: 60,
 }
 
 export function calculateMargin(opts) {
-  const {size, xType, yType, xDomain, yDomain} = opts
+  const {size, yType, yDomain} = opts
   const plotRect = utils.rect.marginInset(defaultMargin, size)
-  const xRange = utils.rect.getRangeX(plotRect)
+  // const xRange = utils.rect.getRangeX(plotRect)
   const yRange = utils.rect.getRangeY(plotRect)
-  const xTickCount = utils.ticks.getXCount(xRange)
+  // const xTickCount = utils.ticks.getXCount(xRange)
   const yTickCount = utils.ticks.getYCount(yRange)
 
-  const xTicks = getTicks(xType, xDomain, xTickCount)
   const yTicks = getTicks(yType, yDomain, yTickCount)
-  return {xTicks, yTicks}
+  const maxYTickWidth = getMaxTextWidth(undefined, undefined, yTicks)
+  const newMargin = utils.rect.marginInset(
+    R.merge(defaultMargin, {left: maxYTickWidth + 60}),
+    size
+  )
+  // const yTicks = getTicks(yType, yDomain, yTickCount)
+  return newMargin
 }
 
+/**
+ * Return an array of ticks
+ */
 export function getTicks(type, domain, tickCount) {
   switch (type) {
   case 'ordinal':
@@ -30,7 +38,7 @@ export function getTicks(type, domain, tickCount) {
   }
 }
 
-export function getMaxTextWidth(fontFamily = 'sans', fontSize = 16, ticks) {
+export function getMaxTextWidth(fontFamily = 'sans-serif', fontSize = 14, ticks) {
   const ctx = getRenderContext()
   ctx.save()
   ctx.font = `${fontSize}px ${fontFamily}`
@@ -56,7 +64,7 @@ const ctxMock = {
   isPointInStroke: noop,
   lineTo: noop,
   measureText(text) {
-    return {width: text.length}
+    return {width: text.toString().length}
   },
   arcTo: noop,
   moveTo: noop,

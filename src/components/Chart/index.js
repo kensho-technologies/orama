@@ -2,9 +2,10 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 
-import utils from '../../utils'
 import linearRegression from 'simple-statistics/src/linear_regression'
 import regressionLine from 'simple-statistics/src/linear_regression_line'
+import utils from '../../utils'
+import * as methods from './methods'
 
 import BottomLabel from '../BottomLabel'
 import CanvasRender from '../CanvasRender'
@@ -36,8 +37,11 @@ export default React.createClass({
     }
   },
   render() {
-    const {data, xProp, yProp, colorProp, margin, size} = this.props
-    const plotRect = utils.rect.marginInset(margin, size)
+    const {data, xProp, yProp, colorProp, size} = this.props
+
+    const yType = utils.dim.getType(data, yProp)
+    const yDomain = utils.dim.getDomain(yType, data, yProp)
+    const plotRect = methods.calculateMargin({size, yType, yDomain})
 
     const xType = utils.dim.getType(data, xProp)
     const xDomain = utils.dim.getDomain(xType, data, xProp)
@@ -46,8 +50,6 @@ export default React.createClass({
     const xScale = utils.dim.getAxisScale(xType, xDomain, xRange, xTickCount)
     const xMap = R.pipe(R.prop(xProp), xScale)
 
-    const yType = utils.dim.getType(data, yProp)
-    const yDomain = utils.dim.getDomain(yType, data, yProp)
     const yRange = utils.rect.getRangeY(plotRect)
     const yTickCount = utils.ticks.getYCount(yRange)
     const yScale = utils.dim.getAxisScale(yType, yDomain, yRange, yTickCount)
