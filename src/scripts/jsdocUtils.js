@@ -43,8 +43,8 @@ function getNamespaces(namespacesData) {
 }
 
 function genNamespaceString(d) {
-  return `---\n# [${d.name}](../src${d.name}.js)
-*[Test spec file](../src${d.name}-test.js)*
+  return `---\n# [${d.name}](../src${d.name}/index.js)
+*[Test spec file](../src${d.name}/index.test.js)*
 
 ${d.description}
 

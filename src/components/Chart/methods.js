@@ -76,7 +76,7 @@ let cachedCtx
 /**
  * Returns a cached offscreen canvas render.
  * In case the DOM is not available, returns a mocked render context.
- * @return {[type]} [description]
+ * @return {object}
  */
 export function getRenderContext() {
   if (cachedCtx) return cachedCtx

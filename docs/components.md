@@ -14,7 +14,7 @@
 - [Vis](#Vis)
 
 ### App
-[src/components/App.js](../src/components/App.js)
+[src/components/App/index.js](../src/components/App/index.js)
 
 *App component*
 
@@ -24,7 +24,7 @@ children | func | false |  |
 
 
 ### BottomLabel
-[src/components/BottomLabel.js](../src/components/BottomLabel.js)
+[src/components/BottomLabel/index.js](../src/components/BottomLabel/index.js)
 
 *Component that position and style the bottom label of the `Chart` component*
 
@@ -35,7 +35,7 @@ text | string | false | '' |
 
 
 ### CanvasRender
-[src/components/CanvasRender.js](../src/components/CanvasRender.js)
+[src/components/CanvasRender/index.js](../src/components/CanvasRender/index.js)
 
 
 
@@ -47,7 +47,7 @@ size | object | false | {width: 0, height: 0} |
 
 
 ### Chart
-[src/components/Chart.js](../src/components/Chart.js)
+[src/components/Chart/index.js](../src/components/Chart/index.js)
 
 
 
@@ -65,7 +65,7 @@ yProp | string | false |  |
 
 
 ### ChartBackground
-[src/components/ChartBackground.js](../src/components/ChartBackground.js)
+[src/components/ChartBackground/index.js](../src/components/ChartBackground/index.js)
 
 
 
@@ -80,7 +80,7 @@ yTickCount | number | false |  |
 
 
 ### ChartInput
-[src/components/ChartInput.js](../src/components/ChartInput.js)
+[src/components/ChartInput/index.js](../src/components/ChartInput/index.js)
 
 
 
@@ -91,7 +91,7 @@ size | object | true |  |
 
 
 ### DataList
-[src/components/DataList.js](../src/components/DataList.js)
+[src/components/DataList/index.js](../src/components/DataList/index.js)
 
 
 
@@ -101,7 +101,7 @@ data | array | false | [] |
 
 
 ### DropCard
-[src/components/DropCard.js](../src/components/DropCard.js)
+[src/components/DropCard/index.js](../src/components/DropCard/index.js)
 
 
 
@@ -115,7 +115,7 @@ text | string | false |  |
 
 
 ### DropUI
-[src/components/DropUI.js](../src/components/DropUI.js)
+[src/components/DropUI/index.js](../src/components/DropUI/index.js)
 
 
 
@@ -132,7 +132,7 @@ yProp | string | false |  |
 
 
 ### LeftLabel
-[src/components/LeftLabel.js](../src/components/LeftLabel.js)
+[src/components/LeftLabel/index.js](../src/components/LeftLabel/index.js)
 
 *Component that position and style the bottom label of the `Chart` component*
 
@@ -143,7 +143,7 @@ text | string | false | '' |
 
 
 ### PropCard
-[src/components/PropCard.js](../src/components/PropCard.js)
+[src/components/PropCard/index.js](../src/components/PropCard/index.js)
 
 
 
@@ -155,7 +155,7 @@ text | string | false |  |
 
 
 ### Vis
-[src/components/Vis.js](../src/components/Vis.js)
+[src/components/Vis/index.js](../src/components/Vis/index.js)
 
 
 

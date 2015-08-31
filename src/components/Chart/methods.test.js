@@ -21,11 +21,11 @@ test('Chart methods.calculateMargin', t => {
 test('Chart methods.getTicks', t => {
   t.deepEqual(
     methods.getTicks('linear', [0, 100], 3),
-    [0, 50, 100],
+    [0, 50, 100]
   )
   t.deepEqual(
     methods.getTicks('ordinal', [0, 100]),
-    [0, 100],
+    [0, 100]
   )
   t.end()
 })
@@ -33,7 +33,7 @@ test('Chart methods.getTicks', t => {
 test('Chart methods.getMaxTextWidth', t => {
   t.deepEqual(
     methods.getMaxTextWidth('sans', 16, ['label1', 'superLabel']),
-    10,
+    10
   )
   t.end()
 })
