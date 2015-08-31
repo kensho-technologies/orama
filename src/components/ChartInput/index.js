@@ -112,12 +112,12 @@ export default React.createClass({
       <div>
         <canvas
           height={this.props.size.height}
-          onMouseMove={this.onMouseMove}
-          onMouseLeave={this.onMouseLeave}
-          onMouseDown={this.onMouseDown}
-          onMouseUp={this.onMouseUp}
           onClick={this.onClick}
           onDrag={this.onDrag}
+          onMouseDown={this.onMouseDown}
+          onMouseLeave={this.onMouseLeave}
+          onMouseMove={this.onMouseMove}
+          onMouseUp={this.onMouseUp}
           ref='canvas'
           style={styles.canvas}
           width={this.props.size.width}

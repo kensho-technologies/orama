@@ -42,23 +42,23 @@ export default React.createClass({
       <div style={styles.container}>
         <div style={styles.item}>x</div>
         <DropCard
-          text={this.props.xProp}
           setText={this.props.setXProp}
+          text={this.props.xProp}
         />
         <div style={styles.item}>y</div>
         <DropCard
-          text={this.props.yProp}
           setText={this.props.setYProp}
+          text={this.props.yProp}
         />
         <div style={styles.item}>group</div>
         <DropCard
-          text={this.props.groupProp}
           setText={this.props.setGroupProp}
+          text={this.props.groupProp}
         />
         <div style={styles.item}>color</div>
         <DropCard
-          text={this.props.colorProp}
           setText={this.props.setColorProp}
+          text={this.props.colorProp}
         />
       </div>
     )

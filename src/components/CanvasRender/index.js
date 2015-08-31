@@ -53,9 +53,9 @@ export default React.createClass({
   render() {
     return (
       <canvas
-        style={styles.canvas}
         height={this.props.size.height}
         ref='canvas'
+        style={styles.canvas}
         width={this.props.size.width}
       />
     )
