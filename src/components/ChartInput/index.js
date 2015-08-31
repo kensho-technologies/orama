@@ -111,17 +111,17 @@ export default React.createClass({
     return (
       <div>
         <canvas
-            height={this.props.size.height}
-            onMouseMove={this.onMouseMove}
-            onMouseLeave={this.onMouseLeave}
-            onMouseDown={this.onMouseDown}
-            onMouseUp={this.onMouseUp}
-            onClick={this.onClick}
-            onDrag={this.onDrag}
-            ref='canvas'
-            style={styles.canvas}
-            width={this.props.size.width}
-            />
+          height={this.props.size.height}
+          onMouseMove={this.onMouseMove}
+          onMouseLeave={this.onMouseLeave}
+          onMouseDown={this.onMouseDown}
+          onMouseUp={this.onMouseUp}
+          onClick={this.onClick}
+          onDrag={this.onDrag}
+          ref='canvas'
+          style={styles.canvas}
+          width={this.props.size.width}
+        />
         {this.state.hoverData &&
           <div style={R.merge(styles.tooltip, {top: this.state.mouse.y, left: this.state.mouse.x})}>
             <div>{this.state.hoverData.label}</div>

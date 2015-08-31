@@ -53,11 +53,11 @@ export default React.createClass({
   render() {
     return (
       <canvas
-          style={styles.canvas}
-          height={this.props.size.height}
-          ref='canvas'
-          width={this.props.size.width}
-          />
+        style={styles.canvas}
+        height={this.props.size.height}
+        ref='canvas'
+        width={this.props.size.width}
+      />
     )
   },
 })

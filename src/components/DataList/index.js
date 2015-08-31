@@ -1,5 +1,5 @@
 
-import React, { PropTypes } from 'react'
+import React, {PropTypes} from 'react'
 import R from 'ramda'
 
 import PropCard from '../PropCard'
@@ -26,9 +26,9 @@ export default React.createClass({
     const keys = R.keys(R.head(data))
     const elems = R.map(d => (
       <PropCard
-          key={d}
-          text={d}
-          />
+        key={d}
+        text={d}
+      />
     ), keys)
     return (
       <div style={styles.container}>
