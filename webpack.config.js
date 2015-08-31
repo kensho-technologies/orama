@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === 'production') {
     })
   );
 } else {
-  config.devtool = 'cheap-eval-source-map';
+  config.devtool = 'cheap-module-eval-source-map';
   config.devServer = {
     info: false,
     port: 3000,
