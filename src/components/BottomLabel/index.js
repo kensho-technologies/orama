@@ -2,20 +2,21 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 
-import {getStyleVars} from '../../utils/styleVars'
+import defaultStyleVars from '../styleVars'
 
-const styleVars = getStyleVars()
-const styles = {
-  div: {
-    bottom: 0,
-    position: 'absolute',
-    textAlign: styleVars.axis.textAlign,
-    fontSize: styleVars.axis.labelFontSize,
-    fontWeight: '500',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  },
+export function getStyles(styleVars = defaultStyleVars) {
+  return {
+    div: {
+      bottom: 0,
+      position: 'absolute',
+      textAlign: styleVars.axis.textAlign,
+      fontSize: styleVars.axis.labelFontSize,
+      fontWeight: '500',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+    },
+  }
 }
 
 /**
@@ -25,15 +26,17 @@ export default React.createClass({
   displayName: 'BottomLabel',
   propTypes: {
     plotRect: PropTypes.object.isRequired,
+    styleVars: PropTypes.object,
     text: PropTypes.string,
   },
   getDefaultProps() {
     return {
-      text: '',
       plotRect: {x: 0, y: 0, width: 0, height: 0},
+      text: '',
     }
   },
   render() {
+    const styles = getStyles(this.props.styleVars)
     const {plotRect} = this.props
     const style = R.merge(
       styles.div,
@@ -43,7 +46,7 @@ export default React.createClass({
       }
     )
     return (
-      <div style = {style}>
+      <div style={style}>
         {this.props.text}
       </div>
     )

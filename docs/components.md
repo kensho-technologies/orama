@@ -31,6 +31,7 @@ children | func | false |  |
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 plotRect | object | true | {x: 0, y: 0, width: 0, height: 0} | 
+styleVars | object | false |  | 
 text | string | false | '' | 
 
 
@@ -57,6 +58,7 @@ colorProp | string | false |  |
 data | array | false | [] | 
 margin | object | false | {  left: 80, right: 30,  top: 15, bottom: 60,} | 
 size | object | false | {width: 500, height: 400} | 
+styleVars | object | false |  | 
 title | string | false |  | 
 xName | string | false |  | 
 xProp | string | false |  | 
@@ -73,6 +75,7 @@ Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 plotRect | object | false |  | 
 size | object | true |  | 
+styleVars | object | false |  | 
 xScale | func | false |  | 
 xTickCount | number | false |  | 
 yScale | func | false |  | 
@@ -139,6 +142,7 @@ yProp | string | false |  |
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 plotRect | object | true | {x: 0, y: 0, width: 0, height: 0} | 
+styleVars | object | false |  | 
 text | string | false | '' | 
 
 
@@ -162,4 +166,5 @@ text | string | false |  |
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 data | array | false | [] | 
+styleVars | object | false |  | 
 

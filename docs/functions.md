@@ -9,9 +9,6 @@ This way we can keep running and testing on node code that uses Path2D
 **[/utils/rectUtils](#utilsrectutils)**		
 Module for manipulating `Rect` representations
 
-**[/utils/styleVars](#utilsstylevars)**		
-Module for manipulating `Rect` representations
-
 
 ---
 # [/utils/dimensionUtils](../src/utils/dimensionUtils/index.js)
@@ -153,27 +150,4 @@ Parameter | Type | Default | Optional | Description
 marginInput | Margin |  |  | {left: number, right: number, top: number, bottom: number}
 rectInput | Rect,Size |  |  | 
 *Returns* | *Rect* | | | 
-
----
-# [/utils/styleVars](../src/utils/styleVars/index.js)
-*[Test spec file](../src/utils/styleVars/index.test.js)*
-
-Module for manipulating `Rect` representations
-
-### styleVars.getStyleVars()
-
-Return an object with the current style vars
-
-Parameter | Type | Default | Optional | Description
---------- | ---- | ------- | -------- | -----------
-*Returns* | *object* | | | 
-
-### styleVars.setStyleVars(newStyleVars)
-
-Set a new styles vars to be used by the other components
-
-Parameter | Type | Default | Optional | Description
---------- | ---- | ------- | -------- | -----------
-newStyleVars | object |  |  | object with new style variables
-*Returns* |  | | | 
 

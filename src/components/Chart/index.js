@@ -13,6 +13,14 @@ import ChartBackground from '../ChartBackground'
 import ChartInput from '../ChartInput'
 import LeftLabel from '../LeftLabel'
 
+export function getStyles() {
+  return {
+    title: {
+      fontWeight: 'bold', fontSize: 17,
+    },
+  }
+}
+
 export default React.createClass({
   displayName: 'Chart',
   propTypes: {
@@ -20,6 +28,7 @@ export default React.createClass({
     data: PropTypes.array,
     margin: PropTypes.object,
     size: PropTypes.object,
+    styleVars: PropTypes.object,
     title: PropTypes.string,
     xName: PropTypes.string,
     xProp: PropTypes.string,
@@ -37,6 +46,7 @@ export default React.createClass({
     }
   },
   render() {
+    const styles = getStyles(this.props.styleVars)
     const {data, xProp, yProp, colorProp, size} = this.props
 
     const yType = utils.dim.getType(data, yProp)
@@ -98,38 +108,44 @@ export default React.createClass({
     }
     return (
       <div>
-        <div style={{fontWeight: 'bold', fontSize: 17, marginLeft: this.props.margin.left}}>{this.props.title}</div>
+        <div style={R.merge(styles.title, {marginLeft: this.props.margin.left})}>
+          {this.props.title}
+        </div>
         <div style={containerStyle}>
           <ChartBackground
-              plotRect={plotRect}
-              size={this.props.size}
-              xScale={xScale}
-              xTickCount={xTickCount}
-              yScale={yScale}
-              yTickCount={yTickCount}
-              />
+            plotRect={plotRect}
+            size={this.props.size}
+            styleVars={this.props.styleVars}
+            xScale={xScale}
+            xTickCount={xTickCount}
+            yScale={yScale}
+            yTickCount={yTickCount}
+          />
           <CanvasRender
-              plotRect={plotRect}
-              renderData={renderData}
-              size={this.props.size}
-              xMap={xMap}
-              xScale={xScale}
-              yMap={yMap}
-              yScale={yScale}
-              />
+            plotRect={plotRect}
+            renderData={renderData}
+            size={this.props.size}
+            styleVars={this.props.styleVars}
+            xMap={xMap}
+            xScale={xScale}
+            yMap={yMap}
+            yScale={yScale}
+          />
           <ChartInput
-              plotRect={plotRect}
-              renderData={renderData}
-              size={this.props.size}
-              />
+            plotRect={plotRect}
+            renderData={renderData}
+            size={this.props.size}
+          />
           <LeftLabel
-              text={this.props.yName || this.props.yProp}
-              plotRect={plotRect}
-              />
+            plotRect={plotRect}
+            styleVars={this.props.styleVars}
+            text={this.props.yName || this.props.yProp}
+          />
           <BottomLabel
-              text={this.props.xName || this.props.xProp}
-              plotRect={plotRect}
-              />
+            plotRect={plotRect}
+            styleVars={this.props.styleVars}
+            text={this.props.xName || this.props.xProp}
+          />
         </div>
       </div>
     )

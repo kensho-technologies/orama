@@ -17,6 +17,7 @@ export default React.createClass({
   displayName: 'Vis',
   propTypes: {
     data: PropTypes.array,
+    styleVars: PropTypes.object,
   },
   getDefaultProps() {
     return {
@@ -56,14 +57,12 @@ export default React.createClass({
               colorProp={this.state.colorProp}
               data={d[1]}
               key={d[0]}
+              margin={{left: 70, right: 20, top: 20, bottom: 60}}
+              size={{width: 300, height: 300}}
+              styleVars={this.props.styleVars}
               title={d[0]}
               xProp={this.state.xProp}
               yProp={this.state.yProp}
-              margin={{
-                left: 70, right: 20,
-                top: 20, bottom: 60,
-              }}
-              size={{width: 300, height: 300}}
               />
         )
       }, pairs)
@@ -72,13 +71,11 @@ export default React.createClass({
         <Chart
             colorProp={this.state.colorProp}
             data={this.props.data}
+            margin={{left: 210, right: 20, top: 20, bottom: 60}}
+            size={{width: 500, height: 400}}
+            styleVars={this.props.styleVars}
             xProp={this.state.xProp}
             yProp={this.state.yProp}
-            margin={{
-              left: 210, right: 20,
-              top: 20, bottom: 60,
-            }}
-            size={{width: 500, height: 400}}
             />
       )
     }
