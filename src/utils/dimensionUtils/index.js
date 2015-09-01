@@ -89,7 +89,6 @@ export function getDomain(type, data, prop) {
     return R.uniq(R.map(R.prop(prop), data))
   default:
     return d3Arrays.extent(data, R.prop(prop))
-
   }
 }
 
@@ -98,7 +97,7 @@ export function getAxisScale(type, domain, range, tickCount) {
   case 'ordinal':
     const scaleOrdinal = d3Scale.ordinal()
       .domain(domain)
-      .rangePoints(range)
+      .rangePoints(range, 1)
     if (domain[0] === undefined) {
       scaleOrdinal.ticks = () => ['']
     } else {
