@@ -9,6 +9,15 @@ This way we can keep running and testing on node code that uses Path2D
 **[/utils/rectUtils](#utilsrectutils)**		
 Module for manipulating `Rect` representations
 
+**[/utils/visUtils](#utilsvisutils)**		
+Methods for geting type, domain, range, tickCount, scale and others.
+Some of the terms used here:
+
+- dimension -> `string` representing the visual dimension to be used. Eg: 'x', 'y', 'color', ...
+- plotRect -> Rect representing the area of the plot {x: number, y: number, width: number, height: number}
+- prop -> string to be used to access the object property
+- type -> 'linear', 'ordinal', 'time' or 'log'
+
 
 ---
 # [/utils/dimensionUtils](../src/utils/dimensionUtils/index.js)
@@ -23,9 +32,9 @@ According to type it pre-fills the range of colors
 
 Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
-type | string |  |  | 'linear' or 'ordinal'
-domain | Array |  |  | the data domain to be used on the scale
-*Returns* | *function* | | | *d3 scale function*
+type | `string` |  |  | 'linear' or 'ordinal'
+domain | `Array` |  |  | the data domain to be used on the scale
+*Returns* | `function` | | | *d3 scale function*
 
 
 ```jsx
@@ -38,10 +47,10 @@ Get default range according to options
 
 Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
-key | string |  |  | dimension name
-dimension | Object |  |  | 
-rect | Object |  |  | 
-*Returns* | *Array* | | | *range array*
+key | `string` |  |  | dimension name
+dimension | `Object` |  |  | 
+rect | `Object` |  |  | 
+*Returns* | `Array` | | | *range array*
 
 ### dimensionUtils.getScaleForDimension(dimension)
 
@@ -49,8 +58,8 @@ Get new scale according to the dimension options
 
 Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
-dimension | Object |  |  | 
-*Returns* | *function* | | | *new d3 scale*
+dimension | `Object` |  |  | 
+*Returns* | `function` | | | *new d3 scale*
 
 ### dimensionUtils.getScaleForType(type)
 
@@ -58,8 +67,8 @@ Return a new d3 scale according to the input type
 
 Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
-type | string |  |  | The string needs to be one of the SCALE_TYPES: ['linear', 'log', 'ordinal', 'pow', 'quantile', 'quantize', 'threshold', 'time' ]
-*Returns* | *function* | | | *return a new d3 scale*
+type | `string` |  |  | The string needs to be one of the SCALE_TYPES: ['linear', 'log', 'ordinal', 'pow', 'quantile', 'quantize', 'threshold', 'time' ]
+*Returns* | `function` | | | *return a new d3 scale*
 
 
 ```jsx
@@ -75,9 +84,9 @@ It access the data objects using the prop, and checks if all the variables are o
 
 Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
-data | Array |  |  | 
-prop | string |  |  | 
-*Returns* | *string* | | | 
+data | `Array` |  |  | 
+prop | `string` |  |  | 
+*Returns* | `string` | | | 
 
 ---
 # [/utils/path](../src/utils/path/index.js)
@@ -92,7 +101,7 @@ According to the environments, creates a new `Path2D` object or a `pathMock`.
 
 Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
-*Returns* | *Path2D,pathMock* | | | 
+*Returns* | `Path2D,pathMock` | | | 
 
 ### path.pathMock()
 
@@ -100,7 +109,7 @@ Creates a pathMock object
 
 Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
-*Returns* | *Object* | | | 
+*Returns* | `Object` | | | 
 
 ---
 # [/utils/rectUtils](../src/utils/rectUtils/index.js)
@@ -114,8 +123,8 @@ Get the maximum `x` of a `Rect`
 
 Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
-rectInput | Rect |  |  | 
-*Returns* | *number* | | | 
+rectInput | `Rect` |  |  | 
+*Returns* | `number` | | | 
 
 ### rectUtils.getMaxY(rectInput)
 
@@ -123,8 +132,8 @@ Get the maximum `y` of a `Rect`
 
 Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
-rectInput | Rect |  |  | 
-*Returns* | *number* | | | 
+rectInput | `Rect` |  |  | 
+*Returns* | `number` | | | 
 
 ### rectUtils.inset(value, rectInput)
 
@@ -132,9 +141,9 @@ Inset a `Rect` on each side by `value`
 
 Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
-value | number |  |  | 
-rectInput | Rect |  |  | 
-*Returns* | *Rect* | | | 
+value | `number` |  |  | 
+rectInput | `Rect` |  |  | 
+*Returns* | `Rect` | | | 
 
 
 ```jsx
@@ -147,7 +156,74 @@ Inset a `Rect | Size` by a margin
 
 Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
-marginInput | Margin |  |  | {left: number, right: number, top: number, bottom: number}
-rectInput | Rect,Size |  |  | 
-*Returns* | *Rect* | | | 
+marginInput | `Margin` |  |  | {left: number, right: number, top: number, bottom: number}
+rectInput | `Rect,Size` |  |  | 
+*Returns* | `Rect` | | | 
+
+---
+# [/utils/visUtils](../src/utils/visUtils/index.js)
+*[Test spec file](../src/utils/visUtils/index.test.js)*
+
+Methods for geting type, domain, range, tickCount, scale and others.
+Some of the terms used here:
+
+- dimension -> `string` representing the visual dimension to be used. Eg: 'x', 'y', 'color', ...
+- plotRect -> Rect representing the area of the plot {x: number, y: number, width: number, height: number}
+- prop -> string to be used to access the object property
+- type -> 'linear', 'ordinal', 'time' or 'log'
+
+### visUtils.getDomain(data, prop, type)
+
+Return the domain according to the data, prop and type
+
+Parameter | Type | Default | Optional | Description
+--------- | ---- | ------- | -------- | -----------
+data | `Array.<Object>` |  |  | 
+prop | `string` |  |  | 
+type | `string` |  |  | 
+*Returns* | `Array` | | | 
+
+### visUtils.getRange(dimension, plotRect, type)
+
+Return an range Array according dimension, plotRect and type
+
+Parameter | Type | Default | Optional | Description
+--------- | ---- | ------- | -------- | -----------
+dimension | `string` |  |  | 
+plotRect | `object` |  |  | 
+type | `string` |  |  | 
+*Returns* | `Array` | | | 
+
+### visUtils.getScale(type, domain, range, tickCount)
+
+Return a d3 scale configured according to the input parameters
+
+Parameter | Type | Default | Optional | Description
+--------- | ---- | ------- | -------- | -----------
+type | `string` |  |  | 
+domain | `Array` |  |  | 
+range | `Array` |  |  | = [0, 1]
+tickCount | `number` |  |  | 
+*Returns* | `function` | | | *d3Scale*
+
+### visUtils.getTickCount(dimension, range)
+
+Return the number of ticks to be used according to the dimension and range.
+Does not work with ordinal ranges
+
+Parameter | Type | Default | Optional | Description
+--------- | ---- | ------- | -------- | -----------
+dimension | `string` |  |  | 
+range | `array` |  |  | 
+*Returns* | `number` | | | 
+
+### visUtils.getType(data, prop)
+
+Return the most predominantly type on a specific property of an array of objects
+
+Parameter | Type | Default | Optional | Description
+--------- | ---- | ------- | -------- | -----------
+data | `Array.<Object>` |  |  | 
+prop | `string` |  |  | 
+*Returns* | `string` | | | 
 

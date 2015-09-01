@@ -56,6 +56,7 @@ Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 colorProp | string | false |  | 
 data | array | false | [] | 
+labelProp | string | false |  | 
 margin | object | false | {  left: 80, right: 30,  top: 15, bottom: 60,} | 
 size | object | false | {width: 500, height: 400} | 
 styleVars | object | false |  | 

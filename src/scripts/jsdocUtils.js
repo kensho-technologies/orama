@@ -78,7 +78,7 @@ function getReturnsDescriptionString(returns) {
 
 function getReturnsTypeString(returns) {
   if (!returns || !returns.type) return ''
-  return `*${returns.type}*`
+  return `\`${returns.type}\``
 }
 
 function getParametersNames(parametersData) {
@@ -90,7 +90,7 @@ function getParameters(parametersData) {
 }
 
 function genParameterString(d) {
-  return `${d.name} | ${d.type} | ${d.default} | ${d.optional} | ${d.description}\n`
+  return `${d.name} | \`${d.type}\` | ${d.default} | ${d.optional} | ${d.description}\n`
 }
 
 function getExamples(examplesData) {
