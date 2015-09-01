@@ -123,7 +123,7 @@ export default React.createClass({
           width={this.props.size.width}
         />
         {this.state.hoverData &&
-          <div style={R.merge(styles.tooltip, {top: this.state.mouse.y, left: this.state.mouse.x})}>
+          <div style={{...styles.tooltip, top: this.state.mouse.y, left: this.state.mouse.x}}>
             <div>{this.state.hoverData.label}</div>
           </div>
         }

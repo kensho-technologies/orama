@@ -1,7 +1,6 @@
 
 import React, {PropTypes} from 'react'
 import {DragSource} from 'react-dnd'
-import R from 'ramda'
 
 const styles = {
   item: {
@@ -42,7 +41,7 @@ export const PropCard = React.createClass({
   render() {
     const { isDragging, connectDragSource, text } = this.props
     return connectDragSource(
-      <div style={R.merge(styles.item, { opacity: isDragging ? 0.5 : 1 })}>
+      <div style={{...styles.item, opacity: isDragging ? 0.5 : 1 }}>
         {text}
       </div>
     )

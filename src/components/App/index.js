@@ -48,7 +48,7 @@ export const App = React.createClass({
       // this.setState({data: dataR})
     })
   },
-  render(): any {
+  render() {
     return (
       <div>
         <Vis data={this.state.data}/>

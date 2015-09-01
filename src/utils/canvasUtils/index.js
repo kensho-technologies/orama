@@ -1,10 +1,8 @@
 
-import R from 'ramda'
-
 import {rectBase} from '../rectUtils'
 
 export function clearRect(ctx, rectInput) {
-  var rect = R.merge(rectBase, rectInput)
+  var rect = {...rectBase, ...rectInput}
   ctx.clearRect(
     rect.x,
     rect.y,
@@ -14,7 +12,7 @@ export function clearRect(ctx, rectInput) {
 }
 
 export function fillRect(ctx, rectInput) {
-  var rect = R.merge(rectBase, rectInput)
+  var rect = {...rectBase, ...rectInput}
   ctx.fillRect(
     rect.x,
     rect.y,
@@ -24,7 +22,7 @@ export function fillRect(ctx, rectInput) {
 }
 
 export function strokeRect(ctx, rectInput) {
-  var rect = R.merge(rectBase, rectInput)
+  var rect = {...rectBase, ...rectInput}
   ctx.strokeRect(
     rect.x,
     rect.y,

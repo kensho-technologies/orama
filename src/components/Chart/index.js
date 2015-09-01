@@ -26,6 +26,7 @@ export default React.createClass({
   propTypes: {
     colorProp: PropTypes.string,
     data: PropTypes.array,
+    labelProp: PropTypes.string,
     margin: PropTypes.object,
     size: PropTypes.object,
     styleVars: PropTypes.object,
@@ -108,7 +109,7 @@ export default React.createClass({
     }
     return (
       <div>
-        <div style={R.merge(styles.title, {marginLeft: this.props.margin.left})}>
+        <div style={{...styles.title, marginLeft: this.props.margin.left}}>
           {this.props.title}
         </div>
         <div style={containerStyle}>

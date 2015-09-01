@@ -1,6 +1,5 @@
 
 import React, {PropTypes} from 'react'
-import R from 'ramda'
 
 import defaultStyleVars from '../styleVars'
 
@@ -38,13 +37,11 @@ export default React.createClass({
   render() {
     const styles = getStyles(this.props.styleVars)
     const {plotRect} = this.props
-    const style = R.merge(
-      styles.div,
-      {
-        left: plotRect.x,
-        width: plotRect.width,
-      }
-    )
+    const style = {
+      ...styles.div,
+      left: plotRect.x,
+      width: plotRect.width,
+    }
     return (
       <div style={style}>
         {this.props.text}

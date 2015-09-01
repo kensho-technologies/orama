@@ -18,7 +18,7 @@ export function calculateMargin(opts) {
   const yTicks = getTicks(yType, yDomain, yTickCount)
   const maxYTickWidth = getMaxTextWidth(undefined, undefined, yTicks)
   const newMargin = utils.rect.marginInset(
-    R.merge(defaultMargin, {left: maxYTickWidth + 60}),
+    {...defaultMargin, left: maxYTickWidth + 60},
     size
   )
   // const yTicks = getTicks(yType, yDomain, yTickCount)
