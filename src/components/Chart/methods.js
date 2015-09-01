@@ -33,7 +33,7 @@ export function getTicks(type, domain, tickCount) {
   case 'ordinal':
     return domain
   default:
-    const scale = utils.dim.getAxisScale(type, domain, [0, 0])
+    const scale = utils.dim.getAxisScale(type, domain, [0, 0], tickCount)
     return scale.ticks(tickCount)
   }
 }

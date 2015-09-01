@@ -72,7 +72,7 @@ export default React.createClass({
           colorProp={this.state.colorProp}
           data={this.props.data}
           margin={{left: 210, right: 20, top: 20, bottom: 60}}
-          size={{width: 500, height: 400}}
+          size={{width: 700, height: 600}}
           styleVars={this.props.styleVars}
           xProp={this.state.xProp}
           yProp={this.state.yProp}
