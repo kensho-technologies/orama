@@ -1,5 +1,6 @@
 
 export default {
+  fontFamily: 'sans-serif',
   axis: {
     labelFontSize: 15,
     tickFontSize: 14,

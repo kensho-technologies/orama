@@ -4,10 +4,11 @@ import R from 'ramda'
 
 import utils from '../../utils'
 
+import Tooltip from '../Tooltip'
+
 const styles = {
   tooltip: {
     background: 'hsl(0, 0%, 45%)',
-    // border: '2px solid gray',
     color: 'hsl(0, 0%, 100%)',
     fontFamily: 'sans-serif',
     margin: 13,
@@ -122,11 +123,10 @@ export default React.createClass({
           style={styles.canvas}
           width={this.props.size.width}
         />
-        {this.state.hoverData &&
-          <div style={{...styles.tooltip, top: this.state.mouse.y, left: this.state.mouse.x}}>
-            <div>{this.state.hoverData.label}</div>
-          </div>
-        }
+        <Tooltip
+          hoverData={this.state.hoverData}
+          mouse={this.state.mouse}
+        />
       </div>
     )
   },

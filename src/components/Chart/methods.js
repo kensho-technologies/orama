@@ -10,9 +10,7 @@ const defaultMargin = {
 export function calculateMargin(opts) {
   const {size, yType, yDomain} = opts
   const plotRect = utils.rect.marginInset(defaultMargin, size)
-  // const xRange = utils.rect.getRangeX(plotRect)
   const yRange = utils.rect.getRangeY(plotRect)
-  // const xTickCount = utils.ticks.getXCount(xRange)
   const yTickCount = utils.vis.getTickCount('y', yRange)
 
   const yTicks = utils.vis.getTicks(yType, yDomain, yTickCount)
