@@ -1,13 +1,13 @@
 
-import test from 'tape'
+import {it as test} from 'mocha'
+import assert from 'assert'
 
 import React from 'react'
 import renderComponent from '../../renderComponentTest'
 
 import DropUI from './'
 
-test('DropUI', t => {
+test('DropUI', () => {
   var component = renderComponent(<DropUI/>)
-  t.equal(component.type, 'div')
-  t.end()
+  assert.strictEqual(component.type, 'div')
 })

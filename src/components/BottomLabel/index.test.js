@@ -1,18 +1,17 @@
 
-import test from 'tape'
+import {it as test} from 'mocha'
+import assert from 'assert'
 
 import React from 'react'
 import renderComponent from '../../renderComponentTest'
 
 import BottomLabel, {getStyles} from './'
 
-test('BottomLabel', t => {
+test('BottomLabel', () => {
   var component = renderComponent(<BottomLabel/>)
-  t.same(component.type, 'div')
-  t.end()
+  assert.deepEqual(component.type, 'div')
 })
 
-test('BottomLabel.getStyles', t => {
-  t.ok(getStyles())
-  t.end()
+test('BottomLabel.getStyles', () => {
+  assert(getStyles())
 })

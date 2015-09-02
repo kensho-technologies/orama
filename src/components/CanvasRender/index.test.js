@@ -1,13 +1,13 @@
 
-import test from 'tape'
+import {it as test} from 'mocha'
+import assert from 'assert'
 
 import React from 'react'
 import renderComponent from '../../renderComponentTest'
 
 import CanvasRender from './'
 
-test('CanvasRender', t => {
+test('CanvasRender', () => {
   var component = renderComponent(<CanvasRender/>)
-  t.equal(component.type, 'canvas')
-  t.end()
+  assert.strictEqual(component.type, 'canvas')
 })

@@ -1,5 +1,6 @@
 
-import test from 'tape'
+import {it as test} from 'mocha'
+import assert from 'assert'
 
 import React from 'react'
 import renderComponent from '../../renderComponentTest'
@@ -8,8 +9,7 @@ import {DropCard} from './'
 
 const identity = (d) => d
 
-test('DropCard', t => {
+test('DropCard', () => {
   var component = renderComponent(<DropCard connectDropTarget={identity}/>)
-  t.equal(component.type, 'div')
-  t.end()
+  assert.strictEqual(component.type, 'div')
 })

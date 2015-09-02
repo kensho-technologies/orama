@@ -1,13 +1,13 @@
 
-import test from 'tape'
+import {it as test} from 'mocha'
+import assert from 'assert'
 
 import React from 'react'
 import renderComponent from '../../renderComponentTest'
 
 import LeftLabel from './'
 
-test('LeftLabel', t => {
+test('LeftLabel', () => {
   var component = renderComponent(<LeftLabel/>)
-  t.equal(component.type, 'div')
-  t.end()
+  assert.strictEqual(component.type, 'div')
 })

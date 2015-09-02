@@ -1,77 +1,72 @@
 
-import test from 'tape'
+import {it as test} from 'mocha'
+import assert from 'assert'
 import _ from 'lodash'
 
 import {rectBase} from '../rectUtils'
 import * as dimUtils from '../dimensionUtils'
 
-test('dimUtils.getType', t => {
-  t.deepEqual(
+test('dimUtils.getType', () => {
+  assert.deepEqual(
     dimUtils.getType([{a: 1}, {a: 2}], 'a'),
     'linear'
   )
-  t.end()
 })
 
-test('dimUtils.getColorScale', t => {
-  t.deepEqual(
+test('dimUtils.getColorScale', () => {
+  assert.deepEqual(
     dimUtils.getColorScale('ordinal', [1, 2, 3]).domain(),
     [1, 2, 3]
   )
-  t.deepEqual(
+  assert.deepEqual(
     dimUtils.getColorScale('linear', [1, 3]).domain(),
     [1, 3]
   )
-  t.end()
 })
 
-test('dimUtils.getDomain', t => {
-  t.deepEqual(
+test('dimUtils.getDomain', () => {
+  assert.deepEqual(
     dimUtils.getDomain('ordinal', [{t: 'a'}, {t: 'b'}], 't'),
     ['a', 'b']
   )
-  t.deepEqual(
+  assert.deepEqual(
     dimUtils.getDomain('linear', [{t: 1}, {t: 2}], 't'),
     [1, 2]
   )
-  t.end()
 })
 
-test('dimUtils.getAxisScale', t => {
+test('dimUtils.getAxisScale', () => {
   const scale = dimUtils.getAxisScale('linear', [0, 10], [])
-  t.deepEqual(
+  assert.deepEqual(
     typeof scale,
     'function'
   )
-  t.deepEqual(
+  assert.deepEqual(
     _.isArray(scale.ticks(2)),
     true
   )
-  t.end()
 })
 
-test('dimUtils.getRange', t => {
-  t.ok(dimUtils.getRange)
-  t.deepEqual(
+test('dimUtils.getRange', () => {
+  assert(dimUtils.getRange)
+  assert.deepEqual(
     dimUtils.getRange('x', {}, rectBase),
     [0, 0]
   )
-  t.deepEqual(
+  assert.deepEqual(
     dimUtils.getRange('y', {}, rectBase),
     [0, 0],
     'array of numbers'
   )
-  t.deepEqual(
+  assert.deepEqual(
     dimUtils.getRange('color', {}, rectBase),
     dimUtils.RANGE_LINEAR_COLOR
   )
-  t.throws(dimUtils.getRange)
-  t.end()
+  assert.throws(dimUtils.getRange)
 })
 
-test('dimUtils.getScaleForType', t => {
-  t.ok(dimUtils.getScaleForType)
-  t.equal(typeof dimUtils.getScaleForType('linear'), 'function')
-  t.throws(dimUtils.getScaleForType)
-  t.end()
+test('dimUtils.getScaleForType', () => {
+  assert(dimUtils.getScaleForType)
+  assert.strictEqual(typeof dimUtils.getScaleForType('linear'), 'function')
+  assert.throws(dimUtils.getScaleForType)
 })

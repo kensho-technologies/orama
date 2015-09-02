@@ -1,20 +1,19 @@
 
-import test from 'tape'
+import {it as test} from 'mocha'
+import assert from 'assert'
 
 import path, * as pathUtils from './'
 
-test('path', t => {
-  t.deepEqual(
+test('path', () => {
+  assert.deepEqual(
     typeof path(),
     'object'
   )
-  t.end()
 })
 
-test('pathUtils.pathMock', t => {
-  t.deepEqual(
+test('pathUtils.pathMock', () => {
+  assert.deepEqual(
     typeof pathUtils.pathMock(),
     'object'
   )
-  t.end()
 })

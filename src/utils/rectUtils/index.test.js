@@ -1,22 +1,22 @@
 
-import test from 'tape'
+import {it as test} from 'mocha'
+import assert from 'assert'
 
 import * as rectUtils from './'
 
-test('rectUtils.rectBase, rectUtils.marginBase', t => {
-  t.ok(rectUtils.rectBase)
-  t.ok(rectUtils.marginBase)
-  t.end()
+test('rectUtils.rectBase, rectUtils.marginBase', () => {
+  assert(rectUtils.rectBase)
+  assert(rectUtils.marginBase)
 })
 
-test('rectUtils.marginInset', t => {
-  t.ok(rectUtils.marginInset)
-  t.deepEqual(
+test('rectUtils.marginInset', () => {
+  assert(rectUtils.marginInset)
+  assert.deepEqual(
     rectUtils.marginInset({}, {}),
     {x: 0, y: 0, width: 0, height: 0}
   )
   var rect = rectUtils.marginInset({}, {width: 100, height: 100})
-  t.deepEqual(
+  assert.deepEqual(
     rect,
     {x: 0, y: 0, width: 100, height: 100}
   )
@@ -24,62 +24,56 @@ test('rectUtils.marginInset', t => {
     {left: 10, top: 10},
     {width: 100, height: 100}
   )
-  t.deepEqual(
+  assert.deepEqual(
     rect2,
     {x: 10, y: 10, width: 90, height: 90}
   )
-  t.end()
 })
 
-test('rectUtils.inset', t => {
-  t.ok(rectUtils.inset)
-  t.deepEqual(
+test('rectUtils.inset', () => {
+  assert(rectUtils.inset)
+  assert.deepEqual(
     rectUtils.inset(10, {width: 100, height: 100}),
     {x: 10, y: 10, width: 80, height: 80}
   )
-  t.end()
 })
 
-test('rectUtils.getMaxX', t => {
-  t.ok(rectUtils.getMaxX)
-  t.deepEqual(rectUtils.getMaxX({}), 0)
-  t.deepEqual(
+test('rectUtils.getMaxX', () => {
+  assert(rectUtils.getMaxX)
+  assert.deepEqual(rectUtils.getMaxX({}), 0)
+  assert.deepEqual(
     rectUtils.getMaxX({ x: 10, width: 100}),
     110
   )
-  t.end()
 })
 
-test('rectUtils.getMaxY', t => {
-  t.ok(rectUtils.getMaxY)
-  t.deepEqual(rectUtils.getMaxY({}), 0)
-  t.deepEqual(
+test('rectUtils.getMaxY', () => {
+  assert(rectUtils.getMaxY)
+  assert.deepEqual(rectUtils.getMaxY({}), 0)
+  assert.deepEqual(
     rectUtils.getMaxY({ y: 10, height: 100}),
     110
   )
-  t.end()
 })
 
-test('rectUtils.getRangeX', t => {
-  t.deepEqual(
+test('rectUtils.getRangeX', () => {
+  assert.deepEqual(
     rectUtils.getRangeX(),
     [0, 0]
   )
-  t.deepEqual(
+  assert.deepEqual(
     rectUtils.getRangeX({x: 50, width: 100}),
     [50, 150]
   )
-  t.end()
 })
 
-test('rectUtils.getRangeY', t => {
-  t.deepEqual(
+test('rectUtils.getRangeY', () => {
+  assert.deepEqual(
     rectUtils.getRangeY(),
     [0, 0]
   )
-  t.deepEqual(
+  assert.deepEqual(
     rectUtils.getRangeY({y: 50, height: 100}),
     [150, 50]
   )
-  t.end()
 })

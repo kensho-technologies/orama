@@ -1,45 +1,40 @@
 
-import test from 'tape'
+import {it as test} from 'mocha'
+import assert from 'assert'
 
 import getComponents, * as utils from './reactdocUtils'
 
-test('getComponents', (t) => {
-  t.ok(getComponents)
-  t.equal(typeof getComponents({}), 'string')
-  t.end()
+test('getComponents', () => {
+  assert(getComponents)
+  assert.strictEqual(typeof getComponents({}), 'string')
 })
 
-test('getProps', (t) => {
+test('getProps', () => {
   var {getProps} = utils
-  t.ok(getProps)
-  t.equal(typeof getProps({}), 'string')
-  t.end()
+  assert(getProps)
+  assert.strictEqual(typeof getProps({}), 'string')
 })
 
-test('getType', (t) => {
+test('getType', () => {
   var {getType} = utils
-  t.ok(getType)
-  t.equal(typeof getType({}), 'string')
-  t.end()
+  assert(getType)
+  assert.strictEqual(typeof getType({}), 'string')
 })
 
-test('getRequired', (t) => {
+test('getRequired', () => {
   var {getRequired} = utils
-  t.ok(getRequired)
-  t.equal(typeof getRequired({}), 'string')
-  t.end()
+  assert(getRequired)
+  assert.strictEqual(typeof getRequired({}), 'string')
 })
 
-test('getDefaultValue', (t) => {
+test('getDefaultValue', () => {
   var {getDefaultValue} = utils
-  t.ok(getDefaultValue)
-  t.equal(typeof getDefaultValue({}), 'string')
-  t.end()
+  assert(getDefaultValue)
+  assert.strictEqual(typeof getDefaultValue({}), 'string')
 })
 
-test('getDescription', (t) => {
+test('getDescription', () => {
   var {getDescription} = utils
-  t.ok(getDescription)
-  t.equal(typeof getDescription({}), 'string')
-  t.end()
+  assert(getDescription)
+  assert.strictEqual(typeof getDescription({}), 'string')
 })
