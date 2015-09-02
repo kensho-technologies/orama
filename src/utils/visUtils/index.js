@@ -157,7 +157,17 @@ export function getD3Scale(type) {
  * @param  {number} tickCount
  * @return {function}           d3Scale
  */
-export function getScale(type, domain, range = [0, 1], tickCount) {
+export function getScale(output, type, domain, range = [0, 1], tickCount) {
+  switch (output) {
+  case 'x':
+  case 'y':
+    return getAxisScale(type, domain, range, tickCount)
+  default:
+    return getDefaultScale(type, domain, range, tickCount)
+  }
+}
+
+export function getAxisScale(type, domain, range = [0, 1], tickCount) {
   switch (type) {
   case 'ordinal':
     const scaleOrdinal = d3Scale.ordinal()
@@ -178,8 +188,26 @@ export function getScale(type, domain, range = [0, 1], tickCount) {
   }
 }
 
+export function getDefaultScale(type, domain, range = [0, 1], tickCount) {
+  switch (type) {
+  case 'ordinal':
+    const scaleOrdinal = d3Scale.ordinal()
+      .domain(domain)
+      .range(range)
+    return scaleOrdinal
+  case 'linear':
+  default:
+    return d3Scale.linear()
+      .domain(domain)
+      .range(range)
+      .nice(tickCount)
+  }
+}
+
 /**
  * Returns the ticks for label and axis drawing
+ * @memberOf /utils/visUtils
+ *
  * @param  {string} type
  * @param  {string} domain
  * @param  {number} [tickCount]
@@ -193,4 +221,16 @@ export function getTicks(type, domain, tickCount) {
   default:
     return d3Scale.linear().domain(domain).nice(tickCount).ticks(tickCount)
   }
+}
+
+/**
+ * Returns a function that pluck and scale the prop from a data object
+ * @memberOf /utils/visUtils
+ *
+ * @param  {string} prop
+ * @param  {function} scale
+ * @return {function}
+ */
+export function getMap(prop, scale) {
+  return R.pipe(R.prop(prop), scale)
 }

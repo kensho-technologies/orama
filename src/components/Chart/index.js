@@ -50,26 +50,27 @@ export default React.createClass({
     const styles = getStyles(this.props.styleVars)
     const {data, xProp, yProp, colorProp, size} = this.props
 
-    const yType = utils.dim.getType(data, yProp)
-    const yDomain = utils.dim.getDomain(yType, data, yProp)
+    const yType = utils.vis.getType(data, yProp)
+    const yDomain = utils.vis.getDomain(data, yProp, yType)
     const plotRect = methods.calculateMargin({size, yType, yDomain})
 
-    const xType = utils.dim.getType(data, xProp)
-    const xDomain = utils.dim.getDomain(xType, data, xProp)
-    const xRange = utils.rect.getRangeX(plotRect)
-    const xTickCount = utils.ticks.getXCount(xRange)
-    const xScale = utils.dim.getAxisScale(xType, xDomain, xRange, xTickCount)
-    const xMap = R.pipe(R.prop(xProp), xScale)
+    const xType = utils.vis.getType(data, xProp)
+    const xDomain = utils.vis.getDomain(data, xProp, xType)
+    const xRange = utils.vis.getRange('x', plotRect, xType)
+    const xTickCount = utils.vis.getTickCount('x', xRange)
+    const xScale = utils.vis.getScale('x', xType, xDomain, xRange, xTickCount)
+    const xMap = utils.vis.getMap(xProp, xScale)
 
-    const yRange = utils.rect.getRangeY(plotRect)
-    const yTickCount = utils.ticks.getYCount(yRange)
-    const yScale = utils.dim.getAxisScale(yType, yDomain, yRange, yTickCount)
-    const yMap = R.pipe(R.prop(yProp), yScale)
+    const yRange = utils.vis.getRange('y', plotRect, yType)
+    const yTickCount = utils.vis.getTickCount('y', yRange)
+    const yScale = utils.vis.getScale('y', yType, yDomain, yRange, yTickCount)
+    const yMap = utils.vis.getMap(yProp, yScale)
 
-    const colorType = utils.dim.getType(data, colorProp)
-    const colorDomain = utils.dim.getDomain(colorType, data, colorProp)
-    const colorScale = utils.dim.getColorScale(colorType, colorDomain)
-    const colorMap = R.pipe(R.prop(colorProp), colorScale)
+    const colorType = utils.vis.getType(data, colorProp)
+    const colorDomain = utils.vis.getDomain(data, colorProp, colorType)
+    const colorRange = utils.vis.getRange('color', undefined, colorType)
+    const colorScale = utils.vis.getScale('color', colorType, colorDomain, colorRange)
+    const colorMap = utils.vis.getMap(colorProp, colorScale)
 
     const regressionData = R.map(d => {
       return [R.prop(xProp, d), R.prop(yProp, d)]
@@ -117,10 +118,14 @@ export default React.createClass({
             plotRect={plotRect}
             size={this.props.size}
             styleVars={this.props.styleVars}
+            xDomain={xDomain}
             xScale={xScale}
             xTickCount={xTickCount}
+            xType={xType}
+            yDomain={yDomain}
             yScale={yScale}
             yTickCount={yTickCount}
+            yType={yType}
           />
           <CanvasRender
             plotRect={plotRect}

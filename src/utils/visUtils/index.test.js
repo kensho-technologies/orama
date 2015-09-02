@@ -98,20 +98,20 @@ test('visUtils.getD3Scale', () => {
 
 test('visUtils.getScale', () => {
   assert(methods.getScale)
-  const scaleOrdinal = methods.getScale('ordinal', ['a', 'b'], [0, 1])
+  const scaleOrdinal = methods.getScale('x', 'ordinal', ['a', 'b'], [0, 1])
   assert.deepEqual(
     scaleOrdinal('a'),
     0.25
   )
-  const scaleLinear1 = methods.getScale('linear', [0, 100], [0, 1], 10)
+  const scaleLinear1 = methods.getScale('x', 'linear', [0, 100], [0, 1], 10)
   assert.deepEqual(
     scaleLinear1(50),
     0.5
   )
-  const scaleLinear2 = methods.getScale('linear', [100, 100])
+  const scaleLinear2 = methods.getScale(null, 'linear', [100, 100])
   assert.deepEqual(
     scaleLinear2(50),
-    0.5
+    0
   )
 })
 
@@ -124,4 +124,13 @@ test('visUtils.getTicks', () => {
     methods.getTicks('linear', [0, 100]),
     [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
   )
+})
+
+test('visUtils.getMap', () => {
+  assert.deepEqual(
+    typeof methods.getMap(),
+    'function'
+  )
+  const map = methods.getMap('t', d => d * 2)
+  assert.deepEqual(map({t: 1}), 2)
 })

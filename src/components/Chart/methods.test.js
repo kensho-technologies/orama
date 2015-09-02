@@ -18,17 +18,6 @@ test('Chart methods.calculateMargin', () => {
   )
 })
 
-test('Chart methods.getTicks', () => {
-  assert.deepEqual(
-    methods.getTicks('linear', [0, 100], 3),
-    [0, 50, 100]
-  )
-  assert.deepEqual(
-    methods.getTicks('ordinal', [0, 100]),
-    [0, 100]
-  )
-})
-
 test('Chart methods.getMaxTextWidth', () => {
   assert.deepEqual(
     methods.getMaxTextWidth('sans', 16, ['label1', 'superLabel']),

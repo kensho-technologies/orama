@@ -25,10 +25,14 @@ export default React.createClass({
     plotRect: PropTypes.object,
     size: PropTypes.object.isRequired,
     styleVars: PropTypes.object,
+    xDomain: PropTypes.array,
     xScale: PropTypes.func,
     xTickCount: PropTypes.number,
+    xType: PropTypes.string,
+    yDomain: PropTypes.array,
     yScale: PropTypes.func,
     yTickCount: PropTypes.number,
+    yType: PropTypes.string,
   },
   getDefaultProps() {
     return {
@@ -42,7 +46,17 @@ export default React.createClass({
   },
   renderCanvas() {
     const styles = getStyles(this.props.styleVars)
-    const {plotRect, xScale, xTickCount, yScale, yTickCount} = this.props
+    const {
+      plotRect,
+      xDomain,
+      xScale,
+      xTickCount,
+      xType,
+      yDomain,
+      yScale,
+      yTickCount,
+      yType,
+    } = this.props
     const ctx = findDOMNode(this.refs.canvas).getContext('2d')
     ctx.fillStyle = styles.background.fill
     utils.canvas.clearRect(ctx, this.props.size)
@@ -51,8 +65,8 @@ export default React.createClass({
     ctx.font = styles.ticks.font
     ctx.textAlign = 'center'
     ctx.textBaseline = 'top'
-    const xTicks = xScale.ticks(xTickCount)
-    const xTicksSmall = xScale.ticks(xTicks.length * 2)
+    const xTicks = utils.vis.getTicks(xType, xDomain, xTickCount)
+    const xTicksSmall = utils.vis.getTicks(xType, xDomain, xTicks.length * 2)
     R.forEach(d => {
       ctx.lineWidth = 1
       ctx.strokeStyle = 'hsl(0, 0%, 92%)'
@@ -87,8 +101,8 @@ export default React.createClass({
 
     ctx.textAlign = 'end'
     ctx.textBaseline = 'middle'
-    const yTicks = yScale.ticks(yTickCount)
-    const yTicksSmall = yScale.ticks(yTicks.length * 2)
+    const yTicks = utils.vis.getTicks(yType, yDomain, yTickCount)
+    const yTicksSmall = utils.vis.getTicks(yType, yDomain, yTickCount)
     R.forEach(d => {
       ctx.lineWidth = 1
       ctx.strokeStyle = 'hsl(0, 0%, 92%)'
