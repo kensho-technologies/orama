@@ -13,10 +13,15 @@ Module for manipulating `Rect` representations
 Methods for geting type, domain, range, tickCount, scale and others.
 Some of the terms used here:
 
-- dimension -> `string` representing the visual dimension to be used. Eg: 'x', 'y', 'color', ...
-- plotRect -> Rect representing the area of the plot {x: number, y: number, width: number, height: number}
 - prop -> string to be used to access the object property
-- type -> 'linear', 'ordinal', 'time' or 'log'
+- output -> `string` representing the visual output to be used. Eg: 'x', 'y', 'color', ...
+- type -> type of the data dimension: 'linear', 'ordinal', 'time' or 'log'
+- domain -> domain of the data according to its type.
+- range -> output range of a output, according to the type of the data
+- tickCount -> number of ticks that should be shown on a label of a dimension
+- scale -> function that map from the domain of the data to the visual range of the output
+- ticks -> Array of data to be used for labeling the axis of a dimension
+- plotRect -> Rect representing the area of the plot {x: number, y: number, width: number, height: number}
 
 
 ---
@@ -167,10 +172,15 @@ rectInput | `Rect,Size` |  |  |
 Methods for geting type, domain, range, tickCount, scale and others.
 Some of the terms used here:
 
-- dimension -> `string` representing the visual dimension to be used. Eg: 'x', 'y', 'color', ...
-- plotRect -> Rect representing the area of the plot {x: number, y: number, width: number, height: number}
 - prop -> string to be used to access the object property
-- type -> 'linear', 'ordinal', 'time' or 'log'
+- output -> `string` representing the visual output to be used. Eg: 'x', 'y', 'color', ...
+- type -> type of the data dimension: 'linear', 'ordinal', 'time' or 'log'
+- domain -> domain of the data according to its type.
+- range -> output range of a output, according to the type of the data
+- tickCount -> number of ticks that should be shown on a label of a dimension
+- scale -> function that map from the domain of the data to the visual range of the output
+- ticks -> Array of data to be used for labeling the axis of a dimension
+- plotRect -> Rect representing the area of the plot {x: number, y: number, width: number, height: number}
 
 ### visUtils.getDomain(data, prop, type)
 
@@ -180,18 +190,18 @@ Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
 data | `Array.<Object>` |  |  | 
 prop | `string` |  |  | 
-type | `string` |  |  | 
+type | `string` |  | true | 
 *Returns* | `Array` | | | 
 
-### visUtils.getRange(dimension, plotRect, type)
+### visUtils.getRange(output, plotRect, type)
 
-Return an range Array according dimension, plotRect and type
+Return an range Array according output, plotRect and type
 
 Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
-dimension | `string` |  |  | 
+output | `string` |  |  | 
 plotRect | `object` |  |  | 
-type | `string` |  |  | 
+type | `string` |  | true | 
 *Returns* | `Array` | | | 
 
 ### visUtils.getScale(type, domain, range, tickCount)
@@ -206,14 +216,14 @@ range | `Array` | [0, 1] | true |
 tickCount | `number` |  |  | 
 *Returns* | `function` | | | *d3Scale*
 
-### visUtils.getTickCount(dimension, range)
+### visUtils.getTickCount(output, range)
 
-Return the number of ticks to be used according to the dimension and range.
+Return the number of ticks to be used according to the output and range.
 Does not work with ordinal ranges
 
 Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
-dimension | `string` |  |  | 
+output | `string` |  |  | 
 range | `array` |  |  | 
 *Returns* | `number` | | | 
 

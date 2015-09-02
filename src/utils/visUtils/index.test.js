@@ -108,9 +108,20 @@ test('visUtils.getScale', () => {
     scaleLinear1(50),
     0.5
   )
-  const scaleLinear2 = methods.getScale('linear', [100, 100], [0, 1])
+  const scaleLinear2 = methods.getScale('linear', [100, 100])
   assert.deepEqual(
     scaleLinear2(50),
     0.5
+  )
+})
+
+test('visUtils.getTicks', () => {
+  assert.deepEqual(
+    methods.getTicks('linear', [0, 100], 3),
+    [0, 50, 100]
+  )
+  assert.deepEqual(
+    methods.getTicks('linear', [0, 100]),
+    [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
   )
 })

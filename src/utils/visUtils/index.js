@@ -9,10 +9,15 @@ import * as rectUtils from '../rectUtils'
  * Methods for geting type, domain, range, tickCount, scale and others.
  * Some of the terms used here:
  *
- * - dimension -> `string` representing the visual dimension to be used. Eg: 'x', 'y', 'color', ...
- * - plotRect -> Rect representing the area of the plot {x: number, y: number, width: number, height: number}
  * - prop -> string to be used to access the object property
- * - type -> 'linear', 'ordinal', 'time' or 'log'
+ * - output -> `string` representing the visual output to be used. Eg: 'x', 'y', 'color', ...
+ * - type -> type of the data dimension: 'linear', 'ordinal', 'time' or 'log'
+ * - domain -> domain of the data according to its type.
+ * - range -> output range of a output, according to the type of the data
+ * - tickCount -> number of ticks that should be shown on a label of a dimension
+ * - scale -> function that map from the domain of the data to the visual range of the output
+ * - ticks -> Array of data to be used for labeling the axis of a dimension
+ * - plotRect -> Rect representing the area of the plot {x: number, y: number, width: number, height: number}
  *
  * @namespace /utils/visUtils
  */
@@ -71,10 +76,10 @@ export function getType(data, prop) {
  *
  * @param  {Array.<Object>} data
  * @param  {string} prop
- * @param  {string} type
+ * @param  {string} [type]
  * @return {Array}
  */
-export function getDomain(data, prop, type) {
+export function getDomain(data, prop, type = 'linear') {
   switch (type) {
   case 'ordinal':
     return R.uniq(R.map(R.prop(prop), data))
@@ -84,16 +89,16 @@ export function getDomain(data, prop, type) {
 }
 
 /**
- * Return an range Array according dimension, plotRect and type
+ * Return an range Array according output, plotRect and type
  * @memberOf /utils/visUtils
  *
- * @param  {string} dimension
+ * @param  {string} output
  * @param  {object} plotRect
- * @param  {string} type
+ * @param  {string} [type]
  * @return {Array}
  */
-export function getRange(dimension, plotRect, type) {
-  switch (dimension) {
+export function getRange(output, plotRect, type) {
+  switch (output) {
   case 'x':
     return [plotRect.x, rectUtils.getMaxX(plotRect)]
   case 'y':
@@ -107,27 +112,27 @@ export function getRange(dimension, plotRect, type) {
     }
     break
   default:
-    throw new Error(`visUtils.getRange invalid dimension "${dimension}"`)
+    throw new Error(`visUtils.getRange invalid output "${output}"`)
   }
 }
 
 /**
- * Return the number of ticks to be used according to the dimension and range.
+ * Return the number of ticks to be used according to the output and range.
  * Does not work with ordinal ranges
  * @memberOf /utils/visUtils
  *
- * @param  {string} dimension
+ * @param  {string} output
  * @param  {array} range
  * @return {number}
  */
-export function getTickCount(dimension, range) {
-  switch (dimension) {
+export function getTickCount(output, range) {
+  switch (output) {
   case 'x':
     return Math.round((range[1] - range[0]) / TICKS_X_SPACE)
   case 'y':
     return Math.round((range[0] - range[1]) / TICKS_Y_SPACE)
   default:
-    throw new Error(`visUtils.getTickCount invalid dimension "${dimension}"`)
+    throw new Error(`visUtils.getTickCount invalid output "${output}"`)
   }
 }
 
@@ -170,5 +175,22 @@ export function getScale(type, domain, range = [0, 1], tickCount) {
       .domain(domain)
       .range(range)
       .nice(tickCount)
+  }
+}
+
+/**
+ * Returns the ticks for label and axis drawing
+ * @param  {string} type
+ * @param  {string} domain
+ * @param  {number} [tickCount]
+ * @return {array}           Array of 'number' os 'strings', according to the domain of the data
+ */
+export function getTicks(type, domain, tickCount) {
+  switch (type) {
+  case 'ordinal':
+    return domain
+  case 'linear':
+  default:
+    return d3Scale.linear().domain(domain).nice(tickCount).ticks(tickCount)
   }
 }
