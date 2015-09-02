@@ -5,18 +5,18 @@ import assert from 'assert'
 import React from 'react'
 import shallowRender from '../../shallowRender'
 
-import * as localUtils from './'
+import * as localMethods from './'
 
 test('App should exist and render', () => {
-  assert(localUtils.App)
-  const component = shallowRender(<localUtils.App/>)
+  assert(localMethods.App)
+  const component = shallowRender(<localMethods.App/>)
   assert.strictEqual(component.type, 'div')
 })
 
 test('parseString', () => {
-  assert.strictEqual(localUtils.parseString('0.06%'), 0.06)
-  assert.strictEqual(localUtils.parseString('0.00%'), 0)
-  assert.strictEqual(localUtils.parseString(0.06), 0.06)
-  assert.deepEqual(localUtils.parseString('12/12/1980'), new Date('12/12/1980'))
-  assert.strictEqual(localUtils.parseString('Technology'), 'Technology')
+  assert.strictEqual(localMethods.parseString('0.06%'), 0.06)
+  assert.strictEqual(localMethods.parseString('0.00%'), 0)
+  assert.strictEqual(localMethods.parseString(0.06), 0.06)
+  assert.deepEqual(localMethods.parseString('12/12/1980'), new Date('12/12/1980'))
+  assert.strictEqual(localMethods.parseString('Technology'), 'Technology')
 })
