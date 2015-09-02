@@ -3,12 +3,12 @@ import {it as test} from 'mocha'
 import assert from 'assert'
 
 import React from 'react'
-import renderComponent from '../../renderComponentTest'
+import shallowRender from '../../shallowRender'
 
 import ChartBackground, * as localMethods from './'
 
 test('ChartBackground', () => {
-  var component = renderComponent(
+  const component = shallowRender(
     <ChartBackground
       size={{width: 0, height: 0}}
     />

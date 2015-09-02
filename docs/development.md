@@ -61,7 +61,7 @@ import renderComponent from '../renderComponentTest'
 import Example from './Example'
 
 test('Example', () => {
-  var component = renderComponent(<Example/>)
+  const component = shallowRender(<Example/>)
   assert.strictEqual(component.type, 'div')
 
 })
@@ -114,7 +114,7 @@ import renderComponent from '../renderComponentTest'
 import Example, * as ExampleUtils from './Example'
 
 test('Example', () => {
-  var component = renderComponent(<Example/>)
+  const component = shallowRender(<Example/>)
   assert.strictEqual(component.type, 'div')
 
 })

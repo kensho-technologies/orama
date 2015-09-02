@@ -3,13 +3,13 @@ import {it as test} from 'mocha'
 import assert from 'assert'
 
 import React from 'react'
-import renderComponent from '../../renderComponentTest'
+import shallowRender from '../../shallowRender'
 
 import * as localUtils from './'
 
 test('App should exist and render', () => {
   assert(localUtils.App)
-  var component = renderComponent(<localUtils.App/>)
+  const component = shallowRender(<localUtils.App/>)
   assert.strictEqual(component.type, 'div')
 })
 

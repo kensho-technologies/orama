@@ -3,11 +3,11 @@ import {it as test} from 'mocha'
 import assert from 'assert'
 
 import React from 'react'
-import renderComponent from '../../renderComponentTest'
+import shallowRender from '../../shallowRender'
 
 import Chart from './'
 
 test('Chart', () => {
-  var component = renderComponent(<Chart/>)
+  const component = shallowRender(<Chart/>)
   assert.strictEqual(component.type, 'div')
 })

@@ -1,7 +1,7 @@
 
 import {addons} from 'react/addons'
 
-export default function renderComponent(element) {
+export default function shallowRender(element) {
   var shallowRenderer = addons.TestUtils.createRenderer()
   shallowRenderer.render(element)
   return shallowRenderer.getRenderOutput()
