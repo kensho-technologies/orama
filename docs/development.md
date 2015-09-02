@@ -52,17 +52,18 @@ All components should be tested from the start, we test components using [React 
 
 **Example-test.js**
 ```jsx
-import test from 'tape'
+import {it as test} from 'mocha'
+import assert from 'assert'
 
 import React from 'react'
 import renderComponent from '../renderComponentTest'
 
 import Example from './Example'
 
-test('Example', t => {
+test('Example', () => {
   var component = renderComponent(<Example/>)
-  t.equal(component.type, 'div')
-  t.end()
+  assert.strictEqual(component.type, 'div')
+
 })
 ```
 
@@ -104,25 +105,26 @@ export default React.createClass({
 
 **Example-test.js**
 ```jsx
-import test from 'tape'
+import {it as test} from 'mocha'
+import assert from 'assert'
 
 import React from 'react'
 import renderComponent from '../renderComponentTest'
 
 import Example, * as ExampleUtils from './Example'
 
-test('Example', t => {
+test('Example', () => {
   var component = renderComponent(<Example/>)
-  t.equal(component.type, 'div')
-  t.end()
+  assert.strictEqual(component.type, 'div')
+
 })
 
-test('Example, upperCasedText', t => {
-  t.deepEqual(
+test('Example, upperCasedText', () => {
+  assert.deepEqual(
     ExampleUtils.upperCasedText(' name'),
     'NAME'
   )
-  t.end()
+
 })
 ```
 
@@ -195,19 +197,20 @@ export function marginInset(marginInput, rectInput) {
 
 **rectUtils-test.js**
 ```jsx
-import test from 'tape'
+import {it as test} from 'mocha'
+import assert from 'assert'
 import * as rectUtils from './rectUtils'
 
-test('rectUtils.marginInset', t => {
+test('rectUtils.marginInset', () => {
   const rect = rectUtils.marginInset(
     {left: 10, top: 10},
     {width: 100, height: 100}
   )
-  t.deepEqual(
+  assert.deepEqual(
     rect,
     {x: 10, y: 10, width: 90, height: 90}
   )
-  t.end()
+
 })
 ```
 

@@ -202,7 +202,7 @@ Parameter | Type | Default | Optional | Description
 --------- | ---- | ------- | -------- | -----------
 type | `string` |  |  | 
 domain | `Array` |  |  | 
-range | `Array` |  |  | = [0, 1]
+range | `Array` | [0, 1] | true | 
 tickCount | `number` |  |  | 
 *Returns* | `function` | | | *d3Scale*
 

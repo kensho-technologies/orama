@@ -3,7 +3,7 @@ import R from 'ramda'
 import d3Arrays from 'd3-arrays'
 import d3Scale from 'd3-scale'
 
-import * as visUtils from '../visUtils'
+import * as rectUtils from '../rectUtils'
 
 /**
  * Methods for geting type, domain, range, tickCount, scale and others.
@@ -95,9 +95,9 @@ export function getDomain(data, prop, type) {
 export function getRange(dimension, plotRect, type) {
   switch (dimension) {
   case 'x':
-    return [plotRect.x, visUtils.getMaxX(plotRect)]
+    return [plotRect.x, rectUtils.getMaxX(plotRect)]
   case 'y':
-    return [visUtils.getMaxY(plotRect), plotRect.y]
+    return [rectUtils.getMaxY(plotRect), plotRect.y]
   case 'color':
     switch (type) {
     case 'ordinal':
@@ -148,7 +148,7 @@ export function getD3Scale(type) {
  *
  * @param  {string} type
  * @param  {Array} domain
- * @param  {Array} range = [0, 1]
+ * @param  {Array} [range=[0, 1]]
  * @param  {number} tickCount
  * @return {function}           d3Scale
  */
