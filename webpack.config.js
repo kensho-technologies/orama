@@ -1,51 +1,27 @@
-'use strict';
 
+var path = require('path');
 var webpack = require('webpack');
 
-var plugins = [
-  new webpack.optimize.OccurenceOrderPlugin(),
-  new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-  })
-];
-
-var config = {
-  entry: './src/main.js',
+module.exports = {
+  devtool: 'eval',
+  entry: [
+    'webpack-hot-middleware/client',
+    './src/main'
+  ],
   output: {
-    path: __dirname + '/dist/',
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/'
   },
-  plugins: plugins,
-  resolve: {
-    extensions: ['', '.js']
-  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['babel-loader'],
-      exclude: /node_modules/
+      loaders: ['babel'],
+      include: path.join(__dirname, 'src')
     }]
-  },
+  }
 };
-
-if (process.env.NODE_ENV === 'production') {
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        screw_ie8: true,
-        warnings: false
-      }
-    })
-  );
-} else {
-  config.devtool = 'cheap-module-eval-source-map';
-  config.devServer = {
-    info: false,
-    port: 3000,
-    quiet: true
-  };
-  config.module.loaders[0].loaders.unshift('react-hot');
-}
-
-module.exports = config;

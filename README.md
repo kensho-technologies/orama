@@ -8,7 +8,7 @@ $ npm start
 # start a hot reload development server on http://localhost:3000/
 # run unit tests and lint on source change
 
-$ npm run dev-server
+$ node server.js
 # start only the hot reload development server
 
 $ npm run check
@@ -24,6 +24,8 @@ $ npm run doc
 
 $ npm run build
 # build /lib and /dist files
+# /lib contains the compiled ES5 js files
+# /dist contains the bundle app and assets
 ```
 
 **More Information**
