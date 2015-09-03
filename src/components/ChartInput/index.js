@@ -7,17 +7,6 @@ import utils from '../../utils'
 import Tooltip from '../Tooltip'
 
 const styles = {
-  tooltip: {
-    background: 'hsl(0, 0%, 45%)',
-    color: 'hsl(0, 0%, 100%)',
-    fontFamily: 'sans-serif',
-    margin: 13,
-    maxWidth: 300,
-    padding: '9px 10px',
-    pointerEvents: 'none',
-    position: 'fixed',
-    zIndex: 900,
-  },
   canvas: {
     display: 'block',
     position: 'absolute',

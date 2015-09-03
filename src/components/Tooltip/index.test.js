@@ -8,8 +8,6 @@ import shallowRender from '../../shallowRender'
 import Tooltip from './'
 
 test('Tooltip', () => {
-  const component = shallowRender(<Tooltip/>)
-  assert.deepEqual(component, null)
-  var component2 = shallowRender(<Tooltip hoverData={{}}/>)
-  assert.deepEqual(component2.type, 'div')
+  var component = shallowRender(<Tooltip hoverData={{}}/>)
+  assert.deepEqual(component.type, 'div')
 })

@@ -75,14 +75,24 @@ export default React.createClass({
     const regressionData = R.map(d => {
       return [R.prop(xProp, d), R.prop(yProp, d)]
     }, data)
-    const rlGen = regressionLine(linearRegression(regressionData))
+    const lgStats = linearRegression(regressionData)
+    const rlGen = regressionLine(lgStats)
     const rlPath2D = utils.path()
     rlPath2D.moveTo(xScale(xDomain[0]), yScale(rlGen(xDomain[0])))
     rlPath2D.lineTo(xScale(xDomain[1]), yScale(rlGen(xDomain[1])))
     const rlRenderData = {
       label: 'Regression Line',
+      tooltip: [
+        {
+          prop: 'm',
+        },
+        {
+          prop: 'b',
+        },
+      ],
       path2D: rlPath2D,
       type: 'line',
+      raw: lgStats,
     }
 
     const renderData = R.map(pointD => {
@@ -92,7 +102,18 @@ export default React.createClass({
       const path2D = utils.path()
       path2D.arc(x, y, 5, 0, 2 * Math.PI)
       return {
-        label: pointD.Name || 'point',
+        label: pointD.Name,
+        tooltip: [
+          {
+            prop: xProp,
+          },
+          {
+            prop: yProp,
+          },
+          {
+            prop: colorProp,
+          },
+        ],
         fill: c,
         path2D,
         raw: pointD,
