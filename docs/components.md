@@ -11,6 +11,7 @@
 - [DropUI](#DropUI)
 - [LeftLabel](#LeftLabel)
 - [PropCard](#PropCard)
+- [Tooltip](#Tooltip)
 - [Vis](#Vis)
 
 ### App
@@ -77,10 +78,14 @@ Prop | Type | Required | Default | Description
 plotRect | object | false |  | 
 size | object | true |  | 
 styleVars | object | false |  | 
+xDomain | array | false |  | 
 xScale | func | false |  | 
 xTickCount | number | false |  | 
+xType | string | false |  | 
+yDomain | array | false |  | 
 yScale | func | false |  | 
 yTickCount | number | false |  | 
+yType | string | false |  | 
 
 
 ### ChartInput
@@ -157,6 +162,18 @@ Prop | Type | Required | Default | Description
 connectDragSource | func | false |  | 
 isDragging | bool | false |  | 
 text | string | false |  | 
+
+
+### Tooltip
+[src/components/Tooltip/index.js](../src/components/Tooltip/index.js)
+
+
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+hoverData | object | false |  | 
+mouse | object | false | {} | 
+styleVars | object | false |  | 
 
 
 ### Vis

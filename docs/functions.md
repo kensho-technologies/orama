@@ -1,7 +1,4 @@
 # Modules
-**[/utils/dimensionUtils](#utilsdimensionutils)**		
-Module for manipulating `dimension` representations
-
 **[/utils/path](#utilspath)**		
 Returns a Path2D object if the constructor exists, otherwise returns a mocking object.
 This way we can keep running and testing on node code that uses Path2D
@@ -23,75 +20,6 @@ Some of the terms used here:
 - ticks -> Array of data to be used for labeling the axis of a dimension
 - plotRect -> Rect representing the area of the plot {x: number, y: number, width: number, height: number}
 
-
----
-# [/utils/dimensionUtils](../src/utils/dimensionUtils/index.js)
-*[Test spec file](../src/utils/dimensionUtils/index.test.js)*
-
-Module for manipulating `dimension` representations
-
-### dimensionUtils.getColorScale(type, domain)
-
-Returns scales specific for color mapping.
-According to type it pre-fills the range of colors
-
-Parameter | Type | Default | Optional | Description
---------- | ---- | ------- | -------- | -----------
-type | `string` |  |  | 'linear' or 'ordinal'
-domain | `Array` |  |  | the data domain to be used on the scale
-*Returns* | `function` | | | *d3 scale function*
-
-
-```jsx
-const colorScale = getColorScale('linear', [0, 100])
-colorScale(100) // '#2c7fb8'
-```
-### dimensionUtils.getRange(key, dimension, rect)
-
-Get default range according to options
-
-Parameter | Type | Default | Optional | Description
---------- | ---- | ------- | -------- | -----------
-key | `string` |  |  | dimension name
-dimension | `Object` |  |  | 
-rect | `Object` |  |  | 
-*Returns* | `Array` | | | *range array*
-
-### dimensionUtils.getScaleForDimension(dimension)
-
-Get new scale according to the dimension options
-
-Parameter | Type | Default | Optional | Description
---------- | ---- | ------- | -------- | -----------
-dimension | `Object` |  |  | 
-*Returns* | `function` | | | *new d3 scale*
-
-### dimensionUtils.getScaleForType(type)
-
-Return a new d3 scale according to the input type
-
-Parameter | Type | Default | Optional | Description
---------- | ---- | ------- | -------- | -----------
-type | `string` |  |  | The string needs to be one of the SCALE_TYPES: ['linear', 'log', 'ordinal', 'pow', 'quantile', 'quantize', 'threshold', 'time' ]
-*Returns* | `function` | | | *return a new d3 scale*
-
-
-```jsx
-const scale = getScaleForType('linear')
-
-scale.domain([0, 100])
-	.range([20, 400])
-```
-### dimensionUtils.getType(data, prop)
-
-Get the scale type to be used for a dimension on the data.
-It access the data objects using the prop, and checks if all the variables are of the same type.
-
-Parameter | Type | Default | Optional | Description
---------- | ---- | ------- | -------- | -----------
-data | `Array` |  |  | 
-prop | `string` |  |  | 
-*Returns* | `string` | | | 
 
 ---
 # [/utils/path](../src/utils/path/index.js)
@@ -193,6 +121,16 @@ prop | `string` |  |  |
 type | `string` |  | true | 
 *Returns* | `Array` | | | 
 
+### visUtils.getMap(prop, scale)
+
+Returns a function that pluck and scale the prop from a data object
+
+Parameter | Type | Default | Optional | Description
+--------- | ---- | ------- | -------- | -----------
+prop | `string` |  |  | 
+scale | `function` |  |  | 
+*Returns* | `function` | | | 
+
 ### visUtils.getRange(output, plotRect, type)
 
 Return an range Array according output, plotRect and type
@@ -226,6 +164,17 @@ Parameter | Type | Default | Optional | Description
 output | `string` |  |  | 
 range | `array` |  |  | 
 *Returns* | `number` | | | 
+
+### visUtils.getTicks(type, domain, tickCount)
+
+Returns the ticks for label and axis drawing
+
+Parameter | Type | Default | Optional | Description
+--------- | ---- | ------- | -------- | -----------
+type | `string` |  |  | 
+domain | `string` |  |  | 
+tickCount | `number` |  | true | 
+*Returns* | `array` | | | *Array of 'number' os 'strings', according to the domain of the data*
 
 ### visUtils.getType(data, prop)
 
