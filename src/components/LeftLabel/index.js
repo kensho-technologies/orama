@@ -6,6 +6,7 @@ import defaultStyleVars from '../styleVars'
 export function getStyles(styleVars = defaultStyleVars) {
   return {
     div: {
+      fontFamily: 'verdana',
       position: 'absolute',
       textAlign: styleVars.axis.textAlign,
       fontSize: styleVars.axis.labelFontSize,

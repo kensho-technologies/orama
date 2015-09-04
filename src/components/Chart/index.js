@@ -16,7 +16,9 @@ import LeftLabel from '../LeftLabel'
 export function getStyles() {
   return {
     title: {
-      fontWeight: 'bold', fontSize: 17,
+      fontFamily: 'verdana',
+      fontWeight: 'bold',
+      fontSize: 16,
     },
   }
 }
@@ -128,6 +130,7 @@ export default React.createClass({
       height: this.props.size.height,
       position: 'relative',
       width: this.props.size.width,
+      margin: 10,
     }
     return (
       <div>

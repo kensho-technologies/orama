@@ -1,10 +1,12 @@
 
 export default {
-  fontFamily: 'sans-serif',
+  fontFamily: 'verdana',
   axis: {
-    labelFontSize: 15,
-    tickFontSize: 14,
+    labelFontSize: 14,
+    tickFontSize: 13,
     textAlign: 'center',
-    background: 'hsl(0, 0%, 90%)',
+    background: 'hsl(0, 0%, 97%)',
+    tickStroke: 'hsl(0, 0%, 80%)',
+    tickZeroStroke: 'hsl(0, 0%, 55%)',
   },
 }

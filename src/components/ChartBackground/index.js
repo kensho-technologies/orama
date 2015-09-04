@@ -8,7 +8,8 @@ import defaultStyleVars from '../styleVars'
 export function getStyles(styleVars = defaultStyleVars) {
   return {
     ticks: {
-      font: `${styleVars.axis.tickFontSize}px sans-serif`,
+      font: `${styleVars.axis.tickFontSize}px menlo`,
+      stroke: styleVars.axis.tickStroke,
     },
     background: {
       fill: styleVars.axis.background,
@@ -19,12 +20,16 @@ export function getStyles(styleVars = defaultStyleVars) {
     },
   }
 }
+
+const graphPadding = 40
+
 export default React.createClass({
   displayName: 'ChartBackground',
   propTypes: {
     plotRect: PropTypes.object,
     size: PropTypes.object.isRequired,
     styleVars: PropTypes.object,
+    stylesVars: PropTypes.object,
     xDomain: PropTypes.array,
     xScale: PropTypes.func,
     xTickCount: PropTypes.number,
@@ -46,6 +51,7 @@ export default React.createClass({
   },
   renderCanvas() {
     const styles = getStyles(this.props.styleVars)
+    const stylesVars = this.props.stylesVars || defaultStyleVars
     const {
       plotRect,
       xDomain,
@@ -60,78 +66,47 @@ export default React.createClass({
     const ctx = findDOMNode(this.refs.canvas).getContext('2d')
     ctx.fillStyle = styles.background.fill
     utils.canvas.clearRect(ctx, this.props.size)
-    utils.canvas.fillRect(ctx, utils.rect.inset(-10, this.props.plotRect))
+    utils.canvas.fillRect(ctx, utils.rect.inset(-graphPadding / 2, this.props.plotRect))
 
     ctx.font = styles.ticks.font
     ctx.textAlign = 'center'
     ctx.textBaseline = 'top'
     const xTicks = utils.vis.getTicks(xType, xDomain, xTickCount)
-    const xTicksSmall = utils.vis.getTicks(xType, xDomain, xTicks.length * 2)
     R.forEach(d => {
-      ctx.lineWidth = 1
-      ctx.strokeStyle = 'hsl(0, 0%, 92%)'
-      ctx.beginPath()
-      ctx.moveTo(xScale(d), plotRect.y - 10 )
-      ctx.lineTo(xScale(d), utils.rect.getMaxY(plotRect) + 10 )
-      ctx.closePath()
-      ctx.stroke()
-    }, xTicksSmall)
-    R.forEach(d => {
-      if (d === 0) {
-        ctx.lineWidth = 3
+      if (d === 0 && xType === 'linear') {
+        ctx.lineWidth = 2.5
+        ctx.strokeStyle = stylesVars.axis.tickZeroStroke
       } else {
         ctx.lineWidth = 1
+        ctx.strokeStyle = stylesVars.axis.tickStroke
       }
-      ctx.strokeStyle = 'lightgray'
       ctx.beginPath()
-      ctx.moveTo(xScale(d), utils.rect.getMaxY(plotRect) + 10 )
-      ctx.lineTo(xScale(d), utils.rect.getMaxY(plotRect) + 20 )
-      ctx.closePath()
-      ctx.stroke()
-      ctx.strokeStyle = 'white'
-      ctx.beginPath()
-      ctx.moveTo(xScale(d), plotRect.y - 10 )
-      ctx.lineTo(xScale(d), utils.rect.getMaxY(plotRect) + 10 )
+      ctx.moveTo(xScale(d), plotRect.y - graphPadding / 2 )
+      ctx.lineTo(xScale(d), utils.rect.getMaxY(plotRect) + graphPadding / 2 )
       ctx.closePath()
       ctx.stroke()
       ctx.fillStyle = 'black'
-      ctx.fillText(d, xScale(d), utils.rect.getMaxY(plotRect) + 24)
+      ctx.fillText(d, xScale(d), utils.rect.getMaxY(plotRect) + graphPadding / 2 + 4)
     }, xTicks)
-
 
     ctx.textAlign = 'end'
     ctx.textBaseline = 'middle'
     const yTicks = utils.vis.getTicks(yType, yDomain, yTickCount)
-    const yTicksSmall = utils.vis.getTicks(yType, yDomain, yTickCount)
     R.forEach(d => {
-      ctx.lineWidth = 1
-      ctx.strokeStyle = 'hsl(0, 0%, 92%)'
-      ctx.beginPath()
-      ctx.moveTo(plotRect.x - 10, yScale(d))
-      ctx.lineTo(utils.rect.getMaxX(plotRect) + 10, yScale(d))
-      ctx.closePath()
-      ctx.stroke()
-    }, yTicksSmall)
-    R.forEach(d => {
-      if (d === 0) {
-        ctx.lineWidth = 3
+      if (d === 0 && yType === 'linear') {
+        ctx.lineWidth = 2.5
+        ctx.strokeStyle = stylesVars.axis.tickZeroStroke
       } else {
         ctx.lineWidth = 1
+        ctx.strokeStyle = stylesVars.axis.tickStroke
       }
-      ctx.strokeStyle = 'lightgray'
       ctx.beginPath()
-      ctx.moveTo(plotRect.x - 20, yScale(d))
-      ctx.lineTo(plotRect.x - 10, yScale(d))
-      ctx.closePath()
-      ctx.stroke()
-      ctx.strokeStyle = 'white'
-      ctx.beginPath()
-      ctx.moveTo(plotRect.x - 10, yScale(d))
-      ctx.lineTo(utils.rect.getMaxX(plotRect) + 10, yScale(d))
+      ctx.moveTo(plotRect.x - graphPadding / 2, yScale(d))
+      ctx.lineTo(utils.rect.getMaxX(plotRect) + graphPadding / 2, yScale(d))
       ctx.closePath()
       ctx.stroke()
       ctx.fillStyle = 'black'
-      ctx.fillText(d, plotRect.x - 26, yScale(d))
+      ctx.fillText(d, plotRect.x - graphPadding / 2 - 6, yScale(d))
     }, yTicks)
   },
   render() {

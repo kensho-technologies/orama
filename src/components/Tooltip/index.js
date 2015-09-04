@@ -11,7 +11,7 @@ export function getStyles(styleVars = defaultStyleVars) {
       color: 'hsl(0, 0%, 100%)',
       fontFamily: styleVars.fontFamily,
       margin: 13,
-      fontSize: 14,
+      fontSize: 13,
       maxWidth: 300,
       padding: 0,
       pointerEvents: 'none',
@@ -22,7 +22,7 @@ export function getStyles(styleVars = defaultStyleVars) {
       padding: 10,
       paddingBottom: 8,
       fontWeight: 'bold',
-      fontSize: 16,
+      fontSize: 14,
     },
     table: {
       borderSpacing: 0,
@@ -38,6 +38,13 @@ export function getStyles(styleVars = defaultStyleVars) {
       borderSpacing: 0,
       verticalAlign: 'top',
       textAlign: 'left',
+    },
+    tdValue: {
+      fontFamily: 'menlo',
+      padding: 10,
+      borderSpacing: 0,
+      verticalAlign: 'top',
+      textAlign: 'right',
     },
   }
 }
@@ -80,7 +87,7 @@ export default React.createClass({
           style={trStyle}
         >
           <td style={styles.td}>{d.alias || d.prop}</td>
-          <td style={{...styles.td, textAlign: 'right'}}>{hoverData.raw[d.prop]}</td>
+          <td style={styles.tdValue}>{hoverData.raw[d.prop]}</td>
         </tr>
       )
     }, hoverData.tooltip || [])
