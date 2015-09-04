@@ -42,7 +42,7 @@ export default React.createClass({
     ctx.clip()
     ctx.lineWidth = 2
     R.forEach(d => {
-      ctx.globalAlpha = 0.55
+      ctx.globalAlpha = 1
       ctx.fillStyle = d.fill || 'steelblue'
       ctx.strokeStyle = d.stroke || 'steelblue'
       ctx.fill(d.path2D)

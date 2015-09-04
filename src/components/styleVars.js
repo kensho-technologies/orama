@@ -7,7 +7,7 @@ export default {
     background: 'hsl(0, 0%, 97%)',
     chartPadding: 20,
     color: 'hsl(0, 0%, 0%)',
-    labelFontSize: 13,
+    labelFontSize: 13.5,
     tickFontSize: 13,
     tickStroke: 'hsl(0, 0%, 80%)',
     tickZeroStroke: 'hsl(0, 0%, 55%)',

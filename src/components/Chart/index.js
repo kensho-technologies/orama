@@ -18,7 +18,8 @@ export function getStyles() {
     title: {
       fontFamily: 'verdana',
       fontWeight: 'bold',
-      fontSize: 16,
+      fontSize: 14,
+      marginBottom: 10,
     },
   }
 }
@@ -130,11 +131,10 @@ export default React.createClass({
       height: this.props.size.height,
       position: 'relative',
       width: this.props.size.width,
-      margin: 10,
     }
     return (
-      <div>
-        <div style={{...styles.title, marginLeft: this.props.margin.left}}>
+      <div style={{margin: 10}}>
+        <div style={{...styles.title}}>
           {this.props.title}
         </div>
         <div style={containerStyle}>
