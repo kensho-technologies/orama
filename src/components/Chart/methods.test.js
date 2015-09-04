@@ -14,7 +14,7 @@ test('Chart methods.calculateMargin', () => {
   }
   assert.deepEqual(
     methods.calculateMargin(opts),
-    {height: 420, width: 417, x: 63, y: 20}
+    {x: 56.099999999999994, y: 20, width: 423.9, height: 416.5}
   )
 })
 

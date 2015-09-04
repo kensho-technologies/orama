@@ -102,7 +102,7 @@ export default React.createClass({
       const y = yMap(pointD)
       const c = R.prop(colorProp, pointD) && colorMap(pointD)
       const path2D = utils.path()
-      path2D.arc(x, y, 5, 0, 2 * Math.PI)
+      path2D.arc(x, y, 5.5, 0, 2 * Math.PI)
       return {
         label: pointD.Name,
         tooltip: [

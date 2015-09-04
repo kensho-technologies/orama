@@ -8,11 +8,7 @@ import defaultStyleVars from '../styleVars'
 export function getStyles(styleVars = defaultStyleVars) {
   return {
     ticks: {
-      font: `${styleVars.axis.tickFontSize}px menlo`,
-      stroke: styleVars.axis.tickStroke,
-    },
-    background: {
-      fill: styleVars.axis.background,
+      font: `${styleVars.axis.tickFontSize}px ${styleVars.fontMono}`,
     },
     canvas: {
       position: 'absolute',
@@ -21,15 +17,12 @@ export function getStyles(styleVars = defaultStyleVars) {
   }
 }
 
-const graphPadding = 40
-
 export default React.createClass({
   displayName: 'ChartBackground',
   propTypes: {
     plotRect: PropTypes.object,
     size: PropTypes.object.isRequired,
     styleVars: PropTypes.object,
-    stylesVars: PropTypes.object,
     xDomain: PropTypes.array,
     xScale: PropTypes.func,
     xTickCount: PropTypes.number,
@@ -50,8 +43,8 @@ export default React.createClass({
     this.renderCanvas()
   },
   renderCanvas() {
-    const styles = getStyles(this.props.styleVars)
-    const stylesVars = this.props.stylesVars || defaultStyleVars
+    const styleVars = this.props.styleVars || defaultStyleVars
+    const {chartPadding} = styleVars.axis
     const {
       plotRect,
       xDomain,
@@ -64,29 +57,29 @@ export default React.createClass({
       yType,
     } = this.props
     const ctx = findDOMNode(this.refs.canvas).getContext('2d')
-    ctx.fillStyle = styles.background.fill
+    ctx.fillStyle = styleVars.axis.background
     utils.canvas.clearRect(ctx, this.props.size)
-    utils.canvas.fillRect(ctx, utils.rect.inset(-graphPadding / 2, this.props.plotRect))
+    utils.canvas.fillRect(ctx, utils.rect.inset(-chartPadding, this.props.plotRect))
 
-    ctx.font = styles.ticks.font
+    ctx.font = `${styleVars.axis.tickFontSize}px ${styleVars.fontMono}`
     ctx.textAlign = 'center'
     ctx.textBaseline = 'top'
     const xTicks = utils.vis.getTicks(xType, xDomain, xTickCount)
     R.forEach(d => {
       if (d === 0 && xType === 'linear') {
         ctx.lineWidth = 2.5
-        ctx.strokeStyle = stylesVars.axis.tickZeroStroke
+        ctx.strokeStyle = styleVars.axis.tickZeroStroke
       } else {
         ctx.lineWidth = 1
-        ctx.strokeStyle = stylesVars.axis.tickStroke
+        ctx.strokeStyle = styleVars.axis.tickStroke
       }
       ctx.beginPath()
-      ctx.moveTo(xScale(d), plotRect.y - graphPadding / 2 )
-      ctx.lineTo(xScale(d), utils.rect.getMaxY(plotRect) + graphPadding / 2 )
+      ctx.moveTo(xScale(d), plotRect.y - chartPadding )
+      ctx.lineTo(xScale(d), utils.rect.getMaxY(plotRect) + chartPadding )
       ctx.closePath()
       ctx.stroke()
-      ctx.fillStyle = 'black'
-      ctx.fillText(d, xScale(d), utils.rect.getMaxY(plotRect) + graphPadding / 2 + 4)
+      ctx.fillStyle = styleVars.axis.color
+      ctx.fillText(d, xScale(d), utils.rect.getMaxY(plotRect) + chartPadding + 6)
     }, xTicks)
 
     ctx.textAlign = 'end'
@@ -95,18 +88,18 @@ export default React.createClass({
     R.forEach(d => {
       if (d === 0 && yType === 'linear') {
         ctx.lineWidth = 2.5
-        ctx.strokeStyle = stylesVars.axis.tickZeroStroke
+        ctx.strokeStyle = styleVars.axis.tickZeroStroke
       } else {
         ctx.lineWidth = 1
-        ctx.strokeStyle = stylesVars.axis.tickStroke
+        ctx.strokeStyle = styleVars.axis.tickStroke
       }
       ctx.beginPath()
-      ctx.moveTo(plotRect.x - graphPadding / 2, yScale(d))
-      ctx.lineTo(utils.rect.getMaxX(plotRect) + graphPadding / 2, yScale(d))
+      ctx.moveTo(plotRect.x - chartPadding, yScale(d))
+      ctx.lineTo(utils.rect.getMaxX(plotRect) + chartPadding, yScale(d))
       ctx.closePath()
       ctx.stroke()
-      ctx.fillStyle = 'black'
-      ctx.fillText(d, plotRect.x - graphPadding / 2 - 6, yScale(d))
+      ctx.fillStyle = styleVars.axis.color
+      ctx.fillText(d, plotRect.x - chartPadding - 6, yScale(d))
     }, yTicks)
   },
   render() {

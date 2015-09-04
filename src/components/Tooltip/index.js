@@ -7,11 +7,11 @@ import defaultStyleVars from '../styleVars'
 export function getStyles(styleVars = defaultStyleVars) {
   return {
     tooltip: {
-      background: 'hsl(0, 0%, 45%)',
-      color: 'hsl(0, 0%, 100%)',
-      fontFamily: styleVars.fontFamily,
+      background: styleVars.tooltip.background,
+      color: styleVars.tooltip.color,
+      fontFamily: styleVars.font,
+      fontSize: styleVars.fontSize,
       margin: 13,
-      fontSize: 13,
       maxWidth: 300,
       padding: 0,
       pointerEvents: 'none',
@@ -19,32 +19,32 @@ export function getStyles(styleVars = defaultStyleVars) {
       zIndex: 900,
     },
     title: {
+      fontSize: styleVars.tooltip.titleFontSize,
+      fontWeight: 'bold',
       padding: 10,
       paddingBottom: 8,
-      fontWeight: 'bold',
-      fontSize: 14,
     },
     table: {
       borderSpacing: 0,
     },
     tr1: {
-      background: 'hsl(0, 0%, 55%)',
+      background: styleVars.tooltip.listBackground,
     },
     tr2: {
-      background: 'hsl(0, 0%, 50%)',
+      background: styleVars.tooltip.listEvenBackground,
     },
     td: {
-      padding: 10,
       borderSpacing: 0,
-      verticalAlign: 'top',
+      padding: 10,
       textAlign: 'left',
+      verticalAlign: 'top',
     },
     tdValue: {
-      fontFamily: 'menlo',
-      padding: 10,
       borderSpacing: 0,
-      verticalAlign: 'top',
+      fontFamily: styleVars.fontMono,
+      padding: 10,
       textAlign: 'right',
+      verticalAlign: 'top',
     },
   }
 }

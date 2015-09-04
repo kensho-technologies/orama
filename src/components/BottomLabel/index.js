@@ -6,15 +6,15 @@ import defaultStyleVars from '../styleVars'
 export function getStyles(styleVars = defaultStyleVars) {
   return {
     div: {
-      fontFamily: 'verdana',
       bottom: 0,
-      position: 'absolute',
-      textAlign: styleVars.axis.textAlign,
+      color: styleVars.axis.color,
+      fontFamily: styleVars.font,
       fontSize: styleVars.axis.labelFontSize,
-      fontWeight: '500',
-      whiteSpace: 'nowrap',
       overflow: 'hidden',
+      position: 'absolute',
+      textAlign: 'center',
       textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
     },
   }
 }
