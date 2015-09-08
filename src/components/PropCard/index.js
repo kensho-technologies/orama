@@ -20,10 +20,9 @@ const cardSource = {
   },
 }
 
-function collect(connect, monitor) {
+function collect(connect) {
   return {
     connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging(),
   }
 }
 

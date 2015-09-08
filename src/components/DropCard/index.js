@@ -13,13 +13,17 @@ const styles = {
   },
 }
 
+const dropSpec = {
+  drop(props, monitor) {
+    props.setText(monitor.getItem().text)
+  },
+}
+
 function collect(connect, monitor) {
   return {
     canDrop: monitor.canDrop(),
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
-    didDrop: monitor.didDrop(),
-    item: monitor.getItem(),
   }
 }
 
@@ -41,11 +45,6 @@ export var DropCard = React.createClass({
       text: 'DROP',
     }
   },
-  componentWillReceiveProps(nextProps) {
-    if (this.props.isOver && nextProps.didDrop) {
-      this.props.setText(nextProps.item.text)
-    }
-  },
   render() {
     const { isOver, canDrop, connectDropTarget } = this.props
     const localStyle = R.mergeAll([
@@ -61,4 +60,4 @@ export var DropCard = React.createClass({
   },
 })
 
-export default DropTarget('CARD', {}, collect)(DropCard)
+export default DropTarget('CARD', dropSpec, collect)(DropCard)
