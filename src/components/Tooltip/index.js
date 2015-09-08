@@ -4,7 +4,7 @@ import R from 'ramda'
 
 import defaultStyleVars from '../styleVars'
 
-export function getStyles(styleVars = defaultStyleVars) {
+export function getStyles(styleVars) {
   return {
     tooltip: {
       background: styleVars.tooltip.background,
@@ -67,6 +67,7 @@ export default React.createClass({
   getDefaultProps() {
     return {
       mouse: {},
+      styleVars: {...defaultStyleVars},
     }
   },
   render() {

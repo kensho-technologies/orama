@@ -173,7 +173,7 @@ Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 hoverData | object | false |  | 
 mouse | object | false | {} | 
-styleVars | object | false |  | 
+styleVars | object | false | {...defaultStyleVars} | 
 
 
 ### Vis

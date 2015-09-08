@@ -18,7 +18,7 @@
     "test:cov": "NODE_ENV=test babel-node node_modules/.bin/isparta cover --report text --report lcovonly --report html node_modules/.bin/_mocha -- -R dot 'src/**/*.test.js'",
     "doc": "npm run doc:jsdoc && npm run doc:react",
     "doc:jsdoc": "jsdoc src -r -c .jsdocrc -t templates/haruki -d console | babel-node src/scripts/jsdocToMd.js > docs/functions.md",
-    "doc:react": "react-docgen src | babel-node src/scripts/reactdocToMd.js > docs/components.md"
+    "doc:react": "react-docgen src/components | babel-node src/scripts/reactdocToMd.js > docs/components.md"
   },
   "repository": {
     "type": "git",
