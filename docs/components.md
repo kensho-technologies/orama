@@ -8,8 +8,10 @@
 - [ChartInput](#ChartInput)
 - [DataList](#DataList)
 - [DropCard](#DropCard)
-- [DropUI](#DropUI)
+- [Histogram](#Histogram)
 - [LeftLabel](#LeftLabel)
+- [MapData](#MapData)
+- [MapDataCard](#MapDataCard)
 - [PropCard](#PropCard)
 - [Tooltip](#Tooltip)
 - [Vis](#Vis)
@@ -17,7 +19,7 @@
 ### App
 [src/components/App/index.js](../src/components/App/index.js)
 
-*App component*
+*Main wrapper for the application*
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
@@ -102,11 +104,13 @@ size | object | true |  |
 ### DataList
 [src/components/DataList/index.js](../src/components/DataList/index.js)
 
-
+*Component responsible for holdind the data properties to be dragged to the data mapping.
+It's used inside of the `Vis` component.*
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 data | array | false | [] | 
+styleVars | object | false | {...defaultStyleVars} | 
 
 
 ### DropCard
@@ -123,21 +127,19 @@ setText | func | false |  |
 text | string | false |  | 
 
 
-### DropUI
-[src/components/DropUI/index.js](../src/components/DropUI/index.js)
+### Histogram
+[src/components/Histogram/index.js](../src/components/Histogram/index.js)
 
 
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
-colorProp | string | false |  | 
-groupProp | string | false |  | 
-setColorProp | func | false |  | 
-setGroupProp | func | false |  | 
-setXProp | func | false |  | 
-setYProp | func | false |  | 
+data | array | false | [] | 
+margin | object | false | {  left: 5, right: 5,  top: 5, bottom: 5,} | 
+size | object | false | {width: 500, height: 400} | 
+styleVars | object | false |  | 
+xName | string | false |  | 
 xProp | string | false |  | 
-yProp | string | false |  | 
 
 
 ### LeftLabel
@@ -152,15 +154,48 @@ styleVars | object | false |  |
 text | string | false | '' | 
 
 
-### PropCard
-[src/components/PropCard/index.js](../src/components/PropCard/index.js)
+### MapData
+[src/components/MapData/index.js](../src/components/MapData/index.js)
+
+*Holds the mapping data UI*
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+colorProp | string | false |  | 
+data | array | false |  | 
+groupProp | string | false |  | 
+setColorProp | func | false |  | 
+setGroupProp | func | false |  | 
+setXProp | func | false |  | 
+setYProp | func | false |  | 
+styleVars | object | false | {...defaultStyleVars} | 
+xProp | string | false |  | 
+yProp | string | false |  | 
+
+
+### MapDataCard
+[src/components/MapDataCard/index.js](../src/components/MapDataCard/index.js)
 
 
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 connectDragSource | func | false |  | 
+data | array | false |  | 
+prop | string | false |  | 
+styleVars | object | false | {...defaulStyleVars} | 
+
+
+### PropCard
+[src/components/PropCard/index.js](../src/components/PropCard/index.js)
+
+*Component responsible for the draggable cards on list of data properties (DataList)*
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+connectDragSource | func | false |  | 
 isDragging | bool | false |  | 
+styleVars | object | false | {...defaultStyleVars} | 
 text | string | false |  | 
 
 
@@ -179,7 +214,7 @@ styleVars | object | false | {...defaultStyleVars} |
 ### Vis
 [src/components/Vis/index.js](../src/components/Vis/index.js)
 
-
+*Container component for the `DataList` and map data UI.*
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
