@@ -7,9 +7,10 @@ import {DropTarget} from 'react-dnd'
 const styles = {
   item: {
     background: 'hsl(0, 0%, 90%)',
-    fontSize: 15,
+    fontSize: 13,
     margin: 5,
     padding: 5,
+    minHeight: 13,
   },
 }
 
@@ -49,8 +50,8 @@ export var DropCard = React.createClass({
     const { isOver, canDrop, connectDropTarget } = this.props
     const localStyle = R.mergeAll([
       styles.item,
+      canDrop ? {background: 'hsl(139, 32%, 73%)'} : null,
       isOver ? {background: 'gray'} : null,
-      canDrop ? {border: '1px solid black'} : null,
     ])
     return connectDropTarget(
       <div style={localStyle}>
