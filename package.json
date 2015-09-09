@@ -1,6 +1,6 @@
 {
   "name": "explorer",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "",
   "main": "src/components/App.js",
   "scripts": {
@@ -47,13 +47,14 @@
     "react-docgen": "2.1.2",
     "react-transform-catch-errors": "0.1.1",
     "react-transform-webpack-hmr": "0.1.4",
-    "redbox-react": "1.0.2",
+    "redbox-react": "1.0.3",
     "rimraf": "2.4.3",
     "webpack": "1.12.1",
     "webpack-dev-middleware": "1.2.0",
     "webpack-hot-middleware": "2.0.0"
   },
   "dependencies": {
+    "d3": "3.5.6",
     "d3-scale": "0.1.1",
     "d3-xhr": "0.1.1",
     "lodash": "3.10.1",
@@ -62,5 +63,7 @@
     "react-dnd": "1.1.5",
     "simple-statistics": "1.0.0"
   },
-  "engines": { "node" : ">0.12" }
+  "engines": {
+    "node": ">0.12"
+  }
 }
