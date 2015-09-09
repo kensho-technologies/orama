@@ -4,15 +4,22 @@ import R from 'ramda'
 
 import Chart from '../Chart'
 import DataList from '../DataList'
-import DropUI from '../DropUI'
+import MapData from '../MapData'
 
 var styles = {
   visContainer: {
-    margin: 50,
+    position: 'fixed',
+    top: 0,
+    bottom: 0,
+    margin: 0,
     display: 'flex',
+    // height: '100%',
   },
 }
 
+/**
+ * Container component for the `DataList` and map data UI.
+ */
 export default React.createClass({
   displayName: 'Vis',
   propTypes: {
@@ -82,8 +89,9 @@ export default React.createClass({
     return (
       <div style={styles.visContainer}>
         <DataList data={this.props.data}/>
-        <DropUI
+        <MapData
           colorProp={this.state.colorProp}
+          data={data}
           groupProp={this.state.groupProp}
           setColorProp={this.onColorPropChange}
           setGroupProp={this.onGroupPropChange}
