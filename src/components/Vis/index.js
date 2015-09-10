@@ -11,9 +11,17 @@ var styles = {
     position: 'fixed',
     top: 0,
     bottom: 0,
+    left: 0,
+    right: 0,
     margin: 0,
     display: 'flex',
-    // height: '100%',
+  },
+  chartWrapper: {
+    justifyContent: 'center',
+    display: 'flex',
+    flexWrap: 'wrap',
+    overflow: 'scroll',
+    flex: 1,
   },
 }
 
@@ -100,7 +108,7 @@ export default React.createClass({
           xProp={this.state.xProp}
           yProp={this.state.yProp}
         />
-        <div style={{display: 'flex', flexWrap: 'wrap', alignContent: 'flex-start'}}>
+        <div style={styles.chartWrapper}>
           {chartElements}
         </div>
       </div>

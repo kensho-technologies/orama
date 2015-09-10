@@ -13,6 +13,9 @@ export function getStyles(styleVars) {
       fontFamily: styleVars.font,
       minWidth: 200,
       width: 200,
+      background: 'hsl(0, 0%, 80%)',
+      borderLeft: '2px solid hsl(0, 0%, 60%)',
+      borderRight: '2px solid hsl(0, 0%, 70%)',
     },
     item: {
       fontSize: styleVars.fontSize,
@@ -75,6 +78,10 @@ export default React.createClass({
         <DropCard
           setText={this.props.setGroupProp}
           text={this.props.groupProp}
+        />
+        <DropCard
+          setText=''
+          text=''
         />
         <div style={styles.item}>Color</div>
         <DropCard

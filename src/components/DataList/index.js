@@ -15,7 +15,7 @@ export function getStyles(styleVars) {
       minWidth: 200,
       display: 'flex',
       flexDirection: 'column',
-      // overflowY: 'scroll',
+      background: 'hsl(0, 0%, 80%)',
     },
     title: {
       padding: 5,
