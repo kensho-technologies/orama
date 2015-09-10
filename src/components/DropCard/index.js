@@ -16,7 +16,7 @@ const styles = {
 
 const dropSpec = {
   drop(props, monitor) {
-    props.setText(monitor.getItem().text)
+    props.setProp(props.category, monitor.getItem().text)
   },
 }
 
@@ -32,10 +32,11 @@ export var DropCard = React.createClass({
   displayName: 'DropCard',
   propTypes: {
     canDrop: PropTypes.bool,
+    category: PropTypes.string,
     connectDropTarget: PropTypes.func,
     isOver: PropTypes.bool,
-    setText: PropTypes.func,
-    text: PropTypes.string,
+    prop: PropTypes.string,
+    setProp: PropTypes.func,
   },
   getDefaultProps() {
     return {
@@ -43,7 +44,6 @@ export var DropCard = React.createClass({
   },
   getInitialState() {
     return {
-      text: 'DROP',
     }
   },
   render() {
@@ -55,7 +55,7 @@ export var DropCard = React.createClass({
     ])
     return connectDropTarget(
       <div style={localStyle}>
-        {this.props.text}
+        {this.props.prop}
       </div>
     )
   },

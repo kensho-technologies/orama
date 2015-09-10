@@ -1,5 +1,6 @@
 
 import React, {PropTypes} from 'react'
+import R from 'ramda'
 
 import DropCard from '../DropCard'
 import MapDataCard from '../MapDataCard'
@@ -46,10 +47,7 @@ export default React.createClass({
     colorProp: PropTypes.string,
     data: PropTypes.array,
     groupProp: PropTypes.string,
-    setColorProp: PropTypes.func,
-    setGroupProp: PropTypes.func,
-    setXProp: PropTypes.func,
-    setYProp: PropTypes.func,
+    setProp: PropTypes.func,
     styleVars: PropTypes.object,
     xProp: PropTypes.string,
     yProp: PropTypes.string,
@@ -66,30 +64,35 @@ export default React.createClass({
         <div style={styles.title}>Mapping</div>
         <div style={styles.item}>X Axis</div>
         <DropCard
-          setText={this.props.setXProp}
-          text={this.props.xProp}
+          category='x'
+          prop={this.props.xProp}
+          setProp={this.props.setProp}
         />
         <div style={styles.item}>Y Axis</div>
         <DropCard
-          setText={this.props.setYProp}
-          text={this.props.yProp}
+          category='y'
+          prop={this.props.yProp}
+          setProp={this.props.setProp}
         />
         <div style={styles.item}>Group by</div>
         <DropCard
-          setText={this.props.setGroupProp}
-          text={this.props.groupProp}
+          category='group'
+          prop={this.props.groupProp}
+          setProp={this.props.setProp}
         />
         <DropCard
-          setText=''
-          text=''
+          prop=''
+          setProp={R.identity}
         />
         <div style={styles.item}>Color</div>
         <DropCard
-          setText={this.props.setColorProp}
-          text={this.props.colorProp}
+          category='color'
+          prop={this.props.setProp}
+          setProp={this.props.setProp}
         />
         <div style={styles.item}>Other</div>
         <MapDataCard
+          category='other'
           data={this.props.data}
           prop={this.props.xProp}
         />

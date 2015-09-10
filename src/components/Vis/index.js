@@ -18,6 +18,7 @@ var styles = {
   },
   chartWrapper: {
     justifyContent: 'center',
+    alignContent: 'flex-start',
     display: 'flex',
     flexWrap: 'wrap',
     overflow: 'scroll',
@@ -46,17 +47,10 @@ export default React.createClass({
       yProp: '',
     }
   },
-  onGroupPropChange(text) {
-    this.setState({groupProp: text})
-  },
-  onXPropChange(text) {
-    this.setState({xProp: text})
-  },
-  onYPropChange(text) {
-    this.setState({yProp: text})
-  },
-  onColorPropChange(text) {
-    this.setState({colorProp: text})
+  onPropChange(category, prop) {
+    this.setState({
+      [`${category}Prop`]: prop,
+    })
   },
   render() {
     const {data} = this.props
@@ -103,6 +97,7 @@ export default React.createClass({
           groupProp={this.state.groupProp}
           setColorProp={this.onColorPropChange}
           setGroupProp={this.onGroupPropChange}
+          setProp={this.onPropChange}
           setXProp={this.onXPropChange}
           setYProp={this.onYPropChange}
           xProp={this.state.xProp}
