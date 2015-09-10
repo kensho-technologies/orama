@@ -19,7 +19,7 @@ export function getStyles(styleVars) {
 const cardSource = {
   beginDrag(props) {
     return {
-      text: props.text,
+      prop: props.prop,
     }
   },
 }
@@ -38,8 +38,8 @@ export const PropCard = React.createClass({
   propTypes: {
     connectDragSource: PropTypes.func,
     isDragging: PropTypes.bool,
+    prop: PropTypes.string,
     styleVars: PropTypes.object,
-    text: PropTypes.string,
   },
   getDefaultProps() {
     return {
@@ -48,10 +48,10 @@ export const PropCard = React.createClass({
   },
   render() {
     const styles = getStyles(this.props.styleVars)
-    const { isDragging, connectDragSource, text } = this.props
+    const { isDragging, connectDragSource, prop } = this.props
     return connectDragSource(
       <div style={{...styles.item, opacity: isDragging ? 0.5 : 1 }}>
-        {text}
+        {prop}
       </div>
     )
   },

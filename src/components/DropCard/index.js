@@ -20,7 +20,7 @@ const dropSpec = {
   },
 }
 
-function collect(connect, monitor) {
+function dropCollect(connect, monitor) {
   return {
     canDrop: monitor.canDrop(),
     connectDropTarget: connect.dropTarget(),
@@ -47,7 +47,7 @@ export var DropCard = React.createClass({
     }
   },
   render() {
-    const { isOver, canDrop, connectDropTarget } = this.props
+    const {isOver, canDrop, connectDropTarget} = this.props
     const localStyle = R.mergeAll([
       styles.item,
       canDrop ? {background: 'hsl(139, 32%, 73%)'} : null,
@@ -61,4 +61,4 @@ export var DropCard = React.createClass({
   },
 })
 
-export default DropTarget('CARD', dropSpec, collect)(DropCard)
+export default DropTarget('CARD', dropSpec, dropCollect)(DropCard)

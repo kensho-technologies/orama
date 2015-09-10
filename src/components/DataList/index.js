@@ -53,7 +53,7 @@ export default React.createClass({
     const elems = R.map(d => (
       <PropCard
         key={d}
-        text={d}
+        prop={d}
       />
     ), keys)
     return (

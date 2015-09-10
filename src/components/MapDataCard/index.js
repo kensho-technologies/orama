@@ -1,6 +1,7 @@
 
 import React, {PropTypes} from 'react'
-import {DragSource} from 'react-dnd'
+import R from 'ramda'
+import {DragSource, DropTarget} from 'react-dnd'
 
 import defaulStyleVars from '../styleVars'
 import Histogram from '../Histogram'
@@ -32,26 +33,48 @@ export function getStyles() {
   }
 }
 
-const cardSource = {
+const dragSpec = {
   beginDrag(props) {
     return {
-      text: props.text,
+      prop: props.prop,
     }
   },
 }
 
-function collect(connect) {
+function dragCollect(connect) {
   return {
     connectDragSource: connect.dragSource(),
   }
 }
 
+const dropSpec = {
+  drop(props, monitor) {
+    props.setProp(props.category, monitor.getItem().prop)
+  },
+}
+
+function dropCollect(connect, monitor) {
+  return {
+    canDrop: monitor.canDrop(),
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver(),
+  }
+}
+
+/**
+ * Drag and Drop card on the mapping data column
+ */
 export const MapDataCard = React.createClass({
   displayName: 'MapDataCard',
   propTypes: {
-    connectDragSource: PropTypes.func,
+    canDrop: PropTypes.bool,
+    category: PropTypes.string,
+    connectDragSource: PropTypes.func.isRequired,
+    connectDropTarget: PropTypes.func.isRequired,
     data: PropTypes.array,
+    isOver: PropTypes.bool,
     prop: PropTypes.string,
+    setProp: PropTypes.func,
     styleVars: PropTypes.object,
   },
   getDefaultProps() {
@@ -59,14 +82,39 @@ export const MapDataCard = React.createClass({
       styleVars: {...defaulStyleVars},
     }
   },
+  onClose() {
+    this.props.setProp(this.props.category, undefined)
+  },
   render() {
     const styles = getStyles(this.props.styleVars)
-    return this.props.connectDragSource(
-      <div style={styles.container}>
+    const {connectDragSource, connectDropTarget} = this.props
+    const {isOver, canDrop} = this.props
+
+    const containerStyle = R.mergeAll([
+      styles.container,
+      canDrop ? {background: 'hsl(139, 32%, 73%)'} : null,
+      isOver ? {background: 'gray'} : null,
+    ])
+
+    if (!this.props.prop) {
+      return connectDragSource(connectDropTarget(
+        <div style={containerStyle}>
+          <i>drop data</i>
+        </div>
+      ))
+    }
+
+    return connectDragSource(connectDropTarget(
+      <div style={containerStyle}>
         <div style={styles.textContainer}>
           <div>#</div>
           <div style={styles.text}>{this.props.prop}</div>
-          <div style={styles.closeBtn}>x</div>
+          <div
+            onClick={this.onClose}
+            style={styles.closeBtn}
+          >
+            x
+          </div>
         </div>
         <Histogram
           data={this.props.data}
@@ -74,8 +122,9 @@ export const MapDataCard = React.createClass({
           xProp={this.props.prop}
         />
       </div>
-    )
+    ))
   },
 })
 
-export default DragSource('CARD', cardSource, collect)(MapDataCard)
+const dragComponent = DragSource('CARD', dragSpec, dragCollect)(MapDataCard)
+export default DropTarget('CARD', dropSpec, dropCollect)(dragComponent)

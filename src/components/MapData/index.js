@@ -1,8 +1,6 @@
 
 import React, {PropTypes} from 'react'
-import R from 'ramda'
 
-import DropCard from '../DropCard'
 import MapDataCard from '../MapDataCard'
 
 import defaultStyleVars from '../styleVars'
@@ -63,38 +61,32 @@ export default React.createClass({
       <div style={styles.container}>
         <div style={styles.title}>Mapping</div>
         <div style={styles.item}>X Axis</div>
-        <DropCard
+        <MapDataCard
           category='x'
+          data={this.props.data}
           prop={this.props.xProp}
           setProp={this.props.setProp}
         />
         <div style={styles.item}>Y Axis</div>
-        <DropCard
+        <MapDataCard
           category='y'
+          data={this.props.data}
           prop={this.props.yProp}
           setProp={this.props.setProp}
         />
         <div style={styles.item}>Group by</div>
-        <DropCard
+        <MapDataCard
           category='group'
+          data={this.props.data}
           prop={this.props.groupProp}
           setProp={this.props.setProp}
         />
-        <DropCard
-          prop=''
-          setProp={R.identity}
-        />
         <div style={styles.item}>Color</div>
-        <DropCard
-          category='color'
-          prop={this.props.setProp}
-          setProp={this.props.setProp}
-        />
-        <div style={styles.item}>Other</div>
         <MapDataCard
-          category='other'
+          category='color'
           data={this.props.data}
-          prop={this.props.xProp}
+          prop={this.props.colorProp}
+          setProp={this.props.setProp}
         />
       </div>
     )
