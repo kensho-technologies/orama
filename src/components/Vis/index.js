@@ -15,6 +15,7 @@ var styles = {
     right: 0,
     margin: 0,
     display: 'flex',
+    background: 'white',
   },
   chartWrapper: {
     justifyContent: 'center',

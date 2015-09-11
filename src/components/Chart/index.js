@@ -124,6 +124,9 @@ export default React.createClass({
           {
             prop: colorProp,
           },
+          {
+            prop: radiusProp,
+          },
         ],
         fill: c,
         path2D,
