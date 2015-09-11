@@ -45,6 +45,7 @@ export default React.createClass({
     colorProp: PropTypes.string,
     data: PropTypes.array,
     groupProp: PropTypes.string,
+    radiusProp: PropTypes.string,
     setProp: PropTypes.func,
     styleVars: PropTypes.object,
     xProp: PropTypes.string,
@@ -86,6 +87,13 @@ export default React.createClass({
           category='color'
           data={this.props.data}
           prop={this.props.colorProp}
+          setProp={this.props.setProp}
+        />
+        <div style={styles.item}>Size</div>
+        <MapDataCard
+          category='radius'
+          data={this.props.data}
+          prop={this.props.radiusProp}
           setProp={this.props.setProp}
         />
       </div>

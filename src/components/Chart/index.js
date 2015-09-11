@@ -31,6 +31,7 @@ export default React.createClass({
     data: PropTypes.array,
     labelProp: PropTypes.string,
     margin: PropTypes.object,
+    radiusProp: PropTypes.string,
     size: PropTypes.object,
     styleVars: PropTypes.object,
     title: PropTypes.string,
@@ -51,7 +52,7 @@ export default React.createClass({
   },
   render() {
     const styles = getStyles(this.props.styleVars)
-    const {data, xProp, yProp, colorProp, size} = this.props
+    const {data, xProp, yProp, colorProp, radiusProp, size} = this.props
 
     const yType = utils.vis.getType(data, yProp)
     const yDomain = utils.vis.getDomain(data, yProp, yType)
@@ -74,6 +75,12 @@ export default React.createClass({
     const colorRange = utils.vis.getRange('color', undefined, colorType)
     const colorScale = utils.vis.getScale('color', colorType, colorDomain, colorRange)
     const colorMap = utils.vis.getMap(colorProp, colorScale)
+
+    const radiusType = utils.vis.getType(data, radiusProp)
+    const radiusDomain = utils.vis.getDomain(data, radiusProp, radiusType)
+    const radiusRange = [2, 14]
+    const radiusScale = utils.vis.getScale('radius', radiusType, radiusDomain, radiusRange)
+    const radiusMap = utils.vis.getMap(radiusProp, radiusScale)
 
     const regressionData = R.map(d => {
       return [R.prop(xProp, d), R.prop(yProp, d)]
@@ -102,8 +109,9 @@ export default React.createClass({
       const x = xMap(pointD)
       const y = yMap(pointD)
       const c = R.prop(colorProp, pointD) && colorMap(pointD)
+      const radius = R.prop(radiusProp, pointD) ? radiusMap(pointD) : 5.5
       const path2D = utils.path()
-      path2D.arc(x, y, 5.5, 0, 2 * Math.PI)
+      path2D.arc(x, y, radius, 0, 2 * Math.PI)
       return {
         label: pointD.Name,
         tooltip: [

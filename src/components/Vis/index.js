@@ -67,6 +67,7 @@ export default React.createClass({
             data={d[1]}
             key={d[0]}
             margin={{left: 70, right: 20, top: 20, bottom: 60}}
+            radiusProp={this.state.radiusProp}
             size={{width: 300, height: 300}}
             styleVars={this.props.styleVars}
             title={d[0]}
@@ -81,6 +82,7 @@ export default React.createClass({
           colorProp={this.state.colorProp}
           data={this.props.data}
           margin={{left: 210, right: 20, top: 20, bottom: 60}}
+          radiusProp={this.state.radiusProp}
           size={{width: 700, height: 600}}
           styleVars={this.props.styleVars}
           xProp={this.state.xProp}
@@ -95,6 +97,7 @@ export default React.createClass({
           colorProp={this.state.colorProp}
           data={data}
           groupProp={this.state.groupProp}
+          radiusProp={this.state.radiusProp}
           setColorProp={this.onColorPropChange}
           setGroupProp={this.onGroupPropChange}
           setProp={this.onPropChange}
