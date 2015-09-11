@@ -92,8 +92,8 @@ export const MapDataCard = React.createClass({
 
     const containerStyle = R.mergeAll([
       styles.container,
-      canDrop ? {background: 'hsl(139, 32%, 73%)'} : null,
-      isOver ? {background: 'gray'} : null,
+      canDrop ? {background: 'hsl(0, 0%, 94%)'} : null,
+      isOver ? {background: 'hsl(0, 0%, 88%)'} : null,
     ])
 
     if (!this.props.prop) {

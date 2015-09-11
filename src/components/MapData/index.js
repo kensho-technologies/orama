@@ -33,6 +33,20 @@ export function getStyles(styleVars) {
       marginBottom: 10,
       fontWeight: 'bold',
     },
+    selectWrapper: {
+      paddingTop: 5,
+      margin: 5,
+    },
+    select: {
+      border: 'none',
+      borderRadius: 0,
+      fontSize: styleVars.fontSize,
+      fontFamily: styleVars.font,
+      display: 'flex',
+      width: '100%',
+      boxSizing: 'border-box',
+      outline: 'none',
+    },
   }
 }
 
@@ -42,6 +56,7 @@ export function getStyles(styleVars) {
 export default React.createClass({
   displayName: 'MapData',
   propTypes: {
+    chartType: PropTypes.string,
     colorProp: PropTypes.string,
     data: PropTypes.array,
     groupProp: PropTypes.string,
@@ -61,6 +76,17 @@ export default React.createClass({
     return (
       <div style={styles.container}>
         <div style={styles.title}>Mapping</div>
+        <div style={styles.selectWrapper}>
+          {false &&
+            <select
+              style={styles.select}
+              value='chart'
+            >
+              <option value='chart'>Chart</option>
+              <option value='matrix'>Matrix</option>
+            </select>
+          }
+        </div>
         <div style={styles.item}>X Axis</div>
         <MapDataCard
           category='x'
@@ -75,13 +101,6 @@ export default React.createClass({
           prop={this.props.yProp}
           setProp={this.props.setProp}
         />
-        <div style={styles.item}>Group by</div>
-        <MapDataCard
-          category='group'
-          data={this.props.data}
-          prop={this.props.groupProp}
-          setProp={this.props.setProp}
-        />
         <div style={styles.item}>Color</div>
         <MapDataCard
           category='color'
@@ -94,6 +113,13 @@ export default React.createClass({
           category='radius'
           data={this.props.data}
           prop={this.props.radiusProp}
+          setProp={this.props.setProp}
+        />
+        <div style={styles.item}>Group by</div>
+        <MapDataCard
+          category='group'
+          data={this.props.data}
+          prop={this.props.groupProp}
           setProp={this.props.setProp}
         />
       </div>
