@@ -38,13 +38,13 @@ export default React.createClass({
     utils.canvas.clearRect(ctx, this.props.size)
     ctx.save()
     ctx.beginPath()
-    ctx.rect(plotRect.x - 10, plotRect.y - 10, plotRect.width + 20, plotRect.height + 20)
+    ctx.rect(plotRect.x - 20, plotRect.y - 20, plotRect.width + 40, plotRect.height + 40)
     ctx.clip()
     ctx.lineWidth = 2
     R.forEach(d => {
-      ctx.globalAlpha = 1
-      ctx.fillStyle = d.fill || 'steelblue'
-      ctx.strokeStyle = d.stroke || 'steelblue'
+      ctx.globalAlpha = 0.85
+      ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
+      ctx.strokeStyle = d.stroke || 'hsl(200,30%, 50%)'
       ctx.fill(d.path2D)
       ctx.globalAlpha = 1
       if (d.type === 'line') ctx.stroke(d.path2D)
