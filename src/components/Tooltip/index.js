@@ -1,53 +1,11 @@
 
 import React, {PropTypes} from 'react'
 import R from 'ramda'
+import {Block, Table, TableCell, TableRow} from 'jsxstyle'
+
+import If from '../If'
 
 import defaultStyleVars from '../styleVars'
-
-export function getStyles(styleVars) {
-  return {
-    tooltip: {
-      background: styleVars.tooltip.background,
-      color: styleVars.tooltip.color,
-      fontFamily: styleVars.font,
-      fontSize: styleVars.fontSize,
-      margin: 13,
-      maxWidth: 300,
-      padding: 0,
-      pointerEvents: 'none',
-      position: 'fixed',
-      zIndex: 900,
-    },
-    title: {
-      fontSize: styleVars.tooltip.titleFontSize,
-      fontWeight: 'bold',
-      padding: 10,
-      paddingBottom: 8,
-    },
-    table: {
-      borderSpacing: 0,
-    },
-    tr1: {
-      background: styleVars.tooltip.listBackground,
-    },
-    tr2: {
-      background: styleVars.tooltip.listEvenBackground,
-    },
-    td: {
-      borderSpacing: 0,
-      padding: 10,
-      textAlign: 'left',
-      verticalAlign: 'top',
-    },
-    tdValue: {
-      borderSpacing: 0,
-      fontFamily: styleVars.fontMono,
-      padding: 10,
-      textAlign: 'right',
-      verticalAlign: 'top',
-    },
-  }
-}
 
 export function getWindow() {
   if (global.window) return global.window
@@ -63,46 +21,72 @@ export default React.createClass({
     hoverData: PropTypes.object,
     mouse: PropTypes.object,
     styleVars: PropTypes.object,
+    theme: PropTypes.object,
   },
   getDefaultProps() {
     return {
       mouse: {},
-      styleVars: {...defaultStyleVars},
+      theme: {...defaultStyleVars},
     }
   },
   render() {
-    const {hoverData} = this.props
+    const {hoverData, theme} = this.props
     if (!hoverData) return null
-    const styles = getStyles(this.props.styleVars)
-    const containerStyle = {
-      ...styles.tooltip,
-      left: this.props.mouse.x,
-      top: this.props.mouse.y,
-    }
     const trElements = R.addIndex(R.map)((d, i) => {
       if (!d.prop) return undefined
-      const trStyle = i % 2 ? styles.tr2 : styles.tr1
+      const trBackground = i % 2 ? theme.tooltip.listBackground : theme.tooltip.listEvenBackground
       return (
-        <tr
+        <TableRow
+          background={trBackground}
           key={i}
-          style={trStyle}
         >
-          <td style={styles.td}>{d.alias || d.prop}</td>
-          <td style={styles.tdValue}>{hoverData.raw[d.prop]}</td>
-        </tr>
+          <TableCell // Name
+            padding={10}
+            textAlign='left'
+            verticalAlign='top'
+          >
+            {d.alias || d.prop}
+          </TableCell>
+          <TableCell // Value
+            fontFamily={theme.fontMono}
+            padding={10}
+            textAlign='right'
+            verticalAlign='top'
+          >
+            {hoverData.raw[d.prop]}
+          </TableCell>
+        </TableRow>
       )
     }, hoverData.tooltip || [])
     return (
-      <div style={containerStyle}>
-        {hoverData.label &&
-          <div style={styles.title}>{hoverData.label}</div>
-        }
-        <table style={styles.table}>
-          <tbody>
-            {trElements}
-          </tbody>
-        </table>
-      </div>
+      <Block // Wrapper
+        background={theme.tooltip.background}
+        color={theme.tooltip.color}
+        fontFamily={theme.font}
+        fontSize={theme.fontSize}
+        left={this.props.mouse.x}
+        margin={13}
+        maxWidth={300}
+        padding={0}
+        pointerEvents='none'
+        position='fixed'
+        top={this.props.mouse.y}
+        zIndex={900}
+      >
+        <If condition={hoverData.label}>
+          <Block // Title
+            fontSize={theme.tooltip.titleFontSize}
+            fontWeight='bold'
+            padding={10}
+            paddingBottom={8}
+          >
+            {hoverData.label}
+          </Block>
+        </If>
+        <Table>
+          {trElements}
+        </Table>
+      </Block>
     )
   },
 })

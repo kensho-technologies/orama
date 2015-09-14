@@ -9,5 +9,5 @@ import Tooltip from './'
 
 test('Tooltip', () => {
   var component = shallowRender(<Tooltip hoverData={{}}/>)
-  assert.deepEqual(component.type, 'div')
+  assert.deepEqual(component.type.displayName, 'Block')
 })
