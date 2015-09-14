@@ -42,8 +42,8 @@ export default React.createClass({
         >
           <TableCell // Name
             padding={10}
-            textAlign={'left'}
-            verticalAlign={'top'}
+            textAlign='left'
+            verticalAlign='top'
           >
             {d.alias || d.prop}
           </TableCell>
@@ -68,15 +68,15 @@ export default React.createClass({
         margin={13}
         maxWidth={300}
         padding={0}
-        pointerEvents={'none'}
-        position={'fixed'}
+        pointerEvents='none'
+        position='fixed'
         top={this.props.mouse.y}
         zIndex={900}
       >
         <If condition={hoverData.label}>
           <Block // Title
             fontSize={theme.tooltip.titleFontSize}
-            fontWeight={'bold'}
+            fontWeight='bold'
             padding={10}
             paddingBottom={8}
           >
