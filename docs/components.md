@@ -9,6 +9,7 @@
 - [DataList](#DataList)
 - [DropCard](#DropCard)
 - [Histogram](#Histogram)
+- [If](#If)
 - [LeftLabel](#LeftLabel)
 - [MapData](#MapData)
 - [MapDataCard](#MapDataCard)
@@ -19,7 +20,7 @@
 ### App
 [src/components/App/index.js](../src/components/App/index.js)
 
-*Main wrapper for the application*
+Main wrapper for the application
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
@@ -29,7 +30,7 @@ children | func | false |  |
 ### BottomLabel
 [src/components/BottomLabel/index.js](../src/components/BottomLabel/index.js)
 
-*Component that position and style the bottom label of the `Chart` component*
+Component that position and style the bottom label of the `Chart` component
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
@@ -61,6 +62,7 @@ colorProp | string | false |  |
 data | array | false | [] | 
 labelProp | string | false |  | 
 margin | object | false | {  left: 80, right: 30,  top: 15, bottom: 60,} | 
+radiusProp | string | false |  | 
 size | object | false | {width: 500, height: 400} | 
 styleVars | object | false |  | 
 title | string | false |  | 
@@ -104,8 +106,8 @@ size | object | true |  |
 ### DataList
 [src/components/DataList/index.js](../src/components/DataList/index.js)
 
-*Component responsible for holdind the data properties to be dragged to the data mapping.
-It's used inside of the `Vis` component.*
+Component responsible for holdind the data properties to be dragged to the data mapping.
+It's used inside of the `Vis` component.
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
@@ -121,10 +123,11 @@ styleVars | object | false | {...defaultStyleVars} |
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 canDrop | bool | false |  | 
+category | string | false |  | 
 connectDropTarget | func | false |  | 
 isOver | bool | false |  | 
-setText | func | false |  | 
-text | string | false |  | 
+prop | string | false |  | 
+setProp | func | false |  | 
 
 
 ### Histogram
@@ -142,10 +145,34 @@ xName | string | false |  |
 xProp | string | false |  | 
 
 
+### If
+[src/components/If/index.js](../src/components/If/index.js)
+
+This component renders or not according to the `condition` prop.
+
+
+```jsx
+// instead of
+{condition &&
+  <Component/>
+}
+// you can do
+<If condition={condition}>
+  <Component/>
+</If>
+```
+
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+children | element | false |  | 
+condition | any | false |  | 
+
+
 ### LeftLabel
 [src/components/LeftLabel/index.js](../src/components/LeftLabel/index.js)
 
-*Component that position and style the bottom label of the `Chart` component*
+Component that position and style the bottom label of the `Chart` component
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
@@ -157,17 +184,16 @@ text | string | false | '' |
 ### MapData
 [src/components/MapData/index.js](../src/components/MapData/index.js)
 
-*Holds the mapping data UI*
+Holds the mapping data UI
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
+chartType | string | false |  | 
 colorProp | string | false |  | 
 data | array | false |  | 
 groupProp | string | false |  | 
-setColorProp | func | false |  | 
-setGroupProp | func | false |  | 
-setXProp | func | false |  | 
-setYProp | func | false |  | 
+radiusProp | string | false |  | 
+setProp | func | false |  | 
 styleVars | object | false | {...defaultStyleVars} | 
 xProp | string | false |  | 
 yProp | string | false |  | 
@@ -176,27 +202,32 @@ yProp | string | false |  |
 ### MapDataCard
 [src/components/MapDataCard/index.js](../src/components/MapDataCard/index.js)
 
-
+Drag and Drop card on the mapping data column
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
-connectDragSource | func | false |  | 
+canDrop | bool | false |  | 
+category | string | false |  | 
+connectDragSource | func | true |  | 
+connectDropTarget | func | true |  | 
 data | array | false |  | 
+isOver | bool | false |  | 
 prop | string | false |  | 
+setProp | func | false |  | 
 styleVars | object | false | {...defaulStyleVars} | 
 
 
 ### PropCard
 [src/components/PropCard/index.js](../src/components/PropCard/index.js)
 
-*Component responsible for the draggable cards on list of data properties (DataList)*
+Component responsible for the draggable cards on list of data properties (DataList)
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 connectDragSource | func | false |  | 
 isDragging | bool | false |  | 
+prop | string | false |  | 
 styleVars | object | false | {...defaultStyleVars} | 
-text | string | false |  | 
 
 
 ### Tooltip
@@ -208,13 +239,14 @@ Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 hoverData | object | false |  | 
 mouse | object | false | {} | 
-styleVars | object | false | {...defaultStyleVars} | 
+styleVars | object | false |  | 
+theme | object | false | {...defaultStyleVars} | 
 
 
 ### Vis
 [src/components/Vis/index.js](../src/components/Vis/index.js)
 
-*Container component for the `DataList` and map data UI.*
+Container component for the `DataList` and map data UI.
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
