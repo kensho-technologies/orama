@@ -4,28 +4,27 @@
 **Scripts**
 ```bash
 $ npm start
-# prune and install dependencies,
+# install dependencies,
 # start a hot reload development server on http://localhost:3000/
 # run unit tests and lint on source change
 
-$ node server.js
-# start only the hot reload development server
-
-$ npm run check
-# run lint and executes unit tests
+$ npm test
+# executes unit tests and lint files
 
 $ npm run test:cov
 # generate coverage information from tests
-$ open coverage/index.html
-# open coverage report
+# open coverage report on the browser
 
 $ npm run doc
-# Auto-generate the docs for functions and components and save then on ./docs
+# Generate markdown docs for functions and components and save then on ./docs
 
-$ npm run build
+$ npm publish
 # build /lib and /dist files
-# /lib contains the compiled ES5 js files
-# /dist contains the bundle app and assets
+# Generate docs files
+# publish to the registry
+# do `npm version [major | minor | patch]` before publishing
+
+# Read package.json to see al scripts
 ```
 
 **More Information**

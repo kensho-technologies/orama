@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - "0.12"
-script: "npm run check"
+script: "npm run test"
 after_script:
   - "npm run test:cov"
   - "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
