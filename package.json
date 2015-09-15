@@ -7,8 +7,9 @@
     "prestart": "npm prune && npm install",
     "start": "parallelshell 'node server.js' 'npm run test:watch' 'npm run lint:watch' 'npm outdated'",
     "clean": "rimraf lib dist/bundle.js",
-    "prebuild": "npm test && npm clean",
+    "prebuild": "npm test && npm run clean",
     "build": "npm run build:lib && npm run build:webpack",
+    "postbuild": "npm run doc",
     "build:lib": "NODE_ENV=production babel src --out-dir lib",
     "build:webpack": "webpack --config webpack.config.production.js",
     "lint": "eslint src",
@@ -20,8 +21,7 @@
     "posttest:cov": "open coverage/index.html",
     "doc": "npm run doc:jsdoc && npm run doc:react",
     "doc:jsdoc": "jsdoc src -r -c .jsdocrc -t templates/haruki -d console | babel-node src/scripts/jsdocToMd.js > docs/functions.md",
-    "doc:react": "react-docgen src/components | babel-node src/scripts/reactdocToMd.js > docs/components.md",
-    "prepublish": "npm run build && npm run doc"
+    "doc:react": "react-docgen src/components | babel-node src/scripts/reactdocToMd.js > docs/components.md"
   },
   "repository": {
     "type": "git",

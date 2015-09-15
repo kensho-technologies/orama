@@ -18,11 +18,9 @@ $ npm run test:cov
 $ npm run doc
 # Generate markdown docs for functions and components and save then on ./docs
 
+# For publishing bump the version and do
+$ npm run build
 $ npm publish
-# build /lib and /dist files
-# Generate docs files
-# publish to the registry
-# do `npm version [major | minor | patch]` before publishing
 
 # Read package.json to see al scripts
 ```
