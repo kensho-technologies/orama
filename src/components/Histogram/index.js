@@ -5,14 +5,20 @@ import d3 from 'd3'
 
 import utils from '../../utils'
 
+import {Block} from 'jsxstyle'
 import CanvasRender from '../CanvasRender'
 import ChartInput from '../ChartInput'
 
-// export function getStyles() {
-//   return {
-//   }
-// }
-
+/**
+ * Renders a Histogram using the same logic as `Chart`.
+ * This component have not been generalized yet.
+ * @example
+ * // Render Schema
+ * <Histogram/>
+ *   <CanvasRender/>
+ *   <ChartInput/>
+ * </Histogram>
+ */
 export default React.createClass({
   displayName: 'Histogram',
   propTypes: {
@@ -22,6 +28,7 @@ export default React.createClass({
     styleVars: PropTypes.object,
     xName: PropTypes.string,
     xProp: PropTypes.string,
+    xType: PropTypes.string,
   },
   getDefaultProps() {
     return {
@@ -34,12 +41,12 @@ export default React.createClass({
     }
   },
   render() {
-    // const styles = getStyles(this.props.styleVars)
     const {data, xProp, size, margin} = this.props
 
     const plotRect = utils.rect.marginInset(margin, size)
 
-    const xType = utils.vis.getType(data, xProp)
+    const xType = this.props.xType ||
+      utils.vis.getType(data, xProp)
     const xDomain = utils.vis.getDomain(data, xProp, xType)
     const xRange = utils.vis.getRange('x', plotRect, xType)
     const xTickCount = 20
@@ -75,28 +82,25 @@ export default React.createClass({
       }
     }, histogramData)
 
-    const containerStyle = {
-      height: this.props.size.height,
-      position: 'relative',
-      width: this.props.size.width,
-    }
     if (xType !== 'linear') return null
     return (
-      <div>
-        <div style={containerStyle}>
-          <CanvasRender
-            plotRect={plotRect}
-            renderData={renderData}
-            size={this.props.size}
-            styleVars={this.props.styleVars}
-          />
-          <ChartInput
-            plotRect={plotRect}
-            renderData={renderData}
-            size={this.props.size}
-          />
-        </div>
-      </div>
+      <Block
+        height={this.props.size.height}
+        position={'relative'}
+        width={this.props.size.width}
+      >
+        <CanvasRender
+          plotRect={plotRect}
+          renderData={renderData}
+          size={this.props.size}
+          styleVars={this.props.styleVars}
+        />
+        <ChartInput
+          plotRect={plotRect}
+          renderData={renderData}
+          size={this.props.size}
+        />
+      </Block>
     )
   },
 })
