@@ -5,13 +5,9 @@ import assert from 'assert'
 import React from 'react'
 import shallowRender from '../../shallowRender'
 
-import BottomLabel, {getStyles} from './'
+import BottomLabel from './'
 
 test('BottomLabel', () => {
   const component = shallowRender(<BottomLabel/>)
-  assert.deepEqual(component.type, 'div')
-})
-
-test('BottomLabel.getStyles', () => {
-  assert(getStyles())
+  assert.deepEqual(component.type.displayName, 'Block')
 })

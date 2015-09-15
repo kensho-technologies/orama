@@ -2,28 +2,30 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 
+import defaultStyleVars from '../styleVars'
+
 import linearRegression from 'simple-statistics/src/linear_regression'
 import regressionLine from 'simple-statistics/src/linear_regression_line'
 import utils from '../../utils'
 import * as methods from './methods'
 
+import {Block} from 'jsxstyle'
 import BottomLabel from '../BottomLabel'
 import CanvasRender from '../CanvasRender'
 import ChartBackground from '../ChartBackground'
 import ChartInput from '../ChartInput'
 import LeftLabel from '../LeftLabel'
 
-export function getStyles() {
-  return {
-    title: {
-      fontFamily: 'verdana',
-      fontWeight: 'bold',
-      fontSize: 14,
-      marginBottom: 10,
-    },
-  }
-}
-
+/**
+ * Main chart component, receives data and name of the properties to be visualized.
+ * @example
+ * const data = [{p1: 0.34, p2: 0.693}, {p1: 0.012, p2: 0.123}]
+ * <Chart
+ * 	data={data}
+ * 	xProp={p1}
+ * 	yProp={p2}
+ * >
+ */
 export default React.createClass({
   displayName: 'Chart',
   propTypes: {
@@ -34,6 +36,7 @@ export default React.createClass({
     radiusProp: PropTypes.string,
     size: PropTypes.object,
     styleVars: PropTypes.object,
+    theme: PropTypes.object,
     title: PropTypes.string,
     xName: PropTypes.string,
     xProp: PropTypes.string,
@@ -48,11 +51,11 @@ export default React.createClass({
         top: 15, bottom: 60,
       },
       size: {width: 500, height: 400},
+      theme: {...defaultStyleVars},
     }
   },
   render() {
-    const styles = getStyles(this.props.styleVars)
-    const {data, xProp, yProp, colorProp, radiusProp, size} = this.props
+    const {data, xProp, yProp, colorProp, radiusProp, size, theme} = this.props
 
     const yType = utils.vis.getType(data, yProp)
     const yDomain = utils.vis.getDomain(data, yProp, yType)
@@ -138,17 +141,23 @@ export default React.createClass({
     }, data)
     renderData.push(rlRenderData)
 
-    const containerStyle = {
-      height: this.props.size.height,
-      position: 'relative',
-      width: this.props.size.width,
-    }
     return (
-      <div style={{margin: 10}}>
-        <div style={{...styles.title}}>
+      <Block // component wrapper
+        margin={10}
+      >
+        <Block // title
+          fontFamily={theme.font}
+          fontSize={theme.fontSize}
+          fontWeight={'bold'}
+          marginBottom={10}
+        >
           {this.props.title}
-        </div>
-        <div style={containerStyle}>
+        </Block>
+        <Block // canvas wrapper
+          height={this.props.size.height}
+          position={'relative'}
+          width={this.props.size.width}
+        >
           <ChartBackground
             plotRect={plotRect}
             size={this.props.size}
@@ -187,8 +196,8 @@ export default React.createClass({
             styleVars={this.props.styleVars}
             text={this.props.xName || this.props.xProp}
           />
-        </div>
-      </div>
+        </Block>
+      </Block>
     )
   },
 })

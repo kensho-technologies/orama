@@ -3,53 +3,9 @@ import React, {PropTypes} from 'react'
 import R from 'ramda'
 
 import PropCard from '../PropCard'
+import {Block, Flex} from 'jsxstyle'
 
 import defaultStyleVars from '../styleVars'
-
-export function getStyles(styleVars) {
-  return {
-    container: {
-      fontFamily: styleVars.font,
-      fontSize: styleVars.fontSize,
-      width: 200,
-      minWidth: 200,
-      display: 'flex',
-      flexDirection: 'column',
-      background: 'hsl(0, 0%, 80%)',
-    },
-    title: {
-      padding: 5,
-      margin: 5,
-      marginBottom: 10,
-      fontWeight: 'bold',
-    },
-    inputWrapper: {
-      display: 'flex',
-      margin: 5,
-    },
-    input: {
-      padding: 5,
-      fontFamily: styleVars.font,
-      fontSize: styleVars.fontSize,
-      maxWidth: 150,
-    },
-    closeBtn: {
-      fontSize: 10,
-      color: 'white',
-      background: 'hsl(0, 0%, 54%)',
-      borderRadius: 50,
-      padding: '2px 6px',
-      paddingBottom: 4,
-      height: 12,
-      cursor: 'pointer',
-      marginTop: 5,
-      marginLeft: 5,
-    },
-    elements: {
-      overflowY: 'scroll',
-    },
-  }
-}
 
 /**
  * Component responsible for holdind the data properties to be dragged to the data mapping.
@@ -59,12 +15,12 @@ export default React.createClass({
   displayName: 'DataList',
   propTypes: {
     data: PropTypes.array,
-    styleVars: PropTypes.object,
+    theme: PropTypes.object,
   },
   getDefaultProps() {
     return {
       data: [],
-      styleVars: {...defaultStyleVars},
+      theme: {...defaultStyleVars},
     }
   },
   getInitialState() {
@@ -78,40 +34,73 @@ export default React.createClass({
   onClose() {
     this.setState({filter: ''})
   },
-  _getStyles: R.memoize(getStyles),
   render() {
-    const styles = this._getStyles(this.props.styleVars)
-    const {data} = this.props
+    const {data, theme} = this.props
     const keys = R.keys(R.head(data))
     const filteredKeys = R.filter(R.test(new RegExp(this.state.filter, 'i')), keys)
-    const elems = R.map(d => (
+    const propCardElems = R.map(d => (
       <PropCard
         key={d}
         prop={d}
+        theme={this.props.theme}
       />
     ), filteredKeys)
+
     return (
-      <div style={styles.container}>
-        <div style={styles.title}>Data</div>
-        <div style={styles.inputWrapper}>
+      <Block // container
+        background={'hsl(0, 0%, 80%)'}
+        display={'flex'}
+        flexDirection={'column'}
+        fontFamily={theme.font}
+        fontSize={theme.fontSize}
+        minWidth={200}
+        width={200}
+      >
+        <Block // title
+          fontWeight={'bold'}
+          margin={5}
+          marginBottom={10}
+          padding={5}
+        >
+          Data
+        </Block>
+        <Flex // input wrapper
+          margin={5}
+        >
           <input
             onChange={this.onInputChage}
             placeholder='search'
-            style={styles.input}
+            style={{
+              fontFamily: theme.font,
+              fontSize: theme.fontSize,
+              maxWidth: 150,
+              padding: 5,
+            }}
             type='text'
             value={this.state.filter}
           />
-          <div
+          <div // close btn
             onClick={this.onClose}
-            style={styles.closeBtn}
+            style={{
+              background: 'hsl(0, 0%, 54%)',
+              borderRadius: 50,
+              color: 'white',
+              cursor: 'pointer',
+              fontSize: 10,
+              height: 12,
+              marginLeft: 5,
+              marginTop: 5,
+              padding: '2px 6px',
+              paddingBottom: 4,
+            }}
           >
             x
           </div>
-        </div>
-        <div style={styles.elements}>
-          {elems}
-        </div>
-      </div>
+        </Flex>
+        <Block overflowY={'scroll'}>
+          {propCardElems}
+        </Block>
+      </Block>
     )
   },
 })

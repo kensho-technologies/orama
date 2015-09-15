@@ -9,5 +9,5 @@ import Vis from './'
 
 test('Vis', () => {
   const component = shallowRender(<Vis/>)
-  assert.strictEqual(component.type, 'div')
+  assert.strictEqual(component.type.displayName, 'Flex')
 })

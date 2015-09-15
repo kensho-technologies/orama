@@ -15,11 +15,15 @@ const styles = {
   },
 }
 
+/**
+ * Read and executes the inputs from Charts
+ */
 export default React.createClass({
   displayName: 'ChartInput',
   propTypes: {
     renderData: PropTypes.array,
     size: PropTypes.object.isRequired,
+    theme: PropTypes.object,
   },
   getDefaultProps() {
     return {
@@ -115,6 +119,7 @@ export default React.createClass({
         <Tooltip
           hoverData={this.state.hoverData}
           mouse={this.state.mouse}
+          theme={this.props.theme}
         />
       </div>
     )

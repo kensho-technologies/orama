@@ -22,7 +22,7 @@ $ npm run doc
 $ npm run build
 $ npm publish
 
-# Read package.json to see al scripts
+# Read package.json to see all scripts
 ```
 
 **More Information**

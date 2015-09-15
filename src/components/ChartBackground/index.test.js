@@ -5,7 +5,7 @@ import assert from 'assert'
 import React from 'react'
 import shallowRender from '../../shallowRender'
 
-import ChartBackground, * as localMethods from './'
+import ChartBackground from './'
 
 test('ChartBackground', () => {
   const component = shallowRender(
@@ -14,8 +14,4 @@ test('ChartBackground', () => {
     />
   )
   assert.deepEqual(component.type, 'canvas')
-})
-
-test('ChartBackground localMethods.getStyles', () => {
-  assert(localMethods.getStyles())
 })

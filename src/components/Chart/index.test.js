@@ -9,5 +9,5 @@ import Chart from './'
 
 test('Chart', () => {
   const component = shallowRender(<Chart/>)
-  assert.strictEqual(component.type, 'div')
+  assert.strictEqual(component.type.displayName, 'Block')
 })

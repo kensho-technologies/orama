@@ -1,23 +1,8 @@
 
 import React, {PropTypes} from 'react'
 
+import {Block} from 'jsxstyle'
 import defaultStyleVars from '../styleVars'
-
-export function getStyles(styleVars = defaultStyleVars) {
-  return {
-    div: {
-      bottom: 0,
-      color: styleVars.axis.color,
-      fontFamily: styleVars.font,
-      fontSize: styleVars.axis.labelFontSize,
-      overflow: 'hidden',
-      position: 'absolute',
-      textAlign: 'center',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-    },
-  }
-}
 
 /**
  * Component that position and style the bottom label of the `Chart` component
@@ -26,27 +11,35 @@ export default React.createClass({
   displayName: 'BottomLabel',
   propTypes: {
     plotRect: PropTypes.object.isRequired,
-    styleVars: PropTypes.object,
     text: PropTypes.string,
+    theme: PropTypes.object,
   },
   getDefaultProps() {
     return {
       plotRect: {x: 0, y: 0, width: 0, height: 0},
       text: '',
+      theme: {...defaultStyleVars},
     }
   },
   render() {
-    const styles = getStyles(this.props.styleVars)
-    const {plotRect} = this.props
-    const style = {
-      ...styles.div,
-      left: plotRect.x,
-      width: plotRect.width,
-    }
+    const {plotRect, theme} = this.props
+
     return (
-      <div style={style}>
+      <Block
+        bottom={0}
+        color={theme.axis.color}
+        fontFamily={theme.font}
+        fontSize={theme.axis.labelFontSize}
+        left={plotRect.x}
+        overflow={'hidden'}
+        position={'absolute'}
+        textAlign={'center'}
+        textOverflow={'ellipsis'}
+        whiteSpace={'nowrap'}
+        width={plotRect.width}
+      >
         {this.props.text}
-      </div>
+      </Block>
     )
   },
 })
