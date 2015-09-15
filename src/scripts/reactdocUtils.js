@@ -17,14 +17,11 @@ export default function getComponents(data) {
   }, '', keys)
   var components = R.reduce((acc, key) => {
     var value = data[key]
-    var description = value.description ?
-        `*${value.description}*` :
-        ''
     return (`${acc}
 ### ${value.displayName}
 [${key}](../${key})
 
-${description}
+${getDescription(value)}
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
@@ -70,7 +67,18 @@ export function getDefaultValue(prop) {
 
 export function getDescription(prop) {
   if (prop.description) {
-    return prop.description
+    const split = prop.description.split('@example\n')
+    if (split.length > 1) {
+      const examples = R.map(d => {
+        return `
+\`\`\`jsx
+${d}
+\`\`\`
+`
+      }, R.tail(split))
+      return `${split[0]}\n${examples}`
+    }
+    return `${prop.description}`
   }
   return ''
 }
