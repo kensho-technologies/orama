@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 
 import MapDataCard from '../MapDataCard'
 
-import defaultStyleVars from '../styleVars'
+import defaultTheme from '../defaultTheme'
 
 import {Block} from 'jsxstyle'
 
@@ -35,7 +35,7 @@ export default React.createClass({
   },
   getDefaultProps() {
     return {
-      theme: {...defaultStyleVars},
+      theme: {...defaultTheme},
     }
   },
   render() {

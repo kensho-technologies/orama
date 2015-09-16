@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 
-import defaultStyleVars from '../styleVars'
+import defaultTheme from '../defaultTheme'
 
 import {Block} from 'jsxstyle'
 
@@ -19,7 +19,7 @@ export default React.createClass({
     return {
       plotRect: {x: 0, y: 0, width: 0, height: 0},
       text: '',
-      theme: {...defaultStyleVars},
+      theme: {...defaultTheme},
     }
   },
   render() {

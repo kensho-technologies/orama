@@ -112,7 +112,7 @@ It's used inside of the `Vis` component.
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 data | array | false | [] | 
-styleVars | object | false | {...defaultStyleVars} | 
+styleVars | object | false | {...defaultTheme} | 
 
 
 ### DropCard
@@ -194,7 +194,7 @@ data | array | false |  |
 groupProp | string | false |  | 
 radiusProp | string | false |  | 
 setProp | func | false |  | 
-styleVars | object | false | {...defaultStyleVars} | 
+styleVars | object | false | {...defaultTheme} | 
 xProp | string | false |  | 
 yProp | string | false |  | 
 
@@ -227,7 +227,7 @@ Prop | Type | Required | Default | Description
 connectDragSource | func | false |  | 
 isDragging | bool | false |  | 
 prop | string | false |  | 
-styleVars | object | false | {...defaultStyleVars} | 
+styleVars | object | false | {...defaultTheme} | 
 
 
 ### Tooltip
@@ -240,7 +240,7 @@ Prop | Type | Required | Default | Description
 hoverData | object | false |  | 
 mouse | object | false | {} | 
 styleVars | object | false |  | 
-theme | object | false | {...defaultStyleVars} | 
+theme | object | false | {...defaultTheme} | 
 
 
 ### Vis

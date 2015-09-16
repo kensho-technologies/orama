@@ -5,7 +5,7 @@ import {Block, Table, TableCell, TableRow} from 'jsxstyle'
 
 import If from '../If'
 
-import defaultStyleVars from '../styleVars'
+import defaultTheme from '../defaultTheme'
 
 export function getWindow() {
   if (global.window) return global.window
@@ -26,7 +26,7 @@ export default React.createClass({
   getDefaultProps() {
     return {
       mouse: {},
-      theme: {...defaultStyleVars},
+      theme: {...defaultTheme},
     }
   },
   render() {

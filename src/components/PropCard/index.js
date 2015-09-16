@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import {DragSource} from 'react-dnd'
 
-import defaultStyleVars from '../styleVars'
+import defaultTheme from '../defaultTheme'
 
 import {Block} from 'jsxstyle'
 
@@ -33,7 +33,7 @@ export const PropCard = React.createClass({
   },
   getDefaultProps() {
     return {
-      theme: {...defaultStyleVars},
+      theme: {...defaultTheme},
     }
   },
   render() {

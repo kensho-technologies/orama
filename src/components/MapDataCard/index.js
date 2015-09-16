@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 import R from 'ramda'
 import {DragSource, DropTarget} from 'react-dnd'
 
-import defaulStyleVars from '../styleVars'
+import defaulStyleVars from '../defaultTheme'
 import Histogram from '../Histogram'
 
 export function getStyles() {

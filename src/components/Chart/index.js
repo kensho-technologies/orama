@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 
-import defaultStyleVars from '../styleVars'
+import defaultTheme from '../defaultTheme'
 
 import linearRegression from 'simple-statistics/src/linear_regression'
 import regressionLine from 'simple-statistics/src/linear_regression_line'
@@ -51,7 +51,7 @@ export default React.createClass({
         top: 15, bottom: 60,
       },
       size: {width: 500, height: 400},
-      theme: {...defaultStyleVars},
+      theme: {...defaultTheme},
     }
   },
   render() {

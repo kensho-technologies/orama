@@ -5,7 +5,7 @@ import R from 'ramda'
 import PropCard from '../PropCard'
 import {Block, Flex} from 'jsxstyle'
 
-import defaultStyleVars from '../styleVars'
+import defaultTheme from '../defaultTheme'
 
 /**
  * Component responsible for holdind the data properties to be dragged to the data mapping.
@@ -20,7 +20,7 @@ export default React.createClass({
   getDefaultProps() {
     return {
       data: [],
-      theme: {...defaultStyleVars},
+      theme: {...defaultTheme},
     }
   },
   getInitialState() {
