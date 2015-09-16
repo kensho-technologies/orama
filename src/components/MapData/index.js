@@ -5,47 +5,14 @@ import MapDataCard from '../MapDataCard'
 
 import defaultStyleVars from '../styleVars'
 
-export function getStyles(styleVars) {
+import {Block} from 'jsxstyle'
+
+export function getStyles(theme) {
   return {
-    container: {
-      fontSize: styleVars.fontSize,
-      fontFamily: styleVars.font,
-      minWidth: 200,
-      width: 200,
-      background: 'hsl(0, 0%, 80%)',
-      borderLeft: '2px solid hsl(0, 0%, 60%)',
-      borderRight: '2px solid hsl(0, 0%, 70%)',
-    },
     item: {
-      fontSize: styleVars.fontSize,
+      fontSize: theme.fontSize,
       margin: 5,
       padding: 5,
-    },
-    item2: {
-      background: 'hsl(0, 0%, 90%)',
-      fontSize: 15,
-      margin: 5,
-      padding: 5,
-    },
-    title: {
-      padding: 5,
-      margin: 5,
-      marginBottom: 10,
-      fontWeight: 'bold',
-    },
-    selectWrapper: {
-      paddingTop: 5,
-      margin: 5,
-    },
-    select: {
-      border: 'none',
-      borderRadius: 0,
-      fontSize: styleVars.fontSize,
-      fontFamily: styleVars.font,
-      display: 'flex',
-      width: '100%',
-      boxSizing: 'border-box',
-      outline: 'none',
     },
   }
 }
@@ -62,67 +29,95 @@ export default React.createClass({
     groupProp: PropTypes.string,
     radiusProp: PropTypes.string,
     setProp: PropTypes.func,
-    styleVars: PropTypes.object,
+    theme: PropTypes.object,
     xProp: PropTypes.string,
     yProp: PropTypes.string,
   },
   getDefaultProps() {
     return {
-      styleVars: {...defaultStyleVars},
+      theme: {...defaultStyleVars},
     }
   },
   render() {
-    const styles = getStyles(this.props.styleVars)
+    const styles = getStyles(this.props.theme)
+    const {theme} = this.props
     return (
-      <div style={styles.container}>
-        <div style={styles.title}>Mapping</div>
-        <div style={styles.selectWrapper}>
+      <Block // wrapper
+        background={'hsl(0, 0%, 80%)'}
+        borderLeft={'2px solid hsl(0, 0%, 60%)'}
+        borderRight={'2px solid hsl(0, 0%, 70%)'}
+        fontFamily={theme.font}
+        fontSize={theme.fontSize}
+        minWidth={200}
+        width={200}
+      >
+        <Block // title
+          fontWeight={'bold'}
+          margin={5}
+          marginBottom={10}
+          padding={5}
+        >
+          Mapping
+        </Block>
+        <Block // select wrapper
+          margin={5}
+          paddingTop={5}
+        >
           {false &&
             <select
-              style={styles.select}
+              style={{
+                border: 'none',
+                borderRadius: 0,
+                fontSize: theme.fontSize,
+                fontFamily: theme.font,
+                display: 'flex',
+                width: '100%',
+                boxSizing: 'border-box',
+                outline: 'none',
+              }}
               value='chart'
             >
               <option value='chart'>Chart</option>
               <option value='matrix'>Matrix</option>
             </select>
           }
-        </div>
-        <div style={styles.item}>X Axis</div>
+        </Block>
+        <Block style={styles.item}>X Axis</Block>
         <MapDataCard
           category='x'
           data={this.props.data}
           prop={this.props.xProp}
           setProp={this.props.setProp}
         />
-        <div style={styles.item}>Y Axis</div>
+        <Block style={styles.item}>Y Axis</Block>
         <MapDataCard
           category='y'
           data={this.props.data}
           prop={this.props.yProp}
           setProp={this.props.setProp}
         />
-        <div style={styles.item}>Color</div>
+        <Block style={styles.item}>Color</Block>
         <MapDataCard
           category='color'
           data={this.props.data}
           prop={this.props.colorProp}
           setProp={this.props.setProp}
         />
-        <div style={styles.item}>Size</div>
+        <Block style={styles.item}>Size</Block>
         <MapDataCard
           category='radius'
           data={this.props.data}
           prop={this.props.radiusProp}
           setProp={this.props.setProp}
         />
-        <div style={styles.item}>Group by</div>
+        <Block style={styles.item}>Group by</Block>
         <MapDataCard
           category='group'
           data={this.props.data}
           prop={this.props.groupProp}
           setProp={this.props.setProp}
         />
-      </div>
+      </Block>
     )
   },
 })

@@ -4,17 +4,7 @@ import {DragSource} from 'react-dnd'
 
 import defaultStyleVars from '../styleVars'
 
-export function getStyles(styleVars) {
-  return {
-    item: {
-      background: 'hsl(0, 0%, 90%)',
-      fontSize: styleVars.fontSize,
-      margin: 5,
-      padding: 5,
-      cursor: 'pointer',
-    },
-  }
-}
+import {Block} from 'jsxstyle'
 
 const cardSource = {
   beginDrag(props) {
@@ -39,20 +29,26 @@ export const PropCard = React.createClass({
     connectDragSource: PropTypes.func,
     isDragging: PropTypes.bool,
     prop: PropTypes.string,
-    styleVars: PropTypes.object,
+    theme: PropTypes.object,
   },
   getDefaultProps() {
     return {
-      styleVars: {...defaultStyleVars},
+      theme: {...defaultStyleVars},
     }
   },
   render() {
-    const styles = getStyles(this.props.styleVars)
-    const { isDragging, connectDragSource, prop } = this.props
+    const {theme, isDragging, connectDragSource, prop} = this.props
     return connectDragSource(
-      <div style={{...styles.item, opacity: isDragging ? 0.5 : 1 }}>
+      <Block
+        background={'hsl(0, 0%, 90%)'}
+        cursor={'pointer'}
+        fontSize={theme.fontSize}
+        margin={5}
+        opacity={isDragging ? 0.5 : 1}
+        padding={5}
+      >
         {prop}
-      </div>
+      </Block>
     )
   },
 })

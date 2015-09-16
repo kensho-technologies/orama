@@ -9,5 +9,5 @@ import LeftLabel from './'
 
 test('LeftLabel', () => {
   const component = shallowRender(<LeftLabel/>)
-  assert.strictEqual(component.type, 'div')
+  assert.strictEqual(component.type.displayName, 'Block')
 })

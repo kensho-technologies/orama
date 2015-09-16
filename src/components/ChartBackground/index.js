@@ -5,13 +5,6 @@ import R from 'ramda'
 import utils from '../../utils'
 import defaultStyleVars from '../styleVars'
 
-const styles = {
-  canvas: {
-    position: 'absolute',
-    display: 'block',
-  },
-}
-
 /**
  * Renders background, axis and ticks.
  * Used inside of Chart components.
@@ -107,7 +100,10 @@ export default React.createClass({
       <canvas
         height={this.props.size.height}
         ref='canvas'
-        style={styles.canvas}
+        style={{
+          position: 'absolute',
+          display: 'block',
+        }}
         width={this.props.size.width}
       />
     )

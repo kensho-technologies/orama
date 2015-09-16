@@ -96,6 +96,7 @@ export default React.createClass({
         />
         <Flex // elements container
           alignContent={'flex-start'}
+          flex={1}
           flexWrap={'wrap'}
           justifyContent={'center'}
           overflow={'scroll'}

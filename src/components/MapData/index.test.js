@@ -5,9 +5,9 @@ import assert from 'assert'
 import React from 'react'
 import shallowRender from '../../shallowRender'
 
-import DropUI from './'
+import MapData from './'
 
-test('DropUI', () => {
-  const component = shallowRender(<DropUI/>)
-  assert.strictEqual(component.type, 'div')
+test('MapData', () => {
+  const component = shallowRender(<MapData/>)
+  assert.strictEqual(component.type.displayName, 'Block')
 })
