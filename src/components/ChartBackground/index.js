@@ -1,5 +1,5 @@
 
-import React, {findDOMNode, PropTypes} from 'react'
+import React, {PropTypes} from 'react'
 import R from 'ramda'
 
 import utils from '../../utils'
@@ -49,7 +49,7 @@ export default React.createClass({
       yTickCount,
       yType,
     } = this.props
-    const ctx = findDOMNode(this.refs.canvas).getContext('2d')
+    const ctx = this.refs.canvas.getContext('2d')
     ctx.fillStyle = theme.axis.background
     utils.canvas.clearRect(ctx, this.props.size)
     utils.canvas.fillRect(ctx, utils.rect.inset(-chartPadding, this.props.plotRect))

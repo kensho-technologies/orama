@@ -1,5 +1,5 @@
 
-import React, {findDOMNode, PropTypes} from 'react'
+import React, {PropTypes} from 'react'
 import R from 'ramda'
 
 import utils from '../../utils'
@@ -25,7 +25,7 @@ export default React.createClass({
   },
   renderCanvas() {
     const {plotRect} = this.props
-    var ctx = findDOMNode(this.refs.canvas).getContext('2d')
+    var ctx = this.refs.canvas.getContext('2d')
     ctx.fillStyle = 'hsl(0, 0%, 90%)'
     utils.canvas.clearRect(ctx, this.props.size)
     ctx.save()

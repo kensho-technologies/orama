@@ -1,6 +1,9 @@
 ## Explorer
 [![Build Status](https://travis-ci.org/kensho/explorer.svg)](https://travis-ci.org/luiscarli/explorer)
 
+Development needs node >= 0.12 and npm >= 3.
+To update npm to version 3 pre-release do `$ npm install -g npm@3.0-latest`
+
 **Scripts**
 ```bash
 $ npm start

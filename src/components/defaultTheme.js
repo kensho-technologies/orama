@@ -1,8 +1,11 @@
 
 export default {
   font: 'verdana',
+  fontSecondary: 'verdana',
   fontMono: 'menlo',
   fontSize: 13,
+  backgroundColor: 'hsl(0, 0%, 100%)',
+  textColor: 'hsl(0, 0%, 0%)',
   axis: {
     background: 'hsl(0, 0%, 97%)',
     chartPadding: 20,

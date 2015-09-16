@@ -1,5 +1,5 @@
 
-import React, {findDOMNode, PropTypes} from 'react'
+import React, {PropTypes} from 'react'
 import R from 'ramda'
 
 import utils from '../../utils'
@@ -44,7 +44,7 @@ export default React.createClass({
     this.renderCanvas()
   },
   onMouseMove(evt) {
-    const canvasNode = findDOMNode(this.refs.canvas)
+    const canvasNode = this.refs.canvas
     const canvasRect = canvasNode.getBoundingClientRect()
     const ctx = canvasNode.getContext('2d')
     const mouse = {
@@ -92,7 +92,7 @@ export default React.createClass({
   },
   renderCanvas() {
     const {hoverData} = this.state
-    var ctx = findDOMNode(this.refs.canvas).getContext('2d')
+    var ctx = this.refs.canvas.getContext('2d')
     ctx.fillStyle = 'hsl(0, 50%, 20%)'
     utils.canvas.clearRect(ctx, this.props.size)
     ctx.lineWidth = 2
