@@ -7,15 +7,39 @@ import defaultTheme from '../defaultTheme'
 
 import {Block} from 'jsxstyle'
 
-export function getStyles(theme) {
-  return {
-    item: {
+/**
+ * Name of each mapping type
+ */
+export const ItemName = ({theme = defaultTheme, children}) => (
+  <Block
+    fontSize={theme.fontSize}
+    margin={5}
+    padding={5}
+  >
+    {children}
+  </Block>
+)
+
+/**
+ * Styled select component
+ */
+export const Select = ({theme = defaultTheme, children}) => (
+  <select
+    defaultValue='chart'
+    style={{
+      border: 'none',
+      borderRadius: 0,
       fontSize: theme.fontSize,
-      margin: 5,
-      padding: 5,
-    },
-  }
-}
+      fontFamily: theme.font,
+      display: 'flex',
+      width: '100%',
+      boxSizing: 'border-box',
+      outline: 'none',
+    }}
+  >
+    {children}
+  </select>
+)
 
 /**
  * Holds the mapping data UI
@@ -39,7 +63,6 @@ export default React.createClass({
     }
   },
   render() {
-    const styles = getStyles(this.props.theme)
     const {theme} = this.props
     return (
       <Block // wrapper
@@ -63,59 +86,50 @@ export default React.createClass({
           margin={5}
           paddingTop={5}
         >
-          {false &&
-            <select
-              style={{
-                border: 'none',
-                borderRadius: 0,
-                fontSize: theme.fontSize,
-                fontFamily: theme.font,
-                display: 'flex',
-                width: '100%',
-                boxSizing: 'border-box',
-                outline: 'none',
-              }}
-              value='chart'
-            >
-              <option value='chart'>Chart</option>
-              <option value='matrix'>Matrix</option>
-            </select>
-          }
+          <Select theme={theme}>
+            <option value='chart'>Chart</option>
+            <option value='matrix'>Matrix</option>
+          </Select>
         </Block>
-        <Block style={styles.item}>X Axis</Block>
+        <ItemName theme={theme}>X Axis</ItemName>
         <MapDataCard
           category='x'
           data={this.props.data}
           prop={this.props.xProp}
           setProp={this.props.setProp}
+          theme={theme}
         />
-        <Block style={styles.item}>Y Axis</Block>
+        <ItemName theme={theme}>Y Axis</ItemName>
         <MapDataCard
           category='y'
           data={this.props.data}
           prop={this.props.yProp}
           setProp={this.props.setProp}
+          theme={theme}
         />
-        <Block style={styles.item}>Color</Block>
+        <ItemName theme={theme}>Color</ItemName>
         <MapDataCard
           category='color'
           data={this.props.data}
           prop={this.props.colorProp}
           setProp={this.props.setProp}
+          theme={theme}
         />
-        <Block style={styles.item}>Size</Block>
+        <ItemName theme={theme}>Size</ItemName>
         <MapDataCard
           category='radius'
           data={this.props.data}
           prop={this.props.radiusProp}
           setProp={this.props.setProp}
+          theme={theme}
         />
-        <Block style={styles.item}>Group by</Block>
+        <ItemName theme={theme}>Group by</ItemName>
         <MapDataCard
           category='group'
           data={this.props.data}
           prop={this.props.groupProp}
           setProp={this.props.setProp}
+          theme={theme}
         />
       </Block>
     )
