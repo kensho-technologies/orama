@@ -1,6 +1,8 @@
 {
   "extends": "eslint-config-airbnb",
   "rules": {
+    "id-length": 0,
+    "jsx-quotes": [2, "prefer-single"],
     "new-cap": 0,
     "no-use-before-define": [2, "nofunc"],
     "no-var": 0,
@@ -11,7 +13,6 @@
     "react/jsx-max-props-per-line": [1, {"maximum": 2}],
     "react/jsx-no-duplicate-props": 2,
     "react/jsx-no-undef": 2,
-    "react/jsx-quotes": [2, "single"],
     "react/jsx-sort-prop-types": 2,
     "react/jsx-sort-props": 1,
     "semi": [2, "never"],
