@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 
 import defaultTheme from '../defaultTheme'
 
-import {Block} from 'jsxstyle'
+import {Block} from '../jsxstyle'
 
 /**
  * Component that position and style the bottom label of the `Chart` component

@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 
-import {Flex} from 'jsxstyle'
+import {Flex} from '../jsxstyle'
 import Chart from '../Chart'
 import DataList from '../DataList'
 import MapData from '../MapData'

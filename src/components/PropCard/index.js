@@ -4,7 +4,7 @@ import {DragSource} from 'react-dnd'
 
 import defaultTheme from '../defaultTheme'
 
-import {Block} from 'jsxstyle'
+import {Block} from '../jsxstyle'
 
 const cardSource = {
   beginDrag(props) {

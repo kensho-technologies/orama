@@ -9,7 +9,7 @@ import regressionLine from 'simple-statistics/src/linear_regression_line'
 import utils from '../../utils'
 import * as methods from './methods'
 
-import {Block} from 'jsxstyle'
+import {Block} from '../jsxstyle'
 import BottomLabel from '../BottomLabel'
 import CanvasRender from '../CanvasRender'
 import ChartBackground from '../ChartBackground'

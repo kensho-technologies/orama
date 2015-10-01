@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 import R from 'ramda'
-import {Block, Table, TableCell, TableRow} from 'jsxstyle'
+import {Block, Table, TableCell, TableRow} from '../jsxstyle'
 
 import If from '../If'
 
