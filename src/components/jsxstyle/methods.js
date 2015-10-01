@@ -20,7 +20,7 @@ export function makeStyleComponentClass(display, displayName) {
   return React.createClass({
     displayName: displayName,
     propTypes: {
-      children: PropTypes.element,
+      children: PropTypes.node,
     },
     render() {
       const style = autoprefix({
