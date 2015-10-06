@@ -47,9 +47,8 @@ export default React.createClass({
     ), filteredKeys)
 
     return (
-      <Block // container
+      <Flex // container
         background={'hsl(0, 0%, 80%)'}
-        display={'flex'}
         flexDirection={'column'}
         fontFamily={theme.font}
         fontSize={theme.fontSize}
@@ -97,10 +96,13 @@ export default React.createClass({
             x
           </div>
         </Flex>
-        <Block overflowY={'scroll'}>
+        <Flex
+          flexDirection='column'
+          overflowY={'scroll'}
+        >
           {propCardElems}
-        </Block>
-      </Block>
+        </Flex>
+      </Flex>
     )
   },
 })

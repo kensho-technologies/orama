@@ -9,5 +9,5 @@ import DataList from './'
 
 test('DataList', () => {
   const component = shallowRender(<DataList/>)
-  assert.strictEqual(component.type.displayName, 'Block')
+  assert.strictEqual(component.type.displayName, 'Flex')
 })

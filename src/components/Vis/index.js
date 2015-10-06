@@ -73,6 +73,7 @@ export default React.createClass({
     }
     return (
       <Flex // vis container
+        alignItems='stretch'
         background={'white'}
         bottom={0}
         left={0}
