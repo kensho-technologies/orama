@@ -2,8 +2,9 @@ import React from 'react'
 import R from 'ramda'
 
 import {Flex} from '../jsxstyle'
-
 import Chart from '../Chart'
+
+import defaultTheme from '../defaultTheme'
 
 /**
  * Return one or multiple Chart components according to the props
@@ -13,7 +14,7 @@ export const getChartElements = ({
   data,
   groupProp,
   radiusProp,
-  theme,
+  theme = defaultTheme,
   xProp,
   yProp,
 }) => {
