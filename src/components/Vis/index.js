@@ -1,9 +1,8 @@
 
 import React, {PropTypes} from 'react'
-import R from 'ramda'
 
 import {Flex} from '../jsxstyle'
-import Chart from '../Chart'
+import ChartsGroup from '../ChartsGroup'
 import DataList from '../DataList'
 import MapData from '../MapData'
 
@@ -34,45 +33,9 @@ export default React.createClass({
     })
   },
   render() {
-    const {data} = this.props
-    const {groupProp} = this.state
-    let chartElements
-    if (groupProp) {
-      const pairs = R.toPairs(R.groupBy(R.prop(groupProp), data))
-      chartElements = R.map(d => {
-        if (d[1].length < 2) return undefined
-        if (d[0] === '0') return undefined
-        return (
-          <Chart
-            colorProp={this.state.colorProp}
-            data={d[1]}
-            key={d[0]}
-            margin={{left: 70, right: 20, top: 20, bottom: 60}}
-            radiusProp={this.state.radiusProp}
-            size={{width: 300, height: 300}}
-            theme={this.props.theme}
-            title={d[0]}
-            xProp={this.state.xProp}
-            yProp={this.state.yProp}
-          />
-        )
-      }, pairs)
-    } else {
-      chartElements = (
-        <Chart
-          colorProp={this.state.colorProp}
-          data={this.props.data}
-          margin={{left: 210, right: 20, top: 20, bottom: 60}}
-          radiusProp={this.state.radiusProp}
-          size={{width: 700, height: 600}}
-          theme={this.props.theme}
-          xProp={this.state.xProp}
-          yProp={this.state.yProp}
-        />
-      )
-    }
     return (
       <Flex // vis container
+        alignContent='stretch'
         alignItems='stretch'
         background={'white'}
         bottom={0}
@@ -84,7 +47,7 @@ export default React.createClass({
         <DataList data={this.props.data}/>
         <MapData
           colorProp={this.state.colorProp}
-          data={data}
+          data={this.props.data}
           groupProp={this.state.groupProp}
           radiusProp={this.state.radiusProp}
           setColorProp={this.onColorPropChange}
@@ -95,15 +58,14 @@ export default React.createClass({
           xProp={this.state.xProp}
           yProp={this.state.yProp}
         />
-        <Flex // elements container
-          alignContent={'flex-start'}
-          flex={1}
-          flexWrap={'wrap'}
-          justifyContent={'center'}
-          overflow={'scroll'}
-        >
-          {chartElements}
-        </Flex>
+        <ChartsGroup
+          colorProp={this.state.colorProp}
+          data={this.props.data}
+          groupProp={this.state.groupProp}
+          radiusProp={this.state.radiusProp}
+          xProp={this.state.xProp}
+          yProp={this.state.yProp}
+        />
       </Flex>
     )
   },
