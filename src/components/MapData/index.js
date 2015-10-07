@@ -5,7 +5,7 @@ import MapDataCard from '../MapDataCard'
 
 import defaultTheme from '../defaultTheme'
 
-import {Block} from '../jsxstyle'
+import {Block} from '../Display'
 
 /**
  * Name of each mapping type

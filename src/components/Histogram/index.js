@@ -5,7 +5,7 @@ import d3 from 'd3'
 
 import utils from '../../utils'
 
-import {Block} from '../jsxstyle'
+import {Block} from '../Display'
 import CanvasRender from '../CanvasRender'
 import ChartInput from '../ChartInput'
 

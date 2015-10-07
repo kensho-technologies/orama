@@ -21,14 +21,21 @@ export function makeStyleComponentClass(display, displayName) {
     displayName: displayName,
     propTypes: {
       children: PropTypes.node,
+      id: PropTypes.string,
     },
     render() {
       const style = autoprefix({
         ...this.props,
         display,
+        id: undefined,
         children: undefined,
       })
-      return <div style={style}>{this.props.children}</div>
+      return (
+        <div
+          id={this.props.id}
+          style={style}
+        >{this.props.children}</div>
+      )
     },
   })
 }
