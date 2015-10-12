@@ -96,12 +96,11 @@ export default React.createClass({
             x
           </div>
         </Flex>
-        <Flex
-          flexDirection='column'
+        <Block
           overflowY={'scroll'}
         >
           {propCardElems}
-        </Flex>
+        </Block>
       </Flex>
     )
   },
