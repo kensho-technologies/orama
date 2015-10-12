@@ -4,7 +4,7 @@ import {DragSource} from 'react-dnd'
 
 import defaultTheme from '../defaultTheme'
 
-import {Block} from '../Display'
+import {Flex} from '../Display'
 
 const cardSource = {
   beginDrag(props) {
@@ -39,16 +39,17 @@ export const PropCard = React.createClass({
   render() {
     const {theme, isDragging, connectDragSource, prop} = this.props
     return connectDragSource(
-      <Block
+      <Flex
         background={'hsl(0, 0%, 90%)'}
         cursor={'pointer'}
+        flexShrink={0}
         fontSize={theme.fontSize}
         margin={5}
         opacity={isDragging ? 0.5 : 1}
         padding={5}
       >
         {prop}
-      </Block>
+      </Flex>
     )
   },
 })

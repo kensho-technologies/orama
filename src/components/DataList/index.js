@@ -65,6 +65,7 @@ export default React.createClass({
         </Block>
         <Flex // input wrapper
           margin={5}
+          flexShrink={0}
         >
           <input
             onChange={this.onInputChage}
@@ -96,11 +97,12 @@ export default React.createClass({
             x
           </div>
         </Flex>
-        <Block
-          overflowY={'scroll'}
+        <Flex
+          flexDirection='column'
+          overflow='scroll'
         >
           {propCardElems}
-        </Block>
+        </Flex>
       </Flex>
     )
   },
