@@ -7,6 +7,7 @@
 - [ChartBackground](#ChartBackground)
 - [ChartInput](#ChartInput)
 - [DataList](#DataList)
+- [DownloadImg](#DownloadImg)
 - [Histogram](#Histogram)
 - [If](#If)
 - [LeftLabel](#LeftLabel)
@@ -126,6 +127,16 @@ Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 data | array | false | [] | 
 theme | object | false | {...defaultTheme} | 
+
+
+### DownloadImg
+[src/components/DownloadImg/index.js](../src/components/DownloadImg/index.js)
+
+
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+theme | object | false |  | 
 
 
 ### Histogram

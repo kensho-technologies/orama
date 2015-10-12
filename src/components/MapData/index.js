@@ -1,11 +1,10 @@
 
 import React, {PropTypes} from 'react'
 
-import MapDataCard from '../MapDataCard'
-
 import defaultTheme from '../defaultTheme'
 
 import {Block} from '../Display'
+import MapDataCard from '../MapDataCard'
 
 /**
  * Name of each mapping type

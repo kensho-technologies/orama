@@ -56,21 +56,20 @@ export const getChartElements = ({
 /**
  * Render a flex container with the Charts
  */
-const ChartsGroup = (props) => (
-  <Flex
-    flex={1}
-    justifyContent={'center'}
-    overflow={'scroll'}
-  >
-    <Flex // elements container
-      alignItems='center'
-      flexWrap={'wrap'}
-      id='vis'
+export default function ChartsGroup(props) {
+  return (
+    <Flex
+      flex={1}
       justifyContent={'center'}
+      overflow={'scroll'}
     >
-      {getChartElements(props)}
+      <Flex // elements container
+        alignItems='center'
+        flexWrap={'wrap'}
+        id='vis'
+        justifyContent={'center'}
+      >
+        {getChartElements(props)}
+      </Flex>
     </Flex>
-  </Flex>
-)
-
-export default ChartsGroup
+)}

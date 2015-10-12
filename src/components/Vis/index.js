@@ -3,6 +3,7 @@ import React, {PropTypes} from 'react'
 
 import {Flex} from '../Display'
 import ChartsGroup from '../ChartsGroup'
+import ChartsGroupBar from '../ChartsGroupBar'
 import DataList from '../DataList'
 import MapData from '../MapData'
 
@@ -58,14 +59,16 @@ export default React.createClass({
           xProp={this.state.xProp}
           yProp={this.state.yProp}
         />
-        <ChartsGroup
-          colorProp={this.state.colorProp}
-          data={this.props.data}
-          groupProp={this.state.groupProp}
-          radiusProp={this.state.radiusProp}
-          xProp={this.state.xProp}
-          yProp={this.state.yProp}
-        />
+        <ChartsGroupBar>
+          <ChartsGroup
+            colorProp={this.state.colorProp}
+            data={this.props.data}
+            groupProp={this.state.groupProp}
+            radiusProp={this.state.radiusProp}
+            xProp={this.state.xProp}
+            yProp={this.state.yProp}
+          />
+        </ChartsGroupBar>
       </Flex>
     )
   },
