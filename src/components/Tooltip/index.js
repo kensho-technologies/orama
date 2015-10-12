@@ -7,14 +7,6 @@ import If from '../If'
 
 import defaultTheme from '../defaultTheme'
 
-export function getWindow() {
-  if (global.window) return global.window
-  return {
-    innerWidth: 0,
-    innerHeight: 0,
-  }
-}
-
 export default React.createClass({
   displayName: 'Tooltip',
   propTypes: {

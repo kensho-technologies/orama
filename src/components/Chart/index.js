@@ -35,7 +35,6 @@ export default React.createClass({
     margin: PropTypes.object,
     radiusProp: PropTypes.string,
     size: PropTypes.object,
-    styleVars: PropTypes.object,
     theme: PropTypes.object,
     title: PropTypes.string,
     xName: PropTypes.string,
@@ -161,7 +160,6 @@ export default React.createClass({
           <ChartBackground
             plotRect={plotRect}
             size={this.props.size}
-            styleVars={this.props.styleVars}
             xDomain={xDomain}
             xScale={xScale}
             xTickCount={xTickCount}
@@ -175,7 +173,6 @@ export default React.createClass({
             plotRect={plotRect}
             renderData={renderData}
             size={this.props.size}
-            styleVars={this.props.styleVars}
             xMap={xMap}
             xScale={xScale}
             yMap={yMap}
@@ -188,12 +185,10 @@ export default React.createClass({
           />
           <LeftLabel
             plotRect={plotRect}
-            styleVars={this.props.styleVars}
             text={this.props.yName || this.props.yProp}
           />
           <BottomLabel
             plotRect={plotRect}
-            styleVars={this.props.styleVars}
             text={this.props.xName || this.props.xProp}
           />
         </Block>

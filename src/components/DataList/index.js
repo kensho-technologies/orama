@@ -64,8 +64,8 @@ export default React.createClass({
           Data
         </Block>
         <Flex // input wrapper
-          margin={5}
           flexShrink={0}
+          margin={5}
         >
           <input
             onChange={this.onInputChage}
