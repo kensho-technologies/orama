@@ -1,7 +1,6 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import R from 'ramda'
 
 import {generateSrc, openImg} from '../../utils/imageRender'
 
@@ -29,7 +28,7 @@ export default React.createClass({
           justifyContent='flex-end'
           padding={5}
         >
-          <button onClick={R.partial(this.handleClick, children)}>Download Graphs</button>
+          <button onClick={this.handleClick}>Download Graphs</button>
         </Flex>
           <Flex
             flex={1}
