@@ -61,7 +61,8 @@
     "lodash": "3.10.1",
     "ramda": "0.18.0",
     "react": "0.14.0",
-    "react-dnd": "1.1.8",
+    "react-dnd": "2.0.0",
+    "react-dnd-html5-backend": "2.0.0",
     "react-dom": "0.14.0",
     "simple-statistics": "1.0.0"
   },

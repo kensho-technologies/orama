@@ -11,5 +11,5 @@ const identity = (d) => d
 
 test('PropCard', () => {
   const component = shallowRender(<PropCard connectDragSource={identity}/>)
-  assert.strictEqual(component.type.displayName, 'Flex')
+  assert.strictEqual(component.type, 'div')
 })

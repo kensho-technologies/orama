@@ -4,7 +4,7 @@ import {DragSource} from 'react-dnd'
 
 import defaultTheme from '../defaultTheme'
 
-import {Flex} from '../Display'
+import {autoprefix} from '../Display/methods'
 
 const cardSource = {
   beginDrag(props) {
@@ -39,17 +39,20 @@ export const PropCard = React.createClass({
   render() {
     const {theme, isDragging, connectDragSource, prop} = this.props
     return connectDragSource(
-      <Flex
-        background={'hsl(0, 0%, 90%)'}
-        cursor={'pointer'}
-        flexShrink={0}
-        fontSize={theme.fontSize}
-        margin={5}
-        opacity={isDragging ? 0.5 : 1}
-        padding={5}
+      <div
+        style={autoprefix({
+          background: 'hsl(0, 0%, 90%)',
+          cursor: 'pointer',
+          display: 'flex',
+          flexShrink: 0,
+          fontSize: theme.fontSize,
+          margin: 5,
+          opacity: isDragging ? 0.5 : 1,
+          padding: 5,
+        })}
       >
-        {prop}
-      </Flex>
+          {prop}
+      </div>
     )
   },
 })
