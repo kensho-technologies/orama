@@ -5,7 +5,7 @@
 - [CanvasRender](#CanvasRender)
 - [Chart](#Chart)
 - [ChartBackground](#ChartBackground)
-- [ChartInput](#ChartInput)
+- [CanvasInput](#CanvasInput)
 - [DataList](#DataList)
 - [DownloadImg](#DownloadImg)
 - [Histogram](#Histogram)
@@ -105,8 +105,8 @@ yTickCount | number | false |  |
 yType | string | false |  | 
 
 
-### ChartInput
-[src/components/ChartInput/index.js](../src/components/ChartInput/index.js)
+### CanvasInput
+[src/components/CanvasInput/index.js](../src/components/CanvasInput/index.js)
 
 Read and executes the inputs from Charts
 
@@ -150,7 +150,7 @@ This component have not been generalized yet.
 // Render Schema
 <Histogram/>
   <CanvasRender/>
-  <ChartInput/>
+  <CanvasInput/>
 </Histogram>
 ```
 

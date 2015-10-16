@@ -19,7 +19,7 @@ const styles = {
  * Read and executes the inputs from Charts
  */
 export default React.createClass({
-  displayName: 'ChartInput',
+  displayName: 'CanvasInput',
   propTypes: {
     renderData: PropTypes.array,
     size: PropTypes.object.isRequired,

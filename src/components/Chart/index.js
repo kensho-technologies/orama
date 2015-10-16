@@ -13,7 +13,7 @@ import {Block} from '../Display'
 import BottomLabel from '../BottomLabel'
 import CanvasRender from '../CanvasRender'
 import ChartBackground from '../ChartBackground'
-import ChartInput from '../ChartInput'
+import CanvasInput from '../CanvasInput'
 import LeftLabel from '../LeftLabel'
 
 /**
@@ -178,7 +178,7 @@ export default React.createClass({
             yMap={yMap}
             yScale={yScale}
           />
-          <ChartInput
+          <CanvasInput
             plotRect={plotRect}
             renderData={renderData}
             size={this.props.size}

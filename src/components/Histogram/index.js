@@ -7,7 +7,7 @@ import utils from '../../utils'
 
 import {Block} from '../Display'
 import CanvasRender from '../CanvasRender'
-import ChartInput from '../ChartInput'
+import CanvasInput from '../CanvasInput'
 
 /**
  * Renders a Histogram using the same logic as `Chart`.
@@ -16,7 +16,7 @@ import ChartInput from '../ChartInput'
  * // Render Schema
  * <Histogram/>
  *   <CanvasRender/>
- *   <ChartInput/>
+ *   <CanvasInput/>
  * </Histogram>
  */
 export default React.createClass({
@@ -95,7 +95,7 @@ export default React.createClass({
           size={this.props.size}
           styleVars={this.props.styleVars}
         />
-        <ChartInput
+        <CanvasInput
           plotRect={plotRect}
           renderData={renderData}
           size={this.props.size}

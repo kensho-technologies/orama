@@ -5,9 +5,9 @@ import assert from 'assert'
 import React from 'react'
 import shallowRender from '../../shallowRender'
 
-import ChartInput from './'
+import CanvasInput from './'
 
-test('ChartInput', () => {
-  const component = shallowRender(<ChartInput size={{width: 0, height: 0}}/>)
+test('CanvasInput', () => {
+  const component = shallowRender(<CanvasInput size={{width: 0, height: 0}}/>)
   assert.strictEqual(component.type, 'div')
 })
