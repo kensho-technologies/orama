@@ -4,44 +4,58 @@ import R from 'ramda'
 
 import utils from '../../utils'
 
+// import defaultTheme from '../defaultTheme'
+
+export const renderCanvas = (props, ctx) => {
+  const {
+    plotRect,
+    renderData = [],
+    size = {width: 100, height: 100},
+  } = props
+
+  ctx.fillStyle = 'hsl(0, 0%, 90%)'
+  utils.canvas.clearRect(ctx, size)
+  ctx.save()
+  if (plotRect) {
+    ctx.rect(plotRect.x - 20, plotRect.y - 20, plotRect.width + 40, plotRect.height + 40)
+    ctx.clip()
+  }
+  R.forEach(d => {
+    ctx.globalAlpha = d.alpha || 1
+    ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
+    ctx.strokeStyle = d.stroke || 'hsl(200,30%, 50%)'
+    ctx.fill(d.path2D)
+    if (d.type === 'line') {
+      ctx.stroke(d.path2D)
+      ctx.lineWidth = d.lineWidth || 2
+    }
+  }, renderData)
+  ctx.restore()
+}
+
 export default React.createClass({
   displayName: 'CanvasRender',
   propTypes: {
     plotRect: PropTypes.object,
     renderData: PropTypes.array,
-    size: PropTypes.object,
+    size: PropTypes.object.isRequired,
   },
   getDefaultProps() {
     return {
       renderData: [],
       size: {width: 0, height: 0},
+      // theme: {...defaultTheme},
     }
   },
   componentDidMount() {
-    this.renderCanvas()
+    this.handleUpdate()
   },
   componentDidUpdate() {
-    this.renderCanvas()
+    this.handleUpdate()
   },
-  renderCanvas() {
-    const {plotRect} = this.props
-    var ctx = this.refs.canvas.getContext('2d')
-    ctx.fillStyle = 'hsl(0, 0%, 90%)'
-    utils.canvas.clearRect(ctx, this.props.size)
-    ctx.save()
-    ctx.beginPath()
-    ctx.rect(plotRect.x - 20, plotRect.y - 20, plotRect.width + 40, plotRect.height + 40)
-    ctx.clip()
-    ctx.lineWidth = 2
-    R.forEach(d => {
-      ctx.globalAlpha = 0.85
-      ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
-      ctx.strokeStyle = d.stroke || 'hsl(200,30%, 50%)'
-      ctx.fill(d.path2D)
-      ctx.globalAlpha = 1
-      if (d.type === 'line') ctx.stroke(d.path2D)
-    }, this.props.renderData)
-    ctx.restore()
+  handleUpdate() {
+    const ctx = this.refs.canvas.getContext('2d')
+    renderCanvas(this.props, ctx)
   },
   render() {
     return (
