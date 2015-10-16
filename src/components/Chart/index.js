@@ -134,12 +134,12 @@ export default React.createClass({
         path2D,
         raw: pointD,
         type: 'area',
+        alpha: 0.85,
         x,
         y,
       }
     }, data)
     renderData.push(rlRenderData)
-
     return (
       <Block // component wrapper
         margin={10}
@@ -173,10 +173,6 @@ export default React.createClass({
             plotRect={plotRect}
             renderData={renderData}
             size={this.props.size}
-            xMap={xMap}
-            xScale={xScale}
-            yMap={yMap}
-            yScale={yScale}
           />
           <CanvasInput
             plotRect={plotRect}
