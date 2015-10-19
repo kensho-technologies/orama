@@ -14,7 +14,7 @@ $ npm start
 $ npm test
 # executes unit tests and lint files
 
-$ npm run test:cov
+$ npm run cov
 # generate coverage information from tests
 # open coverage report on the browser
 

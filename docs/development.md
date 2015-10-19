@@ -48,9 +48,9 @@ render() {
 
 ### Testing Components
 
-All components should be tested from the start, we test components using [React shallow renderer](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering). Test specs end with `-test.js` and are placed beside the component file.
+All components should be tested from the start, we test components using [React shallow renderer](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering). Test specs end with `.test.js` and are placed beside the component file.
 
-**Example-test.js**
+**Example.test.js**
 ```jsx
 import {it as test} from 'mocha'
 import assert from 'assert'
@@ -103,7 +103,7 @@ export default React.createClass({
 })
 ```
 
-**Example-test.js**
+**Example.test.js**
 ```jsx
 import {it as test} from 'mocha'
 import assert from 'assert'
@@ -195,7 +195,7 @@ export function marginInset(marginInput, rectInput) {
 
 ### Testing Utilities Modules
 
-**rectUtils-test.js**
+**rectUtils.test.js**
 ```jsx
 import {it as test} from 'mocha'
 import assert from 'assert'
