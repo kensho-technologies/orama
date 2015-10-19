@@ -26,6 +26,7 @@ export default React.createClass({
     margin: PropTypes.object,
     size: PropTypes.object,
     styleVars: PropTypes.object,
+    theme: PropTypes.object,
     xName: PropTypes.string,
     xProp: PropTypes.string,
     xType: PropTypes.string,
@@ -70,7 +71,7 @@ export default React.createClass({
       const x = xMap(pointD)
       const y = yMap(pointD)
       const path2D = utils.path()
-      path2D.rect(x, y, plotRect.width / 20 - 2, size.height - y)
+      path2D.rect(x, y, plotRect.width / 20 + 1, size.height - y)
       return {
         label: `${pointD.x}, ${pointD.y}`,
         tooltip: [],
@@ -93,12 +94,13 @@ export default React.createClass({
           plotRect={plotRect}
           renderData={renderData}
           size={this.props.size}
-          styleVars={this.props.styleVars}
+          theme={this.props.theme}
         />
         <CanvasInput
           plotRect={plotRect}
           renderData={renderData}
           size={this.props.size}
+          theme={this.props.theme}
         />
       </Block>
     )
