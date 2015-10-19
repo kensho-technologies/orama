@@ -21,12 +21,14 @@ const styles = {
 export default React.createClass({
   displayName: 'CanvasInput',
   propTypes: {
+    handleHover: PropTypes.func,
     renderData: PropTypes.array,
     size: PropTypes.object.isRequired,
     theme: PropTypes.object,
   },
   getDefaultProps() {
     return {
+      handleHover: () => undefined,
       renderData: [],
     }
   },
@@ -53,10 +55,11 @@ export default React.createClass({
     }
     const pathCheck = R.any(d => {
       if (ctx.isPointInPath(d.path2D, mouse.x, mouse.y)) {
-        this.setState({
-          hoverData: d,
-          mouse: {x: evt.clientX, y: evt.clientY},
-        })
+        this.props.handleHover(d, {x: evt.clientX, y: evt.clientY})
+        // this.setState({
+        //   hoverData: d,
+        //   mouse: {x: evt.clientX, y: evt.clientY},
+        // })
         return true
       }
     }, this.props.renderData)
@@ -64,17 +67,17 @@ export default React.createClass({
     ctx.lineWidth = 20
     const strokeCheck = R.any(d => {
       if (ctx.isPointInStroke(d.path2D, mouse.x, mouse.y)) {
-        this.setState({
-          hoverData: d,
-          mouse: {x: evt.clientX, y: evt.clientY},
-        })
+        this.props.handleHover(d, {x: evt.clientX, y: evt.clientY})
+        // this.setState({
+        //   hoverData: d,
+        //   mouse: {x: evt.clientX, y: evt.clientY},
+        // })
         return true
       }
     }, this.props.renderData)
     if (strokeCheck) return
-    if (this.state.hoverData) {
-      this.setState({hoverData: undefined})
-    }
+    this.props.handleHover()
+    // this.setState({hoverData: undefined})
   },
   onClick() {
     // if (this.state.hoverData) {
@@ -88,7 +91,8 @@ export default React.createClass({
   onDrag() {
   },
   onMouseLeave() {
-    this.setState({hoverData: undefined})
+    this.props.handleHover()
+    // this.setState({hoverData: undefined})
   },
   renderCanvas() {
     const {hoverData} = this.state

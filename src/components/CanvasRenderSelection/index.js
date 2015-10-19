@@ -13,16 +13,21 @@ import defaultTheme from '../defaultTheme'
 export const renderCanvas = (props, ctx) => {
   const {
     plotRect,
-    renderData = [],
+    renderSelectionData = [],
     size = {width: 100, height: 100},
   } = props
 
   utils.canvas.clearRect(ctx, size)
+  if (renderSelectionData.length === 0) return
   ctx.save()
   if (plotRect) {
     ctx.rect(plotRect.x - 20, plotRect.y - 20, plotRect.width + 40, plotRect.height + 40)
     ctx.clip()
   }
+  ctx.globalAlpha = 0.5
+  ctx.fillStyle = 'hsl(0, 0%, 97%)'
+  ctx.rect(plotRect.x - 20, plotRect.y - 20, plotRect.width + 40, plotRect.height + 40)
+  ctx.fill()
   R.forEach(d => {
     ctx.globalAlpha = d.alpha || 1
     if (d.type === 'line') {
@@ -33,7 +38,7 @@ export const renderCanvas = (props, ctx) => {
       ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
       ctx.fill(d.path2D)
     }
-  }, renderData)
+  }, renderSelectionData)
   ctx.restore()
 }
 
@@ -42,15 +47,15 @@ export const renderCanvas = (props, ctx) => {
  * The renderData follows a specific format.
  */
 export default React.createClass({
-  displayName: 'CanvasRender',
+  displayName: 'CanvasRenderSelection',
   propTypes: {
     plotRect: PropTypes.object,
-    renderData: PropTypes.array,
+    renderSelectionData: PropTypes.array,
     size: PropTypes.object.isRequired,
   },
   getDefaultProps() {
     return {
-      renderData: [],
+      renderSelectionData: [],
       size: {width: 0, height: 0},
       theme: {...defaultTheme},
     }

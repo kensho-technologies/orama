@@ -13,7 +13,7 @@ import defaultTheme from '../defaultTheme'
 export const renderCanvas = (props, ctx) => {
   const {
     plotRect,
-    renderData = [],
+    renderHoverData = [],
     size = {width: 100, height: 100},
   } = props
 
@@ -24,16 +24,10 @@ export const renderCanvas = (props, ctx) => {
     ctx.clip()
   }
   R.forEach(d => {
-    ctx.globalAlpha = d.alpha || 1
-    if (d.type === 'line') {
-      ctx.lineWidth = d.lineWidth || 2
-      ctx.strokeStyle = d.stroke || 'hsl(200,30%, 50%)'
-      ctx.stroke(d.path2D)
-    } else if (d.type === 'area') {
-      ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
-      ctx.fill(d.path2D)
-    }
-  }, renderData)
+    ctx.lineWidth = d.lineWidth || 2
+    ctx.strokeStyle = d.stroke || 'black'
+    ctx.stroke(d.path2D)
+  }, renderHoverData)
   ctx.restore()
 }
 
@@ -42,15 +36,15 @@ export const renderCanvas = (props, ctx) => {
  * The renderData follows a specific format.
  */
 export default React.createClass({
-  displayName: 'CanvasRender',
+  displayName: 'CanvasRenderHover',
   propTypes: {
     plotRect: PropTypes.object,
-    renderData: PropTypes.array,
+    renderHoverData: PropTypes.array,
     size: PropTypes.object.isRequired,
   },
   getDefaultProps() {
     return {
-      renderData: [],
+      renderHoverData: [],
       size: {width: 0, height: 0},
       theme: {...defaultTheme},
     }

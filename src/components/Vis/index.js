@@ -7,6 +7,8 @@ import ChartsGroupBar from '../ChartsGroupBar'
 import DataList from '../DataList'
 import MapData from '../MapData'
 
+import DevTest from '../DevTest'
+
 /**
  * Container component for the `DataList` and map data UI.
  */
@@ -60,6 +62,7 @@ export default React.createClass({
           yProp={this.state.yProp}
         />
         <ChartsGroupBar>
+          <DevTest/>
           <ChartsGroup
             colorProp={this.state.colorProp}
             data={this.props.data}
