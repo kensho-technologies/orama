@@ -51,8 +51,6 @@ export default React.createClass({
       x: evt.clientX - canvasRect.left,
       y: evt.clientY - canvasRect.top,
     }
-    utils.canvas.clearRect(ctx, this.props.size)
-    ctx.lineWidth = 20
     const pathCheck = R.any(d => {
       if (ctx.isPointInPath(d.path2D, mouse.x, mouse.y)) {
         this.setState({
@@ -63,6 +61,7 @@ export default React.createClass({
       }
     }, this.props.renderData)
     if (pathCheck) return
+    ctx.lineWidth = 20
     const strokeCheck = R.any(d => {
       if (ctx.isPointInStroke(d.path2D, mouse.x, mouse.y)) {
         this.setState({
@@ -72,7 +71,8 @@ export default React.createClass({
         return true
       }
     }, this.props.renderData)
-    if (!strokeCheck && this.state.hoverData) {
+    if (strokeCheck) return
+    if (this.state.hoverData) {
       this.setState({hoverData: undefined})
     }
   },

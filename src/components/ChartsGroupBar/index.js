@@ -9,7 +9,7 @@ import {Flex} from '../Display'
 export default React.createClass({
   displayName: 'ChartsGroupBar',
   propTypes: {
-    children: React.PropTypes.element,
+    children: React.PropTypes.any,
   },
   handleClick() {
     generateSrc(openImg, ReactDOM.findDOMNode(this.refs.test).children[0])
@@ -32,6 +32,7 @@ export default React.createClass({
         </Flex>
           <Flex
             flex={1}
+            flexDirection='column'
             overflow='scroll'
             ref='test'
           >

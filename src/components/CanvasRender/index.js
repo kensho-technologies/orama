@@ -1,11 +1,15 @@
 
 import React, {PropTypes} from 'react'
 import R from 'ramda'
+import shouldPureComponentUpdate from 'react-pure-render/function'
 
 import utils from '../../utils'
 
 // import defaultTheme from '../defaultTheme'
 
+/**
+ * Canvas rendering function
+ */
 export const renderCanvas = (props, ctx) => {
   const {
     plotRect,
@@ -22,17 +26,23 @@ export const renderCanvas = (props, ctx) => {
   }
   R.forEach(d => {
     ctx.globalAlpha = d.alpha || 1
-    ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
-    ctx.strokeStyle = d.stroke || 'hsl(200,30%, 50%)'
-    ctx.fill(d.path2D)
     if (d.type === 'line') {
+      ctx.lineWidth = d.lineWidth || 2
+      ctx.strokeStyle = d.stroke || 'hsl(200,30%, 50%)'
       ctx.stroke(d.path2D)
       ctx.lineWidth = d.lineWidth || 2
+    } else if (d.type === 'area') {
+      ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
+      ctx.fill(d.path2D)
     }
   }, renderData)
   ctx.restore()
 }
 
+/**
+ * Component create a Canvas and use the renderData dor drawing geometries on it.
+ * The renderData follows a specific format.
+ */
 export default React.createClass({
   displayName: 'CanvasRender',
   propTypes: {
@@ -50,6 +60,7 @@ export default React.createClass({
   componentDidMount() {
     this.handleUpdate()
   },
+  shouldComponentUpdate: shouldPureComponentUpdate,
   componentDidUpdate() {
     this.handleUpdate()
   },
