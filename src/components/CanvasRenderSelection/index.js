@@ -24,7 +24,7 @@ export const renderCanvas = (props, ctx) => {
     ctx.rect(plotRect.x - 20, plotRect.y - 20, plotRect.width + 40, plotRect.height + 40)
     ctx.clip()
   }
-  ctx.globalAlpha = 0.5
+  ctx.globalAlpha = 0.7
   ctx.fillStyle = 'hsl(0, 0%, 97%)'
   ctx.rect(plotRect.x - 20, plotRect.y - 20, plotRect.width + 40, plotRect.height + 40)
   ctx.fill()

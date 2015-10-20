@@ -2,9 +2,7 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 
-import utils from '../../utils'
-
-import Tooltip from '../Tooltip'
+import shouldPureComponentUpdate from 'react-pure-render/function'
 
 const styles = {
   canvas: {
@@ -16,116 +14,78 @@ const styles = {
 }
 
 /**
+ * Find on the render data the geom that intersect whith the mouse position.
+ */
+const findGeom = (data, evt, canvasNode, clbck) => {
+  const canvasRect = canvasNode.getBoundingClientRect()
+  const ctx = canvasNode.getContext('2d')
+  const mouse = {
+    x: evt.clientX - canvasRect.left,
+    y: evt.clientY - canvasRect.top,
+  }
+  const pathCheck = R.any(d => {
+    if (ctx.isPointInPath(d.path2D, mouse.x, mouse.y)) {
+      clbck(d, {x: evt.clientX, y: evt.clientY})
+      return true
+    }
+  }, data)
+  if (pathCheck) return
+  ctx.lineWidth = 20
+  const strokeCheck = R.any(d => {
+    if (ctx.isPointInStroke(d.path2D, mouse.x, mouse.y)) {
+      clbck(d, {x: evt.clientX, y: evt.clientY})
+      return true
+    }
+  }, data)
+  if (strokeCheck) return
+  clbck()
+}
+
+/**
  * Read and executes the inputs from Charts
  */
 export default React.createClass({
   displayName: 'CanvasInput',
   propTypes: {
-    handleHover: PropTypes.func,
+    onClick: PropTypes.func,
+    onHover: PropTypes.func,
     renderData: PropTypes.array,
     size: PropTypes.object.isRequired,
     theme: PropTypes.object,
   },
   getDefaultProps() {
     return {
-      handleHover: () => undefined,
+      onClick: () => undefined,
+      onHover: () => undefined,
       renderData: [],
     }
   },
   getInitialState() {
-    return {
-      tooltipShow: false,
-      tooltipTop: 0,
-      tooltipLeft: 0,
-    }
+    return {}
   },
-  componentDidMount() {
-    this.renderCanvas()
-  },
-  componentDidUpdate() {
-    this.renderCanvas()
-  },
-  onMouseMove(evt) {
+  shouldComponentUpdate: shouldPureComponentUpdate,
+  handleMouseMove(evt) {
     const canvasNode = this.refs.canvas
-    const canvasRect = canvasNode.getBoundingClientRect()
-    const ctx = canvasNode.getContext('2d')
-    const mouse = {
-      x: evt.clientX - canvasRect.left,
-      y: evt.clientY - canvasRect.top,
-    }
-    const pathCheck = R.any(d => {
-      if (ctx.isPointInPath(d.path2D, mouse.x, mouse.y)) {
-        this.props.handleHover(d, {x: evt.clientX, y: evt.clientY})
-        // this.setState({
-        //   hoverData: d,
-        //   mouse: {x: evt.clientX, y: evt.clientY},
-        // })
-        return true
-      }
-    }, this.props.renderData)
-    if (pathCheck) return
-    ctx.lineWidth = 20
-    const strokeCheck = R.any(d => {
-      if (ctx.isPointInStroke(d.path2D, mouse.x, mouse.y)) {
-        this.props.handleHover(d, {x: evt.clientX, y: evt.clientY})
-        // this.setState({
-        //   hoverData: d,
-        //   mouse: {x: evt.clientX, y: evt.clientY},
-        // })
-        return true
-      }
-    }, this.props.renderData)
-    if (strokeCheck) return
-    this.props.handleHover()
-    // this.setState({hoverData: undefined})
+    findGeom(this.props.renderData, evt, canvasNode, this.props.onHover)
   },
-  onClick() {
-    // if (this.state.hoverData) {
-    // }
+  handleClick(evt) {
+    const canvasNode = this.refs.canvas
+    findGeom(this.props.renderData, evt, canvasNode, this.props.onClick)
   },
-  onMouseDown(evt) {
-    evt.preventDefault()
-  },
-  onMouseUp() {
-  },
-  onDrag() {
-  },
-  onMouseLeave() {
-    this.props.handleHover()
-    // this.setState({hoverData: undefined})
-  },
-  renderCanvas() {
-    const {hoverData} = this.state
-    var ctx = this.refs.canvas.getContext('2d')
-    ctx.fillStyle = 'hsl(0, 50%, 20%)'
-    utils.canvas.clearRect(ctx, this.props.size)
-    ctx.lineWidth = 2
-    if (hoverData) {
-      ctx.strokeStyle = 'black'
-      ctx.stroke(hoverData.path2D)
-    }
+  handleMouseLeave() {
+    this.props.onHover()
   },
   render() {
     return (
-      <div>
-        <canvas
-          height={this.props.size.height}
-          onClick={this.onClick}
-          onDrag={this.onDrag}
-          onMouseDown={this.onMouseDown}
-          onMouseLeave={this.onMouseLeave}
-          onMouseMove={this.onMouseMove}
-          onMouseUp={this.onMouseUp}
-          ref='canvas'
-          style={styles.canvas}
-          width={this.props.size.width}
-        />
-        <Tooltip
-          hoverData={this.state.hoverData}
-          mouse={this.state.mouse}
-          theme={this.props.theme}
-        />
-      </div>
+      <canvas
+        height={this.props.size.height}
+        onClick={this.handleClick}
+        onMouseLeave={this.handleMouseLeave}
+        onMouseMove={this.handleMouseMove}
+        ref='canvas'
+        style={styles.canvas}
+        width={this.props.size.width}
+      />
     )
   },
 })

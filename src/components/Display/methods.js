@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 
+import shouldPureComponentUpdate from 'react-pure-render/function'
 import * as prefixers from './prefixers'
 
 /**
@@ -23,6 +24,7 @@ export function makeStyleComponentClass(display, displayName) {
       children: PropTypes.node,
       id: PropTypes.string,
     },
+    shouldComponentUpdate: shouldPureComponentUpdate,
     render() {
       const style = autoprefix({
         ...this.props,

@@ -9,5 +9,5 @@ import CanvasInput from './'
 
 test('CanvasInput', () => {
   const component = shallowRender(<CanvasInput size={{width: 0, height: 0}}/>)
-  assert.strictEqual(component.type, 'div')
+  assert.strictEqual(component.type, 'canvas')
 })
