@@ -1,4 +1,6 @@
-server.js
-lib
 **/node_modules
-**/webpack.config.js
+**/webpack.config.dev.js
+**/webpack.config.prod.js
+devServer.js
+dist
+lib

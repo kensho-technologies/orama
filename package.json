@@ -61,11 +61,15 @@
     "lodash": "3.10.1",
     "ramda": "0.18.0",
     "react": "0.14.0",
+    "react-addons-pure-render-mixin": "0.14.0",
     "react-dnd": "2.0.2",
     "react-dnd-html5-backend": "2.0.0",
     "react-dom": "0.14.0",
     "react-pure-render": "1.0.2",
     "simple-statistics": "1.0.0"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0"
   },
   "engines": {
     "node": ">=0.12.0"
