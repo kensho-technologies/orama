@@ -3,6 +3,7 @@ import React, {PropTypes} from 'react'
 import R from 'ramda'
 
 import {Block} from '../Display'
+import TextItem from '../TextItem'
 
 import defaultTheme from '../defaultTheme'
 
@@ -23,19 +24,11 @@ const TextRender = props => (
     width={props.size.width}
   >
     {mapIndexed((d, i) => (
-      <Block
-        background='hsla(0, 0%, 97%, 0.6)'
-        display='block'
+      <TextItem
+        {...d}
+        idx={i}
         key={i}
-        left={d.x}
-        padding={2}
-        pointerEvents='fill'
-        position='absolute'
-        textAlign={d.textAlign}
-        top={d.y}
-      >
-        {d.text}
-      </Block>
+      />
     ), props.renderTextData)}
   </Block>
 )
