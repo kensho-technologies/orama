@@ -19,6 +19,7 @@ export default React.createClass({
     renderData: PropTypes.array,
     renderHoverData: PropTypes.array,
     renderSelectedData: PropTypes.array,
+    renderTextData: PropTypes.array,
     size: PropTypes.object,
     textData: PropTypes.array,
     theme: PropTypes.object,
