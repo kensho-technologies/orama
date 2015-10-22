@@ -4,8 +4,8 @@
     "id-length": 0,
     "jsx-quotes": [2, "prefer-single"],
     "new-cap": 0,
-    "no-use-before-define": [2, "nofunc"],
     "no-unused-expressions": 2,
+    "no-use-before-define": [2, "nofunc"],
     "no-var": 0,
     "react/display-name": [0, {"acceptTranspilerName": true}],
     "react/jsx-closing-bracket-location": 2,
@@ -16,6 +16,7 @@
     "react/jsx-no-undef": 2,
     "react/jsx-sort-prop-types": 2,
     "react/jsx-sort-props": 1,
+    "react/prop-types": 1,
     "semi": [2, "never"],
     "vars-on-top": 0,
   }
