@@ -30,7 +30,7 @@ export default React.createClass({
     }
   },
   shouldComponentUpdate: shouldPureComponentUpdate,
-  handleHover(hoverData, mouse) {
+  handleCanvasInputHover(hoverData, mouse) {
     const renderHoverData = hoverData ? [hoverData] : undefined
     this.props.onUpdate({
       ...this.props,
@@ -38,7 +38,7 @@ export default React.createClass({
       mouse,
     })
   },
-  handleClick(selectedData, mouse) {
+  handleCanvasInputClick(selectedData, mouse) {
     const renderSelectedData = selectedData ? [selectedData] : undefined
     this.props.onUpdate({
       ...this.props,
@@ -72,11 +72,10 @@ export default React.createClass({
           theme={this.props.theme}
         />
         <CanvasInput
-          onClick={this.handleClick}
-          onHover={this.handleHover}
+          onClick={this.handleCanvasInputClick}
+          onHover={this.handleCanvasInputHover}
           renderData={this.props.renderData}
           size={this.props.size}
-          theme={this.props.theme}
         />
         <TextRender
           renderTextData={this.props.renderTextData}
