@@ -4,7 +4,7 @@ import assert from 'assert'
 import R from 'ramda'
 
 import React from 'react'
-import shallowRender from '../../shallowRender'
+import shallowRender from '@luiscarli/shallow-render'
 
 import ChartsGroup, {getChartElements} from './'
 

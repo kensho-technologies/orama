@@ -28,6 +28,7 @@
   "author": "Luis Carli",
   "license": "MIT",
   "devDependencies": {
+    "@luiscarli/shallow-render": "^1.0.0",
     "babel": "^5.8.23",
     "babel-core": "^5.8.25",
     "babel-eslint": "^4.1.3",
