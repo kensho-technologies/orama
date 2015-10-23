@@ -1,14 +1,36 @@
 
 import React from 'react'
 
-const stateHOC = (Child) => React.createClass({
+/**
+ * Funtion for wrapping 'stateless functional components' during development, allowing then to respond to onUpdate without changes to parent components.
+ *
+ * @example
+ * handleChangeData(props) => {
+ * 	props.onUpdate({
+ * 		...props,
+ * 		data: getNewData(),
+ * 	})
+ * }
+ *
+ * const StatelessFunctionalComponent = props => (
+ * 	<div onClick={handleChangeData.bind(null, props)}>
+ * 		{props.data}
+ * 	</div>
+ * )
+ *
+ * export default stateHOC(StatelessFunctionalComponent)
+ */
+const stateHOC = (Child, initialState = null) => React.createClass({
   displayName: `${Child.name}(state)`,
   propTypes: Child.propTypes,
   getDefaultProps() {
     return Child.defaultProps
   },
+  getInitialState() {
+    return initialState
+  },
   componentWillReceiveProps() {
-    this.setState({})
+    this.setState(initialState)
   },
   handleChildUpdate(childProps) {
     this.setState(childProps)
