@@ -7,6 +7,9 @@ const stateHOC = (Child) => React.createClass({
   getDefaultProps() {
     return Child.defaultProps
   },
+  componentWillReceiveProps() {
+    this.setState({})
+  },
   handleChildUpdate(childProps) {
     this.setState(childProps)
   },
