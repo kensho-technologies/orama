@@ -5,7 +5,7 @@ import React from 'react'
  * Funtion for wrapping 'stateless functional components' during development, allowing then to respond to onUpdate without changes to parent components.
  *
  * @example
- * handleChangeData(props) => {
+ * handleDataChange(props) => {
  * 	props.onUpdate({
  * 		...props,
  * 		data: getNewData(),
@@ -13,14 +13,14 @@ import React from 'react'
  * }
  *
  * const StatelessFunctionalComponent = props => (
- * 	<div onClick={handleChangeData.bind(null, props)}>
+ * 	<div onClick={handleDataChange.bind(null, props)}>
  * 		{props.data}
  * 	</div>
  * )
  *
  * export default stateHOC(StatelessFunctionalComponent)
  */
-const stateHOC = (Child, initialState = null) => React.createClass({
+const stateHOC = (Child, initialState = {}) => React.createClass({
   displayName: `${Child.name}(state)`,
   propTypes: Child.propTypes,
   getDefaultProps() {
