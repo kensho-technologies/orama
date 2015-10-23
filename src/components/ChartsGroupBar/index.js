@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 
 import {generateSrc, openImg} from '../../utils/imageRender'
 
-import {Flex} from '../Display'
+import {Flex} from '@luiscarli/display'
 
 export default React.createClass({
   displayName: 'ChartsGroupBar',

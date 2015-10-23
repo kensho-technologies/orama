@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 
-import {Block} from '../Display'
+import {Block} from '@luiscarli/display'
 import CanvasInput from '../CanvasInput2'
 import CanvasRender from '../CanvasRender'
 import CanvasRenderHover from '../CanvasRenderHover'

@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 
-import {Block} from '../Display'
+import {Block} from '@luiscarli/display'
 import TextItem from '../TextItem'
 
 import defaultTheme from '../defaultTheme'

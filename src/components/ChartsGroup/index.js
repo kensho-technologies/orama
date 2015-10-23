@@ -1,7 +1,7 @@
 import React from 'react'
 import R from 'ramda'
 
-import {Flex} from '../Display'
+import {Flex} from '@luiscarli/display'
 import Chart from '../Chart'
 
 import defaultTheme from '../defaultTheme'
