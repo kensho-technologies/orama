@@ -4,12 +4,14 @@ import React, {PropTypes} from 'react'
 const ContentEditable = React.createClass({
   displayName: 'ContentEditable',
   propTypes: {
+    acceptNewLine: PropTypes.bool,
     onUpdate: PropTypes.func,
     text: PropTypes.string,
     textEditable: PropTypes.bool,
   },
   getDefaultProps() {
     return {
+      acceptNewLine: false,
       onUpdate: () => undefined,
       textEditable: true,
     }
@@ -27,6 +29,13 @@ const ContentEditable = React.createClass({
       text: newText,
     })
   },
+  handleKeyDown(evt) {
+    if (evt.keyCode === 13) {
+      evt.preventDefault()
+      this.refs.block.blur()
+      window.getSelection().removeAllRanges()
+    }
+  },
   render() {
     const {props, handleInput} = this
     return (
@@ -35,8 +44,10 @@ const ContentEditable = React.createClass({
         dangerouslySetInnerHTML={{__html: props.text}}
         onBlur={handleInput}
         onInput={handleInput}
+        onKeyDown={this.handleKeyDown}
         ref='block'
         style={{
+          outline: 'none',
           cursor: 'text',
         }}
       />
