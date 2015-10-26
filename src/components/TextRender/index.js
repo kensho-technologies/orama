@@ -19,6 +19,7 @@ const TextRender = props => (
     fontSize={props.theme.fontSize}
     fontWeight='bold'
     height={props.size.height}
+    overflow='hidden'
     pointerEvents='none'
     position='absolute'
     width={props.size.width}
@@ -28,6 +29,7 @@ const TextRender = props => (
         {...d}
         idx={i}
         key={i}
+        size={props.size}
       />
     ), props.renderTextData)}
   </Block>
