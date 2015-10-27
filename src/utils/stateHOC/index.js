@@ -1,4 +1,4 @@
-/* eslint react/no-multi-comp:0 */
+/* eslint react/no-multi-comp:0 react/prop-types:0*/
 
 import React from 'react'
 
@@ -49,7 +49,8 @@ const stateHOC = (Child, initialState = {}) => {
         return Child({
           ...this.props,
           ...this.state,
-          onUpdate: this.handleChildUpdate,
+          onUpdate: this.props.onUpdate || this.handleChildUpdate,
+          onState: this.handleChildUpdate,
         })
       },
     })
@@ -74,7 +75,7 @@ const stateHOC = (Child, initialState = {}) => {
         <Child
           {...this.props}
           {...this.state}
-          onUpdate={this.handleChildUpdate}
+          onUpdate={this.props.onUpdate || this.handleChildUpdate}
         />
       )
     },
