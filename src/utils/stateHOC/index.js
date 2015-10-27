@@ -1,6 +1,7 @@
 /* eslint react/no-multi-comp:0 react/prop-types:0*/
 
 import React from 'react'
+import shouldPureComponentUpdate from 'react-pure-render/function'
 
 const isReferentiallyTransparentFunctionComponent = Component => (
   Component &&
@@ -42,6 +43,7 @@ const stateHOC = (Child, initialState = {}) => {
       componentWillReceiveProps() {
         this.setState(initialState)
       },
+      shouldComponentUpdate: shouldPureComponentUpdate,
       handleChildUpdate(childProps) {
         this.setState(childProps)
       },
@@ -67,6 +69,7 @@ const stateHOC = (Child, initialState = {}) => {
     componentWillReceiveProps() {
       this.setState(initialState)
     },
+    shouldComponentUpdate: shouldPureComponentUpdate,
     handleChildUpdate(childProps) {
       this.setState(childProps)
     },
