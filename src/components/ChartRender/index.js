@@ -1,5 +1,6 @@
 
 import React, {PropTypes} from 'react'
+import R from 'ramda'
 
 import {Block} from '@luiscarli/display'
 import CanvasInput from '../CanvasInput2'
@@ -9,80 +10,111 @@ import CanvasRenderSelection from '../CanvasRenderSelection'
 import TextRender from '../TextRender'
 
 import defaultTheme from '../defaultTheme'
-import shouldPureComponentUpdate from 'react-pure-render/function'
+import stateHOC from '../../utils/stateHOC'
+import utils from '../../utils'
 
-export default React.createClass({
-  displayName: 'ChartRender',
-  propTypes: {
-    onUpdate: PropTypes.func,
-    plotRect: PropTypes.object,
-    renderData: PropTypes.array,
-    renderHoverData: PropTypes.array,
-    renderSelectedData: PropTypes.array,
-    renderTextData: PropTypes.array,
-    size: PropTypes.object,
-    textData: PropTypes.array,
-    theme: PropTypes.object,
+const handleCanvasInputHover = (props, hoverData, mouse) => {
+  const renderHoverData = hoverData ? [hoverData] : undefined
+  props.onUpdate({
+    ...props,
+    renderHoverData,
+    mouse,
+  })
+}
+
+const handleCanvasInputClick = (props, selectedData, mouse) => {
+  const renderSelectedData = selectedData ? [selectedData] : undefined
+  props.onUpdate({
+    ...props,
+    renderSelectedData,
+    mouse,
+  })
+}
+
+const handleAnnotationClick = (props, selectedTextData) => {
+  props.onUpdate({
+    ...props,
+    renderSelectedData: [selectedTextData],
+  })
+}
+
+const ChartRender = (props) => (
+  <Block // canvas wrapper
+    height={props.size.height}
+    position={'relative'}
+    width={props.size.width}
+  >
+    <CanvasRender
+      plotRect={props.plotRect}
+      renderData={props.renderData}
+      size={props.size}
+      theme={props.theme}
+    />
+    <CanvasRenderSelection
+      plotRect={props.plotRect}
+      renderSelectionData={props.renderSelectedData}
+      size={props.size}
+      theme={props.theme}
+    />
+    <CanvasRenderHover
+      plotRect={props.plotRect}
+      renderHoverData={props.renderHoverData}
+      size={props.size}
+      theme={props.theme}
+    />
+    <CanvasInput
+      onClick={handleCanvasInputClick.bind(null, props)}
+      onHover={handleCanvasInputHover.bind(null, props)}
+      renderData={props.renderData}
+      size={props.size}
+    />
+    <TextRender
+      onClick={handleAnnotationClick.bind(null, props)}
+      renderTextData={props.renderTextData}
+      size={props.size}
+      theme={props.theme}
+    />
+  </Block>
+)
+
+ChartRender.propTypes = {
+  onUpdate: PropTypes.func,
+  plotRect: PropTypes.object,
+  renderData: PropTypes.array,
+  renderHoverData: PropTypes.array,
+  renderSelectedData: PropTypes.array,
+  renderTextData: PropTypes.array,
+  size: PropTypes.object,
+  textData: PropTypes.array,
+  theme: PropTypes.object,
+}
+
+ChartRender.defaultProps = {
+  theme: defaultTheme,
+}
+
+// defaultProps for test
+const renderData = R.map(() => {
+  const path2D = utils.path()
+  path2D.arc(Math.random() * 350 + 50, Math.random() * 350 + 50, 5, 0, 2 * Math.PI)
+  return {
+    type: 'area',
+    path2D,
+  }
+}, R.range(1, 2000))
+const renderTextData = [
+  {
+    text: 'ANNOTATION',
+    textAlign: 'left',
+    x: 200,
+    y: 200,
   },
-  getDefaultProps() {
-    return {
-      theme: {...defaultTheme},
-    }
-  },
-  shouldComponentUpdate: shouldPureComponentUpdate,
-  handleCanvasInputHover(hoverData, mouse) {
-    const renderHoverData = hoverData ? [hoverData] : undefined
-    this.props.onUpdate({
-      ...this.props,
-      renderHoverData,
-      mouse,
-    })
-  },
-  handleCanvasInputClick(selectedData, mouse) {
-    const renderSelectedData = selectedData ? [selectedData] : undefined
-    this.props.onUpdate({
-      ...this.props,
-      renderSelectedData,
-      mouse,
-    })
-  },
-  render() {
-    return (
-      <Block // canvas wrapper
-        height={this.props.size.height}
-        position={'relative'}
-        width={this.props.size.width}
-      >
-        <CanvasRender
-          plotRect={this.props.plotRect}
-          renderData={this.props.renderData}
-          size={this.props.size}
-          theme={this.props.theme}
-        />
-        <CanvasRenderSelection
-          plotRect={this.props.plotRect}
-          renderSelectionData={this.props.renderSelectedData}
-          size={this.props.size}
-          theme={this.props.theme}
-        />
-        <CanvasRenderHover
-          plotRect={this.props.plotRect}
-          renderHoverData={this.props.renderHoverData}
-          size={this.props.size}
-          theme={this.props.theme}
-        />
-        <CanvasInput
-          onClick={this.handleCanvasInputClick}
-          onHover={this.handleCanvasInputHover}
-          renderData={this.props.renderData}
-          size={this.props.size}
-        />
-        <TextRender
-          renderTextData={this.props.renderTextData}
-          size={this.props.size}
-          theme={this.props.theme}
-        />
-      </Block>
-    )
-  },
-})
+]
+const defaultProps = {
+  size: {width: 500, height: 500},
+  plotRect: {x: 50, y: 50, width: 400, height: 400},
+  renderData,
+  renderTextData,
+}
+
+export default stateHOC(ChartRender, defaultProps)

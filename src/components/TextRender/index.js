@@ -9,10 +9,6 @@ import defaultTheme from '../defaultTheme'
 
 const mapIndexed = R.addIndex(R.map)
 
-const handleTextItemClick = () => {
-  // console.log(childProps)
-}
-
 /**
  * Component to render text data.
  * This component is used inside of the ChartRender, and it's sibling with the CanvasRender, CanvasHoverRender and friends.
@@ -33,7 +29,7 @@ const TextRender = props => (
         {...d}
         idx={i}
         key={i}
-        onClick={handleTextItemClick.bind(null, props)}
+        onClick={props.onClick.bind(null, props, d)}
         size={props.size}
       />
     ), props.renderTextData)}
