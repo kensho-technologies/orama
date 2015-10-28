@@ -29,7 +29,7 @@ const TextRender = props => (
         {...d}
         idx={i}
         key={i}
-        onClick={props.onClick.bind(null, props, d)}
+        onClick={props.onClick.bind(null, d, i)}
         size={props.size}
       />
     ), props.renderTextData)}
