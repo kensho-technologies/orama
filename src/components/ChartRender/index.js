@@ -33,7 +33,7 @@ const handleCanvasInputClick = (props, selectedData, mouse) => {
   props.onUpdate('mouse', mouse)
 }
 
-const handleAnnotationClick = (props, selectedTextData) => {
+const handleRenderAnnotationUpdate = (props, selectedTextData) => {
   props.onUpdate('renderSelectedData', [selectedTextData])
 }
 
@@ -68,7 +68,8 @@ const ChartRender = props => (
       size={props.size}
     />
     <RenderAnnotation
-      onClick={handleAnnotationClick.bind(null, props)}
+      annotationSelectionIndex={props.annotationSelectionIndex}
+      onUpdate={handleRenderAnnotationUpdate.bind(null, props)}
       renderTextData={props.renderTextData}
       size={props.size}
       theme={props.theme}

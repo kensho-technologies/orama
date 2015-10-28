@@ -13,7 +13,7 @@ const handleMouseLeave = (props) => {
   props.onState('hover', false)
 }
 
-const TextItem = (props) => (
+const Annotation = (props) => (
   <Block
     background='hsla(0, 0%, 100%, 0.6)'
     border={props.hover ? '2px solid black' : '2px solid transparent'}
@@ -22,7 +22,7 @@ const TextItem = (props) => (
     display='block'
     left={props.x}
     maxWidth='200'
-    onClick={props.onClick.bind(null, props)}
+    // onClick={props.onClick.bind(null, props)}
     onMouseOut={handleMouseLeave.bind(null, props)}
     onMouseOver={handleMouseEnter.bind(null, props)}
     padding={2}
@@ -35,7 +35,7 @@ const TextItem = (props) => (
   </Block>
 )
 
-TextItem.propTypes = {
+Annotation.propTypes = {
   hover: PropTypes.bool,
   onClick: PropTypes.func,
   text: PropTypes.string,
@@ -44,4 +44,4 @@ TextItem.propTypes = {
   y: PropTypes.number,
 }
 
-export default stateHOC(TextItem, {hover: false})
+export default stateHOC(Annotation, {hover: false})

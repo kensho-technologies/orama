@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 import R from 'ramda'
 
 import {Block} from '@luiscarli/display'
-import TextItem from '../TextItem'
+import Annotation from '../Annotation'
 
 import defaultTheme from '../defaultTheme'
 
@@ -13,7 +13,7 @@ const mapIndexed = R.addIndex(R.map)
  * Component to render text data.
  * This component is used inside of the ChartRender, and it's sibling with the CanvasRender, CanvasHoverRender and friends.
  */
-const TextRender = props => (
+const RenderAnnotation = props => (
   <Block
     fontFamily={props.theme.font}
     fontSize={props.theme.fontSize}
@@ -25,26 +25,26 @@ const TextRender = props => (
     width={props.size.width}
   >
     {mapIndexed((d, i) => (
-      <TextItem
+      <Annotation
         {...d}
         idx={i}
         key={i}
-        onClick={props.onClick.bind(null, d, i)}
+        // onClick={props.onClick.bind(null, d, i)}
         size={props.size}
       />
     ), props.renderTextData)}
   </Block>
 )
 
-TextRender.propTypes = {
+RenderAnnotation.propTypes = {
   renderTextData: PropTypes.array,
   size: PropTypes.object,
   theme: PropTypes.object,
 }
 
-TextRender.defaultProps = {
+RenderAnnotation.defaultProps = {
   renderTextData: [],
   theme: defaultTheme,
 }
 
-export default TextRender
+export default RenderAnnotation
