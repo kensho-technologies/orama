@@ -44,8 +44,8 @@ const stateHOC = (Child, initialState = {}) => {
         this.setState(initialState)
       },
       shouldComponentUpdate: shouldPureComponentUpdate,
-      handleChildUpdate(childProps) {
-        this.setState(childProps)
+      handleChildUpdate(name, value) {
+        this.setState({[name]: value})
       },
       render() {
         return Child({
@@ -70,8 +70,8 @@ const stateHOC = (Child, initialState = {}) => {
       this.setState(initialState)
     },
     shouldComponentUpdate: shouldPureComponentUpdate,
-    handleChildUpdate(childProps) {
-      this.setState(childProps)
+    handleChildUpdate(name, value) {
+      this.setState({[name]: value})
     },
     render() {
       return (

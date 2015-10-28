@@ -8,25 +8,21 @@ import Draggable from '../Draggable'
 import defaultTheme from '../defaultTheme'
 import stateHOC from '../../utils/stateHOC'
 
-const handleContentEditableUpdate = (props, childProps) => {
-  props.onUpdate({
-    ...props,
-    text: childProps.text,
-  })
+const handleContentEditableUpdate = (props, name, value) => {
+  if (name !== 'text') return
+  props.onUpdate('text', value)
 }
 
 const handleDraggableChange = (props, delta) => {
   let x = props.x - delta.x
   if (x < 20) x = 20
   if (x > props.size.width) x = props.size.width
+  props.onUpdate('x', x)
+
   let y = props.y - delta.y
   if (y < 20) y = 20
   if (y > props.size.height) y = props.size.height
-  props.onUpdate({
-    ...props,
-    x,
-    y,
-  }, 'x', 'y')
+  props.onUpdate('y', y)
 }
 
 const TooltipTextItem = props => (

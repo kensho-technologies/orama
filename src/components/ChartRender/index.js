@@ -16,24 +16,18 @@ import utils from '../../utils'
 
 const handleCanvasInputHover = (props, hoverData, mouse) => {
   const renderHoverData = hoverData ? [hoverData] : undefined
-  props.onUpdate({
-    renderHoverData,
-    mouse,
-  })
+  props.onUpdate('renderHoverData', renderHoverData)
+  props.onUpdate('mouse', mouse)
 }
 
 const handleCanvasInputClick = (props, selectedData, mouse) => {
   const renderSelectedData = selectedData ? [selectedData] : undefined
-  props.onUpdate({
-    renderSelectedData,
-    mouse,
-  })
+  props.onUpdate('renderSelectedData', renderSelectedData)
+  props.onUpdate('mouse', mouse)
 }
 
 const handleAnnotationClick = (props, selectedTextData) => {
-  props.onUpdate({
-    renderSelectedData: [selectedTextData],
-  })
+  props.onUpdate('renderSelectedData', [selectedTextData])
 }
 
 const ChartRender = props => (
