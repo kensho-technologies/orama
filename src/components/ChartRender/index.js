@@ -8,11 +8,18 @@ import CanvasRender from '../CanvasRender'
 import CanvasRenderHover from '../CanvasRenderHover'
 import CanvasRenderHighlight from '../CanvasRenderHighlight'
 import RenderAnnotation from '../RenderAnnotation'
-import TooltipContainer from '../TooltipContainer'
+import AnnotationEditor from '../AnnotationEditor'
 
 import defaultTheme from '../defaultTheme'
 import stateHOC from '../../utils/stateHOC'
 import utils from '../../utils'
+
+const getAnnotationEditor = props => {
+  if (!props.annotationData) return undefined
+  return (
+    <AnnotationEditor/>
+  )
+}
 
 const handleCanvasInputHover = (props, hoverData, mouse) => {
   const renderHoverData = hoverData ? [hoverData] : undefined
@@ -66,9 +73,7 @@ const ChartRender = props => (
       size={props.size}
       theme={props.theme}
     />
-    <TooltipContainer
-      renderSelectedData={props.renderSelectedData}
-    />
+    {getAnnotationEditor(props)}
   </Block>
 )
 
@@ -89,7 +94,6 @@ ChartRender.defaultProps = {
 }
 
 // defaultProps for test
-import TooltipTextItem from '../TooltipTextItem'
 const renderData = R.map(() => {
   const path2D = utils.path()
   path2D.arc(Math.random() * 350 + 50, Math.random() * 350 + 50, 5, 0, 2 * Math.PI)
@@ -105,7 +109,6 @@ const renderTextData = [
     textAlign: 'left',
     x: 200,
     y: 200,
-    tooltipComponent: TooltipTextItem,
   },
 ]
 const defaultProps = {
