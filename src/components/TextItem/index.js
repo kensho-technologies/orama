@@ -6,15 +6,11 @@ import {Block} from '@luiscarli/display'
 import stateHOC from '../../utils/stateHOC'
 
 const handleMouseEnter = (props) => {
-  props.onState({
-    hover: true,
-  })
+  props.onState('hover', true)
 }
 
 const handleMouseLeave = (props) => {
-  props.onState({
-    hover: false,
-  })
+  props.onState('hover', false)
 }
 
 const TextItem = (props) => (
