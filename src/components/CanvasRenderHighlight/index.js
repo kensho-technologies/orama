@@ -47,7 +47,7 @@ export const renderCanvas = (props, ctx) => {
  * The renderData follows a specific format.
  */
 export default React.createClass({
-  displayName: 'CanvasRenderSelection',
+  displayName: 'CanvasRenderHighlight',
   propTypes: {
     plotRect: PropTypes.object,
     renderSelectionData: PropTypes.array,

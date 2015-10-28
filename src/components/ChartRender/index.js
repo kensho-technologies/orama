@@ -7,7 +7,7 @@ import CanvasInput from '../CanvasInput2'
 import CanvasRender from '../CanvasRender'
 import CanvasRenderHover from '../CanvasRenderHover'
 import CanvasRenderHighlight from '../CanvasRenderHighlight'
-import TextRender from '../TextRender'
+import RenderAnnotation from '../RenderAnnotation'
 import TooltipContainer from '../TooltipContainer'
 
 import defaultTheme from '../defaultTheme'
@@ -60,7 +60,7 @@ const ChartRender = props => (
       renderData={props.renderData}
       size={props.size}
     />
-    <TextRender
+    <RenderAnnotation
       onClick={handleAnnotationClick.bind(null, props)}
       renderTextData={props.renderTextData}
       size={props.size}

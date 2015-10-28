@@ -13,7 +13,7 @@ const mapIndexed = R.addIndex(R.map)
  * Component to render text data.
  * This component is used inside of the ChartRender, and it's sibling with the CanvasRender, CanvasHoverRender and friends.
  */
-const RenderAnnotation = props => (
+const TextRender = props => (
   <Block
     fontFamily={props.theme.font}
     fontSize={props.theme.fontSize}
@@ -36,15 +36,15 @@ const RenderAnnotation = props => (
   </Block>
 )
 
-RenderAnnotation.propTypes = {
+TextRender.propTypes = {
   renderTextData: PropTypes.array,
   size: PropTypes.object,
   theme: PropTypes.object,
 }
 
-RenderAnnotation.defaultProps = {
+TextRender.defaultProps = {
   renderTextData: [],
   theme: defaultTheme,
 }
 
-export default RenderAnnotation
+export default TextRender
