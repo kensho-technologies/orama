@@ -6,7 +6,7 @@ import {Block} from '@luiscarli/display'
 import CanvasInput from '../CanvasInput2'
 import CanvasRender from '../CanvasRender'
 import CanvasRenderHover from '../CanvasRenderHover'
-import CanvasRenderSelection from '../CanvasRenderSelection'
+import CanvasRenderHighlight from '../CanvasRenderHighlight'
 import TextRender from '../TextRender'
 import TooltipContainer from '../TooltipContainer'
 
@@ -42,9 +42,9 @@ const ChartRender = props => (
       size={props.size}
       theme={props.theme}
     />
-    <CanvasRenderSelection
+    <CanvasRenderHighlight
+      data={props.renderHighlightData}
       plotRect={props.plotRect}
-      renderSelectionData={props.renderSelectedData}
       size={props.size}
       theme={props.theme}
     />
@@ -76,8 +76,8 @@ ChartRender.propTypes = {
   onUpdate: PropTypes.func,
   plotRect: PropTypes.object,
   renderData: PropTypes.array,
+  renderHighlightData: PropTypes.array,
   renderHoverData: PropTypes.array,
-  renderSelectedData: PropTypes.array,
   renderTextData: PropTypes.array,
   size: PropTypes.object,
   textData: PropTypes.array,
