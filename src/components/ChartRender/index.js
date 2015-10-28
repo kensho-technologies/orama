@@ -8,6 +8,7 @@ import CanvasRender from '../CanvasRender'
 import CanvasRenderHover from '../CanvasRenderHover'
 import CanvasRenderSelection from '../CanvasRenderSelection'
 import TextRender from '../TextRender'
+import TooltipContainer from '../TooltipContainer'
 
 import defaultTheme from '../defaultTheme'
 import stateHOC from '../../utils/stateHOC'
@@ -16,7 +17,6 @@ import utils from '../../utils'
 const handleCanvasInputHover = (props, hoverData, mouse) => {
   const renderHoverData = hoverData ? [hoverData] : undefined
   props.onUpdate({
-    ...props,
     renderHoverData,
     mouse,
   })
@@ -25,7 +25,6 @@ const handleCanvasInputHover = (props, hoverData, mouse) => {
 const handleCanvasInputClick = (props, selectedData, mouse) => {
   const renderSelectedData = selectedData ? [selectedData] : undefined
   props.onUpdate({
-    ...props,
     renderSelectedData,
     mouse,
   })
@@ -33,12 +32,11 @@ const handleCanvasInputClick = (props, selectedData, mouse) => {
 
 const handleAnnotationClick = (props, selectedTextData) => {
   props.onUpdate({
-    ...props,
     renderSelectedData: [selectedTextData],
   })
 }
 
-const ChartRender = (props) => (
+const ChartRender = props => (
   <Block // canvas wrapper
     height={props.size.height}
     position={'relative'}
@@ -74,6 +72,9 @@ const ChartRender = (props) => (
       size={props.size}
       theme={props.theme}
     />
+    <TooltipContainer
+      renderSelectedData={props.renderSelectedData}
+    />
   </Block>
 )
 
@@ -94,6 +95,7 @@ ChartRender.defaultProps = {
 }
 
 // defaultProps for test
+import TooltipTextItem from '../TooltipTextItem'
 const renderData = R.map(() => {
   const path2D = utils.path()
   path2D.arc(Math.random() * 350 + 50, Math.random() * 350 + 50, 5, 0, 2 * Math.PI)
@@ -101,13 +103,15 @@ const renderData = R.map(() => {
     type: 'area',
     path2D,
   }
-}, R.range(1, 2000))
+}, R.range(1, 1000))
 const renderTextData = [
   {
+    type: 'text',
     text: 'ANNOTATION',
     textAlign: 'left',
     x: 200,
     y: 200,
+    tooltipComponent: TooltipTextItem,
   },
 ]
 const defaultProps = {
