@@ -5,6 +5,7 @@ import {Block} from '@luiscarli/display'
 import ContentEditable from '../ContentEditable'
 import Draggable from '../Draggable'
 
+import defaultTheme from '../defaultTheme'
 import stateHOC from '../../utils/stateHOC'
 
 const handleContentEditableUpdate = (props, childProps) => {
@@ -28,66 +29,67 @@ const handleDraggableChange = (props, delta) => {
   }, 'x', 'y')
 }
 
-const TextItem = React.createClass({
-  displayName: 'TextItem',
-  propTypes: {
-    onUpdate: PropTypes.func,
-    text: PropTypes.string,
-    x: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  },
-  defaultProps: {
-    onUpdate: () => undefined,
-  },
-  render() {
-    const {props} = this
-    return (
+const TooltipTextItem = props => (
+  <Block
+    background='hsla(0, 0%, 97%, 0.6)'
+    border='2px solid transparent'
+    display='block'
+    fontFamily={props.theme.font}
+    fontSize={props.theme.fontSize}
+    fontWeight='bold'
+    left={props.x}
+    maxWidth='200'
+    padding={2}
+    pointerEvents='fill'
+    position='absolute'
+    textAlign={props.textAlign}
+    top={props.y}
+  >
+    <Draggable
+      onChange={handleDraggableChange.bind(null, props)}
+    >
       <Block
-        background='hsla(0, 0%, 97%, 0.6)'
-        display='block'
-        left={props.x}
-        maxWidth='200'
-        padding={2}
-        pointerEvents='fill'
+        background='hsla(0, 0%, 85%, 0.9)'
+        cursor='pointer'
+        left='-20'
+        padding={4}
         position='absolute'
-        textAlign={props.textAlign}
-        top={props.y}
+        top='-20'
       >
-        <Draggable
-          onChange={handleDraggableChange.bind(null, props)}
-        >
-          <Block
-            background='hsla(0, 0%, 85%, 0.9)'
-            cursor='pointer'
-            left='-20'
-            padding={4}
-            position='absolute'
-            top='-20'
-          >
-            x
-          </Block>
-        </Draggable>
-        <ContentEditable
-          onUpdate={handleContentEditableUpdate.bind(null, props)}
-          text={props.text}
-        />
-        <Draggable
-          onChange={handleDraggableChange.bind(null, props)}
-        >
-          <Block
-            background='hsla(0, 0%, 85%, 0.9)'
-            cursor='pointer'
-            padding={4}
-            position='absolute'
-            right='-20'
-            top='-20'
-          >
-            ↔
-          </Block>
-        </Draggable>
+        x
       </Block>
-    )
-  },
-})
+    </Draggable>
+    <ContentEditable
+      onUpdate={handleContentEditableUpdate.bind(null, props)}
+      text={props.text}
+    />
+    <Draggable
+      onChange={handleDraggableChange.bind(null, props)}
+    >
+      <Block
+        background='hsla(0, 0%, 85%, 0.9)'
+        cursor='pointer'
+        padding={4}
+        position='absolute'
+        right='-20'
+        top='-20'
+      >
+        ↔
+      </Block>
+    </Draggable>
+  </Block>
+)
 
-export default stateHOC(TextItem)
+TooltipTextItem.propTypes = {
+  onUpdate: PropTypes.func,
+  text: PropTypes.string,
+  x: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+}
+
+TooltipTextItem.defaultProps = {
+  size: {width: 500, height: 500},
+  theme: defaultTheme,
+}
+
+export default stateHOC(TooltipTextItem)
