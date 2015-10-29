@@ -15,7 +15,7 @@ import React, {PropTypes} from 'react'
  */
 
 const If = props => {
-  if (!props.condition) return <span style={{display: 'none'}}/>
+  if (!props.condition) return <noscript/>
   if (React.Children.count(props.children) === 1) {
     return React.Children.only(props.children)
   }
