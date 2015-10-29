@@ -6,17 +6,17 @@ import {Block} from '@luiscarli/display'
 import stateHOC from '../../utils/stateHOC'
 
 const handleMouseEnter = (props) => {
-  props.onState('hover', true)
+  props.onState('hoverState', true)
 }
 
 const handleMouseLeave = (props) => {
-  props.onState('hover', false)
+  props.onState('hoverState', false)
 }
 
 const Annotation = (props) => (
   <Block
     background='hsla(0, 0%, 100%, 0.6)'
-    border={props.hover ? '2px solid black' : '2px solid transparent'}
+    border={props.hoverState ? '2px solid black' : '2px solid transparent'}
     boxSizing='border-box'
     cursor='pointer'
     display='block'
@@ -36,7 +36,7 @@ const Annotation = (props) => (
 )
 
 Annotation.propTypes = {
-  hover: PropTypes.bool,
+  hoverState: PropTypes.bool,
   onClick: PropTypes.func,
   text: PropTypes.string,
   textAlign: PropTypes.string,
@@ -44,4 +44,4 @@ Annotation.propTypes = {
   y: PropTypes.number,
 }
 
-export default stateHOC(Annotation, {hover: false})
+export default stateHOC(Annotation, {hoverState: false})
