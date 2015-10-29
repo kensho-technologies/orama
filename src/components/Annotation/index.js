@@ -5,26 +5,21 @@ import {Block} from '@luiscarli/display'
 
 import stateHOC from '../../utils/stateHOC'
 
-const handleMouseEnter = (props) => {
-  props.onState('hoverState', true)
-}
-
-const handleMouseLeave = (props) => {
-  props.onState('hoverState', false)
-}
-
-const Annotation = (props) => (
+/*
+Used inside <RenderAnnotation/>
+*/
+const Annotation = props => (
   <Block
     background='hsla(0, 0%, 100%, 0.6)'
-    border={props.hoverState ? '2px solid black' : '2px solid transparent'}
+    border={props.stateHover ? '2px solid black' : '2px solid transparent'}
     boxSizing='border-box'
     cursor='pointer'
     display='block'
     left={props.x}
     maxWidth='200'
-    // onClick={props.onClick.bind(null, props)}
-    onMouseOut={handleMouseLeave.bind(null, props)}
-    onMouseOver={handleMouseEnter.bind(null, props)}
+    onClick={() => props.onUpdate('updateClicked', true)}
+    onMouseOut={() => props.onState('stateHover', false)}
+    onMouseOver={() => props.onState('stateHover', true)}
     padding={2}
     pointerEvents='fill'
     position='absolute'
@@ -36,12 +31,11 @@ const Annotation = (props) => (
 )
 
 Annotation.propTypes = {
-  hoverState: PropTypes.bool,
-  onClick: PropTypes.func,
+  stateHover: PropTypes.bool,
   text: PropTypes.string,
   textAlign: PropTypes.string,
   x: PropTypes.number,
   y: PropTypes.number,
 }
 
-export default stateHOC(Annotation, {hoverState: false})
+export default stateHOC(Annotation, {stateHover: false})

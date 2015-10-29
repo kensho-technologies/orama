@@ -27,8 +27,9 @@ const handleCanvasInputClick = (props, selectedData, mouse) => {
   props.onUpdate('mouse', mouse)
 }
 
-const handleRenderAnnotationUpdate = (props, selectedTextData) => {
-  props.onUpdate('renderSelectedData', [selectedTextData])
+const handleRenderAnnotationUpdate = (props, name, value) => {
+  if (name !== 'updateClickedIdx') return
+  props.onUpdate('annotationSelectedIdx', value)
 }
 
 const ChartRender = props => (
@@ -62,14 +63,17 @@ const ChartRender = props => (
       size={props.size}
     />
     <RenderAnnotation
-      annotationSelectionIndex={props.annotationSelectionIndex}
+      annotationData={props.renderTextData}
       onUpdate={handleRenderAnnotationUpdate.bind(null, props)}
-      renderTextData={props.renderTextData}
       size={props.size}
       theme={props.theme}
+      updateClickedIdx={undefined}
     />
     <If condition={props.annotationData}>
-      <AnnotationEditor/>
+      <AnnotationEditor
+        annotationData={props.annotationData}
+        selectedIdx={props.annotationSelectedIdx}
+      />
     </If>
   </Block>
 )

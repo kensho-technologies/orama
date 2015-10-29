@@ -6,13 +6,15 @@ import {Block} from '@luiscarli/display'
 import Annotation from '../Annotation'
 
 import defaultTheme from '../defaultTheme'
-
 const mapIndexed = R.addIndex(R.map)
 
-/**
- * Component to render text data.
- * This component is used inside of the ChartRender, and it's sibling with the CanvasRender, CanvasHoverRender and friends.
- */
+const handleAnnotationUpdate = (props, annotationIdx) => {
+  props.onUpdate('updateClickedIdx', annotationIdx)
+}
+
+/*
+  Used inside <ChartRender/>
+*/
 const RenderAnnotation = props => (
   <Block
     fontFamily={props.theme.font}
@@ -26,24 +28,27 @@ const RenderAnnotation = props => (
   >
     {mapIndexed((d, i) => (
       <Annotation
-        {...d}
-        idx={i}
         key={i}
-        // onClick={props.onClick.bind(null, d, i)}
-        size={props.size}
+        onUpdate={handleAnnotationUpdate.bind(null, props, i)}
+        text={d.text}
+        textAlign={d.textAlign}
+        updateClicked={undefined}
+        x={d.x}
+        y={d.y}
       />
-    ), props.renderTextData)}
+    ), props.annotationData)}
   </Block>
 )
 
 RenderAnnotation.propTypes = {
-  renderTextData: PropTypes.array,
-  size: PropTypes.object,
+  annotationData: PropTypes.array,
+  size: PropTypes.object.isRequired,
   theme: PropTypes.object,
+  updateClickedIdx: PropTypes.number,
 }
 
 RenderAnnotation.defaultProps = {
-  renderTextData: [],
+  annotationData: [],
   theme: defaultTheme,
 }
 
