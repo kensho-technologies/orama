@@ -27,8 +27,8 @@ const handleDraggableChange = (props, delta) => {
 
 const AnnotationEditor = props => (
   <Block
-    background='hsla(0, 0%, 97%, 0.6)'
-    border='2px solid transparent'
+    background='hsla(0, 0%, 100%, 1)'
+    border='2px solid black'
     display='block'
     fontFamily={props.theme.font}
     fontSize={props.theme.fontSize}
@@ -45,15 +45,15 @@ const AnnotationEditor = props => (
       onChange={handleDraggableChange.bind(null, props)}
     >
       <Block
-        background='hsla(0, 0%, 85%, 0.9)'
+        background='steelblue'
+        border='2px solid black'
+        borderRadius={100}
         cursor='pointer'
-        left='-20'
-        padding={4}
+        left='-19'
+        padding={6}
         position='absolute'
-        top='-20'
-      >
-        x
-      </Block>
+        top='-19'
+      />
     </Draggable>
     <ContentEditable
       onUpdate={handleContentEditableUpdate.bind(null, props)}
@@ -63,15 +63,15 @@ const AnnotationEditor = props => (
       onChange={handleDraggableChange.bind(null, props)}
     >
       <Block
-        background='hsla(0, 0%, 85%, 0.9)'
+        background='steelblue'
+        border='2px solid black'
+        borderRadius={100}
+        bottom='-19'
         cursor='pointer'
-        padding={4}
+        padding={6}
         position='absolute'
-        right='-20'
-        top='-20'
-      >
-        ↔
-      </Block>
+        right='-19'
+      />
     </Draggable>
   </Block>
 )
