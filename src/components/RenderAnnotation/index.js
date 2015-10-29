@@ -13,7 +13,8 @@ const handleAnnotationUpdate = (props, annotationIdx) => {
 }
 
 /*
-  Used inside <ChartRender/>
+Used inside <ChartRender/>
+can update: 'updateClickedIdx'
 */
 const RenderAnnotation = props => (
   <Block

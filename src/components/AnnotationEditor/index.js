@@ -25,7 +25,7 @@ const handleDraggableChange = (props, delta) => {
   props.onUpdate('y', y)
 }
 
-const TooltipTextItem = props => (
+const AnnotationEditor = props => (
   <Block
     background='hsla(0, 0%, 97%, 0.6)'
     border='2px solid transparent'
@@ -76,16 +76,16 @@ const TooltipTextItem = props => (
   </Block>
 )
 
-TooltipTextItem.propTypes = {
+AnnotationEditor.propTypes = {
   onUpdate: PropTypes.func,
   text: PropTypes.string,
   x: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
-TooltipTextItem.defaultProps = {
+AnnotationEditor.defaultProps = {
   size: {width: 500, height: 500},
   theme: defaultTheme,
 }
 
-export default stateHOC(TooltipTextItem)
+export default stateHOC(AnnotationEditor)

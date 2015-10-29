@@ -7,6 +7,7 @@ import stateHOC from '../../utils/stateHOC'
 
 /*
 Used inside <RenderAnnotation/>
+can update: updateClicked
 */
 const Annotation = props => (
   <Block
@@ -34,6 +35,7 @@ Annotation.propTypes = {
   stateHover: PropTypes.bool,
   text: PropTypes.string,
   textAlign: PropTypes.string,
+  updateClicked: PropTypes.bool,
   x: PropTypes.number,
   y: PropTypes.number,
 }

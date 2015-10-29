@@ -8,8 +8,7 @@ import CanvasRender from '../CanvasRender'
 import CanvasRenderHover from '../CanvasRenderHover'
 import CanvasRenderHighlight from '../CanvasRenderHighlight'
 import RenderAnnotation from '../RenderAnnotation'
-import AnnotationEditor from '../AnnotationEditor'
-import If from '../If'
+import AnnotationEditorWrapper from '../AnnotationEditorWrapper'
 
 import defaultTheme from '../defaultTheme'
 import stateHOC from '../../utils/stateHOC'
@@ -63,34 +62,33 @@ const ChartRender = props => (
       size={props.size}
     />
     <RenderAnnotation
-      annotationData={props.renderTextData}
+      annotationData={props.annotationData}
       onUpdate={handleRenderAnnotationUpdate.bind(null, props)}
       size={props.size}
       theme={props.theme}
       updateClickedIdx={undefined}
     />
-    <If condition={props.annotationData}>
-      <AnnotationEditor
-        annotationData={props.annotationData}
-        selectedIdx={props.annotationSelectedIdx}
-      />
-    </If>
+    <AnnotationEditorWrapper
+      annotationData={props.annotationData}
+      selectedIdx={props.annotationSelectedIdx}
+    />
   </Block>
 )
 
 ChartRender.propTypes = {
+  annotationData: PropTypes.array,
   onUpdate: PropTypes.func,
   plotRect: PropTypes.object,
   renderData: PropTypes.array,
   renderHighlightData: PropTypes.array,
   renderHoverData: PropTypes.array,
-  renderTextData: PropTypes.array,
   size: PropTypes.object,
   textData: PropTypes.array,
   theme: PropTypes.object,
 }
 
 ChartRender.defaultProps = {
+  annotationData: [],
   theme: defaultTheme,
 }
 
@@ -103,7 +101,7 @@ const renderData = R.map(() => {
     path2D,
   }
 }, R.range(1, 1000))
-const renderTextData = [
+const annotationData = [
   {
     type: 'text',
     text: 'ANNOTATION',
@@ -116,7 +114,7 @@ const defaultProps = {
   size: {width: 500, height: 500},
   plotRect: {x: 50, y: 50, width: 400, height: 400},
   renderData,
-  renderTextData,
+  annotationData,
 }
 
 export default stateHOC(ChartRender, defaultProps)
