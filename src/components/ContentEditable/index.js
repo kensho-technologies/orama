@@ -33,6 +33,9 @@ const ContentEditable = React.createClass({
       window.getSelection().removeAllRanges()
     }
   },
+  handleMouseDown(evt) {
+    evt.stopPropagation()
+  },
   render() {
     const {props, handleInput} = this
     return (
@@ -42,6 +45,7 @@ const ContentEditable = React.createClass({
         onBlur={handleInput}
         onInput={handleInput}
         onKeyDown={this.handleKeyDown}
+        onMouseDown={this.handleMouseDown}
         ref='block'
         style={{
           outline: 'none',
