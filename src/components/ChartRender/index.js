@@ -31,6 +31,18 @@ const handleRenderAnnotationUpdate = (props, name, value) => {
   props.onUpdate('annotationSelectedIdx', value)
 }
 
+const handleAnnotationEditorWrapperUpdate = (props, name, value) => {
+  switch (name) {
+  case 'selectedIdx':
+    props.onUpdate('annotationSelectedIdx', value)
+    break
+  case 'annotationData':
+    props.onUpdate('annotationData', value)
+    break
+  default:
+  }
+}
+
 const ChartRender = props => (
   <Block // canvas wrapper
     height={props.size.height}
@@ -70,7 +82,9 @@ const ChartRender = props => (
     />
     <AnnotationEditorWrapper
       annotationData={props.annotationData}
+      onUpdate={handleAnnotationEditorWrapperUpdate.bind(null, props)}
       selectedIdx={props.annotationSelectedIdx}
+      size={props.size}
     />
   </Block>
 )
