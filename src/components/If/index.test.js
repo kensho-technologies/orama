@@ -12,5 +12,5 @@ test('If', () => {
   assert.deepEqual(component.type, 'div')
 
   const component2 = shallowRender(<If condition={false}/>)
-  assert.deepEqual(component2, null)
+  assert.deepEqual(component2.type, 'span')
 })

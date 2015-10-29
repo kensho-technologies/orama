@@ -9,17 +9,11 @@ import CanvasRenderHover from '../CanvasRenderHover'
 import CanvasRenderHighlight from '../CanvasRenderHighlight'
 import RenderAnnotation from '../RenderAnnotation'
 import AnnotationEditor from '../AnnotationEditor'
+import If from '../If'
 
 import defaultTheme from '../defaultTheme'
 import stateHOC from '../../utils/stateHOC'
 import utils from '../../utils'
-
-const getAnnotationEditor = props => {
-  if (!props.annotationData) return undefined
-  return (
-    <AnnotationEditor/>
-  )
-}
 
 const handleCanvasInputHover = (props, hoverData, mouse) => {
   const renderHoverData = hoverData ? [hoverData] : undefined
@@ -74,7 +68,9 @@ const ChartRender = props => (
       size={props.size}
       theme={props.theme}
     />
-    {getAnnotationEditor(props)}
+    <If condition={props.annotationData}>
+      <AnnotationEditor/>
+    </If>
   </Block>
 )
 

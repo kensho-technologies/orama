@@ -13,22 +13,25 @@ import React, {PropTypes} from 'react'
  *   <Component/>
  * </If>
  */
-export default React.createClass({
-  displayName: 'If',
-  propTypes: {
-    children: PropTypes.element,
-    condition: PropTypes.any,
-  },
-  getDefaultProps() {
-    return {
-    }
-  },
-  render() {
-    if (!this.props.condition) return null
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    )
-  },
-})
+
+const If = props => {
+  if (!props.condition) return <span style={{display: 'none'}}/>
+  if (React.Children.count(props.children) === 1) {
+    return React.Children.only(props.children)
+  }
+  return (
+    <div>
+      {props.children}
+    </div>
+  )
+}
+
+If.propTypes = {
+  children: PropTypes.element,
+  condition: PropTypes.any,
+}
+
+If.defaultProps = {
+}
+
+export default If
