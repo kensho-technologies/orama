@@ -2,13 +2,7 @@
 
 import React from 'react'
 import shouldPureComponentUpdate from 'react-pure-render/function'
-
-const isReferentiallyTransparentFunctionComponent = Component => (
-  Component &&
-  typeof Component !== 'string' &&
-  !(Component.prototype && Component.prototype.render) &&
-  !Component.contextTypes
-)
+import isStatelessComponentFunction from '../isStatelessComponentFunction'
 
 /**
  * Funtion for wrapping 'stateless functional components' during development, allowing then to respond to onUpdate without changes to parent components.
@@ -30,7 +24,7 @@ const isReferentiallyTransparentFunctionComponent = Component => (
  * export default stateHOC(StatelessFunctionalComponent)
  */
 const stateHOC = (Child, initialState = {}) => {
-  if (isReferentiallyTransparentFunctionComponent(Child)) {
+  if (isStatelessComponentFunction(Child)) {
     return React.createClass({
       displayName: `${Child.name}(state)`,
       propTypes: Child.propTypes,
