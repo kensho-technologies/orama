@@ -1,6 +1,6 @@
 
 import React, {PropTypes} from 'react'
-import R from 'ramda'
+import _ from 'lodash'
 
 import shouldPureComponentUpdate from 'react-pure-render/function'
 
@@ -16,47 +16,53 @@ const styles = {
 /**
  * Find on the render data the geom that intersect whith the mouse position.
  */
-const findGeom = (data, evt, canvasNode, clbck) => {
+const getDataUnderMouse = (props, canvasNode, evt) => {
   const canvasRect = canvasNode.getBoundingClientRect()
   const ctx = canvasNode.getContext('2d')
   const mouse = {
     x: evt.clientX - canvasRect.left,
     y: evt.clientY - canvasRect.top,
   }
-  const pathCheck = R.any(d => {
-    if (ctx.isPointInPath(d.path2D, mouse.x, mouse.y)) {
-      clbck(d, {x: evt.clientX, y: evt.clientY})
-      return true
+  const inPathData = _.find(props.renderData, d => ctx.isPointInPath(d.path2D, mouse.x, mouse.y))
+  if (inPathData) {
+    return {
+      data: inPathData,
+      mouse: {x: evt.clientX, y: evt.clientY},
     }
-  }, data)
-  if (pathCheck) return
+  }
   ctx.lineWidth = 20
-  const strokeCheck = R.any(d => {
-    if (ctx.isPointInStroke(d.path2D, mouse.x, mouse.y)) {
-      clbck(d, {x: evt.clientX, y: evt.clientY})
-      return true
+  const inStrokeData = _.find(props.renderData, d => ctx.isPointInStroke(d.path2D, mouse.x, mouse.y))
+  if (inStrokeData) {
+    return {
+      data: inStrokeData,
+      mouse: {x: evt.clientX, y: evt.clientY},
     }
-  }, data)
-  if (strokeCheck) return
-  clbck()
+  }
+  return {
+    data: undefined,
+    mouse: undefined,
+  }
 }
 
-/**
- * Read and executes the inputs from Charts
- */
+/*
+Usually used inside of <ChartRender/>
+Get hovered and clicked data on renderData using a <canvas/> element
+*/
 export default React.createClass({
   displayName: 'CanvasInput',
   propTypes: {
-    onClick: PropTypes.func,
-    onHover: PropTypes.func,
+    onUpdate: PropTypes.func.isRequired,
     renderData: PropTypes.array,
     size: PropTypes.object.isRequired,
     theme: PropTypes.object,
   },
+  updateOnlyTypes: {
+    dataClicked: PropTypes.object,
+    dataHovered: PropTypes.object,
+  },
+  canUpdate: ['dataClicked', 'dataHovered'],
   getDefaultProps() {
     return {
-      onClick: () => undefined,
-      onHover: () => undefined,
       renderData: [],
     }
   },
@@ -66,14 +72,16 @@ export default React.createClass({
   shouldComponentUpdate: shouldPureComponentUpdate,
   handleMouseMove(evt) {
     const canvasNode = this.refs.canvas
-    findGeom(this.props.renderData, evt, canvasNode, this.props.onHover)
+    const {data} = getDataUnderMouse(this.props, canvasNode, evt)
+    this.props.onUpdate({dataHovered: data})
   },
   handleClick(evt) {
     const canvasNode = this.refs.canvas
-    findGeom(this.props.renderData, evt, canvasNode, this.props.onClick)
+    const {data} = getDataUnderMouse(this.props, canvasNode, evt)
+    this.props.onUpdate({dataClicked: data})
   },
   handleMouseLeave() {
-    this.props.onHover()
+    this.props.onUpdate({dataHovered: undefined})
   },
   render() {
     return (
