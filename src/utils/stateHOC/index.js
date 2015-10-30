@@ -10,7 +10,6 @@ import isStatelessComponentFunction from '../isStatelessComponentFunction'
  * @example
  * handleDataChange(props) => {
  * 	props.onUpdate({
- * 		...props,
  * 		data: getNewData(),
  * 	})
  * }
@@ -38,8 +37,8 @@ const stateHOC = (Child, initialState = {}) => {
         this.setState(initialState)
       },
       shouldComponentUpdate: shouldPureComponentUpdate,
-      handleChildUpdate(name, value) {
-        this.setState({[name]: value})
+      handleChildUpdate(childProps) {
+        this.setState(childProps)
       },
       render() {
         return Child({
@@ -64,8 +63,8 @@ const stateHOC = (Child, initialState = {}) => {
       this.setState(initialState)
     },
     shouldComponentUpdate: shouldPureComponentUpdate,
-    handleChildUpdate(name, value) {
-      this.setState({[name]: value})
+    handleChildUpdate(childProps) {
+      this.setState(childProps)
     },
     render() {
       return (

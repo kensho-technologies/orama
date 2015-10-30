@@ -9,7 +9,7 @@ import defaultTheme from '../defaultTheme'
 const mapIndexed = R.addIndex(R.map)
 
 const handleAnnotationUpdate = (props, annotationIdx) => {
-  props.onUpdate('updateClickedIdx', annotationIdx)
+  props.onUpdate({updateClickedIdx: annotationIdx})
 }
 
 /*
@@ -33,7 +33,6 @@ const RenderAnnotation = props => (
         onUpdate={handleAnnotationUpdate.bind(null, props, i)}
         text={d.text}
         textAlign={d.textAlign}
-        updateClicked={undefined}
         x={d.x}
         y={d.y}
       />

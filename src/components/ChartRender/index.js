@@ -15,30 +15,17 @@ import stateHOC from '../../utils/stateHOC'
 import utils from '../../utils'
 
 const handleCanvasInput2Update = (props, childProps) => {
-  if (childProps.dataClicked) props.onUpdate('dataClicked', childProps.dataClicked)
-  if (childProps.dataHovered) props.onUpdate('dataHovered', childProps.dataHovered)
+  if (childProps.dataClicked) props.onUpdate({dataClicked: childProps.dataClicked})
+  props.onUpdate({dataHovered: childProps.dataHovered})
 }
 
-const handleCanvasInputHover = (props, hoverData, mouse) => {
-  const renderHoverData = hoverData ? [hoverData] : undefined
-  props.onUpdate('renderHoverData', renderHoverData)
-  props.onUpdate('mouse', mouse)
-}
-
-const handleCanvasInputClick = (props, selectedData, mouse) => {
-  const renderSelectedData = selectedData ? [selectedData] : undefined
-  props.onUpdate('renderSelectedData', renderSelectedData)
-  props.onUpdate('mouse', mouse)
-}
-
-const handleRenderAnnotationUpdate = (props, name, value) => {
-  if (name !== 'updateClickedIdx') return
-  props.onUpdate('annotationSelectedIdx', value)
+const handleRenderAnnotationUpdate = (props, childProps) => {
+  props.onUpdate({annotationSelectedIdx: childProps.updateClickedIdx})
 }
 
 const handleAnnotationEditorWrapperUpdate = (props, childProps) => {
-  if (childProps.selectedIdx) props.onUpdate('annotationSelectedIdx', childProps.selectedIdx)
-  if (childProps.annotationData) props.onUpdate('annotationData', childProps.annotationData)
+  if (childProps.selectedIdx) props.onUpdate({annotationSelectedIdx: childProps.selectedIdx})
+  if (childProps.annotationData) props.onUpdate({annotationData: childProps.annotationData})
 }
 
 const ChartRender = props => (
@@ -61,7 +48,7 @@ const ChartRender = props => (
     />
     <CanvasRenderHover
       plotRect={props.plotRect}
-      renderHoverData={props.renderHoverData}
+      renderHoverData={[props.dataHovered]}
       size={props.size}
       theme={props.theme}
     />

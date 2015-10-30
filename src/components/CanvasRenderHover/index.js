@@ -24,6 +24,7 @@ export const renderCanvas = (props, ctx) => {
     ctx.clip()
   }
   R.forEach(d => {
+    if (!d) return
     ctx.lineWidth = d.lineWidth || 2
     ctx.strokeStyle = d.stroke || 'black'
     ctx.stroke(d.path2D)

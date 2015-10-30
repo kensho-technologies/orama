@@ -18,9 +18,9 @@ const Annotation = props => (
     display='block'
     left={props.x}
     maxWidth='200'
-    onClick={() => props.onUpdate('updateClicked', true)}
-    onMouseOut={() => props.onState('stateHover', false)}
-    onMouseOver={() => props.onState('stateHover', true)}
+    onClick={() => props.onUpdate({updateClicked: true})}
+    onMouseOut={() => props.onState({stateHover: false})}
+    onMouseOver={() => props.onState({stateHover: true})}
     padding={2}
     pointerEvents='fill'
     position='absolute'
