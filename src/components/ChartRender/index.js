@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 import R from 'ramda'
 
 import {Block} from '@luiscarli/display'
-import CanvasInput from '../CanvasInput2'
+import CanvasInput2 from '../CanvasInput2'
 import CanvasRender from '../CanvasRender'
 import CanvasRenderHover from '../CanvasRenderHover'
 import CanvasRenderHighlight from '../CanvasRenderHighlight'
@@ -13,6 +13,11 @@ import AnnotationEditorWrapper from '../AnnotationEditorWrapper'
 import defaultTheme from '../defaultTheme'
 import stateHOC from '../../utils/stateHOC'
 import utils from '../../utils'
+
+const handleCanvasInput2Update = (props, childProps) => {
+  if (childProps.dataClicked) props.onUpdate('dataClicked', childProps.dataClicked)
+  if (childProps.dataHovered) props.onUpdate('dataHovered', childProps.dataHovered)
+}
 
 const handleCanvasInputHover = (props, hoverData, mouse) => {
   const renderHoverData = hoverData ? [hoverData] : undefined
@@ -31,16 +36,9 @@ const handleRenderAnnotationUpdate = (props, name, value) => {
   props.onUpdate('annotationSelectedIdx', value)
 }
 
-const handleAnnotationEditorWrapperUpdate = (props, name, value) => {
-  switch (name) {
-  case 'selectedIdx':
-    props.onUpdate('annotationSelectedIdx', value)
-    break
-  case 'annotationData':
-    props.onUpdate('annotationData', value)
-    break
-  default:
-  }
+const handleAnnotationEditorWrapperUpdate = (props, childProps) => {
+  if (childProps.selectedIdx) props.onUpdate('annotationSelectedIdx', childProps.selectedIdx)
+  if (childProps.annotationData) props.onUpdate('annotationData', childProps.annotationData)
 }
 
 const ChartRender = props => (
@@ -67,9 +65,8 @@ const ChartRender = props => (
       size={props.size}
       theme={props.theme}
     />
-    <CanvasInput
-      onClick={handleCanvasInputClick.bind(null, props)}
-      onHover={handleCanvasInputHover.bind(null, props)}
+    <CanvasInput2
+      onUpdate={handleCanvasInput2Update.bind(null, props)}
       renderData={props.renderData}
       size={props.size}
     />
@@ -78,7 +75,6 @@ const ChartRender = props => (
       onUpdate={handleRenderAnnotationUpdate.bind(null, props)}
       size={props.size}
       theme={props.theme}
-      updateClickedIdx={undefined}
     />
     <AnnotationEditorWrapper
       annotationData={props.annotationData}
@@ -114,14 +110,21 @@ const renderData = R.map(() => {
     type: 'area',
     path2D,
   }
-}, R.range(1, 1000))
+}, R.range(1, 500))
 const annotationData = [
   {
     type: 'text',
-    text: 'ANNOTATION',
+    text: 'ANNOTATION1',
     textAlign: 'left',
     x: 200,
     y: 200,
+  },
+  {
+    type: 'text',
+    text: 'ANNOTATION2',
+    textAlign: 'left',
+    x: 200,
+    y: 300,
   },
 ]
 const defaultProps = {

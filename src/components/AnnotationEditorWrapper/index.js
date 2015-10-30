@@ -5,24 +5,29 @@ import R from 'ramda'
 import {Block} from '@luiscarli/display'
 import AnnotationEditor from '../AnnotationEditor'
 
-const handleClick = props => {
-  props.onUpdate('selectedIdx', undefined)
-}
+const handleClick = props => props.onUpdate({selectedIdx: -1})
 
-const handleAnnotationEditorUpdate = (props, name, value) => {
+const handleAnnotationEditorUpdate = (props, childProps) => {
   const annotation = props.annotationData[props.selectedIdx]
   const newAnnotation = {
     ...annotation,
-    [name]: value,
+    ...childProps,
   }
   const newAnnotationData = R.update(
     props.selectedIdx,
     newAnnotation,
     props.annotationData
   )
-  props.onUpdate('annotationData', newAnnotationData)
+  props.onUpdate({annotationData: newAnnotationData})
 }
 
+/*
+Used inside <ChartRender/>
+can update: annotationData, selectedIdx
+
+Shows the <AnnotationEditor/> for the selectedIdx of the annotationData.
+Updates the annotationData accordingly to the changes on <AnnotationEditor/>
+*/
 const AnnotationEditorWrapper = props => {
   const annotation = props.annotationData[props.selectedIdx]
   if (!annotation) return <noscript/>

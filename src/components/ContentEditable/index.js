@@ -24,7 +24,7 @@ const ContentEditable = React.createClass({
   },
   handleInput() {
     const newText = this.refs.block.innerText.toString().replace(/(\r\n|\n|\r)/gm, '')
-    this.props.onUpdate('text', newText)
+    this.props.onUpdate({text: newText})
   },
   handleKeyDown(evt) {
     if (evt.keyCode === 13) {
