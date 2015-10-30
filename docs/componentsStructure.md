@@ -10,3 +10,29 @@
   </Vis>
 </App>
 ```
+
+## ChartRender
+
+```jsx
+<ChartRender>
+  <CanvasRender/>
+  <CanvasRenderHighlight/>
+  <CanvasRenderHover/>
+  <CanvasInput2/>
+  <RenderAnnotation>
+    <Annotation/>
+  </RenderAnnotation>
+  <AnnotationEditorWrapper/>
+</ChartRender>
+```
+
+## AnnotationEditor
+
+```jsx
+<AnnotationEditorWrapper>
+  <AnnotationEditor>
+    <Draggable/>
+    <ContentEditable/>
+  </AnnotationEditor>
+</AnnotationEditorWrapper>
+```
