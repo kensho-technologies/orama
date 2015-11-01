@@ -5,6 +5,24 @@ import {Block} from '@luiscarli/display'
 
 import stateHOC from '../../utils/stateHOC'
 
+const handleClick = props => {
+  props.onUpdate({
+    ...props,
+    updateClicked: true,
+  })
+}
+const handleMouseOut = props => {
+  props.onState({
+    ...props,
+    stateHover: false,
+  })
+}
+const handleMouseOver = props => {
+  props.onState({
+    ...props,
+    stateHover: true,
+  })
+}
 /*
 Used inside <RenderAnnotation/>
 can update: updateClicked
@@ -18,9 +36,9 @@ const Annotation = props => (
     display='block'
     left={props.x}
     maxWidth='200'
-    onClick={() => props.onUpdate({updateClicked: true})}
-    onMouseOut={() => props.onState({stateHover: false})}
-    onMouseOver={() => props.onState({stateHover: true})}
+    onClick={handleClick.bind(null, props)}
+    onMouseOut={handleMouseOut.bind(null, props)}
+    onMouseOver={handleMouseOver.bind(null, props)}
     padding={2}
     pointerEvents='fill'
     position='absolute'
