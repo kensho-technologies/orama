@@ -8,19 +8,32 @@ import isStatelessComponentFunction from '../isStatelessComponentFunction'
  * Funtion for wrapping 'stateless functional components' during development, allowing then to respond to onUpdate without changes to parent components.
  *
  * @example
- * handleDataChange(props) => {
- * 	props.onUpdate({
- * 		data: getNewData(),
- * 	})
+ * import React, {PropTypes} from 'react'
+ * import {Block} from '@luiscarli/display'
+ * import Annotation from '../Annotation'
+ *
+ * export const handleAnnotationUpdate = (props, annotationProps) => {
+ *   props.onUpdate({
+ *     ...props,
+ *     text: annotationProps.text,
+ *   })
  * }
  *
- * const StatelessFunctionalComponent = props => (
- * 	<div onClick={handleDataChange.bind(null, props)}>
- * 		{props.data}
- * 	</div>
+ * const ExampleComponent = props => (
+ *   <Block>
+ *     <Annotation
+ *       text={props.text}
+ *       onUpdate={handleAnnotationUpdate.bind(null, props)}
+ *     />
+ *   </Block>
  * )
  *
- * export default stateHOC(StatelessFunctionalComponent)
+ * ExampleComponent.propTypes = {
+ *   onUpdate: PropTypes.func,
+ *   text: PropTypes.string.isRequired,
+ * }
+ *
+ * export default ExampleComponent
  */
 const stateHOC = (Child, initialState = {}) => {
   if (isStatelessComponentFunction(Child)) {

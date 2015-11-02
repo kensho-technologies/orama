@@ -8,24 +8,21 @@ import stateHOC from '../../utils/stateHOC'
 const handleClick = props => {
   props.onUpdate({
     ...props,
-    updateClicked: true,
+    clicked: true,
   })
 }
 const handleMouseOut = props => {
   props.onState({
-    ...props,
     stateHover: false,
   })
 }
 const handleMouseOver = props => {
   props.onState({
-    ...props,
     stateHover: true,
   })
 }
 /*
 Used inside <RenderAnnotation/>
-can update: updateClicked
 */
 const Annotation = props => (
   <Block
@@ -53,9 +50,14 @@ Annotation.propTypes = {
   stateHover: PropTypes.bool,
   text: PropTypes.string,
   textAlign: PropTypes.string,
-  updateClicked: PropTypes.bool,
   x: PropTypes.number,
   y: PropTypes.number,
 }
+Annotation.updateOnlyTypes = {
+  clicked: PropTypes.bool,
+}
+Annotation.canUpdate = [
+  'clicked',
+]
 
 export default stateHOC(Annotation, {stateHover: false})

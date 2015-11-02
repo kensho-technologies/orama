@@ -9,25 +9,27 @@ import defaultTheme from '../defaultTheme'
 import stateHOC from '../../utils/stateHOC'
 
 const handleContentEditableUpdate = (props, childProps) => {
-  if (!childProps.text) return
-  props.onUpdate({text: childProps.text})
+  props.onUpdate({
+    ...props,
+    text: childProps.text,
+  })
 }
-
 const handleDraggableChange = (props, delta) => {
   let x = props.x - delta.x
   if (x < 20) x = 20
   if (x > props.size.width) x = props.size.width
-
   let y = props.y - delta.y
   if (y < 20) y = 20
   if (y > props.size.height) y = props.size.height
-
-  props.onUpdate({x, y})
+  props.onUpdate({
+    ...props,
+    x,
+    y,
+  })
 }
 
 /*
 Used inside <AnnotationEditorWrapper/>
-can update: x, y, text
 */
 const AnnotationEditor = props => (
   <Block
@@ -49,7 +51,7 @@ const AnnotationEditor = props => (
       onChange={handleDraggableChange.bind(null, props)}
     >
       <Block
-        background='steelblue'
+        background='hsl(187, 100%, 50%)'
         border='2px solid black'
         borderRadius={100}
         cursor='pointer'
@@ -67,7 +69,7 @@ const AnnotationEditor = props => (
       onChange={handleDraggableChange.bind(null, props)}
     >
       <Block
-        background='steelblue'
+        background='hsl(187, 100%, 50%)'
         border='2px solid black'
         borderRadius={100}
         bottom='-19'
@@ -82,14 +84,18 @@ const AnnotationEditor = props => (
 
 AnnotationEditor.propTypes = {
   onUpdate: PropTypes.func,
+  size: PropTypes.object,
   text: PropTypes.string,
+  theme: PropTypes.object,
   x: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
-
 AnnotationEditor.defaultProps = {
   size: {width: 500, height: 500},
   theme: defaultTheme,
 }
+AnnotationEditor.canUpdate = [
+  'text', 'x', 'y',
+]
 
 export default stateHOC(AnnotationEditor)

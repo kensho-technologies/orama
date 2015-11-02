@@ -8,8 +8,13 @@ import Annotation from '../Annotation'
 import defaultTheme from '../defaultTheme'
 const mapIndexed = R.addIndex(R.map)
 
-const handleAnnotationUpdate = (props, annotationIdx) => {
-  props.onUpdate({updateClickedIdx: annotationIdx})
+const handleAnnotationUpdate = (props, annotationIdx, childProps) => {
+  if (childProps.clicked) {
+    props.onUpdate({
+      ...props,
+      clickedIdx: annotationIdx,
+    })
+  }
 }
 
 /*
@@ -44,12 +49,16 @@ RenderAnnotation.propTypes = {
   annotationData: PropTypes.array,
   size: PropTypes.object.isRequired,
   theme: PropTypes.object,
-  updateClickedIdx: PropTypes.number,
 }
-
 RenderAnnotation.defaultProps = {
   annotationData: [],
   theme: defaultTheme,
 }
+Annotation.updateOnlyTypes = {
+  clickedIdx: PropTypes.number,
+}
+Annotation.canUpdate = [
+  'clickedIdx',
+]
 
 export default RenderAnnotation

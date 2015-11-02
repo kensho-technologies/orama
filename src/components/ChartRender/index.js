@@ -14,18 +14,25 @@ import defaultTheme from '../defaultTheme'
 import stateHOC from '../../utils/stateHOC'
 import utils from '../../utils'
 
-const handleCanvasInput2Update = (props, childProps) => {
-  if (childProps.dataClicked) props.onUpdate({dataClicked: childProps.dataClicked})
-  props.onUpdate({dataHovered: childProps.dataHovered})
+const handleCanvasInput2Update = (props, {dataClicked, dataHovered}) => {
+  props.onUpdate({
+    ...props,
+    dataClicked,
+    dataHovered,
+  })
 }
-
-const handleRenderAnnotationUpdate = (props, childProps) => {
-  props.onUpdate({annotationSelectedIdx: childProps.updateClickedIdx})
+const handleRenderAnnotationUpdate = (props, {clickedIdx}) => {
+  props.onUpdate({
+    ...props,
+    annotationSelectedIdx: clickedIdx,
+  })
 }
-
 const handleAnnotationEditorWrapperUpdate = (props, childProps) => {
-  if (childProps.selectedIdx) props.onUpdate({annotationSelectedIdx: childProps.selectedIdx})
-  if (childProps.annotationData) props.onUpdate({annotationData: childProps.annotationData})
+  props.onUpdate({
+    ...props,
+    annotationSelectedIdx: childProps.selectedIdx,
+    annotationData: childProps.annotationData,
+  })
 }
 
 const ChartRender = props => (
