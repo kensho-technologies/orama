@@ -14,11 +14,11 @@ const handleContentEditableUpdate = (props, childProps) => {
     text: childProps.text,
   })
 }
-const handleDraggableChange = (props, delta) => {
-  let x = props.x - delta.x
+const handleDraggableUpdate = (props, {deltaX, deltaY}) => {
+  let x = props.x - deltaX
   if (x < 20) x = 20
   if (x > props.size.width) x = props.size.width
-  let y = props.y - delta.y
+  let y = props.y - deltaY
   if (y < 20) y = 20
   if (y > props.size.height) y = props.size.height
   props.onUpdate({
@@ -48,7 +48,7 @@ const AnnotationEditor = props => (
     top={props.y}
   >
     <Draggable
-      onChange={handleDraggableChange.bind(null, props)}
+      onUpdate={handleDraggableUpdate.bind(null, props)}
     >
       <Block
         background='hsl(187, 100%, 50%)'
@@ -66,7 +66,7 @@ const AnnotationEditor = props => (
       text={props.text}
     />
     <Draggable
-      onChange={handleDraggableChange.bind(null, props)}
+      onUpdate={handleDraggableUpdate.bind(null, props)}
     >
       <Block
         background='hsl(187, 100%, 50%)'

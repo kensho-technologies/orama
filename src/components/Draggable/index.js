@@ -5,12 +5,18 @@ export default React.createClass({
   displayName: 'Draggable',
   propTypes: {
     children: PropTypes.element,
-    onChange: PropTypes.func,
+    onUpdate: PropTypes.func.isRequired,
   },
+  updateOnlyTypes: {
+    deltaX: PropTypes.number,
+    deltaY: PropTypes.number,
+  },
+  canUpdate: [
+    'deltaX', 'deltaY',
+  ],
   getDefaultProps() {
     return {
       initialPos: {x: 0, y: 0},
-      onChange: () => undefined,
     }
   },
   getInitialState() {
@@ -31,6 +37,8 @@ export default React.createClass({
   onMouseDown(evt) {
     // only left mouse button
     if (evt.button !== 0) return
+    evt.stopPropagation()
+    evt.preventDefault()
     this.pos = {
       x: evt.clientX,
       y: evt.clientY,
@@ -38,26 +46,25 @@ export default React.createClass({
     this.setState({
       dragging: true,
     })
-    evt.stopPropagation()
-    evt.preventDefault()
   },
   onMouseUp(evt) {
-    this.setState({dragging: false})
     evt.stopPropagation()
     evt.preventDefault()
+    this.setState({dragging: false})
   },
   onMouseMove(evt) {
     if (!this.state.dragging) return
-    this.props.onChange({
-      x: this.pos.x - evt.clientX,
-      y: this.pos.y - evt.clientY,
+    evt.stopPropagation()
+    evt.preventDefault()
+    this.props.onUpdate({
+      ...this.props,
+      deltaX: this.pos.x - evt.clientX,
+      deltaY: this.pos.y - evt.clientY,
     })
     this.pos = {
       x: evt.clientX,
       y: evt.clientY,
     }
-    evt.stopPropagation()
-    evt.preventDefault()
   },
   render() {
     return (
