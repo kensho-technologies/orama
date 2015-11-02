@@ -41,13 +41,21 @@ const AnnotationEditorWrapper = props => {
   if (!annotation) return <noscript/>
   return (
     <Block
-      background='hsla(0, 0%, 25%, 0.6)'
+      background='hsla(0, 0%, 25%, 0.2)'
       cursor='pointer'
       height={props.size.height}
       onMouseDown={handleClick.bind(null, props)}
       position='absolute'
       width={props.size.width}
+      zIndex={999999}
     >
+      <Block
+        bottom={0}
+        left={0}
+        position='fixed'
+        right={0}
+        top={0}
+      />
       <AnnotationEditor
         onUpdate={handleAnnotationEditorUpdate.bind(null, props)}
         size={props.size}
