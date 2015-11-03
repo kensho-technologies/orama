@@ -8,6 +8,7 @@
     "no-use-before-define": [2, "nofunc"],
     "no-var": 0,
     "react/display-name": [0, {"acceptTranspilerName": true}],
+    "react/jsx-boolean-value": 0,
     "react/jsx-closing-bracket-location": 2,
     "react/jsx-curly-spacing": [2, "never"],
     "react/jsx-indent-props": [1, 2],
