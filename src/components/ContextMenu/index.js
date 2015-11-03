@@ -5,7 +5,6 @@ import _ from 'lodash'
 import {Block} from '@luiscarli/display'
 import ContextMenuItem from '../ContextMenuItem'
 
-import stateHOC from '../../utils/stateHOC'
 import defaultTheme from '../defaultTheme'
 
 const handleContextMenuItemUpdate = (props, childProps) => {
@@ -15,7 +14,6 @@ const handleContextMenuItemUpdate = (props, childProps) => {
     selected: childProps.text,
   })
 }
-
 const ContextMenu = props => (
   <Block
     background='hsla(0, 0%, 93%, 0.9)'
@@ -23,10 +21,10 @@ const ContextMenu = props => (
     boxShadow='1px 1px 10px hsla(0, 0%, 0%, 0.8)'
     fontFamily={props.theme.font}
     fontSize={props.theme.fontSize}
-    left={100}
+    left={props.position.x}
     padding='5px 0px'
-    position='absolute'
-    top={100}
+    position='fixed'
+    top={props.position.y}
   >
     {_.map(props.items, (d, i) => (
       <ContextMenuItem
@@ -39,7 +37,9 @@ const ContextMenu = props => (
   </Block>
 )
 ContextMenu.propTypes = {
+  items: PropTypes.array,
   onUpdate: PropTypes.func,
+  position: PropTypes.object,
   theme: PropTypes.object,
 }
 ContextMenu.updateOnlyTypes = {
@@ -49,11 +49,8 @@ ContextMenu.canUpdate = [
   'selected',
 ]
 ContextMenu.defaultProps = {
+  position: {x: 0, y: 0},
   theme: defaultTheme,
 }
 
-const defaultProps = {
-  items: ['Edit Label', 'Delete Label'],
-}
-
-export default stateHOC(ContextMenu, defaultProps)
+export default ContextMenu

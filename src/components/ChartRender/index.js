@@ -3,23 +3,32 @@ import React, {PropTypes} from 'react'
 import R from 'ramda'
 
 import {Block} from '@luiscarli/display'
+import AnnotationEditorWrapper from '../AnnotationEditorWrapper'
 import CanvasInput2 from '../CanvasInput2'
 import CanvasRender from '../CanvasRender'
-import CanvasRenderHover from '../CanvasRenderHover'
 import CanvasRenderHighlight from '../CanvasRenderHighlight'
+import CanvasRenderHover from '../CanvasRenderHover'
+import ContextMenuWrapper from '../ContextMenuWrapper'
 import RenderAnnotation from '../RenderAnnotation'
-import AnnotationEditorWrapper from '../AnnotationEditorWrapper'
 
 import defaultTheme from '../defaultTheme'
 import stateHOC from '../../utils/stateHOC'
 import utils from '../../utils'
 
-const handleCanvasInput2Update = (props, {dataClicked, dataHovered}) => {
-  props.onUpdate({
-    ...props,
-    dataClicked,
-    dataHovered,
-  })
+const handleCanvasInput2Update = (props, childProps) => {
+  if (childProps.dataHovered || childProps.dataHovered === null) {
+    props.onUpdate({
+      ...props,
+      dataHovered: childProps.dataHovered,
+    })
+  } else {
+    props.onUpdate({
+      ...props,
+      showDataMenu: childProps.dataClicked,
+      lastMousePos: childProps.mouse,
+      dataClicked: childProps.dataClicked,
+    })
+  }
 }
 const handleRenderAnnotationUpdate = (props, {clickedIdx}) => {
   props.onUpdate({
@@ -32,6 +41,12 @@ const handleAnnotationEditorWrapperUpdate = (props, childProps) => {
     ...props,
     annotationSelectedIdx: childProps.selectedIdx,
     annotationData: childProps.annotationData,
+  })
+}
+const handleContextMenuWrapperUpdate = (props, childProps) => {
+  props.onUpdate({
+    ...props,
+    showDataMenu: childProps.show,
   })
 }
 
@@ -75,6 +90,11 @@ const ChartRender = props => (
       onUpdate={handleAnnotationEditorWrapperUpdate.bind(null, props)}
       selectedIdx={props.annotationSelectedIdx}
       size={props.size}
+    />
+    <ContextMenuWrapper
+      onUpdate={handleContextMenuWrapperUpdate.bind(null, props)}
+      position={props.lastMousePos}
+      show={props.showDataMenu}
     />
   </Block>
 )

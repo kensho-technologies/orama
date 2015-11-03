@@ -6,10 +6,17 @@ import {Block} from '@luiscarli/display'
 import stateHOC from '../../utils/stateHOC'
 import defaultTheme from '../defaultTheme'
 
-const handleMouseEnter = props => props.onState({mouseHover: true})
-const handleMouseLeave = props => props.onState({mouseHover: false})
+const handleMouseEnter = props => {
+  props.onState({mouseHover: true, mouseDown: false})
+}
+const handleMouseLeave = props => {
+  props.onState({mouseHover: false, mouseDown: false})
+}
 
-const handleMouseDown = props => props.onState({mouseDown: true})
+const handleMouseDown = (props, evt) => {
+  evt.stopPropagation()
+  props.onState({mouseDown: true})
+}
 const handleMouseUp = props => props.onState({mouseDown: false})
 
 const handleClick = props => {
@@ -30,6 +37,10 @@ const getColor = props => {
   return 'black'
 }
 
+/*
+Used inside <ContextMenu/>
+Works as the menu buttom for the <ContextMenu/>
+*/
 const ContextMenuItem = props => (
   <Block
     background={getBackground(props)}
