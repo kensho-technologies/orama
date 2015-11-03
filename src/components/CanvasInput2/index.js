@@ -72,24 +72,26 @@ export default React.createClass({
   shouldComponentUpdate: shouldPureComponentUpdate,
   handleMouseMove(evt) {
     const canvasNode = this.refs.canvas
-    const {data} = getDataUnderMouse(this.props, canvasNode, evt)
+    const {data, mouse} = getDataUnderMouse(this.props, canvasNode, evt)
     this.props.onUpdate({
       ...this.props,
       dataHovered: data,
+      mouse,
     })
   },
   handleClick(evt) {
     const canvasNode = this.refs.canvas
-    const {data} = getDataUnderMouse(this.props, canvasNode, evt)
+    const {data, mouse} = getDataUnderMouse(this.props, canvasNode, evt)
     this.props.onUpdate({
       ...this.props,
       dataClicked: data,
+      mouse,
     })
   },
   handleMouseLeave() {
     this.props.onUpdate({
       ...this.props,
-      dataHovered: undefined,
+      dataHovered: null,
     })
   },
   render() {
