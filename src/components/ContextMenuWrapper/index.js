@@ -4,7 +4,6 @@ import React, {PropTypes} from 'react'
 import {Block} from '@luiscarli/display'
 import ContextMenu from '../ContextMenu'
 
-import stateHOC from '../../utils/stateHOC'
 import defaultTheme from '../defaultTheme'
 
 const handleClick = props => {
@@ -37,7 +36,7 @@ const ContextMenuWrapper = props => {
         top={0}
       />
       <ContextMenu
-        items={['Edit Label', 'Delete Label']}
+        items={props.items}
         onUpdate={handleContextMenuUpdate.bind(null, props)}
         position={props.position}
       />
@@ -58,4 +57,4 @@ ContextMenuWrapper.defaultProps = {
   theme: defaultTheme,
 }
 
-export default stateHOC(ContextMenuWrapper)
+export default ContextMenuWrapper

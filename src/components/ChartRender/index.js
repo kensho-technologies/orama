@@ -16,19 +16,13 @@ import stateHOC from '../../utils/stateHOC'
 import utils from '../../utils'
 
 const handleCanvasInput2Update = (props, childProps) => {
-  if (childProps.dataHovered || childProps.dataHovered === null) {
-    props.onUpdate({
-      ...props,
-      dataHovered: childProps.dataHovered,
-    })
-  } else {
-    props.onUpdate({
-      ...props,
-      showDataMenu: childProps.dataClicked,
-      lastMousePos: childProps.mouse,
-      dataClicked: childProps.dataClicked,
-    })
-  }
+  props.onUpdate({
+    ...props,
+    dataHovered: childProps.dataHovered,
+    showDataMenu: childProps.dataClicked ? true : false,
+    lastMousePos: childProps.mouse,
+    dataClicked: childProps.dataClicked,
+  })
 }
 const handleRenderAnnotationUpdate = (props, {clickedIdx}) => {
   props.onUpdate({
@@ -92,6 +86,7 @@ const ChartRender = props => (
       size={props.size}
     />
     <ContextMenuWrapper
+      items={['Highlight Data', 'Add Label']}
       onUpdate={handleContextMenuWrapperUpdate.bind(null, props)}
       position={props.lastMousePos}
       show={props.showDataMenu}

@@ -27,7 +27,7 @@ const getDataUnderMouse = (props, canvasNode, evt) => {
   if (inPathData) {
     return {
       data: inPathData,
-      mouse: {x: evt.clientX, y: evt.clientY},
+      mouse,
     }
   }
   ctx.lineWidth = 20
@@ -35,7 +35,7 @@ const getDataUnderMouse = (props, canvasNode, evt) => {
   if (inStrokeData) {
     return {
       data: inStrokeData,
-      mouse: {x: evt.clientX, y: evt.clientY},
+      mouse,
     }
   }
   return {
@@ -85,13 +85,8 @@ export default React.createClass({
     this.props.onUpdate({
       ...this.props,
       dataClicked: data,
+      dataHovered: data,
       mouse,
-    })
-  },
-  handleMouseLeave() {
-    this.props.onUpdate({
-      ...this.props,
-      dataHovered: null,
     })
   },
   render() {
@@ -99,7 +94,6 @@ export default React.createClass({
       <canvas
         height={this.props.size.height}
         onClick={this.handleClick}
-        onMouseLeave={this.handleMouseLeave}
         onMouseMove={this.handleMouseMove}
         ref='canvas'
         style={styles.canvas}
