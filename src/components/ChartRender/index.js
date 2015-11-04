@@ -28,6 +28,7 @@ const handleRenderAnnotationUpdate = (props, {clickedIdx}) => {
   props.onUpdate({
     ...props,
     annotationSelectedIdx: clickedIdx,
+    dataHovered: undefined,
   })
 }
 const handleAnnotationEditorWrapperUpdate = (props, childProps) => {
@@ -38,6 +39,9 @@ const handleAnnotationEditorWrapperUpdate = (props, childProps) => {
   })
 }
 const handleContextMenuWrapperUpdate = (props, childProps) => {
+  if (childProps.selected) {
+    console.log(childProps.selected)
+  }
   props.onUpdate({
     ...props,
     showDataMenu: childProps.show,

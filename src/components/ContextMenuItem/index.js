@@ -12,13 +12,11 @@ const handleMouseEnter = props => {
 const handleMouseLeave = props => {
   props.onState({mouseHover: false, mouseDown: false})
 }
-
 const handleMouseDown = (props, evt) => {
   evt.stopPropagation()
   props.onState({mouseDown: true})
 }
 const handleMouseUp = props => props.onState({mouseDown: false})
-
 const handleClick = props => {
   props.onUpdate({
     ...props,
@@ -31,7 +29,6 @@ const getBackground = props => {
   if (props.mouseHover) return 'hsl(0, 0%, 50%)'
   return 'none'
 }
-
 const getColor = props => {
   if (props.mouseHover || props.mouseDown) return 'hsl(0, 0%, 92%)'
   return 'black'

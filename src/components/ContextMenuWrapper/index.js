@@ -13,7 +13,10 @@ const handleClick = props => {
   })
 }
 const handleContextMenuUpdate = (props, childProps) => {
-  console.log(childProps)
+  props.onUpdate({
+    ...props,
+    selected: childProps.selected,
+  })
 }
 
 /*
@@ -23,18 +26,15 @@ const ContextMenuWrapper = props => {
   if (!props.show) return <noscript/>
   return (
     <Block
+      bottom={0}
       cursor='pointer'
+      left={0}
       onMouseDown={handleClick.bind(null, props)}
-      position='relative'
+      position='fixed'
+      right={0}
+      top={0}
       zIndex={999999}
     >
-      <Block
-        bottom={0}
-        left={0}
-        position='fixed'
-        right={0}
-        top={0}
-      />
       <ContextMenu
         items={props.items}
         onUpdate={handleContextMenuUpdate.bind(null, props)}

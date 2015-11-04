@@ -23,7 +23,7 @@ const ContextMenu = props => (
     fontSize={props.theme.fontSize}
     left={props.position.x}
     padding='5px 0px'
-    position='absolute'
+    position='fixed'
     top={props.position.y}
   >
     {_.map(props.items, (d, i) => (

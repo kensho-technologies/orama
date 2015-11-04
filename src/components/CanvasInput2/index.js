@@ -20,10 +20,14 @@ const getDataUnderMouse = (props, canvasNode, evt) => {
   const canvasRect = canvasNode.getBoundingClientRect()
   const ctx = canvasNode.getContext('2d')
   const mouse = {
+    x: evt.clientX,
+    y: evt.clientY,
+  }
+  const localMouse = {
     x: evt.clientX - canvasRect.left,
     y: evt.clientY - canvasRect.top,
   }
-  const inPathData = _.find(props.renderData, d => ctx.isPointInPath(d.path2D, mouse.x, mouse.y))
+  const inPathData = _.find(props.renderData, d => ctx.isPointInPath(d.path2D, localMouse.x, localMouse.y))
   if (inPathData) {
     return {
       data: inPathData,
@@ -31,7 +35,7 @@ const getDataUnderMouse = (props, canvasNode, evt) => {
     }
   }
   ctx.lineWidth = 20
-  const inStrokeData = _.find(props.renderData, d => ctx.isPointInStroke(d.path2D, mouse.x, mouse.y))
+  const inStrokeData = _.find(props.renderData, d => ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y))
   if (inStrokeData) {
     return {
       data: inStrokeData,
