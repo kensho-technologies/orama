@@ -32,7 +32,6 @@ const ContextMenu = props => (
   >
     {_.map(props.items, (d, i) => (
       <ContextMenuItem
-        clicked={d === props.selected}
         key={i}
         onUpdate={handleContextMenuItemUpdate.bind(null, props)}
         text={d}
@@ -44,8 +43,7 @@ const ContextMenu = props => (
 ContextMenu.propTypes = {
   items: PropTypes.array,
   onUpdate: PropTypes.func,
-  position: PropTypes.object,
-  selected: PropTypes.string,
+  position: PropTypes.object.isRequired,
   theme: PropTypes.object,
 }
 ContextMenu.defaultProps = {

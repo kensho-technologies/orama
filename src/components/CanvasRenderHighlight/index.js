@@ -13,12 +13,12 @@ import defaultTheme from '../defaultTheme'
 export const renderCanvas = (props, ctx) => {
   const {
     plotRect,
-    renderSelectionData = [],
+    highlightData = [],
     size = {width: 100, height: 100},
   } = props
 
   utils.canvas.clearRect(ctx, size)
-  if (renderSelectionData.length === 0) return
+  if (highlightData.length === 0) return
   ctx.save()
   if (plotRect) {
     ctx.rect(plotRect.x - 20, plotRect.y - 20, plotRect.width + 40, plotRect.height + 40)
@@ -38,7 +38,7 @@ export const renderCanvas = (props, ctx) => {
       ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
       ctx.fill(d.path2D)
     }
-  }, renderSelectionData)
+  }, highlightData)
   ctx.restore()
 }
 
@@ -49,13 +49,13 @@ export const renderCanvas = (props, ctx) => {
 export default React.createClass({
   displayName: 'CanvasRenderHighlight',
   propTypes: {
+    highlightData: PropTypes.array,
     plotRect: PropTypes.object,
-    renderSelectionData: PropTypes.array,
     size: PropTypes.object.isRequired,
   },
   getDefaultProps() {
     return {
-      renderSelectionData: [],
+      highlightData: [],
       size: {width: 0, height: 0},
       theme: {...defaultTheme},
     }

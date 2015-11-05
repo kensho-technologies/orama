@@ -13,7 +13,7 @@ import defaultTheme from '../defaultTheme'
 export const renderCanvas = (props, ctx) => {
   const {
     plotRect,
-    renderHoverData = [],
+    hoverData = [],
     size = {width: 100, height: 100},
   } = props
 
@@ -28,7 +28,7 @@ export const renderCanvas = (props, ctx) => {
     ctx.lineWidth = d.lineWidth || 2
     ctx.strokeStyle = d.stroke || 'black'
     ctx.stroke(d.path2D)
-  }, renderHoverData)
+  }, hoverData)
   ctx.restore()
 }
 
@@ -39,13 +39,13 @@ export const renderCanvas = (props, ctx) => {
 export default React.createClass({
   displayName: 'CanvasRenderHover',
   propTypes: {
+    hoverData: PropTypes.array,
     plotRect: PropTypes.object,
-    renderHoverData: PropTypes.array,
     size: PropTypes.object.isRequired,
   },
   getDefaultProps() {
     return {
-      renderHoverData: [],
+      hoverData: [],
       size: {width: 0, height: 0},
       theme: {...defaultTheme},
     }
