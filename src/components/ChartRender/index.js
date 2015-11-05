@@ -21,6 +21,7 @@ const handleCanvasInput2Update = (props, childProps) => {
     dataHovered: childProps.dataHovered,
     showDataMenu: childProps.dataClicked ? true : false,
     lastMousePos: childProps.mouse,
+    lastLocalMousePos: childProps.localMouse,
     dataClicked: childProps.dataClicked,
   })
 }
@@ -44,8 +45,8 @@ const handleContextMenuWrapperUpdate = (props, childProps) => {
       type: 'text',
       text: 'NEW',
       textAlign: 'left',
-      x: 100,
-      y: 100,
+      x: props.lastLocalMousePos.x,
+      y: props.lastLocalMousePos.y,
     }, props.annotationData)
     props.onUpdate({
       ...props,

@@ -32,6 +32,7 @@ const getDataUnderMouse = (props, canvasNode, evt) => {
     return {
       data: inPathData,
       mouse,
+      localMouse,
     }
   }
   ctx.lineWidth = 20
@@ -40,6 +41,7 @@ const getDataUnderMouse = (props, canvasNode, evt) => {
     return {
       data: inStrokeData,
       mouse,
+      localMouse,
     }
   }
   return {
@@ -60,11 +62,6 @@ export default React.createClass({
     size: PropTypes.object.isRequired,
     theme: PropTypes.object,
   },
-  updateOnlyTypes: {
-    dataClicked: PropTypes.object,
-    dataHovered: PropTypes.object,
-  },
-  canUpdate: ['dataClicked', 'dataHovered'],
   getDefaultProps() {
     return {
       renderData: [],
@@ -76,20 +73,30 @@ export default React.createClass({
   shouldComponentUpdate: shouldPureComponentUpdate,
   handleMouseMove(evt) {
     const canvasNode = this.refs.canvas
-    const {data, mouse} = getDataUnderMouse(this.props, canvasNode, evt)
+    const {
+      data,
+      mouse,
+      localMouse,
+    } = getDataUnderMouse(this.props, canvasNode, evt)
     this.props.onUpdate({
       ...this.props,
       dataHovered: data,
+      localMouse,
       mouse,
     })
   },
   handleClick(evt) {
     const canvasNode = this.refs.canvas
-    const {data, mouse} = getDataUnderMouse(this.props, canvasNode, evt)
+    const {
+      data,
+      mouse,
+      localMouse,
+    } = getDataUnderMouse(this.props, canvasNode, evt)
     this.props.onUpdate({
       ...this.props,
       dataClicked: data,
       dataHovered: data,
+      localMouse,
       mouse,
     })
   },
