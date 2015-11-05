@@ -80,7 +80,7 @@ export default React.createClass({
     } = getDataUnderMouse(this.props, canvasNode, evt)
     this.props.onUpdate({
       ...this.props,
-      dataHovered: data,
+      hoverData: data,
       localMouse,
       mouse,
     })
@@ -95,7 +95,7 @@ export default React.createClass({
     this.props.onUpdate({
       ...this.props,
       dataClicked: data,
-      dataHovered: data,
+      hoverData: data,
       localMouse,
       mouse,
     })

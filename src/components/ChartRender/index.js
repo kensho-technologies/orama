@@ -18,7 +18,7 @@ import utils from '../../utils'
 const handleCanvasInput2Update = (props, childProps) => {
   props.onUpdate({
     ...props,
-    dataHovered: childProps.dataHovered,
+    hoverData: childProps.hoverData,
     showDataMenu: childProps.dataClicked ? true : false,
     lastMousePos: childProps.mouse,
     lastLocalMousePos: childProps.localMouse,
@@ -29,7 +29,7 @@ const handleRenderAnnotationUpdate = (props, {clickedIdx}) => {
   props.onUpdate({
     ...props,
     annotationSelectedIdx: clickedIdx,
-    dataHovered: undefined,
+    hoverData: undefined,
   })
 }
 const handleAnnotationEditorWrapperUpdate = (props, childProps) => {
@@ -54,6 +54,13 @@ const handleContextMenuWrapperUpdate = (props, childProps) => {
       annotationSelectedIdx: annotationData.length - 1,
       showDataMenu: false,
     })
+  } else if (childProps.selected === 'Highlight Data') {
+    const renderHighlightData = R.append(props.dataClicked, props.renderHighlightData)
+    props.onUpdate({
+      ...props,
+      renderHighlightData,
+      showDataMenu: false,
+    })
   } else {
     props.onUpdate({
       ...props,
@@ -76,14 +83,14 @@ const ChartRender = props => (
       theme={props.theme}
     />
     <CanvasRenderHighlight
-      data={props.renderHighlightData}
       plotRect={props.plotRect}
+      renderSelectionData={props.renderHighlightData}
       size={props.size}
       theme={props.theme}
     />
     <CanvasRenderHover
       plotRect={props.plotRect}
-      renderHoverData={[props.dataHovered]}
+      renderHoverData={[props.hoverData]}
       size={props.size}
       theme={props.theme}
     />
@@ -116,16 +123,14 @@ const ChartRender = props => (
 ChartRender.propTypes = {
   annotationData: PropTypes.array,
   annotationSelectedIdx: PropTypes.number,
-  dataHovered: PropTypes.array,
-  lastMousePos: PropTypes.object,
+  hoverData: PropTypes.array, // state
+  lastMousePos: PropTypes.object, // state
   onUpdate: PropTypes.func,
   plotRect: PropTypes.object,
   renderData: PropTypes.array,
   renderHighlightData: PropTypes.array,
-  renderHoverData: PropTypes.array,
-  showDataMenu: PropTypes.bool,
+  showDataMenu: PropTypes.bool, // state
   size: PropTypes.object,
-  textData: PropTypes.array,
   theme: PropTypes.object,
 }
 ChartRender.defaultProps = {
@@ -142,22 +147,7 @@ const renderData = R.map(() => {
     path2D,
   }
 }, R.range(1, 500))
-const annotationData = [
-  {
-    type: 'text',
-    text: 'ANNOTATION1',
-    textAlign: 'left',
-    x: 200,
-    y: 200,
-  },
-  {
-    type: 'text',
-    text: 'ANNOTATION2',
-    textAlign: 'left',
-    x: 200,
-    y: 300,
-  },
-]
+const annotationData = []
 const defaultProps = {
   size: {width: 500, height: 500},
   plotRect: {x: 50, y: 50, width: 400, height: 400},
