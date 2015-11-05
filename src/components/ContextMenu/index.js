@@ -14,6 +14,10 @@ const handleContextMenuItemUpdate = (props, childProps) => {
     selected: childProps.text,
   })
 }
+
+/*
+Used inside <ContextMenuWrapper/>
+*/
 const ContextMenu = props => (
   <Block
     background='hsla(0, 0%, 93%, 0.9)'
@@ -28,6 +32,7 @@ const ContextMenu = props => (
   >
     {_.map(props.items, (d, i) => (
       <ContextMenuItem
+        clicked={d === props.selected}
         key={i}
         onUpdate={handleContextMenuItemUpdate.bind(null, props)}
         text={d}
@@ -40,14 +45,9 @@ ContextMenu.propTypes = {
   items: PropTypes.array,
   onUpdate: PropTypes.func,
   position: PropTypes.object,
+  selected: PropTypes.string,
   theme: PropTypes.object,
 }
-ContextMenu.updateOnlyTypes = {
-  selected: PropTypes.bool,
-}
-ContextMenu.canUpdate = [
-  'selected',
-]
 ContextMenu.defaultProps = {
   position: {x: 0, y: 0},
   theme: defaultTheme,

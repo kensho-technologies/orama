@@ -86,6 +86,7 @@ AnnotationEditor.propTypes = {
   onUpdate: PropTypes.func,
   size: PropTypes.object,
   text: PropTypes.string,
+  textAlign: PropTypes.string,
   theme: PropTypes.object,
   x: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -94,8 +95,5 @@ AnnotationEditor.defaultProps = {
   size: {width: 500, height: 500},
   theme: defaultTheme,
 }
-AnnotationEditor.canUpdate = [
-  'text', 'x', 'y',
-]
 
 export default stateHOC(AnnotationEditor)

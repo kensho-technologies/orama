@@ -60,12 +60,6 @@ ContextMenuItem.propTypes = {
   text: PropTypes.string,
   theme: PropTypes.object,
 }
-ContextMenuItem.updateOnlyTypes = {
-  clicked: PropTypes.bool,
-}
-ContextMenuItem.canUpdate = [
-  'clicked',
-]
 ContextMenuItem.defaultProps = {
   theme: defaultTheme,
 }

@@ -6,7 +6,7 @@ import ContextMenu from '../ContextMenu'
 
 import defaultTheme from '../defaultTheme'
 
-const handleClick = props => {
+const handleBlockClick = props => {
   props.onUpdate({
     ...props,
     show: false,
@@ -29,7 +29,7 @@ const ContextMenuWrapper = props => {
       bottom={0}
       cursor='pointer'
       left={0}
-      onMouseDown={handleClick.bind(null, props)}
+      onMouseDown={handleBlockClick.bind(null, props)}
       position='fixed'
       right={0}
       top={0}
@@ -39,20 +39,19 @@ const ContextMenuWrapper = props => {
         items={props.items}
         onUpdate={handleContextMenuUpdate.bind(null, props)}
         position={props.position}
+        selected={props.selected}
       />
     </Block>
   )
 }
 ContextMenuWrapper.propTypes = {
+  items: PropTypes.array,
   onUpdate: PropTypes.func,
   position: PropTypes.object,
+  selected: PropTypes.string,
   show: PropTypes.bool,
   theme: PropTypes.object,
 }
-ContextMenuWrapper.updateOnlyTypes = {}
-ContextMenuWrapper.canUpdate = [
-  'show',
-]
 ContextMenuWrapper.defaultProps = {
   theme: defaultTheme,
 }

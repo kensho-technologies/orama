@@ -39,13 +39,27 @@ const handleAnnotationEditorWrapperUpdate = (props, childProps) => {
   })
 }
 const handleContextMenuWrapperUpdate = (props, childProps) => {
-  if (childProps.selected) {
-    console.log(childProps.selected)
+  if (childProps.selected === 'Add Label') {
+    const annotationData = R.append({
+      type: 'text',
+      text: 'NEW',
+      textAlign: 'left',
+      x: 100,
+      y: 100,
+    }, props.annotationData)
+    props.onUpdate({
+      ...props,
+      annotationData,
+      annotationSelectedIdx: annotationData.length - 1,
+      showDataMenu: false,
+    })
+  } else {
+    props.onUpdate({
+      ...props,
+      showDataMenu: childProps.show,
+
+    })
   }
-  props.onUpdate({
-    ...props,
-    showDataMenu: childProps.show,
-  })
 }
 
 const ChartRender = props => (
@@ -100,16 +114,19 @@ const ChartRender = props => (
 
 ChartRender.propTypes = {
   annotationData: PropTypes.array,
+  annotationSelectedIdx: PropTypes.number,
+  dataHovered: PropTypes.array,
+  lastMousePos: PropTypes.object,
   onUpdate: PropTypes.func,
   plotRect: PropTypes.object,
   renderData: PropTypes.array,
   renderHighlightData: PropTypes.array,
   renderHoverData: PropTypes.array,
+  showDataMenu: PropTypes.bool,
   size: PropTypes.object,
   textData: PropTypes.array,
   theme: PropTypes.object,
 }
-
 ChartRender.defaultProps = {
   annotationData: [],
   theme: defaultTheme,

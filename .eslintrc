@@ -17,6 +17,7 @@
     "react/jsx-no-undef": 2,
     "react/jsx-sort-prop-types": 2,
     "react/jsx-sort-props": 1,
+    "react/no-multi-comp": 0,
     "react/prop-types": 1,
     "react/sort-comp": 0,
     "semi": [2, "never"],
