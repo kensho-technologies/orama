@@ -68,7 +68,7 @@ import defaultTheme from '../defaultTheme'
 
 export const handleAnnotationUpdate = (props, annotationProps) => {
   props.onUpdate({
-    ...props,
+     
     text: annotationProps.text,
   })
 }
@@ -91,9 +91,39 @@ ExampleComponent.propTypes = {
 ExampleComponent.defaultProps = {
   theme: defaultTheme,
 }
+ExampleComponent.canUpdate = [
+  'text',
+]
 
 export default ExampleComponent
 ```
 
-(testing)
+During dev:
+```jsx
+export default stateHOC(ExampleComponent)
+```
+
+## Testing
+
+Example:
+```jsx
+import {it as test} from 'mocha'
+import assert from 'assert'
+
+import React from 'react'
+import shallowRender from '@luiscarli/shallow-render'
+
+import ExampleComponent from './'
+
+test('ExampleComponent', () => {
+  const component = shallowRender(
+    <ExampleComponent
+      onUpdate={() => undefined}
+      text='Sample Text'
+    />
+  )
+  assert.deepEqual(component.type.displayName, 'Block')
+})
+```
+
 (React batch)?
