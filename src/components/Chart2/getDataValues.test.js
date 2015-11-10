@@ -2,7 +2,7 @@
 import {it as test} from 'mocha'
 import assert from 'assert'
 
-import * as methods from './methods'
+import * as methods from './getDataValues'
 
 const data = [
   {x: 1, x0: -10, y: 'a'}, {x: 2, x0: -10, y0: 'b'}, {x: 3}, {x: 4},
