@@ -4,7 +4,7 @@
   "description": "DataVis exploration components",
   "main": "src/components/App.js",
   "scripts": {
-    "prestart": "npm prune && npm update",
+    "prestart": "npm prune && npm update && npm install",
     "start": "parallelshell 'node devServer.js' 'npm run test:watch' 'npm outdated'",
     "clean": "rimraf lib dist/bundle.js",
     "prebuild": "npm test && npm run clean",
@@ -57,7 +57,7 @@
   "dependencies": {
     "@luiscarli/display": "^1.0.0",
     "d3": "^3.5.6",
-    "d3-arrays": "^0.1.1",
+    "d3-arrays": "^0.3.0",
     "d3-scale": "^0.1.2",
     "d3-xhr": "^0.1.2",
     "lodash": "^3.10.1",

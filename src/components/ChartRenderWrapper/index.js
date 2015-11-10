@@ -24,7 +24,6 @@ const handleChartInteractionLayer = (props, childProps) => {
   props.onUpdate({
     ...props,
     ...childProps,
-    annotationData: childProps.annotationData,
   })
 }
 /*

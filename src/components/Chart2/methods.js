@@ -71,7 +71,8 @@ export const mergeDataValues = dataValues => (
   )
 )
 /*
-return the dataValues from the default data and all layers
+Return the dataValues from the default data and all layers.
+The dataValues are used for getting the data type, domain, range, ...
 dataValues = {
   x: [...],
   y: [...],
