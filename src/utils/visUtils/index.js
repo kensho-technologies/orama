@@ -22,7 +22,7 @@ import * as rectUtils from '../rectUtils'
  * @namespace /utils/visUtils
  */
 
-const JS_TO_VIS_TYPE = {
+export const JS_TO_VIS_TYPE = {
   'string': 'ordinal',
   'number': 'linear',
   'date': 'time',
@@ -31,13 +31,6 @@ export const RANGE_LINEAR_COLOR = ['#edf8b1', '#2c7fb8']
 export const RANGE_ORDINAL_COLOR = ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3', '#a6d854', '#ffd92f', '#e5c494', '#b3b3b3']
 const TICKS_X_SPACE = 100
 const TICKS_Y_SPACE = 90
-const SCALE_TYPES = [
-  'linear',
-  'log',
-  'ordinal',
-  'pow',
-  'time',
-]
 
 /**
  * Return the type of the input
@@ -99,8 +92,6 @@ export function getDomain(data, prop, type = 'linear') {
  */
 export function getRange(output, plotRect, type) {
   switch (output) {
-  case 'x':
-    return [plotRect.x, rectUtils.getMaxX(plotRect)]
   case 'y':
     return [rectUtils.getMaxY(plotRect), plotRect.y]
   case 'color':
@@ -111,8 +102,9 @@ export function getRange(output, plotRect, type) {
       return RANGE_LINEAR_COLOR
     }
     break
+  case 'x':
   default:
-    throw new Error(`visUtils.getRange invalid output "${output}"`)
+    return [plotRect.x, rectUtils.getMaxX(plotRect)]
   }
 }
 
@@ -132,19 +124,8 @@ export function getTickCount(output, range) {
   case 'y':
     return Math.round((range[0] - range[1]) / TICKS_Y_SPACE)
   default:
-    throw new Error(`visUtils.getTickCount invalid output "${output}"`)
+    return undefined
   }
-}
-
-/**
- * Returns a d3 scale according to the type
- *
- * @param  {string} type
- * @return {function}       d3Scale
- */
-export function getD3Scale(type) {
-  if (R.contains(type, SCALE_TYPES)) return d3Scale[type]()
-  throw new Error('scaleUtils.getScaleForType: invalid scale type')
 }
 
 /**

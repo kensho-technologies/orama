@@ -13,13 +13,13 @@ test('Chart2.getParams', () => {
 test('Chart2.getTypeFromArray', () => {
   assert.deepEqual(
     methods.getTypeFromArray([1, 'string', 3, new Date()]),
-    'number'
+    'linear'
   )
 })
 test('Chart2.getTypeFromArray, empty array', () => {
   assert.deepEqual(
     methods.getTypeFromArray(),
-    'number'
+    'linear'
   )
 })
 test('Chart2.getDomainFromArray, type="linear"', () => {
@@ -42,14 +42,15 @@ test('Chart2.getDomainFromArray, type="ordinal"', () => {
     [1, 'a', 'b']
   )
 })
-test('Chart2.addTypesToParams', () => {
-  const params = { x: { data: [ 1, 2, 3 ] }, y: { data: [ 'a', 'b', 'c' ] } }
-  const newParams = methods.addTypesToParams(params)
+test('Chart2.addTypeToParams', () => {
+  const params = { x: { data: [ 1, 2, 3 ] }, y: { data: [ 'a', 'b', 'c' ] }, plotRect: {} }
+  const newParams = methods.addTypeToParams(params)
   assert.deepEqual(
     newParams,
     {
-      x: {data: [1, 2, 3], type: 'number'},
-      y: {data: ['a', 'b', 'c'], type: 'string'},
+      x: {data: [1, 2, 3], type: 'linear'},
+      y: {data: ['a', 'b', 'c'], type: 'ordinal'},
+      plotRect: {},
     }
   )
   assert.notStrictEqual(
@@ -61,18 +62,51 @@ test('Chart2.addTypesToParams', () => {
     newParams.x
   )
 })
-test('Chart2.runMethodOnParams', () => {
-  const params = { x: { data: [ 1, 2, 3 ] }, y: { data: [ 'a', 'b', 'c' ] } }
-  const newParams = methods.runMethodOnParams(
-    'type',
-    methods.getTypeFromArray,
-    params
-  )
+test('Chart2.addDomainToParams', () => {
+  const params = {
+    x: {data: [1, 2, 3], type: 'linear'},
+    y: {data: ['a', 'b', 'c'], type: 'ordinal'},
+    plotRect: {},
+  }
+  const newParams = methods.addDomainToParams(params)
   assert.deepEqual(
     newParams,
     {
-      x: {data: [1, 2, 3], type: 'number'},
-      y: {data: ['a', 'b', 'c'], type: 'string'},
+      x: {data: [1, 2, 3], type: 'linear', domain: [1, 3]},
+      y: {data: ['a', 'b', 'c'], type: 'ordinal', domain: ['a', 'b', 'c']},
+      plotRect: {},
+    }
+  )
+})
+test('Chart2.addRangeToParams', () => {
+  const params = {
+    x: {data: [1, 2, 3], type: 'linear'},
+    y: {data: ['a', 'b', 'c'], type: 'ordinal'},
+    plotRect: {x: 0, y: 0, width: 100, height: 100},
+  }
+  const newParams = methods.addRangeToParams(params)
+  assert.deepEqual(
+    newParams,
+    {
+      x: {data: [1, 2, 3], type: 'linear', range: [0, 100]},
+      y: {data: ['a', 'b', 'c'], type: 'ordinal', range: [100, 0]},
+      plotRect: {x: 0, y: 0, width: 100, height: 100},
+    }
+  )
+})
+test('Chart2.addTickCountToParams', () => {
+  const params = {
+    x: {data: [1, 2, 3], range: [0, 100]},
+    y: {data: ['a', 'b', 'c'], range: [100, 0]},
+    plotRect: {},
+  }
+  const newParams = methods.addTickCountToParams(params)
+  assert.deepEqual(
+    newParams,
+    {
+      x: {data: [1, 2, 3], range: [0, 100], tickCount: 1},
+      y: {data: ['a', 'b', 'c'], range: [100, 0], tickCount: 1},
+      plotRect: {},
     }
   )
 })

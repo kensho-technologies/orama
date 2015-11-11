@@ -1,7 +1,10 @@
 
 import _ from 'lodash'
 
-const ACCESSORS_NAMES = [
+export const ACCESSORS_NAMES = [
+  'x', 'y', 'r', 'fill', 'stroke',
+]
+export const ACCESSORS_EXPANDED_NAMES = [
   'x', 'x0', 'y', 'y0', 'r', 'fill', 'stroke',
 ]
 export const ACCESSORS_GROUPS = {
@@ -13,7 +16,7 @@ export const ACCESSORS_GROUPS = {
 }
 // returns an object with the defined accessors names from a props object
 export const getDefinedAccessors = props => (
-  _.pick(props, ACCESSORS_NAMES)
+  _.pick(props, ACCESSORS_EXPANDED_NAMES)
 )
 // returns a data values object by extracting arrays from the data using the accessors
 export const getDataValuesFromData = (

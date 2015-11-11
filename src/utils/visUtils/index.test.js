@@ -67,7 +67,6 @@ test('visUtils.getRange', () => {
 
 test('visUtils.getTickCount', () => {
   assert(methods.getTickCount)
-  assert.throws(methods.getTickCount)
   assert.deepEqual(
     methods.getTickCount('x', [0, 600]),
     6
@@ -75,24 +74,6 @@ test('visUtils.getTickCount', () => {
   assert.deepEqual(
     methods.getTickCount('y', [500, 0]),
     6
-  )
-})
-
-test('visUtils.getD3Scale', () => {
-  assert(methods.getD3Scale)
-  assert.throws(methods.getD3Scale)
-  assert.deepEqual(
-    typeof methods.getD3Scale('linear'),
-    'function'
-  )
-})
-
-test('visUtils.getD3Scale', () => {
-  assert(methods.getD3Scale)
-  assert.throws(methods.getD3Scale)
-  assert.deepEqual(
-    typeof methods.getD3Scale('linear'),
-    'function'
   )
 })
 
