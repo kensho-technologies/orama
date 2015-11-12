@@ -4,6 +4,7 @@ import assert from 'assert'
 import _ from 'lodash'
 
 import addDimArrays, * as methods from './addDimArrays'
+import {ACCESSORS_GROUPS} from './constants'
 
 const data = [
   {p0: -1, p1: 1, p2: 'a', p3: new Date(2015, 1, 1)},
@@ -69,7 +70,7 @@ test('Chart2.omitGroups', () => {
         xArray: [1, 2, 10, 20, 30],
         yArray: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
       },
-      methods.ACCESSORS_GROUPS
+      ACCESSORS_GROUPS
     ),
     {
       fillArray: [
