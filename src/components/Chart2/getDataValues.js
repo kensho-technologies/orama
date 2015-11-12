@@ -14,11 +14,21 @@ export const ACCESSORS_GROUPS = {
   fill: ['fill'],
   stroke: ['stroke'],
 }
-// returns an object with the defined accessors names from a props object
+/*
+returns an object with the defined accessors names from a props object
+
+getDefinedAccessors({x: 'x', y: 'y', xName: 'The Prop 1'})
+return {x: 'x', y: 'y'}
+*/
 export const getDefinedAccessors = props => (
   _.pick(props, ACCESSORS_EXPANDED_NAMES)
 )
-// returns a data values object by extracting arrays from the data using the accessors
+/*
+returns a data values object by extracting arrays from the data using the accessors
+
+getDataValuesFromData([{x: 1}, {x: 2}], {x: 'x'})
+return {x: [1, 2]}
+*/
 export const getDataValuesFromData = (
   data, definedAccessors, dataValues = {}
 ) => (
