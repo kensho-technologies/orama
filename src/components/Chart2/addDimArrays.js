@@ -11,7 +11,7 @@ export const getDimArraysForLayer = (layer) => {
     definedAccessors,
     (acc, value, key) => _.assign(
       acc,
-      {[`${key}Array`]: _.compact(_.map(layer.data, value))}
+      {[key]: _.compact(_.map(layer.data, value))}
     ),
     {}
   )
@@ -29,7 +29,6 @@ export const omitGroups = (dimArrays, accessorsGroups) => (
   _.flow(
     _.values,
     _.flatten,
-    _.partialRight(_.map, d => `${d}Array`),
     _.partial(_.omit, dimArrays)
   )(accessorsGroups)
 )
@@ -41,20 +40,28 @@ export const mergeDimArrays = (props, _dimArrays) => {
     (acc, group, key) => {
       const array = _.reduce(
         group,
-        (acc2, d) => _.compact(acc2.concat(_dimArrays[`${d}Array`])),
+        (acc2, d) => _.compact(acc2.concat(_dimArrays[d])),
         []
       )
-      if (array.length > 0) acc[`${key}Array`] = array
+      if (array.length > 0) acc[key] = array
       return acc
     },
     dimArrays
   )
 }
+const assignDimArraysToProps = (props, dimArrays) => (
+  _.assign(
+    {},
+    props,
+    _.mapKeys(dimArrays, (value, key) => `${key}Array`),
+    {dimensions: _.keys(dimArrays)}
+  )
+)
 const addDimArrays = props => (
   _.flow(
     getDimArraysForProps,
     _.partial(mergeDimArrays, props),
-    _.partial(_.merge, {}, props)
+    _.partial(assignDimArraysToProps, props)
   )(props)
 )
 export default addDimArrays

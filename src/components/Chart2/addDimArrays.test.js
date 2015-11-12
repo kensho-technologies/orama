@@ -35,12 +35,12 @@ test('Chart2.getDimArraysForLayer', () => {
   assert.deepEqual(
     methods.getDimArraysForLayer(props),
     {
-      fillArray: [
+      fill: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
       ],
-      x0Array: [-1, -2, -3],
-      xArray: [1, 2],
-      yArray: ['a', 'b', 'c'],
+      x0: [-1, -2, -3],
+      x: [1, 2],
+      y: ['a', 'b', 'c'],
     }
   )
 })
@@ -48,13 +48,13 @@ test('Chart2.getDimArraysForProps', () => {
   assert.deepEqual(
     methods.getDimArraysForProps(props),
     {
-      fillArray: [
+      fill: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
         new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
       ],
-      x0Array: [-1, -2, -3],
-      xArray: [1, 2, 10, 20, 30],
-      yArray: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
+      x0: [-1, -2, -3],
+      x: [1, 2, 10, 20, 30],
+      y: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
     }
   )
 })
@@ -62,18 +62,18 @@ test('Chart2.omitGroups', () => {
   assert.deepEqual(
     methods.omitGroups(
       {
-        fillArray: [
+        fill: [
           new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
           new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
         ],
-        x0Array: [-1, -2, -3],
-        xArray: [1, 2, 10, 20, 30],
-        yArray: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
+        x0: [-1, -2, -3],
+        x: [1, 2, 10, 20, 30],
+        y: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
       },
       ACCESSORS_GROUPS
     ),
     {
-      fillArray: [
+      fill: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
         new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
       ],
@@ -85,35 +85,36 @@ test('Chart2.mergeDimArrays', () => {
     methods.mergeDimArrays(
       {},
       {
-        fillArray: [
+        fill: [
           new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
           new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
         ],
-        x0Array: [-1, -2, -3],
-        xArray: [1, 2, 10, 20, 30],
-        yArray: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
+        x0: [-1, -2, -3],
+        x: [1, 2, 10, 20, 30],
+        y: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
       }
     ),
     {
-      fillArray: [
+      fill: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
         new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
       ],
-      xArray: [1, 2, 10, 20, 30, -1, -2, -3],
-      yArray: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
+      x: [1, 2, 10, 20, 30, -1, -2, -3],
+      y: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
     }
   )
 })
 test('Chart2.addDimArrays', () => {
   assert.deepEqual(
     addDimArrays(props),
-    _.merge({}, props, {
+    _.assign({}, props, {
       fillArray: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
         new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
       ],
       xArray: [1, 2, 10, 20, 30, -1, -2, -3],
       yArray: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
+      dimensions: ['fill', 'x', 'y'],
     })
   )
 })
