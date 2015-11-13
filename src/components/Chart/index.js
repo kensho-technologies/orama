@@ -16,6 +16,10 @@ import ChartBackground from '../ChartBackground'
 import CanvasInput from '../CanvasInput'
 import LeftLabel from '../LeftLabel'
 
+/*
+This component will be deprecated when work on Chart2 is finished
+*/
+
 /**
  * Main chart component, receives data and name of the properties to be visualized.
  * @example

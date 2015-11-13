@@ -13,6 +13,10 @@ const styles = {
   },
 }
 
+/*
+This component will be deprecated when work on Chart2 is finished
+*/
+
 /**
  * Find on the render data the geom that intersect whith the mouse position.
  */

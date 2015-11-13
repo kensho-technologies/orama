@@ -1,27 +1,11 @@
 
 import _ from 'lodash'
 import * as visUtils from '../../utils/visUtils'
-import {ACCESSORS_NAMES} from './getDataValues'
 
 /*
-reorder and curry reduce funtion to
-reduceFp(accumulator, iteratee, collection)
+This module contains some of the props flow that generate the configurations for the plot functions.
 */
-const reduceFp = _.curry(_.rearg(_.reduce, 2, 1, 0), 3)
-/*
-Transform 'dataValues' into 'params'
 
-dataValuesToParams({x: [1, 2, 3], y: [10, 11, 12]})
-return {x: {data: [1, 2, 3], y: {data: [10, 11, 12]}}}
-*/
-export const dataValuesToParams = reduceFp({},
-  (acc, data, key) => {
-    acc[key] = {
-      data,
-    }
-    return acc
-  }
-)
 /*
 get the type from an array of values
 can return 'string, 'number' or 'date'
@@ -42,6 +26,22 @@ export const getTypeFromArray = array => {
   const maxName = _.max(counterPairs, '1')[0]
   return visUtils.JS_TO_VIS_TYPE[maxName]
 }
+export const addTypes = props => {
+  const types = _.reduce(
+    props.dimensions,
+    (acc, value) => {
+      if (props[`${value}Type`]) return acc
+      return _.set(
+        acc,
+        `${value}Type`,
+        getTypeFromArray(props[`${value}Array`])
+      )
+    },
+    {}
+  )
+  return _.assign({}, props, types)
+}
+
 /*
 return domain of the array according to the input type
 */
@@ -53,99 +53,68 @@ export function getDomainFromArray(array, type = 'linear') {
     return [_.min(array), _.max(array)]
   }
 }
-/*
-add types for each one of the params, if the type is missing
-
-addTypesToParams({ x: { data: [1, 2, 3] } })
-return { x: { data: [ 1, 2, 3 ], type: 'number' } }
-*/
-export const addTypeToParams = params => (
-  _.reduce(
-    params,
-    (acc, value, key) => {
-      if (!_.includes(ACCESSORS_NAMES, key)) return acc
-      if (value.type) {
-        acc[key] = value
-        return acc
-      }
-      acc[key] = {
-        ...value,
-        type: getTypeFromArray(value.data),
-      }
-      return acc
+export const addDomains = props => {
+  const domains = _.reduce(
+    props.dimensions,
+    (acc, value) => {
+      if (props[`${value}Domain`]) return acc
+      return _.set(
+        acc,
+        `${value}Domain`,
+        getDomainFromArray(props[`${value}Array`], props[`${value}Type`])
+      )
     },
-    {...params}
+    {}
   )
-)
-export const addDomainToParams = params => (
-  _.reduce(
-    params,
-    (acc, value, key) => {
-      if (!_.includes(ACCESSORS_NAMES, key)) return acc
-      if (value.domain) {
-        acc[key] = value
-        return acc
-      }
-      acc[key] = {
-        ...value,
-        domain: getDomainFromArray(value.data, value.type),
-      }
-      return acc
+  return _.assign({}, props, domains)
+}
+export const addRanges = props => {
+  const ranges = _.reduce(
+    props.dimensions,
+    (acc, value) => {
+      if (props[`${value}Range`]) return acc
+      return _.set(
+        acc,
+        `${value}Range`,
+        visUtils.getRange(value, props.plotRect, props[`${value}Type`])
+      )
     },
-    {...params}
+    {}
   )
-)
-export const addRangeToParams = params => (
-  _.reduce(
-    params,
-    (acc, value, key) => {
-      if (!_.includes(ACCESSORS_NAMES, key)) return acc
-      if (value.range) {
-        acc[key] = value
-        return acc
-      }
-      acc[key] = {
-        ...value,
-        range: visUtils.getRange(key, params.plotRect, value.type),
-      }
-      return acc
+  return _.assign({}, props, ranges)
+}
+export const addTickCounts = props => {
+  const tickCounts = _.reduce(
+    props.dimensions,
+    (acc, value) => {
+      if (props[`${value}TickCount`]) return acc
+      return _.set(
+        acc,
+        `${value}TickCount`,
+        visUtils.getTickCount(value, props[`${value}Range`])
+      )
     },
-    {...params}
+    {}
   )
-)
-export const addTickCountToParams = params => (
-  _.reduce(
-    params,
-    (acc, value, key) => {
-      if (!_.includes(ACCESSORS_NAMES, key)) return acc
-      if (value.tickCount) {
-        acc[key] = value
-        return acc
-      }
-      acc[key] = {
-        ...value,
-        tickCount: visUtils.getTickCount(key, value.range),
-      }
-      return acc
+  return _.assign({}, props, tickCounts)
+}
+export const addScales = props => {
+  const scales = _.reduce(
+    props.dimensions,
+    (acc, value) => {
+      if (props[`${value}Scale`]) return acc
+      return _.set(
+        acc,
+        `${value}Scale`,
+        visUtils.getScale(
+          value,
+          props[`${value}Type`],
+          props[`${value}Domain`],
+          props[`${value}Range`]
+        )
+      )
     },
-    {...params}
+    {}
   )
-)
-export const addScaleToParams = params => (
-  _.reduce(
-    params,
-    (acc, value, key) => {
-      if (!_.includes(ACCESSORS_NAMES, key)) return acc
-      if (value.scale) {
-        acc[key] = value
-        return acc
-      }
-      acc[key] = {
-        ...value,
-        scale: visUtils.getScale(key, value.type, value.domain, value.range, value.tickCount),
-      }
-      return acc
-    },
-    {...params}
-  )
-)
+  return _.assign({}, props, scales)
+}

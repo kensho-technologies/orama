@@ -119,12 +119,11 @@ export function getRange(output, plotRect, type) {
  */
 export function getTickCount(output, range) {
   switch (output) {
-  case 'x':
-    return Math.round((range[1] - range[0]) / TICKS_X_SPACE)
   case 'y':
     return Math.round((range[0] - range[1]) / TICKS_Y_SPACE)
+  case 'x':
   default:
-    return undefined
+    return Math.round((range[1] - range[0]) / TICKS_X_SPACE)
   }
 }
 
