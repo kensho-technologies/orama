@@ -1,6 +1,54 @@
 
 import {rectBase} from '../rectUtils'
 
+const noop = () => undefined
+export const ctxMock = {
+  beginPath: noop,
+  bezierCurveTo: noop,
+  clearRect: noop,
+  clip: noop,
+  closePath: noop,
+  fill: noop,
+  fillRect: noop,
+  fillText: noop,
+  isPointInPath: noop,
+  isPointInStroke: noop,
+  lineTo: noop,
+  measureText(text) {
+    return {width: text.toString().length}
+  },
+  arcTo: noop,
+  moveTo: noop,
+  quadraticCurveTo: noop,
+  rect: noop,
+  restore: noop,
+  rotate: noop,
+  save: noop,
+  scale: noop,
+  strokeRect: noop,
+  strokeText: noop,
+  transform: noop,
+  translate: noop,
+}
+export const canvasMock = {
+  getContext: () => ctxMock,
+}
+let cachedCtx
+/*
+Returns a cached offscreen canvas render.
+In case the DOM is not available, returns a mocked render context.
+
+The context returned by this function is shared, always call `save()` and `restore()` when manipulating it
+*/
+export function getCachedContext() {
+  if (cachedCtx) return cachedCtx
+  if (global.document && global.document.createElement) {
+    cachedCtx = document.createElement('canvas').getContext('2d')
+    return cachedCtx
+  }
+  return ctxMock
+}
+
 export function clearRect(ctx, rectInput) {
   var rect = {...rectBase, ...rectInput}
   ctx.clearRect(
@@ -10,7 +58,6 @@ export function clearRect(ctx, rectInput) {
     rect.height
   )
 }
-
 export function fillRect(ctx, rectInput) {
   var rect = {...rectBase, ...rectInput}
   ctx.fillRect(
@@ -20,7 +67,6 @@ export function fillRect(ctx, rectInput) {
     rect.height
   )
 }
-
 export function strokeRect(ctx, rectInput) {
   var rect = {...rectBase, ...rectInput}
   ctx.strokeRect(

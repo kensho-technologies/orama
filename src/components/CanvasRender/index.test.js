@@ -5,7 +5,7 @@ import assert from 'assert'
 import React from 'react'
 import shallowRender from '@luiscarli/shallow-render'
 
-import {ctx} from '../../utils/canvasMock'
+import {ctxMock} from '../../utils/canvasUtils'
 import {pathMock} from '../../utils/path'
 
 import CanvasRender, {renderCanvas} from './'
@@ -25,5 +25,5 @@ test('CanvasRender.renderCanvas()', () => {
     renderData,
     plotRect: {x: 0, y: 0, width: 100, height: 100},
   }
-  assert.equal(renderCanvas(props, ctx), undefined)
+  assert.equal(renderCanvas(props, ctxMock), undefined)
 })

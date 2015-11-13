@@ -28,10 +28,3 @@ test('Chart methods.getMaxTextWidth', () => {
     3
   )
 })
-
-test('Chart methods.getRenderContext', () => {
-  assert.deepEqual(
-    typeof methods.getRenderContext(),
-    'object'
-  )
-})

@@ -3,6 +3,7 @@ import utils from '../../utils'
 import R from 'ramda'
 
 import defaultTheme from '../defaultTheme'
+import {getCachedContext} from '../../utils/canvasUtils'
 
 const defaultMargin = {
   left: 20, right: 20,
@@ -40,7 +41,7 @@ export function calculateMargin(opts) {
 }
 
 export function getMaxTextWidth(font = 'menlo', fontSize = 13, ticks) {
-  const ctx = getRenderContext()
+  const ctx = getCachedContext()
   ctx.save()
   ctx.font = `${fontSize}px ${font}`
   const maxSize = R.reduce((reducedSize, d) => {
@@ -49,49 +50,4 @@ export function getMaxTextWidth(font = 'menlo', fontSize = 13, ticks) {
   }, 0, ticks)
   ctx.restore()
   return maxSize
-}
-
-function noop() { return undefined }
-
-const ctxMock = {
-  beginPath: noop,
-  bezierCurveTo: noop,
-  clearRect: noop,
-  clip: noop,
-  closePath: noop,
-  fillRect: noop,
-  fillText: noop,
-  isPointInPath: noop,
-  isPointInStroke: noop,
-  lineTo: noop,
-  measureText(text) {
-    return {width: text.toString().length}
-  },
-  arcTo: noop,
-  moveTo: noop,
-  quadraticCurveTo: noop,
-  rect: noop,
-  restore: noop,
-  rotate: noop,
-  save: noop,
-  scale: noop,
-  strokeRect: noop,
-  strokeText: noop,
-  transform: noop,
-  translate: noop,
-}
-
-let cachedCtx
-/**
- * Returns a cached offscreen canvas render.
- * In case the DOM is not available, returns a mocked render context.
- * @return {object}
- */
-export function getRenderContext() {
-  if (cachedCtx) return cachedCtx
-  if (global.document && global.document.createElement) {
-    cachedCtx = document.createElement('canvas').getContext('2d')
-    return cachedCtx
-  }
-  return ctxMock
 }
