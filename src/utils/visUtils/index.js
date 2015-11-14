@@ -5,6 +5,10 @@ import d3Scale from 'd3-scale'
 
 import * as rectUtils from '../rectUtils'
 
+/*
+THIS MODULE WILL BE DEPRECATED WHEN CHART2 IS FINISHED
+*/
+
 /**
  * Methods for geting type, domain, range, tickCount, scale and others.
  * Some of the terms used here:

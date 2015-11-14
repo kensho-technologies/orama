@@ -2,7 +2,6 @@
 import {it as test} from 'mocha'
 import assert from 'assert'
 import _ from 'lodash'
-import * as visUtils from '../../utils/visUtils'
 
 import * as methods from './methods'
 
@@ -59,12 +58,6 @@ test('Chart2.getDomainFromArray, type="ordinal"', () => {
     ['a', 'b', 'c']
   )
 })
-test('Chart2.getDomainFromArray, type="ordinal"', () => {
-  assert.deepEqual(
-    methods.getDomainFromArray(['a', 'a', 'b', 'c'], 'ordinal'),
-    ['a', 'b', 'c']
-  )
-})
 test('Chart2.getDomainFromArray, type="time"', () => {
   assert.deepEqual(
     methods.getDomainFromArray(
@@ -106,7 +99,7 @@ test('Chart2.addRanges', () => {
   assert.deepEqual(
     methods.addRanges(props),
     _.assign({}, props, {
-      fillRange: [0, 500],
+      fillRange: ['#edf8b1', '#2c7fb8'],
       xRange: [0, 500],
       yRange: [500, 0],
     })
@@ -128,7 +121,7 @@ test('Chart2.addTickCounts', () => {
     })
   )
 })
-test.skip('Chart2.addScales', () => {
+test('Chart2.addScales', () => {
   const props = {
     dimensions: ['fill', 'x', 'y'],
     fillType: 'time',
@@ -141,12 +134,8 @@ test.skip('Chart2.addScales', () => {
     xRange: [0, 500],
     yRange: [500, 0],
   }
-  assert.equal(
-    methods.addScales(props),
-    _.assign({}, props, {
-      fillScale: visUtils.getScale('fill', 'time', [new Date(2015, 1), new Date(2015, 3)], [0, 500]),
-      xScale: visUtils.getScale('x', 'linear', [1, 10], [0, 500]),
-      yScale: visUtils.getScale('y', 'ordinal', ['a', 'b', 'c'], [500, 0]),
-    })
-  )
+  const transformedProps = methods.addScales(props)
+  assert(transformedProps.xScale)
+  assert(transformedProps.yScale)
+  assert(transformedProps.fillScale)
 })

@@ -1,6 +1,7 @@
 
 import _ from 'lodash'
 import * as visUtils from '../../utils/visUtils'
+import {getType, getDomain, getRange, getTickCount, getScale} from './getMethods'
 
 /*
 This module contains some of the props flow that generate the configurations for the plot functions.
@@ -29,12 +30,12 @@ export const getTypeFromArray = array => {
 export const addTypes = props => {
   const types = _.reduce(
     props.dimensions,
-    (acc, value) => {
-      if (props[`${value}Type`]) return acc
+    (acc, key) => {
+      if (props[`${key}Type`]) return acc
       return _.set(
         acc,
-        `${value}Type`,
-        getTypeFromArray(props[`${value}Array`])
+        `${key}Type`,
+        getType(props, key)
       )
     },
     {}
@@ -56,12 +57,12 @@ export function getDomainFromArray(array, type = 'linear') {
 export const addDomains = props => {
   const domains = _.reduce(
     props.dimensions,
-    (acc, value) => {
-      if (props[`${value}Domain`]) return acc
+    (acc, key) => {
+      if (props[`${key}Domain`]) return acc
       return _.set(
         acc,
-        `${value}Domain`,
-        getDomainFromArray(props[`${value}Array`], props[`${value}Type`])
+        `${key}Domain`,
+        getDomain(props, key)
       )
     },
     {}
@@ -71,12 +72,12 @@ export const addDomains = props => {
 export const addRanges = props => {
   const ranges = _.reduce(
     props.dimensions,
-    (acc, value) => {
-      if (props[`${value}Range`]) return acc
+    (acc, key) => {
+      if (props[`${key}Range`]) return acc
       return _.set(
         acc,
-        `${value}Range`,
-        visUtils.getRange(value, props.plotRect, props[`${value}Type`])
+        `${key}Range`,
+        getRange(props, key)
       )
     },
     {}
@@ -86,12 +87,12 @@ export const addRanges = props => {
 export const addTickCounts = props => {
   const tickCounts = _.reduce(
     props.dimensions,
-    (acc, value) => {
-      if (props[`${value}TickCount`]) return acc
+    (acc, key) => {
+      if (props[`${key}TickCount`]) return acc
       return _.set(
         acc,
-        `${value}TickCount`,
-        visUtils.getTickCount(value, props[`${value}Range`])
+        `${key}TickCount`,
+        getTickCount(props, key)
       )
     },
     {}
@@ -101,17 +102,12 @@ export const addTickCounts = props => {
 export const addScales = props => {
   const scales = _.reduce(
     props.dimensions,
-    (acc, value) => {
-      if (props[`${value}Scale`]) return acc
+    (acc, key) => {
+      if (props[`${key}Scale`]) return acc
       return _.set(
         acc,
-        `${value}Scale`,
-        visUtils.getScale(
-          value,
-          props[`${value}Type`],
-          props[`${value}Domain`],
-          props[`${value}Range`]
-        )
+        `${key}Scale`,
+        getScale(props, key)
       )
     },
     {}

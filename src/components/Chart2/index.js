@@ -9,18 +9,20 @@ import ChartRenderWrapper from '../ChartRenderWrapper'
 /*
 Used inside </>
 */
-const Chart2 = props => (
-  <Block>
-    <ChartRenderWrapper
-      annotationData={[]}
-      highlightData={[]}
-      plotRect={{}}
-      renderData={[]}
-      size={{}}
-      theme={props.theme}
-    />
-  </Block>
-)
+const Chart2 = props => {
+  return (
+    <Block>
+      <ChartRenderWrapper
+        annotationData={[]}
+        highlightData={[]}
+        plotRect={{}}
+        renderData={[]}
+        size={{}}
+        theme={props.theme}
+      />
+    </Block>
+  )
+}
 Chart2.propTypes = {
   data: PropTypes.array,
   layers: PropTypes.array,
