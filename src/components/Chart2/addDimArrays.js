@@ -57,11 +57,10 @@ const assignDimArraysToProps = (props, dimArrays) => (
     {dimensions: _.keys(dimArrays)}
   )
 )
-const addDimArrays = props => (
+export const addDimArrays = props => (
   _.flow(
     getDimArraysForProps,
     _.partial(mergeDimArrays, props),
     _.partial(assignDimArraysToProps, props)
   )(props)
 )
-export default addDimArrays

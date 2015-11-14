@@ -4,9 +4,14 @@ import {it as test} from 'mocha'
 import assert from 'assert'
 import _ from 'lodash'
 
-import addDimArrays from './addDimArrays'
-import {addPlotRect} from './addPlotRect'
-import * as addMethods from './methods'
+import {
+  addDimArrays,
+  addTypes,
+  addDomains,
+  addPlotRect,
+  addRanges,
+  addTickCounts,
+} from './addMethods'
 
 const data = [
   {p1: '10', p2: '0'}, {p1: '15', p2: '-1'}, {p1: '25', p2: '-2'},
@@ -21,11 +26,11 @@ test('Chart2.transformProps', () => {
   }
   const transformedProps = _.flow(
     addDimArrays,
-    addMethods.addTypes,
-    addMethods.addDomains,
+    addTypes,
+    addDomains,
     addPlotRect,
-    addMethods.addRanges,
-    addMethods.addTickCounts,
+    addRanges,
+    addTickCounts,
   )(props)
   assert.deepEqual(
     _.omit(transformedProps, ['data', 'size', 'xArray', 'yArray']),

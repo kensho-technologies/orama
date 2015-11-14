@@ -3,7 +3,7 @@ import {it as test} from 'mocha'
 import assert from 'assert'
 import _ from 'lodash'
 
-import addDimArrays, * as methods from './addDimArrays'
+import * as methods from './addDimArrays'
 import {ACCESSORS_GROUPS} from './constants'
 
 const data = [
@@ -106,7 +106,7 @@ test('Chart2.mergeDimArrays', () => {
 })
 test('Chart2.addDimArrays', () => {
   assert.deepEqual(
-    addDimArrays(props),
+    methods.addDimArrays(props),
     _.assign({}, props, {
       fillArray: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),

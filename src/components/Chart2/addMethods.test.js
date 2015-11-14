@@ -3,26 +3,8 @@ import {it as test} from 'mocha'
 import assert from 'assert'
 import _ from 'lodash'
 
-import * as methods from './methods'
+import * as methods from './addMethods'
 
-test('Chart2.getTypeFromArray', () => {
-  assert.deepEqual(
-    methods.getTypeFromArray([1, 2, 'string', new Date()]),
-    'linear'
-  )
-  assert.deepEqual(
-    methods.getTypeFromArray(['a', 'b', 1, new Date()]),
-    'ordinal'
-  )
-  assert.deepEqual(
-    methods.getTypeFromArray([new Date(), new Date(), 'a', 1]),
-    'time'
-  )
-  assert.deepEqual(
-    methods.getTypeFromArray(),
-    'linear'
-  )
-})
 test('Chart2.addTypes', () => {
   const props = {
     fillArray: [
@@ -40,31 +22,6 @@ test('Chart2.addTypes', () => {
       xType: 'linear',
       yType: 'ordinal',
     })
-  )
-})
-test('Chart2.getDomainFromArray, type="linear"', () => {
-  assert.deepEqual(
-    methods.getDomainFromArray([1, 2, 3], 'linear'),
-    [1, 3]
-  )
-  assert.deepEqual(
-    methods.getDomainFromArray([1, 'a', 'b'], 'linear'),
-    [1, 1]
-  )
-})
-test('Chart2.getDomainFromArray, type="ordinal"', () => {
-  assert.deepEqual(
-    methods.getDomainFromArray(['a', 'a', 'b', 'c'], 'ordinal'),
-    ['a', 'b', 'c']
-  )
-})
-test('Chart2.getDomainFromArray, type="time"', () => {
-  assert.deepEqual(
-    methods.getDomainFromArray(
-      [new Date(2015, 1), new Date(2015, 2), new Date(2015, 3)],
-      'time'
-    ),
-    [new Date(2015, 1), new Date(2015, 3)]
   )
 })
 test('Chart2.addDomains', () => {
