@@ -1,30 +1,37 @@
 # Components 
 
-- [App](#App)
+- [undefined](#undefined)
 - [BottomLabel](#BottomLabel)
+- [CanvasInput](#CanvasInput)
+- [CanvasInput](#CanvasInput)
 - [CanvasRender](#CanvasRender)
+- [CanvasRenderHighlight](#CanvasRenderHighlight)
+- [CanvasRenderHover](#CanvasRenderHover)
 - [Chart](#Chart)
 - [ChartBackground](#ChartBackground)
-- [CanvasInput](#CanvasInput)
+- [ChartsGroupBar](#ChartsGroupBar)
+- [ContentEditable](#ContentEditable)
 - [DataList](#DataList)
-- [DownloadImg](#DownloadImg)
+- [Draggable](#Draggable)
 - [Histogram](#Histogram)
-- [If](#If)
+- [undefined](#undefined)
 - [LeftLabel](#LeftLabel)
-- [MapData](#MapData)
 - [MapDataCard](#MapDataCard)
 - [PropCard](#PropCard)
 - [Tooltip](#Tooltip)
 - [Vis](#Vis)
 
-### App
-[src/components/App/index.js](../src/components/App/index.js)
+### undefined
+[src/components/AnnotationEditorWrapper/index.js](../src/components/AnnotationEditorWrapper/index.js)
 
-Main wrapper for the application
+
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
-children | func | false |  | 
+annotationData | array | false | [] | 
+onUpdate | func | false |  | 
+selectedIdx | number | false |  | 
+size | object | true |  | 
 
 
 ### BottomLabel
@@ -39,16 +46,71 @@ text | string | false | '' |
 theme | object | false | {...defaultTheme} | 
 
 
-### CanvasRender
-[src/components/CanvasRender/index.js](../src/components/CanvasRender/index.js)
+### CanvasInput
+[src/components/CanvasInput/index.js](../src/components/CanvasInput/index.js)
+
+Read and executes the inputs from Charts
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+renderData | array | false | [] | 
+size | object | true |  | 
+theme | object | false |  | 
+
+
+### CanvasInput
+[src/components/CanvasInput2/index.js](../src/components/CanvasInput2/index.js)
 
 
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
+onUpdate | func | true |  | 
+renderData | array | false | [] | 
+size | object | true |  | 
+theme | object | false |  | 
+
+
+### CanvasRender
+[src/components/CanvasRender/index.js](../src/components/CanvasRender/index.js)
+
+Component create a Canvas and use the renderData for drawing geometries on it.
+The renderData follows a specific format.
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
 plotRect | object | false |  | 
 renderData | array | false | [] | 
-size | object | false | {width: 0, height: 0} | 
+size | object | true | {width: 0, height: 0} | 
+theme |  | false | {...defaultTheme} | undefined
+
+
+### CanvasRenderHighlight
+[src/components/CanvasRenderHighlight/index.js](../src/components/CanvasRenderHighlight/index.js)
+
+Component create a Canvas and use the renderData for drawing geometries on it.
+The renderData follows a specific format.
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+highlightData | array | false | [] | 
+plotRect | object | false |  | 
+size | object | true | {width: 0, height: 0} | 
+theme |  | false | {...defaultTheme} | undefined
+
+
+### CanvasRenderHover
+[src/components/CanvasRenderHover/index.js](../src/components/CanvasRenderHover/index.js)
+
+Component create a Canvas and use the renderData for drawing geometries on it.
+The renderData follows a specific format.
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+hoverData | array | false | [] | 
+plotRect | object | false |  | 
+size | object | true | {width: 0, height: 0} | 
+theme |  | false | {...defaultTheme} | undefined
 
 
 ### Chart
@@ -75,7 +137,6 @@ labelProp | string | false |  |
 margin | object | false | {  left: 80, right: 30,  top: 15, bottom: 60,} | 
 radiusProp | string | false |  | 
 size | object | false | {width: 500, height: 400} | 
-styleVars | object | false |  | 
 theme | object | false | {...defaultTheme} | 
 title | string | false |  | 
 xName | string | false |  | 
@@ -105,16 +166,27 @@ yTickCount | number | false |  |
 yType | string | false |  | 
 
 
-### CanvasInput
-[src/components/CanvasInput/index.js](../src/components/CanvasInput/index.js)
+### ChartsGroupBar
+[src/components/ChartsGroupBar/index.js](../src/components/ChartsGroupBar/index.js)
 
-Read and executes the inputs from Charts
+
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
-renderData | array | false | [] | 
-size | object | true |  | 
-theme | object | false |  | 
+children | any | false |  | 
+
+
+### ContentEditable
+[src/components/ContentEditable/index.js](../src/components/ContentEditable/index.js)
+
+
+
+Prop | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+acceptNewLine | bool | false | false | 
+onUpdate | func | false | () => undefined | 
+text | string | false |  | 
+textEditable | bool | false | true | 
 
 
 ### DataList
@@ -129,14 +201,16 @@ data | array | false | [] |
 theme | object | false | {...defaultTheme} | 
 
 
-### DownloadImg
-[src/components/DownloadImg/index.js](../src/components/DownloadImg/index.js)
+### Draggable
+[src/components/Draggable/index.js](../src/components/Draggable/index.js)
 
 
 
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
-theme | object | false |  | 
+children | element | false |  | 
+initialPos |  | false | {x: 0, y: 0} | undefined
+onUpdate | func | true |  | 
 
 
 ### Histogram
@@ -161,12 +235,13 @@ data | array | false | [] |
 margin | object | false | {  left: 5, right: 5,  top: 5, bottom: 5,} | 
 size | object | false | {width: 500, height: 400} | 
 styleVars | object | false |  | 
+theme | object | false |  | 
 xName | string | false |  | 
 xProp | string | false |  | 
 xType | string | false |  | 
 
 
-### If
+### undefined
 [src/components/If/index.js](../src/components/If/index.js)
 
 This component renders or not according to the `condition` prop.
@@ -200,24 +275,6 @@ Prop | Type | Required | Default | Description
 plotRect | object | true | {x: 0, y: 0, width: 0, height: 0} | 
 text | string | false | '' | 
 theme | object | false | {...defaultTheme} | 
-
-
-### MapData
-[src/components/MapData/index.js](../src/components/MapData/index.js)
-
-Holds the mapping data UI
-
-Prop | Type | Required | Default | Description
----- | ---- | -------- | ------- | -----------
-chartType | string | false |  | 
-colorProp | string | false |  | 
-data | array | false |  | 
-groupProp | string | false |  | 
-radiusProp | string | false |  | 
-setProp | func | false |  | 
-theme | object | false | {...defaultTheme} | 
-xProp | string | false |  | 
-yProp | string | false |  | 
 
 
 ### MapDataCard
