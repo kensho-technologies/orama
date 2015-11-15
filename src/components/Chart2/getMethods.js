@@ -1,5 +1,6 @@
 
 import _ from 'lodash'
+import d3Scale from 'd3-scale'
 import * as rectUtils from '../../utils/rectUtils'
 
 export const JS_TO_VIS_TYPE = {
@@ -81,5 +82,19 @@ export const getTickCount = (props, key) => {
   default:
     const yTickSpace = _tickSpace || TICK_X_SPACE
     return Math.round((range[1] - range[0]) / yTickSpace)
+  }
+}
+export function getTicks(props, key) {
+  const {
+    [`${key}Type`]: type,
+    [`${key}Domain`]: domain,
+    [`${key}TickCount`]: tickCount,
+  } = props
+  switch (type) {
+  case 'ordinal':
+    return domain
+  case 'linear':
+  default:
+    return d3Scale.linear().domain(domain).nice(tickCount).ticks(tickCount)
   }
 }
