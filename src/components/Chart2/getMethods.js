@@ -98,3 +98,10 @@ export function getTicks(props, key) {
     return d3Scale.linear().domain(domain).nice(tickCount).ticks(tickCount)
   }
 }
+export function getMap(props, key) {
+  const {
+    [`${key}Scale`]: scale,
+    [key]: accessor,
+  } = props
+  return obj => scale(_.get(obj, accessor))
+}

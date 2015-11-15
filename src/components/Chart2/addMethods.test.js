@@ -96,3 +96,21 @@ test('Chart2.addScales', () => {
   assert(transformedProps.yScale)
   assert(transformedProps.fillScale)
 })
+test('Chart2.addMaps', () => {
+  const props = {
+    dimensions: ['x', 'y'],
+    x: 'p1',
+    xScale: d => d + 1,
+    y: 'p2',
+    yScale: d => d * 2,
+  }
+  const transformedProps = methods.addMaps(props)
+  assert.deepEqual(
+    transformedProps.xMap({p1: 0}),
+    1
+  )
+  assert.deepEqual(
+    transformedProps.yMap({p2: 2}),
+    4
+  )
+})

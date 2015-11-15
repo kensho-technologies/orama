@@ -92,3 +92,14 @@ test('Chart2.getTickCount', () => {
     50
   )
 })
+test('Chart2.getTickCount', () => {
+  const props = {
+    x: 'p1',
+    xScale: d => d + 1,
+  }
+  const map = methods.getMap(props, 'x')
+  assert.deepEqual(
+    map({p1: 0}),
+    1
+  )
+})

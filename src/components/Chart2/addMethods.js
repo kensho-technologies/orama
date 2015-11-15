@@ -6,6 +6,7 @@ import {
   getRange,
   getTickCount,
   getScale,
+  getMap,
 } from './getMethods'
 
 export {addDimArrays} from './addDimArrays'
@@ -32,3 +33,4 @@ export const addDomains = addToProps('Domain', getDomain)
 export const addRanges = addToProps('Range', getRange)
 export const addTickCounts = addToProps('TickCount', getTickCount)
 export const addScales = addToProps('Scale', getScale)
+export const addMaps = addToProps('Map', getMap)
