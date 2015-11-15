@@ -1,8 +1,12 @@
 
 import _ from 'lodash'
 import {getCachedContext} from '../../utils/canvasUtils'
+import {
+  getRange,
+  getTickCount,
+  getTicks,
+} from './getMethods'
 import * as rectUtils from '../../utils/rectUtils'
-import * as visUtils from '../../utils/visUtils'
 import DEFAULT_THEME from '../defaultTheme'
 
 const AXIS_LABEL_SPACING = 10
@@ -33,13 +37,11 @@ export const addPlotRect = props => {
     margin = DEFAULT_MARGIN,
     size,
     theme = DEFAULT_THEME,
-    yDomain,
-    yType,
   } = props
   const initialPlotRect = rectUtils.marginInset(margin, size)
-  const yRange = props.yRange || visUtils.getRange('y', initialPlotRect, yType)
-  const yTickCount = props.yTickCount || visUtils.getTickCount('y', yRange)
-  const yTicks = props.yTicks || visUtils.getTicks(yType, yDomain, yTickCount)
+  const yRange = props.yRange || getRange({...props, plotRect: initialPlotRect}, 'y')
+  const yTickCount = props.yTickCount || getTickCount({...props, yRange}, 'y')
+  const yTicks = props.yTicks || getTicks({...props, yTickCount}, 'y')
   const yMaxTickWidth = getMaxTextWidth(theme, yTicks)
   const newMargin = {
     left: yMaxTickWidth + theme.axis.labelFontSize * 1.5 + margin.left + AXIS_LABEL_SPACING,
