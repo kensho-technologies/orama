@@ -1,9 +1,8 @@
 
 import React, {PropTypes} from 'react'
 
-import defaultTheme from '../defaultTheme'
-
 import {Block} from '@luiscarli/display'
+import defaultTheme from '../defaultTheme'
 
 /**
  * Component that position and style the bottom label of the `Chart` component

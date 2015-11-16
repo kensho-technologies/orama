@@ -86,9 +86,9 @@ export const getTickCount = (props, key) => {
 }
 export function getTicks(props, key) {
   const {
-    [`${key}Type`]: type,
-    [`${key}Domain`]: domain,
-    [`${key}TickCount`]: tickCount,
+    [`${key}Type`]: type = 'linear',
+    [`${key}Domain`]: domain = [0, 1],
+    [`${key}TickCount`]: tickCount = 0,
   } = props
   switch (type) {
   case 'ordinal':

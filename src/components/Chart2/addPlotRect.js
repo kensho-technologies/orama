@@ -33,6 +33,7 @@ export const getMaxTextWidth = (theme, ticks) => {
 }
 
 export const addPlotRect = props => {
+  if (props.plotRect) return props
   const {
     margin = DEFAULT_MARGIN,
     size,

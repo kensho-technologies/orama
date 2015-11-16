@@ -1,9 +1,7 @@
 
 import React, {PropTypes} from 'react'
 import defaultTheme from '../defaultTheme'
-import R from 'ramda'
 import stateHOC from '../../utils/stateHOC'
-import utils from '../../utils'
 
 import {Block} from '@luiscarli/display'
 import ChartInteractionLayer from '../ChartInteractionLayer'
@@ -71,21 +69,4 @@ ChartRenderWrapper.defaultProps = {
   theme: defaultTheme,
 }
 
-// defaultProps for test
-const renderData = R.map(() => {
-  const path2D = utils.path()
-  path2D.arc(Math.random() * 350 + 50, Math.random() * 350 + 50, 5, 0, 2 * Math.PI)
-  return {
-    type: 'area',
-    path2D,
-  }
-}, R.range(1, 500))
-const annotationData = []
-const initialState = {
-  size: {width: 500, height: 500},
-  plotRect: {x: 50, y: 50, width: 400, height: 400},
-  renderData,
-  annotationData,
-}
-
-export default stateHOC(ChartRenderWrapper, initialState)
+export default stateHOC(ChartRenderWrapper)
