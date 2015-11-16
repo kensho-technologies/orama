@@ -2,15 +2,16 @@
 export default {
   font: 'verdana',
   fontSecondary: 'verdana',
-  fontMono: 'menlo',
+  fontMono: 'verdana',
   fontSize: 13,
+  lineHeight: 1.5,
   backgroundColor: 'hsl(0, 0%, 100%)',
   textColor: 'hsl(0, 0%, 0%)',
   axis: {
     background: 'hsl(0, 0%, 97%)',
     chartPadding: 20,
     color: 'hsl(0, 0%, 0%)',
-    labelFontSize: 13.5,
+    labelFontSize: 13,
     tickFontSize: 13,
     tickStroke: 'hsl(0, 0%, 80%)',
     tickZeroStroke: 'hsl(0, 0%, 55%)',

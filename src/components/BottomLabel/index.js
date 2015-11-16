@@ -29,7 +29,7 @@ export default React.createClass({
         bottom={0}
         color={theme.axis.color}
         fontFamily={theme.font}
-        fontSize={theme.axis.labelFontSize}
+        fontSize={theme.fontSize}
         left={plotRect.x}
         overflow={'hidden'}
         position={'absolute'}

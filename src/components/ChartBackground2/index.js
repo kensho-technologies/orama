@@ -4,21 +4,29 @@ import _ from 'lodash'
 import defaultTheme from '../defaultTheme'
 import path from '../../utils/path'
 import {getTicks} from '../Chart2/getMethods'
+import {inset} from '../../utils/rectUtils'
 
 import {Block} from '@luiscarli/display'
 import CanvasRender from '../CanvasRender'
 import BottomLabel from '../BottomLabel'
 import LeftLabel from '../LeftLabel'
 
+const backgroundOffset = 15
+
 const getBackgroundRenderData = props => {
   const {
+    backgroundOffset,
     plotRect,
     theme,
   } = props
+  const backgroundRect = inset(
+    -backgroundOffset,
+    plotRect
+  )
   const backgroundPath = path()
   backgroundPath.rect(
-    plotRect.x, plotRect.y,
-    plotRect.width, plotRect.height
+    backgroundRect.x, backgroundRect.y,
+    backgroundRect.width, backgroundRect.height
   )
   const background = {
     path2D: backgroundPath,
@@ -31,10 +39,13 @@ const getBackgroundRenderData = props => {
     xTicks,
     d => {
       const linePath = path()
-      linePath.moveTo(props.xScale(d), plotRect.y)
+      linePath.moveTo(
+        props.xScale(d),
+        plotRect.y - backgroundOffset
+      )
       linePath.lineTo(
         props.xScale(d),
-        plotRect.y + plotRect.height,
+        plotRect.y + plotRect.height + backgroundOffset,
       )
       return {
         path2D: linePath,
@@ -47,9 +58,12 @@ const getBackgroundRenderData = props => {
     yTicks,
     d => {
       const linePath = path()
-      linePath.moveTo(plotRect.x, props.yScale(d))
+      linePath.moveTo(
+        plotRect.x - backgroundOffset,
+        props.yScale(d)
+      )
       linePath.lineTo(
-        plotRect.x + plotRect.width,
+        plotRect.x + plotRect.width + backgroundOffset,
         props.yScale(d)
       )
       return {
@@ -65,9 +79,15 @@ const getBackgroundRenderData = props => {
       type: 'text',
       value: d,
       x: props.xScale(d),
-      y: plotRect.y + plotRect.height + theme.axis.tickFontSize * 1.5,
+      y: _.sum([
+        backgroundOffset,
+        plotRect.y,
+        plotRect.height,
+        theme.fontSize * theme.lineHeight - theme.fontSize,
+      ]),
+      textBaseline: 'top',
       textAlign: 'center',
-      font: `${theme.axis.tickFontSize}px ${theme.fontMono}`,
+      font: `${theme.fontSize}px ${theme.fontMono}`,
     }),
   )
   const yText = _.map(
@@ -75,11 +95,15 @@ const getBackgroundRenderData = props => {
     d => ({
       type: 'text',
       value: d,
-      x: plotRect.x - theme.axis.tickFontSize,
+      x: _.sum([
+        plotRect.x,
+        -backgroundOffset,
+        -(theme.fontSize * theme.lineHeight - theme.fontSize),
+      ]),
       y: props.yScale(d),
       textAlign: 'right',
       textBaseline: 'middle',
-      font: `${theme.axis.tickFontSize}px ${theme.fontMono}`,
+      font: `${theme.fontSize}px ${theme.fontMono}`,
     }),
   )
   return [].concat(background, xGuides, yGuides, xText, yText)
@@ -94,14 +118,17 @@ const ChartBackground2 = props => (
       plotRect={props.plotRect}
       renderData={getBackgroundRenderData(props)}
       size={props.size}
+      theme={props.theme}
     />
     <LeftLabel
       plotRect={props.plotRect}
       text={props.yName || props.y}
+      theme={props.theme}
     />
     <BottomLabel
       plotRect={props.plotRect}
       text={props.xName || props.x}
+      theme={props.theme}
     />
   </Block>
 )

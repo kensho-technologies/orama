@@ -31,6 +31,8 @@ const transformProps = _.flow(
   addMaps,
 )
 
+const BACKGROUND_OFFSET = 15
+
 /*
 Used inside </>
 */
@@ -38,7 +40,9 @@ const Chart2 = props => {
   const transformedProps = transformProps(props)
   const renderData = props.plotFunc(transformedProps)
   return (
-    <Block>
+    <Block
+      position='relative'
+    >
       <ChartBackground2
         {...transformedProps}
       />
@@ -64,10 +68,12 @@ Chart2.propTypes = {
   y: PropTypes.string,
 }
 Chart2.defaultProps = {
+  backgroundOffset: BACKGROUND_OFFSET,
   theme: defaultTheme,
 }
 
 const initialState = {
+  backgroundOffset: 20,
   size: {width: 500, height: 500},
   plotFunc: plotFunctions.points,
 }

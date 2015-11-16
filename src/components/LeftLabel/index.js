@@ -27,7 +27,8 @@ export default React.createClass({
       <Block
         color={theme.axis.color}
         fontFamily={theme.font}
-        fontSize={theme.axis.labelFontSize}
+        fontSize={theme.fontSize}
+        left={0}
         overflow={'hidden'}
         position={'absolute'}
         textAlign={'center'}
