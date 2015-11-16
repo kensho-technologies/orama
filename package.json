@@ -4,7 +4,7 @@
   "description": "DataVis exploration components",
   "main": "src/components/App.js",
   "scripts": {
-    "prestart": "npm prune && npm update && npm install",
+    "prestart": "npm prune && npm update",
     "start": "parallelshell 'node devServer.js' 'npm run test:watch' 'npm outdated'",
     "clean": "rimraf lib dist/bundle.js",
     "prebuild": "npm test && npm run clean",
