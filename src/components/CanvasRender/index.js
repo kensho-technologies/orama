@@ -19,7 +19,7 @@ export const renderCanvas = (props, ctx) => {
 
   utils.canvas.clearRect(ctx, size)
   ctx.save()
-  if (plotRect) {
+  if (plotRect && props.clip) {
     ctx.rect(plotRect.x - 20, plotRect.y - 20, plotRect.width + 40, plotRect.height + 40)
     ctx.clip()
   }
@@ -32,6 +32,12 @@ export const renderCanvas = (props, ctx) => {
     } else if (d.type === 'area') {
       ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
       ctx.fill(d.path2D)
+    } else if (d.type === 'text') {
+      ctx.font = d.font || '14px verdana'
+      ctx.fillStyle = d.fill || 'black'
+      ctx.textAlign = d.textAlign || 'left'
+      ctx.textBaseline = d.textBaseline || 'alphabetic'
+      ctx.fillText(d.value, d.x, d.y)
     }
   }, renderData)
   ctx.restore()
@@ -44,6 +50,7 @@ export const renderCanvas = (props, ctx) => {
 export default React.createClass({
   displayName: 'CanvasRender',
   propTypes: {
+    clip: PropTypes.bool,
     plotRect: PropTypes.object,
     renderData: PropTypes.array,
     size: PropTypes.object.isRequired,
