@@ -48,6 +48,7 @@ const getBottomMargin = props => {
   const defaultOffset = theme.fontSize * (theme.lineHeight - 1)
   const {
     backgroundOffset,
+    dimensions,
     margin = {},
     x,
     xShowTicks = true,
@@ -56,7 +57,7 @@ const getBottomMargin = props => {
     xLabelOffset = defaultOffset,
   } = props
   if (margin.bottom) return margin.bottom + backgroundOffset
-  if (!x) return backgroundOffset
+  if (!_.contains(dimensions, 'x')) return backgroundOffset
   return _.sum([
     backgroundOffset,
     xShowTicks ? xTickOffset + theme.fontSize : 0,
@@ -68,6 +69,7 @@ const getLeftMargin = props => {
   const defaultOffset = theme.fontSize * (theme.lineHeight - 1)
   const {
     backgroundOffset,
+    dimensions,
     margin = {},
     y,
     yShowTicks = true,
@@ -76,7 +78,7 @@ const getLeftMargin = props => {
     yLabelOffset = defaultOffset,
   } = props
   if (margin.left) return margin.left + backgroundOffset
-  if (!y) return backgroundOffset
+  if (!_.contains(dimensions, 'y')) return backgroundOffset
   if (!yShowTicks) {
     return _.sum([
       backgroundOffset,
@@ -116,7 +118,10 @@ const getRightMargin = props => {
 
 export const addPlotRect = props => {
   if (props.plotRect) return props
-  const {size} = props
+  const {
+    dimensions,
+    size,
+  } = props
 
   const top = getTopMargin(props)
   const bottom = getBottomMargin(props)
@@ -131,9 +136,19 @@ export const addPlotRect = props => {
     top,
     right,
   }
+  let newSize = _.clone(size)
+  let plotRect = rectUtils.marginInset(margin, size)
+  if (!_.contains(dimensions, 'x')) {
+    plotRect.width = 0
+  }
+  if (!_.contains(dimensions, 'y')) {
+    newSize.height -= plotRect.height
+    plotRect.height = 0
+  }
   return {
     ...props,
     margin,
-    plotRect: rectUtils.marginInset(margin, size),
+    plotRect,
+    size: newSize,
   }
 }
