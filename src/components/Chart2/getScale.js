@@ -6,7 +6,7 @@ export const getAxisScale = (props, key) => {
     [`${key}Type`]: type = 'linear',
     [`${key}Domain`]: domain = [0, 1],
     [`${key}Range`]: range = [0, 1],
-    [`${key}TickCount`]: tickCount = 0,
+    [`${key}TickCount`]: tickCount = 1,
   } = props
   switch (type) {
   case 'ordinal':
@@ -18,6 +18,8 @@ export const getAxisScale = (props, key) => {
     if (domain[0] === domain[1]) {
       const midRange = range[0] + (range[1] - range[0]) / 2
       const scaleLinear = () => midRange
+      scaleLinear.tickFormat = () => d => d
+      scaleLinear.ticks = () => [midRange]
       return scaleLinear
     }
     if (type === 'time') {
@@ -35,7 +37,7 @@ export const getAxisScale = (props, key) => {
 export const getDefaultScale = (props, key) => {
   const {
     [`${key}Type`]: type = 'linear',
-    [`${key}Domain`]: domain,
+    [`${key}Domain`]: domain = [0, 1],
     [`${key}Range`]: range = [0, 1],
     [`${key}TickCount`]: tickCount = 0,
   } = props

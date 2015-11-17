@@ -84,11 +84,20 @@ export const getTickCount = (props, key) => {
     return Math.round((range[1] - range[0]) / yTickSpace)
   }
 }
+export const getTickFormat = (props, key) => {
+  const {
+    [`${key}Scale`]: scale = getScale(props, key),
+    [`${key}TickCount`]: tickCount = 1,
+  } = props
+  return scale.tickFormat(tickCount)
+}
 export function getTicks(props, key) {
   const {
     [`${key}Type`]: type = 'linear',
     [`${key}Domain`]: domain = [0, 1],
-    [`${key}TickCount`]: tickCount = 0,
+    [`${key}TickCount`]: tickCount = 1,
+    [`${key}Scale`]: _scale,
+    [`${key}TickFormat`]: _tickFormat,
   } = props
   switch (type) {
   case 'ordinal':
@@ -101,13 +110,14 @@ export function getTicks(props, key) {
     )
   case 'linear':
   default:
-    const scale = getScale(props, key)
+    const scale = _scale || getScale(props, key)
+    const tickFormat = _tickFormat || getTickFormat({...props, scale}, key)
     const ticks = scale.ticks(tickCount)
     return _.map(
       ticks,
       d => ({
         value: d,
-        text: d,
+        text: tickFormat(d),
       })
     )
   }

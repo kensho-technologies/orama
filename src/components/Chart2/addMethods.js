@@ -7,6 +7,7 @@ import {
   getTickCount,
   getScale,
   getMap,
+  getTickFormat,
 } from './getMethods'
 
 export {addDimArrays} from './addDimArrays'
@@ -34,3 +35,4 @@ export const addRanges = addToProps('Range', getRange)
 export const addTickCounts = addToProps('TickCount', getTickCount)
 export const addScales = addToProps('Scale', getScale)
 export const addMaps = addToProps('Map', getMap)
+export const addTickFormatters = addToProps('TickFormat', getTickFormat)

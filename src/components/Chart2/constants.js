@@ -9,4 +9,4 @@ export const ACCESSORS_GROUPS = {
 export const RANGE = [0, 1]
 export const DOMAIN = [0, 1]
 export const TYPE = 'linear'
-export const TICK_COUNT = 0
+export const TICK_COUNT = 1
