@@ -2,6 +2,9 @@
 import _ from 'lodash'
 import {ACCESSORS_NAMES, ACCESSORS_GROUPS} from './constants'
 
+const checkUndefined = value => (
+  !_.isString(value) || value === ''
+)
 export const getDimArraysForLayer = (layer) => {
   const definedAccessors = _.pick(
     layer,
@@ -9,10 +12,13 @@ export const getDimArraysForLayer = (layer) => {
   )
   return _.reduce(
     definedAccessors,
-    (acc, value, key) => _.assign(
-      acc,
-      {[key]: _.compact(_.map(layer.data, value))}
-    ),
+    (acc, value, key) => {
+      if (checkUndefined(value)) return acc
+      return _.assign(
+        acc,
+        {[key]: _.compact(_.map(layer.data, value))}
+      )
+    },
     {}
   )
 }

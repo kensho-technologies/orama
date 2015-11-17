@@ -59,6 +59,8 @@ export const getRange = (props, key) => {
   switch (key) {
   case 'y':
     return [rectUtils.getMaxY(plotRect), plotRect.y]
+  case 'r':
+    return [2, 20]
   case 'fill':
   case 'color':
     switch (type) {
@@ -82,11 +84,11 @@ export const getTickCount = (props, key) => {
   switch (key) {
   case 'y':
     const xTickSpace = _tickSpace || TICK_Y_SPACE
-    return Math.round((range[0] - range[1]) / xTickSpace)
+    return Math.ceil((range[0] - range[1]) / xTickSpace)
   case 'x':
   default:
     const yTickSpace = _tickSpace || TICK_X_SPACE
-    return Math.round((range[1] - range[0]) / yTickSpace)
+    return Math.ceil((range[1] - range[0]) / yTickSpace)
   }
 }
 export const getTickFormat = (props, key) => {
