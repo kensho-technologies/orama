@@ -48,7 +48,7 @@ const getTopMargin = props => {
 }
 const getBottomMargin = props => {
   const {theme} = props
-  const defaultOffset = theme.fontSize * (theme.lineHeight - 1)
+  const defaultOffset = theme.fontSize * (theme.lineHeight - 0.5)
   const {
     backgroundOffset,
     dimensions,
@@ -68,7 +68,7 @@ const getBottomMargin = props => {
 }
 const getLeftMargin = props => {
   const {theme} = props
-  const defaultOffset = theme.fontSize * (theme.lineHeight - 1)
+  const defaultOffset = theme.fontSize * (theme.lineHeight - 0.5)
   const {
     backgroundOffset,
     dimensions,
