@@ -50,7 +50,6 @@ const getBottomMargin = props => {
     backgroundOffset,
     dimensions,
     margin = {},
-    x,
     xShowTicks = true,
     xShowLabel = true,
     xTickOffset = defaultOffset,
@@ -71,7 +70,6 @@ const getLeftMargin = props => {
     backgroundOffset,
     dimensions,
     margin = {},
-    y,
     yShowTicks = true,
     yShowLabel = true,
     yTickOffset = defaultOffset,
@@ -136,8 +134,8 @@ export const addPlotRect = props => {
     top,
     right,
   }
-  let newSize = _.clone(size)
-  let plotRect = rectUtils.marginInset(margin, size)
+  const newSize = _.clone(size)
+  const plotRect = rectUtils.marginInset(margin, size)
   if (!_.contains(dimensions, 'x')) {
     plotRect.width = 0
   }
