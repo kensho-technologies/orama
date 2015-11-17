@@ -77,10 +77,12 @@ const getLeftMargin = props => {
   } = props
   if (margin.left) return margin.left + backgroundOffset
   if (!y) return backgroundOffset
-  if (!yShowTicks) return _.sum([
-    backgroundOffset,
-    yShowLabel ? yLabelOffset + theme.fontSize : 0,
-  ])
+  if (!yShowTicks) {
+    return _.sum([
+      backgroundOffset,
+      yShowLabel ? yLabelOffset + theme.fontSize : 0,
+    ])
+  }
   const yRange = props.yRange || getRange(props, 'y')
   const yTickCount = props.yTickCount || getTickCount({...props, yRange}, 'y')
   const yTicks = props.yTicks || getTicks({...props, yTickCount}, 'y')
@@ -94,7 +96,6 @@ const getLeftMargin = props => {
 }
 const getRightMargin = props => {
   const {theme} = props
-  const defaultOffset = theme.fontSize * (theme.lineHeight - 1)
   const {
     backgroundOffset,
     margin = {},
@@ -115,11 +116,7 @@ const getRightMargin = props => {
 
 export const addPlotRect = props => {
   if (props.plotRect) return props
-  const {
-    size,
-    theme,
-    backgroundOffset,
-  } = props
+  const {size} = props
 
   const top = getTopMargin(props)
   const bottom = getBottomMargin(props)

@@ -11,11 +11,12 @@ import CanvasRender from '../CanvasRender'
 import BottomLabel from '../BottomLabel'
 import LeftLabel from '../LeftLabel'
 
-const backgroundOffset = 15
+const BACKGROUND_OFFSET = 15
 
-const getBackgroundRenderData = props => {
+const getBackground = props => {
+  if (props.backgroundShow === false) return undefined
   const {
-    backgroundOffset,
+    backgroundOffset = BACKGROUND_OFFSET,
     plotRect,
     theme,
   } = props
@@ -28,23 +29,32 @@ const getBackgroundRenderData = props => {
     backgroundRect.x, backgroundRect.y,
     backgroundRect.width, backgroundRect.height
   )
-  const background = {
+  return {
     path2D: backgroundPath,
     type: 'area',
     fill: theme.axis.background,
   }
-  const xTicks = props.xTicks || getTicks(props, 'x')
-  const yTicks = props.yTicks || getTicks(props, 'y')
-  const xGuides = _.map(
+}
+const getXGuides = props => {
+  if (!props.x) return undefined
+  if (props.xShowGuides === false) return undefined
+  const {
+    backgroundOffset = BACKGROUND_OFFSET,
+    plotRect,
+    theme,
+    xScale,
+    xTicks,
+  } = props
+  return _.map(
     xTicks,
     d => {
       const linePath = path()
       linePath.moveTo(
-        props.xScale(d),
+        xScale(d),
         plotRect.y - backgroundOffset
       )
       linePath.lineTo(
-        props.xScale(d),
+        xScale(d),
         plotRect.y + plotRect.height + backgroundOffset,
       )
       return {
@@ -54,17 +64,28 @@ const getBackgroundRenderData = props => {
       }
     },
   )
-  const yGuides = _.map(
+}
+const getYGuides = props => {
+  if (!props.y) return undefined
+  if (props.yShowGuides === false) return undefined
+  const {
+    backgroundOffset = BACKGROUND_OFFSET,
+    plotRect,
+    theme,
+    yScale,
+    yTicks,
+  } = props
+  return _.map(
     yTicks,
     d => {
       const linePath = path()
       linePath.moveTo(
         plotRect.x - backgroundOffset,
-        props.yScale(d)
+        yScale(d)
       )
       linePath.lineTo(
         plotRect.x + plotRect.width + backgroundOffset,
-        props.yScale(d)
+        yScale(d)
       )
       return {
         path2D: linePath,
@@ -73,24 +94,50 @@ const getBackgroundRenderData = props => {
       }
     },
   )
-  const xText = _.map(
+}
+const getXText = props => {
+  if (!props.x) return undefined
+  if (props.xShowTicks === false) return undefined
+  const {theme} = props
+  const defaultOffset = theme.fontSize * (theme.lineHeight - 1)
+  const {
+    backgroundOffset = BACKGROUND_OFFSET,
+    plotRect,
+    xScale,
+    xTickOffset = defaultOffset,
+    xTicks,
+  } = props
+  return _.map(
     xTicks,
     d => ({
       type: 'text',
       value: d,
-      x: props.xScale(d),
+      x: xScale(d),
       y: _.sum([
         backgroundOffset,
         plotRect.y,
         plotRect.height,
-        theme.fontSize * theme.lineHeight - theme.fontSize,
+        xTickOffset,
       ]),
       textBaseline: 'top',
       textAlign: 'center',
       font: `${theme.fontSize}px ${theme.fontMono}`,
     }),
   )
-  const yText = _.map(
+}
+const getYText = props => {
+  if (!props.y) return undefined
+  if (props.yShowTicks === false) return undefined
+  const {theme} = props
+  const defaultOffset = theme.fontSize * (theme.lineHeight - 1)
+  const {
+    backgroundOffset = BACKGROUND_OFFSET,
+    plotRect,
+    yScale,
+    yTickOffset = defaultOffset,
+    yTicks,
+  } = props
+  return _.map(
     yTicks,
     d => ({
       type: 'text',
@@ -98,15 +145,24 @@ const getBackgroundRenderData = props => {
       x: _.sum([
         plotRect.x,
         -backgroundOffset,
-        -(theme.fontSize * theme.lineHeight - theme.fontSize),
+        -yTickOffset,
       ]),
-      y: props.yScale(d),
+      y: yScale(d),
       textAlign: 'right',
       textBaseline: 'middle',
       font: `${theme.fontSize}px ${theme.fontMono}`,
     }),
   )
-  return [].concat(background, xGuides, yGuides, xText, yText)
+}
+const getBackgroundRenderData = props => {
+  const background = getBackground(props)
+  const xTicks = props.xTicks || getTicks(props, 'x')
+  const yTicks = props.yTicks || getTicks(props, 'y')
+  const xGuides = getXGuides({...props, xTicks})
+  const yGuides = getYGuides({...props, yTicks})
+  const xText = getXText({...props, xTicks})
+  const yText = getYText({...props, yTicks})
+  return _.flatten(_.compact([background, xGuides, yGuides, xText, yText]))
 }
 
 /*

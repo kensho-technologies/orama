@@ -14,7 +14,11 @@ test('Chart2.getMaxTextWidth', () => {
 
 test('Chart2.addPlotRect', () => {
   const props = {
+    backgroundOffset: 15,
     size: {width: 500, height: 500},
+    theme: DEFAULT_THEME,
+    x: 'p2',
+    y: 'p1',
     yDomain: [0, 100],
     yType: 'linear',
   }
@@ -22,7 +26,8 @@ test('Chart2.addPlotRect', () => {
     methods.addPlotRect(props),
     {
       ...props,
-      plotRect: {x: 53.25, y: 20, width: 426.75, height: 410.25},
+      plotRect: {x: 49, y: 15, width: 436, height: 431},
+      margin: {bottom: 54, left: 49, right: 15, top: 15},
     }
   )
 })
