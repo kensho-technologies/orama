@@ -1,7 +1,7 @@
 
 import _ from 'lodash'
-import d3Scale from 'd3-scale'
 import * as rectUtils from '../../utils/rectUtils'
+import {getScale} from './getScale'
 
 export const JS_TO_VIS_TYPE = {
   'string': 'ordinal',
@@ -92,10 +92,24 @@ export function getTicks(props, key) {
   } = props
   switch (type) {
   case 'ordinal':
-    return domain
+    return _.map(
+      domain,
+      d => ({
+        value: d,
+        text: d,
+      })
+    )
   case 'linear':
   default:
-    return d3Scale.linear().domain(domain).nice(tickCount).ticks(tickCount)
+    const scale = getScale(props, key)
+    const ticks = scale.ticks(tickCount)
+    return _.map(
+      ticks,
+      d => ({
+        value: d,
+        text: d,
+      })
+    )
   }
 }
 export function getMap(props, key) {

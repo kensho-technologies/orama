@@ -6,8 +6,12 @@ import * as methods from './addPlotRect'
 import DEFAULT_THEME from '../defaultTheme'
 
 test('Chart2.getMaxTextWidth', () => {
+  const ticks = [
+    {value: 'a', text: 'a'},
+    {value: 'amadeus', text: 'amadeus'},
+  ]
   assert.deepEqual(
-    methods.getMaxTextWidth(DEFAULT_THEME, ['a', 'amadeus']),
+    methods.getMaxTextWidth(DEFAULT_THEME, ticks),
     7
   )
 })

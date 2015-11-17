@@ -22,7 +22,10 @@ export const getMaxTextWidth = (theme, ticks) => {
   ctx.font = `${theme.fontSize}px ${theme.fontMono}`
   const maxWidth = _.reduce(
     ticks,
-    (acc, d) => _.max([acc, ctx.measureText(d).width]),
+    (acc, d) => _.max([
+      acc,
+      ctx.measureText(d.text).width,
+    ]),
     0
   )
   ctx.restore()
@@ -107,7 +110,7 @@ const getRightMargin = props => {
   const xRange = props.xRange || getRange(props, 'x')
   const xTickCount = props.xTickCount || getTickCount({...props, xRange}, 'x')
   const xTicks = props.xTicks || getTicks({...props, xTickCount}, 'x')
-  const xLastTickWidth = getTextWidth(theme, _.last(xTicks))
+  const xLastTickWidth = getTextWidth(theme, _.last(xTicks).text)
   return _.max([
     backgroundOffset,
     xLastTickWidth,

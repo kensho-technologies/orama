@@ -49,12 +49,13 @@ const getXGuides = props => {
     xTicks,
     d => {
       const linePath = path()
+      const x = xScale(d.value)
       linePath.moveTo(
-        xScale(d),
+        x,
         plotRect.y - backgroundOffset
       )
       linePath.lineTo(
-        xScale(d),
+        x,
         plotRect.y + plotRect.height + backgroundOffset,
       )
       return {
@@ -79,13 +80,14 @@ const getYGuides = props => {
     yTicks,
     d => {
       const linePath = path()
+      const y = yScale(d.value)
       linePath.moveTo(
         plotRect.x - backgroundOffset,
-        yScale(d)
+        y
       )
       linePath.lineTo(
         plotRect.x + plotRect.width + backgroundOffset,
-        yScale(d)
+        y
       )
       return {
         path2D: linePath,
@@ -111,8 +113,8 @@ const getXText = props => {
     xTicks,
     d => ({
       type: 'text',
-      value: d,
-      x: xScale(d),
+      value: d.text,
+      x: xScale(d.value),
       y: _.sum([
         backgroundOffset,
         plotRect.y,
@@ -141,13 +143,13 @@ const getYText = props => {
     yTicks,
     d => ({
       type: 'text',
-      value: d,
+      value: d.text,
       x: _.sum([
         plotRect.x,
         -backgroundOffset,
         -yTickOffset,
       ]),
-      y: yScale(d),
+      y: yScale(d.value),
       textAlign: 'right',
       textBaseline: 'middle',
       font: `${theme.fontSize}px ${theme.fontMono}`,

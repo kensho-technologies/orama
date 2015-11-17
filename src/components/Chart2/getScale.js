@@ -3,10 +3,10 @@ import d3Scale from 'd3-scale'
 
 export const getAxisScale = (props, key) => {
   const {
-    [`${key}Type`]: type,
-    [`${key}Domain`]: domain,
-    [`${key}Range`]: range,
-    [`${key}TickCount`]: tickCount,
+    [`${key}Type`]: type = 'linear',
+    [`${key}Domain`]: domain = [0, 1],
+    [`${key}Range`]: range = [0, 1],
+    [`${key}TickCount`]: tickCount = 0,
   } = props
   switch (type) {
   case 'ordinal':
@@ -34,10 +34,10 @@ export const getAxisScale = (props, key) => {
 }
 export const getDefaultScale = (props, key) => {
   const {
-    [`${key}Type`]: type,
+    [`${key}Type`]: type = 'linear',
     [`${key}Domain`]: domain,
-    [`${key}Range`]: range,
-    [`${key}TickCount`]: tickCount,
+    [`${key}Range`]: range = [0, 1],
+    [`${key}TickCount`]: tickCount = 0,
   } = props
   switch (type) {
   case 'ordinal':
