@@ -21,13 +21,13 @@ const props = {
   x0: 'p0',
   x: 'p1',
   y: 'p2',
-  fill: 'p3',
+  color: 'p3',
   layers: [
     {
       data: layerData,
       x: 'p10',
       y: 'p2',
-      fill: 'p3',
+      color: 'p3',
     },
   ],
 }
@@ -35,7 +35,7 @@ test('Chart2.getDimArraysForLayer', () => {
   assert.deepEqual(
     methods.getDimArraysForLayer(props),
     {
-      fill: [
+      color: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
       ],
       x0: [-1, -2, -3],
@@ -48,7 +48,7 @@ test('Chart2.getDimArraysForProps', () => {
   assert.deepEqual(
     methods.getDimArraysForProps(props),
     {
-      fill: [
+      color: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
         new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
       ],
@@ -62,7 +62,7 @@ test('Chart2.omitGroups', () => {
   assert.deepEqual(
     methods.omitGroups(
       {
-        fill: [
+        color: [
           new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
           new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
         ],
@@ -73,7 +73,7 @@ test('Chart2.omitGroups', () => {
       ACCESSORS_GROUPS
     ),
     {
-      fill: [
+      color: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
         new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
       ],
@@ -85,7 +85,7 @@ test('Chart2.mergeDimArrays', () => {
     methods.mergeDimArrays(
       {},
       {
-        fill: [
+        color: [
           new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
           new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
         ],
@@ -95,7 +95,7 @@ test('Chart2.mergeDimArrays', () => {
       }
     ),
     {
-      fill: [
+      color: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
         new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
       ],
@@ -108,13 +108,13 @@ test('Chart2.addDimArrays', () => {
   assert.deepEqual(
     methods.addDimArrays(props),
     _.assign({}, props, {
-      fillArray: [
+      colorArray: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
         new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
       ],
       xArray: [1, 2, 10, 20, 30, -1, -2, -3],
       yArray: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
-      dimensions: ['fill', 'x', 'y'],
+      dimensions: ['color', 'x', 'y'],
     })
   )
 })

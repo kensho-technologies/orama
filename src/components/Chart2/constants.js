@@ -1,6 +1,6 @@
 
 export const ACCESSORS_NAMES = [
-  'x', 'x0', 'y', 'y0', 'r', 'fill', 'stroke',
+  'x', 'x0', 'y', 'y0', 'r', 'color', 'stroke',
 ]
 export const ACCESSORS_GROUPS = {
   x: ['x', 'x0'],

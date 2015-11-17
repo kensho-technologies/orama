@@ -53,7 +53,7 @@ test('Chart2.transformProps', () => {
       'x': 'p1',
       'xDomain': ['10', '15', '25'],
       'xRange': [61, 485],
-      'xTickCount': 4,
+      'xTickCount': 5,
       'xType': 'ordinal',
       'y': 'p2',
       'yDomain': ['0', '-1', '-2'],

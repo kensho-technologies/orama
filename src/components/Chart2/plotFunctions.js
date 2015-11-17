@@ -12,15 +12,29 @@ const getY = (props, d) => {
   if (!props.yMap) return props.plotRect.y
   return props.yMap(d)
 }
+const getR = (props, d) => {
+  if (props.rValue) return props.rValue
+  if (!props.rMap) return 5
+  return props.rMap(d)
+}
+const getColor = (props, d) => {
+  if (props.colorValue) return props.colorValue
+  if (!props.colorMap) return 'steelblue'
+  return props.colorMap(d)
+}
 export const pointsDataMap = (props, d) => {
   if (!props.xMap && !props.yMap) return undefined
   const path2D = utils.path()
   const x = getX(props, d)
   const y = getY(props, d)
-  path2D.arc(x, y, 5, 0, 2 * Math.PI)
+  const r = getR(props, d)
+  const color = getColor(props, d)
+  path2D.arc(x, y, r, 0, 2 * Math.PI)
   return {
     type: 'area',
     path2D,
+    alpha: 0.5,
+    fill: color,
   }
 }
 export const points = props => (
