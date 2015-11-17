@@ -1,8 +1,13 @@
 ## Explorer
 [![Build Status](https://travis-ci.org/kensho/explorer.svg)](https://travis-ci.org/luiscarli/explorer)
 
+Explorer is a group of React components for quickly exploring and deploying web visualizations, it provides an API similar to ggvis for easily deriving data and composing multi-layer visualizations, it also exposes interfaces for interactively creating visualizations, highlighting data, adding labels and sharing the resulting charts.   
+(The library is currently under development)
+
+## Development
+
 Development needs node >= 0.12 and npm >= 3.
-To update npm to version 3 `$ npm i -g npm`
+To update npm do `$ npm i -g npm`
 
 **Scripts**
 ```bash
