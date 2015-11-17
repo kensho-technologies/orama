@@ -2,16 +2,16 @@
 import _ from 'lodash'
 import * as rectUtils from '../../utils/rectUtils'
 import {getScale} from './getScale'
-
-export const JS_TO_VIS_TYPE = {
-  'string': 'ordinal',
-  'number': 'linear',
-  'date': 'time',
-}
-export const RANGE_LINEAR_COLOR = ['#edf8b1', '#2c7fb8']
-export const RANGE_ORDINAL_COLOR = ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3', '#a6d854', '#ffd92f', '#e5c494', '#b3b3b3']
-const TICK_X_SPACE = 100
-const TICK_Y_SPACE = 90
+import {
+  DOMAIN,
+  JS_TO_VIS_TYPE,
+  RANGE_LINEAR_COLOR,
+  RANGE_ORDINAL_COLOR,
+  TICK_COUNT,
+  TICK_X_SPACE,
+  TICK_Y_SPACE,
+  TYPE,
+} from './constants'
 
 export {getScale} from './getScale'
 
@@ -20,9 +20,11 @@ export function toType(input) {
 }
 
 export const getType = (props, key) => {
+  if (props[`${key}Type`]) return props[`${key}Type`]
   const {
     [`${key}Array`]: array,
   } = props
+  if (!array) return undefined
   const counter = _.reduce(
     array,
     (acc, d) => {
@@ -36,9 +38,10 @@ export const getType = (props, key) => {
   return JS_TO_VIS_TYPE[maxName]
 }
 export const getDomain = (props, key) => {
+  if (props[`${key}Domain`]) return props[`${key}Domain`]
   const {
     [`${key}Array`]: array,
-    [`${key}Type`]: type,
+    [`${key}Type`]: type = TYPE,
   } = props
   switch (type) {
   case 'ordinal':
@@ -48,9 +51,10 @@ export const getDomain = (props, key) => {
   }
 }
 export const getRange = (props, key) => {
+  if (props[`${key}Range`]) return props[`${key}Range`]
   const {
     plotRect,
-    [`${key}Type`]: type,
+    [`${key}Type`]: type = TYPE,
   } = props
   switch (key) {
   case 'y':
@@ -70,6 +74,7 @@ export const getRange = (props, key) => {
   }
 }
 export const getTickCount = (props, key) => {
+  if (props[`${key}TickCount`]) return props[`${key}TickCount`]
   const {
     [`${key}Range`]: range,
     [`${key}TickSpace`]: _tickSpace,
@@ -85,19 +90,19 @@ export const getTickCount = (props, key) => {
   }
 }
 export const getTickFormat = (props, key) => {
+  if (props[`${key}TickFormat`]) return props[`${key}TickFormat`]
   const {
     [`${key}Scale`]: scale = getScale(props, key),
-    [`${key}TickCount`]: tickCount = 1,
+    [`${key}TickCount`]: tickCount = TICK_COUNT,
   } = props
   return scale.tickFormat(tickCount)
 }
 export function getTicks(props, key) {
+  if (props[`${key}Ticks`]) return props[`${key}Ticks`]
   const {
-    [`${key}Type`]: type = 'linear',
-    [`${key}Domain`]: domain = [0, 1],
-    [`${key}TickCount`]: tickCount = 1,
-    [`${key}Scale`]: _scale,
-    [`${key}TickFormat`]: _tickFormat,
+    [`${key}Type`]: type = TYPE,
+    [`${key}Domain`]: domain = DOMAIN,
+    [`${key}TickCount`]: tickCount = TICK_COUNT,
   } = props
   switch (type) {
   case 'ordinal':
@@ -110,8 +115,8 @@ export function getTicks(props, key) {
     )
   case 'linear':
   default:
-    const scale = _scale || getScale(props, key)
-    const tickFormat = _tickFormat || getTickFormat({...props, scale}, key)
+    const scale = getScale(props, key)
+    const tickFormat = getTickFormat({...props, scale}, key)
     const ticks = scale.ticks(tickCount)
     return _.map(
       ticks,
@@ -123,6 +128,7 @@ export function getTicks(props, key) {
   }
 }
 export function getMap(props, key) {
+  if (props[`${key}Map`]) return props[`${key}Map`]
   const {
     [`${key}Scale`]: scale,
     [key]: accessor,

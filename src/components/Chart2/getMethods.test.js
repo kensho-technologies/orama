@@ -1,6 +1,7 @@
 
 import {it as test} from 'mocha'
 import assert from 'assert'
+import {RANGE_LINEAR_COLOR} from './constants'
 
 import * as methods from './getMethods'
 
@@ -32,7 +33,7 @@ test('Chart2.getType', () => {
   )
   assert.deepEqual(
     methods.getType(props),
-    'linear'
+    undefined
   )
 })
 test('Chart2.getDomain', () => {
@@ -74,7 +75,7 @@ test('Chart2.getRange', () => {
   )
   assert.deepEqual(
     methods.getRange(props, 'fill'),
-    methods.RANGE_LINEAR_COLOR
+    RANGE_LINEAR_COLOR
   )
 })
 test('Chart2.getTickCount', () => {

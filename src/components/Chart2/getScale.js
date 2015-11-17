@@ -1,12 +1,18 @@
 
 import d3Scale from 'd3-scale'
+import {
+  DOMAIN,
+  RANGE,
+  TICK_COUNT,
+  TYPE,
+} from './constants'
 
 export const getAxisScale = (props, key) => {
   const {
-    [`${key}Type`]: type = 'linear',
-    [`${key}Domain`]: domain = [0, 1],
-    [`${key}Range`]: range = [0, 1],
-    [`${key}TickCount`]: tickCount = 1,
+    [`${key}Type`]: type = TYPE,
+    [`${key}Domain`]: domain = DOMAIN,
+    [`${key}Range`]: range = RANGE,
+    [`${key}TickCount`]: tickCount = TICK_COUNT,
   } = props
   switch (type) {
   case 'ordinal':
@@ -36,10 +42,10 @@ export const getAxisScale = (props, key) => {
 }
 export const getDefaultScale = (props, key) => {
   const {
-    [`${key}Type`]: type = 'linear',
-    [`${key}Domain`]: domain = [0, 1],
-    [`${key}Range`]: range = [0, 1],
-    [`${key}TickCount`]: tickCount = 0,
+    [`${key}Type`]: type = TYPE,
+    [`${key}Domain`]: domain = DOMAIN,
+    [`${key}Range`]: range = RANGE,
+    [`${key}TickCount`]: tickCount = TICK_COUNT,
   } = props
   switch (type) {
   case 'ordinal':

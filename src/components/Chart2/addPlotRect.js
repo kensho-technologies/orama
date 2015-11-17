@@ -6,6 +6,12 @@ import {
   getTickCount,
   getTicks,
 } from './getMethods'
+import {
+  AXIS_OFFSET,
+  BACKGROUND_OFFSET,
+  SHOW_LABELS,
+  SHOW_TICKS,
+} from './constants'
 import * as rectUtils from '../../utils/rectUtils'
 
 const getTextWidth = (theme, string) => {
@@ -33,11 +39,11 @@ export const getMaxTextWidth = (theme, ticks) => {
 }
 const getTopMargin = props => {
   const {
-    backgroundOffset,
+    backgroundOffset = BACKGROUND_OFFSET,
     margin = {},
     theme,
     y,
-    yShowTicks = true,
+    yShowTicks = SHOW_TICKS,
   } = props
   if (margin.top) return margin.top + backgroundOffset
   if (yShowTicks === false || !y) return backgroundOffset
@@ -48,15 +54,14 @@ const getTopMargin = props => {
 }
 const getBottomMargin = props => {
   const {theme} = props
-  const defaultOffset = theme.fontSize * (theme.lineHeight - 0.5)
   const {
-    backgroundOffset,
+    backgroundOffset = BACKGROUND_OFFSET,
     dimensions,
     margin = {},
-    xShowTicks = true,
-    xShowLabel = true,
-    xTickOffset = defaultOffset,
-    xLabelOffset = defaultOffset,
+    xShowTicks = SHOW_TICKS,
+    xShowLabel = SHOW_LABELS,
+    xTickOffset = AXIS_OFFSET(theme),
+    xLabelOffset = AXIS_OFFSET(theme),
   } = props
   if (margin.bottom) return margin.bottom + backgroundOffset
   if (!_.contains(dimensions, 'x')) return backgroundOffset
@@ -68,15 +73,14 @@ const getBottomMargin = props => {
 }
 const getLeftMargin = props => {
   const {theme} = props
-  const defaultOffset = theme.fontSize * (theme.lineHeight - 0.5)
   const {
-    backgroundOffset,
+    backgroundOffset = BACKGROUND_OFFSET,
     dimensions,
     margin = {},
-    yShowTicks = true,
-    yShowLabel = true,
-    yTickOffset = defaultOffset,
-    yLabelOffset = defaultOffset,
+    yShowTicks = SHOW_TICKS,
+    yShowLabel = SHOW_LABELS,
+    yTickOffset = AXIS_OFFSET(theme),
+    yLabelOffset = AXIS_OFFSET(theme),
   } = props
   if (margin.left) return margin.left + backgroundOffset
   if (!_.contains(dimensions, 'y')) return backgroundOffset
@@ -100,10 +104,10 @@ const getLeftMargin = props => {
 const getRightMargin = props => {
   const {theme} = props
   const {
-    backgroundOffset,
+    backgroundOffset = BACKGROUND_OFFSET,
     margin = {},
     x,
-    xShowTicks = true,
+    xShowTicks = SHOW_TICKS,
   } = props
   if (margin.right) return margin.right + backgroundOffset
   if (!x || !xShowTicks) return backgroundOffset
