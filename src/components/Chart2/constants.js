@@ -23,5 +23,5 @@ export const TICK_Y_SPACE = 90
 export const SHOW_TICKS = true
 export const SHOW_LABELS = true
 export const AXIS_OFFSET = theme => (
-  theme.fontSize * (theme.lineHeight - 0.5)
+  theme.fontSize * (theme.lineHeight - 0.75)
 )

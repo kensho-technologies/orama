@@ -31,8 +31,8 @@ test('Chart2.addPlotRect', () => {
     methods.addPlotRect(props),
     {
       ...props,
-      plotRect: {x: 62, y: 15, width: 423, height: 418},
-      margin: {bottom: 67, left: 62, right: 15, top: 15},
+      plotRect: {x: 55.5, y: 15, width: 429.5, height: 424.5},
+      margin: {bottom: 60.5, left: 55.5, right: 15, top: 15},
     }
   )
 })
