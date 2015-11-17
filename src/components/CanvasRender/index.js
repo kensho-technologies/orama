@@ -1,6 +1,6 @@
 
 import React, {PropTypes} from 'react'
-import R from 'ramda'
+import _ from 'lodash'
 import shouldPureComponentUpdate from 'react-pure-render/function'
 
 import utils from '../../utils'
@@ -23,23 +23,27 @@ export const renderCanvas = (props, ctx) => {
     ctx.rect(plotRect.x - 20, plotRect.y - 20, plotRect.width + 40, plotRect.height + 40)
     ctx.clip()
   }
-  R.forEach(d => {
-    ctx.globalAlpha = d.alpha || 1
-    if (d.type === 'line') {
-      ctx.lineWidth = d.lineWidth || 2
-      ctx.strokeStyle = d.stroke || 'hsl(200,30%, 50%)'
-      ctx.stroke(d.path2D)
-    } else if (d.type === 'area') {
-      ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
-      ctx.fill(d.path2D)
-    } else if (d.type === 'text') {
-      ctx.font = d.font || '14px verdana'
-      ctx.fillStyle = d.fill || 'black'
-      ctx.textAlign = d.textAlign || 'left'
-      ctx.textBaseline = d.textBaseline || 'alphabetic'
-      ctx.fillText(d.value, d.x, d.y)
-    }
-  }, renderData)
+  _.each(
+    renderData,
+    d => {
+      if (!d) return
+      ctx.globalAlpha = d.alpha || 1
+      if (d.type === 'line') {
+        ctx.lineWidth = d.lineWidth || 2
+        ctx.strokeStyle = d.stroke || 'hsl(200,30%, 50%)'
+        ctx.stroke(d.path2D)
+      } else if (d.type === 'area') {
+        ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
+        ctx.fill(d.path2D)
+      } else if (d.type === 'text') {
+        ctx.font = d.font || '14px verdana'
+        ctx.fillStyle = d.fill || 'black'
+        ctx.textAlign = d.textAlign || 'left'
+        ctx.textBaseline = d.textBaseline || 'alphabetic'
+        ctx.fillText(d.value, d.x, d.y)
+      }
+    },
+  )
   ctx.restore()
 }
 
