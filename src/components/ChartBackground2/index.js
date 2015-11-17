@@ -36,7 +36,7 @@ const getBackground = props => {
   }
 }
 const getXGuides = props => {
-  if (!props.x) return undefined
+  if (!_.contains(props.dimensions, 'x')) return undefined
   if (props.xShowGuides === false) return undefined
   const {
     backgroundOffset = BACKGROUND_OFFSET,
@@ -67,7 +67,7 @@ const getXGuides = props => {
   )
 }
 const getYGuides = props => {
-  if (!props.y) return undefined
+  if (!_.contains(props.dimensions, 'y')) return undefined
   if (props.yShowGuides === false) return undefined
   const {
     backgroundOffset = BACKGROUND_OFFSET,
@@ -98,7 +98,7 @@ const getYGuides = props => {
   )
 }
 const getXText = props => {
-  if (!props.x) return undefined
+  if (!_.contains(props.dimensions, 'x')) return undefined
   if (props.xShowTicks === false) return undefined
   const {theme} = props
   const defaultOffset = theme.fontSize * (theme.lineHeight - 1)
@@ -128,7 +128,7 @@ const getXText = props => {
   )
 }
 const getYText = props => {
-  if (!props.y) return undefined
+  if (!_.contains(props.dimensions, 'y')) return undefined
   if (props.yShowTicks === false) return undefined
   const {theme} = props
   const defaultOffset = theme.fontSize * (theme.lineHeight - 1)
