@@ -33,7 +33,7 @@ export const pointsDataMap = (props, d) => {
   return {
     type: 'area',
     path2D,
-    alpha: 0.5,
+    alpha: 0.7,
     fill: color,
   }
 }

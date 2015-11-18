@@ -4,11 +4,6 @@ import _ from 'lodash'
 import defaultTheme from '../defaultTheme'
 import stateHOC from '../../utils/stateHOC'
 import * as plotFunctions from './plotFunctions'
-
-import {Block} from '@luiscarli/display'
-import ChartRenderWrapper from '../ChartRenderWrapper'
-import ChartBackground2 from '../ChartBackground2'
-
 import {
   addDimArrays,
   addTypes,
@@ -17,8 +12,12 @@ import {
   addRanges,
   addTickCounts,
   addScales,
-  addMaps,
 } from './addMethods'
+import {getRenderData} from './getRenderData'
+
+import {Block} from '@luiscarli/display'
+import ChartRenderWrapper from '../ChartRenderWrapper'
+import ChartBackground2 from '../ChartBackground2'
 
 const transformProps = _.flow(
   addDimArrays,
@@ -28,7 +27,6 @@ const transformProps = _.flow(
   addRanges,
   addTickCounts,
   addScales,
-  addMaps,
 )
 
 const BACKGROUND_OFFSET = 15
@@ -38,7 +36,7 @@ Used inside </>
 */
 const Chart2 = props => {
   const transformedProps = transformProps(props)
-  const renderData = props.plotFunc(transformedProps)
+  const renderData = getRenderData(transformedProps)
   return (
     <Block
       position='relative'
