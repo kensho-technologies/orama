@@ -7,6 +7,30 @@ import {
   TYPE,
 } from './constants'
 
+/*
+`getScale` returns the scale for a key according to configurations on props object.
+
+@calling logic
+getScale{
+  getAxisScale{
+    d3Scale()
+  }
+  getDefaultScale{
+    d3Scale()
+  }
+}
+
+@example
+getScale({xType, xDomain, xRange, xTickCount}, 'x')
+returns {
+  ...props,
+  xScale,
+}
+*/
+
+/*
+get a scale with logic for the x and y axis, if the domain starts and finishes on the same number returns the mid range value.
+*/
 export const getAxisScale = (props, key) => {
   const {
     [`${key}Type`]: type = TYPE,
@@ -66,6 +90,9 @@ export const getDefaultScale = (props, key) => {
       .nice(tickCount)
   }
 }
+/*
+Main exported function, used outside of the module on the Chart props transform flow.
+*/
 export const getScale = (props, key) => {
   switch (key) {
   case 'x':

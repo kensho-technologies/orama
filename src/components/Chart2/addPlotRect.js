@@ -14,6 +14,28 @@ import {
 } from './constants'
 import * as rectUtils from '../../utils/rectUtils'
 
+/*
+`addPlotRect` calculate and assign the plotRect to a new props.
+props.size gets insetted by props.margin to generate the plotRect.
+when props.margin is not defined (or only partially defined), addPlotRect smartly calculates the margins, by taking into consideration axis label, ticks width and backgroundOffset.
+
+@calling logic
+addPlotRect{
+  getTopMargin{}
+  getBottomMargin{}
+  getLeftMargin{
+    getMaxTextWidth{}
+  }
+  getRightMargin{
+    getTextWidth{}
+  }
+}
+
+@example
+addPlotRect({size})
+returns {size, plotRect}
+*/
+
 const getTextWidth = (theme, string) => {
   const ctx = getCachedContext()
   ctx.save()
@@ -22,6 +44,10 @@ const getTextWidth = (theme, string) => {
   ctx.restore()
   return width
 }
+/*
+get the maximum width of the strings contained in `ticks`.
+Uses a offscreen canvas for doing the measure and takes into consideration the theme object.
+*/
 export const getMaxTextWidth = (theme, ticks) => {
   const ctx = getCachedContext()
   ctx.save()

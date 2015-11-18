@@ -68,11 +68,10 @@ Chart2.propTypes = {
 Chart2.defaultProps = {
   backgroundOffset: BACKGROUND_OFFSET,
   theme: defaultTheme,
+  size: {width: 500, height: 500},
 }
 
 const initialState = {
-  backgroundOffset: 20,
-  size: {width: 500, height: 500},
   plotFunc: plotFunctions.points,
 }
 

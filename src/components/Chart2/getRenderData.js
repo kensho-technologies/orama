@@ -5,6 +5,10 @@ import {
   addMaps,
 } from './addMethods'
 
+/*
+generate the render data by running the plotFunctions of the props root and the props.layers
+*/
+
 const render = props => {
   if (!props.plotFunc) return undefined
   return props.plotFunc(props)

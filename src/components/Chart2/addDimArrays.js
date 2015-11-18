@@ -8,17 +8,17 @@ According to the accessors (`{x, y, color}`) defined on the props and on the pro
 Dimension arrays are also grouped according to accessorsGroups
 
 @calling logic
-addDimArrays = props => (
+addDimArrays{
   flow(
-    getDimArraysForProps = props => (
-      getDimArraysForLayer(props)
-    ),
-    mergeDimArrays = props => (
-      omitGroups(props)
-    )
-    assignDimArraysToProps(props)
+    getDimArraysForProps{
+      getDimArraysForLayer()
+    },
+    mergeDimArrays{
+      omitGroups()
+    },
+    assignDimArraysToProps()
   )
-)
+}
 
 @example
 addDimArrays({
@@ -119,7 +119,7 @@ const assignDimArraysToProps = (props, dimArrays) => (
   )
 )
 /*
-Main exported function used outside of the module on the Chart props transform flow.
+Main exported function, used outside of the module on the Chart props transform flow.
 */
 export const addDimArrays = props => (
   _.flow(

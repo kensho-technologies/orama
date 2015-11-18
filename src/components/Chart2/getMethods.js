@@ -13,6 +13,11 @@ import {
   TYPE,
 } from './constants'
 
+/*
+get methods that are used on the addMethods module
+addMethods add new properties to the props object, these new properties are generated using these getMethods.
+*/
+
 export {getScale} from './getScale'
 
 export function toType(input) {
