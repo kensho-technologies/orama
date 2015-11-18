@@ -56,9 +56,11 @@ export const getDimArraysForLayer = (layer) => {
     definedAccessors,
     (acc, value, key) => {
       if (checkUndefined(value)) return acc
+      const newArray = _.compact(_.map(layer.data, value))
+      if (_.isEmpty(newArray)) return acc
       return _.assign(
         acc,
-        {[key]: _.compact(_.map(layer.data, value))}
+        {[key]: newArray},
       )
     },
     {}
