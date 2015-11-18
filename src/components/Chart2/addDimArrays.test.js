@@ -118,3 +118,39 @@ test('Chart2.addDimArrays', () => {
     })
   )
 })
+test('Chart2.addDimArrays -> missing data 1', () => {
+  const localProps = {
+    layers: [
+      {data: [{x: 1}], x: 'x'},
+    ],
+    x: '',
+  }
+  assert.deepEqual(
+    methods.addDimArrays(localProps),
+    {
+      layers: [{data: [{x: 1}], x: 'x'}],
+      x: '',
+      xArray: [1],
+      dimensions: ['x'],
+    }
+  )
+})
+test('Chart2.addDimArrays -> missing data 2', () => {
+  const localProps = {
+    layers: [
+      {x: 'x'},
+    ],
+    data: [{x: 1}],
+    x: 'x',
+  }
+  assert.deepEqual(
+    methods.addDimArrays(localProps),
+    {
+      layers: [ { x: 'x' } ],
+      data: [ { x: 1 } ],
+      x: 'x',
+      xArray: [ 1 ],
+      dimensions: [ 'x' ],
+    }
+  )
+})

@@ -28,7 +28,11 @@ export const getDimArraysForProps = props => {
   return _.merge(
     rootDimArray,
     ...layersArrays,
-    (a, b) => a.concat(b)
+    (a, b) => {
+      if (_.isUndefined(a)) return b
+      if (_.isUndefined(b)) return a
+      return a.concat(b)
+    }
   )
 }
 export const omitGroups = (dimArrays, accessorsGroups) => (
