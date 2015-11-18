@@ -2,6 +2,48 @@
 import _ from 'lodash'
 import {ACCESSORS_NAMES, ACCESSORS_GROUPS} from './constants'
 
+/*
+Dimension arrays are lists with the values extracted from the data for a certain dimension, eg. xArray: [1, 2, 3, 4, 5]
+According to the accessors (`{x, y, color}`) defined on the props and on the props.layers the dimArrays are created and assigned to a new props object.
+Dimension arrays are also grouped according to accessorsGroups
+
+@calling logic
+addDimArrays = props => (
+  flow(
+    getDimArraysForProps = props => (
+      getDimArraysForLayer(props)
+    ),
+    mergeDimArrays = props => (
+      omitGroups(props)
+    )
+    assignDimArraysToProps(props)
+  )
+)
+
+@example
+addDimArrays({
+  data: [{p1: 1}],
+  x: 'p1'
+})
+returns {
+  ...props,
+  xArray: [1],
+  dimensions: ['x']
+}
+
+addDimArrays({
+  layers: [{
+    data: [{p1: 1}],
+    x0: 'p1'
+  }],
+})
+returns {
+  ...props,
+  xArray: [1],
+  dimensions: ['x']
+}
+*/
+
 const checkUndefined = value => (
   !_.isString(value) || value === ''
 )
@@ -22,6 +64,9 @@ export const getDimArraysForLayer = (layer) => {
     {}
   )
 }
+/*
+Get dimension array from the props root and from each layer, and merge the arrays with the same key.
+*/
 export const getDimArraysForProps = props => {
   const rootDimArray = getDimArraysForLayer(props)
   const layersArrays = _.map(props.layers, getDimArraysForLayer)
@@ -42,6 +87,9 @@ export const omitGroups = (dimArrays, accessorsGroups) => (
     _.partial(_.omit, dimArrays)
   )(accessorsGroups)
 )
+/*
+Merge keys according to their groups, eg. 'x', 'x0', 'x1' get merged into one xArray
+*/
 export const mergeDimArrays = (props, _dimArrays) => {
   const accessorsGroups = props.accessorsGroups || ACCESSORS_GROUPS
   const dimArrays = omitGroups(_dimArrays, accessorsGroups)
@@ -59,6 +107,9 @@ export const mergeDimArrays = (props, _dimArrays) => {
     dimArrays
   )
 }
+/*
+Assign the the dimensions arrays back to props
+*/
 const assignDimArraysToProps = (props, dimArrays) => (
   _.assign(
     {},
@@ -67,6 +118,9 @@ const assignDimArraysToProps = (props, dimArrays) => (
     {dimensions: _.keys(dimArrays)}
   )
 )
+/*
+Main exported function used outside of the module on the Chart props transform flow.
+*/
 export const addDimArrays = props => (
   _.flow(
     getDimArraysForProps,
