@@ -72,7 +72,7 @@ Chart2.defaultProps = {
 }
 
 const initialState = {
-  plotFunc: plotFunctions.points,
+  plotFunc: plotFunctions.lines(),
 }
 
 export default stateHOC(Chart2, initialState)
