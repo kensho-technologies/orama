@@ -2,8 +2,6 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
 
-import shouldPureComponentUpdate from 'react-pure-render/function'
-
 const styles = {
   canvas: {
     display: 'block',
@@ -20,9 +18,13 @@ This component will be deprecated when work on Chart2 is finished
 /**
  * Find on the render data the geom that intersect whith the mouse position.
  */
-const getDataUnderMouse = (props, canvasNode, evt) => {
+const getDataUnderMouse = (that, canvasNode, evt) => {
+  const {
+    reversedData,
+  } = that
   const canvasRect = canvasNode.getBoundingClientRect()
   const ctx = canvasNode.getContext('2d')
+  ctx.save()
   const mouse = {
     x: evt.clientX,
     y: evt.clientY,
@@ -31,7 +33,17 @@ const getDataUnderMouse = (props, canvasNode, evt) => {
     x: evt.clientX - canvasRect.left,
     y: evt.clientY - canvasRect.top,
   }
-  const inPathData = _.find(props.renderData, d => ctx.isPointInPath(d.path2D, localMouse.x, localMouse.y))
+  ctx.lineWidth = 3
+  const inPathData = _.find(
+    reversedData,
+    d => {
+      if (d.type === 'area') {
+        return ctx.isPointInPath(d.path2D, localMouse.x, localMouse.y) || ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
+      }
+      if (d.type === 'line') return ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
+      return false
+    }
+  )
   if (inPathData) {
     return {
       data: inPathData,
@@ -40,7 +52,10 @@ const getDataUnderMouse = (props, canvasNode, evt) => {
     }
   }
   ctx.lineWidth = 20
-  const inStrokeData = _.find(props.renderData, d => ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y))
+  const inStrokeData = _.find(
+    reversedData,
+    d => ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
+  )
   if (inStrokeData) {
     return {
       data: inStrokeData,
@@ -48,6 +63,7 @@ const getDataUnderMouse = (props, canvasNode, evt) => {
       localMouse,
     }
   }
+  ctx.restore()
   return {
     data: undefined,
     mouse: undefined,
@@ -74,14 +90,17 @@ export default React.createClass({
   getInitialState() {
     return {}
   },
-  shouldComponentUpdate: shouldPureComponentUpdate,
+  shouldComponentUpdate(nextProps) {
+    if (this.props.size === nextProps.size) return false
+    return true
+  },
   handleMouseMove(evt) {
     const canvasNode = this.refs.canvas
     const {
       data,
       mouse,
       localMouse,
-    } = getDataUnderMouse(this.props, canvasNode, evt)
+    } = getDataUnderMouse(this, canvasNode, evt)
     this.props.onUpdate({
       ...this.props,
       hoverData: data,
@@ -95,7 +114,7 @@ export default React.createClass({
       data,
       mouse,
       localMouse,
-    } = getDataUnderMouse(this.props, canvasNode, evt)
+    } = getDataUnderMouse(this, canvasNode, evt)
     this.props.onUpdate({
       ...this.props,
       dataClicked: data,
@@ -105,6 +124,8 @@ export default React.createClass({
     })
   },
   render() {
+    this.reversedData = _.clone(this.props.renderData)
+    this.reversedData.reverse()
     return (
       <canvas
         height={this.props.size.height}
