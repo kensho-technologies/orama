@@ -77,3 +77,21 @@ test('rectUtils.getRangeY', () => {
     [150, 50]
   )
 })
+
+test('rectUtils.getMidX', () => {
+  assert(rectUtils.getMidX)
+  assert.deepEqual(rectUtils.getMidX({}), 0)
+  assert.deepEqual(
+    rectUtils.getMidX({ x: 10, width: 100}),
+    60
+  )
+})
+
+test('rectUtils.getMidY', () => {
+  assert(rectUtils.getMidY)
+  assert.deepEqual(rectUtils.getMidY({}), 0)
+  assert.deepEqual(
+    rectUtils.getMidY({ y: 10, height: 100}),
+    60
+  )
+})

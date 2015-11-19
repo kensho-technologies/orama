@@ -89,3 +89,27 @@ export function getRangeY(rectInput) {
   var rect = {...rectBase, ...rectInput}
   return [getMaxY(rect), rect.y]
 }
+
+/**
+ * Get the medium `x` of a `Rect`
+ * @memberOf  /utils/rectUtils
+ *
+ * @param  {Rect} rectInput
+ * @return {number}
+ */
+export function getMidX(rectInput) {
+  var rect = {...rectBase, ...rectInput}
+  return rect.x + rect.width / 2
+}
+
+/**
+ * Get the medium `y` of a `Rect`
+ * @memberOf  /utils/rectUtils
+ *
+ * @param  {Rect} rectInput
+ * @return {number}
+ */
+export function getMidY(rectInput) {
+  var rect = {...rectBase, ...rectInput}
+  return rect.y + rect.height / 2
+}
