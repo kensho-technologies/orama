@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 import _ from 'lodash'
 import defaultTheme from '../defaultTheme'
 import stateHOC from '../../utils/stateHOC'
-import * as plotFunctions from './plotFunctions'
+import * as plot from './plotFunctions'
 import {
   addDimArrays,
   addTypes,
@@ -59,7 +59,7 @@ Chart2.propTypes = {
   data: PropTypes.array,
   layers: PropTypes.array,
   onUpdate: PropTypes.func,
-  plotFunc: PropTypes.func,
+  plot: PropTypes.func,
   radius: PropTypes.string,
   theme: PropTypes.object,
   x: PropTypes.string,
@@ -72,7 +72,7 @@ Chart2.defaultProps = {
 }
 
 const initialState = {
-  plotFunc: plotFunctions.lines(),
+  plot: plot.lines(),
 }
 
 export default stateHOC(Chart2, initialState)

@@ -6,15 +6,15 @@ import {
 } from './addMethods'
 
 /*
-generate the render data by running the plotFunctions of the props root and the props.layers
+generate the render data by running the plot functions of the props root and the props.layers
 */
 
 const render = props => {
-  if (!props.plotFunc) return undefined
-  return props.plotFunc(props)
+  if (!props.plot) return undefined
+  return props.plot(props)
 }
 export const getRenderData = props => {
-  const rootRenderData = props.plotFunc(addMaps(props))
+  const rootRenderData = props.plot(addMaps(props))
   const layersRenderData = _.map(
     props.layers,
     layer => _.flow(

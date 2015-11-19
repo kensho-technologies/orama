@@ -30,32 +30,28 @@ export const pointsDataMap = (props, d) => {
     fill: color,
   }
 }
-export const points = () => (
-  props => {
-    if (!props.xMap && !props.yMap) return undefined
-    return _.map(
-      props.data,
-      _.partial(pointsDataMap, props)
+export const points = () => props => {
+  if (!props.xMap && !props.yMap) return undefined
+  return _.map(
+    props.data,
+    _.partial(pointsDataMap, props)
+  )
+}
+export const lines = () => props => {
+  if (!props.xMap || !props.yMap) return undefined
+  const path2D = utils.path()
+  path2D.moveTo(
+    getValue(props, 'x', _.first(props.data)),
+    getValue(props, 'y', _.first(props.data))
+  )
+  _.each(props.data, d => {
+    path2D.lineTo(
+      getValue(props, 'x', d),
+      getValue(props, 'y', d)
     )
+  })
+  return {
+    type: 'line',
+    path2D,
   }
-)
-export const lines = () => (
-  props => {
-    if (!props.xMap || !props.yMap) return undefined
-    const path2D = utils.path()
-    path2D.moveTo(
-      getValue(props, 'x', _.first(props.data)),
-      getValue(props, 'y', _.first(props.data))
-    )
-    _.each(props.data, d => {
-      path2D.lineTo(
-        getValue(props, 'x', d),
-        getValue(props, 'y', d)
-      )
-    })
-    return {
-      type: 'line',
-      path2D,
-    }
-  }
-)
+}
