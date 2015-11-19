@@ -11,10 +11,13 @@ Dimension arrays are also grouped according to accessorsGroups
 addDimArrays{
   flow(
     getDimArraysForProps{
-      getDimArraysForLayer()
+      getDimArraysForLayer{
+        localCompact()
+      }
     },
     mergeDimArrays{
       omitGroups()
+      localCompact()
     },
     assignDimArraysToProps()
   )
@@ -44,8 +47,22 @@ returns {
 }
 */
 
-const checkUndefined = value => (
+const checkUndefinedAccessor = value => (
   !_.isString(value) || value === ''
+)
+const checkUndefinedValue = value => (
+  _.isUndefined(value) || _.isNaN(value)
+)
+const localCompact = array => (
+  _.reduce(
+    array,
+    (acc, d) => {
+      if (checkUndefinedValue(d)) return acc
+      acc.push(d)
+      return acc
+    },
+    []
+  )
 )
 export const getDimArraysForLayer = (layer) => {
   const definedAccessors = _.pick(
@@ -55,8 +72,8 @@ export const getDimArraysForLayer = (layer) => {
   return _.reduce(
     definedAccessors,
     (acc, value, key) => {
-      if (checkUndefined(value)) return acc
-      const newArray = _.compact(_.map(layer.data, value))
+      if (checkUndefinedAccessor(value)) return acc
+      const newArray = localCompact(_.map(layer.data, value))
       if (_.isEmpty(newArray)) return acc
       return _.assign(
         acc,
@@ -100,7 +117,7 @@ export const mergeDimArrays = (props, _dimArrays) => {
     (acc, group, key) => {
       const array = _.reduce(
         group,
-        (acc2, d) => _.compact(acc2.concat(_dimArrays[d])),
+        (acc2, d) => localCompact(acc2.concat(_dimArrays[d])),
         []
       )
       if (array.length > 0) acc[key] = array

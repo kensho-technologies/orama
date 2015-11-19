@@ -175,3 +175,18 @@ test('Chart2.addDimArrays -> missing data 3', () => {
     }
   )
 })
+test('Chart2.addDimArrays -> dont skip the zero', () => {
+  const localProps = {
+    data: [{x: 0}, {x: 1}, {x: 2}],
+    x: 'x',
+  }
+  assert.deepEqual(
+    methods.addDimArrays(localProps),
+    {
+      data: [{x: 0}, {x: 1}, {x: 2}],
+      x: 'x',
+      xArray: [0, 1, 2],
+      dimensions: ['x'],
+    }
+  )
+})
