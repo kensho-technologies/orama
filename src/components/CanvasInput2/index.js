@@ -33,7 +33,7 @@ const getDataUnderMouse = (that, canvasNode, evt) => {
     x: evt.clientX - canvasRect.left,
     y: evt.clientY - canvasRect.top,
   }
-  ctx.lineWidth = 3
+  ctx.lineWidth = 2
   const inPathData = _.find(
     reversedData,
     d => {

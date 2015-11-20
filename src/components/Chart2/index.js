@@ -69,10 +69,10 @@ Chart2.defaultProps = {
   backgroundOffset: BACKGROUND_OFFSET,
   theme: defaultTheme,
   size: {width: 500, height: 500},
+  plot: plot.points,
 }
 
 const initialState = {
-  plot: plot.lines(),
 }
 
 export default stateHOC(Chart2, initialState)

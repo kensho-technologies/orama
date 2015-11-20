@@ -30,14 +30,14 @@ export const pointsDataMap = (props, d) => {
     fill: color,
   }
 }
-export const points = () => props => {
+export const points = props => {
   if (!props.xMap && !props.yMap) return undefined
   return _.map(
     props.data,
     _.partial(pointsDataMap, props)
   )
 }
-export const lines = () => props => {
+export const lines = props => {
   if (!props.xMap || !props.yMap) return undefined
   const path2D = utils.path()
   path2D.moveTo(
@@ -50,8 +50,31 @@ export const lines = () => props => {
       getValue(props, 'y', d)
     )
   })
-  return {
+  const lineRender = {
     type: 'line',
     path2D,
   }
+  const pointData = points(props)
+  return [].concat(lineRender, pointData)
+}
+export const barsDataMap = (props, d) => {
+  const path2D = utils.path()
+  const x = getValue(props, 'x', d, props.plotRect.x)
+  const y = getValue(props, 'y', d, props.plotRect.y)
+  const color = getValue(props, 'color', d, 'steelblue')
+  const height = props.plotRect.height / props.yDomain.length
+  path2D.rect(props.plotRect.x, y - height / 2, x - props.plotRect.x, height - 2)
+  return {
+    type: 'area',
+    path2D,
+    alpha: 1,
+    fill: color,
+  }
+}
+export const bars = props => {
+  if (!props.xMap || !props.yMap) return undefined
+  return _.map(
+    props.data,
+    _.partial(barsDataMap, props)
+  )
 }
