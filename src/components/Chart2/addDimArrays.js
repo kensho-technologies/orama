@@ -64,6 +64,10 @@ const localCompact = array => (
     []
   )
 )
+const localFlatten = data => {
+  if (_.isArray(_.first(data))) return _.flatten(data)
+  return data
+}
 export const getDimArraysForLayer = (layer) => {
   const definedAccessors = _.pick(
     layer,
@@ -73,7 +77,11 @@ export const getDimArraysForLayer = (layer) => {
     definedAccessors,
     (acc, value, key) => {
       if (checkUndefinedAccessor(value)) return acc
-      const newArray = localCompact(_.map(layer.data, value))
+      const newArray = _.flow(
+        localFlatten,
+        _.partialRight(_.map, value),
+        localCompact
+      )(layer.data)
       if (_.isEmpty(newArray)) return acc
       return _.assign(
         acc,
