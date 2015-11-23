@@ -1,12 +1,12 @@
 
 import React, {PropTypes} from 'react'
 
-import {Block} from '@luiscarli/display'
+import {Block} from 'react-display'
 import ContentEditable from '../ContentEditable'
 import Draggable from '../Draggable'
 
 import defaultTheme from '../defaultTheme'
-import stateHOC from '../utils/stateHOC'
+import {stateHOC} from 'on-update'
 
 const handleContentEditableUpdate = (props, childProps) => {
   props.onUpdate({

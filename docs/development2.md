@@ -28,7 +28,7 @@ Components get the variables for their style from a 'theme' prop, when one is no
 Example:
 ```jsx
 import React, {PropTypes} from 'react'
-import {Block} from '@luiscarli/display'
+import {Block} from 'react-display'
 import defaultTheme from '../defaultTheme'
 
 const ExampleComponent = props => (
@@ -63,7 +63,7 @@ When its children update their props by calling their 'onUpdate' method, the com
 Example:
 ```jsx
 import React, {PropTypes} from 'react'
-import {Block} from '@luiscarli/display'
+import {Block} from 'react-display'
 import defaultTheme from '../defaultTheme'
 
 export const handleAnnotationUpdate = (props, annotationProps) => {

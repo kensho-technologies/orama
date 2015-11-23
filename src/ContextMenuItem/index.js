@@ -1,9 +1,9 @@
 
 import React, {PropTypes} from 'react'
 
-import {Block} from '@luiscarli/display'
+import {Block} from 'react-display'
 
-import stateHOC from '../utils/stateHOC'
+import {stateHOC} from 'on-update'
 import defaultTheme from '../defaultTheme'
 
 const handleMouseEnter = props => {

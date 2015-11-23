@@ -2,9 +2,9 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 import defaultTheme from '../defaultTheme'
-import stateHOC from '../utils/stateHOC'
+import {stateHOC} from 'on-update'
 
-import {Block} from '@luiscarli/display'
+import {Block} from 'react-display'
 import AnnotationEditorWrapper from '../AnnotationEditorWrapper'
 import ContextMenuWrapper from '../ContextMenuWrapper'
 import RenderAnnotation from '../RenderAnnotation'

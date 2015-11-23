@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 
-import {Block} from '@luiscarli/display'
+import {Block} from 'react-display'
 import defaultTheme from '../defaultTheme'
 
 /**

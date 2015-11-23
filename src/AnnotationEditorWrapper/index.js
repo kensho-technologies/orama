@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 
-import {Block} from '@luiscarli/display'
+import {Block} from 'react-display'
 import AnnotationEditor from '../AnnotationEditor'
 
 const handleClick = props => {

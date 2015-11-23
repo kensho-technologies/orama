@@ -1,9 +1,9 @@
 
 import React, {PropTypes} from 'react'
 import defaultTheme from '../defaultTheme'
-import stateHOC from '../utils/stateHOC'
+import {stateHOC} from 'on-update'
 
-import {Block} from '@luiscarli/display'
+import {Block} from 'react-display'
 import ChartInteractionLayer from '../ChartInteractionLayer'
 import ChartRender from '../ChartRender'
 

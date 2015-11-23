@@ -6,7 +6,7 @@ import path from '../utils/path'
 import {getTicks} from '../Chart2/getMethods'
 import {inset} from '../utils/rectUtils'
 
-import {Block} from '@luiscarli/display'
+import {Block} from 'react-display'
 import CanvasRender from '../CanvasRender'
 import BottomLabel from '../BottomLabel'
 import LeftLabel from '../LeftLabel'

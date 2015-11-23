@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 
-import {Flex} from '@luiscarli/display'
+import {Flex} from 'react-display'
 import ChartsGroupBar from '../ChartsGroupBar'
 import DataList from '../DataList'
 import MapData from '../MapData'

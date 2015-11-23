@@ -5,7 +5,7 @@ import d3 from 'd3'
 
 import utils from '../utils'
 
-import {Block} from '@luiscarli/display'
+import {Block} from 'react-display'
 import CanvasRender from '../CanvasRender'
 import CanvasInput from '../CanvasInput'
 

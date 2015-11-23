@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 import R from 'ramda'
 
 import PropCard from '../PropCard'
-import {Block, Flex} from '@luiscarli/display'
+import {Block, Flex} from 'react-display'
 
 import defaultTheme from '../defaultTheme'
 

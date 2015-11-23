@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 
 import defaultTheme from '../defaultTheme'
 
-import {Block} from '@luiscarli/display'
+import {Block} from 'react-display'
 import MapDataCard from '../MapDataCard'
 
 /**

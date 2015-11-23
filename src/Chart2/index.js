@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
 import defaultTheme from '../defaultTheme'
-import stateHOC from '../utils/stateHOC'
+import {stateHOC} from 'on-update'
 import {points} from './points'
 import {
   addDimArrays,
@@ -15,7 +15,7 @@ import {
 } from './addMethods'
 import {getRenderData} from './getRenderData'
 
-import {Block} from '@luiscarli/display'
+import {Block} from 'react-display'
 import ChartRenderWrapper from '../ChartRenderWrapper'
 import ChartBackground2 from '../ChartBackground2'
 

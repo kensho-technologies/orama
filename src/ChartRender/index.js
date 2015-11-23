@@ -1,9 +1,9 @@
 
 import React, {PropTypes} from 'react'
 import defaultTheme from '../defaultTheme'
-import stateHOC from '../utils/stateHOC'
+import {stateHOC} from 'on-update'
 
-import {Block} from '@luiscarli/display'
+import {Block} from 'react-display'
 import CanvasInput2 from '../CanvasInput2'
 import CanvasRender from '../CanvasRender'
 import CanvasRenderHighlight from '../CanvasRenderHighlight'
