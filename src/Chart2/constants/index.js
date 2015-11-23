@@ -1,10 +1,14 @@
 
 export const ACCESSORS_NAMES = [
-  'x', 'x0', 'y', 'y0', 'r', 'color', 'stroke',
+  'x', 'x0', 'x1', 'x2',
+  'y', 'y0', 'y1', 'y2',
+  'r',
+  'fill', 'stroke',
+  'strokeWidth',
 ]
 export const ACCESSORS_GROUPS = {
-  x: ['x', 'x0'],
-  y: ['y', 'y0'],
+  x: ['x', 'x0', 'x1', 'x2'],
+  y: ['y', 'y0', 'y1', 'y2'],
 }
 export const JS_TO_VIS_TYPE = {
   'string': 'ordinal',

@@ -5,7 +5,7 @@ import {plotValue} from '../plotValue'
 
 /*
 `points` is used to generate render data for dots and similar.
-it handles `x`, `y`, 'r'(radius) and 'color'(fill color).
+it handles `x`, `y`, 'r'(radius) and 'fill'(color).
 
 @calling logic
 points{
@@ -21,13 +21,13 @@ export const pointsDataMap = (props, d) => {
   const x = plotValue(props, 'x', d, utils.rect.getMidX(props.plotRect))
   const y = plotValue(props, 'y', d, utils.rect.getMidY(props.plotRect))
   const r = plotValue(props, 'r', d, 5)
-  const color = plotValue(props, 'color', d, 'steelblue')
+  const fill = plotValue(props, 'fill', d, 'steelblue')
   path2D.arc(x, y, r, 0, 2 * Math.PI)
   return {
     type: 'area',
     path2D,
     alpha: 1,
-    fill: color,
+    fill,
   }
 }
 /*

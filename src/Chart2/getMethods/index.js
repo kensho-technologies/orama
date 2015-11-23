@@ -67,7 +67,7 @@ export const getRange = (props, key) => {
   case 'r':
     return [2, 20]
   case 'fill':
-  case 'color':
+  case 'stroke':
     switch (type) {
     case 'ordinal':
       return RANGE_ORDINAL_COLOR

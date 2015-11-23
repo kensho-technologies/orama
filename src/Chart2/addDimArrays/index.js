@@ -4,7 +4,7 @@ import {ACCESSORS_NAMES, ACCESSORS_GROUPS} from '../constants'
 
 /*
 Dimension arrays are lists with the values extracted from the data for a certain dimension, eg. xArray: [1, 2, 3, 4, 5]
-According to the accessors (`{x, y, color}`) defined on the props and on the props.layers the dimArrays are created and assigned to a new props object.
+According to the accessors (`{x, y, fill}`) defined on the props and on the props.layers the dimArrays are created and assigned to a new props object.
 Dimension arrays are also grouped according to accessorsGroups
 
 @calling logic
