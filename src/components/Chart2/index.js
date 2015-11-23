@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 import _ from 'lodash'
 import defaultTheme from '../defaultTheme'
 import stateHOC from '../../utils/stateHOC'
-import * as plot from './plotFunctions'
+import {points} from './points'
 import {
   addDimArrays,
   addTypes,
@@ -69,7 +69,7 @@ Chart2.defaultProps = {
   backgroundOffset: BACKGROUND_OFFSET,
   theme: defaultTheme,
   size: {width: 500, height: 500},
-  plot: plot.points,
+  plot: points,
 }
 
 const initialState = {

@@ -2,32 +2,8 @@
 import _ from 'lodash'
 import utils from '../../utils'
 import {plotValue} from './plotValue'
+import {points} from './points'
 
-export const pointsDataMap = (props, d) => {
-  const path2D = utils.path()
-  const x = plotValue(props, 'x', d, props.plotRect.x)
-  const y = plotValue(props, 'y', d, props.plotRect.y)
-  const r = plotValue(props, 'r', d, 5)
-  const color = plotValue(props, 'color', d, 'steelblue')
-  path2D.arc(x, y, r, 0, 2 * Math.PI)
-  return {
-    type: 'area',
-    path2D,
-    alpha: 1,
-    fill: color,
-  }
-}
-const retrievePoinstData = data => {
-  if (_.isArray(_.first(data))) return _.flatten(data)
-  return data
-}
-export const points = props => {
-  if (!props.xMap && !props.yMap) return undefined
-  return _.map(
-    retrievePoinstData(props.data),
-    _.partial(pointsDataMap, props)
-  )
-}
 const getLine = (props, data) => {
   const path2D = utils.path()
   path2D.moveTo(
