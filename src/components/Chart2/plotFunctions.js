@@ -30,21 +30,24 @@ export const pointsDataMap = (props, d) => {
     fill: color,
   }
 }
+const retrievePoinstData = data => {
+  if (_.isArray(_.first(data))) return _.flatten(data)
+  return data
+}
 export const points = props => {
   if (!props.xMap && !props.yMap) return undefined
   return _.map(
-    props.data,
+    retrievePoinstData(props.data),
     _.partial(pointsDataMap, props)
   )
 }
-export const lines = props => {
-  if (!props.xMap || !props.yMap) return undefined
+const getLine = (props, data) => {
   const path2D = utils.path()
   path2D.moveTo(
-    getValue(props, 'x', _.first(props.data)),
-    getValue(props, 'y', _.first(props.data))
+    getValue(props, 'x', _.first(data)),
+    getValue(props, 'y', _.first(data))
   )
-  _.each(props.data, d => {
+  _.each(data, d => {
     path2D.lineTo(
       getValue(props, 'x', d),
       getValue(props, 'y', d)
@@ -56,6 +59,44 @@ export const lines = props => {
   }
   const pointData = points(props)
   return [].concat(lineRender, pointData)
+}
+export const lines = props => {
+  if (!props.xMap || !props.yMap) return undefined
+  if (_.isArray(_.first(props.data))) {
+    return _.reduce(
+      props.data,
+      (acc, data) => acc.concat(getLine(props, data)),
+      []
+    )
+  }
+  return getLine(props, props.data)
+}
+export const areas = props => {
+  if (!props.xMap || !props.yMap) return undefined
+  const {data} = props
+  const path2D = utils.path()
+  path2D.moveTo(
+    getValue(props, 'x', _.first(data)),
+    getValue(props, 'y', _.first(data))
+  )
+  _.each(data, d => {
+    path2D.lineTo(
+      getValue(props, 'x', d),
+      getValue(props, 'y', d)
+    )
+  })
+  _.eachRight(data, d => {
+    path2D.lineTo(
+      getValue(props, 'x', d),
+      props.yScale(0),
+    )
+  })
+  const areaRender = {
+    type: 'area',
+    path2D,
+  }
+  const pointData = points(props)
+  return [].concat(areaRender, pointData)
 }
 export const barsDataMap = (props, d) => {
   const path2D = utils.path()
