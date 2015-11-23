@@ -5,8 +5,6 @@ import {Flex} from '@luiscarli/display'
 import ChartsGroupBar from '../ChartsGroupBar'
 import DataList from '../DataList'
 import MapData from '../MapData'
-import {bars, lines, areas} from '../Chart2/plotFunctions'
-import {points} from '../Chart2/points'
 
 import Chart2 from '../Chart2'
 
