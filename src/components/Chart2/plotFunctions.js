@@ -1,27 +1,14 @@
 
 import _ from 'lodash'
 import utils from '../../utils'
+import {plotValue} from './plotValue'
 
-const checkUndefined = value => (
-  _.isUndefined(value) || _.isNaN(value) || _.isNull(value)
-)
-const getValue = (props, key, d, defaultValue, undefinedValue) => {
-  const {
-    [`${key}Value`]: value,
-    [`${key}Map`]: map,
-  } = props
-  if (value) return value
-  if (!map) return defaultValue
-  const mappedValue = map(d)
-  if (checkUndefined(mappedValue)) return undefinedValue
-  return mappedValue
-}
 export const pointsDataMap = (props, d) => {
   const path2D = utils.path()
-  const x = getValue(props, 'x', d, props.plotRect.x)
-  const y = getValue(props, 'y', d, props.plotRect.y)
-  const r = getValue(props, 'r', d, 5)
-  const color = getValue(props, 'color', d, 'steelblue')
+  const x = plotValue(props, 'x', d, props.plotRect.x)
+  const y = plotValue(props, 'y', d, props.plotRect.y)
+  const r = plotValue(props, 'r', d, 5)
+  const color = plotValue(props, 'color', d, 'steelblue')
   path2D.arc(x, y, r, 0, 2 * Math.PI)
   return {
     type: 'area',
@@ -44,13 +31,13 @@ export const points = props => {
 const getLine = (props, data) => {
   const path2D = utils.path()
   path2D.moveTo(
-    getValue(props, 'x', _.first(data)),
-    getValue(props, 'y', _.first(data))
+    plotValue(props, 'x', _.first(data)),
+    plotValue(props, 'y', _.first(data))
   )
   _.each(data, d => {
     path2D.lineTo(
-      getValue(props, 'x', d),
-      getValue(props, 'y', d)
+      plotValue(props, 'x', d),
+      plotValue(props, 'y', d)
     )
   })
   const lineRender = {
@@ -76,18 +63,18 @@ export const areas = props => {
   const {data} = props
   const path2D = utils.path()
   path2D.moveTo(
-    getValue(props, 'x', _.first(data)),
-    getValue(props, 'y', _.first(data))
+    plotValue(props, 'x', _.first(data)),
+    plotValue(props, 'y', _.first(data))
   )
   _.each(data, d => {
     path2D.lineTo(
-      getValue(props, 'x', d),
-      getValue(props, 'y', d)
+      plotValue(props, 'x', d),
+      plotValue(props, 'y', d)
     )
   })
   _.eachRight(data, d => {
     path2D.lineTo(
-      getValue(props, 'x', d),
+      plotValue(props, 'x', d),
       props.yScale(0),
     )
   })
@@ -100,9 +87,9 @@ export const areas = props => {
 }
 export const barsDataMap = (props, d) => {
   const path2D = utils.path()
-  const x = getValue(props, 'x', d, props.plotRect.x)
-  const y = getValue(props, 'y', d, props.plotRect.y)
-  const color = getValue(props, 'color', d, 'steelblue')
+  const x = plotValue(props, 'x', d, props.plotRect.x)
+  const y = plotValue(props, 'y', d, props.plotRect.y)
+  const color = plotValue(props, 'color', d, 'steelblue')
   const height = props.plotRect.height / props.yDomain.length
   path2D.rect(props.plotRect.x, y - height / 2, x - props.plotRect.x, height - 2)
   return {
