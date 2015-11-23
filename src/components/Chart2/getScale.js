@@ -49,7 +49,7 @@ export const getAxisScale = (props, key) => {
       const midRange = range[0] + (range[1] - range[0]) / 2
       const scaleLinear = () => midRange
       scaleLinear.tickFormat = () => d => d
-      scaleLinear.ticks = () => [midRange]
+      scaleLinear.ticks = () => [domain[0]]
       return scaleLinear
     }
     if (type === 'time') {
