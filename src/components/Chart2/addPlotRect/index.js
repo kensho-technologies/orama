@@ -1,18 +1,18 @@
 
 import _ from 'lodash'
-import {getCachedContext} from '../../utils/canvasUtils'
+import {getCachedContext} from '../../../utils/canvasUtils'
 import {
   getRange,
   getTickCount,
   getTicks,
-} from './getMethods'
+} from '../getMethods'
 import {
   AXIS_OFFSET,
   BACKGROUND_OFFSET,
   SHOW_LABELS,
   SHOW_TICKS,
-} from './constants'
-import * as rectUtils from '../../utils/rectUtils'
+} from '../constants'
+import * as rectUtils from '../../../utils/rectUtils'
 
 /*
 `addPlotRect` calculate and assign the plotRect to a new props.

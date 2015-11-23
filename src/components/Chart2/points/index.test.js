@@ -3,7 +3,7 @@
 import {it as test} from 'mocha'
 import assert from 'assert'
 
-import * as methods from './points'
+import * as methods from './'
 
 test('Chart2.points', () => {
   const renderData = methods.points({

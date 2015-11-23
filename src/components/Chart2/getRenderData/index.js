@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 import {
   addMaps,
-} from './addMethods'
+} from '../addMethods'
 
 /*
 generate the render data by running the plot functions of the props root and the props.layers

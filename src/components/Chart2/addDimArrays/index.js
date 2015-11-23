@@ -1,6 +1,6 @@
 
 import _ from 'lodash'
-import {ACCESSORS_NAMES, ACCESSORS_GROUPS} from './constants'
+import {ACCESSORS_NAMES, ACCESSORS_GROUPS} from '../constants'
 
 /*
 Dimension arrays are lists with the values extracted from the data for a certain dimension, eg. xArray: [1, 2, 3, 4, 5]

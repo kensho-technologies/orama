@@ -1,8 +1,8 @@
 
 import _ from 'lodash'
-import utils from '../../utils'
-import {plotValue} from './plotValue'
-import {points} from './points'
+import utils from '../../../utils'
+import {plotValue} from '../plotValue'
+import {points} from '../points'
 
 const getLine = (props, data) => {
   const path2D = utils.path()

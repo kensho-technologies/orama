@@ -2,10 +2,10 @@
 import {it as test} from 'mocha'
 import assert from 'assert'
 
-import * as methods from './addPlotRect'
-import DEFAULT_THEME from '../defaultTheme'
+import * as methods from './'
+import DEFAULT_THEME from '../../defaultTheme'
 
-test('Chart2.getMaxTextWidth', () => {
+test('Chart2/addPlotRect.getMaxTextWidth', () => {
   const ticks = [
     {value: 'a', text: 'a'},
     {value: 'amadeus', text: 'amadeus'},
@@ -16,7 +16,7 @@ test('Chart2.getMaxTextWidth', () => {
   )
 })
 
-test('Chart2.addPlotRect', () => {
+test('Chart2/addPlotRect.addPlotRect', () => {
   const props = {
     backgroundOffset: 15,
     size: {width: 500, height: 500},

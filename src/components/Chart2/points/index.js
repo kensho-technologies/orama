@@ -1,7 +1,7 @@
 
 import _ from 'lodash'
-import utils from '../../utils'
-import {plotValue} from './plotValue'
+import utils from '../../../utils'
+import {plotValue} from '../plotValue'
 
 /*
 `points` is used to generate render data for dots and similar.

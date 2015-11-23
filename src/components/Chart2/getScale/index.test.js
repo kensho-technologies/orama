@@ -2,7 +2,7 @@
 import {it as test} from 'mocha'
 import assert from 'assert'
 
-import * as methods from './getScale'
+import * as methods from './'
 
 test('Chart2.getAxisScale | case 1', () => {
   const props = {

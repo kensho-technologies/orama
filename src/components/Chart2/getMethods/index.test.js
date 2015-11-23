@@ -1,9 +1,9 @@
 
 import {it as test} from 'mocha'
 import assert from 'assert'
-import {RANGE_LINEAR_COLOR} from './constants'
+import {RANGE_LINEAR_COLOR} from '../constants'
 
-import * as methods from './getMethods'
+import * as methods from '../getMethods'
 
 test('visUtils.toType', () => {
   assert.deepEqual(methods.toType(), 'undefined')
@@ -13,7 +13,7 @@ test('visUtils.toType', () => {
   assert.deepEqual(methods.toType('10'), 'string')
   assert.deepEqual(methods.toType(new Date()), 'date')
 })
-test('Chart2.getType', () => {
+test('Chart2/getMethods.getType', () => {
   const props = {
     xArray: [1, 2, 'string', new Date()],
     yArray: ['a', 'b', 1, new Date()],
@@ -36,7 +36,7 @@ test('Chart2.getType', () => {
     undefined
   )
 })
-test('Chart2.getDomain', () => {
+test('Chart2/getMethods.getDomain', () => {
   const props = {
     xArray: [1, 2, 3, 4],
     yArray: ['a', 'b', 'c'],
@@ -58,7 +58,7 @@ test('Chart2.getDomain', () => {
     [new Date(2015, 1), new Date(2015, 3)]
   )
 })
-test('Chart2.getRange', () => {
+test('Chart2/getMethods.getRange', () => {
   const props = {
     plotRect: {x: 0, y: 0, width: 500, height: 500},
     xType: 'linear',
@@ -78,7 +78,7 @@ test('Chart2.getRange', () => {
     RANGE_LINEAR_COLOR
   )
 })
-test('Chart2.getTickCount', () => {
+test('Chart2/getMethods.getTickCount', () => {
   const props = {
     xRange: [0, 500],
     yRange: [500, 0],
@@ -93,7 +93,7 @@ test('Chart2.getTickCount', () => {
     50
   )
 })
-test('Chart2.getTickCount', () => {
+test('Chart2/getMethods.getTickCount', () => {
   const props = {
     x: 'p1',
     xScale: d => d + 1,
