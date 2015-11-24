@@ -4,36 +4,6 @@ import utils from '../../utils'
 import {plotValue} from '../plotValue'
 import {points} from '../points'
 
-const getLine = (props, data) => {
-  const path2D = utils.path()
-  path2D.moveTo(
-    plotValue(props, 'x', _.first(data)),
-    plotValue(props, 'y', _.first(data))
-  )
-  _.each(data, d => {
-    path2D.lineTo(
-      plotValue(props, 'x', d),
-      plotValue(props, 'y', d)
-    )
-  })
-  const lineRender = {
-    type: 'line',
-    path2D,
-  }
-  const pointData = points(props)
-  return [].concat(lineRender, pointData)
-}
-export const lines = props => {
-  if (!props.xMap || !props.yMap) return undefined
-  if (_.isArray(_.first(props.data))) {
-    return _.reduce(
-      props.data,
-      (acc, data) => acc.concat(getLine(props, data)),
-      []
-    )
-  }
-  return getLine(props, props.data)
-}
 export const areas = props => {
   if (!props.xMap || !props.yMap) return undefined
   const {data} = props
