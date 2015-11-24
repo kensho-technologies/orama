@@ -4,12 +4,24 @@ import assert from 'assert'
 
 import * as methods from './'
 
-test('Chart2.plotValue, map defined', () => {
+test('Chart2.getScaleKeyByHash', () => {
+  assert.deepEqual(
+    methods.getScaleKeyByHash({}, 'x0'),
+    'x'
+  )
+})
+test('Chart2.getScaleKey', () => {
+  assert.deepEqual(
+    methods.getScaleKey({}, 'x0'),
+    'x'
+  )
+})
+test('Chart2.plotValue, scale defined', () => {
   assert.deepEqual(
     methods.plotValue(
-      {xMap: d => d},
+      {xScale: d => d, x: 'x'},
       'x',
-      10
+      {x: 10}
     ),
     10
   )
