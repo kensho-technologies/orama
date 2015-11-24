@@ -35,7 +35,7 @@ const getBackground = props => {
     fill: theme.axis.background,
   }
 }
-const getXGuides = props => {
+const getXGuides = (props, thick) => {
   if (!_.contains(props.dimensions, 'x')) return undefined
   if (props.xShowGuides === false) return undefined
   const {
@@ -61,12 +61,13 @@ const getXGuides = props => {
       return {
         path2D: linePath,
         type: 'line',
-        stroke: theme.axis.tickStroke,
+        stroke: thick ? theme.axis.tickZeroStroke : theme.axis.tickStroke,
+        lineWidth: thick ? 3 : 2,
       }
     },
   )
 }
-const getYGuides = props => {
+const getYGuides = (props, thick) => {
   if (!_.contains(props.dimensions, 'y')) return undefined
   if (props.yShowGuides === false) return undefined
   const {
@@ -92,7 +93,8 @@ const getYGuides = props => {
       return {
         path2D: linePath,
         type: 'line',
-        stroke: theme.axis.tickStroke,
+        stroke: thick ? theme.axis.tickZeroStroke : theme.axis.tickStroke,
+        lineWidth: thick ? 3 : 2,
       }
     },
   )
@@ -164,7 +166,20 @@ const getBackgroundRenderData = props => {
   const yGuides = getYGuides({...props, yTicks})
   const xText = getXText({...props, xTicks})
   const yText = getYText({...props, yTicks})
-  return _.flatten(_.compact([background, xGuides, yGuides, xText, yText]))
+  const thickXGuide = getXGuides({
+    ...props,
+    xTicks: _.filter(xTicks, d => d.value === 0),
+  }, true)
+  const thickYGuide = getXGuides({
+    ...props,
+    yTicks: _.filter(yTicks, d => d.value === 0),
+  }, true)
+  return _.flatten(_.compact([
+    background,
+    xGuides, yGuides,
+    thickXGuide, thickYGuide,
+    xText, yText,
+  ]))
 }
 
 /*
