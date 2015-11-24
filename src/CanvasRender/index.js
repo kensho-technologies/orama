@@ -27,12 +27,14 @@ export const renderCanvas = (props, ctx) => {
     renderData,
     d => {
       if (!d) return
-      ctx.globalAlpha = d.alpha || 1
+      ctx.globalAlpha = _.isUndefined(d.alpha) ? 1 : d.alpha
       if (d.type === 'line') {
         ctx.lineWidth = d.lineWidth || 2
         ctx.strokeStyle = d.stroke || 'hsl(200,30%, 50%)'
         ctx.stroke(d.path2D)
       } else if (d.type === 'area') {
+        ctx.lineWidth = d.lineWidth
+        ctx.strokeStyle = d.stroke
         ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
         ctx.fill(d.path2D)
       } else if (d.type === 'text') {

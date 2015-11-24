@@ -21,12 +21,12 @@ export const pointsDataMap = (props, d) => {
   const x = plotValue(props, 'x', d, utils.rect.getMidX(props.plotRect))
   const y = plotValue(props, 'y', d, utils.rect.getMidY(props.plotRect))
   const r = plotValue(props, 'r', d, 5)
-  const fill = plotValue(props, 'fill', d, 'steelblue')
+  const fill = plotValue(props, 'fill', d)
   path2D.arc(x, y, r, 0, 2 * Math.PI)
   return {
     type: 'area',
     path2D,
-    alpha: 1,
+    alpha: _.isUndefined(props.pointsAlpha) ? 1 : props.pointsAlpha,
     fill,
   }
 }

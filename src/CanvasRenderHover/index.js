@@ -25,8 +25,8 @@ export const renderCanvas = (props, ctx) => {
   }
   R.forEach(d => {
     if (!d) return
-    ctx.lineWidth = d.lineWidth || 2
-    ctx.strokeStyle = d.stroke || 'black'
+    ctx.lineWidth = d.hoverLineWidth || 2
+    ctx.strokeStyle = d.hoverStroke || 'black'
     ctx.stroke(d.path2D)
   }, hoverData)
   ctx.restore()

@@ -72,7 +72,7 @@ export const getRange = (props, key) => {
       return [2, 20]
     }
     break
-  case 'strokeWidth':
+  case 'lineWidth':
     switch (type) {
     case 'ordinal':
       return [1, 2, 3, 4]
