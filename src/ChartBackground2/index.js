@@ -170,7 +170,7 @@ const getBackgroundRenderData = props => {
     ...props,
     xTicks: _.filter(xTicks, d => d.value === 0),
   }, true)
-  const thickYGuide = getXGuides({
+  const thickYGuide = getYGuides({
     ...props,
     yTicks: _.filter(yTicks, d => d.value === 0),
   }, true)
