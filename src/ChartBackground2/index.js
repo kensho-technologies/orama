@@ -62,7 +62,6 @@ const getXGuides = (props, thick) => {
         path2D: linePath,
         type: 'line',
         stroke: thick ? theme.axis.tickZeroStroke : theme.axis.tickStroke,
-        lineWidth: thick ? 3 : 2,
       }
     },
   )
@@ -94,7 +93,6 @@ const getYGuides = (props, thick) => {
         path2D: linePath,
         type: 'line',
         stroke: thick ? theme.axis.tickZeroStroke : theme.axis.tickStroke,
-        lineWidth: thick ? 3 : 2,
       }
     },
   )
