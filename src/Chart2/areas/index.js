@@ -18,13 +18,14 @@ export const getArea = (props, data) => {
   })
   // if there's no base position accessors
   if (!props.y0 && !props.x0) {
+    const y0 = props.yScale(0) || utils.rect.getMaxY(props.plotRect)
     path2D.lineTo(
       plotValue(props, _.last(data), 'x'),
-      props.yScale(0),
+      y0,
     )
     path2D.lineTo(
       plotValue(props, _.first(data), 'x'),
-      props.yScale(0),
+      y0,
     )
   // if the base is on the y axis
   } else if (props.y0 && !props.x0) {
