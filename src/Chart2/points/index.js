@@ -18,10 +18,14 @@ generates the array of render data
 */
 export const pointsDataMap = (props, d) => {
   const path2D = utils.path()
-  const x = plotValue(props, 'x', d, utils.rect.getMidX(props.plotRect))
-  const y = plotValue(props, 'y', d, utils.rect.getMidY(props.plotRect))
-  const r = plotValue(props, 'radius', d, 5)
-  const fill = plotValue(props, 'fill', d)
+  const x = plotValue(
+    props, d, 'x', utils.rect.getMidX(props.plotRect)
+  )
+  const y = plotValue(
+    props, d, 'y', utils.rect.getMidY(props.plotRect)
+  )
+  const r = plotValue(props, d, 'radius', 5)
+  const fill = plotValue(props, d, 'fill')
   path2D.arc(x, y, r, 0, 2 * Math.PI)
   return {
     type: 'area',

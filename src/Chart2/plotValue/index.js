@@ -44,7 +44,9 @@ export const getScaleKey = (props, key) => {
     key
   )
 }
-export const plotValue = (props, key, d, defaultValue, undefinedValue) => {
+export const plotValue = (
+  props, d, key, defaultValue, undefinedValue
+) => {
   const scaleKey = getScaleKeyByHash(props, key)
   const {
     [key]: accessor,

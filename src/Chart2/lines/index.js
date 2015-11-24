@@ -19,16 +19,18 @@ generates the array of render data
 */
 const getLine = (props, data) => {
   const path2D = utils.path()
-  const stroke = plotValue(props, 'stroke', _.first(data))
-  const lineWidth = plotValue(props, 'lineWidth', _.first(data))
+  const stroke = plotValue(props, _.first(data), 'stroke')
+  const lineWidth = plotValue(
+    props, _.first(data), 'lineWidth'
+  )
   path2D.moveTo(
-    plotValue(props, 'x', _.first(data)),
-    plotValue(props, 'y', _.first(data))
+    plotValue(props, _.first(data), 'x'),
+    plotValue(props, _.first(data), 'y')
   )
   _.each(data, d => {
     path2D.lineTo(
-      plotValue(props, 'x', d),
-      plotValue(props, 'y', d)
+      plotValue(props, d, 'x'),
+      plotValue(props, d, 'y')
     )
   })
   const lineData = {

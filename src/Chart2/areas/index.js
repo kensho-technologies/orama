@@ -9,19 +9,19 @@ export const areas = props => {
   const {data} = props
   const path2D = utils.path()
   path2D.moveTo(
-    plotValue(props, 'x', _.first(data)),
-    plotValue(props, 'y', _.first(data))
+    plotValue(props, _.first(data), 'x'),
+    plotValue(props, _.first(data), 'y')
   )
   _.each(data, d => {
     path2D.lineTo(
-      plotValue(props, 'x', d),
-      plotValue(props, 'y', d)
+      plotValue(props, d, 'x'),
+      plotValue(props, d, 'y')
     )
   })
   _.eachRight(data, d => {
     path2D.lineTo(
-      plotValue(props, 'x', d),
-      plotValue(props, 'y0', d),
+      plotValue(props, d, 'x'),
+      plotValue(props, d, 'y0'),
     )
   })
   path2D.closePath()
@@ -30,5 +30,9 @@ export const areas = props => {
     path2D,
   }
   const pointData = points(props)
-  return [].concat(areaRender, pointData)
+  const pointData0 = points({
+    ...props,
+    y: props.y0,
+  })
+  return [].concat(areaRender, pointData, pointData0)
 }
