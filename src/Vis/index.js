@@ -64,7 +64,7 @@ export default React.createClass({
           <Chart2
             color={this.state.colorProp}
             data={this.props.data}
-            r={this.state.radiusProp}
+            radius={this.state.radiusProp}
             x={this.state.xProp}
             y={this.state.yProp}
           />

@@ -64,7 +64,7 @@ export const getRange = (props, key) => {
   switch (key) {
   case 'y':
     return [rectUtils.getMaxY(plotRect), plotRect.y]
-  case 'r':
+  case 'radius':
     switch (type) {
     case 'ordinal':
       return [2, 4, 8, 12, 16, 20]

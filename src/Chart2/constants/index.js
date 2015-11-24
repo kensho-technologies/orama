@@ -2,7 +2,7 @@
 export const ACCESSORS_NAMES = [
   'x', 'x0', 'x1', 'x2',
   'y', 'y0', 'y1', 'y2',
-  'r',
+  'radius',
   'fill', 'stroke',
   'lineWidth',
 ]
