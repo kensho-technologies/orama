@@ -58,6 +58,17 @@ test('Chart2/getMethods.getDomain', () => {
     [new Date(2015, 1), new Date(2015, 3)]
   )
 })
+test('Chart2/getMethods.getDomain zeroBased', () => {
+  const props = {
+    xArray: [1, 2, 3, 4],
+    xType: 'linear',
+    xZeroBased: true,
+  }
+  assert.deepEqual(
+    methods.getDomain(props, 'x'),
+    [0, 4]
+  )
+})
 test('Chart2/getMethods.getRange', () => {
   const props = {
     plotRect: {x: 0, y: 0, width: 500, height: 500},

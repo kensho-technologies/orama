@@ -47,11 +47,18 @@ export const getDomain = (props, key) => {
   const {
     [`${key}Array`]: array,
     [`${key}Type`]: type = TYPE,
+    [`${key}ZeroBased`]: zeroBased,
   } = props
   switch (type) {
   case 'ordinal':
     return _.uniq(array)
   default:
+    if (zeroBased) {
+      return [
+        _.min([_.min(array), 0]),
+        _.max([_.max(array), 0]),
+      ]
+    }
     return [_.min(array), _.max(array)]
   }
 }
