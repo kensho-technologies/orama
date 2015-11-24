@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import R from 'ramda'
 import shouldPureComponentUpdate from 'react-pure-render/function'
-
+import {BACKGROUND_OFFSET} from '../Chart2/constants'
 import utils from '../utils'
 
 import defaultTheme from '../defaultTheme'
@@ -15,18 +15,29 @@ export const renderCanvas = (props, ctx) => {
     plotRect,
     highlightData = [],
     size = {width: 100, height: 100},
+    backgroundOffset = BACKGROUND_OFFSET,
   } = props
 
   utils.canvas.clearRect(ctx, size)
   if (highlightData.length === 0) return
   ctx.save()
-  if (plotRect) {
-    ctx.rect(plotRect.x - 20, plotRect.y - 20, plotRect.width + 40, plotRect.height + 40)
+  if (plotRect && props.clip) {
+    ctx.rect(
+      plotRect.x - backgroundOffset,
+      plotRect.y - backgroundOffset,
+      plotRect.width + backgroundOffset * 2,
+      plotRect.height + backgroundOffset * 2,
+    )
     ctx.clip()
   }
   ctx.globalAlpha = 0.7
   ctx.fillStyle = 'hsl(0, 0%, 97%)'
-  ctx.rect(plotRect.x - 20, plotRect.y - 20, plotRect.width + 40, plotRect.height + 40)
+  ctx.rect(
+    plotRect.x - backgroundOffset,
+    plotRect.y - backgroundOffset,
+    plotRect.width + backgroundOffset * 2,
+    plotRect.height + backgroundOffset * 2,
+  )
   ctx.fill()
   R.forEach(d => {
     ctx.globalAlpha = d.alpha || 1

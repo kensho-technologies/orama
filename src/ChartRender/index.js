@@ -24,18 +24,21 @@ Used inside <ChartRenderWrapper/>
 const ChartRender = props => (
   <Block>
     <CanvasRender
+      clip={true}
       plotRect={props.plotRect}
       renderData={props.renderData}
       size={props.size}
       theme={props.theme}
     />
     <CanvasRenderHighlight
+      clip={true}
       highlightData={props.highlightData}
       plotRect={props.plotRect}
       size={props.size}
       theme={props.theme}
     />
     <CanvasRenderHover
+      clip={true}
       hoverData={[props.hoverData]}
       plotRect={props.plotRect}
       size={props.size}
