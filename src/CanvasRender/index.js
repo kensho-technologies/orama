@@ -20,6 +20,7 @@ export const renderCanvas = (props, ctx) => {
   utils.canvas.clearRect(ctx, size)
   ctx.save()
   if (plotRect && props.clip) {
+    ctx.beginPath()
     ctx.rect(
       plotRect.x - backgroundOffset,
       plotRect.y - backgroundOffset,

@@ -1,7 +1,6 @@
 
 import React, {PropTypes} from 'react'
 import R from 'ramda'
-import shouldPureComponentUpdate from 'react-pure-render/function'
 import {BACKGROUND_OFFSET} from '../Chart2/constants'
 import utils from '../utils'
 
@@ -22,6 +21,7 @@ export const renderCanvas = (props, ctx) => {
   if (highlightData.length === 0) return
   ctx.save()
   if (plotRect && props.clip) {
+    ctx.beginPath()
     ctx.rect(
       plotRect.x - backgroundOffset,
       plotRect.y - backgroundOffset,
