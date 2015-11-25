@@ -2,15 +2,6 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
 
-const styles = {
-  canvas: {
-    display: 'block',
-    position: 'absolute',
-    cursor: 'pointer',
-    userSelect: 'none',
-  },
-}
-
 /*
 This component will be deprecated when work on Chart2 is finished
 */
@@ -103,7 +94,7 @@ export default React.createClass({
     } = getDataUnderMouse(this, canvasNode, evt)
     this.props.onUpdate({
       ...this.props,
-      hoverData: data,
+      hoverDatum: data,
       localMouse,
       mouse,
     })
@@ -118,7 +109,7 @@ export default React.createClass({
     this.props.onUpdate({
       ...this.props,
       dataClicked: data,
-      hoverData: data,
+      hoverDatum: data,
       localMouse,
       mouse,
     })
@@ -132,7 +123,12 @@ export default React.createClass({
         onClick={this.handleClick}
         onMouseMove={this.handleMouseMove}
         ref='canvas'
-        style={styles.canvas}
+        style={{
+          display: 'block',
+          position: 'absolute',
+          cursor: 'pointer',
+          userSelect: 'none',
+        }}
         width={this.props.size.width}
       />
     )

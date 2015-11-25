@@ -16,7 +16,7 @@ import CanvasRender from '../CanvasRender'
 const handleCanvasInput2 = (props, childProps) => {
   props.onUpdate({
     ...props,
-    hoverData: childProps.hoverData,
+    hoverData: [childProps.hoverDatum],
     mouse: childProps.mouse,
     localMouse: childProps.localMouse,
     dataClicked: childProps.dataClicked,
@@ -27,7 +27,7 @@ Used inside <ChartRenderWrapper/>
 */
 const ChartRender = props => (
   <Block>
-    <CanvasRender
+    <CanvasRender // basicRender
       clip={true}
       plotRect={props.plotRect}
       render={basicRender}
@@ -47,7 +47,7 @@ const ChartRender = props => (
       clip={true}
       plotRect={props.plotRect}
       render={hoverRender}
-      renderData={[props.hoverData]}
+      renderData={props.hoverData}
       size={props.size}
       theme={props.theme}
     />
@@ -61,7 +61,7 @@ const ChartRender = props => (
 
 ChartRender.propTypes = {
   highlightData: PropTypes.array,
-  hoverData: PropTypes.object,
+  hoverData: PropTypes.array,
   onUpdate: PropTypes.func,
   plotRect: PropTypes.object,
   renderData: PropTypes.array,
