@@ -2,14 +2,14 @@
 import React, {PropTypes} from 'react'
 import defaultTheme from '../defaultTheme'
 import {stateHOC} from 'on-update'
-
 import {Block} from 'react-display'
 import CanvasInput2 from '../CanvasInput2'
-import CanvasRender, {
+import CanvasRender from '../CanvasRender'
+import {
   basicRender,
   highlightRender,
   hoverRender,
-} from '../CanvasRender'
+} from '../CanvasRender/renders'
 
 const handleCanvasInput2 = (props, childProps) => {
   props.onUpdate({

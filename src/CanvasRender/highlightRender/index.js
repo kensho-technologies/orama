@@ -1,32 +1,18 @@
 
 import _ from 'lodash'
+import {clearAndClip} from '../clearAndClip'
 import {BACKGROUND_OFFSET} from '../../Chart2/constants'
 
 export const highlightRender = (props, ctx) => {
   const {
+    backgroundOffset = BACKGROUND_OFFSET,
     plotRect,
     renderData = [],
-    size = {width: 100, height: 100},
-    backgroundOffset = BACKGROUND_OFFSET,
   } = props
 
   if (renderData.length === 0) return
   ctx.save()
-  ctx.clearRect(
-    0, 0,
-    size.width,
-    size.height
-  )
-  if (plotRect && props.clip) {
-    ctx.beginPath()
-    ctx.rect(
-      plotRect.x - backgroundOffset,
-      plotRect.y - backgroundOffset,
-      plotRect.width + backgroundOffset * 2,
-      plotRect.height + backgroundOffset * 2,
-    )
-    ctx.clip()
-  }
+  clearAndClip(props, ctx)
 
   ctx.globalAlpha = 0.7
   ctx.fillStyle = 'hsl(0, 0%, 97%)'

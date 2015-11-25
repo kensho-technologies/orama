@@ -1,10 +1,7 @@
 
 import React, {PropTypes} from 'react'
 import defaultTheme from '../defaultTheme'
-
-export {basicRender} from './basicRender'
-export {highlightRender} from './highlightRender'
-export {hoverRender} from './hoverRender'
+import {basicRender} from './basicRender'
 
 /**
  * Component create a Canvas and use the renderData for drawing geometries on it.
@@ -21,6 +18,7 @@ export default React.createClass({
   },
   getDefaultProps() {
     return {
+      render: basicRender,
       renderData: [],
       size: {width: 0, height: 0},
       theme: {...defaultTheme},
