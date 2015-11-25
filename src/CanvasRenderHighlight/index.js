@@ -74,7 +74,10 @@ export default React.createClass({
   componentDidMount() {
     this.handleUpdate()
   },
-  shouldComponentUpdate: shouldPureComponentUpdate,
+  shouldComponentUpdate(nextProps) {
+    if (this.props.size !== nextProps.size) return true
+    return false
+  },
   componentDidUpdate() {
     this.handleUpdate()
   },

@@ -1,7 +1,6 @@
 
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
-import shouldPureComponentUpdate from 'react-pure-render/function'
 import {BACKGROUND_OFFSET} from '../Chart2/constants'
 import utils from '../utils'
 
@@ -77,7 +76,10 @@ export default React.createClass({
   componentDidMount() {
     this.handleUpdate()
   },
-  shouldComponentUpdate: shouldPureComponentUpdate,
+  shouldComponentUpdate(nextProps) {
+    if (this.props.size !== nextProps.size) return true
+    return false
+  },
   componentDidUpdate() {
     this.handleUpdate()
   },

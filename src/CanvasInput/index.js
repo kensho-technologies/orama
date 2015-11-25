@@ -37,6 +37,10 @@ export default React.createClass({
       tooltipLeft: 0,
     }
   },
+  shouldComponentUpdate(nextProps) {
+    if (this.props.size !== nextProps.size) return true
+    return false
+  },
   componentDidMount() {
     this.renderCanvas()
   },

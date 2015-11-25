@@ -1,9 +1,7 @@
 
 import React, {PropTypes} from 'react'
-import R from 'ramda'
-import shouldPureComponentUpdate from 'react-pure-render/function'
+import _ from 'lodash'
 import {BACKGROUND_OFFSET} from '../Chart2/constants'
-import utils from '../utils'
 
 import defaultTheme from '../defaultTheme'
 
@@ -14,13 +12,18 @@ export const renderCanvas = (props, ctx) => {
   const {
     plotRect,
     hoverData = [],
-    size = {width: 100, height: 100},
+    size,
     backgroundOffset = BACKGROUND_OFFSET,
   } = props
 
-  utils.canvas.clearRect(ctx, size)
+  ctx.clearRect(
+    0, 0,
+    size.width,
+    size.height
+  )
   ctx.save()
   if (plotRect && props.clip) {
+    ctx.beginPath()
     ctx.rect(
       plotRect.x - backgroundOffset,
       plotRect.y - backgroundOffset,
@@ -29,12 +32,15 @@ export const renderCanvas = (props, ctx) => {
     )
     ctx.clip()
   }
-  R.forEach(d => {
-    if (!d) return
-    ctx.lineWidth = d.hoverLineWidth || 2
-    ctx.strokeStyle = d.hoverStroke || 'black'
-    ctx.stroke(d.path2D)
-  }, hoverData)
+  _.each(
+    hoverData,
+    d => {
+      if (!d) return
+      ctx.lineWidth = d.hoverLineWidth || 2
+      ctx.strokeStyle = d.hoverStroke || 'black'
+      ctx.stroke(d.path2D)
+    }
+  )
   ctx.restore()
 }
 
@@ -45,6 +51,7 @@ export const renderCanvas = (props, ctx) => {
 export default React.createClass({
   displayName: 'CanvasRenderHover',
   propTypes: {
+    clip: PropTypes.bool,
     hoverData: PropTypes.array,
     plotRect: PropTypes.object,
     size: PropTypes.object.isRequired,
@@ -59,9 +66,17 @@ export default React.createClass({
   componentDidMount() {
     this.handleUpdate()
   },
-  shouldComponentUpdate: shouldPureComponentUpdate,
+  shouldComponentUpdate(nextProps) {
+    if (this.props.size !== nextProps.size) return true
+    return false
+  },
   componentDidUpdate() {
     this.handleUpdate()
+  },
+  componentWillReceiveProps(nextProps) {
+    if (this.props.hoverData !== nextProps.hoverData) {
+      this.handleUpdate()
+    }
   },
   handleUpdate() {
     const ctx = this.refs.canvas.getContext('2d')
