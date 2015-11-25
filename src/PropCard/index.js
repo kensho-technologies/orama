@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import {DragSource} from 'react-dnd'
 
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 
 import {autoprefix} from '../Display/methods'
 
@@ -33,7 +33,7 @@ export const PropCard = React.createClass({
   },
   getDefaultProps() {
     return {
-      theme: {...defaultTheme},
+      theme: {...DEFAULT_THEME},
     }
   },
   render() {

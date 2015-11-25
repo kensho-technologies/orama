@@ -3,7 +3,7 @@
 import {it as test} from 'mocha'
 import assert from 'assert'
 import _ from 'lodash'
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 
 import {
   addDimArrays,
@@ -22,7 +22,7 @@ test('Chart2.transformProps', () => {
   const props = {
     data,
     size: {width: 500, height: 500},
-    theme: defaultTheme,
+    theme: DEFAULT_THEME,
     x: 'p1',
     y: 'p2',
   }

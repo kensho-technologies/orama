@@ -1,5 +1,5 @@
 
-export default {
+export const DEFAULT_THEME = {
   font: 'verdana',
   fontSecondary: 'verdana',
   fontMono: 'verdana',

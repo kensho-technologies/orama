@@ -5,7 +5,7 @@ import R from 'ramda'
 import {Block} from 'react-display'
 import Annotation from '../Annotation'
 
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 const mapIndexed = R.addIndex(R.map)
 
 const handleAnnotationUpdate = (props, annotationIdx, childProps) => {
@@ -52,7 +52,7 @@ RenderAnnotation.propTypes = {
 }
 RenderAnnotation.defaultProps = {
   annotationData: [],
-  theme: defaultTheme,
+  theme: DEFAULT_THEME,
 }
 Annotation.updateOnlyTypes = {
   clickedIdx: PropTypes.number,

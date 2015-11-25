@@ -4,7 +4,7 @@ import React, {PropTypes} from 'react'
 import {Block} from 'react-display'
 
 import {stateHOC} from 'on-update'
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 
 const handleMouseEnter = props => {
   props.onState({mouseHover: true, mouseDown: false})
@@ -61,7 +61,7 @@ ContextMenuItem.propTypes = {
   theme: PropTypes.object,
 }
 ContextMenuItem.defaultProps = {
-  theme: defaultTheme,
+  theme: DEFAULT_THEME,
 }
 
 export default stateHOC(ContextMenuItem)

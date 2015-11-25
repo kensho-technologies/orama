@@ -2,7 +2,7 @@
 
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 import {stateHOC, pureHOC} from 'on-update'
 
 import {Block} from 'react-display'
@@ -62,7 +62,7 @@ Test.propTypes = {
   theme: PropTypes.object,
 }
 Test.defaultProps = {
-  theme: defaultTheme,
+  theme: DEFAULT_THEME,
 }
 
 const initialState = {

@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 import path from '../utils/path'
 import {getTicks} from '../Chart2/getMethods'
 import {inset} from '../utils/rectUtils'
@@ -214,7 +214,7 @@ ChartBackground2.propTypes = {
   yName: PropTypes.string,
 }
 ChartBackground2.defaultProps = {
-  theme: defaultTheme,
+  theme: DEFAULT_THEME,
 }
 
 export default ChartBackground2

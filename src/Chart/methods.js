@@ -2,7 +2,7 @@
 import utils from '../utils'
 import R from 'ramda'
 
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 import {getCachedContext} from '../utils/canvasUtils'
 
 const defaultMargin = {
@@ -12,7 +12,7 @@ const defaultMargin = {
 
 export function calculateMargin(opts) {
   const {size, yType, yDomain} = opts
-  const styleVars = opts.styleVars || defaultTheme
+  const styleVars = opts.styleVars || DEFAULT_THEME
   const plotRect = utils.rect.marginInset(defaultMargin, size)
   const yRange = utils.rect.getRangeY(plotRect)
   const yTickCount = utils.vis.getTickCount('y', yRange)

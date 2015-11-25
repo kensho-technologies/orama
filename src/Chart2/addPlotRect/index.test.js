@@ -3,7 +3,7 @@ import {it as test} from 'mocha'
 import assert from 'assert'
 
 import * as methods from './'
-import DEFAULT_THEME from '../../defaultTheme'
+import {DEFAULT_THEME} from '../../defaultTheme'
 
 test('Chart2/addPlotRect.getMaxTextWidth', () => {
   const ticks = [

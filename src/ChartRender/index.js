@@ -1,6 +1,6 @@
 
 import React, {PropTypes} from 'react'
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 import {stateHOC} from 'on-update'
 import {Block} from 'react-display'
 import CanvasInput2 from '../CanvasInput2'
@@ -69,7 +69,7 @@ ChartRender.propTypes = {
 ChartRender.defaultProps = {
   size: {width: 500, height: 500},
   annotationData: [],
-  theme: defaultTheme,
+  theme: DEFAULT_THEME,
 }
 
 export default stateHOC(ChartRender)

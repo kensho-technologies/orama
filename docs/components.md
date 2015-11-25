@@ -43,7 +43,7 @@ Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 plotRect | object | true | {x: 0, y: 0, width: 0, height: 0} | 
 text | string | false | '' | 
-theme | object | false | {...defaultTheme} | 
+theme | object | false | {...DEFAULT_THEME} | 
 
 
 ### CanvasInput
@@ -82,7 +82,7 @@ Prop | Type | Required | Default | Description
 plotRect | object | false |  | 
 renderData | array | false | [] | 
 size | object | true | {width: 0, height: 0} | 
-theme |  | false | {...defaultTheme} | undefined
+theme |  | false | {...DEFAULT_THEME} | undefined
 
 
 ### CanvasRenderHighlight
@@ -96,7 +96,7 @@ Prop | Type | Required | Default | Description
 highlightData | array | false | [] | 
 plotRect | object | false |  | 
 size | object | true | {width: 0, height: 0} | 
-theme |  | false | {...defaultTheme} | undefined
+theme |  | false | {...DEFAULT_THEME} | undefined
 
 
 ### CanvasRenderHover
@@ -110,7 +110,7 @@ Prop | Type | Required | Default | Description
 hoverData | array | false | [] | 
 plotRect | object | false |  | 
 size | object | true | {width: 0, height: 0} | 
-theme |  | false | {...defaultTheme} | undefined
+theme |  | false | {...DEFAULT_THEME} | undefined
 
 
 ### Chart
@@ -137,7 +137,7 @@ labelProp | string | false |  |
 margin | object | false | {  left: 80, right: 30,  top: 15, bottom: 60,} | 
 radiusProp | string | false |  | 
 size | object | false | {width: 500, height: 400} | 
-theme | object | false | {...defaultTheme} | 
+theme | object | false | {...DEFAULT_THEME} | 
 title | string | false |  | 
 xName | string | false |  | 
 xProp | string | false |  | 
@@ -155,7 +155,7 @@ Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 plotRect | object | false |  | 
 size | object | true |  | 
-theme | object | false | {...defaultTheme} | 
+theme | object | false | {...DEFAULT_THEME} | 
 xDomain | array | false |  | 
 xScale | func | false |  | 
 xTickCount | number | false |  | 
@@ -198,7 +198,7 @@ It's used inside of the `Vis` component.
 Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 data | array | false | [] | 
-theme | object | false | {...defaultTheme} | 
+theme | object | false | {...DEFAULT_THEME} | 
 
 
 ### Draggable
@@ -274,7 +274,7 @@ Prop | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 plotRect | object | true | {x: 0, y: 0, width: 0, height: 0} | 
 text | string | false | '' | 
-theme | object | false | {...defaultTheme} | 
+theme | object | false | {...DEFAULT_THEME} | 
 
 
 ### MapDataCard
@@ -305,7 +305,7 @@ Prop | Type | Required | Default | Description
 connectDragSource | func | false |  | 
 isDragging | bool | false |  | 
 prop | string | false |  | 
-theme | object | false | {...defaultTheme} | 
+theme | object | false | {...DEFAULT_THEME} | 
 
 
 ### Tooltip
@@ -318,7 +318,7 @@ Prop | Type | Required | Default | Description
 hoverData | object | false |  | 
 mouse | object | false | {} | 
 styleVars | object | false |  | 
-theme | object | false | {...defaultTheme} | 
+theme | object | false | {...DEFAULT_THEME} | 
 
 
 ### Vis

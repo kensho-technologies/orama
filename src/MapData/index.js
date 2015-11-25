@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 
 import {Block} from 'react-display'
 import MapDataCard from '../MapDataCard'
@@ -9,7 +9,7 @@ import MapDataCard from '../MapDataCard'
 /**
  * Name of each mapping type
  */
-export const ItemName = ({theme = defaultTheme, children}) => (
+export const ItemName = ({theme = DEFAULT_THEME, children}) => (
   <Block
     fontSize={theme.fontSize}
     margin={5}
@@ -22,7 +22,7 @@ export const ItemName = ({theme = defaultTheme, children}) => (
 /**
  * Styled select component
  */
-export const Select = ({theme = defaultTheme, children}) => (
+export const Select = ({theme = DEFAULT_THEME, children}) => (
   <select
     defaultValue='chart'
     style={{
@@ -58,7 +58,7 @@ export default React.createClass({
   },
   getDefaultProps() {
     return {
-      theme: {...defaultTheme},
+      theme: {...DEFAULT_THEME},
     }
   },
   render() {

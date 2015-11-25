@@ -23,13 +23,13 @@ The props should not have a deep hierarchical structure, arrays of objects or ob
 
 The propTypes should be defined for all props used on the component and on its events callbacks. If a prop is required to render the component a default prop needs to be defined, if a default cannot be provided for the component 'isRequired' should be specified.
 
-Components get the variables for their style from a 'theme' prop, when one is not passed it uses the defaultTheme defined on the /components folder.
+Components get the variables for their style from a 'theme' prop, when one is not passed it uses the DEFAULT_THEME defined on the /components folder.
 
 Example:
 ```jsx
 import React, {PropTypes} from 'react'
 import {Block} from 'react-display'
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 
 const ExampleComponent = props => (
   <Block
@@ -44,7 +44,7 @@ ExampleComponent.propTypes = {
   theme: PropTypes.object,
 }
 ExampleComponent.defaultProps = {
-  theme: defaultTheme,
+  theme: DEFAULT_THEME,
 }
 
 export default ExampleComponent
@@ -64,7 +64,7 @@ Example:
 ```jsx
 import React, {PropTypes} from 'react'
 import {Block} from 'react-display'
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 
 export const handleAnnotationUpdate = (props, annotationProps) => {
   props.onUpdate({
@@ -89,7 +89,7 @@ ExampleComponent.propTypes = {
   theme: PropTypes.object,
 }
 ExampleComponent.defaultProps = {
-  theme: defaultTheme,
+  theme: DEFAULT_THEME,
 }
 ExampleComponent.canUpdate = [
   'text',

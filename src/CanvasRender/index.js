@@ -1,6 +1,6 @@
 
 import React, {PropTypes} from 'react'
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 import {basicRender} from './basicRender'
 
 /**
@@ -21,7 +21,7 @@ export default React.createClass({
       render: basicRender,
       renderData: [],
       size: {width: 0, height: 0},
-      theme: {...defaultTheme},
+      theme: {...DEFAULT_THEME},
     }
   },
   componentDidMount() {

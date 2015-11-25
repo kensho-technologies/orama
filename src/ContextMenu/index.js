@@ -5,7 +5,7 @@ import _ from 'lodash'
 import {Block} from 'react-display'
 import ContextMenuItem from '../ContextMenuItem'
 
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 
 const handleContextMenuItemUpdate = (props, childProps) => {
   if (!childProps.clicked) return
@@ -48,7 +48,7 @@ ContextMenu.propTypes = {
 }
 ContextMenu.defaultProps = {
   position: {x: 0, y: 0},
-  theme: defaultTheme,
+  theme: DEFAULT_THEME,
 }
 
 export default ContextMenu

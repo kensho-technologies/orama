@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 import {Block} from 'react-display'
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 import {stateHOC} from 'on-update'
 import {SIZE} from '../Chart2/defaults'
 
@@ -93,7 +93,7 @@ AnnotationEditor.propTypes = {
 }
 AnnotationEditor.defaultProps = {
   size: SIZE,
-  theme: defaultTheme,
+  theme: DEFAULT_THEME,
 }
 
 export default stateHOC(AnnotationEditor)

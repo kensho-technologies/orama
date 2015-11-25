@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 import R from 'ramda'
 
 import utils from '../utils'
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 
 /**
  * Renders background, axis and ticks.
@@ -26,7 +26,7 @@ export default React.createClass({
   },
   getDefaultProps() {
     return {
-      theme: {...defaultTheme},
+      theme: {...DEFAULT_THEME},
     }
   },
   componentDidMount() {

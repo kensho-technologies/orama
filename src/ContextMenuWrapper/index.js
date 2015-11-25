@@ -4,7 +4,7 @@ import React, {PropTypes} from 'react'
 import {Block} from 'react-display'
 import ContextMenu from '../ContextMenu'
 
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 
 const handleBlockClick = props => {
   props.onUpdate({
@@ -53,7 +53,7 @@ ContextMenuWrapper.propTypes = {
   theme: PropTypes.object,
 }
 ContextMenuWrapper.defaultProps = {
-  theme: defaultTheme,
+  theme: DEFAULT_THEME,
 }
 
 export default ContextMenuWrapper

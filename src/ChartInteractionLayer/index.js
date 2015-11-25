@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 import R from 'ramda'
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 import {stateHOC} from 'on-update'
 
 import {Block} from 'react-display'
@@ -94,7 +94,7 @@ ChartInteractionLayer.propTypes = {
   theme: PropTypes.object,
 }
 ChartInteractionLayer.defaultProps = {
-  theme: defaultTheme,
+  theme: DEFAULT_THEME,
 }
 
 export default stateHOC(ChartInteractionLayer)

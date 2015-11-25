@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 
 import {Block} from 'react-display'
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 
 /**
  * Component that position and style the bottom label of the `Chart` component
@@ -18,7 +18,7 @@ export default React.createClass({
     return {
       plotRect: {x: 0, y: 0, width: 0, height: 0},
       text: '',
-      theme: {...defaultTheme},
+      theme: {...DEFAULT_THEME},
     }
   },
   render() {

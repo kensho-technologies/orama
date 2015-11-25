@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 import {stateHOC} from 'on-update'
 import {points} from './points'
 import {
@@ -67,7 +67,7 @@ Chart2.propTypes = {
 }
 Chart2.defaultProps = {
   backgroundOffset: BACKGROUND_OFFSET,
-  theme: defaultTheme,
+  theme: DEFAULT_THEME,
   size: {width: 500, height: 500},
   plot: points,
 }
