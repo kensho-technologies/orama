@@ -15,6 +15,7 @@ export const JS_TO_VIS_TYPE = {
   'number': 'linear',
   'date': 'time',
 }
+export const SIZE = {width: 500, height: 500}
 export const BACKGROUND_OFFSET = 15
 export const RANGE = [0, 1]
 export const DOMAIN = [0, 1]

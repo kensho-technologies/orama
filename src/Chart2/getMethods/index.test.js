@@ -1,7 +1,7 @@
 
 import {it as test} from 'mocha'
 import assert from 'assert'
-import {RANGE_LINEAR_COLOR} from '../constants'
+import {RANGE_LINEAR_COLOR} from '../defaults'
 
 import * as methods from '../getMethods'
 

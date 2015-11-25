@@ -1,12 +1,12 @@
 
 import React, {PropTypes} from 'react'
-
 import {Block} from 'react-display'
-import ContentEditable from '../ContentEditable'
-import Draggable from '../Draggable'
-
 import defaultTheme from '../defaultTheme'
 import {stateHOC} from 'on-update'
+import {SIZE} from '../Chart2/defaults'
+
+import ContentEditable from '../ContentEditable'
+import Draggable from '../Draggable'
 
 const handleContentEditableUpdate = (props, childProps) => {
   props.onUpdate({
@@ -92,7 +92,7 @@ AnnotationEditor.propTypes = {
   y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 AnnotationEditor.defaultProps = {
-  size: {width: 500, height: 500},
+  size: SIZE,
   theme: defaultTheme,
 }
 

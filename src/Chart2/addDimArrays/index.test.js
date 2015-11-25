@@ -4,7 +4,7 @@ import assert from 'assert'
 import _ from 'lodash'
 
 import * as methods from './'
-import {ACCESSORS_GROUPS} from '../constants'
+import {ACCESSORS_GROUPS} from '../defaults'
 
 const data = [
   {p0: -1, p1: 1, p2: 'a', p3: new Date(2015, 1, 1)},

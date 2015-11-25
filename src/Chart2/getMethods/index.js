@@ -11,7 +11,7 @@ import {
   TICK_X_SPACE,
   TICK_Y_SPACE,
   TYPE,
-} from '../constants'
+} from '../defaults'
 
 /*
 get methods that are used on the addMethods module

@@ -5,7 +5,7 @@ import {
   RANGE,
   TICK_COUNT,
   TYPE,
-} from '../constants'
+} from '../defaults'
 
 /*
 `getScale` returns the scale for a key according to configurations on props object.

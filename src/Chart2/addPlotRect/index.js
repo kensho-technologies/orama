@@ -11,7 +11,7 @@ import {
   BACKGROUND_OFFSET,
   SHOW_LABELS,
   SHOW_TICKS,
-} from '../constants'
+} from '../defaults'
 import * as rectUtils from '../../utils/rectUtils'
 
 /*

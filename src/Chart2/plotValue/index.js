@@ -1,6 +1,6 @@
 
 import _ from 'lodash'
-import {ACCESSORS_GROUPS} from '../constants'
+import {ACCESSORS_GROUPS} from '../defaults'
 
 /*
 `plotValue` is a helper to get back the mapped value plotted from a object.
