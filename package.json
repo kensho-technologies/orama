@@ -1,5 +1,5 @@
 {
-  "name": "explorer",
+  "name": "orama",
   "version": "0.0.0",
   "description": "DataVis exploration components",
   "main": "src/components/App.js",
@@ -58,7 +58,7 @@
     "react-display": "^1.0.0",
     "on-update": "^1.0.0",
     "d3": "^3.5.6",
-    "d3-arrays": "^0.3.0",
+    "d3-arrays": "^0.4.0",
     "d3-scale": "^0.1.2",
     "d3-xhr": "^0.1.2",
     "lodash": "^3.10.1",
@@ -67,7 +67,6 @@
     "react-dnd": "^2.0.2",
     "react-dnd-html5-backend": "^2.0.0",
     "react-dom": "^0.14.0",
-    "react-pure-render": "^1.0.2",
     "simple-statistics": "^1.0.0"
   },
   "peerDependencies": {

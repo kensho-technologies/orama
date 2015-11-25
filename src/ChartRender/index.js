@@ -3,13 +3,15 @@ import React, {PropTypes} from 'react'
 import {DEFAULT_THEME} from '../defaultTheme'
 import {stateHOC} from 'on-update'
 import {Block} from 'react-display'
-import CanvasInput2 from '../CanvasInput2'
-import CanvasRender from '../CanvasRender'
+import {SIZE} from '../Chart2/defaults'
 import {
   basicRender,
   highlightRender,
   hoverRender,
 } from '../CanvasRender/renders'
+
+import CanvasInput2 from '../CanvasInput2'
+import CanvasRender from '../CanvasRender'
 
 const handleCanvasInput2 = (props, childProps) => {
   props.onUpdate({
@@ -67,7 +69,7 @@ ChartRender.propTypes = {
   theme: PropTypes.object,
 }
 ChartRender.defaultProps = {
-  size: {width: 500, height: 500},
+  size: SIZE,
   annotationData: [],
   theme: DEFAULT_THEME,
 }

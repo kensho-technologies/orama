@@ -1,6 +1,6 @@
 
 import React, {PropTypes} from 'react'
-import defaultTheme from '../defaultTheme'
+import {DEFAULT_THEME} from '../defaultTheme'
 import {stateHOC} from 'on-update'
 
 import {Block} from 'react-display'
@@ -66,7 +66,7 @@ ChartRenderWrapper.propTypes = {
   theme: PropTypes.object,
 }
 ChartRenderWrapper.defaultProps = {
-  theme: defaultTheme,
+  theme: DEFAULT_THEME,
 }
 
 export default stateHOC(ChartRenderWrapper)

@@ -1,10 +1,8 @@
 
 import React, {PropTypes} from 'react'
-import {DragSource} from 'react-dnd'
-
+import {autoprefix} from 'react-display'
 import {DEFAULT_THEME} from '../defaultTheme'
-
-import {autoprefix} from '../Display/methods'
+import {DragSource} from 'react-dnd'
 
 const cardSource = {
   beginDrag(props) {
