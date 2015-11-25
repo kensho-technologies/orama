@@ -50,6 +50,7 @@ test('Chart2.transformProps', () => {
         right: 15,
         top: 15,
       },
+      'backgroundOffset': 15,
       'x': 'p1',
       'xDomain': ['10', '15', '25'],
       'xRange': [54.5, 485],

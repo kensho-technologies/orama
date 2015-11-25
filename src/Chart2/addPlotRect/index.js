@@ -150,6 +150,7 @@ const getRightMargin = props => {
 export const addPlotRect = props => {
   if (props.plotRect) return props
   const {
+    backgroundOffset = BACKGROUND_OFFSET,
     dimensions,
     size,
   } = props
@@ -178,6 +179,7 @@ export const addPlotRect = props => {
   }
   return {
     ...props,
+    backgroundOffset,
     margin,
     plotRect,
     size: newSize,
