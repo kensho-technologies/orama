@@ -5,25 +5,13 @@ import assert from 'assert'
 import React from 'react'
 import shallowRender from '@luiscarli/shallow-render'
 
-import {ctxMock} from '../utils/canvasUtils'
-import {pathMock} from '../utils/path'
-
-import CanvasRender, {renderCanvas} from './'
+import CanvasRender, {basicRender} from './'
 
 test('CanvasRender', () => {
-  const component = shallowRender(<CanvasRender/>)
+  const component = shallowRender(
+    <CanvasRender
+      render={basicRender}
+    />
+  )
   assert.strictEqual(component.type, 'canvas')
-})
-
-test('CanvasRender.renderCanvas()', () => {
-  const renderData = [
-    {
-      path2D: pathMock,
-    },
-  ]
-  const props = {
-    renderData,
-    plotRect: {x: 0, y: 0, width: 100, height: 100},
-  }
-  assert.equal(renderCanvas(props, ctxMock), undefined)
 })

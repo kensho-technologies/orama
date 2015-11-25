@@ -1,59 +1,10 @@
 
 import React, {PropTypes} from 'react'
-import _ from 'lodash'
-import {BACKGROUND_OFFSET} from '../Chart2/constants'
-import utils from '../utils'
-
 import defaultTheme from '../defaultTheme'
 
-/**
- * Canvas rendering function
- */
-export const renderCanvas = (props, ctx) => {
-  const {
-    plotRect,
-    renderData = [],
-    size = {width: 100, height: 100},
-    backgroundOffset = BACKGROUND_OFFSET,
-  } = props
-
-  utils.canvas.clearRect(ctx, size)
-  ctx.save()
-  if (plotRect && props.clip) {
-    ctx.beginPath()
-    ctx.rect(
-      plotRect.x - backgroundOffset,
-      plotRect.y - backgroundOffset,
-      plotRect.width + backgroundOffset * 2,
-      plotRect.height + backgroundOffset * 2,
-    )
-    ctx.clip()
-  }
-  _.each(
-    renderData,
-    d => {
-      if (!d) return
-      ctx.globalAlpha = _.isUndefined(d.alpha) ? 1 : d.alpha
-      if (d.type === 'line') {
-        ctx.lineWidth = d.lineWidth || 2
-        ctx.strokeStyle = d.stroke || 'hsl(200,30%, 50%)'
-        ctx.stroke(d.path2D)
-      } else if (d.type === 'area') {
-        ctx.lineWidth = d.lineWidth
-        ctx.strokeStyle = d.stroke
-        ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
-        ctx.fill(d.path2D)
-      } else if (d.type === 'text') {
-        ctx.font = d.font || '14px verdana'
-        ctx.fillStyle = d.fill || 'black'
-        ctx.textAlign = d.textAlign || 'left'
-        ctx.textBaseline = d.textBaseline || 'alphabetic'
-        ctx.fillText(d.value, d.x, d.y)
-      }
-    },
-  )
-  ctx.restore()
-}
+export {basicRender} from './basicRender'
+export {highlightRender} from './highlightRender'
+export {hoverRender} from './hoverRender'
 
 /**
  * Component create a Canvas and use the renderData for drawing geometries on it.
@@ -64,6 +15,7 @@ export default React.createClass({
   propTypes: {
     clip: PropTypes.bool,
     plotRect: PropTypes.object,
+    render: PropTypes.func.isRequired,
     renderData: PropTypes.array,
     size: PropTypes.object.isRequired,
   },
@@ -75,18 +27,20 @@ export default React.createClass({
     }
   },
   componentDidMount() {
-    this.handleUpdate()
+    this.handleUpdate(this.props)
   },
   shouldComponentUpdate(nextProps) {
     if (this.props.size !== nextProps.size) return true
     return false
   },
-  componentDidUpdate() {
-    this.handleUpdate()
+  componentWillReceiveProps(nextProps) {
+    if (this.props.renderData !== nextProps.renderData) {
+      this.handleUpdate(nextProps)
+    }
   },
-  handleUpdate() {
+  handleUpdate(props) {
     const ctx = this.refs.canvas.getContext('2d')
-    renderCanvas(this.props, ctx)
+    this.props.render(props, ctx)
   },
   render() {
     return (

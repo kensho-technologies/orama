@@ -11,7 +11,7 @@ import * as methods from './methods'
 
 import {Block} from 'react-display'
 import BottomLabel from '../BottomLabel'
-import CanvasRender from '../CanvasRender'
+import CanvasRender, {basicRender} from '../CanvasRender'
 import ChartBackground from '../ChartBackground'
 import CanvasInput from '../CanvasInput'
 import LeftLabel from '../LeftLabel'
@@ -175,6 +175,7 @@ export default React.createClass({
           />
           <CanvasRender
             plotRect={plotRect}
+            render={basicRender}
             renderData={renderData}
             size={this.props.size}
           />

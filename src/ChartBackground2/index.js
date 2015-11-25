@@ -7,7 +7,7 @@ import {getTicks} from '../Chart2/getMethods'
 import {inset} from '../utils/rectUtils'
 
 import {Block} from 'react-display'
-import CanvasRender from '../CanvasRender'
+import CanvasRender, {basicRender} from '../CanvasRender'
 import BottomLabel from '../BottomLabel'
 import LeftLabel from '../LeftLabel'
 
@@ -187,6 +187,7 @@ const ChartBackground2 = props => (
   <Block>
     <CanvasRender
       plotRect={props.plotRect}
+      render={basicRender}
       renderData={getBackgroundRenderData(props)}
       size={props.size}
       theme={props.theme}

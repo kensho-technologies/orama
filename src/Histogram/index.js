@@ -6,7 +6,7 @@ import d3 from 'd3'
 import utils from '../utils'
 
 import {Block} from 'react-display'
-import CanvasRender from '../CanvasRender'
+import CanvasRender, {basicRender} from '../CanvasRender'
 import CanvasInput from '../CanvasInput'
 
 /**
@@ -92,6 +92,7 @@ export default React.createClass({
       >
         <CanvasRender
           plotRect={plotRect}
+          render={basicRender}
           renderData={renderData}
           size={this.props.size}
           theme={this.props.theme}

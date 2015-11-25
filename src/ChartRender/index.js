@@ -5,9 +5,11 @@ import {stateHOC} from 'on-update'
 
 import {Block} from 'react-display'
 import CanvasInput2 from '../CanvasInput2'
-import CanvasRender from '../CanvasRender'
-import CanvasRenderHighlight from '../CanvasRenderHighlight'
-import CanvasRenderHover from '../CanvasRenderHover'
+import CanvasRender, {
+  basicRender,
+  highlightRender,
+  hoverRender,
+} from '../CanvasRender'
 
 const handleCanvasInput2 = (props, childProps) => {
   props.onUpdate({
@@ -26,21 +28,24 @@ const ChartRender = props => (
     <CanvasRender
       clip={true}
       plotRect={props.plotRect}
+      render={basicRender}
       renderData={props.renderData}
       size={props.size}
       theme={props.theme}
     />
-    <CanvasRenderHighlight
+    <CanvasRender // highlightRender
       clip={true}
-      highlightData={props.highlightData}
       plotRect={props.plotRect}
+      render={highlightRender}
+      renderData={props.highlightData}
       size={props.size}
       theme={props.theme}
     />
-    <CanvasRenderHover
+    <CanvasRender // hoverRender
       clip={true}
-      hoverData={[props.hoverData]}
       plotRect={props.plotRect}
+      render={hoverRender}
+      renderData={[props.hoverData]}
       size={props.size}
       theme={props.theme}
     />
