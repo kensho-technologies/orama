@@ -6,10 +6,12 @@ import {stateHOC} from 'on-update'
 import {Block} from 'react-display'
 import ChartInteractionLayer from '../ChartInteractionLayer'
 import ChartRender from '../ChartRender'
+import Tooltip from '../Tooltip'
 
 const handleChartRender = (props, childProps) => {
   props.onState({
     hoverData: childProps.hoverData,
+    hoverDatum: childProps.hoverDatum,
     dataClicked: childProps.dataClicked,
     lastMousePos: childProps.mouse,
     lastLocalMousePos: childProps.localMouse,
@@ -50,6 +52,10 @@ const ChartRenderWrapper = props => (
       onUpdate={handleChartInteractionLayer.bind(null, props)}
       size={props.size}
     />
+    <Tooltip
+      hoverDatum={props.hoverDatum}
+      lastMousePos={props.lastMousePos}
+    />
   </Block>
 )
 ChartRenderWrapper.propTypes = {
@@ -57,6 +63,7 @@ ChartRenderWrapper.propTypes = {
   dataClicked: PropTypes.object,
   highlightData: PropTypes.array,
   hoverData: PropTypes.array, // state
+  hoverDatum: PropTypes.object, // state
   lastLocalMousePos: PropTypes.object, // state
   lastMousePos: PropTypes.object, // state
   onUpdate: PropTypes.func,

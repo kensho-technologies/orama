@@ -10,6 +10,20 @@ export const ACCESSORS_GROUPS = {
   x: ['x', 'x0', 'x1', 'x2'],
   y: ['y', 'y0', 'y1', 'y2'],
 }
+export const ACCESSORS_TOOLTIP_ORDER = {
+  y: 1,
+  y1: 2,
+  y2: 3,
+  x: 4,
+  x0: 5,
+  x1: 6,
+  x2: 7,
+  y0: 8,
+  radius: 9,
+  fill: 10,
+  stroke: 11,
+  lineWidth: 12,
+}
 export const JS_TO_VIS_TYPE = {
   'string': 'ordinal',
   'number': 'linear',

@@ -16,10 +16,11 @@ import CanvasRender from '../CanvasRender'
 const handleCanvasInput2 = (props, childProps) => {
   props.onUpdate({
     ...props,
-    hoverData: [childProps.hoverDatum],
-    mouse: childProps.mouse,
-    localMouse: childProps.localMouse,
     dataClicked: childProps.dataClicked,
+    hoverData: [childProps.hoverDatum],
+    hoverDatum: childProps.hoverDatum,
+    localMouse: childProps.localMouse,
+    mouse: childProps.mouse,
   })
 }
 /*

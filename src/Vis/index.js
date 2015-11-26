@@ -62,8 +62,9 @@ export default React.createClass({
         />
         <ChartsGroupBar>
           <Chart2
-            color={this.state.colorProp}
             data={this.props.data}
+            fill={this.state.colorProp}
+            label='Name'
             radius={this.state.radiusProp}
             x={this.state.xProp}
             y={this.state.yProp}

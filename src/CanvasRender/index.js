@@ -31,6 +31,9 @@ export default React.createClass({
     if (this.props.size !== nextProps.size) return true
     return false
   },
+  componentDidUpdate() {
+    this.handleUpdate(this.props)
+  },
   componentWillReceiveProps(nextProps) {
     if (this.props.renderData !== nextProps.renderData) {
       this.handleUpdate(nextProps)

@@ -2,6 +2,7 @@
 import _ from 'lodash'
 import utils from '../../utils'
 import {plotValue} from '../plotValue'
+import {extractTooltipData} from '../extractTooltipData'
 
 /*
 `points` is used to generate render data for dots and similar.
@@ -27,11 +28,13 @@ export const pointsDataMap = (props, d) => {
   const r = plotValue(props, d, 'radius', 5)
   const fill = plotValue(props, d, 'fill')
   path2D.arc(x, y, r, 0, 2 * Math.PI)
+  const tooltipData = extractTooltipData(props, d)
   return {
-    type: 'area',
-    path2D,
     alpha: _.isUndefined(props.pointsAlpha) ? 1 : props.pointsAlpha,
     fill,
+    path2D,
+    tooltipData,
+    type: 'area',
   }
 }
 /*
