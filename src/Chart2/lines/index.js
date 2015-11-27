@@ -39,13 +39,7 @@ const getLine = (props, data) => {
     stroke,
     lineWidth,
   }
-  const pointData = points({
-    ...props,
-    data,
-    pointsAlpha: props.linesShowPoints === false ? 0 : undefined,
-    fillValue: stroke,
-  })
-  return [].concat(lineData, pointData)
+  return lineData
 }
 export const lines = props => {
   if (!props.xMap || !props.yMap) return undefined

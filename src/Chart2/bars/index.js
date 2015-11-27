@@ -2,6 +2,7 @@
 import _ from 'lodash'
 import utils from '../../utils'
 import {plotValue} from '../plotValue'
+import {extractTooltipData} from '../extractTooltipData'
 
 const GUTTER = 1
 
@@ -65,10 +66,12 @@ export const barsDataMap = (props, d) => {
       )
     }
   }
+  const tooltipData = extractTooltipData(props, d)
   return {
     type: 'area',
     path2D,
     alpha: 1,
+    tooltipData,
     fill,
   }
 }

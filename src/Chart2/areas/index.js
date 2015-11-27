@@ -2,7 +2,6 @@
 import _ from 'lodash'
 import utils from '../../utils'
 import {plotValue} from '../plotValue'
-import {points} from '../points'
 
 export const getArea = (props, data) => {
   const path2D = utils.path()
@@ -53,12 +52,7 @@ export const getArea = (props, data) => {
     path2D,
     type: 'area',
   }
-  const pointData = points(props)
-  const pointData0 = points({
-    ...props,
-    y: props.y0,
-  })
-  return [].concat(areaRender, pointData, pointData0)
+  return areaRender
 }
 export const areas = props => {
   if (!props.xMap || !props.yMap) return undefined
