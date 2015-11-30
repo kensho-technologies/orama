@@ -18,7 +18,7 @@
   <CanvasRender/>
   <CanvasRenderHighlight/>
   <CanvasRenderHover/>
-  <CanvasInput2/>
+  <CanvasInput/>
   <RenderAnnotation>
     <Annotation/>
   </RenderAnnotation>

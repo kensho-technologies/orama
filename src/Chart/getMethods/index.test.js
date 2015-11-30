@@ -13,7 +13,7 @@ test('visUtils.toType', () => {
   assert.deepEqual(methods.toType('10'), 'string')
   assert.deepEqual(methods.toType(new Date()), 'date')
 })
-test('Chart2/getMethods.getType', () => {
+test('Chart/getMethods.getType', () => {
   const props = {
     xArray: [1, 2, 'string', new Date()],
     yArray: ['a', 'b', 1, new Date()],
@@ -36,7 +36,7 @@ test('Chart2/getMethods.getType', () => {
     undefined
   )
 })
-test('Chart2/getMethods.getDomain', () => {
+test('Chart/getMethods.getDomain', () => {
   const props = {
     xArray: [1, 2, 3, 4],
     yArray: ['a', 'b', 'c'],
@@ -58,7 +58,7 @@ test('Chart2/getMethods.getDomain', () => {
     [new Date(2015, 1), new Date(2015, 3)]
   )
 })
-test('Chart2/getMethods.getDomain zeroBased', () => {
+test('Chart/getMethods.getDomain zeroBased', () => {
   const props = {
     xArray: [1, 2, 3, 4],
     xType: 'linear',
@@ -69,7 +69,7 @@ test('Chart2/getMethods.getDomain zeroBased', () => {
     [0, 4]
   )
 })
-test('Chart2/getMethods.getRange', () => {
+test('Chart/getMethods.getRange', () => {
   const props = {
     plotRect: {x: 0, y: 0, width: 500, height: 500},
     xType: 'linear',
@@ -89,7 +89,7 @@ test('Chart2/getMethods.getRange', () => {
     RANGE_LINEAR_COLOR
   )
 })
-test('Chart2/getMethods.getTickCount', () => {
+test('Chart/getMethods.getTickCount', () => {
   const props = {
     xRange: [0, 500],
     yRange: [500, 0],
@@ -104,7 +104,7 @@ test('Chart2/getMethods.getTickCount', () => {
     50
   )
 })
-test('Chart2/getMethods.getTickCount', () => {
+test('Chart/getMethods.getTickCount', () => {
   const props = {
     x: 'p1',
     xScale: d => d + 1,

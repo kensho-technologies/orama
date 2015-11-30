@@ -1,7 +1,7 @@
 
 import _ from 'lodash'
 import {clearAndClip} from '../clearAndClip'
-import {BACKGROUND_OFFSET} from '../../Chart2/defaults'
+import {BACKGROUND_OFFSET} from '../../Chart/defaults'
 
 export const highlightRender = (props, ctx) => {
   const {

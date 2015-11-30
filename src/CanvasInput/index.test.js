@@ -8,6 +8,11 @@ import shallowRender from '@luiscarli/shallow-render'
 import CanvasInput from './'
 
 test('CanvasInput', () => {
-  const component = shallowRender(<CanvasInput size={{width: 0, height: 0}}/>)
-  assert.strictEqual(component.type, 'div')
+  const component = shallowRender(
+    <CanvasInput
+      onUpdate={() => undefined}
+      size={{width: 0, height: 0}}
+    />
+  )
+  assert.strictEqual(component.type, 'canvas')
 })

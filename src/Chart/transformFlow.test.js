@@ -18,7 +18,7 @@ const data = [
   {p1: '10', p2: '0'}, {p1: '15', p2: '-1'}, {p1: '25', p2: '-2'},
 ]
 
-test('Chart2.transformProps', () => {
+test('Chart.transformProps', () => {
   const props = {
     data,
     size: {width: 500, height: 500},

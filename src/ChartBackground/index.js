@@ -1,111 +1,220 @@
 
 import React, {PropTypes} from 'react'
-import R from 'ramda'
-
-import utils from '../utils'
+import _ from 'lodash'
 import {DEFAULT_THEME} from '../defaultTheme'
+import path from '../utils/path'
+import {getTicks} from '../Chart/getMethods'
+import {inset} from '../utils/rectUtils'
 
-/**
- * Renders background, axis and ticks.
- * Used inside of Chart components.
- */
-export default React.createClass({
-  displayName: 'ChartBackground',
-  propTypes: {
-    plotRect: PropTypes.object,
-    size: PropTypes.object.isRequired,
-    theme: PropTypes.object,
-    xDomain: PropTypes.array,
-    xScale: PropTypes.func,
-    xTickCount: PropTypes.number,
-    xType: PropTypes.string,
-    yDomain: PropTypes.array,
-    yScale: PropTypes.func,
-    yTickCount: PropTypes.number,
-    yType: PropTypes.string,
-  },
-  getDefaultProps() {
-    return {
-      theme: {...DEFAULT_THEME},
-    }
-  },
-  componentDidMount() {
-    this.renderCanvas()
-  },
-  componentDidUpdate() {
-    this.renderCanvas()
-  },
-  renderCanvas() {
-    const {theme} = this.props
-    const {chartPadding} = theme.axis
-    const {
-      plotRect,
-      xDomain,
-      xScale,
-      xTickCount,
-      xType,
-      yDomain,
-      yScale,
-      yTickCount,
-      yType,
-    } = this.props
-    const ctx = this.refs.canvas.getContext('2d')
-    ctx.fillStyle = theme.axis.background
-    utils.canvas.clearRect(ctx, this.props.size)
-    utils.canvas.fillRect(ctx, utils.rect.inset(-chartPadding, this.props.plotRect))
+import {Block} from 'react-display'
+import CanvasRender from '../CanvasRender'
+import BottomLabel from '../BottomLabel'
+import LeftLabel from '../LeftLabel'
 
-    ctx.font = `${theme.axis.tickFontSize}px ${theme.fontMono}`
-    ctx.textAlign = 'center'
-    ctx.textBaseline = 'top'
-    const xTicks = utils.vis.getTicks(xType, xDomain, xTickCount)
-    R.forEach(d => {
-      if (d === 0 && xType === 'linear') {
-        ctx.lineWidth = 2.5
-        ctx.strokeStyle = theme.axis.tickZeroStroke
-      } else {
-        ctx.lineWidth = 1
-        ctx.strokeStyle = theme.axis.tickStroke
+const BACKGROUND_OFFSET = 15
+
+const getBackground = props => {
+  if (props.backgroundShow === false) return undefined
+  const {
+    backgroundOffset = BACKGROUND_OFFSET,
+    plotRect,
+    theme,
+  } = props
+  const backgroundRect = inset(
+    -backgroundOffset,
+    plotRect
+  )
+  const backgroundPath = path()
+  backgroundPath.rect(
+    backgroundRect.x, backgroundRect.y,
+    backgroundRect.width, backgroundRect.height
+  )
+  return {
+    path2D: backgroundPath,
+    type: 'area',
+    fill: theme.axis.background,
+  }
+}
+const getXGuides = (props, thick) => {
+  if (!_.contains(props.dimensions, 'x')) return undefined
+  if (props.xShowGuides === false) return undefined
+  const {
+    backgroundOffset = BACKGROUND_OFFSET,
+    plotRect,
+    theme,
+    xScale,
+    xTicks,
+  } = props
+  return _.map(
+    xTicks,
+    d => {
+      const linePath = path()
+      const x = xScale(d.value)
+      linePath.moveTo(
+        x,
+        plotRect.y - backgroundOffset
+      )
+      linePath.lineTo(
+        x,
+        plotRect.y + plotRect.height + backgroundOffset,
+      )
+      return {
+        path2D: linePath,
+        type: 'line',
+        stroke: thick ? theme.axis.tickZeroStroke : theme.axis.tickStroke,
       }
-      ctx.beginPath()
-      ctx.moveTo(xScale(d), plotRect.y - chartPadding )
-      ctx.lineTo(xScale(d), utils.rect.getMaxY(plotRect) + chartPadding )
-      ctx.closePath()
-      ctx.stroke()
-      ctx.fillStyle = theme.axis.color
-      ctx.fillText(d, xScale(d), utils.rect.getMaxY(plotRect) + chartPadding + 6)
-    }, xTicks)
-
-    ctx.textAlign = 'end'
-    ctx.textBaseline = 'middle'
-    const yTicks = utils.vis.getTicks(yType, yDomain, yTickCount)
-    R.forEach(d => {
-      if (d === 0 && yType === 'linear') {
-        ctx.lineWidth = 2.5
-        ctx.strokeStyle = theme.axis.tickZeroStroke
-      } else {
-        ctx.lineWidth = 1
-        ctx.strokeStyle = theme.axis.tickStroke
+    },
+  )
+}
+const getYGuides = (props, thick) => {
+  if (!_.contains(props.dimensions, 'y')) return undefined
+  if (props.yShowGuides === false) return undefined
+  const {
+    backgroundOffset = BACKGROUND_OFFSET,
+    plotRect,
+    theme,
+    yScale,
+    yTicks,
+  } = props
+  return _.map(
+    yTicks,
+    d => {
+      const linePath = path()
+      const y = yScale(d.value)
+      linePath.moveTo(
+        plotRect.x - backgroundOffset,
+        y
+      )
+      linePath.lineTo(
+        plotRect.x + plotRect.width + backgroundOffset,
+        y
+      )
+      return {
+        path2D: linePath,
+        type: 'line',
+        stroke: thick ? theme.axis.tickZeroStroke : theme.axis.tickStroke,
       }
-      ctx.beginPath()
-      ctx.moveTo(plotRect.x - chartPadding, yScale(d))
-      ctx.lineTo(utils.rect.getMaxX(plotRect) + chartPadding, yScale(d))
-      ctx.closePath()
-      ctx.stroke()
-      ctx.fillStyle = theme.axis.color
-      ctx.fillText(d, plotRect.x - chartPadding - 6, yScale(d))
-    }, yTicks)
-  },
-  render() {
-    return (
-      <canvas
-        height={this.props.size.height}
-        ref='canvas'
-        style={{
-          position: 'absolute',
-          display: 'block',
-        }}
-        width={this.props.size.width}
-      />
-    )
-  },
-})
+    },
+  )
+}
+const getXText = props => {
+  if (!_.contains(props.dimensions, 'x')) return undefined
+  if (props.xShowTicks === false) return undefined
+  const {theme} = props
+  const defaultOffset = theme.fontSize * (theme.lineHeight - 1)
+  const {
+    backgroundOffset = BACKGROUND_OFFSET,
+    plotRect,
+    xScale,
+    xTickOffset = defaultOffset,
+    xTicks,
+  } = props
+  return _.map(
+    xTicks,
+    d => ({
+      type: 'text',
+      value: d.text,
+      x: xScale(d.value),
+      y: _.sum([
+        backgroundOffset,
+        plotRect.y,
+        plotRect.height,
+        xTickOffset,
+      ]),
+      textBaseline: 'top',
+      textAlign: 'center',
+      font: `${theme.fontSize}px ${theme.fontMono}`,
+    }),
+  )
+}
+const getYText = props => {
+  if (!_.contains(props.dimensions, 'y')) return undefined
+  if (props.yShowTicks === false) return undefined
+  const {theme} = props
+  const defaultOffset = theme.fontSize * (theme.lineHeight - 1)
+  const {
+    backgroundOffset = BACKGROUND_OFFSET,
+    plotRect,
+    yScale,
+    yTickOffset = defaultOffset,
+    yTicks,
+  } = props
+  return _.map(
+    yTicks,
+    d => ({
+      type: 'text',
+      value: d.text,
+      x: _.sum([
+        plotRect.x,
+        -backgroundOffset,
+        -yTickOffset,
+      ]),
+      y: yScale(d.value),
+      textAlign: 'right',
+      textBaseline: 'middle',
+      font: `${theme.fontSize}px ${theme.fontMono}`,
+    }),
+  )
+}
+const getBackgroundRenderData = props => {
+  const background = getBackground(props)
+  const xTicks = props.xTicks || getTicks(props, 'x')
+  const yTicks = props.yTicks || getTicks(props, 'y')
+  const xGuides = getXGuides({...props, xTicks})
+  const yGuides = getYGuides({...props, yTicks})
+  const xText = getXText({...props, xTicks})
+  const yText = getYText({...props, yTicks})
+  const thickXGuide = getXGuides({
+    ...props,
+    xTicks: _.filter(xTicks, d => d.value === 0),
+  }, true)
+  const thickYGuide = getYGuides({
+    ...props,
+    yTicks: _.filter(yTicks, d => d.value === 0),
+  }, true)
+  return _.flatten(_.compact([
+    background,
+    xGuides, yGuides,
+    thickXGuide, thickYGuide,
+    xText, yText,
+  ]))
+}
+
+/*
+Used inside </>
+*/
+const ChartBackground = props => (
+  <Block>
+    <CanvasRender
+      plotRect={props.plotRect}
+      renderData={getBackgroundRenderData(props)}
+      size={props.size}
+      theme={props.theme}
+    />
+    <LeftLabel
+      plotRect={props.plotRect}
+      text={props.yName || props.y}
+      theme={props.theme}
+    />
+    <BottomLabel
+      plotRect={props.plotRect}
+      text={props.xName || props.x}
+      theme={props.theme}
+    />
+  </Block>
+)
+ChartBackground.propTypes = {
+  onUpdate: PropTypes.func,
+  plotRect: PropTypes.object,
+  size: PropTypes.object,
+  theme: PropTypes.object,
+  x: PropTypes.string,
+  xName: PropTypes.string,
+  y: PropTypes.string,
+  yName: PropTypes.string,
+}
+ChartBackground.defaultProps = {
+  theme: DEFAULT_THEME,
+}
+
+export default ChartBackground

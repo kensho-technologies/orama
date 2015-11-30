@@ -5,7 +5,7 @@ import assert from 'assert'
 import * as methods from './'
 import {DEFAULT_THEME} from '../../defaultTheme'
 
-test('Chart2/addPlotRect.getMaxTextWidth', () => {
+test('Chart/addPlotRect.getMaxTextWidth', () => {
   const ticks = [
     {value: 'a', text: 'a'},
     {value: 'amadeus', text: 'amadeus'},
@@ -16,7 +16,7 @@ test('Chart2/addPlotRect.getMaxTextWidth', () => {
   )
 })
 
-test('Chart2/addPlotRect.addPlotRect', () => {
+test('Chart/addPlotRect.addPlotRect', () => {
   const props = {
     backgroundOffset: 15,
     size: {width: 500, height: 500},

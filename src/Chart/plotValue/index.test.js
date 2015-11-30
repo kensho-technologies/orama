@@ -4,19 +4,19 @@ import assert from 'assert'
 
 import * as methods from './'
 
-test('Chart2.getScaleKeyByHash', () => {
+test('Chart.getScaleKeyByHash', () => {
   assert.deepEqual(
     methods.getScaleKeyByHash({}, 'x0'),
     'x'
   )
 })
-test('Chart2.getScaleKey', () => {
+test('Chart.getScaleKey', () => {
   assert.deepEqual(
     methods.getScaleKey({}, 'x0'),
     'x'
   )
 })
-test('Chart2.plotValue, scale defined', () => {
+test('Chart.plotValue, scale defined', () => {
   assert.deepEqual(
     methods.plotValue(
       {xScale: d => d, x: 'x'},
@@ -26,7 +26,7 @@ test('Chart2.plotValue, scale defined', () => {
     10
   )
 })
-test('Chart2.plotValue, value defined', () => {
+test('Chart.plotValue, value defined', () => {
   assert.deepEqual(
     methods.plotValue(
       {xValue: 20},
@@ -36,7 +36,7 @@ test('Chart2.plotValue, value defined', () => {
     20
   )
 })
-test('Chart2.plotValue, map undefined', () => {
+test('Chart.plotValue, map undefined', () => {
   assert.deepEqual(
     methods.plotValue(
       {},

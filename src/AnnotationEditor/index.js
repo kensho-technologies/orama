@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 import {Block} from 'react-display'
 import {DEFAULT_THEME} from '../defaultTheme'
 import {stateHOC} from 'on-update'
-import {SIZE} from '../Chart2/defaults'
+import {SIZE} from '../Chart/defaults'
 
 import ContentEditable from '../ContentEditable'
 import Draggable from '../Draggable'

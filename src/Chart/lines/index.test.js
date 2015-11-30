@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import * as methods from './'
 
-test('Chart2.lines', () => {
+test('Chart.lines', () => {
   const renderData = methods.lines({
     data: [{x: 1, y: 1}],
     xMap: d => d,
@@ -20,7 +20,7 @@ test('Chart2.lines', () => {
     }
   )
 })
-test('Chart2.lines grouped data', () => {
+test('Chart.lines grouped data', () => {
   const renderData = methods.lines({
     data: [[{x: 1, y: 1}]],
     xMap: d => d,

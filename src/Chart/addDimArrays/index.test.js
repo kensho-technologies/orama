@@ -31,7 +31,7 @@ const props = {
     },
   ],
 }
-test('Chart2/addDimArrays.getDimArraysForLayer', () => {
+test('Chart/addDimArrays.getDimArraysForLayer', () => {
   assert.deepEqual(
     methods.getDimArraysForLayer(props),
     {
@@ -44,7 +44,7 @@ test('Chart2/addDimArrays.getDimArraysForLayer', () => {
     }
   )
 })
-test('Chart2/addDimArrays.getDimArraysForProps', () => {
+test('Chart/addDimArrays.getDimArraysForProps', () => {
   assert.deepEqual(
     methods.getDimArraysForProps(props),
     {
@@ -58,7 +58,7 @@ test('Chart2/addDimArrays.getDimArraysForProps', () => {
     }
   )
 })
-test('Chart2/addDimArrays.omitGroups', () => {
+test('Chart/addDimArrays.omitGroups', () => {
   assert.deepEqual(
     methods.omitGroups(
       {
@@ -80,7 +80,7 @@ test('Chart2/addDimArrays.omitGroups', () => {
     }
   )
 })
-test('Chart2/addDimArrays.mergeDimArrays', () => {
+test('Chart/addDimArrays.mergeDimArrays', () => {
   assert.deepEqual(
     methods.mergeDimArrays(
       {},
@@ -104,7 +104,7 @@ test('Chart2/addDimArrays.mergeDimArrays', () => {
     }
   )
 })
-test('Chart2/addDimArrays.addDimArrays', () => {
+test('Chart/addDimArrays.addDimArrays', () => {
   assert.deepEqual(
     methods.addDimArrays(props),
     _.assign({}, props, {
@@ -118,7 +118,7 @@ test('Chart2/addDimArrays.addDimArrays', () => {
     })
   )
 })
-test('Chart2/addDimArrays.addDimArrays -> missing data 1', () => {
+test('Chart/addDimArrays.addDimArrays -> missing data 1', () => {
   const localProps = {
     layers: [
       {data: [{x: 1}], x: 'x'},
@@ -135,7 +135,7 @@ test('Chart2/addDimArrays.addDimArrays -> missing data 1', () => {
     }
   )
 })
-test('Chart2/addDimArrays.addDimArrays -> missing data 2', () => {
+test('Chart/addDimArrays.addDimArrays -> missing data 2', () => {
   const localProps = {
     layers: [
       {x: 'x'},
@@ -154,7 +154,7 @@ test('Chart2/addDimArrays.addDimArrays -> missing data 2', () => {
     }
   )
 })
-test('Chart2/addDimArrays.addDimArrays -> missing data 3', () => {
+test('Chart/addDimArrays.addDimArrays -> missing data 3', () => {
   const localProps = {
     layers: [
       {x: 'x'},
@@ -175,7 +175,7 @@ test('Chart2/addDimArrays.addDimArrays -> missing data 3', () => {
     }
   )
 })
-test('Chart2/addDimArrays.addDimArrays -> dont skip the zero', () => {
+test('Chart/addDimArrays.addDimArrays -> dont skip the zero', () => {
   const localProps = {
     data: [{x: 0}, {x: 1}, {x: 2}],
     x: 'x',

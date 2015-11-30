@@ -9,5 +9,5 @@ import Histogram from './'
 
 test('Histogram', () => {
   const component = shallowRender(<Histogram xType='linear'/>)
-  assert.deepEqual(component.type.displayName, 'Chart2(state)')
+  assert.deepEqual(component.type.displayName, 'Chart(state)')
 })

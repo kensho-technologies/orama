@@ -59,7 +59,7 @@ theme | object | false |  |
 
 
 ### CanvasInput
-[src/components/CanvasInput2/index.js](../src/components/CanvasInput2/index.js)
+[src/components/CanvasInput/index.js](../src/components/CanvasInput/index.js)
 
 
 

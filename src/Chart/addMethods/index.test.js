@@ -5,7 +5,7 @@ import _ from 'lodash'
 
 import * as methods from './'
 
-test('Chart2/addMethods.addTypes', () => {
+test('Chart/addMethods.addTypes', () => {
   const props = {
     fillArray: [
       new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
@@ -24,7 +24,7 @@ test('Chart2/addMethods.addTypes', () => {
     })
   )
 })
-test('Chart2/addMethods.addDomains', () => {
+test('Chart/addMethods.addDomains', () => {
   const props = {
     fillArray: [
       new Date(2015, 1), new Date(2015, 2), new Date(2015, 3),
@@ -45,7 +45,7 @@ test('Chart2/addMethods.addDomains', () => {
     })
   )
 })
-test('Chart2/addMethods.addRanges', () => {
+test('Chart/addMethods.addRanges', () => {
   const props = {
     plotRect: {x: 0, y: 0, width: 500, height: 500},
     dimensions: ['fill', 'x', 'y'],
@@ -62,7 +62,7 @@ test('Chart2/addMethods.addRanges', () => {
     })
   )
 })
-test('Chart2/addMethods.addTickCounts', () => {
+test('Chart/addMethods.addTickCounts', () => {
   const props = {
     dimensions: ['fill', 'x', 'y'],
     fillRange: [0, 500],
@@ -78,7 +78,7 @@ test('Chart2/addMethods.addTickCounts', () => {
     })
   )
 })
-test('Chart2/addMethods.addScales', () => {
+test('Chart/addMethods.addScales', () => {
   const props = {
     dimensions: ['fill', 'x', 'y'],
     fillType: 'time',
@@ -96,7 +96,7 @@ test('Chart2/addMethods.addScales', () => {
   assert(transformedProps.yScale)
   assert(transformedProps.fillScale)
 })
-test('Chart2/addMethods.addMaps', () => {
+test('Chart/addMethods.addMaps', () => {
   const props = {
     dimensions: ['x', 'y'],
     x: 'p1',

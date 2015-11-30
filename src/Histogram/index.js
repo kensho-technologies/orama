@@ -4,8 +4,8 @@ import _ from 'lodash'
 import d3 from 'd3'
 import utils from '../utils'
 
-import Chart2 from '../Chart2'
-import {bars} from '../Chart2/bars'
+import Chart from '../Chart'
+import {bars} from '../Chart/bars'
 /**
  * Renders a Histogram using the same logic as `Chart`.
  * This component have not been generalized yet.
@@ -55,7 +55,7 @@ export default React.createClass({
     )
     if (xType !== 'linear') return null
     return (
-      <Chart2
+      <Chart
         backgroundOffset={0}
         backgroundShow={false}
         barsGutter={0}
