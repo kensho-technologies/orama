@@ -15,17 +15,19 @@ export const basicRender = (props, ctx) => {
     renderData,
     d => {
       if (!d) return
-      ctx.globalAlpha = _.isUndefined(d.alpha) ? 1 : d.alpha
       if (d.type === 'line') {
+        ctx.globalAlpha = d.strokeAlpha || d.alpha
         ctx.lineWidth = d.lineWidth || 2
         ctx.strokeStyle = d.stroke || 'hsl(200,30%, 50%)'
         ctx.stroke(d.path2D)
       } else if (d.type === 'area') {
+        ctx.globalAlpha = d.fillAlpha || d.alpha
         ctx.lineWidth = d.lineWidth
         ctx.strokeStyle = d.stroke
         ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
         ctx.fill(d.path2D)
       } else if (d.type === 'text') {
+        ctx.globalAlpha = d.alpha
         ctx.font = d.font || '14px verdana'
         ctx.fillStyle = d.fill || 'black'
         ctx.textAlign = d.textAlign || 'left'
