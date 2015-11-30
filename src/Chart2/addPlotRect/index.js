@@ -71,7 +71,7 @@ const getTopMargin = props => {
     y,
     yShowTicks = SHOW_TICKS,
   } = props
-  if (margin.top) return margin.top + backgroundOffset
+  if (!_.isUndefined(margin.top)) return margin.top + backgroundOffset
   if (yShowTicks === false || !y) return backgroundOffset
   return _.max([
     backgroundOffset,
@@ -89,7 +89,7 @@ const getBottomMargin = props => {
     xTickOffset = AXIS_OFFSET(theme),
     xLabelOffset = AXIS_OFFSET(theme),
   } = props
-  if (margin.bottom) return margin.bottom + backgroundOffset
+  if (!_.isUndefined(margin.bottom)) return margin.bottom + backgroundOffset
   if (!_.contains(dimensions, 'x')) return backgroundOffset
   return _.sum([
     backgroundOffset,
@@ -108,7 +108,7 @@ const getLeftMargin = props => {
     yTickOffset = AXIS_OFFSET(theme),
     yLabelOffset = AXIS_OFFSET(theme),
   } = props
-  if (margin.left) return margin.left + backgroundOffset
+  if (!_.isUndefined(margin.left)) return margin.left + backgroundOffset
   if (!_.contains(dimensions, 'y')) return backgroundOffset
   if (!yShowTicks) {
     return _.sum([
@@ -135,7 +135,7 @@ const getRightMargin = props => {
     x,
     xShowTicks = SHOW_TICKS,
   } = props
-  if (margin.right) return margin.right + backgroundOffset
+  if (!_.isUndefined(margin.right)) return margin.right + backgroundOffset
   if (!x || !xShowTicks) return backgroundOffset
   const xRange = props.xRange || getRange(props, 'x')
   const xTickCount = props.xTickCount || getTickCount({...props, xRange}, 'x')
