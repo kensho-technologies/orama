@@ -44,3 +44,6 @@ export const SHOW_LABELS = true
 export const AXIS_OFFSET = theme => (
   theme.fontSize * (theme.lineHeight - 0.75)
 )
+export const PLOT_RECT = {
+  x: 10, y: 10, width: 480, height: 480,
+}

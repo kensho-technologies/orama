@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
 import {DEFAULT_THEME} from '../defaultTheme'
-import {path2D} from '../utils/path2DUtils'
+import {getPath2D} from '../utils/path2DUtils'
 import {getTicks} from '../Chart/getMethods'
 import {inset} from '../utils/rectUtils'
 
@@ -13,7 +13,7 @@ import LeftLabel from '../LeftLabel'
 
 const BACKGROUND_OFFSET = 15
 
-const getBackground = props => {
+export const getBackground = props => {
   if (props.backgroundShow === false) return undefined
   const {
     backgroundOffset = BACKGROUND_OFFSET,
@@ -24,7 +24,7 @@ const getBackground = props => {
     -backgroundOffset,
     plotRect
   )
-  const backgroundPath = path2D()
+  const backgroundPath = getPath2D()
   backgroundPath.rect(
     backgroundRect.x, backgroundRect.y,
     backgroundRect.width, backgroundRect.height
@@ -35,7 +35,7 @@ const getBackground = props => {
     fill: theme.axis.background,
   }
 }
-const getXGuides = (props, thick) => {
+export const getXGuides = (props, thick) => {
   if (!_.contains(props.dimensions, 'x')) return undefined
   if (props.xShowGuides === false) return undefined
   const {
@@ -48,7 +48,7 @@ const getXGuides = (props, thick) => {
   return _.map(
     xTicks,
     d => {
-      const linePath = path2D()
+      const linePath = getPath2D()
       const x = xScale(d.value)
       linePath.moveTo(
         x,
@@ -66,7 +66,7 @@ const getXGuides = (props, thick) => {
     },
   )
 }
-const getYGuides = (props, thick) => {
+export const getYGuides = (props, thick) => {
   if (!_.contains(props.dimensions, 'y')) return undefined
   if (props.yShowGuides === false) return undefined
   const {
@@ -79,7 +79,7 @@ const getYGuides = (props, thick) => {
   return _.map(
     yTicks,
     d => {
-      const linePath = path2D()
+      const linePath = getPath2D()
       const y = yScale(d.value)
       linePath.moveTo(
         plotRect.x - backgroundOffset,
@@ -97,7 +97,7 @@ const getYGuides = (props, thick) => {
     },
   )
 }
-const getXText = props => {
+export const getXText = props => {
   if (!_.contains(props.dimensions, 'x')) return undefined
   if (props.xShowTicks === false) return undefined
   const {theme} = props
@@ -127,7 +127,7 @@ const getXText = props => {
     }),
   )
 }
-const getYText = props => {
+export const getYText = props => {
   if (!_.contains(props.dimensions, 'y')) return undefined
   if (props.yShowTicks === false) return undefined
   const {theme} = props
@@ -156,7 +156,7 @@ const getYText = props => {
     }),
   )
 }
-const getBackgroundRenderData = props => {
+export const getBackgroundRenderData = props => {
   const background = getBackground(props)
   const xTicks = props.xTicks || getTicks(props, 'x')
   const yTicks = props.yTicks || getTicks(props, 'y')
