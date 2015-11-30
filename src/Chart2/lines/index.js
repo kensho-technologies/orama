@@ -2,7 +2,6 @@
 import _ from 'lodash'
 import utils from '../../utils'
 import {plotValue} from '../plotValue'
-import {points} from '../points'
 
 /*
 `points` is used to generate render data for lines and multilines.
@@ -39,7 +38,7 @@ const getLine = (props, data) => {
     stroke,
     lineWidth,
   }
-  return lineData
+  return [lineData]
 }
 export const lines = props => {
   if (!props.xMap || !props.yMap) return undefined
