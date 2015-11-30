@@ -1,11 +1,11 @@
 
 import _ from 'lodash'
-import utils from '../../utils'
+import {getPath2D} from '../../utils/path2DUtils'
 import {getMaxY} from '../../utils/rectUtils'
 import {plotValue} from '../plotValue'
 
 export const getArea = (props, data) => {
-  const path2D = utils.path()
+  const path2D = getPath2D()
   path2D.moveTo(
     plotValue(props, _.first(data), 'x'),
     plotValue(props, _.first(data), 'y')

@@ -1,6 +1,6 @@
 
 import _ from 'lodash'
-import * as utils from '../../utils'
+import {getPath2D} from '../../utils/path2DUtils'
 import {plotValue} from '../plotValue'
 
 /*
@@ -17,7 +17,7 @@ lines{
 generates the array of render data
 */
 const getLine = (props, data) => {
-  const path2D = utils.path()
+  const path2D = getPath2D()
   const stroke = plotValue(props, _.first(data), 'stroke')
   const lineWidth = plotValue(
     props, _.first(data), 'lineWidth'

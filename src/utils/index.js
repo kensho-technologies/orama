@@ -1,4 +1,4 @@
 
 export * as canvasUtils from './canvasUtils'
 export * as rectUtils from './rectUtils'
-export {default as path} from './path'
+export * as path2DUtils from './path2DUtils'

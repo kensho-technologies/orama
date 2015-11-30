@@ -1,7 +1,7 @@
 
 import {it as test} from 'mocha'
 import assert from 'assert'
-import {pathMock} from '../../utils/path'
+import {pathMock} from '../../utils/path2DUtils'
 import {ctxMock} from '../../utils/canvasUtils'
 
 import {basicRender} from './'

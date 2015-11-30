@@ -1,6 +1,6 @@
 
 import _ from 'lodash'
-import utils from '../../utils'
+import {getPath2D} from '../../utils/path2DUtils'
 import {plotValue} from '../plotValue'
 import {extractTooltipData} from '../extractTooltipData'
 
@@ -8,7 +8,7 @@ const GUTTER = 1
 
 export const barsDataMap = (props, d) => {
   const {barsGutter: gutter = GUTTER} = props
-  const path2D = utils.path()
+  const path2D = getPath2D()
   const x = plotValue(props, d, 'x', props.plotRect.x)
   const y = plotValue(props, d, 'y', props.plotRect.y)
   const fill = plotValue(props, d, 'fill', 'steelblue')

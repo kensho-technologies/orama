@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
 import {DEFAULT_THEME} from '../defaultTheme'
-import path from '../utils/path'
+import {path2D} from '../utils/path2DUtils'
 import {getTicks} from '../Chart/getMethods'
 import {inset} from '../utils/rectUtils'
 
@@ -24,7 +24,7 @@ const getBackground = props => {
     -backgroundOffset,
     plotRect
   )
-  const backgroundPath = path()
+  const backgroundPath = path2D()
   backgroundPath.rect(
     backgroundRect.x, backgroundRect.y,
     backgroundRect.width, backgroundRect.height
@@ -48,7 +48,7 @@ const getXGuides = (props, thick) => {
   return _.map(
     xTicks,
     d => {
-      const linePath = path()
+      const linePath = path2D()
       const x = xScale(d.value)
       linePath.moveTo(
         x,
@@ -79,7 +79,7 @@ const getYGuides = (props, thick) => {
   return _.map(
     yTicks,
     d => {
-      const linePath = path()
+      const linePath = path2D()
       const y = yScale(d.value)
       linePath.moveTo(
         plotRect.x - backgroundOffset,
