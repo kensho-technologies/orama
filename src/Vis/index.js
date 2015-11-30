@@ -1,12 +1,11 @@
 
 import React, {PropTypes} from 'react'
-
 import {Flex} from 'react-display'
+
 import ChartsGroupBar from '../ChartsGroupBar'
 import DataList from '../DataList'
 import MapData from '../MapData'
-
-import Chart2 from '../Chart2'
+import Chart from '../Chart'
 
 /**
  * Container component for the `DataList` and map data UI.
@@ -61,11 +60,12 @@ export default React.createClass({
           yProp={this.state.yProp}
         />
         <ChartsGroupBar>
-          <Chart2
+          <Chart
             data={this.props.data}
             fill={this.state.colorProp}
             label='Name'
             radius={this.state.radiusProp}
+            size={{width: 500, height: 500}}
             x={this.state.xProp}
             y={this.state.yProp}
           />
