@@ -1,6 +1,7 @@
 
 import _ from 'lodash'
 import utils from '../../utils'
+import {getMaxY} from '../../utils/rectUtils'
 import {plotValue} from '../plotValue'
 
 export const getArea = (props, data) => {
@@ -17,7 +18,7 @@ export const getArea = (props, data) => {
   })
   // if there's no base position accessors
   if (!props.y0 && !props.x0) {
-    const y0 = props.yScale(0) || utils.rect.getMaxY(props.plotRect)
+    const y0 = props.yScale(0) || getMaxY(props.plotRect)
     path2D.lineTo(
       plotValue(props, _.last(data), 'x'),
       y0,

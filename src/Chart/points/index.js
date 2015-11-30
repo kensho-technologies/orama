@@ -1,6 +1,7 @@
 
 import _ from 'lodash'
-import utils from '../../utils'
+import * as utils from '../../utils'
+import {getMidX, getMidY} from '../../utils/rectUtils'
 import {plotValue} from '../plotValue'
 import {extractTooltipData} from '../extractTooltipData'
 
@@ -20,10 +21,10 @@ generates the array of render data
 export const pointsDataMap = (props, d) => {
   const path2D = utils.path()
   const x = plotValue(
-    props, d, 'x', utils.rect.getMidX(props.plotRect)
+    props, d, 'x', getMidX(props.plotRect)
   )
   const y = plotValue(
-    props, d, 'y', utils.rect.getMidY(props.plotRect)
+    props, d, 'y', getMidY(props.plotRect)
   )
   const r = plotValue(props, d, 'radius', 5)
   const fill = plotValue(props, d, 'fill')

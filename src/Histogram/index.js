@@ -2,7 +2,6 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
 import d3 from 'd3'
-import utils from '../utils'
 
 import Chart from '../Chart'
 import {bars} from '../Chart/bars'
@@ -40,8 +39,6 @@ export default React.createClass({
   },
   render() {
     const {data, xProp, size} = this.props
-    const xType = this.props.xType ||
-      utils.vis.getType(data, xProp)
     const histogramLayout = d3.layout.histogram()
       .value(d => _.get(d, xProp))
       .bins(20)
@@ -53,7 +50,6 @@ export default React.createClass({
         y: d.y,
       })
     )
-    if (xType !== 'linear') return null
     return (
       <Chart
         backgroundOffset={0}
