@@ -6,9 +6,17 @@ import {extractTooltipData} from '../extractTooltipData'
 
 const GUTTER = 1
 
+const TOOLTIP_DIMENSIONS = [
+  'x', 'x1', 'x2', 'y', 'fill',
+]
+
 const hoverSolver = (props, datum, renderDatum) => ({
   hoverData: [renderDatum],
-  tooltipData: extractTooltipData(props, datum),
+  tooltipData: extractTooltipData(
+    props,
+    TOOLTIP_DIMENSIONS,
+    datum
+  ),
 })
 
 export const barsDataMap = (props, datum) => {

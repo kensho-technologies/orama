@@ -15,9 +15,17 @@ points{
 }
 */
 
+const TOOLTIP_DIMENSIONS = [
+  'x', 'y', 'fill', 'r',
+]
+
 const hoverSolver = (props, datum, renderDatum) => ({
   hoverData: [renderDatum],
-  tooltipData: extractTooltipData(props, datum),
+  tooltipData: extractTooltipData(
+    props,
+    TOOLTIP_DIMENSIONS,
+    datum
+  ),
 })
 
 /*

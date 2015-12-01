@@ -2,14 +2,14 @@
 import _ from 'lodash'
 import {ACCESSORS_TOOLTIP_ORDER} from '../defaults'
 
-export const extractTooltipData = (props, datum) => {
+export const extractTooltipData = (props, _tooltipDimensions, datum) => {
   const {
-    dimensions,
+    tooltipDimensions = _tooltipDimensions,
     accessorsTooltipOrder = ACCESSORS_TOOLTIP_ORDER,
   } = props
 
   const tooltipValues = _.reduce(
-    dimensions,
+    tooltipDimensions,
     (acc, key) => {
       const name = props[`${key}Name`] || props[key]
       let value = _.get(datum, props[key])
