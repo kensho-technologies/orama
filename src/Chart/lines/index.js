@@ -2,7 +2,6 @@
 import _ from 'lodash'
 import {getPath2D} from '../../utils/path2DUtils'
 import {plotValue} from '../plotValue'
-import {pointsDataMap} from '../points'
 import {extractTooltipData} from '../extractTooltipData'
 
 /*
@@ -15,12 +14,40 @@ lines{
 }
 */
 
-const getHoverSolver = (props, data) => mouse => {
-  const xRaw = props.xScale.invert(mouse.x)
-  const hoverPoint = _.find(data, d => _.get(d, props.x) > xRaw)
+const TOOLTIP_DIMENSIONS = [
+  'x', 'y', 'stroke', 'strokeWidth',
+]
+
+const getPointData = (props, datum) => {
+  const path2D = getPath2D()
+  const x = plotValue(
+    props, datum, 'x'
+  )
+  const y = plotValue(
+    props, datum, 'y'
+  )
+  const r = plotValue(props, datum, 'strokeWidth', 2) + 1
+  path2D.arc(x, y, r, 0, 2 * Math.PI)
   return {
-    hoverData: pointsDataMap(props, hoverPoint),
-    tooltipData: extractTooltipData(props, hoverPoint),
+    hoverFill: 'black',
+    path2D,
+    type: 'area',
+  }
+}
+
+const getHoverSolver = (
+  props, lineData, renderDatum, localMouse
+) => {
+  const xRaw = props.xScale.invert(localMouse.x)
+  const hoverPoint = _.find(lineData, d => _.get(d, props.x) > xRaw)
+
+  return {
+    hoverData: [renderDatum, getPointData(props, hoverPoint)],
+    tooltipData: extractTooltipData(
+      props,
+      TOOLTIP_DIMENSIONS,
+      hoverPoint,
+    ),
   }
 }
 
@@ -43,17 +70,19 @@ const getLine = (props, data) => {
       plotValue(props, d, 'y')
     )
   })
-  const lineData = {
+  const renderDatum = {
     type: 'line',
     path2D,
     stroke,
     lineWidth,
-    hoverSolver: getHoverSolver(props, data),
-    tooltipData: {
-      title: 'TEST',
-    },
   }
-  return [lineData]
+  renderDatum.hoverSolver = _.partial(
+    props.hoverSolver || getHoverSolver,
+    props,
+    data,
+    renderDatum
+  )
+  return [renderDatum]
 }
 export const lines = props => {
   if (!props.xMap || !props.yMap) return undefined
