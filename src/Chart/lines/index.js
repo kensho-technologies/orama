@@ -2,6 +2,8 @@
 import _ from 'lodash'
 import {getPath2D} from '../../utils/path2DUtils'
 import {plotValue} from '../plotValue'
+import {pointsDataMap} from '../points'
+import {extractTooltipData} from '../extractTooltipData'
 
 /*
 `points` is used to generate render data for lines and multilines.
@@ -12,6 +14,15 @@ lines{
   getLine{}
 }
 */
+
+const getHoverSolver = (props, data) => mouse => {
+  const xRaw = props.xScale.invert(mouse.x)
+  const hoverPoint = _.find(data, d => _.get(d, props.x) > xRaw)
+  return {
+    hoverData: pointsDataMap(props, hoverPoint),
+    tooltipData: extractTooltipData(props, hoverPoint),
+  }
+}
 
 /*
 generates the array of render data
@@ -37,6 +48,10 @@ const getLine = (props, data) => {
     path2D,
     stroke,
     lineWidth,
+    hoverSolver: getHoverSolver(props, data),
+    tooltipData: {
+      title: 'TEST',
+    },
   }
   return [lineData]
 }

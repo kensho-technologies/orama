@@ -17,8 +17,8 @@ const handleCanvasInput = (props, childProps) => {
   props.onUpdate({
     ...props,
     dataClicked: childProps.dataClicked,
-    hoverData: [childProps.hoverDatum],
-    hoverDatum: childProps.hoverDatum,
+    hoverData: childProps.hoverData,
+    tooltipData: childProps.tooltipData,
     localMouse: childProps.localMouse,
     mouse: childProps.mouse,
   })

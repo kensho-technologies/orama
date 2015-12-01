@@ -63,9 +63,10 @@ const Tooltip = props => (
     pointerEvents='none'
     position='fixed'
     top={props.lastMousePos.y}
+    zIndex='999999'
   >
     <Table>
-      {props.hoverDatum.tooltipData.title ?
+      {props.tooltipData.title ?
         <TableRow
           background={props.theme.tooltip.listBackground}
         >
@@ -76,28 +77,28 @@ const Tooltip = props => (
             textAlign='left'
             verticalAlign='top'
           >
-            {props.hoverDatum.tooltipData.title}
+            {props.tooltipData.title}
           </TableCell>
           <TableCell/>
         </TableRow>
       : null}
       {_.map(
-        props.hoverDatum.tooltipData.values,
+        props.tooltipData.values,
         (d, i) => row(props, d, i)
       )}
     </Table>
   </Block>
 )
 Tooltip.propTypes = {
-  hoverDatum: PropTypes.object,
   lastMousePos: PropTypes.object,
   onUpdate: PropTypes.func,
   theme: PropTypes.object,
+  tooltipData: PropTypes.object,
 }
 Tooltip.defaultProps = {
-  hoverDatum: {tooltipData: {}},
   lastMousePos: {x: 0, y: 0},
   theme: DEFAULT_THEME,
+  tooltipData: {},
 }
 
 export default stateHOC(Tooltip)

@@ -15,28 +15,38 @@ points{
 }
 */
 
+const hoverSolver = (props, datum, renderDatum) => ({
+  hoverData: [renderDatum],
+  tooltipData: extractTooltipData(props, datum),
+})
+
 /*
 generates the array of render data
 */
-export const pointsDataMap = (props, d) => {
+export const pointsDataMap = (props, datum) => {
   const path2D = getPath2D()
   const x = plotValue(
-    props, d, 'x', getMidX(props.plotRect)
+    props, datum, 'x', getMidX(props.plotRect)
   )
   const y = plotValue(
-    props, d, 'y', getMidY(props.plotRect)
+    props, datum, 'y', getMidY(props.plotRect)
   )
-  const r = plotValue(props, d, 'radius', 5)
-  const fill = plotValue(props, d, 'fill')
+  const r = plotValue(props, datum, 'radius', 5)
+  const fill = plotValue(props, datum, 'fill')
   path2D.arc(x, y, r, 0, 2 * Math.PI)
-  const tooltipData = extractTooltipData(props, d)
-  return {
+  const renderDatum = {
     alpha: _.isUndefined(props.pointsAlpha) ? 1 : props.pointsAlpha,
     fill,
     path2D,
-    tooltipData,
     type: 'area',
   }
+  renderDatum.hoverSolver = _.partial(
+    props.hoverSolver || hoverSolver,
+    props,
+    datum,
+    renderDatum
+  )
+  return renderDatum
 }
 /*
 If array of arrays (grouped data), flatten before sending to `pointsDataMap`.

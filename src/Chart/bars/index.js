@@ -6,27 +6,32 @@ import {extractTooltipData} from '../extractTooltipData'
 
 const GUTTER = 1
 
-export const barsDataMap = (props, d) => {
+const hoverSolver = (props, datum, renderDatum) => ({
+  hoverData: [renderDatum],
+  tooltipData: extractTooltipData(props, datum),
+})
+
+export const barsDataMap = (props, datum) => {
   const {barsGutter: gutter = GUTTER} = props
   const path2D = getPath2D()
-  const x = plotValue(props, d, 'x', props.plotRect.x)
-  const y = plotValue(props, d, 'y', props.plotRect.y)
-  const fill = plotValue(props, d, 'fill', 'steelblue')
+  const x = plotValue(props, datum, 'x', props.plotRect.x)
+  const y = plotValue(props, datum, 'y', props.plotRect.y)
+  const fill = plotValue(props, datum, 'fill', 'steelblue')
 
   // when `x1` or `y1` is present, this means the bars are been positioned on a linear scale, and their position has been previously calculated
   if (props.x1 || props.y1) {
     if (props.x1) {
       const y0 = props.yScale(0)
-      const x1 = plotValue(props, d, 'x1', props.plotRect.x)
-      const x2 = plotValue(props, d, 'x2', props.plotRect.x)
+      const x1 = plotValue(props, datum, 'x1', props.plotRect.x)
+      const x2 = plotValue(props, datum, 'x2', props.plotRect.x)
       path2D.rect(
         x1 + gutter, y0,
         x2 - x1 - gutter * 2, y - y0
       )
     } else {
       const x0 = props.xScale(0)
-      const y1 = plotValue(props, d, 'y1', props.plotRect.x)
-      const y2 = plotValue(props, d, 'y2', props.plotRect.x)
+      const y1 = plotValue(props, datum, 'y1', props.plotRect.x)
+      const y2 = plotValue(props, datum, 'y2', props.plotRect.x)
       path2D.rect(
         x0, y1 - gutter,
         x - x0, y2 - y1 + gutter * 2,
@@ -66,14 +71,19 @@ export const barsDataMap = (props, d) => {
       )
     }
   }
-  const tooltipData = extractTooltipData(props, d)
-  return {
+  const renderDatum = {
     type: 'area',
     path2D,
     alpha: 1,
-    tooltipData,
     fill,
   }
+  renderDatum.hoverSolver = _.partial(
+    props.hoverSolver || hoverSolver,
+    props,
+    datum,
+    renderDatum
+  )
+  return renderDatum
 }
 const retrieveBarsData = data => {
   if (_.isArray(_.first(data))) return _.flatten(data)

@@ -11,7 +11,7 @@ import Tooltip from '../Tooltip'
 const handleChartRender = (props, childProps) => {
   props.onState({
     hoverData: childProps.hoverData,
-    hoverDatum: childProps.hoverDatum,
+    tooltipData: childProps.tooltipData,
     dataClicked: childProps.dataClicked,
     lastMousePos: childProps.mouse,
     lastLocalMousePos: childProps.localMouse,
@@ -53,8 +53,9 @@ const ChartRenderWrapper = props => (
       size={props.size}
     />
     <Tooltip
-      hoverDatum={props.hoverDatum}
+      hoverData={props.hoverData}
       lastMousePos={props.lastMousePos}
+      tooltipData={props.tooltipData}
     />
   </Block>
 )
@@ -63,7 +64,6 @@ ChartRenderWrapper.propTypes = {
   dataClicked: PropTypes.object,
   highlightData: PropTypes.array,
   hoverData: PropTypes.array, // state
-  hoverDatum: PropTypes.object, // state
   lastLocalMousePos: PropTypes.object, // state
   lastMousePos: PropTypes.object, // state
   onUpdate: PropTypes.func,
@@ -71,6 +71,7 @@ ChartRenderWrapper.propTypes = {
   renderData: PropTypes.array,
   size: PropTypes.object,
   theme: PropTypes.object,
+  tooltipData: PropTypes.object, // state
 }
 ChartRenderWrapper.defaultProps = {
   theme: DEFAULT_THEME,

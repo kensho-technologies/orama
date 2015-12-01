@@ -92,12 +92,23 @@ export default React.createClass({
       mouse,
       localMouse,
     } = getDataUnderMouse(this, canvasNode, evt)
-    this.props.onUpdate({
-      ...this.props,
-      hoverDatum: data,
-      localMouse,
-      mouse,
-    })
+    if (data && data.hoverSolver) {
+      const hoverElements = data.hoverSolver(localMouse)
+      this.props.onUpdate({
+        ...this.props,
+        hoverData: hoverElements.hoverData,
+        tooltipData: hoverElements.tooltipData,
+        localMouse,
+        mouse,
+      })
+    } else {
+      this.props.onUpdate({
+        ...this.props,
+        hoverData: [data],
+        localMouse,
+        mouse,
+      })
+    }
   },
   handleClick(evt) {
     const canvasNode = this.refs.canvas
@@ -109,7 +120,7 @@ export default React.createClass({
     this.props.onUpdate({
       ...this.props,
       dataClicked: data,
-      hoverDatum: data,
+      hoverData: [data],
       localMouse,
       mouse,
     })
