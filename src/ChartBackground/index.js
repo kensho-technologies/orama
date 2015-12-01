@@ -30,9 +30,10 @@ export const getBackground = props => {
     backgroundRect.width, backgroundRect.height
   )
   return {
-    path2D: backgroundPath,
-    type: 'area',
     fill: theme.axis.background,
+    path2D: backgroundPath,
+    stroke: 'transparent',
+    type: 'area',
   }
 }
 export const getXGuides = (props, thick) => {
