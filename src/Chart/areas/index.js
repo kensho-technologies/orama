@@ -6,7 +6,7 @@ import {plotValue} from '../plotValue'
 import {extractTooltipData} from '../extractTooltipData'
 
 const TOOLTIP_DIMENSIONS = [
-  'x', 'x0', 'y', 'y0', 'stroke', 'strokeWidth',
+  'x', 'x0', 'y', 'y0', 'fill', 'stroke', 'strokeWidth',
 ]
 
 const getPointData = (props, datum, yKey) => {
