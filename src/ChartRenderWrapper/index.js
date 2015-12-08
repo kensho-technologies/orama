@@ -40,7 +40,7 @@ const ChartRenderWrapper = props => (
       hoverData={props.hoverData}
       onUpdate={handleChartRender.bind(null, props)}
       plotRect={props.plotRect}
-      renderData={props.renderData}
+      renderLayers={props.renderLayers}
       size={props.size}
     />
     <ChartInteractionLayer
@@ -68,7 +68,7 @@ ChartRenderWrapper.propTypes = {
   lastMousePos: PropTypes.object, // state
   onUpdate: PropTypes.func,
   plotRect: PropTypes.object,
-  renderData: PropTypes.array,
+  renderLayers: PropTypes.array,
   size: PropTypes.object,
   theme: PropTypes.object,
   tooltipData: PropTypes.object, // state

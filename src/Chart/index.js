@@ -13,7 +13,7 @@ import {
   addTickCounts,
   addScales,
 } from './addMethods'
-import {getRenderData} from './getRenderData'
+import {getRenderLayers} from './getRenderLayers'
 
 import {Block} from 'react-display'
 import ChartRenderWrapper from '../ChartRenderWrapper'
@@ -36,7 +36,7 @@ Used inside </>
 */
 const Chart = props => {
   const transformedProps = transformProps(props)
-  const renderData = getRenderData(transformedProps)
+  const renderLayers = getRenderLayers(transformedProps)
   return (
     <Block
       position='relative'
@@ -48,7 +48,7 @@ const Chart = props => {
         annotationData={[]}
         highlightData={[]}
         plotRect={transformedProps.plotRect}
-        renderData={renderData}
+        renderLayers={renderLayers}
         size={transformedProps.size}
         theme={transformedProps.theme}
       />

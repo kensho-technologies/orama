@@ -24,7 +24,7 @@ const handleCanvasInput = (props, childProps) => {
     mouse: childProps.mouse,
   })
 }
-const getRenderData = props => _.flatten(_.pluck(props.renderData, 'values'))
+const extractRenderDataFromLayers = renderLayers => _.flatten(_.pluck(renderLayers, 'renderData'))
 /*
 Used inside <ChartRenderWrapper/>
 */
@@ -34,7 +34,7 @@ const ChartRender = props => (
       clip={true}
       plotRect={props.plotRect}
       render={basicRender}
-      renderData={getRenderData(props)}
+      renderData={extractRenderDataFromLayers(props.renderLayers)}
       size={props.size}
       theme={props.theme}
     />
@@ -56,7 +56,7 @@ const ChartRender = props => (
     />
     <CanvasInput
       onUpdate={handleCanvasInput.bind(null, props)}
-      renderData={props.renderData}
+      renderLayers={props.renderLayers}
       size={props.size}
     />
   </Block>
@@ -67,7 +67,7 @@ ChartRender.propTypes = {
   hoverData: PropTypes.array,
   onUpdate: PropTypes.func,
   plotRect: PropTypes.object,
-  renderData: PropTypes.array,
+  renderLayers: PropTypes.array,
   size: PropTypes.object.isRequired,
   theme: PropTypes.object,
 }

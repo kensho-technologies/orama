@@ -2,9 +2,9 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
 
-const findInPathDataForValues = (ctx, localMouse, values) => (
+const findInPathDataForValues = (ctx, localMouse, renderData) => (
   _.find(
-    values,
+    renderData,
     d => {
       if (d.type === 'area') {
         return ctx.isPointInPath(d.path2D, localMouse.x, localMouse.y) || ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
@@ -14,12 +14,12 @@ const findInPathDataForValues = (ctx, localMouse, values) => (
     }
   )
 )
-const findInPathData = (ctx, localMouse, reversedData) => {
+const findInPathData = (ctx, localMouse, reversedLayers) => {
   let inPathData
   const inPathLayer = _.find(
-    reversedData,
+    reversedLayers,
     layer => {
-      inPathData = findInPathDataForValues(ctx, localMouse, layer.values)
+      inPathData = findInPathDataForValues(ctx, localMouse, layer.renderData)
       return inPathData
     }
   )
@@ -30,18 +30,18 @@ const findInPathData = (ctx, localMouse, reversedData) => {
     }
   }
 }
-const findInStrokeDataForValues = (ctx, localMouse, values) => (
+const findInStrokeDataForValues = (ctx, localMouse, renderData) => (
   _.find(
-    values,
+    renderData,
     d => ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
   )
 )
-const findInStrokeData = (ctx, localMouse, reversedData) => {
+const findInStrokeData = (ctx, localMouse, reversedLayers) => {
   let inPathData
   const inPathLayer = _.find(
-    reversedData,
+    reversedLayers,
     layer => {
-      inPathData = findInStrokeDataForValues(ctx, localMouse, layer.values)
+      inPathData = findInStrokeDataForValues(ctx, localMouse, layer.renderData)
       return inPathData
     }
   )
@@ -58,7 +58,7 @@ const findInStrokeData = (ctx, localMouse, reversedData) => {
  */
 const getDataUnderMouse = (that, canvasNode, evt) => {
   const {
-    reversedData,
+    reversedLayers,
   } = that
   const canvasRect = canvasNode.getBoundingClientRect()
   const ctx = canvasNode.getContext('2d')
@@ -71,7 +71,7 @@ const getDataUnderMouse = (that, canvasNode, evt) => {
     y: evt.clientY - canvasRect.top,
   }
   ctx.lineWidth = 2
-  const inPathData = findInPathData(ctx, localMouse, reversedData)
+  const inPathData = findInPathData(ctx, localMouse, reversedLayers)
   if (inPathData) {
     return {
       data: inPathData.data,
@@ -80,7 +80,7 @@ const getDataUnderMouse = (that, canvasNode, evt) => {
     }
   }
   ctx.lineWidth = 20
-  const inStrokeData = findInStrokeData(ctx, localMouse, reversedData)
+  const inStrokeData = findInStrokeData(ctx, localMouse, reversedLayers)
   if (inStrokeData) {
     return {
       data: inStrokeData.data,
@@ -103,13 +103,13 @@ export default React.createClass({
   displayName: 'CanvasInput',
   propTypes: {
     onUpdate: PropTypes.func.isRequired,
-    renderData: PropTypes.array,
+    renderLayers: PropTypes.array,
     size: PropTypes.object.isRequired,
     theme: PropTypes.object,
   },
   getDefaultProps() {
     return {
-      renderData: [],
+      renderLayers: [],
     }
   },
   getInitialState() {
@@ -160,12 +160,12 @@ export default React.createClass({
     })
   },
   render() {
-    this.reversedData = _.clone(this.props.renderData)
-    this.reversedData.reverse()
+    this.reversedLayers = _.clone(this.props.renderLayers)
+    this.reversedLayers.reverse()
     _.each(
-      this.reversedData,
+      this.reversedLayers,
       d => {
-        if (d && d.values) d.values.reverse()
+        if (d && d.renderData) d.renderData.reverse()
       },
     )
     return (
