@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
 
-const findInPathDataForValues = (ctx, localMouse, renderData) => (
+const findInPath = (ctx, localMouse, renderData) => (
   _.find(
     renderData,
     d => {
@@ -14,41 +14,25 @@ const findInPathDataForValues = (ctx, localMouse, renderData) => (
     }
   )
 )
-const findInPathData = (ctx, localMouse, reversedLayers) => {
-  let inPathData
-  const inPathLayer = _.find(
-    reversedLayers,
-    layer => {
-      inPathData = findInPathDataForValues(ctx, localMouse, layer.renderData)
-      return inPathData
-    }
-  )
-  if (inPathLayer) {
-    return {
-      data: inPathData,
-      layer: inPathLayer,
-    }
-  }
-}
-const findInStrokeDataForValues = (ctx, localMouse, renderData) => (
+const findInStroke = (ctx, localMouse, renderData) => (
   _.find(
     renderData,
     d => ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
   )
 )
-const findInStrokeData = (ctx, localMouse, reversedLayers) => {
-  let inPathData
-  const inPathLayer = _.find(
+const findInRenderLayers = ({ctx, localMouse, reversedLayers, findFunc}) => {
+  let renderDatum
+  const layer = _.find(
     reversedLayers,
-    layer => {
-      inPathData = findInStrokeDataForValues(ctx, localMouse, layer.renderData)
-      return inPathData
+    _layer => {
+      renderDatum = findFunc(ctx, localMouse, _layer.renderData)
+      return renderDatum
     }
   )
-  if (inPathLayer) {
+  if (layer) {
     return {
-      data: inPathData,
-      layer: inPathLayer,
+      renderDatum,
+      layer,
     }
   }
 }
@@ -71,19 +55,23 @@ const getDataUnderMouse = (that, canvasNode, evt) => {
     y: evt.clientY - canvasRect.top,
   }
   ctx.lineWidth = 2
-  const inPathData = findInPathData(ctx, localMouse, reversedLayers)
+  const inPathData = findInRenderLayers({
+    ctx, localMouse, reversedLayers, findFunc: findInPath,
+  })
   if (inPathData) {
     return {
-      data: inPathData.data,
+      data: inPathData.renderDatum,
       mouse,
       localMouse,
     }
   }
   ctx.lineWidth = 20
-  const inStrokeData = findInStrokeData(ctx, localMouse, reversedLayers)
+  const inStrokeData = findInRenderLayers({
+    ctx, localMouse, reversedLayers, findFunc: findInStroke,
+  })
   if (inStrokeData) {
     return {
-      data: inStrokeData.data,
+      data: inStrokeData.renderDatum,
       mouse,
       localMouse,
     }
