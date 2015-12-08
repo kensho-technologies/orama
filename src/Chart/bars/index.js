@@ -98,7 +98,7 @@ const retrieveBarsData = data => {
   return data
 }
 export const bars = props => {
-  if (!props.xMap || !props.yMap) return undefined
+  if (!props.xScale || !props.yScale) return undefined
   return _.map(
     retrieveBarsData(props.data),
     _.partial(barsDataMap, props)

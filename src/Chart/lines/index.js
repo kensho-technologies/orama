@@ -85,7 +85,7 @@ const getLine = (props, data) => {
   return [renderDatum]
 }
 export const lines = props => {
-  if (!props.xMap || !props.yMap) return undefined
+  if (!props.xScale || !props.yScale) return undefined
   if (_.isArray(_.first(props.data))) {
     return _.reduce(
       props.data,

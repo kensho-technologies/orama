@@ -2,9 +2,56 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
 
-/*
-This component will be deprecated when work on Chart is finished
-*/
+const findInPathDataForValues = (ctx, localMouse, values) => (
+  _.find(
+    values,
+    d => {
+      if (d.type === 'area') {
+        return ctx.isPointInPath(d.path2D, localMouse.x, localMouse.y) || ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
+      }
+      if (d.type === 'line') return ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
+      return false
+    }
+  )
+)
+const findInPathData = (ctx, localMouse, reversedData) => {
+  let inPathData
+  const inPathLayer = _.find(
+    reversedData,
+    layer => {
+      inPathData = findInPathDataForValues(ctx, localMouse, layer.values)
+      return inPathData
+    }
+  )
+  if (inPathLayer) {
+    return {
+      data: inPathData,
+      layer: inPathLayer,
+    }
+  }
+}
+const findInStrokeDataForValues = (ctx, localMouse, values) => (
+  _.find(
+    values,
+    d => ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
+  )
+)
+const findInStrokeData = (ctx, localMouse, reversedData) => {
+  let inPathData
+  const inPathLayer = _.find(
+    reversedData,
+    layer => {
+      inPathData = findInStrokeDataForValues(ctx, localMouse, layer.values)
+      return inPathData
+    }
+  )
+  if (inPathLayer) {
+    return {
+      data: inPathData,
+      layer: inPathLayer,
+    }
+  }
+}
 
 /**
  * Find on the render data the geom that intersect whith the mouse position.
@@ -15,7 +62,6 @@ const getDataUnderMouse = (that, canvasNode, evt) => {
   } = that
   const canvasRect = canvasNode.getBoundingClientRect()
   const ctx = canvasNode.getContext('2d')
-  ctx.save()
   const mouse = {
     x: evt.clientX,
     y: evt.clientY,
@@ -25,39 +71,27 @@ const getDataUnderMouse = (that, canvasNode, evt) => {
     y: evt.clientY - canvasRect.top,
   }
   ctx.lineWidth = 2
-  const inPathData = _.find(
-    reversedData,
-    d => {
-      if (d.type === 'area') {
-        return ctx.isPointInPath(d.path2D, localMouse.x, localMouse.y) || ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
-      }
-      if (d.type === 'line') return ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
-      return false
-    }
-  )
+  const inPathData = findInPathData(ctx, localMouse, reversedData)
   if (inPathData) {
     return {
-      data: inPathData,
+      data: inPathData.data,
       mouse,
       localMouse,
     }
   }
   ctx.lineWidth = 20
-  const inStrokeData = _.find(
-    reversedData,
-    d => ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
-  )
+  const inStrokeData = findInStrokeData(ctx, localMouse, reversedData)
   if (inStrokeData) {
     return {
-      data: inStrokeData,
+      data: inStrokeData.data,
       mouse,
       localMouse,
     }
   }
-  ctx.restore()
   return {
     data: undefined,
     mouse: undefined,
+    localMouse: undefined,
   }
 }
 
@@ -128,6 +162,12 @@ export default React.createClass({
   render() {
     this.reversedData = _.clone(this.props.renderData)
     this.reversedData.reverse()
+    _.each(
+      this.reversedData,
+      d => {
+        if (d && d.values) d.values.reverse()
+      },
+    )
     return (
       <canvas
         height={this.props.size.height}

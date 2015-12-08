@@ -8,8 +8,8 @@ import * as methods from './'
 test('Chart.points', () => {
   const renderData = methods.points({
     data: [{x: 1, y: 1}],
-    xMap: d => d,
-    yMap: d => d,
+    xScale: d => d,
+    yScale: d => d,
   })
   assert.deepEqual(
     renderData[0],
@@ -23,7 +23,7 @@ test('Chart.points', () => {
 test('Chart.points missing yMap', () => {
   const renderData = methods.points({
     data: [{x: 1, y: 1}],
-    xMap: d => d,
+    xScale: d => d,
   })
   assert.deepEqual(
     renderData[0],
@@ -37,8 +37,8 @@ test('Chart.points missing yMap', () => {
 test('Chart.points grouped data', () => {
   const renderData = methods.points({
     data: [[{x: 1, y: 1}]],
-    xMap: d => d,
-    yMap: d => d,
+    xScale: d => d,
+    yScale: d => d,
   })
   assert.deepEqual(
     renderData[0],

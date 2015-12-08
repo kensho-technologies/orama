@@ -7,8 +7,8 @@ import * as methods from './'
 test('Chart.lines', () => {
   const renderData = methods.lines({
     data: [{x: 1, y: 1}],
-    xMap: d => d,
-    yMap: d => d,
+    xScale: d => d,
+    yScale: d => d,
   })
   assert.deepEqual(
     renderData[0],
@@ -23,8 +23,8 @@ test('Chart.lines', () => {
 test('Chart.lines grouped data', () => {
   const renderData = methods.lines({
     data: [[{x: 1, y: 1}]],
-    xMap: d => d,
-    yMap: d => d,
+    xScale: d => d,
+    yScale: d => d,
   })
   assert.deepEqual(
     renderData[0],

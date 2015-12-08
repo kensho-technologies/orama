@@ -14,6 +14,7 @@ export const BlockSize = React.createClass({
     this.update()
   },
   update() {
+    if (!this.element) return
     const node = findDOMNode(this.element)
     this.props.onUpdate({
       ...this.props,

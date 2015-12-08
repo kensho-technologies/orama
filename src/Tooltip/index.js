@@ -95,7 +95,7 @@ const _Tooltip = props => (
     fontSize={props.theme.fontSize}
     margin={TOOLTIP_MARGIN}
     maxWidth={MAX_WIDTH}
-    onUpdate={_.partial(handleBlockSizeUpdate, props)}
+    onUpdate={childProps => handleBlockSizeUpdate(props, childProps)}
     pointerEvents='none'
     position='fixed'
     zIndex='999999'
