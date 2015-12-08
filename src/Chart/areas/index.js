@@ -94,6 +94,7 @@ export const getArea = (props, data) => {
     fill,
     path2D,
     type: 'area',
+    data,
   }
   renderDatum.hoverSolver = _.partial(
     props.hoverSolver || getHoverSolver,

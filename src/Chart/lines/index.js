@@ -75,6 +75,7 @@ const getLine = (props, data) => {
     path2D,
     stroke,
     lineWidth,
+    data,
   }
   renderDatum.hoverSolver = _.partial(
     props.hoverSolver || getHoverSolver,

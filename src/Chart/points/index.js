@@ -27,7 +27,6 @@ const hoverSolver = (props, datum, renderDatum) => ({
     datum
   ),
 })
-
 /*
 generates the array of render data
 */
@@ -47,6 +46,7 @@ export const pointsDataMap = (props, datum) => {
     fill,
     path2D,
     type: 'area',
+    data: datum,
   }
   renderDatum.hoverSolver = _.partial(
     props.hoverSolver || hoverSolver,

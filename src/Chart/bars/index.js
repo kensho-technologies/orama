@@ -84,6 +84,7 @@ export const barsDataMap = (props, datum) => {
     path2D,
     alpha: 1,
     fill,
+    data: datum,
   }
   renderDatum.hoverSolver = _.partial(
     props.hoverSolver || hoverSolver,
