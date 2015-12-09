@@ -12,7 +12,7 @@ import {
 } from '../CanvasRender/renders'
 
 import CanvasInput from '../CanvasInput'
-import CanvasRender from '../CanvasRender'
+import {CanvasRender} from '../CanvasRender'
 
 const handleCanvasInput = (props, childProps) => {
   props.onUpdate({

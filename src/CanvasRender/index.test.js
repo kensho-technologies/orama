@@ -5,13 +5,11 @@ import assert from 'assert'
 import React from 'react'
 import shallowRender from '@luiscarli/shallow-render'
 
-import CanvasRender, {basicRender} from './'
+import {CanvasRender} from './'
 
 test('CanvasRender', () => {
   const component = shallowRender(
-    <CanvasRender
-      render={basicRender}
-    />
+    <CanvasRender/>
   )
   assert.strictEqual(component.type, 'canvas')
 })

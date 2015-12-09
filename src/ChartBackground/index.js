@@ -7,7 +7,7 @@ import {getTicks} from '../Chart/getMethods'
 import {inset} from '../utils/rectUtils'
 
 import {Block} from 'react-display'
-import CanvasRender from '../CanvasRender'
+import {CanvasRender} from '../CanvasRender'
 import BottomLabel from '../BottomLabel'
 import LeftLabel from '../LeftLabel'
 
