@@ -3,7 +3,6 @@ import _ from 'lodash'
 import {getPath2D} from '../../utils/path2DUtils'
 import {getMidX, getMidY} from '../../utils/rectUtils'
 import {plotValue} from '../plotValue'
-import {extractTooltipData} from '../extractTooltipData'
 
 /*
 `points` is used to generate render data for dots and similar.
@@ -15,18 +14,6 @@ points{
 }
 */
 
-const TOOLTIP_DIMENSIONS = [
-  'x', 'y', 'fill', 'r',
-]
-
-const hoverSolver = (props, datum, renderDatum) => ({
-  hoverData: [renderDatum],
-  tooltipData: extractTooltipData(
-    props,
-    TOOLTIP_DIMENSIONS,
-    datum
-  ),
-})
 /*
 generates the array of render data
 */
@@ -43,17 +30,11 @@ export const pointsDataMap = (props, datum) => {
   path2D.arc(x, y, r, 0, 2 * Math.PI)
   const renderDatum = {
     alpha: _.isUndefined(props.pointsAlpha) ? 1 : props.pointsAlpha,
+    data: datum,
     fill,
     path2D,
     type: 'area',
-    data: datum,
   }
-  renderDatum.hoverSolver = _.partial(
-    props.hoverSolver || hoverSolver,
-    props,
-    datum,
-    renderDatum
-  )
   return renderDatum
 }
 /*

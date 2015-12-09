@@ -72,7 +72,6 @@ ChartRender.propTypes = {
 }
 ChartRender.defaultProps = {
   size: SIZE,
-  annotationData: [],
   theme: DEFAULT_THEME,
 }
 

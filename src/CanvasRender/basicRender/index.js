@@ -7,10 +7,8 @@ export const basicRender = (props, ctx) => {
     renderData = [],
   } = props
 
-  if (renderData.length === 0) return
   ctx.save()
   clearAndClip(props, ctx)
-
   _.each(
     renderData,
     d => {

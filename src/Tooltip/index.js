@@ -6,6 +6,7 @@ import {DEFAULT_THEME} from '../defaultTheme'
 import {stateHOC} from 'on-update'
 import {Table, TableRow, TableCell} from 'react-display'
 import {BlockSize} from '../BlockSize'
+import {extractTooltipData} from '../Chart/extractTooltipData'
 
 const TOOLTIP_MARGIN = 15
 const MAX_WIDTH = 320
@@ -86,6 +87,31 @@ const getTooltipPosition = props => {
   return pos
 }
 
+const InnerTooltip = props => (
+  <Table>
+    {props.title ?
+      <TableRow
+        background={props.theme.tooltip.listBackground}
+      >
+        <TableCell/>
+        <TableCell // Name
+          fontWeight='bold'
+          padding={10}
+          textAlign='left'
+          verticalAlign='top'
+        >
+          {props.title}
+        </TableCell>
+        <TableCell/>
+      </TableRow>
+    : null}
+    {_.map(
+      props.values,
+      (d, i) => row(props, d, i)
+    )}
+  </Table>
+)
+
 const _Tooltip = props => (
   <BlockSize
     background={props.theme.tooltip.listBackground}
@@ -101,28 +127,11 @@ const _Tooltip = props => (
     zIndex='999999'
     {...getTooltipPosition(props)}
   >
-    <Table>
-      {props.tooltipData.title ?
-        <TableRow
-          background={props.theme.tooltip.listBackground}
-        >
-          <TableCell/>
-          <TableCell // Name
-            fontWeight='bold'
-            padding={10}
-            textAlign='left'
-            verticalAlign='top'
-          >
-            {props.tooltipData.title}
-          </TableCell>
-          <TableCell/>
-        </TableRow>
-      : null}
-      {_.map(
-        props.tooltipData.values,
-        (d, i) => row(props, d, i)
+    <InnerTooltip
+      {...extractTooltipData(
+        props.layerConfig, props.layerConfig.dimensions, props.hoverData
       )}
-    </Table>
+    />
   </BlockSize>
 )
 _Tooltip.propTypes = {
@@ -135,6 +144,8 @@ _Tooltip.defaultProps = {
   lastMousePos: {x: 0, y: 0},
   theme: DEFAULT_THEME,
   tooltipData: {},
+  layerConfig: {dimensions: []},
+  hoverData: {},
 }
 
 export const Tooltip = stateHOC(_Tooltip)

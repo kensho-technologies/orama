@@ -35,7 +35,9 @@ const findInRenderLayers = ({ctx, localMouse, renderLayers, findFunc}) => {
   if (layer) {
     return {
       renderDatum,
-      layer,
+      hoverRenderData: [renderDatum],
+      data: renderDatum.data,
+      layerProps: layer.props,
     }
   }
 }
@@ -64,9 +66,9 @@ const getDataUnderMouse = (props, evt) => {
   })
   if (inPathData) {
     return {
-      renderDatum: inPathData.renderDatum,
-      mouse,
+      ...inPathData,
       localMouse,
+      mouse,
     }
   }
   ctx.lineWidth = 20
@@ -75,32 +77,46 @@ const getDataUnderMouse = (props, evt) => {
   })
   if (inStrokeData) {
     return {
-      renderDatum: inStrokeData.renderDatum,
-      mouse,
+      ...inStrokeData,
       localMouse,
+      mouse,
     }
   }
-  return {
-    renderDatum: undefined,
-    mouse: undefined,
-    localMouse: undefined,
-  }
+  return {}
 }
 
-/*
-Usually used inside of <ChartRender/>
-Get hovered and clicked data on renderData using a <canvas/> element
-*/
 const handleCanvasRef = (props, canvasNode) => props.onState({canvasNode})
+const runHoverSolverOn = dataUnderMouse => {
+  const {
+    layerProps,
+    renderDatum,
+    data,
+    localMouse,
+  } = dataUnderMouse
+  if (!renderDatum || !layerProps) return dataUnderMouse
+  const hoverSolver = layerProps.hoverSolver || renderDatum.hoverSolver
+  if (!hoverSolver) return dataUnderMouse
+  const hoverSolverData = hoverSolver(
+    layerProps, data, renderDatum, localMouse,
+  )
+  return {
+    ...dataUnderMouse,
+    ...hoverSolverData,
+  }
+}
 const handleMouseMove = (props, evt) => {
-  const dataUnderMouse = getDataUnderMouse(props, evt)
+  const dataUnderMouse = runHoverSolverOn(getDataUnderMouse(props, evt))
   props.onUpdate({
     ...props,
-    hoverRenderData: [dataUnderMouse.renderDatum],
+    hoverRenderData: dataUnderMouse.hoverRenderData,
     // localMouse,
     // mouse,
   })
 }
+/*
+Usually used inside of <ChartRender/>
+Get hovered and clicked data on renderData using a <canvas/> element
+*/
 const _CanvasInput = props => (
   <div>
     <canvas
@@ -116,13 +132,7 @@ const _CanvasInput = props => (
       }}
       width={props.size.width}
     />
-    <Tooltip
-      // hoverData={state.hoverData}
-      // lastMousePos={state.mouse}
-      // layerConfig={state.layerConfig}
-      // theme={props.theme}
-      // tooltipData={state.tooltipData}
-    />
+    <Tooltip/>
   </div>
 )
 _CanvasInput.propTypes = {
