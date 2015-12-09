@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 import R from 'ramda'
-import {csv} from 'd3-xhr'
+import {csv} from 'd3-request'
 import HTML5Backend from 'react-dnd-html5-backend'
 import {DragDropContext} from 'react-dnd'
 
