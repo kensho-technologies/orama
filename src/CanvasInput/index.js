@@ -1,9 +1,12 @@
 
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
+import {stateHOC} from 'on-update'
+
+import {Tooltip} from '../Tooltip'
 
 const findInPath = (ctx, localMouse, renderData) => (
-  _.find(
+  _.findLast(
     renderData,
     d => {
       if (d.type === 'area') {
@@ -15,15 +18,15 @@ const findInPath = (ctx, localMouse, renderData) => (
   )
 )
 const findInStroke = (ctx, localMouse, renderData) => (
-  _.find(
+  _.findLast(
     renderData,
     d => ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
   )
 )
-const findInRenderLayers = ({ctx, localMouse, reversedLayers, findFunc}) => {
+const findInRenderLayers = ({ctx, localMouse, renderLayers, findFunc}) => {
   let renderDatum
-  const layer = _.find(
-    reversedLayers,
+  const layer = _.findLast(
+    renderLayers,
     _layer => {
       renderDatum = findFunc(ctx, localMouse, _layer.renderData)
       return renderDatum
@@ -36,14 +39,15 @@ const findInRenderLayers = ({ctx, localMouse, reversedLayers, findFunc}) => {
     }
   }
 }
-
 /**
  * Find on the render data the geom that intersect whith the mouse position.
  */
-const getDataUnderMouse = (that, canvasNode, evt) => {
+const getDataUnderMouse = (props, evt) => {
   const {
-    reversedLayers,
-  } = that
+    renderLayers,
+    canvasNode,
+  } = props
+
   const canvasRect = canvasNode.getBoundingClientRect()
   const ctx = canvasNode.getContext('2d')
   const mouse = {
@@ -56,28 +60,28 @@ const getDataUnderMouse = (that, canvasNode, evt) => {
   }
   ctx.lineWidth = 2
   const inPathData = findInRenderLayers({
-    ctx, localMouse, reversedLayers, findFunc: findInPath,
+    ctx, localMouse, renderLayers, findFunc: findInPath,
   })
   if (inPathData) {
     return {
-      data: inPathData.renderDatum,
+      renderDatum: inPathData.renderDatum,
       mouse,
       localMouse,
     }
   }
   ctx.lineWidth = 20
   const inStrokeData = findInRenderLayers({
-    ctx, localMouse, reversedLayers, findFunc: findInStroke,
+    ctx, localMouse, renderLayers, findFunc: findInStroke,
   })
   if (inStrokeData) {
     return {
-      data: inStrokeData.renderDatum,
+      renderDatum: inStrokeData.renderDatum,
       mouse,
       localMouse,
     }
   }
   return {
-    data: undefined,
+    renderDatum: undefined,
     mouse: undefined,
     localMouse: undefined,
   }
@@ -87,89 +91,48 @@ const getDataUnderMouse = (that, canvasNode, evt) => {
 Usually used inside of <ChartRender/>
 Get hovered and clicked data on renderData using a <canvas/> element
 */
-export default React.createClass({
-  displayName: 'CanvasInput',
-  propTypes: {
-    onUpdate: PropTypes.func.isRequired,
-    renderLayers: PropTypes.array,
-    size: PropTypes.object.isRequired,
-    theme: PropTypes.object,
-  },
-  getDefaultProps() {
-    return {
-      renderLayers: [],
-    }
-  },
-  getInitialState() {
-    return {}
-  },
-  shouldComponentUpdate(nextProps) {
-    if (this.props.size === nextProps.size) return false
-    return true
-  },
-  handleMouseMove(evt) {
-    const canvasNode = this.refs.canvas
-    const {
-      data,
-      mouse,
-      localMouse,
-    } = getDataUnderMouse(this, canvasNode, evt)
-    if (data && data.hoverSolver) {
-      const hoverElements = data.hoverSolver(localMouse)
-      this.props.onUpdate({
-        ...this.props,
-        hoverData: hoverElements.hoverData,
-        tooltipData: hoverElements.tooltipData,
-        localMouse,
-        mouse,
-      })
-    } else {
-      this.props.onUpdate({
-        ...this.props,
-        hoverData: [data],
-        localMouse,
-        mouse,
-      })
-    }
-  },
-  handleClick(evt) {
-    const canvasNode = this.refs.canvas
-    const {
-      data,
-      mouse,
-      localMouse,
-    } = getDataUnderMouse(this, canvasNode, evt)
-    this.props.onUpdate({
-      ...this.props,
-      dataClicked: data,
-      hoverData: [data],
-      localMouse,
-      mouse,
-    })
-  },
-  render() {
-    this.reversedLayers = _.clone(this.props.renderLayers)
-    this.reversedLayers.reverse()
-    _.each(
-      this.reversedLayers,
-      d => {
-        if (d && d.renderData) d.renderData.reverse()
-      },
-    )
-    return (
-      <canvas
-        height={this.props.size.height}
-        onClick={this.handleClick}
-        onMouseMove={this.handleMouseMove}
-        ref='canvas'
-        style={{
-          display: 'block',
-          position: 'absolute',
-          cursor: 'pointer',
-          userSelect: 'none',
-        }}
-        width={this.props.size.width}
-      />
-    )
-  },
-})
+const handleCanvasRef = (props, canvasNode) => props.onState({canvasNode})
+const handleMouseMove = (props, evt) => {
+  const dataUnderMouse = getDataUnderMouse(props, evt)
+  props.onUpdate({
+    ...props,
+    hoverRenderData: [dataUnderMouse.renderDatum],
+    // localMouse,
+    // mouse,
+  })
+}
+const _CanvasInput = props => (
+  <div>
+    <canvas
+      height={props.size.height}
+      // onClick={evt => handleClick(props, evt)}
+      onMouseMove={evt => handleMouseMove(props, evt)}
+      ref={canvasNode => handleCanvasRef(props, canvasNode)}
+      style={{
+        display: 'block',
+        position: 'absolute',
+        cursor: 'pointer',
+        userSelect: 'none',
+      }}
+      width={props.size.width}
+    />
+    <Tooltip
+      // hoverData={state.hoverData}
+      // lastMousePos={state.mouse}
+      // layerConfig={state.layerConfig}
+      // theme={props.theme}
+      // tooltipData={state.tooltipData}
+    />
+  </div>
+)
+_CanvasInput.propTypes = {
+  onUpdate: PropTypes.func.isRequired,
+  renderLayers: PropTypes.array,
+  size: PropTypes.object.isRequired,
+  theme: PropTypes.object,
+}
+_CanvasInput.defaultProps = {
+  renderLayers: [],
+}
+
+export default stateHOC(_CanvasInput)

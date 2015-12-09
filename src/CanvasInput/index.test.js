@@ -14,5 +14,5 @@ test('CanvasInput', () => {
       size={{width: 0, height: 0}}
     />
   )
-  assert.strictEqual(component.type, 'canvas')
+  assert.strictEqual(component.type, 'div')
 })
