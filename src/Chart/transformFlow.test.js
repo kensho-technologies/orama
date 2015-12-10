@@ -37,12 +37,13 @@ test('Chart.transformProps', () => {
   assert.deepEqual(
     _.omit(transformedProps, ['data', 'size', 'xArray', 'yArray', 'theme']),
     {
-      'dimensions': ['x', 'y'],
-      'plotRect': {
-        'height': 424.5,
-        'width': 430.5,
-        'x': 54.5,
-        'y': 15,
+      dimensions: ['x', 'y'],
+      localDimensions: ['x', 'y'],
+      plotRect: {
+        height: 424.5,
+        width: 430.5,
+        x: 54.5,
+        y: 15,
       },
       margin: {
         bottom: 60.5,
@@ -50,17 +51,17 @@ test('Chart.transformProps', () => {
         right: 15,
         top: 15,
       },
-      'backgroundOffset': 15,
-      'x': 'p1',
-      'xDomain': ['10', '15', '25'],
-      'xRange': [54.5, 485],
-      'xTickCount': 5,
-      'xType': 'ordinal',
-      'y': 'p2',
-      'yDomain': ['0', '-1', '-2'],
-      'yRange': [439.5, 15],
-      'yTickCount': 5,
-      'yType': 'ordinal',
+      backgroundOffset: 15,
+      x: 'p1',
+      xDomain: ['10', '15', '25'],
+      xRange: [54.5, 485],
+      xTickCount: 5,
+      xType: 'ordinal',
+      y: 'p2',
+      yDomain: ['0', '-1', '-2'],
+      yRange: [439.5, 15],
+      yTickCount: 5,
+      yType: 'ordinal',
     },
   )
 })

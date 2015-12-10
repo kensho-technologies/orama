@@ -48,13 +48,16 @@ test('Chart/addDimArrays.getDimArraysForProps', () => {
   assert.deepEqual(
     methods.getDimArraysForProps(props),
     {
-      fill: [
-        new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
-        new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
-      ],
-      x0: [-1, -2, -3],
-      x: [1, 2, 10, 20, 30],
-      y: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
+      dimArrays: {
+        fill: [
+          new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
+          new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
+        ],
+        x0: [-1, -2, -3],
+        x: [1, 2, 10, 20, 30],
+        y: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
+      },
+      props: props,
     }
   )
 })
@@ -94,20 +97,23 @@ test('Chart/addDimArrays.mergeDimArrays', () => {
         y: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
       }
     ),
-    {
+    {dimArrays: {
       fill: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
         new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
       ],
       x: [1, 2, 10, 20, 30, -1, -2, -3],
       y: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
-    }
+    }, props: {}}
   )
 })
 test('Chart/addDimArrays.addDimArrays', () => {
   assert.deepEqual(
     methods.addDimArrays(props),
     _.assign({}, props, {
+      layers: [_.assign({}, props.layers[0], {
+        localDimensions: ['x', 'y', 'fill'],
+      })],
       fillArray: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
         new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
@@ -115,6 +121,7 @@ test('Chart/addDimArrays.addDimArrays', () => {
       xArray: [1, 2, 10, 20, 30, -1, -2, -3],
       yArray: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
       dimensions: ['fill', 'x', 'y'],
+      localDimensions: ['x', 'x0', 'y', 'fill'],
     })
   )
 })
@@ -128,29 +135,38 @@ test('Chart/addDimArrays.addDimArrays -> missing data 1', () => {
   assert.deepEqual(
     methods.addDimArrays(localProps),
     {
-      layers: [{data: [{x: 1}], x: 'x'}],
+      layers: [{
+        data: [{x: 1}],
+        x: 'x',
+        localDimensions: ['x'],
+      }],
       x: '',
       xArray: [1],
       dimensions: ['x'],
+      localDimensions: ['x'],
     }
   )
 })
 test('Chart/addDimArrays.addDimArrays -> missing data 2', () => {
   const localProps = {
-    layers: [
-      {x: 'x'},
-    ],
+    layers: [{
+      x: 'x',
+    }],
     data: [{x: 1}],
     x: 'x',
   }
   assert.deepEqual(
     methods.addDimArrays(localProps),
     {
-      layers: [ { x: 'x' } ],
-      data: [ { x: 1 } ],
+      layers: [{
+        x: 'x',
+        localDimensions: ['x'],
+      }],
+      data: [{x: 1}],
       x: 'x',
-      xArray: [ 1 ],
-      dimensions: [ 'x' ],
+      xArray: [1],
+      dimensions: ['x'],
+      localDimensions: ['x'],
     }
   )
 })
@@ -166,12 +182,16 @@ test('Chart/addDimArrays.addDimArrays -> missing data 3', () => {
   assert.deepEqual(
     methods.addDimArrays(localProps),
     {
-      layers: [ { x: 'x' } ],
-      data: [ { x: 1 } ],
+      layers: [{
+        x: 'x',
+        localDimensions: ['x'],
+      }],
+      data: [{x: 1}],
       x: 'x',
       y: 'y',
-      xArray: [ 1 ],
-      dimensions: [ 'x' ],
+      xArray: [1],
+      dimensions: ['x'],
+      localDimensions: ['x', 'y'],
     }
   )
 })
@@ -187,6 +207,7 @@ test('Chart/addDimArrays.addDimArrays -> dont skip the zero', () => {
       x: 'x',
       xArray: [0, 1, 2],
       dimensions: ['x'],
+      localDimensions: ['x'],
     }
   )
 })

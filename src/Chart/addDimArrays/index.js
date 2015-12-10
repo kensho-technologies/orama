@@ -68,6 +68,26 @@ const localFlatten = data => {
   if (_.isArray(_.first(data))) return _.flatten(data)
   return data
 }
+const addLocalDimensionsToLayer = layer => {
+  const localDimensions = _.flow(
+    accessorsNames => _.pick(layer, accessorsNames),
+    _.keys,
+  )(layer.accessorsNames || ACCESSORS_NAMES)
+  return {
+    ...layer,
+    localDimensions,
+  }
+}
+const addLocalDimensionsToProps = props => {
+  if (props.layers) {
+    const layers = _.map(props.layers, addLocalDimensionsToLayer)
+    return {
+      ...addLocalDimensionsToLayer(props),
+      layers,
+    }
+  }
+  return addLocalDimensionsToLayer(props)
+}
 export const getDimArraysForLayer = (layer) => {
   const definedAccessors = _.pick(
     layer,
@@ -97,7 +117,7 @@ Get dimension array from the props root and from each layer, and merge the array
 export const getDimArraysForProps = props => {
   const rootDimArray = getDimArraysForLayer(props)
   const layersArrays = _.map(props.layers, getDimArraysForLayer)
-  return _.merge(
+  const dimArrays = _.merge(
     rootDimArray,
     ...layersArrays,
     (a, b) => {
@@ -106,6 +126,10 @@ export const getDimArraysForProps = props => {
       return a.concat(b)
     }
   )
+  return {
+    props,
+    dimArrays,
+  }
 }
 export const omitGroups = (dimArrays, accessorsGroups) => (
   _.flow(
@@ -119,8 +143,7 @@ Merge keys according to their groups, eg. 'x', 'x0', 'x1' get merged into one xA
 */
 export const mergeDimArrays = (props, _dimArrays) => {
   const accessorsGroups = props.accessorsGroups || ACCESSORS_GROUPS
-  const dimArrays = omitGroups(_dimArrays, accessorsGroups)
-  return _.reduce(
+  const dimArrays = _.reduce(
     accessorsGroups,
     (acc, group, key) => {
       const array = _.reduce(
@@ -131,8 +154,12 @@ export const mergeDimArrays = (props, _dimArrays) => {
       if (array.length > 0) acc[key] = array
       return acc
     },
-    dimArrays
+    omitGroups(_dimArrays, accessorsGroups)
   )
+  return {
+    props,
+    dimArrays,
+  }
 }
 /*
 Assign the the dimensions arrays back to props
@@ -148,10 +175,11 @@ const assignDimArraysToProps = (props, dimArrays) => (
 /*
 Main exported function, used outside of the module on the Chart props transform flow.
 */
-export const addDimArrays = props => (
+export const addDimArrays = _props => (
   _.flow(
+    addLocalDimensionsToProps,
     getDimArraysForProps,
-    dimArrays => mergeDimArrays(props, dimArrays),
-    dimArrays => assignDimArraysToProps(props, dimArrays),
-  )(props)
+    ({props, dimArrays}) => mergeDimArrays(props, dimArrays),
+    ({props, dimArrays}) => assignDimArraysToProps(props, dimArrays),
+  )(_props)
 )
