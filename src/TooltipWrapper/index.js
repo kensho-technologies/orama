@@ -2,6 +2,7 @@
 import React, {PropTypes} from 'react'
 import {stateHOC} from 'on-update'
 import {getWindow} from '../utils/windowUtils'
+import {extractTooltipData} from '../Chart/extractTooltipData'
 
 import {BlockSize} from '../BlockSize'
 import {Tooltip} from '../Tooltip'
@@ -15,28 +16,33 @@ const handleBlockSizeUpdate = (props, childProps) => {
   })
 }
 const getTooltipPosition = props => {
-  const _window = getWindow()
-  if (!props.width || !props.height) {
+  const {
+    mouse,
+    width,
+    height,
+  } = props
+  if (!width || !height) {
     return {}
   }
+  const _window = getWindow()
   const pos = {}
-  if (props.mouse.x + props.width + TOOLTIP_MARGIN * 2 + 1 > _window.innerWidth) {
-    if (props.width + TOOLTIP_MARGIN * 2 > props.mouse.x) {
+  if (mouse.x + width + TOOLTIP_MARGIN * 2 + 1 > _window.innerWidth) {
+    if (width + TOOLTIP_MARGIN * 2 > mouse.x) {
       pos.left = 0
     } else {
-      pos.right = _window.innerWidth - props.mouse.x
+      pos.right = _window.innerWidth - mouse.x
     }
   } else {
-    pos.left = props.mouse.x
+    pos.left = mouse.x
   }
-  if (props.mouse.y + props.height + TOOLTIP_MARGIN * 2 + 1 > _window.innerHeight) {
-    if (props.height + TOOLTIP_MARGIN * 2 > props.mouse.y) {
+  if (mouse.y + height + TOOLTIP_MARGIN * 2 + 1 > _window.innerHeight) {
+    if (height + TOOLTIP_MARGIN * 2 > mouse.y) {
       pos.top = 0
     } else {
-      pos.bottom = _window.innerHeight - props.mouse.y
+      pos.bottom = _window.innerHeight - mouse.y
     }
   } else {
-    pos.top = props.mouse.y
+    pos.top = mouse.y
   }
   return pos
 }
@@ -50,6 +56,13 @@ const _TooltipWrapper = props => (
     zIndex='999999'
     {...getTooltipPosition(props)}
   >
+    <Tooltip
+      {...extractTooltipData(
+        props.layerProps,
+        props.layerProps.dimensions,
+        props.hoverData,
+      )}
+    />
   </BlockSize>
 )
 _TooltipWrapper.propTypes = {
