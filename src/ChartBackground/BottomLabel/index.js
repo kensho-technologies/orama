@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 
 import {Block} from 'react-display'
-import {DEFAULT_THEME} from '../defaultTheme'
+import {DEFAULT_THEME} from '../../defaultTheme'
 
 /**
  * Component that position and style the bottom label of the `Chart` component

@@ -8,8 +8,8 @@ import {inset} from '../utils/rectUtils'
 
 import {Block} from 'react-display'
 import {CanvasRender} from '../CanvasRender'
-import BottomLabel from '../BottomLabel'
-import LeftLabel from '../LeftLabel'
+import BottomLabel from './BottomLabel'
+import LeftLabel from './LeftLabel'
 
 const BACKGROUND_OFFSET = 15
 
@@ -192,16 +192,20 @@ const ChartBackground = props => (
       size={props.size}
       theme={props.theme}
     />
-    <LeftLabel
-      plotRect={props.plotRect}
-      text={props.yName || props.y}
-      theme={props.theme}
-    />
-    <BottomLabel
-      plotRect={props.plotRect}
-      text={props.xName || props.x}
-      theme={props.theme}
-    />
+    {props.yShowLabel ?
+      <LeftLabel
+        plotRect={props.plotRect}
+        text={props.yName || props.y}
+        theme={props.theme}
+      />
+    : null}
+    {props.xShowLabel ?
+      <BottomLabel
+        plotRect={props.plotRect}
+        text={props.xName || props.x}
+        theme={props.theme}
+      />
+    : null}
   </Block>
 )
 ChartBackground.propTypes = {
@@ -211,8 +215,10 @@ ChartBackground.propTypes = {
   theme: PropTypes.object,
   x: PropTypes.string,
   xName: PropTypes.string,
+  xShowLabel: PropTypes.bool,
   y: PropTypes.string,
   yName: PropTypes.string,
+  yShowLabel: PropTypes.bool,
 }
 ChartBackground.defaultProps = {
   theme: DEFAULT_THEME,
