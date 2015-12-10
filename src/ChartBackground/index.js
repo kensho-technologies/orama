@@ -222,6 +222,8 @@ ChartBackground.propTypes = {
 }
 ChartBackground.defaultProps = {
   theme: DEFAULT_THEME,
+  xShowLabel: true,
+  yShowLabel: true,
 }
 
 export default ChartBackground
