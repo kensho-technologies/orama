@@ -5,7 +5,7 @@ import assert from 'assert'
 import React from 'react'
 import shallowRender from '@luiscarli/shallow-render'
 
-import CanvasInput from './'
+import {CanvasInput} from './'
 
 test('CanvasInput', () => {
   const component = shallowRender(

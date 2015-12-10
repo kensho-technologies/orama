@@ -11,7 +11,7 @@ import {
   hoverRender,
 } from '../CanvasRender/renders'
 
-import CanvasInput from '../CanvasInput'
+import {CanvasInput} from '../CanvasInput'
 import {CanvasRender} from '../CanvasRender'
 
 const handleCanvasInput = (props, childProps) => {
