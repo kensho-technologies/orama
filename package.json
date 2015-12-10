@@ -1,7 +1,7 @@
 {
   "name": "orama",
   "version": "0.0.0",
-  "description": "DataVis exploration components",
+  "description": "Chart components for React",
   "main": "src/components/App.js",
   "scripts": {
     "prestart": "npm prune && npm update",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kensho/explorer"
+    "url": "https://github.com/kensho/orama"
   },
   "author": "Luis Carli",
   "license": "MIT",
