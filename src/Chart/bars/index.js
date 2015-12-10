@@ -2,22 +2,8 @@
 import _ from 'lodash'
 import {getPath2D} from '../../utils/path2DUtils'
 import {plotValue} from '../plotValue'
-import {extractTooltipData} from '../extractTooltipData'
 
 const GUTTER = 1
-
-const TOOLTIP_DIMENSIONS = [
-  'x', 'x1', 'x2', 'y', 'fill',
-]
-
-const hoverSolver = (props, datum, renderDatum) => ({
-  hoverData: [renderDatum],
-  tooltipData: extractTooltipData(
-    props,
-    TOOLTIP_DIMENSIONS,
-    datum
-  ),
-})
 
 export const barsDataMap = (props, datum) => {
   const {barsGutter: gutter = GUTTER} = props
@@ -79,20 +65,13 @@ export const barsDataMap = (props, datum) => {
       )
     }
   }
-  const renderDatum = {
+  return {
     type: 'area',
     path2D,
     alpha: 1,
     fill,
     data: datum,
   }
-  renderDatum.hoverSolver = _.partial(
-    props.hoverSolver || hoverSolver,
-    props,
-    datum,
-    renderDatum
-  )
-  return renderDatum
 }
 const retrieveBarsData = data => {
   if (_.isArray(_.first(data))) return _.flatten(data)
