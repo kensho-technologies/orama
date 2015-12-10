@@ -66,6 +66,8 @@ const _TooltipWrapper = props => (
   </BlockSize>
 )
 _TooltipWrapper.propTypes = {
+  hoverData: PropTypes.array,
+  layerProps: PropTypes.object,
   mouse: PropTypes.object,
   theme: PropTypes.object,
 }

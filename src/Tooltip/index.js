@@ -3,7 +3,6 @@ import React, {PropTypes} from 'react'
 import _ from 'lodash'
 import {DEFAULT_THEME} from '../defaultTheme'
 import {Table, TableRow, TableCell} from 'react-display'
-import {extractTooltipData} from '../Chart/extractTooltipData'
 
 const MAX_WIDTH = 320
 
@@ -83,6 +82,8 @@ export const Tooltip = props => (
 Tooltip.propTypes = {
   mouse: PropTypes.object,
   theme: PropTypes.object,
+  title: PropTypes.string,
+  values: PropTypes.array,
 }
 Tooltip.defaultProps = {
   theme: DEFAULT_THEME,
