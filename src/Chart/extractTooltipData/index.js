@@ -24,7 +24,7 @@ export const extractTooltipData = (props, _tooltipDimensions, datum) => {
   )
   const orderedTooltipValues = _.map(
     _.sortBy(tooltipValues, 'order'),
-    _.partialRight(_.omit, 'order')
+    values => _.omit(values, 'order'),
   )
   const title = datum[props[`label`]]
   return {

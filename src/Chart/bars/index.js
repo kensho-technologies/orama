@@ -81,6 +81,6 @@ export const bars = props => {
   if (!props.xScale || !props.yScale) return undefined
   return _.map(
     retrieveBarsData(props.data),
-    _.partial(barsDataMap, props)
+    datum => barsDataMap(props, datum),
   )
 }

@@ -52,6 +52,6 @@ export const points = props => {
   if (!props.xScale && !props.yScale) return undefined
   return _.map(
     retrievePoinstData(props.data),
-    _.partial(pointsDataMap, props)
+    datum => pointsDataMap(props, datum),
   )
 }

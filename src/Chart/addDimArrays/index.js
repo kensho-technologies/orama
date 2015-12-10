@@ -79,8 +79,8 @@ export const getDimArraysForLayer = (layer) => {
       if (checkUndefinedAccessor(value)) return acc
       const newArray = _.flow(
         localFlatten,
-        _.partialRight(_.map, value),
-        localCompact
+        data => _.pluck(data, value),
+        localCompact,
       )(layer.data)
       if (_.isEmpty(newArray)) return acc
       return _.assign(
@@ -111,7 +111,7 @@ export const omitGroups = (dimArrays, accessorsGroups) => (
   _.flow(
     _.values,
     _.flatten,
-    _.partial(_.omit, dimArrays)
+    accessorsValues => _.omit(dimArrays, accessorsValues),
   )(accessorsGroups)
 )
 /*
@@ -151,7 +151,7 @@ Main exported function, used outside of the module on the Chart props transform 
 export const addDimArrays = props => (
   _.flow(
     getDimArraysForProps,
-    _.partial(mergeDimArrays, props),
-    _.partial(assignDimArraysToProps, props)
+    dimArrays => mergeDimArrays(props, dimArrays),
+    dimArrays => assignDimArraysToProps(props, dimArrays),
   )(props)
 )
