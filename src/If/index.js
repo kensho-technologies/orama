@@ -14,7 +14,7 @@ import React, {PropTypes} from 'react'
  * </If>
  */
 
-const If = props => {
+export const If = props => {
   if (!props.condition) return <noscript/>
   if (React.Children.count(props.children) === 1) {
     return React.Children.only(props.children)
@@ -25,13 +25,9 @@ const If = props => {
     </div>
   )
 }
-
 If.propTypes = {
   children: PropTypes.element,
   condition: PropTypes.any,
 }
-
 If.defaultProps = {
 }
-
-export default If

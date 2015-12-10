@@ -1,13 +1,10 @@
 
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
-import {getWindow} from '../utils/windowUtils'
 import {DEFAULT_THEME} from '../defaultTheme'
-import {stateHOC} from 'on-update'
 import {Table, TableRow, TableCell} from 'react-display'
-import {BlockSize} from '../BlockSize'
+import {extractTooltipData} from '../Chart/extractTooltipData'
 
-const TOOLTIP_MARGIN = 15
 const MAX_WIDTH = 320
 
 /*
@@ -52,89 +49,41 @@ row.propTypes = {
   theme: PropTypes.object,
 }
 
-const handleBlockSizeUpdate = (props, childProps) => {
-  props.onState({
-    width: childProps.width,
-    height: childProps.height,
-  })
-}
-
-const getTooltipPosition = props => {
-  const _window = getWindow()
-  if (!props.width || !props.height) {
-    return {}
-  }
-  const pos = {}
-  if (props.lastMousePos.x + props.width + TOOLTIP_MARGIN * 2 + 1 > _window.innerWidth) {
-    if (props.width + TOOLTIP_MARGIN * 2 > props.lastMousePos.x) {
-      pos.left = 0
-    } else {
-      pos.right = _window.innerWidth - props.lastMousePos.x
-    }
-  } else {
-    pos.left = props.lastMousePos.x
-  }
-  if (props.lastMousePos.y + props.height + TOOLTIP_MARGIN * 2 + 1 > _window.innerHeight) {
-    if (props.height + TOOLTIP_MARGIN * 2 > props.lastMousePos.y) {
-      pos.top = 0
-    } else {
-      pos.bottom = _window.innerHeight - props.lastMousePos.y
-    }
-  } else {
-    pos.top = props.lastMousePos.y
-  }
-  return pos
-}
-
-const _Tooltip = props => (
-  <BlockSize
+export const Tooltip = props => (
+  <Table
     background={props.theme.tooltip.listBackground}
     boxShadow='1px 1px 4px hsla(0, 0%, 0%, 0.8)'
     color='white'
     fontFamily={props.theme.font}
     fontSize={props.theme.fontSize}
-    margin={TOOLTIP_MARGIN}
     maxWidth={MAX_WIDTH}
-    onUpdate={childProps => handleBlockSizeUpdate(props, childProps)}
-    pointerEvents='none'
-    position='fixed'
-    zIndex='999999'
-    {...getTooltipPosition(props)}
   >
-    <Table>
-      {props.tooltipData.title ?
-        <TableRow
-          background={props.theme.tooltip.listBackground}
+    {props.title ?
+      <TableRow
+        background={props.theme.tooltip.listBackground}
+      >
+        <TableCell/>
+        <TableCell // Name
+          fontWeight='bold'
+          padding={10}
+          textAlign='left'
+          verticalAlign='top'
         >
-          <TableCell/>
-          <TableCell // Name
-            fontWeight='bold'
-            padding={10}
-            textAlign='left'
-            verticalAlign='top'
-          >
-            {props.tooltipData.title}
-          </TableCell>
-          <TableCell/>
-        </TableRow>
-      : null}
-      {_.map(
-        props.tooltipData.values,
-        (d, i) => row(props, d, i)
-      )}
-    </Table>
-  </BlockSize>
+          {props.title}
+        </TableCell>
+        <TableCell/>
+      </TableRow>
+    : null}
+    {_.map(
+      props.values,
+      (d, i) => row(props, d, i)
+    )}
+  </Table>
 )
-_Tooltip.propTypes = {
-  lastMousePos: PropTypes.object,
-  onUpdate: PropTypes.func,
+Tooltip.propTypes = {
+  mouse: PropTypes.object,
   theme: PropTypes.object,
-  tooltipData: PropTypes.object,
 }
-_Tooltip.defaultProps = {
-  lastMousePos: {x: 0, y: 0},
+Tooltip.defaultProps = {
   theme: DEFAULT_THEME,
-  tooltipData: {},
 }
-
-export const Tooltip = stateHOC(_Tooltip)

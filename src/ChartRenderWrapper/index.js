@@ -4,7 +4,6 @@ import {DEFAULT_THEME} from '../defaultTheme'
 import {stateHOC} from 'on-update'
 
 import {Block} from 'react-display'
-import {Tooltip} from '../Tooltip'
 import ChartInteractionLayer from '../ChartInteractionLayer'
 import ChartRender from '../ChartRender'
 
@@ -51,11 +50,6 @@ const ChartRenderWrapper = props => (
       lastMousePos={props.lastMousePos}
       onUpdate={handleChartInteractionLayer.bind(null, props)}
       size={props.size}
-    />
-    <Tooltip
-      hoverData={props.hoverData}
-      lastMousePos={props.lastMousePos}
-      tooltipData={props.tooltipData}
     />
   </Block>
 )

@@ -11,17 +11,16 @@ import {
   hoverRender,
 } from '../CanvasRender/renders'
 
-import CanvasInput from '../CanvasInput'
+import {CanvasInput} from '../CanvasInput'
 import {CanvasRender} from '../CanvasRender'
 
 const handleCanvasInput = (props, childProps) => {
-  props.onUpdate({
-    ...props,
-    dataClicked: childProps.dataClicked,
-    hoverData: childProps.hoverData,
-    tooltipData: childProps.tooltipData,
-    localMouse: childProps.localMouse,
-    mouse: childProps.mouse,
+  props.onState({
+    // dataClicked: childProps.dataClicked,
+    hoverRenderData: childProps.hoverRenderData,
+    // tooltipData: childProps.tooltipData,
+    // localMouse: childProps.localMouse,
+    // mouse: childProps.mouse,
   })
 }
 const extractRenderDataFromLayers = renderLayers => _.flatten(_.pluck(renderLayers, 'renderData'))
@@ -50,7 +49,7 @@ const ChartRender = props => (
       clip={true}
       plotRect={props.plotRect}
       render={hoverRender}
-      renderData={props.hoverData}
+      renderData={props.hoverRenderData}
       size={props.size}
       theme={props.theme}
     />
@@ -64,7 +63,7 @@ const ChartRender = props => (
 
 ChartRender.propTypes = {
   highlightData: PropTypes.array,
-  hoverData: PropTypes.array,
+  hoverRenderData: PropTypes.array,
   onUpdate: PropTypes.func,
   plotRect: PropTypes.object,
   renderLayers: PropTypes.array,
@@ -73,7 +72,6 @@ ChartRender.propTypes = {
 }
 ChartRender.defaultProps = {
   size: SIZE,
-  annotationData: [],
   theme: DEFAULT_THEME,
 }
 

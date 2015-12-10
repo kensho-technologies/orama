@@ -5,7 +5,7 @@ import assert from 'assert'
 import React from 'react'
 import shallowRender from '@luiscarli/shallow-render'
 
-import CanvasInput from './'
+import {CanvasInput} from './'
 
 test('CanvasInput', () => {
   const component = shallowRender(
@@ -14,5 +14,5 @@ test('CanvasInput', () => {
       size={{width: 0, height: 0}}
     />
   )
-  assert.strictEqual(component.type, 'canvas')
+  assert.strictEqual(component.type, 'div')
 })

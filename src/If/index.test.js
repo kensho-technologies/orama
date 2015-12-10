@@ -5,7 +5,7 @@ import assert from 'assert'
 import React from 'react'
 import shallowRender from '@luiscarli/shallow-render'
 
-import If from './'
+import {If} from './'
 
 test('If', () => {
   const component = shallowRender(<If condition/>)

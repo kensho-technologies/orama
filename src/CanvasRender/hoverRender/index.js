@@ -7,7 +7,6 @@ export const hoverRender = (props, ctx) => {
     renderData = [],
   } = props
 
-  if (renderData.length === 0) return
   ctx.save()
   clearAndClip(props, ctx)
 
