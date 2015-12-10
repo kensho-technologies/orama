@@ -63,13 +63,25 @@ export const CanvasInput = React.createClass({
       layerProps,
     })
   },
+  handleMouseLeave() {
+    this.props.onUpdate({
+      ...this.props,
+      hoverRenderData: undefined,
+    })
+    this.setState({
+      mouse: undefined,
+      hoverData: undefined,
+      layerProps: undefined,
+    })
+  },
   render() {
     const {props, state} = this
     return (
       <div>
         <canvas
-          height={props.size.height}
           // onClick={evt => handleClick(props, evt)}
+          height={props.size.height}
+          onMouseLeave={this.handleMouseLeave}
           onMouseMove={this.handleMouseMove}
           ref={this.handleCanvasRef}
           style={{
