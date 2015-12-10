@@ -13,6 +13,6 @@ test('Tooltip', () => {
   )
   assert.deepEqual(
     component.type.displayName,
-    'BlockSize'
+    'Table'
   )
 })
