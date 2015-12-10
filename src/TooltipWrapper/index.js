@@ -2,10 +2,9 @@
 import React, {PropTypes} from 'react'
 import {stateHOC} from 'on-update'
 import {getWindow} from '../utils/windowUtils'
-import {extractTooltipData} from '../Chart/extractTooltipData'
 
 import {BlockSize} from '../BlockSize'
-import {Tooltip} from '../Tooltip'
+import {Tooltip as DefaultTooltip} from '../Tooltip'
 
 const TOOLTIP_MARGIN = 15
 
@@ -47,26 +46,32 @@ const getTooltipPosition = props => {
   return pos
 }
 
-const _TooltipWrapper = props => (
-  <BlockSize
-    margin={TOOLTIP_MARGIN}
-    onUpdate={childProps => handleBlockSizeUpdate(props, childProps)}
-    pointerEvents='none'
-    position='fixed'
-    zIndex='999999'
-    {...getTooltipPosition(props)}
-  >
-    <Tooltip
-      {...extractTooltipData(
-        props.layerProps,
-        props.layerProps.dimensions,
-        props.hoverData,
-      )}
-    />
-  </BlockSize>
-)
+const _TooltipWrapper = props => {
+  if (!props.mouse || !props.hoverData) return null
+  const {
+    Tooltip = DefaultTooltip,
+  } = props.layerProps
+  return (
+    <BlockSize
+      margin={TOOLTIP_MARGIN}
+      onUpdate={childProps => handleBlockSizeUpdate(props, childProps)}
+      pointerEvents='none'
+      position='fixed'
+      zIndex='999999'
+      {...getTooltipPosition(props)}
+    >
+      <Tooltip
+        hoverData={props.hoverData}
+        layerProps={props.layerProps}
+      />
+    </BlockSize>
+  )
+}
 _TooltipWrapper.propTypes = {
-  hoverData: PropTypes.array,
+  hoverData: PropTypes.oneOfType([
+    React.PropTypes.array,
+    React.PropTypes.object,
+  ]),
   layerProps: PropTypes.object,
   mouse: PropTypes.object,
   theme: PropTypes.object,

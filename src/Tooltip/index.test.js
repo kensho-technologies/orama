@@ -9,10 +9,13 @@ import {Tooltip} from './'
 
 test('Tooltip', () => {
   var component = shallowRender(
-    <Tooltip hoverData={{}}/>
+    <Tooltip
+      hoverData={{}}
+      layerProps={{}}
+    />
   )
   assert.deepEqual(
     component.type.displayName,
-    'Table'
+    undefined
   )
 })
