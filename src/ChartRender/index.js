@@ -1,6 +1,5 @@
 
 import React, {PropTypes} from 'react'
-import _ from 'lodash'
 import {DEFAULT_THEME} from '../defaultTheme'
 import {stateHOC} from 'on-update'
 import {Block} from 'react-display'
@@ -23,7 +22,6 @@ const handleCanvasInput = (props, childProps) => {
     // mouse: childProps.mouse,
   })
 }
-const extractRenderDataFromLayers = renderLayers => _.flatten(_.pluck(renderLayers, 'renderData'))
 /*
 Used inside <ChartRenderWrapper/>
 */
@@ -33,7 +31,7 @@ const ChartRender = props => (
       clip={true}
       plotRect={props.plotRect}
       render={basicRender}
-      renderData={extractRenderDataFromLayers(props.renderLayers)}
+      renderLayers={props.renderLayers}
       size={props.size}
       theme={props.theme}
     />

@@ -2,15 +2,23 @@
 import _ from 'lodash'
 import {clearAndClip} from '../clearAndClip'
 
-export const basicRender = (props, ctx) => {
-  const {
-    renderData = [],
-  } = props
+const extractRenderDataFromLayers = renderLayers => _.flatten(_.pluck(renderLayers, 'renderData'))
 
+const getRenderObjects = props => {
+  const {
+    renderData,
+    renderLayers,
+  } = props
+  if (renderData) return renderData
+  if (renderLayers) return extractRenderDataFromLayers(renderLayers)
+  return []
+}
+
+export const basicRender = (props, ctx) => {
   ctx.save()
   clearAndClip(props, ctx)
   _.each(
-    renderData,
+    getRenderObjects(props),
     d => {
       if (!d) return
       if (d.type === 'line') {
