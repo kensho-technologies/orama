@@ -31,7 +31,7 @@ TextBody.propTypes = {
  * Main wrapper for the application
  */
 export const App = props => (
-  <Main justifyContent='center'>
+  <Main>
     <TextBody>
       <Block margin={30}>
         <Chart
@@ -137,6 +137,91 @@ export const App = props => (
           xZeroBased={true}
           y='Name'
           yShowGuides={false}
+        />
+      </Block>
+      <Block margin={30}>
+        <Chart
+          backgroundOffset={1}
+          data={[
+            [{Name: 1, value: 50},
+            {Name: 2, value: 150},
+            {Name: 3, value: 10},
+            {Name: 4, value: 80},
+            {Name: 5, value: 100},
+            {Name: 6, value: 0}],
+            [{Name: 1, value: 32},
+            {Name: 2, value: 160},
+            {Name: 3, value: 20},
+            {Name: 4, value: 40},
+            {Name: 5, value: 150},
+            {Name: 6, value: 10}],
+          ]}
+          margin={{right: 15}}
+          plot={plots.lines}
+          size={{width: 500, height: 300}}
+          x='Name'
+          xDomain={[0, 7]}
+          xShowGuides={false}
+          y='value'
+          yZeroBased={true}
+        />
+      </Block>
+      <Block margin={30}>
+        <Chart
+          backgroundOffset={1}
+          data={[
+            {Name: 1, value: 50},
+            {Name: 2, value: 150},
+            {Name: 3, value: 10},
+            {Name: 4, value: 80},
+            {Name: 5, value: 100},
+            {Name: 6, value: 0},
+          ]}
+          margin={{right: 15}}
+          plot={plots.areas}
+          size={{width: 500, height: 300}}
+          x='Name'
+          xDomain={[0, 7]}
+          xShowGuides={false}
+          y='value'
+          yZeroBased={true}
+        />
+      </Block>
+      <Block margin={30}>
+        <Chart
+          backgroundOffset={1}
+          data={[
+            {Name: 'APPL', value: 50},
+            {Name: 'FB', value: 150},
+            {Name: 'GOOGL', value: 10},
+            {Name: 'APPL2', value: 80},
+            {Name: 'FB2', value: 100},
+            {Name: 'GOOGL2', value: 0},
+          ]}
+          label='Name'
+          layers={[{
+            data: [
+              {Name: 'APPL', value: 50},
+              {Name: 'FB', value: 150},
+              {Name: 'GOOGL', value: 10},
+              {Name: 'APPL2', value: 80},
+              {Name: 'FB2', value: 100},
+              {Name: 'GOOGL2', value: 0},
+            ],
+            plot: plots.lines,
+            x: 'Name',
+            y: 'value',
+            strokeValue: 'red',
+          }]}
+          margin={{right: 15}}
+          plot={plots.bars}
+          size={{width: 500, height: 300}}
+          tooltipKeys={['y']}
+          tooltipShowKeys={false}
+          x='Name'
+          xShowGuides={false}
+          y='value'
+          yZeroBased={true}
         />
       </Block>
     </TextBody>

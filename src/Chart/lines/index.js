@@ -30,16 +30,32 @@ const getPointData = (props, datum) => {
   }
 }
 
+const getHoverSolverObj = (props, renderDatum, hoverData) => ({
+  hoverRenderData: [renderDatum, getPointData(props, hoverData)],
+  hoverData,
+})
+
 const hoverSolver = (
-  props, lineData, renderDatum, localMouse
+  props, _hoverData, renderDatum, localMouse
 ) => {
   const xRaw = props.xScale.invert(localMouse.x)
-  const hoverPoint = _.find(lineData, d => _.get(d, props.x) > xRaw)
-
-  return {
-    hoverRenderData: [renderDatum, getPointData(props, hoverPoint)],
-    hoverData: hoverPoint,
+  const hoverIndex = _.findIndex(_hoverData, d => _.get(d, props.x) > xRaw)
+  if (hoverIndex === 0) {
+    const hoverData = _hoverData[hoverIndex]
+    return getHoverSolverObj(props, renderDatum, hoverData)
   }
+  if (hoverIndex === -1) {
+    const hoverData = _.last(_hoverData)
+    return getHoverSolverObj(props, renderDatum, hoverData)
+  }
+  const px = _.get(_hoverData[hoverIndex], props.x)
+  const x = _.get(_hoverData[hoverIndex - 1], props.x)
+  if (xRaw - px < x - xRaw) {
+    const hoverData = _hoverData[hoverIndex - 1]
+    return getHoverSolverObj(props, renderDatum, hoverData)
+  }
+  const hoverData = _hoverData[hoverIndex]
+  return getHoverSolverObj(props, renderDatum, hoverData)
 }
 
 /*

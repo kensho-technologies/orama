@@ -21,19 +21,36 @@ const getPointData = (props, datum, yKey) => {
   }
 }
 
+const getHoverSolverObj = (props, renderDatum, hoverData) => ({
+  hoverRenderData: [
+    renderDatum,
+    getPointData(props, hoverData, 'y'),
+    getPointData(props, hoverData, 'y0'),
+  ],
+  hoverData,
+})
+
 const hoverSolver = (
   props, _hoverData, renderDatum, localMouse
 ) => {
   const xRaw = props.xScale.invert(localMouse.x)
-  const hoverData = _.find(_hoverData, d => _.get(d, props.x) > xRaw)
-  return {
-    hoverRenderData: [
-      renderDatum,
-      getPointData(props, hoverData, 'y'),
-      getPointData(props, hoverData, 'y0'),
-    ],
-    hoverData,
+  const hoverIndex = _.findIndex(_hoverData, d => _.get(d, props.x) > xRaw)
+  if (hoverIndex === 0) {
+    const hoverData = _hoverData[hoverIndex]
+    return getHoverSolverObj(props, renderDatum, hoverData)
   }
+  if (hoverIndex === -1) {
+    const hoverData = _.last(_hoverData)
+    return getHoverSolverObj(props, renderDatum, hoverData)
+  }
+  const px = _.get(_hoverData[hoverIndex], props.x)
+  const x = _.get(_hoverData[hoverIndex - 1], props.x)
+  if (xRaw - px < x - xRaw) {
+    const hoverData = _hoverData[hoverIndex - 1]
+    return getHoverSolverObj(props, renderDatum, hoverData)
+  }
+  const hoverData = _hoverData[hoverIndex]
+  return getHoverSolverObj(props, renderDatum, hoverData)
 }
 
 export const getArea = (props, data) => {
