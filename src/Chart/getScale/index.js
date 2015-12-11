@@ -2,6 +2,7 @@
 import d3Scale from 'd3-scale'
 import {
   DOMAIN,
+  NICE,
   RANGE,
   TICK_COUNT,
   TYPE,
@@ -37,6 +38,7 @@ export const getAxisScale = (props, key) => {
     [`${key}Domain`]: domain = DOMAIN,
     [`${key}Range`]: range = RANGE,
     [`${key}TickCount`]: tickCount = TICK_COUNT,
+    [`${key}Nice`]: nice = NICE,
   } = props
   switch (type) {
   case 'ordinal':
@@ -47,21 +49,23 @@ export const getAxisScale = (props, key) => {
   default:
     if (domain[0] === domain[1]) {
       const midRange = range[0] + (range[1] - range[0]) / 2
-      const scaleLinear = () => midRange
-      scaleLinear.tickFormat = () => d => d
-      scaleLinear.ticks = () => [domain[0]]
-      return scaleLinear
+      const linearScaleFlatDomain = () => midRange
+      linearScaleFlatDomain.tickFormat = () => d => d
+      linearScaleFlatDomain.ticks = () => [domain[0]]
+      return linearScaleFlatDomain
     }
     if (type === 'time') {
-      return d3Scale.time()
+      const timeScale = d3Scale.time()
         .domain(domain)
         .range(range)
-        .nice(tickCount)
+      if (nice) timeScale.nice(tickCount)
+      return timeScale
     }
-    return d3Scale.linear()
+    const linearScale = d3Scale.linear()
       .domain(domain)
       .range(range)
-      .nice(tickCount)
+    if (nice) linearScale.nice(tickCount)
+    return linearScale
   }
 }
 export const getDefaultScale = (props, key) => {
@@ -70,6 +74,7 @@ export const getDefaultScale = (props, key) => {
     [`${key}Domain`]: domain = DOMAIN,
     [`${key}Range`]: range = RANGE,
     [`${key}TickCount`]: tickCount = TICK_COUNT,
+    [`${key}Nice`]: nice = NICE,
   } = props
   switch (type) {
   case 'ordinal':
@@ -79,15 +84,17 @@ export const getDefaultScale = (props, key) => {
     return scaleOrdinal
   default:
     if (type === 'time') {
-      return d3Scale.time()
+      const timeScale = d3Scale.time()
         .domain(domain)
         .range(range)
-        .nice(tickCount)
+      if (nice) timeScale.nice(tickCount)
+      return timeScale
     }
-    return d3Scale.linear()
+    const linearScale = d3Scale.linear()
       .domain(domain)
       .range(range)
-      .nice(tickCount)
+    if (nice) linearScale.nice(tickCount)
+    return linearScale
   }
 }
 /*

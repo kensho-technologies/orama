@@ -34,6 +34,7 @@ export const BACKGROUND_OFFSET = 15
 export const RANGE = [0, 1]
 export const DOMAIN = [0, 1]
 export const TYPE = 'linear'
+export const NICE = false
 export const TICK_COUNT = 1
 export const RANGE_LINEAR_COLOR = ['#edf8b1', '#2c7fb8']
 export const RANGE_ORDINAL_COLOR = ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3', '#a6d854', '#ffd92f', '#e5c494', '#b3b3b3']
