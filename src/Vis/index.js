@@ -5,7 +5,7 @@ import {Flex} from 'react-display'
 import ChartsGroupBar from '../ChartsGroupBar'
 import DataList from '../DataList'
 import MapData from '../MapData'
-import Chart from '../Chart'
+import {Chart} from '../Chart'
 
 /**
  * Container component for the `DataList` and map data UI.

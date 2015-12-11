@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 import _ from 'lodash'
 import d3 from 'd3'
 
-import Chart from '../Chart'
+import {Chart} from '../Chart'
 import {bars} from '../Chart/bars'
 /**
  * Renders a Histogram using the same logic as `Chart`.

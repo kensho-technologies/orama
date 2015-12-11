@@ -2,7 +2,6 @@
 import _ from 'lodash'
 import {getPath2D} from '../../utils/path2DUtils'
 import {plotValue} from '../plotValue'
-import {extractTooltipData} from '../extractTooltipData'
 
 /*
 `points` is used to generate render data for lines and multilines.

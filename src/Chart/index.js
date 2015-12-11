@@ -2,7 +2,6 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
 import {DEFAULT_THEME} from '../defaultTheme'
-import {stateHOC} from 'on-update'
 import {points} from './points'
 import {
   addDimArrays,
@@ -34,7 +33,7 @@ const BACKGROUND_OFFSET = 15
 /*
 Used inside </>
 */
-const Chart = props => {
+export const Chart = props => {
   const transformedProps = transformProps(props)
   const renderLayers = getRenderLayers(transformedProps)
   return (
@@ -71,8 +70,3 @@ Chart.defaultProps = {
   size: {width: 500, height: 500},
   plot: points,
 }
-
-const initialState = {
-}
-
-export default stateHOC(Chart, initialState)

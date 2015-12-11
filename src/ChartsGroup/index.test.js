@@ -15,9 +15,8 @@ test('ChartsGroup', () => {
 
 test('getChartElements with empty props', () => {
   const elements = getChartElements({})
-  assert.deepEqual(
-    elements.type.displayName,
-    'Chart(state)'
+  assert.ok(
+    elements.props,
   )
 })
 
