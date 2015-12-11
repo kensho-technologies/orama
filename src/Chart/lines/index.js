@@ -80,5 +80,5 @@ export const lines = props => {
       []
     )
   }
-  return getLine(props, props.data)
+  return [getLine(props, props.data)]
 }

@@ -3,11 +3,6 @@ import _ from 'lodash'
 import {getPath2D} from '../../utils/path2DUtils'
 import {getMaxY} from '../../utils/rectUtils'
 import {plotValue} from '../plotValue'
-import {extractTooltipData} from '../extractTooltipData'
-
-const TOOLTIP_DIMENSIONS = [
-  'x', 'x0', 'y', 'y0', 'fill', 'stroke', 'strokeWidth',
-]
 
 const getPointData = (props, datum, yKey) => {
   const path2D = getPath2D()
@@ -26,23 +21,18 @@ const getPointData = (props, datum, yKey) => {
   }
 }
 
-const getHoverSolver = (
-  props, lineData, renderDatum, localMouse
+const hoverSolver = (
+  props, _hoverData, renderDatum, localMouse
 ) => {
   const xRaw = props.xScale.invert(localMouse.x)
-  const hoverPoint = _.find(lineData, d => _.get(d, props.x) > xRaw)
-
+  const hoverData = _.find(_hoverData, d => _.get(d, props.x) > xRaw)
   return {
-    hoverData: [
+    hoverRenderData: [
       renderDatum,
-      getPointData(props, hoverPoint, 'y'),
-      getPointData(props, hoverPoint, 'y0'),
+      getPointData(props, hoverData, 'y'),
+      getPointData(props, hoverData, 'y0'),
     ],
-    tooltipData: extractTooltipData(
-      props,
-      TOOLTIP_DIMENSIONS,
-      hoverPoint,
-    ),
+    hoverData,
   }
 }
 
@@ -89,20 +79,14 @@ export const getArea = (props, data) => {
   path2D.closePath()
   const fill = plotValue(props, _.first(data), 'fill')
   const alpha = plotValue(props, _.first(data), 'alpha')
-  const renderDatum = {
+  return {
     alpha,
+    data,
     fill,
+    hoverSolver,
     path2D,
     type: 'area',
-    data,
   }
-  renderDatum.hoverSolver = _.partial(
-    props.hoverSolver || getHoverSolver,
-    props,
-    data,
-    renderDatum
-  )
-  return [renderDatum]
 }
 export const areas = props => {
   if (!props.xScale || !props.yScale) return undefined
@@ -113,5 +97,5 @@ export const areas = props => {
       []
     )
   }
-  return getArea(props, props.data)
+  return [getArea(props, props.data)]
 }
