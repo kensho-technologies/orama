@@ -17,7 +17,7 @@ export const extractTooltipData = (props, hoverData) => {
   const datum = getDatum(hoverData)
 
   const tooltipValues = _.reduce(
-    tooltipDimensions || localDimensions,
+    localDimensions,
     (acc, key) => {
       const keyAlias = props[`${key}Alias`] || key
       const name = props[`${key}Name`] || props[key]
@@ -25,11 +25,23 @@ export const extractTooltipData = (props, hoverData) => {
       let value = _.get(datum, props[key])
       if (formatter) {
         value = formatter(value)
-      } else if (props[`${key}Type`] === 'time') {
+      } else if (_.isDate(value)) {
         value = value.toDateString()
       }
       const order = accessorsTooltipOrder[key]
       if (!_.isUndefined(value)) acc.push({key: keyAlias, name, value, order})
+      return acc
+    },
+    []
+  )
+  const extraTooltipValues = _.reduce(
+    tooltipDimensions,
+    (acc, key) => {
+      let value = _.get(datum, key)
+      if (_.isDate(value)) {
+        value = value.toDateString()
+      }
+      if (!_.isUndefined(value)) acc.push({name: key, value})
       return acc
     },
     []
@@ -41,6 +53,6 @@ export const extractTooltipData = (props, hoverData) => {
   const title = datum[props[`label`]]
   return {
     title,
-    values: orderedTooltipValues,
+    values: orderedTooltipValues.concat(extraTooltipValues),
   }
 }
