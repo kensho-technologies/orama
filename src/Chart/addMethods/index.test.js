@@ -12,7 +12,7 @@ test('Chart/addMethods.addTypes', () => {
     ],
     xArray: [1, 2, 10, 'a', 'b'],
     yArray: ['a', 'b', 'c'],
-    dimensions: ['fill', 'x', 'y', 'other'],
+    groupedKeys: ['fill', 'x', 'y', 'other'],
     otherType: 'ordinal',
   }
   assert.deepEqual(
@@ -31,7 +31,7 @@ test('Chart/addMethods.addDomains', () => {
     ],
     xArray: [1, 2, 10, 'a', 'b'],
     yArray: ['a', 'b', 'c'],
-    dimensions: ['fill', 'x', 'y'],
+    groupedKeys: ['fill', 'x', 'y'],
     fillType: 'time',
     xType: 'linear',
     yType: 'ordinal',
@@ -48,7 +48,7 @@ test('Chart/addMethods.addDomains', () => {
 test('Chart/addMethods.addRanges', () => {
   const props = {
     plotRect: {x: 0, y: 0, width: 500, height: 500},
-    dimensions: ['fill', 'x', 'y'],
+    groupedKeys: ['fill', 'x', 'y'],
     fillType: 'time',
     xType: 'linear',
     yType: 'ordinal',
@@ -64,7 +64,7 @@ test('Chart/addMethods.addRanges', () => {
 })
 test('Chart/addMethods.addTickCounts', () => {
   const props = {
-    dimensions: ['fill', 'x', 'y'],
+    groupedKeys: ['fill', 'x', 'y'],
     fillRange: [0, 500],
     xRange: [0, 500],
     yRange: [500, 0],
@@ -80,7 +80,7 @@ test('Chart/addMethods.addTickCounts', () => {
 })
 test('Chart/addMethods.addScales', () => {
   const props = {
-    dimensions: ['fill', 'x', 'y'],
+    groupedKeys: ['fill', 'x', 'y'],
     fillType: 'time',
     xType: 'linear',
     yType: 'ordinal',
@@ -98,7 +98,7 @@ test('Chart/addMethods.addScales', () => {
 })
 test('Chart/addMethods.addMaps', () => {
   const props = {
-    dimensions: ['x', 'y'],
+    groupedKeys: ['x', 'y'],
     x: 'p1',
     xScale: d => d + 1,
     y: 'p2',

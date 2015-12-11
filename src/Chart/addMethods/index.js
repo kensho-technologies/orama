@@ -20,7 +20,7 @@ export {addPlotRect} from '../addPlotRect'
 
 export const addToProps = (value, getFunc) => props => {
   const newProps = _.reduce(
-    props.dimensions,
+    props.groupedKeys,
     (acc, key) => {
       if (props[`${key}${value}`]) return acc
       return _.set(

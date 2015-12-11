@@ -37,8 +37,8 @@ test('Chart.transformProps', () => {
   assert.deepEqual(
     _.omit(transformedProps, ['data', 'size', 'xArray', 'yArray', 'theme']),
     {
-      dimensions: ['x', 'y'],
-      localDimensions: ['x', 'y'],
+      groupedKeys: ['x', 'y'],
+      localKeys: ['x', 'y'],
       plotRect: {
         height: 424.5,
         width: 430.5,

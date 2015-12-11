@@ -112,7 +112,7 @@ test('Chart/addDimArrays.addDimArrays', () => {
     methods.addDimArrays(props),
     _.assign({}, props, {
       layers: [_.assign({}, props.layers[0], {
-        localDimensions: ['x', 'y', 'fill'],
+        localKeys: ['x', 'y', 'fill'],
       })],
       fillArray: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
@@ -120,8 +120,8 @@ test('Chart/addDimArrays.addDimArrays', () => {
       ],
       xArray: [1, 2, 10, 20, 30, -1, -2, -3],
       yArray: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
-      dimensions: ['fill', 'x', 'y'],
-      localDimensions: ['x', 'x0', 'y', 'fill'],
+      groupedKeys: ['fill', 'x', 'y'],
+      localKeys: ['x', 'x0', 'y', 'fill'],
     })
   )
 })
@@ -138,12 +138,12 @@ test('Chart/addDimArrays.addDimArrays -> missing data 1', () => {
       layers: [{
         data: [{x: 1}],
         x: 'x',
-        localDimensions: ['x'],
+        localKeys: ['x'],
       }],
       x: '',
       xArray: [1],
-      dimensions: ['x'],
-      localDimensions: ['x'],
+      groupedKeys: ['x'],
+      localKeys: ['x'],
     }
   )
 })
@@ -160,13 +160,13 @@ test('Chart/addDimArrays.addDimArrays -> missing data 2', () => {
     {
       layers: [{
         x: 'x',
-        localDimensions: ['x'],
+        localKeys: ['x'],
       }],
       data: [{x: 1}],
       x: 'x',
       xArray: [1],
-      dimensions: ['x'],
-      localDimensions: ['x'],
+      groupedKeys: ['x'],
+      localKeys: ['x'],
     }
   )
 })
@@ -184,14 +184,14 @@ test('Chart/addDimArrays.addDimArrays -> missing data 3', () => {
     {
       layers: [{
         x: 'x',
-        localDimensions: ['x'],
+        localKeys: ['x'],
       }],
       data: [{x: 1}],
       x: 'x',
       y: 'y',
       xArray: [1],
-      dimensions: ['x'],
-      localDimensions: ['x', 'y'],
+      groupedKeys: ['x'],
+      localKeys: ['x', 'y'],
     }
   )
 })
@@ -206,8 +206,8 @@ test('Chart/addDimArrays.addDimArrays -> dont skip the zero', () => {
       data: [{x: 0}, {x: 1}, {x: 2}],
       x: 'x',
       xArray: [0, 1, 2],
-      dimensions: ['x'],
-      localDimensions: ['x'],
+      groupedKeys: ['x'],
+      localKeys: ['x'],
     }
   )
 })

@@ -25,7 +25,7 @@ test('Chart/addPlotRect.addPlotRect', () => {
     y: 'p1',
     yDomain: [0, 100],
     yType: 'linear',
-    dimensions: ['x', 'y'],
+    groupedKeys: ['x', 'y'],
   }
   assert.deepEqual(
     methods.addPlotRect(props),

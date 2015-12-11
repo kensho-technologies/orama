@@ -82,7 +82,7 @@ const getBottomMargin = props => {
   const {theme} = props
   const {
     backgroundOffset = BACKGROUND_OFFSET,
-    dimensions,
+    groupedKeys,
     margin = {},
     xShowTicks = SHOW_TICKS,
     xShowLabel = SHOW_LABELS,
@@ -90,7 +90,7 @@ const getBottomMargin = props => {
     xLabelOffset = AXIS_OFFSET(theme),
   } = props
   if (!_.isUndefined(margin.bottom)) return margin.bottom + backgroundOffset
-  if (!_.contains(dimensions, 'x')) return backgroundOffset
+  if (!_.contains(groupedKeys, 'x')) return backgroundOffset
   return _.sum([
     backgroundOffset,
     xShowTicks ? xTickOffset + theme.fontSize : 0,
@@ -101,7 +101,7 @@ const getLeftMargin = props => {
   const {theme} = props
   const {
     backgroundOffset = BACKGROUND_OFFSET,
-    dimensions,
+    groupedKeys,
     margin = {},
     yShowTicks = SHOW_TICKS,
     yShowLabel = SHOW_LABELS,
@@ -109,7 +109,7 @@ const getLeftMargin = props => {
     yLabelOffset = AXIS_OFFSET(theme),
   } = props
   if (!_.isUndefined(margin.left)) return margin.left + backgroundOffset
-  if (!_.contains(dimensions, 'y')) return backgroundOffset
+  if (!_.contains(groupedKeys, 'y')) return backgroundOffset
   if (!yShowTicks) {
     return _.sum([
       backgroundOffset,
@@ -151,7 +151,7 @@ export const addPlotRect = props => {
   if (props.plotRect) return props
   const {
     backgroundOffset = BACKGROUND_OFFSET,
-    dimensions,
+    groupedKeys,
     size,
   } = props
 
@@ -170,10 +170,10 @@ export const addPlotRect = props => {
   }
   const newSize = _.clone(size)
   const plotRect = rectUtils.marginInset(margin, size)
-  if (!_.contains(dimensions, 'x')) {
+  if (!_.contains(groupedKeys, 'x')) {
     plotRect.width = 0
   }
-  if (!_.contains(dimensions, 'y')) {
+  if (!_.contains(groupedKeys, 'y')) {
     newSize.height -= plotRect.height
     plotRect.height = 0
   }

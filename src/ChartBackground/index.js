@@ -37,7 +37,7 @@ export const getBackground = props => {
   }
 }
 export const getXGuides = (props, thick) => {
-  if (!_.contains(props.dimensions, 'x')) return undefined
+  if (!_.contains(props.groupedKeys, 'x')) return undefined
   if (props.xShowGuides === false) return undefined
   const {
     backgroundOffset = BACKGROUND_OFFSET,
@@ -68,7 +68,7 @@ export const getXGuides = (props, thick) => {
   )
 }
 export const getYGuides = (props, thick) => {
-  if (!_.contains(props.dimensions, 'y')) return undefined
+  if (!_.contains(props.groupedKeys, 'y')) return undefined
   if (props.yShowGuides === false) return undefined
   const {
     backgroundOffset = BACKGROUND_OFFSET,
@@ -99,7 +99,7 @@ export const getYGuides = (props, thick) => {
   )
 }
 export const getXText = props => {
-  if (!_.contains(props.dimensions, 'x')) return undefined
+  if (!_.contains(props.groupedKeys, 'x')) return undefined
   if (props.xShowTicks === false) return undefined
   const {theme} = props
   const defaultOffset = theme.fontSize * (theme.lineHeight - 1)
@@ -129,7 +129,7 @@ export const getXText = props => {
   )
 }
 export const getYText = props => {
-  if (!_.contains(props.dimensions, 'y')) return undefined
+  if (!_.contains(props.groupedKeys, 'y')) return undefined
   if (props.yShowTicks === false) return undefined
   const {theme} = props
   const defaultOffset = theme.fontSize * (theme.lineHeight - 1)

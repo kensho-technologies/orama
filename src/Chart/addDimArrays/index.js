@@ -31,7 +31,7 @@ addDimArrays({
 returns {
   ...props,
   xArray: [1],
-  dimensions: ['x']
+  groupedKeys: ['x']
 }
 
 addDimArrays({
@@ -43,7 +43,7 @@ addDimArrays({
 returns {
   ...props,
   xArray: [1],
-  dimensions: ['x']
+  groupedKeys: ['x']
 }
 */
 
@@ -69,13 +69,13 @@ const localFlatten = data => {
   return data
 }
 const addLocalDimensionsToLayer = layer => {
-  const localDimensions = _.flow(
+  const localKeys = _.flow(
     accessorsNames => _.pick(layer, accessorsNames),
     _.keys,
   )(layer.accessorsNames || ACCESSORS_NAMES)
   return {
     ...layer,
-    localDimensions,
+    localKeys,
   }
 }
 const addLocalDimensionsToProps = props => {
@@ -162,14 +162,14 @@ export const mergeDimArrays = (props, _dimArrays) => {
   }
 }
 /*
-Assign the the dimensions arrays back to props
+Assign the the groupedKeys arrays back to props
 */
 const assignDimArraysToProps = (props, dimArrays) => (
   _.assign(
     {},
     props,
     _.mapKeys(dimArrays, (value, key) => `${key}Array`),
-    {dimensions: _.keys(dimArrays)}
+    {groupedKeys: _.keys(dimArrays)}
   )
 )
 /*

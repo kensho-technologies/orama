@@ -39,7 +39,7 @@ test('ChartBackground.getBackground', () => {
 test('ChartBackground.getXGuides', () => {
   const props = {
     theme,
-    dimensions: ['x'],
+    groupedKeys: ['x'],
     xTicks: [{value: 10}],
     xScale: d => d,
     plotRect: PLOT_RECT,
@@ -53,7 +53,7 @@ test('ChartBackground.getXGuides', () => {
 test('ChartBackground.getYGuides', () => {
   const props = {
     theme,
-    dimensions: ['y'],
+    groupedKeys: ['y'],
     yTicks: [{value: 10}],
     yScale: d => d,
     plotRect: PLOT_RECT,
@@ -67,7 +67,7 @@ test('ChartBackground.getYGuides', () => {
 test('ChartBackground.getXText', () => {
   const props = {
     theme,
-    dimensions: ['x'],
+    groupedKeys: ['x'],
     xTicks: [{value: 10}],
     xScale: d => d,
     plotRect: PLOT_RECT,
@@ -81,7 +81,7 @@ test('ChartBackground.getXText', () => {
 test('ChartBackground.getYText', () => {
   const props = {
     theme,
-    dimensions: ['y'],
+    groupedKeys: ['y'],
     yTicks: [{value: 10}],
     yScale: d => d,
     plotRect: PLOT_RECT,
