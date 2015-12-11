@@ -48,3 +48,4 @@ export const AXIS_OFFSET = theme => (
 export const PLOT_RECT = {
   x: 10, y: 10, width: 480, height: 480,
 }
+export const MARGIN_RIGHT = 15

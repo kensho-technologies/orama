@@ -38,7 +38,6 @@ export const App = props => (
           data={[props.appl, props.fb]}
           fill='Name'
           label='Name'
-          margin={{right: 15}}
           pointsAlpha={0.3}
           radiusValue={4}
           size={{width: 500, height: 400}}
@@ -63,7 +62,6 @@ export const App = props => (
             plot: plots.points,
             radiusValue: 3,
           }]}
-          margin={{right: 15}}
           plot={plots.lines}
           size={{width: 500, height: 300}}
           stroke='Name'
@@ -76,7 +74,6 @@ export const App = props => (
       <Block margin={30}>
         <Chart
           data={_.filter(props.appl, d => d.Date.getFullYear() > 2011)}
-          margin={{right: 15}}
           plot={plots.areas}
           size={{width: 500, height: 300}}
           x='Date'
@@ -92,7 +89,6 @@ export const App = props => (
             _.filter(props.fb, d => d.Date.getFullYear() > 2011),
           ]}
           fill='Name'
-          margin={{right: 15}}
           plot={plots.areas}
           size={{width: 500, height: 300}}
           x='Date'
@@ -108,7 +104,6 @@ export const App = props => (
             {Name: 'FB', value: 150},
             {Name: 'GOOGL', value: 10},
           ]}
-          margin={{right: 15}}
           plot={plots.bars}
           size={{width: 500, height: 300}}
           x='Name'
@@ -128,7 +123,6 @@ export const App = props => (
             {Name: 'FB2', value: 100},
             {Name: 'GOOGL2', value: 0},
           ]}
-          margin={{right: 15}}
           plot={plots.bars}
           size={{width: 500, height: 150}}
           x='value'
@@ -154,7 +148,6 @@ export const App = props => (
             {Name: 5, value: 150},
             {Name: 6, value: 10}],
           ]}
-          margin={{right: 15}}
           plot={plots.lines}
           size={{width: 500, height: 300}}
           x='Name'
@@ -175,7 +168,6 @@ export const App = props => (
             {Name: 5, value: 100},
             {Name: 6, value: 0},
           ]}
-          margin={{right: 15}}
           plot={plots.areas}
           size={{width: 500, height: 300}}
           x='Name'
@@ -211,7 +203,6 @@ export const App = props => (
             y: 'value',
             strokeValue: 'red',
           }]}
-          margin={{right: 15}}
           plot={plots.bars}
           size={{width: 500, height: 300}}
           tooltipKeys={['y']}

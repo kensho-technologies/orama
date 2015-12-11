@@ -9,6 +9,7 @@ import {
 import {
   AXIS_OFFSET,
   BACKGROUND_OFFSET,
+  MARGIN_RIGHT,
   SHOW_LABELS,
   SHOW_TICKS,
 } from '../defaults'
@@ -36,7 +37,7 @@ addPlotRect({size})
 returns {size, plotRect}
 */
 
-const getTextWidth = (theme, string) => {
+export const getTextWidth = (theme, string) => {
   const ctx = getCachedContext()
   ctx.save()
   ctx.font = `${theme.fontSize}px ${theme.fontMono}`
@@ -128,7 +129,6 @@ const getLeftMargin = props => {
   ])
 }
 const getRightMargin = props => {
-  const {theme} = props
   const {
     backgroundOffset = BACKGROUND_OFFSET,
     margin = {},
@@ -137,14 +137,7 @@ const getRightMargin = props => {
   } = props
   if (!_.isUndefined(margin.right)) return margin.right + backgroundOffset
   if (!x || !xShowTicks) return backgroundOffset
-  const xRange = props.xRange || getRange(props, 'x')
-  const xTickCount = props.xTickCount || getTickCount({...props, xRange}, 'x')
-  const xTicks = props.xTicks || getTicks({...props, xTickCount}, 'x')
-  const xLastTickWidth = getTextWidth(theme, _.last(xTicks).text)
-  return _.max([
-    backgroundOffset,
-    xLastTickWidth,
-  ])
+  return MARGIN_RIGHT
 }
 
 export const addPlotRect = props => {
