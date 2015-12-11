@@ -28,11 +28,8 @@ export const basicRender = (props, ctx) => {
         ctx.stroke(d.path2D)
       } else if (d.type === 'area') {
         ctx.globalAlpha = d.fillAlpha || d.alpha
-        ctx.lineWidth = d.lineWidth
-        ctx.strokeStyle = d.stroke || 'hsl(200,30%, 50%)'
         ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
         ctx.fill(d.path2D)
-        ctx.stroke(d.path2D)
       } else if (d.type === 'text') {
         ctx.globalAlpha = d.alpha
         ctx.font = d.font || '14px verdana'
