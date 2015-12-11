@@ -1,21 +1,28 @@
 import _ from 'lodash'
 
-const findInPath = (ctx, localMouse, renderData) => (
+const findFirstPass = (ctx, localMouse, renderData) => (
   _.findLast(
     renderData,
     d => {
+      if (d.type === 'text') return false
       if (d.type === 'area') {
-        return ctx.isPointInPath(d.path2D, localMouse.x, localMouse.y) || ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
+        return ctx.isPointInPath(d.path2D, localMouse.x, localMouse.y)
       }
       if (d.type === 'line') return ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
       return false
     }
   )
 )
-const findInStroke = (ctx, localMouse, renderData) => (
+const findSecondPass = (ctx, localMouse, renderData) => (
   _.findLast(
     renderData,
-    d => ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
+    d => {
+      if (d.type === 'text') return false
+      if (d.hoverPath2D) {
+        return ctx.isPointInPath(d.hoverPath2D, localMouse.x, localMouse.y)
+      }
+      return ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
+    }
   )
 )
 const findInRenderLayers = ({ctx, localMouse, renderLayers, findFunc}) => {
@@ -56,7 +63,7 @@ export const getDataUnderMouse = (props, evt, canvasNode) => {
   }
   ctx.lineWidth = 4
   const inPathData = findInRenderLayers({
-    ctx, localMouse, renderLayers, findFunc: findInPath,
+    ctx, localMouse, renderLayers, findFunc: findFirstPass,
   })
   if (inPathData) {
     return {
@@ -67,7 +74,7 @@ export const getDataUnderMouse = (props, evt, canvasNode) => {
   }
   ctx.lineWidth = 18
   const inStrokeData = findInRenderLayers({
-    ctx, localMouse, renderLayers, findFunc: findInStroke,
+    ctx, localMouse, renderLayers, findFunc: findSecondPass,
   })
   if (inStrokeData) {
     return {

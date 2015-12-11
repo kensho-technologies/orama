@@ -19,6 +19,7 @@ generates the array of render data
 */
 export const pointsDataMap = (props, datum) => {
   const path2D = getPath2D()
+  const hoverPath2D = getPath2D()
   const x = plotValue(
     props, datum, 'x', getMidX(props.plotRect)
   )
@@ -28,11 +29,13 @@ export const pointsDataMap = (props, datum) => {
   const r = plotValue(props, datum, 'radius', 5)
   const fill = plotValue(props, datum, 'fill')
   path2D.arc(x, y, r, 0, 2 * Math.PI)
+  hoverPath2D.arc(x, y, r + 8, 0, 2 * Math.PI)
   const renderDatum = {
     alpha: _.isUndefined(props.pointsAlpha) ? 1 : props.pointsAlpha,
     data: datum,
     fill,
     path2D,
+    hoverPath2D,
     type: 'area',
   }
   return renderDatum
