@@ -55,7 +55,7 @@ row.propTypes = {
 export const TooltipInner = props => (
   <Table
     background={props.theme.tooltip.listBackground}
-    boxShadow='1px 1px 4px hsla(0, 0%, 0%, 0.8)'
+    boxShadow='1px 1px 1px hsla(0, 0%, 0%, 0.6)'
     color='white'
     fontFamily={props.theme.font}
     fontSize={props.theme.fontSize}
