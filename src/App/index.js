@@ -75,7 +75,6 @@ export const App = props => (
       </Block>
       <Block margin={30}>
         <Chart
-          alphaValue={0.85}
           data={_.filter(props.appl, d => d.Date.getFullYear() > 2011)}
           margin={{right: 15}}
           plot={plots.areas}
@@ -88,7 +87,6 @@ export const App = props => (
       </Block>
       <Block margin={30}>
         <Chart
-          alphaValue={0.85}
           data={[
             _.filter(props.appl, d => d.Date.getFullYear() > 2011),
             _.filter(props.fb, d => d.Date.getFullYear() > 2011),

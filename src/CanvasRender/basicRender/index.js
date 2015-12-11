@@ -22,12 +22,12 @@ export const basicRender = (props, ctx) => {
     d => {
       if (!d) return
       if (d.type === 'line') {
-        ctx.globalAlpha = d.strokeAlpha || d.alpha
+        ctx.globalAlpha = d.strokeAlpha || d.alpha || 0.85
         ctx.lineWidth = d.lineWidth || 2
         ctx.strokeStyle = d.stroke || 'hsl(200,30%, 50%)'
         ctx.stroke(d.path2D)
       } else if (d.type === 'area') {
-        ctx.globalAlpha = d.fillAlpha || d.alpha
+        ctx.globalAlpha = d.fillAlpha || d.alpha || 0.85
         ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
         ctx.fill(d.path2D)
       } else if (d.type === 'text') {

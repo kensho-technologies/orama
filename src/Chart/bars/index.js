@@ -11,6 +11,7 @@ export const barsDataMap = (props, datum) => {
   const x = plotValue(props, datum, 'x', props.plotRect.x)
   const y = plotValue(props, datum, 'y', props.plotRect.y)
   const fill = plotValue(props, datum, 'fill', 'steelblue')
+  const alpha = plotValue(props, datum, 'alpha')
 
   // when `x1` or `y1` is present, this means the bars are been positioned on a linear scale, and their position has been previously calculated
   if (props.x1 || props.y1) {
@@ -68,7 +69,7 @@ export const barsDataMap = (props, datum) => {
   return {
     type: 'area',
     path2D,
-    alpha: 1,
+    alpha,
     fill,
     data: datum,
   }
