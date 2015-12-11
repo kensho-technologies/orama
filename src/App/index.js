@@ -37,11 +37,13 @@ export const App = props => (
         <Chart
           data={[props.appl, props.fb]}
           fill='Name'
+          label='Name'
           margin={{right: 15}}
           pointsAlpha={0.3}
           radiusValue={4}
           size={{width: 500, height: 400}}
-          tooltipDimensions={['Date']}
+          tooltipExtraDimensions={['Date']}
+          tooltipKeys={['x', 'y']}
           x='Open'
           y='Volume'
         />
@@ -65,6 +67,7 @@ export const App = props => (
           plot={plots.lines}
           size={{width: 500, height: 300}}
           stroke='Name'
+          tooltipKeys={['x', 'y']}
           x='Date'
           xTickFormat={utcFormat('%Y')}
           y='Close'
@@ -72,6 +75,7 @@ export const App = props => (
       </Block>
       <Block margin={30}>
         <Chart
+          alphaValue={0.85}
           data={_.filter(props.appl, d => d.Date.getFullYear() > 2011)}
           margin={{right: 15}}
           plot={plots.areas}
@@ -79,16 +83,17 @@ export const App = props => (
           x='Date'
           xTickFormat={utcFormat('%b %y\'')}
           y='High'
-          alphaValue={0.85}
           yZeroBased={true}
         />
       </Block>
       <Block margin={30}>
         <Chart
+          alphaValue={0.85}
           data={[
             _.filter(props.appl, d => d.Date.getFullYear() > 2011),
             _.filter(props.fb, d => d.Date.getFullYear() > 2011),
           ]}
+          fill='Name'
           margin={{right: 15}}
           plot={plots.areas}
           size={{width: 500, height: 300}}
@@ -96,8 +101,6 @@ export const App = props => (
           xTickFormat={utcFormat('%b %y\'')}
           y='High'
           y0='Low'
-          fill='Name'
-          alphaValue={0.85}
         />
       </Block>
       <Block margin={30}>
