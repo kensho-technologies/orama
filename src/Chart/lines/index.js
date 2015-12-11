@@ -80,6 +80,7 @@ const getLine = (props, data) => {
   })
   return {
     data,
+    hoverAlpha: props.hoverAlpha || 0.3,
     hoverSolver,
     lineWidth,
     path2D,

@@ -28,6 +28,7 @@ export default React.createClass({
         color={theme.axis.color}
         fontFamily={theme.font}
         fontSize={theme.fontSize}
+        fontWeight={'bold'}
         left={0}
         overflow={'hidden'}
         position={'absolute'}
