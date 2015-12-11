@@ -14,10 +14,6 @@ lines{
 }
 */
 
-const TOOLTIP_DIMENSIONS = [
-  'x', 'y', 'stroke', 'strokeWidth',
-]
-
 const getPointData = (props, datum) => {
   const path2D = getPath2D()
   const x = plotValue(
@@ -35,19 +31,15 @@ const getPointData = (props, datum) => {
   }
 }
 
-const getHoverSolver = (
+const hoverSolver = (
   props, lineData, renderDatum, localMouse
 ) => {
   const xRaw = props.xScale.invert(localMouse.x)
   const hoverPoint = _.find(lineData, d => _.get(d, props.x) > xRaw)
 
   return {
-    hoverData: [renderDatum, getPointData(props, hoverPoint)],
-    tooltipData: extractTooltipData(
-      props,
-      TOOLTIP_DIMENSIONS,
-      hoverPoint,
-    ),
+    hoverRenderData: [renderDatum, getPointData(props, hoverPoint)],
+    hoverData: hoverPoint,
   }
 }
 
@@ -70,20 +62,14 @@ const getLine = (props, data) => {
       plotValue(props, d, 'y')
     )
   })
-  const renderDatum = {
-    type: 'line',
+  return {
+    data,
+    hoverSolver,
+    lineWidth,
     path2D,
     stroke,
-    lineWidth,
-    data,
+    type: 'line',
   }
-  renderDatum.hoverSolver = _.partial(
-    props.hoverSolver || getHoverSolver,
-    props,
-    data,
-    renderDatum
-  )
-  return [renderDatum]
 }
 export const lines = props => {
   if (!props.xScale || !props.yScale) return undefined

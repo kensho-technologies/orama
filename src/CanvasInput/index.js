@@ -8,14 +8,14 @@ const runHoverSolverOn = dataUnderMouse => {
   const {
     layerProps,
     renderDatum,
-    data,
+    hoverData,
     localMouse,
   } = dataUnderMouse
   if (!renderDatum || !layerProps) return dataUnderMouse
   const hoverSolver = layerProps.hoverSolver || renderDatum.hoverSolver
   if (!hoverSolver) return dataUnderMouse
   const hoverSolverData = hoverSolver(
-    layerProps, data, renderDatum, localMouse,
+    layerProps, hoverData, renderDatum, localMouse,
   )
   return {
     ...dataUnderMouse,

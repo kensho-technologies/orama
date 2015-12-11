@@ -54,7 +54,7 @@ export const getDataUnderMouse = (props, evt, canvasNode) => {
     x: evt.clientX - canvasRect.left,
     y: evt.clientY - canvasRect.top,
   }
-  ctx.lineWidth = 2
+  ctx.lineWidth = 4
   const inPathData = findInRenderLayers({
     ctx, localMouse, renderLayers, findFunc: findInPath,
   })
@@ -65,7 +65,7 @@ export const getDataUnderMouse = (props, evt, canvasNode) => {
       mouse,
     }
   }
-  ctx.lineWidth = 20
+  ctx.lineWidth = 18
   const inStrokeData = findInRenderLayers({
     ctx, localMouse, renderLayers, findFunc: findInStroke,
   })
