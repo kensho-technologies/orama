@@ -32,6 +32,7 @@ export const Store = React.createClass({
       _.each(appl, d => {
         d.Date = parseDate(d.Date)
         d.Name = 'IBM'
+        d.Low = d.Low - 100
       })
       this.setState({appl})
     })
@@ -40,6 +41,7 @@ export const Store = React.createClass({
       _.each(fb, d => {
         d.Date = parseDate(d.Date)
         d.Name = 'MSFT'
+        d.Low = d.Low - 50
       })
       this.setState({fb})
     })

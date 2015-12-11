@@ -79,7 +79,25 @@ export const App = props => (
           x='Date'
           xTickFormat={utcFormat('%b %y\'')}
           y='High'
+          alphaValue={0.85}
           yZeroBased={true}
+        />
+      </Block>
+      <Block margin={30}>
+        <Chart
+          data={[
+            _.filter(props.appl, d => d.Date.getFullYear() > 2011),
+            _.filter(props.fb, d => d.Date.getFullYear() > 2011),
+          ]}
+          margin={{right: 15}}
+          plot={plots.areas}
+          size={{width: 500, height: 300}}
+          x='Date'
+          xTickFormat={utcFormat('%b %y\'')}
+          y='High'
+          y0='Low'
+          fill='Name'
+          alphaValue={0.85}
         />
       </Block>
       <Block margin={30}>
@@ -92,9 +110,10 @@ export const App = props => (
           margin={{right: 15}}
           plot={plots.bars}
           size={{width: 500, height: 300}}
-          x='value'
-          xZeroBased={true}
-          y='Name'
+          x='Name'
+          xShowGuides={false}
+          y='value'
+          yZeroBased={true}
         />
       </Block>
       <Block margin={30}>
