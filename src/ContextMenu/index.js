@@ -23,7 +23,7 @@ const ContextMenu = props => (
     background='hsla(0, 0%, 93%, 0.9)'
     borderRadius={5}
     boxShadow='1px 1px 10px hsla(0, 0%, 0%, 0.8)'
-    fontFamily={props.theme.font}
+    fontFamily={props.theme.fontFamily}
     fontSize={props.theme.fontSize}
     left={props.position.x}
     padding='5px 0px'

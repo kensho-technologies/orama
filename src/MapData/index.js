@@ -29,7 +29,7 @@ export const Select = ({theme = DEFAULT_THEME, children}) => (
       border: 'none',
       borderRadius: 0,
       fontSize: theme.fontSize,
-      fontFamily: theme.font,
+      fontFamily: theme.fontFamily,
       display: 'flex',
       width: '100%',
       boxSizing: 'border-box',
@@ -68,7 +68,7 @@ export default React.createClass({
         background={'hsl(0, 0%, 80%)'}
         borderLeft={'2px solid hsl(0, 0%, 60%)'}
         borderRight={'2px solid hsl(0, 0%, 70%)'}
-        fontFamily={theme.font}
+        fontFamily={theme.fontFamily}
         fontSize={theme.fontSize}
         minWidth={200}
         width={200}

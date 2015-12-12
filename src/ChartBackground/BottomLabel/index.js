@@ -28,7 +28,7 @@ export default React.createClass({
       <Block
         bottom={0}
         color={theme.axis.color}
-        fontFamily={theme.font}
+        fontFamily={theme.fontFamily}
         fontSize={theme.fontSize}
         fontWeight={600}
         left={plotRect.x}

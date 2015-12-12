@@ -36,7 +36,7 @@ const AnnotationEditor = props => (
     background='hsla(0, 0%, 100%, 1)'
     border='2px solid black'
     display='block'
-    fontFamily={props.theme.font}
+    fontFamily={props.theme.fontFamily}
     fontSize={props.theme.fontSize}
     fontWeight='bold'
     left={props.x}

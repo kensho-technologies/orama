@@ -50,7 +50,7 @@ export default React.createClass({
       <Flex // container
         background={'hsl(0, 0%, 80%)'}
         flexDirection={'column'}
-        fontFamily={theme.font}
+        fontFamily={theme.fontFamily}
         fontSize={theme.fontSize}
         minWidth={200}
         width={200}
@@ -71,7 +71,7 @@ export default React.createClass({
             onChange={this.onInputChage}
             placeholder='search'
             style={{
-              fontFamily: theme.font,
+              fontFamily: theme.fontFamily,
               fontSize: theme.fontSize,
               maxWidth: 150,
               padding: 5,

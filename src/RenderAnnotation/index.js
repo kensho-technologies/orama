@@ -23,7 +23,7 @@ can update: 'updateClickedIdx'
 */
 const RenderAnnotation = props => (
   <Block
-    fontFamily={props.theme.font}
+    fontFamily={props.theme.fontFamily}
     fontSize={props.theme.fontSize}
     fontWeight='bold'
     height={props.size.height}

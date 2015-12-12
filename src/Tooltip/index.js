@@ -10,12 +10,6 @@ const MAX_WIDTH = 320
 /*
 Used inside <ChartRenderWrapper/>
 */
-const getBorder = (props, i) => {
-  if (i % 2) {
-    return `2px solid ${props.theme.tooltip.listEvenBackground}`
-  }
-  return `2px solid ${props.theme.tooltip.listBackground}`
-}
 
 const row = (props, d, i) => (
   <TableRow
@@ -24,7 +18,7 @@ const row = (props, d, i) => (
   >
     {props.showKeys ?
       <TableCell
-        borderRight={getBorder(props, i)}
+        borderRight={`2px solid ${props.theme.tooltip.border}`}
         padding={10}
       >
         {d.key}
@@ -55,9 +49,9 @@ row.propTypes = {
 export const TooltipInner = props => (
   <Table
     background={props.theme.tooltip.listBackground}
-    boxShadow='1px 1px 1px hsla(0, 0%, 0%, 0.6)'
-    color='white'
-    fontFamily={props.theme.font}
+    boxShadow='1px 1px 1px hsla(0, 0%, 0%, 0.5)'
+    color={props.theme.tooltip.color}
+    fontFamily={props.theme.fontFamily}
     fontSize={props.theme.fontSize}
     maxWidth={MAX_WIDTH}
   >

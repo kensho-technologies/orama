@@ -33,7 +33,7 @@ import {DEFAULT_THEME} from '../defaultTheme'
 
 const ExampleComponent = props => (
   <Block
-    fontFamily: {props.theme.font}
+    fontFamily: {props.theme.fontFamily}
   >
     {props.text}
   </Block>

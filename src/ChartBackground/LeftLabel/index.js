@@ -26,7 +26,7 @@ export default React.createClass({
     return (
       <Block
         color={theme.axis.color}
-        fontFamily={theme.font}
+        fontFamily={theme.fontFamily}
         fontSize={theme.fontSize}
         fontWeight={'bold'}
         left={0}

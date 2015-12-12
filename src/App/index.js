@@ -44,7 +44,9 @@ export const App = props => (
           tooltipExtraDimensions={['Date']}
           tooltipKeys={['x', 'y']}
           x='Open'
+          xZeroBased='true'
           y='Volume'
+          yZeroBased='true'
         />
       </Block>
       <Block margin={30}>
@@ -133,7 +135,6 @@ export const App = props => (
       </Block>
       <Block margin={30}>
         <Chart
-          backgroundOffset={1}
           data={[
             [{Name: 1, value: 50},
             {Name: 2, value: 150},
@@ -151,7 +152,6 @@ export const App = props => (
           plot={plots.lines}
           size={{width: 500, height: 300}}
           x='Name'
-          xDomain={[0, 7]}
           xShowGuides={false}
           y='value'
           yZeroBased={true}
@@ -159,7 +159,6 @@ export const App = props => (
       </Block>
       <Block margin={30}>
         <Chart
-          backgroundOffset={1}
           data={[
             {Name: 1, value: 50},
             {Name: 2, value: 150},
@@ -171,7 +170,6 @@ export const App = props => (
           plot={plots.areas}
           size={{width: 500, height: 300}}
           x='Name'
-          xDomain={[0, 7]}
           xShowGuides={false}
           y='value'
           yZeroBased={true}
