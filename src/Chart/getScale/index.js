@@ -32,6 +32,28 @@ returns {
 /*
 get a scale with logic for the x and y axis, if the domain starts and finishes on the same number returns the mid range value.
 */
+const getBaseScales = (type, domain, range, nice, tickCount) => {
+  if (type === 'time') {
+    const timeScale = d3Scale.time()
+      .domain(domain)
+      .range(range)
+    if (nice) timeScale.nice(tickCount)
+    return timeScale
+  }
+  if (type === 'log') {
+    const logScale = d3Scale.log()
+      .domain(domain)
+      .range(range)
+    if (nice) logScale.nice(tickCount)
+    return logScale
+  }
+  const linearScale = d3Scale.linear()
+    .domain(domain)
+    .range(range)
+  if (nice) linearScale.nice(tickCount)
+  return linearScale
+}
+
 export const getAxisScale = (props, key) => {
   const {
     [`${key}Type`]: type = TYPE,
@@ -54,18 +76,7 @@ export const getAxisScale = (props, key) => {
       linearScaleFlatDomain.ticks = () => [domain[0]]
       return linearScaleFlatDomain
     }
-    if (type === 'time') {
-      const timeScale = d3Scale.time()
-        .domain(domain)
-        .range(range)
-      if (nice) timeScale.nice(tickCount)
-      return timeScale
-    }
-    const linearScale = d3Scale.linear()
-      .domain(domain)
-      .range(range)
-    if (nice) linearScale.nice(tickCount)
-    return linearScale
+    return getBaseScales(type, domain, range, nice, tickCount)
   }
 }
 export const getDefaultScale = (props, key) => {
@@ -83,18 +94,7 @@ export const getDefaultScale = (props, key) => {
       .range(range)
     return scaleOrdinal
   default:
-    if (type === 'time') {
-      const timeScale = d3Scale.time()
-        .domain(domain)
-        .range(range)
-      if (nice) timeScale.nice(tickCount)
-      return timeScale
-    }
-    const linearScale = d3Scale.linear()
-      .domain(domain)
-      .range(range)
-    if (nice) linearScale.nice(tickCount)
-    return linearScale
+    return getBaseScales(type, domain, range, nice, tickCount)
   }
 }
 /*
