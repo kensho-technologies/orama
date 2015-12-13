@@ -126,8 +126,8 @@ export const getXText = props => {
       ]),
       textBaseline: 'top',
       textAlign: 'center',
-      fill: theme.axisTickTextFill,
-      font: `${theme.axisTickFontSize}px ${theme.axisTickFontFamily}`,
+      fill: theme.textFill,
+      font: `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`,
     }),
   )
 }
@@ -156,7 +156,8 @@ export const getYText = props => {
       y: yScale(d.value),
       textAlign: 'right',
       textBaseline: 'middle',
-      font: `${theme.axisTickFontSize}px ${theme.axisTickFontFamily}`,
+      fill: theme.textFill,
+      font: `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`,
     }),
   )
 }

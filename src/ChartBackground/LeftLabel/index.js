@@ -10,7 +10,7 @@ import {DEFAULT_THEME} from '../../defaultTheme'
 
 export const LeftLabel = props => (
   <Block
-    color={props.theme.axisLabelTextFill}
+    color={props.theme.textFill}
     fontFamily={props.theme.fontFamily}
     fontSize={props.theme.axisLabelFontSize}
     fontWeight={props.theme.axisLabelFontWeight}

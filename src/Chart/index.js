@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
-import {DEFAULT_THEME} from '../defaultTheme'
+import {DEFAULT_THEME, getTheme} from '../defaultTheme'
 import {points} from './points'
 import {
   addDimArrays,
@@ -34,7 +34,10 @@ const BACKGROUND_OFFSET = 15
 Used inside </>
 */
 export const Chart = props => {
-  const transformedProps = transformProps(props)
+  const transformedProps = transformProps({
+    ...props,
+    theme: getTheme(props.theme),
+  })
   const renderLayers = getRenderLayers(transformedProps)
   return (
     <Block

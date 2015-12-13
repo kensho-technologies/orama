@@ -32,7 +32,7 @@ const row = (props, d, i) => (
       {d.name}
     </TableCell>
     <TableCell // Value
-      fontFamily={props.theme.tooltipValueFontFamily}
+      fontFamily={props.theme.fontFamilyMono}
       fontSize={props.theme.tooltipValueFontSize}
       padding={10}
       textAlign='right'
@@ -51,7 +51,7 @@ export const TooltipInner = props => (
   <Table
     background={props.theme.tooltipBackgroundFill}
     boxShadow={`1px 1px 1px ${props.theme.tooltipBoxShadowFill}`}
-    color={props.theme.tooltipTextFill}
+    color={props.theme.textFill}
     fontFamily={props.theme.fontFamily}
     fontSize={props.theme.tooltipFontSize}
     maxWidth={MAX_WIDTH}

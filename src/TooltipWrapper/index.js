@@ -63,6 +63,7 @@ const _TooltipWrapper = props => {
       <Tooltip
         hoverData={props.hoverData}
         layerProps={props.layerProps}
+        theme={props.theme}
       />
     </BlockSize>
   )

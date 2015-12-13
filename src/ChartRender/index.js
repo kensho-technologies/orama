@@ -55,6 +55,7 @@ const ChartRender = props => (
       onUpdate={handleCanvasInput.bind(null, props)}
       renderLayers={props.renderLayers}
       size={props.size}
+      theme={props.theme}
     />
   </Block>
 )

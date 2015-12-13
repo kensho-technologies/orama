@@ -15,7 +15,6 @@ const getPointData = (props, datum, yKey) => {
   const r = plotValue(props, datum, 'strokeWidth', 2) + 1.5
   path2D.arc(x, y, r, 0, 2 * Math.PI)
   return {
-    hoverFill: 'black',
     hoverAlpha: 0.8,
     path2D,
     type: 'area',

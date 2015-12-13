@@ -5,8 +5,6 @@ import {getScale} from '../getScale'
 import {
   DOMAIN,
   JS_TO_VIS_TYPE,
-  RANGE_LINEAR_COLOR,
-  RANGE_ORDINAL_COLOR,
   TICK_COUNT,
   TICK_X_SPACE,
   TICK_Y_SPACE,
@@ -91,9 +89,9 @@ export const getRange = (props, key) => {
   case 'stroke':
     switch (type) {
     case 'ordinal':
-      return RANGE_ORDINAL_COLOR
+      return props.theme.plotOrdinalRangeFill
     default:
-      return RANGE_LINEAR_COLOR
+      return props.theme.plotLinearRangeFill
     }
     break
   case 'x':

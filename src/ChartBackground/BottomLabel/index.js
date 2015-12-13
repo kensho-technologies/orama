@@ -11,7 +11,7 @@ import {DEFAULT_THEME} from '../../defaultTheme'
 export const BottomLabel = props => (
   <Block
     bottom={0}
-    color={props.theme.axisLabelTextFill}
+    color={props.theme.textFill}
     fontFamily={props.theme.fontFamily}
     fontSize={props.theme.axisLabelFontSize}
     fontWeight={props.theme.axisLabelFontWeight}

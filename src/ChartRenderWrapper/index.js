@@ -41,6 +41,7 @@ const ChartRenderWrapper = props => (
       plotRect={props.plotRect}
       renderLayers={props.renderLayers}
       size={props.size}
+      theme={props.theme}
     />
     <ChartInteractionLayer
       annotationData={props.annotationData}
@@ -50,6 +51,7 @@ const ChartRenderWrapper = props => (
       lastMousePos={props.lastMousePos}
       onUpdate={handleChartInteractionLayer.bind(null, props)}
       size={props.size}
+      theme={props.theme}
     />
   </Block>
 )

@@ -97,6 +97,7 @@ export const CanvasInput = React.createClass({
             hoverData={state.hoverData}
             layerProps={state.layerProps}
             mouse={state.mouse}
+            theme={props.theme}
           />
         : null}
       </div>

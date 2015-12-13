@@ -2,6 +2,7 @@
 import {it as test} from 'mocha'
 import assert from 'assert'
 import _ from 'lodash'
+import {DEFAULT_THEME as theme} from '../../defaultTheme'
 
 import * as methods from './'
 
@@ -14,6 +15,7 @@ test('Chart/addMethods.addTypes', () => {
     yArray: ['a', 'b', 'c'],
     groupedKeys: ['fill', 'x', 'y', 'other'],
     otherType: 'ordinal',
+    theme,
   }
   assert.deepEqual(
     methods.addTypes(props),
@@ -52,6 +54,7 @@ test('Chart/addMethods.addRanges', () => {
     fillType: 'time',
     xType: 'linear',
     yType: 'ordinal',
+    theme,
   }
   assert.deepEqual(
     methods.addRanges(props),

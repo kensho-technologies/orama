@@ -17,16 +17,12 @@ export const DEFAULT_THEME = {
 
   axisLabelFontSize: 13,
   axisLabelFontWeight: 'bold',
-  axisLabelTextFill: 'hsl(0, 0%, 0%)',
   axisTickFontSize: 12,
-  axisTickFontFamily: 'verdana',
   axisTickTextFill: 'hsl(0, 0%, 0%)',
 
   tooltipFontSize: 13,
-  tooltipTextFill: 'hsl(0, 0%, 0%)',
   tooltipTitleFontSize: 13,
   tooltipTitleFontWeight: 'bold',
-  tooltipValueFontFamily: 'verdana',
   tooltipValueFontSize: 13,
   tooltipBackgroundFill: 'hsl(0, 0%, 80%)',
   tooltipEvenBackgroundFill: 'hsl(0, 0%, 70%)',

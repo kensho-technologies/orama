@@ -41,7 +41,7 @@ returns {size, plotRect}
 export const getTextWidth = (theme, string) => {
   const ctx = getCachedContext()
   ctx.save()
-  ctx.font = `${theme.axisTickFontSize}px ${theme.axisTickFontFamily}`
+  ctx.font = `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`
   const width = ctx.measureText(string).width
   ctx.restore()
   return width
@@ -53,7 +53,7 @@ Uses a offscreen canvas for doing the measure and takes into consideration the t
 export const getMaxTextWidth = (theme, ticks) => {
   const ctx = getCachedContext()
   ctx.save()
-  ctx.font = `${theme.axisTickFontSize}px ${theme.axisTickFontFamily}`
+  ctx.font = `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`
   const maxWidth = _.reduce(
     ticks,
     (acc, d) => _.max([
