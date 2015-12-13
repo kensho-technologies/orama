@@ -13,12 +13,12 @@ Used inside <ChartRenderWrapper/>
 
 const row = (props, d, i) => (
   <TableRow
-    background={i % 2 ? props.theme.tooltip.listBackground : props.theme.tooltip.listEvenBackground}
+    background={i % 2 ? props.theme.tooltipBackgroundFill : props.theme.tooltipEvenBackgroundFill}
     key={i}
   >
     {props.showKeys ?
       <TableCell
-        borderRight={`2px solid ${props.theme.tooltip.border}`}
+        borderRight={`2px solid ${props.theme.tooltipKeyBorderStroke}`}
         padding={10}
       >
         {d.key}
@@ -32,7 +32,8 @@ const row = (props, d, i) => (
       {d.name}
     </TableCell>
     <TableCell // Value
-      fontFamily={props.theme.fontMono}
+      fontFamily={props.theme.tooltipValueFontFamily}
+      fontSize={props.theme.tooltipValueFontSize}
       padding={10}
       textAlign='right'
       verticalAlign='top'
@@ -48,20 +49,19 @@ row.propTypes = {
 
 export const TooltipInner = props => (
   <Table
-    background={props.theme.tooltip.listBackground}
-    boxShadow='1px 1px 1px hsla(0, 0%, 0%, 0.5)'
-    color={props.theme.tooltip.color}
+    background={props.theme.tooltipBackgroundFill}
+    boxShadow={`1px 1px 1px ${props.theme.tooltipBoxShadowFill}`}
+    color={props.theme.tooltipTextFill}
     fontFamily={props.theme.fontFamily}
-    fontSize={props.theme.fontSize}
+    fontSize={props.theme.tooltipFontSize}
     maxWidth={MAX_WIDTH}
   >
     {props.title ?
-      <TableRow
-        background={props.theme.tooltip.listBackground}
-      >
+      <TableRow>
         {props.showKeys ? <TableCell/> : null}
         <TableCell // Name
-          fontWeight='bold'
+          fontSize={props.theme.tooltipTitleFontSize}
+          fontWeight={props.theme.tooltipTitleFontWeight}
           padding={10}
           textAlign='left'
           verticalAlign='top'

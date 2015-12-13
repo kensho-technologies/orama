@@ -7,7 +7,8 @@ import {
   getTicks,
 } from '../getMethods'
 import {
-  AXIS_OFFSET,
+  AXIS_LABEL_OFFSET,
+  AXIS_TICK_OFFSET,
   BACKGROUND_OFFSET,
   MARGIN_RIGHT,
   SHOW_LABELS,
@@ -40,7 +41,7 @@ returns {size, plotRect}
 export const getTextWidth = (theme, string) => {
   const ctx = getCachedContext()
   ctx.save()
-  ctx.font = `${theme.fontSize}px ${theme.fontMono}`
+  ctx.font = `${theme.axisTickFontSize}px ${theme.axisTickFontFamily}`
   const width = ctx.measureText(string).width
   ctx.restore()
   return width
@@ -52,7 +53,7 @@ Uses a offscreen canvas for doing the measure and takes into consideration the t
 export const getMaxTextWidth = (theme, ticks) => {
   const ctx = getCachedContext()
   ctx.save()
-  ctx.font = `${theme.fontSize}px ${theme.fontMono}`
+  ctx.font = `${theme.axisTickFontSize}px ${theme.axisTickFontFamily}`
   const maxWidth = _.reduce(
     ticks,
     (acc, d) => _.max([
@@ -76,7 +77,7 @@ const getTopMargin = props => {
   if (yShowTicks === false || !y) return backgroundOffset
   return _.max([
     backgroundOffset,
-    theme.fontSize / 2,
+    theme.axisTickFontSize / 2,
   ])
 }
 const getBottomMargin = props => {
@@ -87,15 +88,15 @@ const getBottomMargin = props => {
     margin = {},
     xShowTicks = SHOW_TICKS,
     xShowLabel = SHOW_LABELS,
-    xTickOffset = AXIS_OFFSET(theme),
-    xLabelOffset = AXIS_OFFSET(theme),
+    xTickOffset = AXIS_TICK_OFFSET(theme),
+    xLabelOffset = AXIS_LABEL_OFFSET(theme),
   } = props
   if (!_.isUndefined(margin.bottom)) return margin.bottom + backgroundOffset
   if (!_.contains(groupedKeys, 'x')) return backgroundOffset
   return _.sum([
     backgroundOffset,
-    xShowTicks ? xTickOffset + theme.fontSize : 0,
-    xShowLabel ? xLabelOffset + theme.fontSize : 0,
+    xShowTicks ? xTickOffset + theme.axisTickFontSize : 0,
+    xShowLabel ? xLabelOffset + theme.axisLabelFontSize : 0,
   ])
 }
 const getLeftMargin = props => {
@@ -106,15 +107,15 @@ const getLeftMargin = props => {
     margin = {},
     yShowTicks = SHOW_TICKS,
     yShowLabel = SHOW_LABELS,
-    yTickOffset = AXIS_OFFSET(theme),
-    yLabelOffset = AXIS_OFFSET(theme),
+    yTickOffset = AXIS_TICK_OFFSET(theme),
+    yLabelOffset = AXIS_LABEL_OFFSET(theme),
   } = props
   if (!_.isUndefined(margin.left)) return margin.left + backgroundOffset
   if (!_.contains(groupedKeys, 'y')) return backgroundOffset
   if (!yShowTicks) {
     return _.sum([
       backgroundOffset,
-      yShowLabel ? yLabelOffset + theme.fontSize : 0,
+      yShowLabel ? yLabelOffset + theme.axisLabelFontSize : 0,
     ])
   }
   const yRange = props.yRange || getRange(props, 'y')
@@ -125,7 +126,7 @@ const getLeftMargin = props => {
     backgroundOffset,
     yMaxTickWidth,
     yShowTicks ? yTickOffset : 0,
-    yShowLabel ? yLabelOffset + 5 + theme.fontSize : 0,
+    yShowLabel ? yLabelOffset + 5 + theme.axisLabelFontSize : 0,
   ])
 }
 const getRightMargin = props => {

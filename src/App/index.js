@@ -26,6 +26,12 @@ TextBody.propTypes = {
   children: PropTypes.node,
   onUpdate: PropTypes.func,
 }
+const ChartMargin = props => (
+  <Block
+    margin={30}
+    {...props}
+  />
+)
 
 /**
  * Main wrapper for the application
@@ -33,24 +39,23 @@ TextBody.propTypes = {
 export const App = props => (
   <Main>
     <TextBody>
-      <Block margin={30}>
-        <Chart
+      <ChartMargin>
+        <Chart // scaterplot
           data={[props.appl, props.fb]}
           fill='Name'
           label='Name'
           pointsAlpha={0.3}
           radiusValue={4}
-          size={{width: 500, height: 400}}
+          size={{width: 500, height: 300}}
           tooltipExtraDimensions={['Date']}
           tooltipKeys={['x', 'y']}
           x='Open'
-          xZeroBased='true'
           y='Volume'
-          yZeroBased='true'
+          yType='log'
         />
-      </Block>
-      <Block margin={30}>
-        <Chart
+      </ChartMargin>
+      <ChartMargin>
+        <Chart // multi line chart
           data={[props.appl, props.fb]}
           label='Name'
           layers={[{
@@ -72,20 +77,9 @@ export const App = props => (
           xTickFormat={utcFormat('%Y')}
           y='Close'
         />
-      </Block>
-      <Block margin={30}>
-        <Chart
-          data={_.filter(props.appl, d => d.Date.getFullYear() > 2011)}
-          plot={plots.areas}
-          size={{width: 500, height: 300}}
-          x='Date'
-          xTickFormat={utcFormat('%b %y\'')}
-          y='High'
-          yZeroBased={true}
-        />
-      </Block>
-      <Block margin={30}>
-        <Chart
+      </ChartMargin>
+      <ChartMargin>
+        <Chart // multi area chart y0
           data={[
             _.filter(props.appl, d => d.Date.getFullYear() > 2011),
             _.filter(props.fb, d => d.Date.getFullYear() > 2011),
@@ -98,9 +92,9 @@ export const App = props => (
           y='High'
           y0='Low'
         />
-      </Block>
-      <Block margin={30}>
-        <Chart
+      </ChartMargin>
+      <ChartMargin>
+        <Chart // vertical bar chart
           data={[
             {Name: 'APPL', value: 50},
             {Name: 'FB', value: 150},
@@ -113,9 +107,9 @@ export const App = props => (
           y='value'
           yZeroBased={true}
         />
-      </Block>
-      <Block margin={30}>
-        <Chart
+      </ChartMargin>
+      <ChartMargin>
+        <Chart // horizontal bar chart
           backgroundOffset={1}
           data={[
             {Name: 'APPL', value: 50},
@@ -132,9 +126,9 @@ export const App = props => (
           y='Name'
           yShowGuides={false}
         />
-      </Block>
-      <Block margin={30}>
-        <Chart
+      </ChartMargin>
+      <ChartMargin>
+        <Chart // small multiline
           data={[
             [{Name: 1, value: 50},
             {Name: 2, value: 150},
@@ -156,9 +150,9 @@ export const App = props => (
           y='value'
           yZeroBased={true}
         />
-      </Block>
-      <Block margin={30}>
-        <Chart
+      </ChartMargin>
+      <ChartMargin>
+        <Chart // small area
           data={[
             {Name: 1, value: 50},
             {Name: 2, value: 150},
@@ -174,9 +168,9 @@ export const App = props => (
           y='value'
           yZeroBased={true}
         />
-      </Block>
-      <Block margin={30}>
-        <Chart
+      </ChartMargin>
+      <ChartMargin>
+        <Chart // ordinal line and bars
           backgroundOffset={1}
           data={[
             {Name: 'APPL', value: 50},
@@ -210,7 +204,7 @@ export const App = props => (
           y='value'
           yZeroBased={true}
         />
-      </Block>
+      </ChartMargin>
     </TextBody>
   </Main>
 )

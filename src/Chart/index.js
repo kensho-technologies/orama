@@ -16,7 +16,7 @@ import {getRenderLayers} from './getRenderLayers'
 
 import {Block} from 'react-display'
 import ChartRenderWrapper from '../ChartRenderWrapper'
-import ChartBackground from '../ChartBackground'
+import {ChartBackground} from '../ChartBackground'
 
 const transformProps = _.flow(
   addDimArrays,
@@ -38,6 +38,7 @@ export const Chart = props => {
   const renderLayers = getRenderLayers(transformedProps)
   return (
     <Block
+      background={props.theme.backgroundFill}
       position='relative'
     >
       <ChartBackground

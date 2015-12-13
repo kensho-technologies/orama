@@ -8,8 +8,8 @@ import {inset} from '../utils/rectUtils'
 
 import {Block} from 'react-display'
 import {CanvasRender} from '../CanvasRender'
-import BottomLabel from './BottomLabel'
-import LeftLabel from './LeftLabel'
+import {BottomLabel} from './BottomLabel'
+import {LeftLabel} from './LeftLabel'
 
 const BACKGROUND_OFFSET = 15
 
@@ -30,7 +30,7 @@ export const getBackground = props => {
     backgroundRect.width, backgroundRect.height
   )
   return {
-    fill: theme.axis.background,
+    fill: theme.plotBackgroundFill,
     path2D: backgroundPath,
     stroke: 'transparent',
     type: 'area',
@@ -62,7 +62,8 @@ export const getXGuides = (props, thick) => {
       return {
         path2D: linePath,
         type: 'line',
-        stroke: thick ? theme.axis.tickZeroStroke : theme.axis.tickStroke,
+        lineWidth: thick ? theme.guideZeroLineWidth : theme.guideLineWidth,
+        stroke: thick ? theme.guideZeroStroke : theme.guideStroke,
       }
     },
   )
@@ -93,7 +94,8 @@ export const getYGuides = (props, thick) => {
       return {
         path2D: linePath,
         type: 'line',
-        stroke: thick ? theme.axis.tickZeroStroke : theme.axis.tickStroke,
+        lineWidth: thick ? theme.guideZeroLineWidth : theme.guideLineWidth,
+        stroke: thick ? theme.guideZeroStroke : theme.guideStroke,
       }
     },
   )
@@ -102,7 +104,7 @@ export const getXText = props => {
   if (!_.contains(props.groupedKeys, 'x')) return undefined
   if (props.xShowTicks === false) return undefined
   const {theme} = props
-  const defaultOffset = theme.fontSize * (theme.lineHeight - 1)
+  const defaultOffset = theme.axisTickFontSize * (theme.lineHeight - 1)
   const {
     backgroundOffset = BACKGROUND_OFFSET,
     plotRect,
@@ -124,7 +126,8 @@ export const getXText = props => {
       ]),
       textBaseline: 'top',
       textAlign: 'center',
-      font: `${theme.fontSize}px ${theme.fontMono}`,
+      fill: theme.axisTickTextFill,
+      font: `${theme.axisTickFontSize}px ${theme.axisTickFontFamily}`,
     }),
   )
 }
@@ -132,7 +135,7 @@ export const getYText = props => {
   if (!_.contains(props.groupedKeys, 'y')) return undefined
   if (props.yShowTicks === false) return undefined
   const {theme} = props
-  const defaultOffset = theme.fontSize * (theme.lineHeight - 1)
+  const defaultOffset = theme.axisTickFontSize * (theme.lineHeight - 1)
   const {
     backgroundOffset = BACKGROUND_OFFSET,
     plotRect,
@@ -153,7 +156,7 @@ export const getYText = props => {
       y: yScale(d.value),
       textAlign: 'right',
       textBaseline: 'middle',
-      font: `${theme.fontSize}px ${theme.fontMono}`,
+      font: `${theme.axisTickFontSize}px ${theme.axisTickFontFamily}`,
     }),
   )
 }
@@ -184,7 +187,7 @@ export const getBackgroundRenderData = props => {
 /*
 Used inside </>
 */
-const ChartBackground = props => (
+export const ChartBackground = props => (
   <Block>
     <CanvasRender
       plotRect={props.plotRect}
@@ -225,5 +228,3 @@ ChartBackground.defaultProps = {
   xShowLabel: true,
   yShowLabel: true,
 }
-
-export default ChartBackground

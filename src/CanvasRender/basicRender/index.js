@@ -15,6 +15,7 @@ const getRenderObjects = props => {
 }
 
 export const basicRender = (props, ctx) => {
+  const {theme} = props
   ctx.save()
   clearAndClip(props, ctx)
   _.each(
@@ -22,18 +23,18 @@ export const basicRender = (props, ctx) => {
     d => {
       if (!d) return
       if (d.type === 'line') {
-        ctx.globalAlpha = d.strokeAlpha || d.alpha || 0.85
-        ctx.lineWidth = d.lineWidth || 2
-        ctx.strokeStyle = d.stroke || 'hsl(200,30%, 50%)'
+        ctx.globalAlpha = d.strokeAlpha || d.alpha || theme.plotAlpha
+        ctx.lineWidth = d.lineWidth || theme.plotLineWidth
+        ctx.strokeStyle = d.stroke || theme.plotFill
         ctx.stroke(d.path2D)
       } else if (d.type === 'area') {
-        ctx.globalAlpha = d.fillAlpha || d.alpha || 0.85
-        ctx.fillStyle = d.fill || 'hsl(200,30%, 50%)'
+        ctx.globalAlpha = d.fillAlpha || d.alpha || theme.plotAlpha
+        ctx.fillStyle = d.fill || theme.plotFill
         ctx.fill(d.path2D)
       } else if (d.type === 'text') {
         ctx.globalAlpha = d.alpha
-        ctx.font = d.font || '14px verdana'
-        ctx.fillStyle = d.fill || 'black'
+        ctx.font = d.font || `${theme.plotFontSize}px ${theme.plotFontFamily}`
+        ctx.fillStyle = d.fill || theme.textFill
         ctx.textAlign = d.textAlign || 'left'
         ctx.textBaseline = d.textBaseline || 'alphabetic'
         ctx.fillText(d.value, d.x, d.y)

@@ -5,7 +5,7 @@ import assert from 'assert'
 import React from 'react'
 import shallowRender from '@luiscarli/shallow-render'
 
-import BottomLabel from './'
+import {BottomLabel} from './'
 
 test('BottomLabel', () => {
   const component = shallowRender(<BottomLabel/>)

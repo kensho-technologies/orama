@@ -7,7 +7,8 @@ import shallowRender from '@luiscarli/shallow-render'
 import {DEFAULT_THEME as theme} from '../defaultTheme'
 import {PLOT_RECT} from '../Chart/defaults'
 
-import ChartBackground, {
+import {
+  ChartBackground,
   getBackground,
   getXGuides,
   getYGuides,
@@ -33,7 +34,7 @@ test('ChartBackground.getBackground', () => {
   )
   assert.deepEqual(
     background.fill,
-    theme.axis.background
+    theme.plotBackgroundFill
   )
 })
 test('ChartBackground.getXGuides', () => {
