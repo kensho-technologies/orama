@@ -10,7 +10,6 @@ import {
   AXIS_LABEL_OFFSET,
   AXIS_TICK_OFFSET,
   BACKGROUND_OFFSET,
-  MARGIN_RIGHT,
   SHOW_LABELS,
   SHOW_TICKS,
 } from '../defaults'
@@ -138,7 +137,7 @@ const getRightMargin = props => {
   } = props
   if (!_.isUndefined(margin.right)) return margin.right + backgroundOffset
   if (!x || !xShowTicks) return backgroundOffset
-  return MARGIN_RIGHT
+  return backgroundOffset
 }
 
 export const addPlotRect = props => {
