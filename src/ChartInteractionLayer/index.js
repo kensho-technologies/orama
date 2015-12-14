@@ -65,15 +65,17 @@ const ChartInteractionLayer = props => (
   <Block>
     <RenderAnnotation
       annotationData={props.annotationData}
+      height={props.height}
       onUpdate={handleRenderAnnotation.bind(null, props)}
-      size={props.size}
       theme={props.theme}
+      width={props.width}
     />
     <AnnotationEditorWrapper
       annotationData={props.annotationData}
+      height={props.height}
       onUpdate={handleAnnotationEditorWrapper.bind(null, props)}
       selectedIdx={props.annotationSelectedIdx}
-      size={props.size}
+      width={props.width}
     />
     <ContextMenuWrapper
       items={['Highlight Data', 'Add Label']}
@@ -87,11 +89,12 @@ ChartInteractionLayer.propTypes = {
   annotationData: PropTypes.array,
   annotationSelectedIdx: PropTypes.number, // state
   dataClicked: PropTypes.object,
+  height: PropTypes.number,
   lastMousePos: PropTypes.object,
   onUpdate: PropTypes.func,
   showDataMenu: PropTypes.bool,
-  size: PropTypes.object,
   theme: PropTypes.object,
+  width: PropTypes.number,
 }
 ChartInteractionLayer.defaultProps = {
   theme: DEFAULT_THEME,

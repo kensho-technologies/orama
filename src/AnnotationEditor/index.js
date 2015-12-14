@@ -3,7 +3,6 @@ import React, {PropTypes} from 'react'
 import {Block} from 'react-display'
 import {DEFAULT_THEME} from '../defaultTheme'
 import {stateHOC} from 'on-update'
-import {SIZE} from '../Chart/defaults'
 
 import ContentEditable from '../ContentEditable'
 import Draggable from '../Draggable'
@@ -17,10 +16,10 @@ const handleContentEditableUpdate = (props, childProps) => {
 const handleDraggableUpdate = (props, {deltaX, deltaY}) => {
   let x = props.x - deltaX
   if (x < 20) x = 20
-  if (x > props.size.width) x = props.size.width
+  if (x > props.width) x = props.width
   let y = props.y - deltaY
   if (y < 20) y = 20
-  if (y > props.size.height) y = props.size.height
+  if (y > props.height) y = props.height
   props.onUpdate({
     ...props,
     x,
@@ -83,16 +82,17 @@ const AnnotationEditor = props => (
 )
 
 AnnotationEditor.propTypes = {
+  height: PropTypes.number,
   onUpdate: PropTypes.func,
   size: PropTypes.object,
   text: PropTypes.string,
   textAlign: PropTypes.string,
   theme: PropTypes.object,
+  width: PropTypes.number,
   x: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 AnnotationEditor.defaultProps = {
-  size: SIZE,
   theme: DEFAULT_THEME,
 }
 

@@ -19,7 +19,8 @@ test('Chart/addPlotRect.getMaxTextWidth', () => {
 test('Chart/addPlotRect.addPlotRect', () => {
   const props = {
     backgroundOffset: 15,
-    size: {width: 500, height: 500},
+    width: 500,
+    height: 500,
     theme: DEFAULT_THEME,
     x: 'p2',
     y: 'p1',

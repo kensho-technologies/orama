@@ -4,6 +4,7 @@ import {it as test} from 'mocha'
 import assert from 'assert'
 import _ from 'lodash'
 import {DEFAULT_THEME} from '../defaultTheme'
+import {WIDTH, HEIGHT} from '../Chart/defaults'
 
 import {
   addDimArrays,
@@ -21,7 +22,8 @@ const data = [
 test('Chart.transformProps', () => {
   const props = {
     data,
-    size: {width: 500, height: 500},
+    width: WIDTH,
+    height: HEIGHT,
     theme: DEFAULT_THEME,
     x: 'p1',
     y: 'p2',
@@ -35,7 +37,7 @@ test('Chart.transformProps', () => {
     addTickCounts,
   )(props)
   assert.deepEqual(
-    _.omit(transformedProps, ['data', 'size', 'xArray', 'yArray', 'theme']),
+    _.omit(transformedProps, ['data', 'width', 'height', 'xArray', 'yArray', 'theme']),
     {
       groupedKeys: ['x', 'y'],
       localKeys: ['x', 'y'],

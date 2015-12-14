@@ -26,11 +26,11 @@ const RenderAnnotation = props => (
     fontFamily={props.theme.fontFamily}
     fontSize={props.theme.fontSize}
     fontWeight='bold'
-    height={props.size.height}
+    height={props.height}
     overflow='hidden'
     pointerEvents='none'
     position='absolute'
-    width={props.size.width}
+    width={props.width}
   >
     {mapIndexed((d, i) => (
       <Annotation
@@ -47,18 +47,13 @@ const RenderAnnotation = props => (
 
 RenderAnnotation.propTypes = {
   annotationData: PropTypes.array,
-  size: PropTypes.object.isRequired,
+  height: PropTypes.number,
   theme: PropTypes.object,
+  width: PropTypes.number,
 }
 RenderAnnotation.defaultProps = {
   annotationData: [],
   theme: DEFAULT_THEME,
 }
-Annotation.updateOnlyTypes = {
-  clickedIdx: PropTypes.number,
-}
-Annotation.canUpdate = [
-  'clickedIdx',
-]
 
 export default RenderAnnotation

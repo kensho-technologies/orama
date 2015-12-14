@@ -43,10 +43,10 @@ const AnnotationEditorWrapper = props => {
     <Block
       background='hsla(0, 0%, 25%, 0.2)'
       cursor='pointer'
-      height={props.size.height}
+      height={props.height}
       onMouseDown={handleClick.bind(null, props)}
       position='absolute'
-      width={props.size.width}
+      width={props.width}
       zIndex={999999}
     >
       <Block
@@ -57,9 +57,10 @@ const AnnotationEditorWrapper = props => {
         top={0}
       />
       <AnnotationEditor
+        height={props.height}
         onUpdate={handleAnnotationEditorUpdate.bind(null, props)}
-        size={props.size}
         text={annotation.text}
+        width={props.width}
         x={annotation.x}
         y={annotation.y}
       />
@@ -69,15 +70,13 @@ const AnnotationEditorWrapper = props => {
 
 AnnotationEditorWrapper.propTypes = {
   annotationData: PropTypes.array,
+  height: PropTypes.number,
   onUpdate: PropTypes.func,
   selectedIdx: PropTypes.number,
-  size: PropTypes.object.isRequired,
+  width: PropTypes.number,
 }
 AnnotationEditorWrapper.defaultProps = {
   annotationData: [],
 }
-AnnotationEditorWrapper.canUpdate = [
-  'selectedIdx', 'annotationData',
-]
 
 export default AnnotationEditorWrapper

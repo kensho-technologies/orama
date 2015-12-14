@@ -191,10 +191,11 @@ Used inside </>
 export const ChartBackground = props => (
   <Block>
     <CanvasRender
+      height={props.height}
       plotRect={props.plotRect}
       renderData={getBackgroundRenderData(props)}
-      size={props.size}
       theme={props.theme}
+      width={props.width}
     />
     {props.yShowLabel ?
       <LeftLabel
@@ -213,10 +214,11 @@ export const ChartBackground = props => (
   </Block>
 )
 ChartBackground.propTypes = {
+  height: PropTypes.number,
   onUpdate: PropTypes.func,
   plotRect: PropTypes.object,
-  size: PropTypes.object,
   theme: PropTypes.object,
+  width: PropTypes.number,
   x: PropTypes.string,
   xName: PropTypes.string,
   xShowLabel: PropTypes.bool,

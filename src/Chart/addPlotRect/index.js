@@ -145,14 +145,15 @@ export const addPlotRect = props => {
   const {
     backgroundOffset = BACKGROUND_OFFSET,
     groupedKeys,
-    size,
+    width,
+    height,
   } = props
 
   const top = getTopMargin(props)
   const bottom = getBottomMargin(props)
-  let partialPlotRect = rectUtils.marginInset({bottom, top}, size)
+  let partialPlotRect = rectUtils.marginInset({bottom, top}, {width, height})
   const left = getLeftMargin({...props, plotRect: partialPlotRect})
-  partialPlotRect = rectUtils.marginInset({bottom, top, left}, size)
+  partialPlotRect = rectUtils.marginInset({bottom, top, left}, {width, height})
   const right = getRightMargin({...props, plotRect: partialPlotRect})
 
   const margin = {
@@ -161,13 +162,14 @@ export const addPlotRect = props => {
     top,
     right,
   }
-  const newSize = _.clone(size)
-  const plotRect = rectUtils.marginInset(margin, size)
+  const newWidth = width
+  let newHeight = height
+  const plotRect = rectUtils.marginInset(margin, {width, height})
   if (!_.contains(groupedKeys, 'x')) {
     plotRect.width = 0
   }
   if (!_.contains(groupedKeys, 'y')) {
-    newSize.height -= plotRect.height
+    newHeight -= plotRect.height
     plotRect.height = 0
   }
   return {
@@ -175,6 +177,7 @@ export const addPlotRect = props => {
     backgroundOffset,
     margin,
     plotRect,
-    size: newSize,
+    width: newWidth,
+    height: newHeight,
   }
 }

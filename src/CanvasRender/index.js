@@ -1,6 +1,7 @@
 
 import React, {PropTypes} from 'react'
 import {DEFAULT_THEME} from '../defaultTheme'
+import {WIDTH, HEIGHT} from '../Chart/defaults'
 import {basicRender} from './basicRender'
 
 /**
@@ -10,16 +11,18 @@ import {basicRender} from './basicRender'
 export const CanvasRender = React.createClass({
   propTypes: {
     clip: PropTypes.bool,
+    height: PropTypes.number.isRequired,
     plotRect: PropTypes.object,
     render: PropTypes.func.isRequired,
     renderData: PropTypes.array,
     renderLayers: PropTypes.array,
-    size: PropTypes.object.isRequired,
+    width: PropTypes.number.isRequired,
   },
   getDefaultProps() {
     return {
       render: basicRender,
-      size: {width: 0, height: 0},
+      width: WIDTH,
+      height: HEIGHT,
       theme: DEFAULT_THEME,
     }
   },
@@ -30,7 +33,7 @@ export const CanvasRender = React.createClass({
     this.handleUpdate(this.props)
   },
   shouldComponentUpdate(nextProps) {
-    if (this.props.size !== nextProps.size) return true
+    if (this.props.width !== nextProps.width || this.props.height !== nextProps.height) return true
     return false
   },
   componentDidUpdate() {
@@ -54,15 +57,15 @@ export const CanvasRender = React.createClass({
   render() {
     return (
       <canvas
-        height={this.props.size.height * 2}
+        height={this.props.height * 2}
         ref={this.handleCanvasRef}
         style={{
           display: 'block',
-          height: this.props.size.height,
+          height: this.props.height,
           position: 'absolute',
-          width: this.props.size.width,
+          width: this.props.width,
         }}
-        width={this.props.size.width * 2}
+        width={this.props.width * 2}
       />
     )
   },

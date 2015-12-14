@@ -2,6 +2,7 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
 import {DEFAULT_THEME, getTheme} from '../defaultTheme'
+import {WIDTH, HEIGHT} from '../Chart/defaults'
 import {points} from './points'
 import {
   addDimArrays,
@@ -49,11 +50,13 @@ export const Chart = props => {
       />
       <ChartRenderWrapper
         annotationData={[]}
+        height={transformedProps.height}
         highlightData={[]}
         plotRect={transformedProps.plotRect}
         renderLayers={renderLayers}
         size={transformedProps.size}
         theme={transformedProps.theme}
+        width={transformedProps.width}
       />
     </Block>
   )
@@ -71,6 +74,7 @@ Chart.propTypes = {
 Chart.defaultProps = {
   backgroundOffset: BACKGROUND_OFFSET,
   theme: DEFAULT_THEME,
-  size: {width: 500, height: 500},
+  width: WIDTH,
+  height: HEIGHT,
   plot: points,
 }

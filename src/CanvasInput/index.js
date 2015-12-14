@@ -29,10 +29,11 @@ Get hovered and clicked data on renderData using a <canvas/> element
 */
 export const CanvasInput = React.createClass({
   propTypes: {
+    height: PropTypes.number,
     onUpdate: PropTypes.func.isRequired,
     renderLayers: PropTypes.array,
-    size: PropTypes.object.isRequired,
     theme: PropTypes.object,
+    width: PropTypes.number,
   },
   getDefaultProps() {
     return {
@@ -79,8 +80,7 @@ export const CanvasInput = React.createClass({
     return (
       <div>
         <canvas
-          // onClick={evt => handleClick(props, evt)}
-          height={props.size.height}
+          height={props.height}
           onMouseLeave={this.handleMouseLeave}
           onMouseMove={this.handleMouseMove}
           ref={this.handleCanvasRef}
@@ -90,7 +90,7 @@ export const CanvasInput = React.createClass({
             cursor: 'pointer',
             userSelect: 'none',
           }}
-          width={props.size.width}
+          width={props.width}
         />
         {state.mouse && state.hoverData ?
           <TooltipWrapper
