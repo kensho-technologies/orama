@@ -47,7 +47,6 @@ export const App = props => (
           label='Name'
           pointsAlpha={0.3}
           radiusValue={2}
-          theme={blackTheme}
           tooltipExtraDimensions={['Date']}
           tooltipKeys={['x', 'y']}
           x='Open'
