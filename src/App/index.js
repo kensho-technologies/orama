@@ -28,7 +28,7 @@ TextBody.propTypes = {
 }
 const ChartMargin = props => (
   <Block
-    margin={30}
+    padding={30}
     {...props}
   />
 )
@@ -43,10 +43,11 @@ export const App = props => (
         <Chart // scaterplot
           data={[props.appl, props.fb]}
           fill='Name'
+          height={300}
           label='Name'
           pointsAlpha={0.3}
-          radiusValue={4}
-          size={{width: 500, height: 300}}
+          radiusValue={2}
+          theme={blackTheme}
           tooltipExtraDimensions={['Date']}
           tooltipKeys={['x', 'y']}
           x='Open'
@@ -57,6 +58,7 @@ export const App = props => (
       <ChartMargin>
         <Chart // multi line chart
           data={[props.appl, props.fb]}
+          height={300}
           label='Name'
           layers={[{
             data: [
@@ -70,8 +72,6 @@ export const App = props => (
             radiusValue: 3,
           }]}
           plot={plots.lines}
-          size={{width: 500, height: 300}}
-          stroke='Name'
           tooltipKeys={['x', 'y']}
           x='Date'
           xTickFormat={utcFormat('%Y')}
@@ -85,8 +85,8 @@ export const App = props => (
             _.filter(props.fb, d => d.Date.getFullYear() > 2011),
           ]}
           fill='Name'
+          height={300}
           plot={plots.areas}
-          size={{width: 500, height: 300}}
           x='Date'
           xTickFormat={utcFormat('%b %y\'')}
           y='High'
@@ -100,8 +100,8 @@ export const App = props => (
             {Name: 'FB', value: 150},
             {Name: 'GOOGL', value: 10},
           ]}
+          height={300}
           plot={plots.bars}
-          size={{width: 500, height: 300}}
           x='Name'
           xShowGuides={false}
           y='value'
@@ -119,8 +119,8 @@ export const App = props => (
             {Name: 'FB2', value: 100},
             {Name: 'GOOGL2', value: 0},
           ]}
+          height={150}
           plot={plots.bars}
-          size={{width: 500, height: 150}}
           x='value'
           xZeroBased={true}
           y='Name'
@@ -143,8 +143,8 @@ export const App = props => (
             {Name: 5, value: 150},
             {Name: 6, value: 10}],
           ]}
+          height={300}
           plot={plots.lines}
-          size={{width: 500, height: 300}}
           x='Name'
           xShowGuides={false}
           y='value'
@@ -161,8 +161,8 @@ export const App = props => (
             {Name: 5, value: 100},
             {Name: 6, value: 0},
           ]}
+          height={300}
           plot={plots.areas}
-          size={{width: 500, height: 300}}
           x='Name'
           xShowGuides={false}
           y='value'
@@ -180,6 +180,7 @@ export const App = props => (
             {Name: 'FB2', value: 100},
             {Name: 'GOOGL2', value: 0},
           ]}
+          height={300}
           label='Name'
           layers={[{
             data: [
@@ -196,7 +197,6 @@ export const App = props => (
             strokeValue: 'red',
           }]}
           plot={plots.bars}
-          size={{width: 500, height: 300}}
           tooltipKeys={['y']}
           tooltipShowKeys={false}
           x='Name'
