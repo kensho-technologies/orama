@@ -1,15 +1,16 @@
 
-import {BACKGROUND_OFFSET, SIZE} from '../../Chart/defaults'
+import {BACKGROUND_OFFSET} from '../../Chart/defaults'
 
 export const clearAndClip = (props, ctx) => {
   const {
-    size = SIZE,
+    width,
+    height,
     backgroundOffset = BACKGROUND_OFFSET,
   } = props
   ctx.clearRect(
     0, 0,
-    size.width,
-    size.height
+    width,
+    height
   )
   if (props.plotRect && props.clip) {
     ctx.beginPath()
