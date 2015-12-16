@@ -56,6 +56,10 @@ export const plotValue = (
   if (value) return value
   if (!scale) return defaultValue
   const mappedValue = scale(_.get(d, accessor))
-  if (checkUndefined(mappedValue)) return undefinedValue
+  if (checkUndefined(mappedValue)) {
+    const mappedValue2 = scale(_.get(d, key))
+    if (!checkUndefined(mappedValue2)) return mappedValue2
+    return undefinedValue
+  }
   return mappedValue
 }
