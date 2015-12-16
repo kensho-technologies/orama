@@ -29,10 +29,10 @@ export const DEFAULT_THEME = {
   tooltipBoxShadowFill: 'hsla(0, 0%, 0%, 0.5)',
   tooltipKeyBorderStroke: 'hsl(0, 0%, 40%)',
 
+  plotFontSize: 12,
   plotFill: 'hsl(200,30%, 50%)',
   plotLineWidth: 2,
   plotAlpha: 0.85,
-  plotFontFamily: 'verdana',
 
   plotLinearRangeFill: ['#edf8b1', '#2c7fb8'],
   plotOrdinalRangeFill: ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3', '#a6d854', '#ffd92f', '#e5c494', '#b3b3b3'],
