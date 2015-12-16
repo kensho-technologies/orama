@@ -95,12 +95,14 @@ export const getArea = (props, data) => {
   }
   path2D.closePath()
   const fill = plotValue(props, _.first(data), 'fill')
+  const stroke = plotValue(props, _.first(data), 'fill')
   const alpha = plotValue(props, _.first(data), 'alpha')
   return {
     hoverAlpha: props.hoverAlpha || 0.25,
     alpha,
     data,
     fill,
+    stroke,
     hoverSolver,
     path2D,
     type: 'area',
