@@ -1,21 +1,23 @@
 
-import R from 'ramda'
+import {each} from 'lodash'
 
 export function generateSrc(clbck, node) {
   const width = node.scrollWidth
   const height = node.scrollHeight
   const cloned = node.cloneNode(true)
   const canvasNodes = node.querySelectorAll('canvas')
-  const eachIndexed = R.addIndex(R.map)
-  eachIndexed((cloneCanvas, idx) => {
-    const canvas = canvasNodes[idx]
-    const img = document.createElement('img')
-    img.src = canvas.toDataURL('image/png')
-    img.setAttribute('style', canvas.getAttribute('style'))
-    img.setAttribute('width', canvas.getAttribute('width') + 'px')
-    img.setAttribute('height', canvas.getAttribute('height') + 'px')
-    cloneCanvas.parentNode.replaceChild(img, cloneCanvas)
-  }, cloned.querySelectorAll('canvas'))
+  each(
+    cloned.querySelectorAll('canvas'),
+    (cloneCanvas, idx) => {
+      const canvas = canvasNodes[idx]
+      const img = document.createElement('img')
+      img.src = canvas.toDataURL('image/png')
+      img.setAttribute('style', canvas.getAttribute('style'))
+      img.setAttribute('width', canvas.getAttribute('width') + 'px')
+      img.setAttribute('height', canvas.getAttribute('height') + 'px')
+      cloneCanvas.parentNode.replaceChild(img, cloneCanvas)
+    }
+  )
   const canvas = document.createElement('canvas')
   canvas.width = width
   canvas.height = height
