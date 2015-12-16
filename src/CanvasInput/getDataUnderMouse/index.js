@@ -61,7 +61,7 @@ export const getDataUnderMouse = (props, evt, canvasNode) => {
     x: evt.clientX - canvasRect.left,
     y: evt.clientY - canvasRect.top,
   }
-  ctx.lineWidth = 4
+  ctx.lineWidth = 10
   const inPathData = findInRenderLayers({
     ctx, localMouse, renderLayers, findFunc: findFirstPass,
   })
