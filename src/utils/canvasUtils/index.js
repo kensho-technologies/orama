@@ -32,6 +32,7 @@ export const ctxMock = {
 }
 export const canvasMock = {
   getContext: () => ctxMock,
+  getBoundingClientRect: () => ({left: 0, top: 0, width: 500, height: 500}),
 }
 let cachedCtx
 /*

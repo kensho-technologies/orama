@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-const findFirstPass = (ctx, localMouse, renderData) => (
+export const findFirstPass = (ctx, localMouse, renderData) => (
   _.findLast(
     renderData,
     d => {
@@ -13,7 +13,7 @@ const findFirstPass = (ctx, localMouse, renderData) => (
     }
   )
 )
-const findSecondPass = (ctx, localMouse, renderData) => (
+export const findSecondPass = (ctx, localMouse, renderData) => (
   _.findLast(
     renderData,
     d => {
@@ -25,7 +25,7 @@ const findSecondPass = (ctx, localMouse, renderData) => (
     }
   )
 )
-const findInRenderLayers = ({ctx, localMouse, renderLayers, findFunc}) => {
+export const findInRenderLayers = ({ctx, localMouse, renderLayers, findFunc}) => {
   let renderDatum
   const layer = _.findLast(
     renderLayers,
