@@ -21,6 +21,9 @@
     "type": "git",
     "url": "https://github.com/kensho/orama"
   },
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org/"
+  },
   "author": "Luis Carli",
   "license": "MIT",
   "devDependencies": {
