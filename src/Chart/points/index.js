@@ -10,7 +10,7 @@ it handles `x`, `y`, 'radius' and 'fill'.
 
 @calling logic
 points{
-  pointsDataMap(retrievePoinstData){}
+  pointsDataMap(retrievePointsData){}
 }
 */
 
@@ -45,7 +45,7 @@ export const pointsDataMap = (props, datum) => {
 If array of arrays (grouped data), flatten before sending to `pointsDataMap`.
 There's no reason for the points plot to deal with grouped data
 */
-const retrievePoinstData = data => {
+const retrievePointsData = data => {
   if (_.isArray(_.first(data))) return _.flatten(data)
   return data
 }
@@ -55,7 +55,7 @@ Main entry point, if there's only `xMap` or `yMap` it will output an one dimensi
 export const points = props => {
   if (!props.xScale && !props.yScale) return undefined
   return _.map(
-    retrievePoinstData(props.data),
+    retrievePointsData(props.data),
     datum => pointsDataMap(props, datum),
   )
 }
