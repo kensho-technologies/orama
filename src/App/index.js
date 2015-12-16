@@ -59,17 +59,31 @@ export const App = props => (
           data={[props.appl, props.fb]}
           height={300}
           label='Name'
-          layers={[{
-            data: [
-              {Date: new Date(2010, 5), Close: 80},
-              {Date: new Date(2010, 6), Close: 90},
-              {Date: new Date(2010, 7), Close: 60},
-            ],
-            x: 'Date',
-            y: 'Close',
-            plot: plots.points,
-            radiusValue: 3,
-          }]}
+          layers={[
+            {
+              data: [
+                {Date: new Date(2010, 5), Close: 80},
+                {Date: new Date(2010, 6), Close: 90},
+                {Date: new Date(2010, 7), Close: 60},
+              ],
+              x: 'Date',
+              y: 'Close',
+              plot: plots.points,
+              radiusValue: 3,
+            },
+            {
+              data: [
+                {
+                  value: 'This may be important', Date: new Date(2004, 1),
+                  Close: 150, textAlign: 'center',
+                },
+              ],
+              x: 'Date',
+              y: 'Close',
+              label: 'value',
+              plot: plots.texts,
+            },
+          ]}
           plot={plots.lines}
           tooltipKeys={['x', 'y']}
           x='Date'
