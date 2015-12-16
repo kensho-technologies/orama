@@ -22,7 +22,7 @@ export const extractTooltipData = (props, hoverData) => {
     (acc, key) => {
       const keyAlias = props[`${key}Alias`] || key
       const name = props[`${key}Name`] || props[key]
-      const formatter = props[`${key}TooltipFormatter`]
+      const formatter = props[`${key}TooltipFormat`]
       let value = _.get(datum, props[key])
       if (formatter) {
         value = formatter(value)
@@ -51,7 +51,7 @@ export const extractTooltipData = (props, hoverData) => {
     _.sortBy(tooltipValues, 'order'),
     values => _.omit(values, 'order'),
   )
-  const title = datum[props[`label`]]
+  const title = props.labelValue || datum[props[`label`]]
   return {
     title,
     values: orderedTooltipValues.concat(extraTooltipValues),
