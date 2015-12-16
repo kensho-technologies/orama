@@ -126,7 +126,6 @@ export const getXText = props => {
       ]),
       textBaseline: 'top',
       textAlign: 'center',
-      fill: theme.textFill,
       font: `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`,
     }),
   )

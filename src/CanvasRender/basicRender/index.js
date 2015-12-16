@@ -33,7 +33,7 @@ export const basicRender = (props, ctx) => {
         ctx.fill(d.path2D)
       } else if (d.type === 'text') {
         ctx.globalAlpha = d.alpha
-        ctx.font = d.font || `${theme.plotFontSize}px ${theme.plotFontFamily}`
+        ctx.font = d.font || `${theme.plotFontSize}px ${theme.fontFamilyMono}`
         ctx.fillStyle = d.fill || theme.textFill
         ctx.textAlign = d.textAlign || 'left'
         ctx.textBaseline = d.textBaseline || 'alphabetic'
