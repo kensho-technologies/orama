@@ -1,6 +1,27 @@
 
 import React, {PropTypes} from 'react'
 
+/*
+The <Draggable/> component makes its child 'draggable' by ovveriden its mouseDown, it does not wrap the child in another <div/> or <span/>.
+The onUpdate callback is called with `{deltaX, deltaY}` position from the last call.
+
+@example
+const handleDraggableUpdate = (props, childProps) => {
+  props.onState({
+    x: props.x - childProps.deltaX,
+    y: props.y - childProps.deltaY,
+  })
+}
+const slider = props => (
+  <Block>
+    <Draggable
+      onUpdate={childProps => handleDraggableUpdate(props, childProps)}
+    >
+      <Block padding={30}/>
+    </Draggable>
+  </Block>
+)
+*/
 export default React.createClass({
   displayName: 'Draggable',
   propTypes: {
