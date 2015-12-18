@@ -1,38 +1,23 @@
 
-# Components basic structure
+## Chart
 
 ```jsx
-<App>
-  <Vis>
-    <DataList/>
-    <DropUI/>
-    <Chart/>
-  </Vis>
-</App>
-```
-
-## ChartRender
-
-```jsx
-<ChartRender>
-  <CanvasRender/>
-  <CanvasRenderHighlight/>
-  <CanvasRenderHover/>
-  <CanvasInput/>
-  <RenderAnnotation>
-    <Annotation/>
-  </RenderAnnotation>
-  <AnnotationEditorWrapper/>
-</ChartRender>
-```
-
-## AnnotationEditor
-
-```jsx
-<AnnotationEditorWrapper>
-  <AnnotationEditor>
-    <Draggable/>
-    <ContentEditable/>
-  </AnnotationEditor>
-</AnnotationEditorWrapper>
+<Chart>
+  <ChartBackground/>
+  <ChartRenderWrapper>
+    <ChartRender>
+      <CanvasRender/>
+      <CanvasInput>
+        <TooltipWrapper>
+          <Tooltip/>
+        </TooltipWrapper>
+      </CanvasInput>
+    </ChartRender>
+    <ChartInteractionLayer>
+      <RenderAnnotation/>
+      <AnnotationEditorWrapper/>
+      <ContextMenuWrapper/>
+    </ChartInteractionLayer>
+  </ChartRenderWrapper>
+<Chart/>
 ```
