@@ -2,9 +2,9 @@ import React from 'react'
 import R from 'ramda'
 
 import {Flex} from 'react-display'
-import {Chart} from '../Chart'
+import {Chart} from '../../Chart'
 
-import {DEFAULT_THEME} from '../defaultTheme'
+import {DEFAULT_THEME} from '../../defaultTheme'
 
 /**
  * Return one or multiple Chart components according to the props

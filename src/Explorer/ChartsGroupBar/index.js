@@ -2,7 +2,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import {generateSrc, openImg} from '../utils/imageRender'
+import {generateSrc, openImg} from '../../utils/imageRender'
 
 import {Flex} from 'react-display'
 

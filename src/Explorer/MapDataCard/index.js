@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 import R from 'ramda'
 import {DragSource, DropTarget} from 'react-dnd'
 
-import defaulStyleVars from '../defaultTheme'
+import defaulStyleVars from '../../defaultTheme'
 
 export function getStyles() {
   return {

@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 import {autoprefix} from 'react-display'
-import {DEFAULT_THEME} from '../defaultTheme'
+import {DEFAULT_THEME} from '../../defaultTheme'
 import {DragSource} from 'react-dnd'
 
 const cardSource = {

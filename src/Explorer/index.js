@@ -2,16 +2,16 @@
 import React, {PropTypes} from 'react'
 import {Flex} from 'react-display'
 
-import ChartsGroupBar from '../ChartsGroupBar'
-import DataList from '../DataList'
-import MapData from '../MapData'
+import ChartsGroupBar from '../Explorer/ChartsGroupBar'
+import DataList from '../Explorer/DataList'
+import MapData from '../Explorer/MapData'
 import {Chart} from '../Chart'
 
 /**
  * Container component for the `DataList` and map data UI.
  */
 export default React.createClass({
-  displayName: 'Vis',
+  displayName: 'Explorer',
   propTypes: {
     data: PropTypes.array,
     theme: PropTypes.object,
