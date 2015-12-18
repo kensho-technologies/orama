@@ -4,7 +4,6 @@ import R from 'ramda'
 import {DragSource, DropTarget} from 'react-dnd'
 
 import defaulStyleVars from '../defaultTheme'
-import Histogram from '../Histogram'
 
 export function getStyles() {
   return {
@@ -116,11 +115,6 @@ export const MapDataCard = React.createClass({
             x
           </div>
         </div>
-        <Histogram
-          data={this.props.data}
-          size={{width: 180, height: 40}}
-          xProp={this.props.prop}
-        />
       </div>
     ))
   },
