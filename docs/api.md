@@ -27,7 +27,7 @@ Default possible keys are `x`, `x0`, `x1`, `x2`, `y`, `y0`, `y1`, `y2`, `radius`
 
 **plot:** `function`  
 Defines the plot function to be used to generate the marks.  
-Orama come with the following functions: `points`, `lines`, `areas`, `bars`. Which can be found at `orama/lib/Chart/plots`.  
+Orama come with the following functions: `points`, `lines`, `areas`, `bars`, `guides` and `ranges`. Which can be found at `orama/lib/Chart/plots`.  
 Defaults to `points`
 
 **[\`${key}Value\`]:** `string | number`  

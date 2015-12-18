@@ -142,37 +142,45 @@ export const App = props => (
       </ChartMargin>
       <ChartMargin>
         <Chart // small multiline
-          data={[
-            [{Name: 1, value: 50},
-            {Name: 2, value: 150},
-            {Name: 3, value: 10},
-            {Name: 4, value: 80},
-            {Name: 5, value: 100},
-            {Name: 6, value: 0}],
-            [{Name: 1, value: 32},
-            {Name: 2, value: 160},
-            {Name: 3, value: 20},
-            {Name: 4, value: 40},
-            {Name: 5, value: 150},
-            {Name: 6, value: 10}],
-          ]}
           height={300}
           layers={[
+            {
+              data: [{x1: 4, x2: 5.2}, {y1: 125, y2: 100}],
+              tooltipExtraDimensions: ['x1', 'x2', 'y1', 'y2'],
+              tooltipShowKeys: false,
+              fillValue: 'hsl(0, 0%, 93%)',
+              plot: plots.ranges,
+            },
             {
               data: [{x: 3.5}, {y: 125}],
               tooltipExtraDimensions: ['x', 'y'],
               tooltipShowKeys: false,
-              lineDashValue: [],
               strokeValue: 'red',
               plot: plots.guides,
             },
+            {
+              data: [
+                [{Name: 1, value: 50},
+                {Name: 2, value: 150},
+                {Name: 3, value: 10},
+                {Name: 4, value: 80},
+                {Name: 5, value: 100},
+                {Name: 6, value: 0}],
+                [{Name: 1, value: 32},
+                {Name: 2, value: 160},
+                {Name: 3, value: 20},
+                {Name: 4, value: 40},
+                {Name: 5, value: 150},
+                {Name: 6, value: 10}],
+              ],
+              lineDashValue: [8],
+              plot: plots.lines,
+              x: 'Name',
+              xShowGuides: false,
+              y: 'value',
+              yZeroBased: true,
+            },
           ]}
-          lineDashValue={[8]}
-          plot={plots.lines}
-          x='Name'
-          xShowGuides={false}
-          y='value'
-          yZeroBased={true}
         />
       </ChartMargin>
       <ChartMargin>
