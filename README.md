@@ -10,4 +10,5 @@
 
 **More Information**
 
+- [API](/docs/api.md)
 - [Development Guide](/docs/development.md)
