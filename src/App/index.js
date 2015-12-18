@@ -184,6 +184,23 @@ export const App = props => (
         />
       </ChartMargin>
       <ChartMargin>
+        <Chart // vertical bar chart
+          data={[
+            {x1: -10, x2: -5, value: 50},
+            {x1: -5, x2: 0, value: 150},
+            {x1: 0, x2: 5, value: 100},
+            {x1: 5, x2: 10, value: 10},
+          ]}
+          height={300}
+          plot={plots.bars}
+          x1='x1'
+          x2='x2'
+          xShowGuides={false}
+          y='value'
+          yZeroBased={true}
+        />
+      </ChartMargin>
+      <ChartMargin>
         <Chart // small area
           data={[
             {Name: 1, value: 50},

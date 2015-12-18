@@ -1,11 +1,11 @@
 
-import {map, flatten} from 'lodash'
+import {map, flatten, isNumber} from 'lodash'
 import {getMinX, getMaxX, getMinY, getMaxY} from '../../utils/rectUtils'
 import {getPath2D} from '../../utils/path2DUtils'
 import {plotValue} from '../../plots/plotValue'
 import {BACKGROUND_OFFSET} from '../../Chart/defaults'
 
-const guidesRenderMap = (props, datum) => {
+const getGuideRenderData = (props, datum) => {
   const {
     backgroundOffset = BACKGROUND_OFFSET,
   } = props
@@ -16,10 +16,10 @@ const guidesRenderMap = (props, datum) => {
   const strokeWidth = plotValue(props, datum, 'strokeWidth')
   const lineDash = plotValue(props, datum, 'lineDash')
   const alpha = plotValue(props, datum, 'alpha')
-  if (x) {
+  if (isNumber(x)) {
     path2D.moveTo(x, getMinY(props.plotRect) - backgroundOffset)
     path2D.lineTo(x, getMaxY(props.plotRect) + backgroundOffset)
-  } else if (y) {
+  } else if (isNumber(y)) {
     path2D.moveTo(getMinX(props.plotRect) - backgroundOffset, y)
     path2D.lineTo(getMaxX(props.plotRect) + backgroundOffset, y)
   }
@@ -39,6 +39,6 @@ export const guides = props => {
   if (!props.xScale && !props.yScale) return undefined
   return map(
     flatten(props.data),
-    datum => guidesRenderMap(props, datum),
+    datum => getGuideRenderData(props, datum),
   )
 }

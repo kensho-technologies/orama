@@ -16,13 +16,13 @@ export const hoverRender = (props, ctx) => {
     d => {
       if (!d) return
       if (d.type === 'line') {
-        ctx.globalAlpha = d.hoverStrokeAlpha || d.hoverAlpha || 0.5
-        ctx.lineWidth = d.hoverLineWidth || 2
-        ctx.strokeStyle = d.hoverStroke || theme.textFill
+        ctx.globalAlpha = props.hoverAlpha || d.hoverAlpha || 0.5
+        ctx.lineWidth = props.hoverLineWidth || d.hoverLineWidth || theme.plotLineWidth
+        ctx.strokeStyle = props.hoverStroke || d.hoverStroke || theme.textFill
         ctx.stroke(d.path2D)
       } else if (d.type === 'area') {
-        ctx.globalAlpha = d.hoverStrokeAlpha || d.hoverAlpha || 0.4
-        ctx.fillStyle = d.hoverFill || theme.textFill
+        ctx.globalAlpha = props.hoverAlpha || d.hoverAlpha || 0.4
+        ctx.fillStyle = props.hoverFill || d.hoverFill || theme.textFill
         ctx.fill(d.path2D)
       }
     }

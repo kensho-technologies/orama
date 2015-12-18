@@ -4,7 +4,7 @@ import {getPath2D} from '../../utils/path2DUtils'
 import {plotValue} from '../../plots/plotValue'
 import {BACKGROUND_OFFSET} from '../../Chart/defaults'
 
-const rangesRenderMap = (props, datum) => {
+const rangesRender = (props, datum) => {
   const {
     backgroundOffset = BACKGROUND_OFFSET,
     plotRect,
@@ -40,6 +40,6 @@ export const ranges = props => {
   if (!props.xScale && !props.yScale) return undefined
   return map(
     flatten(props.data),
-    datum => rangesRenderMap(props, datum),
+    datum => rangesRender(props, datum),
   )
 }
