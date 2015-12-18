@@ -15,7 +15,6 @@ test('Chart.points', () => {
     renderData[0],
     {
       ...renderData[0],
-      alpha: 1,
       type: 'area',
     }
   )
@@ -29,7 +28,6 @@ test('Chart.points missing yMap', () => {
     renderData[0],
     {
       ...renderData[0],
-      alpha: 1,
       type: 'area',
     }
   )
@@ -44,7 +42,6 @@ test('Chart.points grouped data', () => {
     renderData[0],
     {
       ...renderData[0],
-      alpha: 1,
       type: 'area',
     }
   )

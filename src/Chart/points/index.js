@@ -28,10 +28,11 @@ export const pointsDataMap = (props, datum) => {
   )
   const r = plotValue(props, datum, 'radius', 5)
   const fill = plotValue(props, datum, 'fill')
+  const alpha = plotValue(props, datum, 'alpha')
   path2D.arc(x, y, r, 0, 2 * Math.PI)
   hoverPath2D.arc(x, y, r + 8, 0, 2 * Math.PI)
   const renderDatum = {
-    alpha: _.isUndefined(props.pointsAlpha) ? 1 : props.pointsAlpha,
+    alpha,
     hoverAlpha: props.hoverAlpha || 0.75,
     data: datum,
     fill,
