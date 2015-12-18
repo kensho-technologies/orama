@@ -41,11 +41,11 @@ export const App = props => (
     <TextBody>
       <ChartMargin>
         <Chart // scaterplot
+          alphaValue={0.3}
           data={[props.appl, props.fb]}
           fill='Name'
           height={300}
           label='Name'
-          pointsAlpha={0.3}
           radiusValue={2}
           tooltipExtraDimensions={['Date']}
           tooltipKeys={['x', 'y']}
@@ -74,7 +74,7 @@ export const App = props => (
             {
               data: [
                 {
-                  value: 'This may be important', Date: new Date(2004, 1),
+                  value: 'Text Plot', Date: new Date(2004, 1),
                   Close: 150, textAlign: 'center',
                 },
               ],
@@ -157,6 +157,7 @@ export const App = props => (
             {Name: 6, value: 10}],
           ]}
           height={300}
+          lineDashValue={[8]}
           plot={plots.lines}
           x='Name'
           xShowGuides={false}
