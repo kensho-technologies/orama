@@ -46,6 +46,14 @@ export function inset(value, rectInput) {
   }
 }
 
+export function getMinX(rectInput) {
+  return rectInput.x
+}
+
+export function getMinY(rectInput) {
+  return rectInput.y
+}
+
 /**
  * Get the maximum `x` of a `Rect`
  * @memberOf  /utils/rectUtils
