@@ -153,11 +153,3 @@ export function getTicks(props, key) {
     )
   }
 }
-export function getMap(props, key) {
-  if (props[`${key}Map`]) return props[`${key}Map`]
-  const {
-    [`${key}Scale`]: scale,
-    [key]: accessor,
-  } = props
-  return obj => scale(_.get(obj, accessor))
-}

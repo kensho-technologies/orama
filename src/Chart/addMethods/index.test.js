@@ -99,21 +99,3 @@ test('Chart/addMethods.addScales', () => {
   assert(transformedProps.yScale)
   assert(transformedProps.fillScale)
 })
-test('Chart/addMethods.addMaps', () => {
-  const props = {
-    groupedKeys: ['x', 'y'],
-    x: 'p1',
-    xScale: d => d + 1,
-    y: 'p2',
-    yScale: d => d * 2,
-  }
-  const transformedProps = methods.addMaps(props)
-  assert.deepEqual(
-    transformedProps.xMap({p1: 0}),
-    1
-  )
-  assert.deepEqual(
-    transformedProps.yMap({p2: 2}),
-    4
-  )
-})

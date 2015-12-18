@@ -4,6 +4,7 @@ export const ACCESSORS_NAMES = [
   'y', 'y0', 'y1', 'y2',
   'radius',
   'fill', 'stroke',
+  'alpha',
   'lineWidth',
 ]
 export const ACCESSORS_GROUPS = {
