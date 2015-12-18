@@ -157,6 +157,16 @@ export const App = props => (
             {Name: 6, value: 10}],
           ]}
           height={300}
+          layers={[
+            {
+              data: [{x: 3.5}, {y: 125}],
+              tooltipExtraDimensions: ['x', 'y'],
+              tooltipShowKeys: false,
+              lineDashValue: [],
+              strokeValue: 'red',
+              plot: plots.guides,
+            },
+          ]}
           lineDashValue={[8]}
           plot={plots.lines}
           x='Name'
