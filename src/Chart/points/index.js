@@ -1,5 +1,5 @@
 
-import _ from 'lodash'
+import {map, flatten} from 'lodash'
 import {getPath2D} from '../../utils/path2DUtils'
 import {getMidX, getMidY} from '../../utils/rectUtils'
 import {plotValue} from '../plotValue'
@@ -42,21 +42,14 @@ export const pointsDataMap = (props, datum) => {
   }
   return renderDatum
 }
-/*
-If array of arrays (grouped data), flatten before sending to `pointsDataMap`.
-There's no reason for the points plot to deal with grouped data
-*/
-const retrievePointsData = data => {
-  if (_.isArray(_.first(data))) return _.flatten(data)
-  return data
-}
+
 /*
 Main entry point, if there's only `xMap` or `yMap` it will output an one dimension plot.
 */
 export const points = props => {
   if (!props.xScale && !props.yScale) return undefined
-  return _.map(
-    retrievePointsData(props.data),
+  return map(
+    flatten(props.data),
     datum => pointsDataMap(props, datum),
   )
 }
