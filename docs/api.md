@@ -16,7 +16,7 @@ The input data for the Chart. Array of array of objects denote grouped data, for
 
 **[key]:** `string` *required*  
 Data accessor for a dimension named `key`, which can be any dimension recognized by the plot functions and specified on the `accessorNames`.  
-Eg. `x`, `x0`, `x1`, `x2`, `y`, `y0`, `y1`, `y2`, `radius`, `fill`, `stroke`, `lineWidth`, `alpha`, `label`
+Default possible keys are `x`, `x0`, `x1`, `x2`, `y`, `y0`, `y1`, `y2`, `radius`, `fill`, `stroke`, `lineWidth`, `alpha`, `label`
 ```jsx
 <Chart
   data={[{p1: 10, p2: 20}]}
@@ -26,7 +26,7 @@ Eg. `x`, `x0`, `x1`, `x2`, `y`, `y0`, `y1`, `y2`, `radius`, `fill`, `stroke`, `l
 ```
 
 **plot:** `function`  
-Defines the plot function to be used to generate the marks.
+Defines the plot function to be used to generate the marks.  
 Orama come with the following functions: `points`, `lines`, `areas`, `bars`. Which can be found at `orama/lib/Chart/plots`.  
 Defaults to `points`
 
