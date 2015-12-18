@@ -19,9 +19,6 @@ $ npm run cov
 # generate coverage information from tests
 # open coverage report on the browser
 
-$ npm run doc
-# Generate markdown docs for functions and components and save then on ./docs
-
 # For publishing
 $ npm run build
 $ npm version [prerelease/path/minor]
@@ -249,9 +246,7 @@ import shallowRender from '@luiscarli/shallow-render'
 import {Chart} from './'
 
 test('Chart', () => {
-  const component = shallowRender(
-    <Chart/>
-  )
+  const component = shallowRender(<Chart/>)
   assert.deepEqual(component.type.displayName, 'Block')
 })
 ```
