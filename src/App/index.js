@@ -5,7 +5,7 @@ import {utcFormat} from 'd3-time-format'
 
 import {Main, Block, Row} from 'react-display'
 import {Chart} from '../Chart'
-import * as plots from '../Chart/plots'
+import * as plots from '../plots'
 
 export const TextBody = props => (
   <Row

@@ -2,7 +2,7 @@
 import {map, flatten} from 'lodash'
 import {getPath2D} from '../../utils/path2DUtils'
 import {getMidX, getMidY} from '../../utils/rectUtils'
-import {plotValue} from '../plotValue'
+import {plotValue} from '../../plots/plotValue'
 
 /*
 `points` is used to generate render data for dots and similar.

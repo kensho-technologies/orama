@@ -4,7 +4,7 @@ import _ from 'lodash'
 import d3 from 'd3'
 
 import {Chart} from '../Chart'
-import {bars} from '../Chart/bars'
+import {bars} from '../plots/bars'
 /**
  * Renders a Histogram using the same logic as `Chart`.
  * This component have not been generalized yet.

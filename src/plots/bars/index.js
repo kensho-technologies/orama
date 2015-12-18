@@ -1,7 +1,7 @@
 
 import _ from 'lodash'
 import {getPath2D} from '../../utils/path2DUtils'
-import {plotValue} from '../plotValue'
+import {plotValue} from '../../plots/plotValue'
 
 const GUTTER = 1
 

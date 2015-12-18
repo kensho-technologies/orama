@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 import _ from 'lodash'
 import {DEFAULT_THEME, getTheme} from '../defaultTheme'
 import {WIDTH, HEIGHT} from '../Chart/defaults'
-import {points} from './points'
+import {points} from '../plots/points'
 import {
   addDimArrays,
   addTypes,

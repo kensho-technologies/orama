@@ -1,7 +1,7 @@
 
 import _ from 'lodash'
 import {getMidX, getMidY} from '../../utils/rectUtils'
-import {plotValue} from '../plotValue'
+import {plotValue} from '../../plots/plotValue'
 
 /*
 `points` is used to generate render data for dots and similar.

@@ -2,7 +2,7 @@
 import _ from 'lodash'
 import {getPath2D} from '../../utils/path2DUtils'
 import {getMaxY} from '../../utils/rectUtils'
-import {plotValue} from '../plotValue'
+import {plotValue} from '../../plots/plotValue'
 
 const getPointData = (props, datum, yKey) => {
   const path2D = getPath2D()

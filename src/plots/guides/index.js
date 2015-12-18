@@ -2,7 +2,7 @@
 import {map, flatten} from 'lodash'
 import {getMinX, getMaxX, getMinY, getMaxY} from '../../utils/rectUtils'
 import {getPath2D} from '../../utils/path2DUtils'
-import {plotValue} from '../../Chart/plotValue'
+import {plotValue} from '../../plots/plotValue'
 import {BACKGROUND_OFFSET} from '../../Chart/defaults'
 
 const guidesRenderMap = (props, datum) => {
