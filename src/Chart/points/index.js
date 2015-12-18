@@ -10,14 +10,14 @@ it handles `x`, `y`, 'radius' and 'fill'.
 
 @calling logic
 points{
-  pointsDataMap(retrievePointsData){}
+  pointsRenderMap(retrievePointsData){}
 }
 */
 
 /*
 generates the array of render data
 */
-export const pointsDataMap = (props, datum) => {
+const pointsRenderMap = (props, datum) => {
   const path2D = getPath2D()
   const hoverPath2D = getPath2D()
   const x = plotValue(
@@ -31,16 +31,16 @@ export const pointsDataMap = (props, datum) => {
   const alpha = plotValue(props, datum, 'alpha')
   path2D.arc(x, y, r, 0, 2 * Math.PI)
   hoverPath2D.arc(x, y, r + 8, 0, 2 * Math.PI)
-  const renderDatum = {
+
+  return {
     alpha,
-    hoverAlpha: props.hoverAlpha || 0.75,
     data: datum,
     fill,
-    path2D,
+    hoverAlpha: props.hoverAlpha || 0.75,
     hoverPath2D,
+    path2D,
     type: 'area',
   }
-  return renderDatum
 }
 
 /*
@@ -50,6 +50,6 @@ export const points = props => {
   if (!props.xScale && !props.yScale) return undefined
   return map(
     flatten(props.data),
-    datum => pointsDataMap(props, datum),
+    datum => pointsRenderMap(props, datum),
   )
 }
