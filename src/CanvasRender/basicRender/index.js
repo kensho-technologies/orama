@@ -26,6 +26,9 @@ export const basicRender = (props, ctx) => {
         ctx.globalAlpha = d.strokeAlpha || d.alpha || theme.plotAlpha
         ctx.lineWidth = d.lineWidth || theme.plotLineWidth
         ctx.strokeStyle = d.stroke || theme.plotFill
+        if (d.lineDash) {
+          ctx.setLineDash(d.lineDash)
+        }
         ctx.stroke(d.path2D)
       } else if (d.type === 'area') {
         ctx.globalAlpha = d.fillAlpha || d.alpha || theme.plotAlpha

@@ -16,7 +16,7 @@ The input data for the Chart. Array of array of objects denote grouped data, for
 
 **[key]:** `string` *required*  
 Data accessor for a dimension named `key`, which can be any dimension recognized by the plot functions and specified on the `accessorNames`.  
-Default possible keys are `x`, `x0`, `x1`, `x2`, `y`, `y0`, `y1`, `y2`, `radius`, `fill`, `stroke`, `lineWidth`, `alpha`, `label`
+Default possible keys are `x`, `x0`, `x1`, `x2`, `y`, `y0`, `y1`, `y2`, `radius`, `fill`, `stroke`, `lineWidth`, `lineDash`, `alpha`, `label`
 ```jsx
 <Chart
   data={[{p1: 10, p2: 20}]}

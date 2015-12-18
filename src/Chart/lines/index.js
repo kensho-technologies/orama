@@ -67,6 +67,9 @@ const getLine = (props, data) => {
   const lineWidth = plotValue(
     props, _.first(data), 'lineWidth'
   )
+  const lineDash = plotValue(
+    props, _.first(data), 'lineDash'
+  )
   path2D.moveTo(
     plotValue(props, _.first(data), 'x'),
     plotValue(props, _.first(data), 'y')
@@ -81,6 +84,7 @@ const getLine = (props, data) => {
     data,
     hoverAlpha: props.hoverAlpha || 0.3,
     hoverSolver,
+    lineDash,
     lineWidth,
     path2D,
     stroke,

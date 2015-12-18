@@ -85,6 +85,13 @@ export const getRange = (props, key) => {
       return [0.5, 4]
     }
     break
+  case 'lineDash':
+    return [
+      [2],
+      [4],
+      [8],
+      [7, 4, 2, 4],
+    ]
   case 'fill':
   case 'stroke':
     switch (type) {

@@ -5,7 +5,7 @@ export const ACCESSORS_NAMES = [
   'radius',
   'fill', 'stroke',
   'alpha',
-  'lineWidth',
+  'lineWidth', 'lineDash',
 ]
 export const ACCESSORS_GROUPS = {
   x: ['x', 'x0', 'x1', 'x2'],
