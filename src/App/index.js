@@ -150,6 +150,7 @@ export const App = props => (
               tooltipShowKeys: false,
               fillValue: 'hsl(0, 0%, 93%)',
               plot: plots.ranges,
+              showHover: false,
             },
             {
               data: [{x: 3.5}, {y: 125}],

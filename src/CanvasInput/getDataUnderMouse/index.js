@@ -4,6 +4,7 @@ export const findFirstPass = (ctx, localMouse, renderData) => (
   _.findLast(
     renderData,
     d => {
+      if (d.showHover === false) return false
       if (d.type === 'text') return false
       if (d.type === 'area') {
         return ctx.isPointInPath(d.path2D, localMouse.x, localMouse.y)
@@ -17,6 +18,7 @@ export const findSecondPass = (ctx, localMouse, renderData) => (
   _.findLast(
     renderData,
     d => {
+      if (d.showHover === false) return false
       if (d.type === 'text') return false
       if (d.hoverPath2D) {
         return ctx.isPointInPath(d.hoverPath2D, localMouse.x, localMouse.y)
@@ -30,6 +32,7 @@ export const findInRenderLayers = ({ctx, localMouse, renderLayers, findFunc}) =>
   const layer = _.findLast(
     renderLayers,
     _layer => {
+      if (_layer.props.showHover === false) return false
       renderDatum = findFunc(ctx, localMouse, _layer.renderData)
       return renderDatum
     }

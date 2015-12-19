@@ -118,6 +118,10 @@ Sets the axis labelOffset for the `key`, instead of calculating it based on the 
 Sets positive offset of plot area.  
 Defaults to `15`
 
+**showHover:** `bool`  
+Turns off the hover behavior.  
+Defaults to `true`
+
 **Tooltip:** `React Component`  
 Override the tooltip component.
 
