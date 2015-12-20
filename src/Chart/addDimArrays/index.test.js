@@ -211,3 +211,18 @@ test('Chart/addDimArrays.addDimArrays -> dont skip the zero', () => {
     }
   )
 })
+
+test('addDimArrays.removeDimArrays', () => {
+  assert.deepEqual(
+    methods.removeDimArrays({
+      groupedKeys: ['x', 'y'],
+      xArray: [],
+      yArray: [],
+      fillArray: [],
+    }),
+    {
+      groupedKeys: ['x', 'y'],
+      fillArray: [],
+    }
+  )
+})

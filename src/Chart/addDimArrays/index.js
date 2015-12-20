@@ -183,3 +183,8 @@ export const addDimArrays = _props => (
     ({props, dimArrays}) => assignDimArraysToProps(props, dimArrays),
   )(_props)
 )
+
+export const removeDimArrays = props => {
+  const names = _.map(props.groupedKeys, key => `${key}Array`)
+  return _.omit(props, names)
+}
