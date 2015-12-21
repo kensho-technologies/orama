@@ -122,6 +122,10 @@ Defaults to `15`
 Turns off the hover behavior.  
 Defaults to `true`
 
+**skipExtractArrays:** `bool`  
+Don't extract values from the data for using in the calculation of types and domains.  
+Defaults to `false`
+
 **Tooltip:** `React Component`  
 Override the tooltip component.
 

@@ -66,10 +66,11 @@ export const App = props => (
                 {Date: new Date(2010, 6), Close: 90},
                 {Date: new Date(2010, 7), Close: 60},
               ],
-              x: 'Date',
-              y: 'Close',
               plot: plots.points,
               radiusValue: 3,
+              skipExtractArrays: true,
+              x: 'Date',
+              y: 'Close',
             },
             {
               data: [

@@ -89,6 +89,7 @@ const addLocalDimensionsToProps = props => {
   return addLocalDimensionsToLayer(props)
 }
 export const getDimArraysForLayer = (layer) => {
+  if (layer.skipExtractArrays) return {}
   const definedAccessors = _.pick(
     layer,
     layer.accessorsNames || ACCESSORS_NAMES
