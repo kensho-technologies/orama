@@ -162,16 +162,26 @@ export const addPlotRect = props => {
     top,
     right,
   }
-  const newWidth = width
+  let newWidth = width
   let newHeight = height
   const plotRect = rectUtils.marginInset(margin, {width, height})
   if (!_.contains(groupedKeys, 'x')) {
+    newWidth -= plotRect.width
     plotRect.width = 0
   }
   if (!_.contains(groupedKeys, 'y')) {
     newHeight -= plotRect.height
     plotRect.height = 0
   }
+  if (plotRect.height < 0) {
+    plotRect.height = 0
+    newHeight = top + bottom
+  }
+  if (plotRect.width < 0) {
+    plotRect.width = 0
+    newWidth = left + right
+  }
+
   return {
     ...props,
     backgroundOffset,
