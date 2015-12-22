@@ -1,69 +1,72 @@
 
-import React, {PropTypes} from 'react'
+import React from 'react'
 import _ from 'lodash'
-import {DEFAULT_THEME, getTheme} from '../defaultTheme'
-import {WIDTH, HEIGHT} from '../Chart/defaults'
-import {points} from '../plots/points'
-import {
-  addDimArrays,
-  addTypes,
-  addDomains,
-  addPlotRect,
-  addRanges,
-  addTickCounts,
-  addScales,
-} from './addMethods'
-import {getRenderLayers} from './getRenderLayers'
+
+import {DEFAULT_THEME} from '../defaultTheme'
+import {HEIGHT} from '../Chart/defaults'
+import {WIDTH} from '../Chart/defaults'
+
+import {addLocalDimensionsToProps} from '../Chart/addDimArrays'
+import {getMemoizeAddDimArrays} from '../Chart/memoize'
+import {getMemoizeAddDomains} from '../Chart/memoize'
+import {getMemoizeAddPlotRect} from '../Chart/memoize'
+import {getMemoizeAddRanges} from '../Chart/memoize'
+import {getMemoizeAddScales} from '../Chart/memoize'
+import {getMemoizeAddTickCounts} from '../Chart/memoize'
+import {getMemoizeAddTypes} from '../Chart/memoize'
+import {getMemoizeForRenderLayers} from '../Chart/memoize'
+import {getTheme} from '../defaultTheme'
+import {PropTypes} from 'react'
+import {stateHOC} from 'on-update'
 
 import {Block} from 'react-display'
-import ChartRenderWrapper from '../ChartRenderWrapper'
 import {ChartBackground} from '../ChartBackground'
-
-const transformProps = _.flow(
-  addDimArrays,
-  addTypes,
-  addDomains,
-  addPlotRect,
-  addRanges,
-  addTickCounts,
-  addScales,
-)
-
-const BACKGROUND_OFFSET = 15
+import {ChartRender} from '../ChartRender'
 
 /*
 Used inside </>
 */
-export const Chart = props => {
+export const _Chart = props => {
+  const {
+    memoizers,
+  } = props
+  const transformProps = _.flow(
+    addLocalDimensionsToProps,
+    memoizers.addDimArrays,
+    memoizers.addTypes,
+    memoizers.addDomains,
+    memoizers.addPlotRect,
+    memoizers.addRanges,
+    memoizers.addTickCounts,
+    memoizers.addScales,
+    _props => _.omit(_props, 'memoizers', 'onUpdate', 'onState'),
+  )
   const transformedProps = transformProps({
     ...props,
     theme: getTheme(props.theme),
   })
-  const renderLayers = getRenderLayers(transformedProps)
+  const renderLayers = memoizers.renderLayers(transformedProps)
   return (
     <Block
       background={props.theme.backgroundFill}
+      height={transformedProps.height}
       position='relative'
+      width={transformedProps.width}
     >
       <ChartBackground
         {...transformedProps}
       />
-      <ChartRenderWrapper
-        annotationData={[]}
-        height={transformedProps.height}
-        highlightData={[]}
-        plotRect={transformedProps.plotRect}
+      <ChartRender
+        {...transformedProps}
         renderLayers={renderLayers}
-        size={transformedProps.size}
-        theme={transformedProps.theme}
-        width={transformedProps.width}
       />
     </Block>
   )
 }
-Chart.propTypes = {
+_Chart.propTypes = {
   data: PropTypes.array,
   layers: PropTypes.array,
+  memoizers: PropTypes.object,
   onUpdate: PropTypes.func,
   plot: PropTypes.func,
   radius: PropTypes.string,
@@ -71,10 +74,22 @@ Chart.propTypes = {
   x: PropTypes.string,
   y: PropTypes.string,
 }
-Chart.defaultProps = {
-  backgroundOffset: BACKGROUND_OFFSET,
+_Chart.defaultProps = {
   theme: DEFAULT_THEME,
   width: WIDTH,
   height: HEIGHT,
-  plot: points,
 }
+_Chart.initialState = () => ({
+  memoizers: {
+    addDimArrays: getMemoizeAddDimArrays(),
+    addTypes: getMemoizeAddTypes(),
+    addDomains: getMemoizeAddDomains(),
+    addPlotRect: getMemoizeAddPlotRect(),
+    addRanges: getMemoizeAddRanges(),
+    addTickCounts: getMemoizeAddTickCounts(),
+    addScales: getMemoizeAddScales(),
+    renderLayers: getMemoizeForRenderLayers(),
+  },
+})
+
+export const Chart = stateHOC(_Chart)

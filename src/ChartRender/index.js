@@ -1,41 +1,44 @@
 
 import React, {PropTypes} from 'react'
-import {DEFAULT_THEME} from '../defaultTheme'
-import {stateHOC} from 'on-update'
-import {Block} from 'react-display'
-import {WIDTH, HEIGHT} from '../Chart/defaults'
-import {
-  basicRender,
-  highlightRender,
-  hoverRender,
-} from '../CanvasRender/renders'
 
+import {DEFAULT_THEME} from '../defaultTheme'
+
+import {map} from 'lodash'
+
+import {basicRender} from '../CanvasRender/renders'
+import {highlightRender} from '../CanvasRender/renders'
+import {hoverRender} from '../CanvasRender/renders'
+import {stateHOC} from 'on-update'
+
+import {Block} from 'react-display'
 import {CanvasInput} from '../CanvasInput'
 import {CanvasRender} from '../CanvasRender'
 
-const handleCanvasInput = (props, childProps) => {
+const handleCanvasInputUpdate = (props, childProps) => {
   props.onState({
-    // dataClicked: childProps.dataClicked,
     hoverRenderData: childProps.hoverRenderData,
-    // tooltipData: childProps.tooltipData,
-    // localMouse: childProps.localMouse,
-    // mouse: childProps.mouse,
   })
 }
 /*
 Used inside <ChartRenderWrapper/>
 */
-const ChartRender = props => (
+const _ChartRender = props => (
   <Block>
-    <CanvasRender // basicRender
-      clip={true}
-      height={props.height}
-      plotRect={props.plotRect}
-      render={basicRender}
-      renderLayers={props.renderLayers}
-      theme={props.theme}
-      width={props.width}
-    />
+    {map(
+      props.renderLayers,
+      (renderLayer, i) => (
+        <CanvasRender // basicRender
+          clip={true}
+          height={props.height}
+          key={i}
+          plotRect={props.plotRect}
+          render={basicRender}
+          renderData={renderLayer.renderData}
+          theme={props.theme}
+          width={props.width}
+        />
+      )
+    )}
     <CanvasRender // highlightRender
       clip={true}
       height={props.height}
@@ -56,7 +59,7 @@ const ChartRender = props => (
     />
     <CanvasInput
       height={props.height}
-      onUpdate={handleCanvasInput.bind(null, props)}
+      onUpdate={childProps => handleCanvasInputUpdate(props, childProps)}
       renderLayers={props.renderLayers}
       theme={props.theme}
       width={props.width}
@@ -64,7 +67,7 @@ const ChartRender = props => (
   </Block>
 )
 
-ChartRender.propTypes = {
+_ChartRender.propTypes = {
   height: PropTypes.number,
   highlightData: PropTypes.array,
   hoverRenderData: PropTypes.array,
@@ -74,10 +77,8 @@ ChartRender.propTypes = {
   theme: PropTypes.object,
   width: PropTypes.number,
 }
-ChartRender.defaultProps = {
+_ChartRender.defaultProps = {
   theme: DEFAULT_THEME,
-  width: WIDTH,
-  height: HEIGHT,
 }
 
-export default stateHOC(ChartRender)
+export const ChartRender = stateHOC(_ChartRender)

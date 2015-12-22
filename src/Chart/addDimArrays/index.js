@@ -69,16 +69,16 @@ const localFlatten = data => {
   return data
 }
 const addLocalDimensionsToLayer = layer => {
-  const localKeys = _.flow(
-    accessorsNames => _.pick(layer, accessorsNames),
-    _.keys,
-  )(layer.accessorsNames || ACCESSORS_NAMES)
+  const localDefinedAccessors = _.pick(
+    layer, layer.accessorsNames || ACCESSORS_NAMES
+  )
   return {
     ...layer,
-    localKeys,
+    localDefinedAccessors,
+    localKeys: _.keys(localDefinedAccessors),
   }
 }
-const addLocalDimensionsToProps = props => {
+export const addLocalDimensionsToProps = props => {
   if (props.layers) {
     const layers = _.map(props.layers, addLocalDimensionsToLayer)
     return {
@@ -90,12 +90,11 @@ const addLocalDimensionsToProps = props => {
 }
 export const getDimArraysForLayer = (layer) => {
   if (layer.skipExtractArrays) return {}
-  const definedAccessors = _.pick(
-    layer,
-    layer.accessorsNames || ACCESSORS_NAMES
-  )
+  const {
+    localDefinedAccessors,
+  } = layer
   return _.reduce(
-    definedAccessors,
+    localDefinedAccessors,
     (acc, value, key) => {
       if (checkUndefinedAccessor(value)) return acc
       const newArray = _.flow(
@@ -143,7 +142,9 @@ export const omitGroups = (dimArrays, accessorsGroups) => (
 Merge keys according to their groups, eg. 'x', 'x0', 'x1' get merged into one xArray
 */
 export const mergeDimArrays = (props, _dimArrays) => {
-  const accessorsGroups = props.accessorsGroups || ACCESSORS_GROUPS
+  const {
+    accessorsGroups = ACCESSORS_GROUPS,
+  } = props
   const dimArrays = _.reduce(
     accessorsGroups,
     (acc, group, key) => {
@@ -178,7 +179,6 @@ Main exported function, used outside of the module on the Chart props transform 
 */
 export const addDimArrays = _props => (
   _.flow(
-    addLocalDimensionsToProps,
     getDimArraysForProps,
     ({props, dimArrays}) => mergeDimArrays(props, dimArrays),
     ({props, dimArrays}) => assignDimArraysToProps(props, dimArrays),

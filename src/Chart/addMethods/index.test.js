@@ -75,7 +75,7 @@ test('Chart/addMethods.addTickCounts', () => {
   assert.deepEqual(
     methods.addTickCounts(props),
     _.assign({}, props, {
-      fillTickCount: 5,
+      fillTickCount: 0,
       xTickCount: 5,
       yTickCount: 6,
     })

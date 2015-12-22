@@ -5,19 +5,19 @@ import {addTypes} from '../../Chart/addMethods'
 
 import * as methods from './'
 
-test('memoize.getMemoizeAddType', () => {
-  const memoizeAddType = methods.getMemoizeAddType()
+test('memoize.getMemoizeAddTypes', () => {
+  const memoizeAddTypes = methods.getMemoizeAddTypes()
   const props = {
     groupedKeys: ['x'],
     xArray: [1, 2, 3],
   }
-  const memoizedProps = memoizeAddType(props)
+  const memoizedProps = memoizeAddTypes(props)
   assert.equal(
-    memoizeAddType(props),
+    memoizeAddTypes(props),
     memoizedProps,
   )
   assert.notEqual(
-    memoizeAddType(props),
+    memoizeAddTypes(props),
     addTypes(props),
   )
 })
