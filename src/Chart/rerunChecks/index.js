@@ -2,7 +2,7 @@
 import _ from 'lodash'
 import shallowEqual from 'on-update/lib/shallowEqual'
 
-export const getRerunCheckForKeyNames = (keyNames, rootNames) => (props, prevProps) => {
+export const getRerunCheckForNames = (keyNames, rootNames) => (props, prevProps) => {
   const checkRootNames = _.any(
     rootNames,
     name => {
@@ -22,25 +22,30 @@ export const getRerunCheckForKeyNames = (keyNames, rootNames) => (props, prevPro
   )
 }
 
-export const rerunCheckAddTypes = getRerunCheckForKeyNames(
+export const rerunCheckAddTypes = getRerunCheckForNames(
   ['Type', 'Array']
 )
-export const rerunCheckAddDomains = getRerunCheckForKeyNames(
+export const rerunCheckAddDomains = getRerunCheckForNames(
   ['Domain', 'Array', 'Type', 'ZeroBased']
 )
-export const rerunCheckAddPlotRect = getRerunCheckForKeyNames(
+export const rerunCheckAddPlotRect = getRerunCheckForNames(
   ['Array', 'ShowTicks', 'ShowLabel'],
   ['width', 'height', 'margin']
 )
-export const rerunCheckAddRanges = getRerunCheckForKeyNames(
+export const rerunCheckAddRanges = getRerunCheckForNames(
   ['Range', 'Type', 'Array'],
   ['plotRect']
 )
-export const rerunCheckAddTickCounts = getRerunCheckForKeyNames(
+export const rerunCheckAddTickCounts = getRerunCheckForNames(
   ['TickCount', 'Range', 'TickSpace']
 )
-export const rerunCheckAddScales = getRerunCheckForKeyNames(
+export const rerunCheckAddScales = getRerunCheckForNames(
   ['Type', 'Domain', 'Range', 'TickCount', 'Nice']
+)
+
+export const rerunCheckRenderLayer = getRerunCheckForNames(
+  ['Array', 'Domain', 'Range', 'Scale'],
+  ['Data']
 )
 
 // check change for root and layers on: accessors, data, and skipExtractArrays
@@ -73,20 +78,5 @@ export const rerunCheckDimArrays = (props, prevProps) => {
     }
   )
   if (layerCheck) return true
-  return false
-}
-
-export const rerunCheckRenderLayer = (props, prevProps) => {
-  if (props.data !== prevProps.data) return true
-  const keysCheck = _.any(
-    props.groupedKeys,
-    key => {
-      if (props[`${key}Array`] !== prevProps[`${key}Array`]) return true
-      if (props[`${key}Domain`] !== prevProps[`${key}Domain`]) return true
-      if (props[`${key}Range`] !== prevProps[`${key}Range`]) return true
-      if (props[`${key}Scale`] !== prevProps[`${key}Scale`]) return true
-    }
-  )
-  if (keysCheck) return true
   return false
 }
