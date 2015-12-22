@@ -117,9 +117,10 @@ export const getTickCount = (props, key) => {
     const xTickSpace = _tickSpace || TICK_Y_SPACE
     return Math.ceil((range[0] - range[1]) / xTickSpace)
   case 'x':
-  default:
     const yTickSpace = _tickSpace || TICK_X_SPACE
     return Math.ceil((range[1] - range[0]) / yTickSpace)
+  default:
+    return 0
   }
 }
 export const getTickFormat = (props, key) => {

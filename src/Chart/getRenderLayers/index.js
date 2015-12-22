@@ -6,7 +6,7 @@ import {points} from '../../plots'
 generate the renderLayers and renderData by running the plot functions of the props root and the props.layers
 */
 
-const getLayer = props => {
+export const getLayer = props => {
   const {
     plot = points,
   } = props
