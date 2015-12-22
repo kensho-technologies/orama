@@ -2,6 +2,7 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
 import {DEFAULT_THEME} from '../defaultTheme'
+import {BACKGROUND_OFFSET} from '../Chart/defaults'
 import {getPath2D} from '../utils/path2DUtils'
 import {getTicks} from '../Chart/getMethods'
 import {inset} from '../utils/rectUtils'
@@ -10,8 +11,6 @@ import {Block} from 'react-display'
 import {CanvasRender} from '../CanvasRender'
 import {BottomLabel} from './BottomLabel'
 import {LeftLabel} from './LeftLabel'
-
-const BACKGROUND_OFFSET = 15
 
 export const getBackground = props => {
   if (props.backgroundShow === false) return undefined
