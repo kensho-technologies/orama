@@ -7,6 +7,7 @@ import {HEIGHT} from '../Chart/defaults'
 import {WIDTH} from '../Chart/defaults'
 
 import {addLocalDimensionsToProps} from '../Chart/addDimArrays'
+import {removeDimArrays} from '../Chart/addDimArrays'
 import {getMemoizeAddDimArrays} from '../Chart/memoize'
 import {getMemoizeAddDomains} from '../Chart/memoize'
 import {getMemoizeAddPlotRect} from '../Chart/memoize'
@@ -39,6 +40,7 @@ export const _Chart = props => {
     memoizers.addRanges,
     memoizers.addTickCounts,
     memoizers.addScales,
+    removeDimArrays,
     _props => _.omit(_props, 'memoizers', 'onUpdate', 'onState'),
   )
   const transformedProps = transformProps({
