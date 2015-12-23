@@ -22,8 +22,7 @@ const slider = props => (
   </Block>
 )
 */
-export default React.createClass({
-  displayName: 'Draggable',
+export const Draggable = React.createClass({
   propTypes: {
     children: PropTypes.element,
     onUpdate: PropTypes.func.isRequired,
