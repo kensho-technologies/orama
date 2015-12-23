@@ -64,9 +64,10 @@ export const getAxisScale = (props, key) => {
   } = props
   switch (type) {
   case 'ordinal':
-    const scaleOrdinal = d3Scale.ordinal()
+    const scaleOrdinal = d3Scale.point()
       .domain(domain)
-      .rangePoints(range, 1)
+      .range(range)
+      .padding(0.5)
     return scaleOrdinal
   default:
     if (domain[0] === domain[1]) {
