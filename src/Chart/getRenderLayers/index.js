@@ -11,7 +11,7 @@ export const getLayer = props => {
     plot = points,
   } = props
   return {
-    props,
+    layerProps: props,
     renderData: plot(props),
   }
 }

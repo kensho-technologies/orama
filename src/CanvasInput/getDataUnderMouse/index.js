@@ -32,7 +32,7 @@ export const findInRenderLayers = ({ctx, localMouse, renderLayers, findFunc}) =>
   const layer = _.findLast(
     renderLayers,
     _layer => {
-      if (_layer.props.showHover === false) return false
+      if (_layer.layerProps.showHover === false) return false
       renderDatum = findFunc(ctx, localMouse, _layer.renderData)
       return renderDatum
     }
@@ -42,7 +42,7 @@ export const findInRenderLayers = ({ctx, localMouse, renderLayers, findFunc}) =>
       renderDatum,
       hoverRenderData: [renderDatum],
       hoverData: renderDatum.data,
-      layerProps: layer.props,
+      layerProps: layer.layerProps,
     }
   }
 }
