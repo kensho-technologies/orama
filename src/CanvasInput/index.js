@@ -88,9 +88,12 @@ export const CanvasInput = React.createClass({
     const solvedData = runHoverSolverOn(
       getDataUnderMouse(this.props, evt, this.canvasNode)
     )
-    const hoverMouseDelta = {
-      x: this.lastMouse.x - evt.clientX,
-      y: this.lastMouse.y - evt.clientY,
+    let hoverMouseDelta
+    if (this.lastMouse) {
+      hoverMouseDelta = {
+        x: this.lastMouse.x - evt.clientX,
+        y: this.lastMouse.y - evt.clientY,
+      }
     }
     this.props.onUpdate({
       isDragging: this.state.dragging,
