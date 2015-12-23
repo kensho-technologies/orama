@@ -16,7 +16,12 @@ const rangesRender = (props, datum) => {
   const y2 = plotValue(props, datum, 'y2')
   const alpha = plotValue(props, datum, 'alpha')
   const fill = plotValue(props, datum, 'fill')
-  if (isNumber(x1) && isNumber(x2)) {
+  if (isNumber(x1) && isNumber(x2) && isNumber(y1) && isNumber(y2)) {
+    path2D.rect(
+      x1, y1,
+      x2 - x1, y2 - y1
+    )
+  } else if (isNumber(x1) && isNumber(x2)) {
     path2D.rect(
       x1, plotRect.y - backgroundOffset,
       x2 - x1, plotRect.height + backgroundOffset * 2
