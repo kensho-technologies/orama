@@ -80,6 +80,7 @@ export const CanvasInput = React.createClass({
     this.setState({
       dragging: true,
     })
+    this.lastMouse = {x: evt.clientX, y: evt.clientY}
   },
   handleMouseMove(evt) {
     evt.stopPropagation()
@@ -87,6 +88,10 @@ export const CanvasInput = React.createClass({
     const solvedData = runHoverSolverOn(
       getDataUnderMouse(this.props, evt, this.canvasNode)
     )
+    const hoverMouseDelta = {
+      x: this.lastMouse.x - evt.clientX,
+      y: this.lastMouse.y - evt.clientY,
+    }
     this.props.onUpdate({
       isDragging: this.state.dragging,
       hoverRenderData: solvedData.hoverRenderData,
@@ -94,12 +99,14 @@ export const CanvasInput = React.createClass({
       hoverData: solvedData.hoverData,
       hoverLocalMouse: solvedData.localMouse,
       hoverMouse: solvedData.mouse,
+      hoverMouseDelta,
     })
     this.setState({
       mouse: solvedData.mouse,
       hoverData: solvedData.hoverData,
       layerProps: solvedData.layerProps,
     })
+    this.lastMouse = {x: evt.clientX, y: evt.clientY}
   },
   handleMouseUp(evt) {
     evt.stopPropagation()
