@@ -177,13 +177,14 @@ const assignDimArraysToProps = (props, dimArrays) => (
 /*
 Main exported function, used outside of the module on the Chart props transform flow.
 */
-export const addDimArrays = _props => (
-  _.flow(
+export const addDimArrays = _props => {
+  if (_props.groupedKeys) return _props
+  return _.flow(
     getDimArraysForProps,
     ({props, dimArrays}) => mergeDimArrays(props, dimArrays),
     ({props, dimArrays}) => assignDimArraysToProps(props, dimArrays),
   )(_props)
-)
+}
 
 export const removeDimArrays = props => {
   const names = _.map(props.groupedKeys, key => `${key}Array`)

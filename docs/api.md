@@ -148,5 +148,8 @@ Sets the value formatter for the specified `key`.
 Show or hide the keys row on the tooltip.  
 Defaults to `true`
 
-**hoverSolver** `function`  
+**hoverSolver:** `function`  
 Override the hoverSolver function.
+
+**groupedKeys:** `Array<string>`  
+If this property is present the addDimArrays step is skipped.
