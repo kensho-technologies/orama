@@ -1,0 +1,21 @@
+
+#### hoverSolver
+
+```jsx
+hoverSolver(
+  layerProps : Object,
+  hoverData : Object | Array<Object>,
+  renderDatum : Object,
+  localMouse : {x: number, y: number}
+)
+```
+returns
+```jsx
+{
+  hoverRenderData : Array,
+  hoverData : Object | Array<Object>,
+}
+```
+
+`layerProps : Object`  
+The configs from the layer that contains the renderDatum

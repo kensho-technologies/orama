@@ -18,6 +18,7 @@ const handleCanvasInputUpdate = (props, childProps) => {
   props.onState({
     hoverRenderData: childProps.hoverRenderData,
   })
+  props.onUpdate(childProps)
 }
 /*
 Used inside <ChartRenderWrapper/>

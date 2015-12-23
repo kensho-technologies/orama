@@ -36,7 +36,7 @@ test('getDataUnderMouse.findInRenderLayers', () => {
     methods.findInRenderLayers({
       ctx: ctxMock,
       localMouse: {x: 0, y: 0},
-      renderLayers: [{type: 'area', props: {}}],
+      renderLayers: [{type: 'area', layerProps: {}}],
       findFunc: () => ({type: 'area'}),
     }),
     {

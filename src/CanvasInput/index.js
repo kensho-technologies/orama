@@ -1,5 +1,6 @@
 
 import React, {PropTypes} from 'react'
+
 import {getDataUnderMouse} from './getDataUnderMouse'
 
 import {TooltipWrapper} from '../TooltipWrapper'
@@ -10,7 +11,9 @@ const runHoverSolverOn = dataUnderMouse => {
     renderDatum,
     hoverData,
     localMouse,
+    mouse,
   } = dataUnderMouse
+
   if (!renderDatum || !layerProps) return dataUnderMouse
   const hoverSolver = layerProps.hoverSolver || renderDatum.hoverSolver
   if (!hoverSolver) return dataUnderMouse
@@ -18,8 +21,12 @@ const runHoverSolverOn = dataUnderMouse => {
     layerProps, hoverData, renderDatum, localMouse,
   )
   return {
-    ...dataUnderMouse,
-    ...hoverSolverData,
+    layerProps,
+    hoverOriginalData: hoverData,
+    hoverRenderData: hoverSolverData.hoverRenderData,
+    hoverData: hoverSolverData.hoverData,
+    localMouse,
+    mouse,
   }
 }
 
@@ -43,30 +50,68 @@ export const CanvasInput = React.createClass({
   getInitialState() {
     return {}
   },
+  componentDidUpdate(props, state) {
+    if (this.state.dragging && !state.dragging) {
+      document.addEventListener('mouseup', this.onMouseUp)
+    } else if (!this.state.dragging && state.dragging) {
+      document.removeEventListener('mouseup', this.onMouseUp)
+    }
+  },
   handleCanvasRef(canvasNode) {
     this.canvasNode = canvasNode
   },
-  handleMouseMove(evt) {
-    const {props} = this
-    const {
-      hoverData,
-      hoverRenderData,
-      mouse,
-      layerProps,
-    } = runHoverSolverOn(getDataUnderMouse(props, evt, this.canvasNode))
-    props.onUpdate({
-      ...props,
-      hoverRenderData,
+  handleClick() {
+  },
+  handleDoubleClick() {
+  },
+  handleMouseDown(evt) {
+    evt.stopPropagation()
+    evt.preventDefault()
+    const solvedData = runHoverSolverOn(
+      getDataUnderMouse(this.props, evt, this.canvasNode)
+    )
+    this.props.onUpdate({
+      isMouseDown: true,
+      mouseDownOriginalData: solvedData.hoverOriginalData,
+      mouseDownData: solvedData.hoverData,
+      mouseDownLocalMouse: solvedData.localMouse,
+      mouseDownMouse: solvedData.mouse,
     })
     this.setState({
-      mouse,
-      hoverData,
-      layerProps,
+      dragging: true,
     })
+  },
+  handleMouseMove(evt) {
+    evt.stopPropagation()
+    evt.preventDefault()
+    const solvedData = runHoverSolverOn(
+      getDataUnderMouse(this.props, evt, this.canvasNode)
+    )
+    this.props.onUpdate({
+      isDragging: this.state.dragging,
+      hoverRenderData: solvedData.hoverRenderData,
+      hoverOriginalData: solvedData.hoverOriginalData,
+      hoverData: solvedData.hoverData,
+      hoverLocalMouse: solvedData.localMouse,
+      hoverMouse: solvedData.mouse,
+    })
+    this.setState({
+      mouse: solvedData.mouse,
+      hoverData: solvedData.hoverData,
+      layerProps: solvedData.layerProps,
+    })
+  },
+  handleMouseUp(evt) {
+    evt.stopPropagation()
+    evt.preventDefault()
+    this.props.onUpdate({
+      isDragging: false,
+      isMouseDown: false,
+    })
+    this.setState({dragging: false})
   },
   handleMouseLeave() {
     this.props.onUpdate({
-      ...this.props,
       hoverRenderData: undefined,
     })
     this.setState({
@@ -81,8 +126,12 @@ export const CanvasInput = React.createClass({
       <div>
         <canvas
           height={props.height}
+          onClick={this.handleClick}
+          onDoubleClick={this.handleDoubleClick}
+          onMouseDown={this.handleMouseDown}
           onMouseLeave={this.handleMouseLeave}
           onMouseMove={this.handleMouseMove}
+          onMouseUp={this.handleMouseUp}
           ref={this.handleCanvasRef}
           style={{
             display: 'block',
