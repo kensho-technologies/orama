@@ -16,7 +16,6 @@ export const extractTooltipData = (props, hoverData) => {
   } = props
 
   const datum = getDatum(hoverData)
-
   const tooltipValues = _.reduce(
     tooltipKeys || localKeys,
     (acc, key) => {

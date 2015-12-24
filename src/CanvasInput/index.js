@@ -1,5 +1,6 @@
 
 import React, {PropTypes} from 'react'
+import _ from 'lodash'
 
 import {getDataUnderMouse} from './getDataUnderMouse'
 
@@ -28,6 +29,12 @@ const runHoverSolverOn = dataUnderMouse => {
     localMouse,
     mouse,
   }
+}
+
+const getRootProps = renderLayers => {
+  const firstLayer = _.first(renderLayers)
+  if (firstLayer) return firstLayer.layerProps
+  return {}
 }
 
 /*
@@ -71,7 +78,9 @@ export const CanvasInput = React.createClass({
       getDataUnderMouse(this.props, evt, this.canvasNode)
     )
     this.props.onUpdate({
+      rootProps: getRootProps(this.props.renderLayers),
       isMouseDown: true,
+      hoverRenderData: solvedData.hoverRenderData,
       mouseDownOriginalData: solvedData.hoverOriginalData,
       mouseDownData: solvedData.hoverData,
       mouseDownLocalMouse: solvedData.localMouse,
@@ -96,6 +105,7 @@ export const CanvasInput = React.createClass({
       }
     }
     this.props.onUpdate({
+      rootProps: getRootProps(this.props.renderLayers),
       isDragging: this.state.dragging,
       hoverRenderData: solvedData.hoverRenderData,
       hoverOriginalData: solvedData.hoverOriginalData,
@@ -115,6 +125,7 @@ export const CanvasInput = React.createClass({
     evt.stopPropagation()
     evt.preventDefault()
     this.props.onUpdate({
+      rootProps: getRootProps(this.props.renderLayers),
       isDragging: false,
       isMouseDown: false,
     })
@@ -122,6 +133,7 @@ export const CanvasInput = React.createClass({
   },
   handleMouseLeave() {
     this.props.onUpdate({
+      rootProps: getRootProps(this.props.renderLayers),
       hoverRenderData: undefined,
     })
     this.setState({
