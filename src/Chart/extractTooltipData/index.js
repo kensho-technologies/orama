@@ -8,6 +8,12 @@ const getDatum = data => {
   return data
 }
 
+const isDisplayable = value => (
+  value !== 'NaN' &&
+  !_.isUndefined(value) &&
+  !_.isNaN(value)
+)
+
 export const extractTooltipData = (props, hoverData) => {
   const {
     localKeys,
@@ -25,7 +31,9 @@ export const extractTooltipData = (props, hoverData) => {
       const formatter = props[`${key}TooltipFormat`] || getTooltipFormat(props, key)
       const value = formatter(_.get(datum, props[key]))
       const order = accessorsTooltipOrder[key]
-      if (!_.isUndefined(value)) acc.push({key: keyAlias, name, value, order})
+      if (isDisplayable(value)) {
+        acc.push({key: keyAlias, name, value, order})
+      }
       return acc
     },
     []
@@ -37,7 +45,9 @@ export const extractTooltipData = (props, hoverData) => {
       if (_.isDate(value)) {
         value = value.toDateString()
       }
-      if (!_.isUndefined(value)) acc.push({name: key, value})
+      if (isDisplayable(value)) {
+        acc.push({name: key, value})
+      }
       return acc
     },
     []
