@@ -45,7 +45,7 @@ export const rerunCheckAddScales = getRerunCheckForNames(
 
 export const rerunCheckRenderLayer = getRerunCheckForNames(
   ['Array', 'Domain', 'Range', 'Scale'],
-  ['Data']
+  ['data']
 )
 
 // check change for root and layers on: accessors, data, and skipExtractArrays
