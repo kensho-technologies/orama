@@ -19,7 +19,7 @@ generates the array of render data
 */
 const getPointRenderData = (props, datum) => {
   const path2D = getPath2D()
-  const hoverPath2D = getPath2D()
+  const hover2ndPath2D = getPath2D()
   const x = plotValue(
     props, datum, 'x', getMidX(props.plotRect)
   )
@@ -30,14 +30,14 @@ const getPointRenderData = (props, datum) => {
   const fill = plotValue(props, datum, 'fill')
   const alpha = plotValue(props, datum, 'alpha')
   path2D.arc(x, y, r, 0, 2 * Math.PI)
-  hoverPath2D.arc(x, y, r + 8, 0, 2 * Math.PI)
+  hover2ndPath2D.arc(x, y, r + 8, 0, 2 * Math.PI)
 
   return {
     alpha,
     data: datum,
     fill,
     hoverAlpha: props.hoverAlpha || 0.75,
-    hoverPath2D,
+    hover2ndPath2D,
     path2D,
     type: 'area',
   }

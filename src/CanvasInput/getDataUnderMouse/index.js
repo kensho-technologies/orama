@@ -5,6 +5,9 @@ export const findFirstPass = (ctx, localMouse, renderData) => (
     renderData,
     d => {
       if (d.showHover === false) return false
+      if (d.hover1stPath2D) {
+        return ctx.isPointInPath(d.hover1stPath2D, localMouse.x, localMouse.y)
+      }
       if (d.type === 'text') return false
       if (d.type === 'area') {
         return ctx.isPointInPath(d.path2D, localMouse.x, localMouse.y)
@@ -19,10 +22,10 @@ export const findSecondPass = (ctx, localMouse, renderData) => (
     renderData,
     d => {
       if (d.showHover === false) return false
-      if (d.type === 'text') return false
-      if (d.hoverPath2D) {
-        return ctx.isPointInPath(d.hoverPath2D, localMouse.x, localMouse.y)
+      if (d.hover2ndPath2D) {
+        return ctx.isPointInPath(d.hover2ndPath2D, localMouse.x, localMouse.y)
       }
+      if (d.type === 'text') return false
       return ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
     }
   )
