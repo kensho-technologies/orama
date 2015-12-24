@@ -26,7 +26,10 @@ export const getMemoize = (rerunCheck, transformFunc) => {
     if (rerun) {
       savedResult = transformFunc(props)
     }
-    return savedResult || transformFunc(props)
+    return {
+      ...(savedResult || transformFunc(props)),
+      ...props,
+    }
   }
   return memoizer
 }

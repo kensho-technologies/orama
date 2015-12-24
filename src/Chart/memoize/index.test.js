@@ -1,23 +1,19 @@
 
 import {it as test} from 'mocha'
 import assert from 'assert'
-import {addTypes} from '../../Chart/addMethods'
 
 import * as methods from './'
 
-test('memoize.getMemoizeAddTypes', () => {
-  const memoizeAddTypes = methods.getMemoizeAddTypes()
+test('memoize.getMemoizeAddDimArrays', () => {
+  const memoizeAddDimArrays = methods.getMemoizeAddDimArrays()
   const props = {
-    groupedKeys: ['x'],
-    xArray: [1, 2, 3],
+    localDefinedAccessors: {x: 'x'},
+    data: [{x: 1}, {x: 2}, {x: 3}],
+    x: 'x',
   }
-  const memoizedProps = memoizeAddTypes(props)
+  const memoizedProps = memoizeAddDimArrays(props)
   assert.equal(
-    memoizeAddTypes(props),
-    memoizedProps,
-  )
-  assert.notEqual(
-    memoizeAddTypes(props),
-    addTypes(props),
+    memoizeAddDimArrays(props).xArray,
+    memoizedProps.xArray,
   )
 })
