@@ -88,5 +88,8 @@ export const getDataUnderMouse = (props, evt, canvasNode) => {
   })
 
   if (inStrokeData) return formatReturnData(inStrokeData, localMouse, mouse)
-  return {}
+  return {
+    mouse,
+    localMouse,
+  }
 }

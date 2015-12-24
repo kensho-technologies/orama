@@ -7,8 +7,11 @@ import * as methods from './'
 
 test('getDataUnderMouse.getDataUnderMouse', () => {
   assert.deepEqual(
-    methods.getDataUnderMouse({}, {}, canvasMock),
-    {}
+    methods.getDataUnderMouse({}, {clientX: 100, clientY: 100}, canvasMock),
+    {
+      localMouse: {x: 100, y: 100},
+      mouse: {x: 100, y: 100},
+    }
   )
 })
 test('getDataUnderMouse.findFirstPass', () => {
