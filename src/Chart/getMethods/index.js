@@ -131,12 +131,30 @@ export const getTickFormat = (props, key) => {
   } = props
   return scale.tickFormat(tickCount)
 }
+export const getTooltipFormat = (props, key) => {
+  if (props[`${key}TooltipFormat`]) return props[`${key}TooltipFormat`]
+  const {
+    [`${key}Type`]: type = TYPE,
+    [`${key}Scale`]: scale = getScale(props, key),
+    [`${key}TickCount`]: tickCount = TICK_COUNT,
+  } = props
+  if (type === 'log') {
+    const linearScale = getScale({...props, [`${key}Type`]: 'linear'}, key)
+    return linearScale.tickFormat(tickCount)
+  }
+  if (type === 'time') {
+    return d => d.toDateString()
+  }
+  if (!scale.tickFormat) return d => d
+  return scale.tickFormat(tickCount)
+}
 export function getTicks(props, key) {
   if (props[`${key}Ticks`]) return props[`${key}Ticks`]
   const {
     [`${key}Type`]: type = TYPE,
     [`${key}Domain`]: domain = DOMAIN,
     [`${key}TickCount`]: tickCount = TICK_COUNT,
+    [`${key}Scale`]: scale = getScale(props, key),
   } = props
   switch (type) {
   case 'ordinal':
@@ -149,7 +167,6 @@ export function getTicks(props, key) {
     )
   case 'linear':
   default:
-    const scale = getScale(props, key)
     const tickFormat = getTickFormat({...props, scale}, key)
     const ticks = scale.ticks(tickCount)
     return _.map(

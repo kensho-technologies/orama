@@ -1,6 +1,7 @@
 
 import _ from 'lodash'
 import {ACCESSORS_TOOLTIP_ORDER} from '../defaults'
+import {getTooltipFormat} from '../../Chart/getMethods'
 
 const getDatum = data => {
   if (_.isArray(data)) return _.first(data)
@@ -21,13 +22,8 @@ export const extractTooltipData = (props, hoverData) => {
     (acc, key) => {
       const keyAlias = props[`${key}Alias`] || key
       const name = props[`${key}Name`] || props[key]
-      const formatter = props[`${key}TooltipFormat`]
-      let value = _.get(datum, props[key])
-      if (formatter) {
-        value = formatter(value)
-      } else if (_.isDate(value)) {
-        value = value.toDateString()
-      }
+      const formatter = props[`${key}TooltipFormat`] || getTooltipFormat(props, key)
+      const value = formatter(_.get(datum, props[key]))
       const order = accessorsTooltipOrder[key]
       if (!_.isUndefined(value)) acc.push({key: keyAlias, name, value, order})
       return acc
