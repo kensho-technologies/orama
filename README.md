@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/kensho/orama.svg)](https://travis-ci.org/kensho/orama)
 
-![logo](/dist/logo.png)
+![logo](/dist/logo.svg)
 
 > /horáō, "to see, spiritual and mentally" – a vision, focusing on the impact it has on the one beholding the vision
 
