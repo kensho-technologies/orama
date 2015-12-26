@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/kensho/orama.svg)](https://travis-ci.org/luiscarli/orama)
+[![Build Status](https://travis-ci.org/kensho/orama.svg)](https://travis-ci.org/kensho/orama)
 
 
 ## Orama
