@@ -12,7 +12,6 @@ import {Lines} from '../Layer'
 import {Points} from '../Layer'
 import {Ranges} from '../Layer'
 import {Texts} from '../Layer'
-import * as plots from '../plots'
 
 export const TextBody = props => (
   <Row
@@ -82,7 +81,6 @@ export const App = props => (
               {Date: new Date(2010, 6), Close: 90},
               {Date: new Date(2010, 7), Close: 60},
             ]}
-            plot={plots.points}
             radiusValue={3}
             skipExtractArrays={true}
             x='Date'
@@ -96,7 +94,6 @@ export const App = props => (
               },
             ]}
             label='value'
-            plot={plots.texts}
             x='Date'
             y='Close'
           />
@@ -267,7 +264,6 @@ export const App = props => (
               {Name: 'FB2', value: 100},
               {Name: 'GOOGL2', value: 0},
             ]}
-            plot={plots.lines}
             strokeValue='red'
             x='Name'
             y='value'
