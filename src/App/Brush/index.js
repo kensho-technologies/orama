@@ -2,10 +2,11 @@
 import React, {PropTypes} from 'react'
 
 import {stateHOC} from 'on-update'
-import {brushes} from '../../plots/brushes'
 
 import {Block} from 'react-display'
 import {Chart} from '../../Chart'
+import {Brushes} from '../../Layer'
+import {Points} from '../../Layer'
 
 const handleChart = (props, childProps) => {
   if (childProps.isMouseDown) {
@@ -27,35 +28,39 @@ const handleChart = (props, childProps) => {
 const _Brush = props => (
   <Block padding={30}>
     <Chart
-      layers={[
-        // {
-        //   data: _.filter(props.data, d => d.Open > props.x1 && d.Open < props.x2 && d.Volume > props.y2 && d.Volume < props.y1),
-        //   skipExtractArrays: true,
-        //   fillValue: 'red',
-        // },
-        {
-          data: [{x1: props.x1, x2: props.x2, y1: props.y1, y2: props.y2}],
-          plot: brushes,
-          x1: 'x1', y1: 'y1',
-          x2: 'x2', y2: 'y2',
-          skipExtractArrays: true,
-          tooltipShowKeys: false,
-        },
-      ]}
-      alphaValue={0.3}
-      data={props.data}
-      fill='Name'
-      height={300}
-      label='Name'
-      radiusValue={2}
-      tooltipExtraDimensions={['Date']}
-      x='Open'
-      y='Volume'
-      yType='log'
+      height={400}
       onUpdate={childProps => handleChart(props, childProps)}
-    />
+      yType='log'
+    >
+      <Points
+        alphaValue={0.3}
+        data={props.data}
+        fill='Name'
+        label='Name'
+        radiusValue={2}
+        tooltipExtraDimensions={['Date']}
+        x='Open'
+        y='Volume'
+      />
+      <Brushes
+        data={[{x1: props.x1, x2: props.x2, y1: props.y1, y2: props.y2}]}
+        skipExtractArrays={true}
+        tooltipShowKeys={false}
+        x1='x1'
+        x2='x2'
+        y1='y1'
+        y2='y2'
+      />
+    </Chart>
   </Block>
 )
+_Brush.propTypes = {
+  data: PropTypes.array,
+  x1: PropTypes.number,
+  x2: PropTypes.number,
+  y1: PropTypes.number,
+  y2: PropTypes.number,
+}
 _Brush.defaultProps = {
   data: [],
 }

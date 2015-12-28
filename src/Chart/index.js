@@ -19,10 +19,17 @@ import {getMemoizeForRenderLayers} from '../Chart/memoize'
 import {getTheme} from '../defaultTheme'
 import {PropTypes} from 'react'
 import {stateHOC} from 'on-update'
+import {getLayers} from '../Chart/getLayers'
 
 import {Block} from 'react-display'
 import {ChartBackground} from '../ChartBackground'
 import {ChartRender} from '../ChartRender'
+
+const handleChartRender = (props, childProps) => {
+  props.onUpdate({
+    ...childProps,
+  })
+}
 
 /*
 Used inside </>
@@ -43,7 +50,9 @@ export const _Chart = props => {
     removeDimArrays,
     _props => _.omit(_props, 'memoizers', 'onUpdate', 'onState'),
   )
+  const layers = getLayers(props)
   const transformedProps = transformProps({
+    layers,
     ...props,
     theme: getTheme(props.theme),
   })
@@ -60,6 +69,7 @@ export const _Chart = props => {
       />
       <ChartRender
         {...transformedProps}
+        onUpdate={childProps => handleChartRender(props, childProps)}
         renderLayers={renderLayers}
       />
     </Block>
