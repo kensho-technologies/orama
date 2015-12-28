@@ -14,6 +14,10 @@ import {rightVerticalLine} from '../../plots/getBrushesRenderData'
 import {rightCenterLine} from '../../plots/getBrushesRenderData'
 import {topHorizontalLine} from '../../plots/getBrushesRenderData'
 import {topCenterLine} from '../../plots/getBrushesRenderData'
+import {rightBottomLine} from '../../plots/getBrushesRenderData'
+import {leftBottomLine} from '../../plots/getBrushesRenderData'
+import {leftTopLine} from '../../plots/getBrushesRenderData'
+import {rightTopLine} from '../../plots/getBrushesRenderData'
 import {plotValue} from '../../plots/plotValue'
 
 const brushesRender = (props, datum) => {
@@ -41,6 +45,10 @@ const brushesRender = (props, datum) => {
       rightCenterLine(renderArgs),
       topCenterLine(renderArgs),
       bottomCenterLine(renderArgs),
+      leftTopLine(renderArgs),
+      leftBottomLine(renderArgs),
+      rightTopLine(renderArgs),
+      rightBottomLine(renderArgs),
     ]
   } else if (isNumber(x1) && isNumber(x2)) {
     return [
