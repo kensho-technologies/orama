@@ -40,7 +40,6 @@ const _Brush = props => (
           x2: 'x2', y2: 'y2',
           skipExtractArrays: true,
           tooltipShowKeys: false,
-          hoverFill: 'none',
         },
       ]}
       alphaValue={0.3}

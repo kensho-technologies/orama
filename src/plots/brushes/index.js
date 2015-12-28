@@ -30,12 +30,13 @@ const brushesRender = (props, datum) => {
   const x2 = plotValue(props, datum, 'x2')
   const y1 = plotValue(props, datum, 'y1')
   const y2 = plotValue(props, datum, 'y2')
-  const alpha = plotValue(props, datum, 'alpha')
+  const fillAlpha = plotValue(props, datum, 'fillAlpha', 0.4)
   const fill = plotValue(props, datum, 'fill')
-  const stroke = plotValue(props, datum, 'fill')
+  const stroke = plotValue(props, datum, 'stroke')
+  const lineWidth = plotValue(props, datum, 'lineWidth', 3)
 
   const renderArgs = {
-    x1, x2, y1, y2, alpha, fill, stroke, plotRect, backgroundOffset, datum,
+    x1, x2, y1, y2, fillAlpha, fill, stroke, lineWidth, plotRect, backgroundOffset, datum,
   }
 
   if (isNumber(x1) && isNumber(x2) && isNumber(y1) && isNumber(y2)) {
@@ -64,9 +65,7 @@ const brushesRender = (props, datum) => {
     ]
   }
   return {
-    alpha,
     data: datum,
-    fill,
     hoverFill: 'transparent',
     path2D,
     type: 'area',

@@ -6,7 +6,7 @@ const HOVER_OFFSET = 10
 const HOVER_OFFSET_X2 = HOVER_OFFSET * 2
 
 export const centerArea = (
-  {x1, x2, y1, y2, datum, alpha, fill}
+  {x1, x2, y1, y2, datum, fillAlpha, fill}
 ) => {
   const path2D = getPath2D()
   path2D.rect(
@@ -14,7 +14,7 @@ export const centerArea = (
     x2 - x1, y2 - y1
   )
   return {
-    alpha,
+    fillAlpha,
     data: datum,
     fill,
     hoverAlpha: 0.1,
@@ -23,7 +23,7 @@ export const centerArea = (
   }
 }
 export const verticalArea = (
-  {x1, x2, plotRect, backgroundOffset, datum, alpha, fill}
+  {x1, x2, plotRect, backgroundOffset, datum, fillAlpha, fill}
 ) => {
   const path2D = getPath2D()
   path2D.rect(
@@ -31,7 +31,7 @@ export const verticalArea = (
     x2 - x1, plotRect.height + backgroundOffset * 2
   )
   return {
-    alpha,
+    fillAlpha,
     data: datum,
     fill,
     hoverAlpha: 0.1,
@@ -40,7 +40,7 @@ export const verticalArea = (
   }
 }
 export const horizontalArea = (
-  {y1, y2, plotRect, backgroundOffset, datum, alpha, fill}
+  {y1, y2, plotRect, backgroundOffset, datum, fillAlpha, fill}
 ) => {
   const path2D = getPath2D()
   path2D.rect(
@@ -48,7 +48,7 @@ export const horizontalArea = (
     plotRect.width + backgroundOffset * 2, y2 - y1
   )
   return {
-    alpha,
+    fillAlpha,
     data: datum,
     fill,
     hoverAlpha: 0.1,
@@ -57,7 +57,7 @@ export const horizontalArea = (
   }
 }
 export const rightTopLine = (
-  {x2, y1, datum}
+  {x2, y1, datum, stroke, lineWidth}
 ) => {
   const path2D = getPath2D()
   const hover1stPath2D = getPath2D()
@@ -69,8 +69,8 @@ export const rightTopLine = (
     HOVER_OFFSET_X2, HOVER_OFFSET_X2
   )
   return {
-    alpha: 0,
-    lineWidth: 3,
+    lineWidth,
+    stroke,
     data: datum,
     path2D,
     hover1stPath2D,
@@ -78,7 +78,7 @@ export const rightTopLine = (
   }
 }
 export const rightBottomLine = (
-  {x2, y2, datum}
+  {x2, y2, datum, stroke, lineWidth}
 ) => {
   const path2D = getPath2D()
   const hover1stPath2D = getPath2D()
@@ -90,8 +90,8 @@ export const rightBottomLine = (
     HOVER_OFFSET_X2, HOVER_OFFSET_X2
   )
   return {
-    alpha: 0,
-    lineWidth: 3,
+    lineWidth,
+    stroke,
     data: datum,
     path2D,
     hover1stPath2D,
@@ -99,7 +99,7 @@ export const rightBottomLine = (
   }
 }
 export const leftTopLine = (
-  {x1, y1, datum}
+  {x1, y1, datum, stroke, lineWidth}
 ) => {
   const path2D = getPath2D()
   const hover1stPath2D = getPath2D()
@@ -111,8 +111,8 @@ export const leftTopLine = (
     HOVER_OFFSET_X2, HOVER_OFFSET_X2
   )
   return {
-    alpha: 0,
-    lineWidth: 3,
+    lineWidth,
+    stroke,
     data: datum,
     path2D,
     hover1stPath2D,
@@ -120,7 +120,7 @@ export const leftTopLine = (
   }
 }
 export const leftBottomLine = (
-  {x1, y2, datum}
+  {x1, y2, datum, stroke, lineWidth}
 ) => {
   const path2D = getPath2D()
   const hover1stPath2D = getPath2D()
@@ -132,8 +132,8 @@ export const leftBottomLine = (
     HOVER_OFFSET_X2, HOVER_OFFSET_X2
   )
   return {
-    alpha: 0,
-    lineWidth: 3,
+    lineWidth,
+    stroke,
     data: datum,
     path2D,
     hover1stPath2D,
@@ -141,7 +141,7 @@ export const leftBottomLine = (
   }
 }
 export const leftVerticalLine = (
-  {x1, plotRect, backgroundOffset, datum}
+  {x1, plotRect, backgroundOffset, datum, stroke, lineWidth}
 ) => {
   const path2D = getPath2D()
   const hover1stPath2D = getPath2D()
@@ -154,8 +154,8 @@ export const leftVerticalLine = (
     HOVER_OFFSET_X2, plotRect.height + backgroundOffset * 2
   )
   return {
-    alpha: 0,
-    lineWidth: 3,
+    lineWidth,
+    stroke,
     data: datum,
     path2D,
     hover1stPath2D,
@@ -163,7 +163,7 @@ export const leftVerticalLine = (
   }
 }
 export const leftCenterLine = (
-  {x1, y1, y2, datum}
+  {x1, y1, y2, datum, stroke, lineWidth}
 ) => {
   const path2D = getPath2D()
   const hover1stPath2D = getPath2D()
@@ -176,8 +176,8 @@ export const leftCenterLine = (
     HOVER_OFFSET_X2, y2 - y1 - BRUSH_HANDLE_OFFSET * 2
   )
   return {
-    alpha: 0,
-    lineWidth: 3,
+    lineWidth,
+    stroke,
     data: datum,
     path2D,
     hover1stPath2D,
@@ -185,7 +185,7 @@ export const leftCenterLine = (
   }
 }
 export const rightVerticalLine = (
-  {x2, plotRect, backgroundOffset, datum}
+  {x2, plotRect, backgroundOffset, datum, stroke, lineWidth}
 ) => {
   const path2D = getPath2D()
   const hover1stPath2D = getPath2D()
@@ -198,8 +198,8 @@ export const rightVerticalLine = (
     HOVER_OFFSET_X2, plotRect.height + backgroundOffset * 2
   )
   return {
-    alpha: 0,
-    lineWidth: 3,
+    lineWidth,
+    stroke,
     data: datum,
     path2D,
     hover1stPath2D,
@@ -207,7 +207,7 @@ export const rightVerticalLine = (
   }
 }
 export const rightCenterLine = (
-  {x2, y1, y2, datum}
+  {x2, y1, y2, datum, stroke, lineWidth}
 ) => {
   const path2D = getPath2D()
   const hover1stPath2D = getPath2D()
@@ -220,8 +220,8 @@ export const rightCenterLine = (
     HOVER_OFFSET_X2, y2 - y1 - BRUSH_HANDLE_OFFSET * 2
   )
   return {
-    alpha: 0,
-    lineWidth: 3,
+    lineWidth,
+    stroke,
     data: datum,
     path2D,
     hover1stPath2D,
@@ -229,7 +229,7 @@ export const rightCenterLine = (
   }
 }
 export const topHorizontalLine = (
-  {y1, plotRect, backgroundOffset, datum}
+  {y1, plotRect, backgroundOffset, datum, stroke, lineWidth}
 ) => {
   const path2D = getPath2D()
   const hover1stPath2D = getPath2D()
@@ -244,8 +244,8 @@ export const topHorizontalLine = (
     plotRect.width + backgroundOffset * 2, HOVER_OFFSET_X2
   )
   return {
-    alpha: 0,
-    lineWidth: 3,
+    lineWidth,
+    stroke,
     data: datum,
     path2D,
     hover1stPath2D,
@@ -253,7 +253,7 @@ export const topHorizontalLine = (
   }
 }
 export const topCenterLine = (
-  {x1, x2, y1, datum}
+  {x1, x2, y1, datum, stroke, lineWidth}
 ) => {
   const path2D = getPath2D()
   const hover1stPath2D = getPath2D()
@@ -264,8 +264,8 @@ export const topCenterLine = (
     x2 - x1, HOVER_OFFSET_X2
   )
   return {
-    alpha: 0,
-    lineWidth: 3,
+    lineWidth,
+    stroke,
     data: datum,
     path2D,
     hover1stPath2D,
@@ -273,7 +273,7 @@ export const topCenterLine = (
   }
 }
 export const bottomHorizontalLine = (
-  {y2, plotRect, backgroundOffset, datum}
+  {y2, plotRect, backgroundOffset, datum, stroke, lineWidth}
 ) => {
   const path2D = getPath2D()
   const hover1stPath2D = getPath2D()
@@ -288,8 +288,8 @@ export const bottomHorizontalLine = (
     plotRect.width + backgroundOffset * 2, HOVER_OFFSET_X2
   )
   return {
-    alpha: 0,
-    lineWidth: 3,
+    lineWidth,
+    stroke,
     data: datum,
     path2D,
     hover1stPath2D,
@@ -297,7 +297,7 @@ export const bottomHorizontalLine = (
   }
 }
 export const bottomCenterLine = (
-  {x1, x2, y2, datum}
+  {x1, x2, y2, datum, stroke, lineWidth}
 ) => {
   const path2D = getPath2D()
   const hover1stPath2D = getPath2D()
@@ -308,8 +308,8 @@ export const bottomCenterLine = (
     x2 - x1, HOVER_OFFSET_X2
   )
   return {
-    alpha: 0,
-    lineWidth: 3,
+    lineWidth,
+    stroke,
     data: datum,
     path2D,
     hover1stPath2D,
