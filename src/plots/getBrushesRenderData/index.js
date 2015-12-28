@@ -2,6 +2,8 @@
 import {getPath2D} from '../../utils/path2DUtils'
 
 const BRUSH_HANDLE_OFFSET = 5
+const HOVER_OFFSET = 10
+const HOVER_OFFSET_X2 = HOVER_OFFSET * 2
 
 export const centerArea = (
   {x1, x2, y1, y2, datum, alpha, fill}
@@ -63,8 +65,8 @@ export const rightTopLine = (
   path2D.lineTo(x2, y1)
   path2D.lineTo(x2, y1 + BRUSH_HANDLE_OFFSET)
   hover1stPath2D.rect(
-    x2 - 15, y1 - 20,
-    35, 35
+    x2 - HOVER_OFFSET, y1 - HOVER_OFFSET,
+    HOVER_OFFSET_X2, HOVER_OFFSET_X2
   )
   return {
     alpha: 0,
@@ -84,8 +86,8 @@ export const rightBottomLine = (
   path2D.lineTo(x2, y2)
   path2D.lineTo(x2, y2 - BRUSH_HANDLE_OFFSET)
   hover1stPath2D.rect(
-    x2 - 15, y2 - 15,
-    35, 35
+    x2 - HOVER_OFFSET, y2 - HOVER_OFFSET,
+    HOVER_OFFSET_X2, HOVER_OFFSET_X2
   )
   return {
     alpha: 0,
@@ -105,8 +107,8 @@ export const leftTopLine = (
   path2D.lineTo(x1, y1)
   path2D.lineTo(x1 + BRUSH_HANDLE_OFFSET, y1)
   hover1stPath2D.rect(
-    x1 - 20, y1 - 20,
-    35, 35
+    x1 - HOVER_OFFSET, y1 - HOVER_OFFSET,
+    HOVER_OFFSET_X2, HOVER_OFFSET_X2
   )
   return {
     alpha: 0,
@@ -126,8 +128,8 @@ export const leftBottomLine = (
   path2D.lineTo(x1, y2)
   path2D.lineTo(x1 + BRUSH_HANDLE_OFFSET, y2)
   hover1stPath2D.rect(
-    x1 - 20, y2 - 20,
-    35, 35
+    x1 - HOVER_OFFSET, y2 - HOVER_OFFSET,
+    HOVER_OFFSET_X2, HOVER_OFFSET_X2
   )
   return {
     alpha: 0,
@@ -143,13 +145,13 @@ export const leftVerticalLine = (
 ) => {
   const path2D = getPath2D()
   const hover1stPath2D = getPath2D()
-  path2D.moveTo(
-    x1, plotRect.y - backgroundOffset + BRUSH_HANDLE_OFFSET)
+  path2D.moveTo(x1, plotRect.y - backgroundOffset + BRUSH_HANDLE_OFFSET)
   path2D.lineTo(
-    x1, plotRect.y + plotRect.height + backgroundOffset - BRUSH_HANDLE_OFFSET)
+    x1, plotRect.y + plotRect.height + backgroundOffset - BRUSH_HANDLE_OFFSET
+  )
   hover1stPath2D.rect(
-    x1 - 15, plotRect.y - backgroundOffset,
-    20, plotRect.height + backgroundOffset * 2
+    x1 - HOVER_OFFSET, plotRect.y - backgroundOffset,
+    HOVER_OFFSET_X2, plotRect.height + backgroundOffset * 2
   )
   return {
     alpha: 0,
@@ -170,8 +172,8 @@ export const leftCenterLine = (
   path2D.lineTo(
     x1, y2 - BRUSH_HANDLE_OFFSET)
   hover1stPath2D.rect(
-    x1 - 15, y1 + BRUSH_HANDLE_OFFSET,
-    20, y2 - y1 - BRUSH_HANDLE_OFFSET * 2
+    x1 - HOVER_OFFSET, y1 + BRUSH_HANDLE_OFFSET,
+    HOVER_OFFSET_X2, y2 - y1 - BRUSH_HANDLE_OFFSET * 2
   )
   return {
     alpha: 0,
@@ -192,8 +194,8 @@ export const rightVerticalLine = (
   path2D.lineTo(
     x2, plotRect.y + plotRect.height + backgroundOffset - BRUSH_HANDLE_OFFSET)
   hover1stPath2D.rect(
-    x2 - 10, plotRect.y - backgroundOffset,
-    25, plotRect.height + backgroundOffset * 2
+    x2 - HOVER_OFFSET, plotRect.y - backgroundOffset,
+    HOVER_OFFSET_X2, plotRect.height + backgroundOffset * 2
   )
   return {
     alpha: 0,
@@ -214,8 +216,8 @@ export const rightCenterLine = (
   path2D.lineTo(
     x2, y2 - BRUSH_HANDLE_OFFSET)
   hover1stPath2D.rect(
-    x2 - 10, y1 + BRUSH_HANDLE_OFFSET,
-    25, y2 - y1 - BRUSH_HANDLE_OFFSET * 2
+    x2 - HOVER_OFFSET, y1 + BRUSH_HANDLE_OFFSET,
+    HOVER_OFFSET_X2, y2 - y1 - BRUSH_HANDLE_OFFSET * 2
   )
   return {
     alpha: 0,
@@ -238,8 +240,8 @@ export const topHorizontalLine = (
     plotRect.x + plotRect.width + backgroundOffset - BRUSH_HANDLE_OFFSET, y1
   )
   hover1stPath2D.rect(
-    plotRect.x - backgroundOffset, y1 - 15,
-    plotRect.width + backgroundOffset * 2, 20
+    plotRect.x - backgroundOffset, y1 - HOVER_OFFSET,
+    plotRect.width + backgroundOffset * 2, HOVER_OFFSET_X2
   )
   return {
     alpha: 0,
@@ -258,8 +260,8 @@ export const topCenterLine = (
   path2D.moveTo(x1 + BRUSH_HANDLE_OFFSET, y1)
   path2D.lineTo(x2 - BRUSH_HANDLE_OFFSET, y1)
   hover1stPath2D.rect(
-    x1, y1 - 15,
-    x2 - x1, 20
+    x1, y1 - HOVER_OFFSET,
+    x2 - x1, HOVER_OFFSET_X2
   )
   return {
     alpha: 0,
@@ -282,8 +284,8 @@ export const bottomHorizontalLine = (
     plotRect.x + plotRect.width + backgroundOffset - BRUSH_HANDLE_OFFSET, y2
   )
   hover1stPath2D.rect(
-    plotRect.x - backgroundOffset, y2 - 10,
-    plotRect.width + backgroundOffset * 2, 25
+    plotRect.x - backgroundOffset, y2 - HOVER_OFFSET,
+    plotRect.width + backgroundOffset * 2, HOVER_OFFSET_X2
   )
   return {
     alpha: 0,
@@ -302,8 +304,8 @@ export const bottomCenterLine = (
   path2D.moveTo(x1 + BRUSH_HANDLE_OFFSET, y2)
   path2D.lineTo(x2 - BRUSH_HANDLE_OFFSET, y2)
   hover1stPath2D.rect(
-    x1, y2 - 10,
-    x2 - x1, 25
+    x1, y2 - HOVER_OFFSET,
+    x2 - x1, HOVER_OFFSET_X2
   )
   return {
     alpha: 0,
