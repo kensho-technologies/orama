@@ -183,6 +183,14 @@ export const getBackgroundRenderData = props => {
   ]))
 }
 
+const getLabelText = (props, key) => {
+  const text = props[`${key}Name`] || props[key]
+  if (text) return text
+  const layer = _.findLast(props.layers, d => d[`${key}Name`] || d[key])
+  if (layer) return layer[`${key}Name`] || layer[key]
+  return undefined
+}
+
 /*
 Used inside </>
 */
@@ -198,14 +206,14 @@ export const ChartBackground = props => (
     {props.yShowLabel ?
       <LeftLabel
         plotRect={props.plotRect}
-        text={props.yName || props.y}
+        text={getLabelText(props, 'y')}
         theme={props.theme}
       />
     : null}
     {props.xShowLabel ?
       <BottomLabel
         plotRect={props.plotRect}
-        text={props.xName || props.x}
+        text={getLabelText(props, 'x')}
         theme={props.theme}
       />
     : null}
