@@ -3,7 +3,7 @@ import React from 'react'
 import _ from 'lodash'
 
 import {DEFAULT_THEME} from '../defaultTheme'
-import {HEIGHT} from '../Chart/defaults'
+import {PROPORTION} from '../Chart/defaults'
 import {WIDTH} from '../Chart/defaults'
 
 import {addLocalDimensionsToProps} from '../Chart/addDimArrays'
@@ -88,9 +88,9 @@ _Chart.propTypes = {
   y: PropTypes.string,
 }
 _Chart.defaultProps = {
+  proportion: PROPORTION,
   theme: DEFAULT_THEME,
   width: WIDTH,
-  height: HEIGHT,
 }
 _Chart.initialState = () => ({
   memoizers: {

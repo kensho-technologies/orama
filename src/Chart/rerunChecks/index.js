@@ -30,7 +30,7 @@ export const rerunCheckAddDomains = getRerunCheckForNames(
 )
 export const rerunCheckAddPlotRect = getRerunCheckForNames(
   ['Array', 'ShowTicks', 'ShowLabel'],
-  ['width', 'height', 'margin']
+  ['width', 'height', 'margin', 'proportion']
 )
 export const rerunCheckAddRanges = getRerunCheckForNames(
   ['Range', 'Type', 'Array'],

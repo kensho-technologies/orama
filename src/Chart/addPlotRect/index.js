@@ -146,7 +146,7 @@ export const addPlotRect = props => {
     backgroundOffset = BACKGROUND_OFFSET,
     groupedKeys,
     width,
-    height,
+    height = props.width * props.proportion,
   } = props
 
   const top = getTopMargin(props)
@@ -181,7 +181,6 @@ export const addPlotRect = props => {
     plotRect.width = 0
     newWidth = left + right
   }
-
   return {
     ...props,
     backgroundOffset,

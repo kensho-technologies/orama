@@ -48,7 +48,6 @@ export const App = props => (
     <TextBody>
       <ChartMargin>
         <Chart // scaterplot
-          height={300}
           yType='log'
         >
           <Points
