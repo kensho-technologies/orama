@@ -6,25 +6,27 @@ import _ from 'lodash'
 import * as methods from './'
 import {ACCESSORS_GROUPS} from '../defaults'
 
-const data = [
+const layerData1 = [
   {p0: -1, p1: 1, p2: 'a', p3: new Date(2015, 1, 1)},
   {p0: -2, p1: 2, p2: 'b', p3: new Date(2015, 1, 2)},
   {p0: -3, p1: undefined, p2: 'c', p3: new Date(2015, 1, 3)},
 ]
-const layerData = [
+const layerData2 = [
   {p10: 10, p2: 'aa', p3: new Date(2010, 1, 1)},
   {p10: 20, p2: 'bb', p3: new Date(2010, 2, 1)},
   {p10: 30, p2: 'cc', p3: new Date(2010, 3, 1)},
 ]
 const props = {
-  data,
-  x0: 'p0',
-  x: 'p1',
-  y: 'p2',
-  fill: 'p3',
   layers: [
     {
-      data: layerData,
+      data: layerData1,
+      x0: 'p0',
+      x: 'p1',
+      y: 'p2',
+      fill: 'p3',
+    },
+    {
+      data: layerData2,
       x: 'p10',
       y: 'p2',
       fill: 'p3',
@@ -33,7 +35,7 @@ const props = {
 }
 test('Chart/addDimArrays.getDimArraysForLayer', () => {
   assert.deepEqual(
-    methods.getDimArraysForLayer(methods.addLocalDimensionsToProps(props)),
+    methods.getDimArraysForLayer(methods.addLocalDimensionsToProps(props).layers[0]),
     {
       fill: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
@@ -94,10 +96,16 @@ test('Chart/addDimArrays.addDimArrays', () => {
   assert.deepEqual(
     methods.addDimArrays(methods.addLocalDimensionsToProps(props)),
     _.assign({}, props, {
-      layers: [_.assign({}, props.layers[0], {
-        localDefinedAccessors: {x: 'p10', y: 'p2', fill: 'p3'},
-        localKeys: ['x', 'y', 'fill'],
-      })],
+      layers: [
+        _.assign({}, props.layers[0], {
+          localDefinedAccessors: {x0: 'p0', x: 'p1', y: 'p2', fill: 'p3'},
+          localKeys: ['x', 'x0', 'y', 'fill'],
+        }),
+        _.assign({}, props.layers[1], {
+          localDefinedAccessors: {x: 'p10', y: 'p2', fill: 'p3'},
+          localKeys: ['x', 'y', 'fill'],
+        }),
+      ],
       fillArray: [
         new Date(2015, 1, 1), new Date(2015, 1, 2), new Date(2015, 1, 3),
         new Date(2010, 1, 1), new Date(2010, 2, 1), new Date(2010, 3, 1),
@@ -105,16 +113,14 @@ test('Chart/addDimArrays.addDimArrays', () => {
       xArray: [1, 2, 10, 20, 30, -1, -2, -3],
       yArray: ['a', 'b', 'c', 'aa', 'bb', 'cc'],
       groupedKeys: ['fill', 'x', 'y'],
-      localDefinedAccessors: {x0: 'p0', x: 'p1', y: 'p2', fill: 'p3'},
-      localKeys: ['x', 'x0', 'y', 'fill'],
     })
   )
 })
 test('Chart/addDimArrays.addDimArrays -> missing data 1', () => {
   const localProps = {
-    layers: [
-      {data: [{x: 1}], x: 'x'},
-    ],
+    layers: [{
+      data: [{x: 1}], x: 'x',
+    }],
     x: '',
   }
   assert.deepEqual(
@@ -129,8 +135,6 @@ test('Chart/addDimArrays.addDimArrays -> missing data 1', () => {
       x: '',
       xArray: [1],
       groupedKeys: ['x'],
-      localDefinedAccessors: {x: ''},
-      localKeys: ['x'],
     }
   )
 })
@@ -139,8 +143,6 @@ test('Chart/addDimArrays.addDimArrays -> missing data 2', () => {
     layers: [{
       x: 'x',
     }],
-    data: [{x: 1}],
-    x: 'x',
   }
   assert.deepEqual(
     methods.addDimArrays(methods.addLocalDimensionsToProps(localProps)),
@@ -150,56 +152,51 @@ test('Chart/addDimArrays.addDimArrays -> missing data 2', () => {
         localDefinedAccessors: {x: 'x'},
         localKeys: ['x'],
       }],
-      data: [{x: 1}],
-      x: 'x',
-      xArray: [1],
-      groupedKeys: ['x'],
-      localDefinedAccessors: {x: 'x'},
-      localKeys: ['x'],
+      groupedKeys: [],
     }
   )
 })
 test('Chart/addDimArrays.addDimArrays -> missing data 3', () => {
   const localProps = {
-    layers: [
-      {x: 'x'},
-    ],
-    data: [{x: 1}],
-    x: 'x',
-    y: 'y',
+    layers: [{
+      data: [{x: 1}],
+      x: 'x',
+      y: 'y',
+    }],
   }
   assert.deepEqual(
     methods.addDimArrays(methods.addLocalDimensionsToProps(localProps)),
     {
       layers: [{
+        data: [{x: 1}],
+        localDefinedAccessors: {x: 'x', y: 'y'},
+        localKeys: ['x', 'y'],
+        y: 'y',
         x: 'x',
-        localKeys: ['x'],
-        localDefinedAccessors: {x: 'x'},
       }],
-      data: [{x: 1}],
-      x: 'x',
-      y: 'y',
       xArray: [1],
       groupedKeys: ['x'],
-      localDefinedAccessors: {x: 'x', y: 'y'},
-      localKeys: ['x', 'y'],
     }
   )
 })
 test('Chart/addDimArrays.addDimArrays -> dont skip the zero', () => {
   const localProps = {
-    data: [{x: 0}, {x: 1}, {x: 2}],
-    x: 'x',
+    layers: [{
+      data: [{x: 0}, {x: 1}, {x: 2}],
+      x: 'x',
+    }],
   }
   assert.deepEqual(
     methods.addDimArrays(methods.addLocalDimensionsToProps(localProps)),
     {
-      data: [{x: 0}, {x: 1}, {x: 2}],
-      x: 'x',
+      layers: [{
+        data: [{x: 0}, {x: 1}, {x: 2}],
+        x: 'x',
+        localDefinedAccessors: {x: 'x'},
+        localKeys: ['x'],
+      }],
       xArray: [0, 1, 2],
       groupedKeys: ['x'],
-      localDefinedAccessors: {x: 'x'},
-      localKeys: ['x'],
     }
   )
 })

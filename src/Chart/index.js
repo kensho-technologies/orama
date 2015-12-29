@@ -104,5 +104,5 @@ _Chart.initialState = () => ({
     renderLayers: getMemoizeForRenderLayers(),
   },
 })
-
-export const Chart = chartWidthHOC(stateHOC(_Chart))
+export const StateChart = stateHOC(_Chart)
+export const Chart = chartWidthHOC(StateChart)

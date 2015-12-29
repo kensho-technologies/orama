@@ -5,11 +5,11 @@ import assert from 'assert'
 import React from 'react'
 import shallowRender from '@luiscarli/shallow-render'
 
-import {Chart} from './'
+import {StateChart} from './'
 
-test('Chart', () => {
+test('StateChart', () => {
   const component = shallowRender(
-    <Chart/>
+    <StateChart/>
   )
   assert.deepEqual(component.type.displayName, 'Block')
 })
