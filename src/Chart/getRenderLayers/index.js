@@ -16,12 +16,8 @@ export const getLayer = props => {
   }
 }
 export const getRenderLayers = props => {
-  const rootRenderLayer = getLayer(props)
-  const renderLayers = _.map(
+  return _.map(
     props.layers,
     layer => getLayer({...props, ...layer}),
   )
-  return [
-    rootRenderLayer, ...renderLayers,
-  ]
 }

@@ -82,11 +82,11 @@ export const addLocalDimensionsToProps = props => {
   if (props.layers) {
     const layers = _.map(props.layers, addLocalDimensionsToLayer)
     return {
-      ...addLocalDimensionsToLayer(props),
+      ...props,
       layers,
     }
   }
-  return addLocalDimensionsToLayer(props)
+  return props
 }
 export const getDimArraysForLayer = (layer) => {
   if (layer.skipExtractArrays) return {}
@@ -115,10 +115,9 @@ export const getDimArraysForLayer = (layer) => {
 Get dimension array from the props root and from each layer, and merge the arrays with the same key.
 */
 export const getDimArraysForProps = props => {
-  const rootDimArray = getDimArraysForLayer(props)
   const layersArrays = _.map(props.layers, getDimArraysForLayer)
   const dimArrays = _.merge(
-    rootDimArray,
+    {},
     ...layersArrays,
     (a, b) => {
       if (_.isUndefined(a)) return b
