@@ -67,13 +67,13 @@ export const App = props => (
       <ChartMargin>
         <Chart // multi line chart
           height={300}
+          xTickFormat={utcFormat('%Y')}
         >
           <Lines
             data={[props.appl, props.fb]}
             label='Name'
             tooltipKeys={['x', 'y']}
             x='Date'
-            xTickFormat={utcFormat('%Y')}
             y='Close'
           />
           <Points
@@ -103,6 +103,7 @@ export const App = props => (
       <ChartMargin>
         <Chart // multi area chart y0
           height={300}
+          xTickFormat={utcFormat('%b %y\'')}
         >
           <Areas
             data={[
@@ -111,7 +112,6 @@ export const App = props => (
             ]}
             fill='Name'
             x='Date'
-            xTickFormat={utcFormat('%b %y\'')}
             y='High'
             y0='Low'
           />
