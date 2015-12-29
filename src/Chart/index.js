@@ -20,6 +20,7 @@ import {getTheme} from '../defaultTheme'
 import {PropTypes} from 'react'
 import {removeDimArrays} from '../Chart/addDimArrays'
 import {stateHOC} from 'on-update'
+import {chartWidthHOC} from '../Chart/chartWidthHOC'
 
 import {Block} from 'react-display'
 import {ChartBackground} from '../ChartBackground'
@@ -104,4 +105,4 @@ _Chart.initialState = () => ({
   },
 })
 
-export const Chart = stateHOC(_Chart)
+export const Chart = chartWidthHOC(stateHOC(_Chart))

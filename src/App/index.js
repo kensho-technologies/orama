@@ -34,6 +34,7 @@ TextBody.propTypes = {
 }
 const ChartMargin = props => (
   <Block
+    flex='1 1 40%'
     padding={30}
     {...props}
   />
