@@ -7,17 +7,56 @@ const getDatum = data => {
   if (_.isArray(data)) return _.first(data)
   return data
 }
-
 const isDisplayable = value => (
   value !== 'NaN' &&
   !_.isUndefined(value) &&
   !_.isNaN(value)
 )
-
+const tooltipValuesForStrings = (tooltipExtraDimensions, datum) => {
+  return _.reduce(
+    tooltipExtraDimensions,
+    (acc, key) => {
+      let value = _.get(datum, key)
+      if (_.isDate(value)) {
+        value = value.toDateString()
+      }
+      if (isDisplayable(value)) {
+        acc.push({name: key, value})
+      }
+      return acc
+    },
+    []
+  )
+}
+const tooltipValuesForObjects = (tooltipExtraDimensions, datum) => {
+  return _.reduce(
+    tooltipExtraDimensions,
+    (acc, obj) => {
+      const {
+        accessor,
+        value,
+        format = d => d,
+        name,
+      } = obj
+      acc.push({
+        name: name || accessor,
+        value: format(value) || format(_.get(datum, accessor)),
+      })
+      return acc
+    },
+    []
+  )
+}
+const getExtraTooltipValues = (props, datum) => {
+  const {tooltipExtraDimensions} = props
+  if (_.any(tooltipExtraDimensions, _.isString)) {
+    return tooltipValuesForStrings(tooltipExtraDimensions, datum)
+  }
+  return tooltipValuesForObjects(tooltipExtraDimensions, datum)
+}
 export const extractTooltipData = (props, hoverData) => {
   const {
     localKeys,
-    tooltipExtraDimensions,
     tooltipKeys,
     accessorsTooltipOrder = ACCESSORS_TOOLTIP_ORDER,
   } = props
@@ -38,20 +77,7 @@ export const extractTooltipData = (props, hoverData) => {
     },
     []
   )
-  const extraTooltipValues = _.reduce(
-    tooltipExtraDimensions,
-    (acc, key) => {
-      let value = _.get(datum, key)
-      if (_.isDate(value)) {
-        value = value.toDateString()
-      }
-      if (isDisplayable(value)) {
-        acc.push({name: key, value})
-      }
-      return acc
-    },
-    []
-  )
+  const extraTooltipValues = getExtraTooltipValues(props, datum)
   const orderedTooltipValues = _.map(
     _.sortBy(tooltipValues, 'order'),
     values => _.omit(values, 'order'),

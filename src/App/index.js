@@ -128,6 +128,9 @@ export const App = props => (
               {Name: 'FB', value: 150},
               {Name: 'GOOGL', value: 10},
             ]}
+            tooltipExtraDimensions={[
+              {name: '...Test', value: '40%'},
+            ]}
             x='Name'
             y='value'
           />
