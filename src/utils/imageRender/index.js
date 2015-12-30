@@ -35,6 +35,7 @@ export function generateSrc(node, clbck) {
   const serializer = new XMLSerializer()
   const HTMLString = serializer.serializeToString(cloned)
   const canvas = document.createElement('canvas')
+  const context = canvas.getContext('2d');
   canvas.width = width
   canvas.height = height
 
@@ -42,17 +43,11 @@ export function generateSrc(node, clbck) {
     .drawHTML(HTMLString, canvas)
     .then(renderResult => {
       const image = renderResult.image;
-      
-      // remove 12 px padding added by rasterizehtml
-      const width = image.width - 12 * 2;
-      const height = image.height - 30;
-      canvas.width = width;
-      canvas.height = height;
-      const context = canvas.getContext('2d');
-      context.drawImage(image, -12, -12);
+      canvas.width = image.width;
+      canvas.height = image.height;
+      context.drawImage(image, 0, 0);
       const src = canvas.toDataURL('image/png');
       canvas.remove();
-    
       return src
     })
     .then(clbck);
