@@ -2,17 +2,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import {generateSrc, openImg} from '../../utils/imageRender'
-
 import {Flex} from 'react-display'
 
 export default React.createClass({
   displayName: 'ChartsGroupBar',
   propTypes: {
     children: React.PropTypes.any,
-  },
-  handleClick() {
-    generateSrc(openImg, ReactDOM.findDOMNode(this.refs.test).children[0])
   },
   render() {
     const {children} = this.props
