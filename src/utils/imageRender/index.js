@@ -2,6 +2,8 @@
 import {each} from 'lodash'
 import {getWindow} from '../windowUtils'
 
+var rasterizeHTML = require('rasterizehtml')
+
 /*
 Render a DOM to a dataURL source, which can be used to generate a downloadable image.
 The size of the node is used for setting the size of the rendered image
@@ -29,29 +31,31 @@ export function generateSrc(node, clbck) {
       cloneCanvas.parentNode.replaceChild(img, cloneCanvas)
     }
   )
+
+  const serializer = new XMLSerializer()
+  const HTMLString = serializer.serializeToString(cloned)
   const canvas = document.createElement('canvas')
   canvas.width = width
   canvas.height = height
-  var ctx = canvas.getContext('2d')
-  const serializer = new XMLSerializer()
-  const data = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
-      <foreignObject
-        width="${width}"
-        height="${height}"
-      >
-        ${serializer.serializeToString(cloned)}
-      </foreignObject>
-    </svg>`
-  const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(data)
-  const img = new Image()
-  img.setAttribute('crossOrigin', 'anonymous')
-  img.src = url
-  img.onload = function onImgLoad() {
-    ctx.drawImage(img, 0, 0)
-    const dataURL = canvas.toDataURL('image/png')
-    clbck(dataURL)
-  }
+
+  return rasterizeHTML
+    .drawHTML(HTMLString, canvas)
+    .then(renderResult => {
+      const image = renderResult.image;
+      
+      // remove 12 px padding added by rasterizehtml
+      const width = image.width - 12 * 2;
+      const height = image.height - 30;
+      canvas.width = width;
+      canvas.height = height;
+      const context = canvas.getContext('2d');
+      context.drawImage(image, -12, -12);
+      const src = canvas.toDataURL('image/png');
+      canvas.remove();
+    
+      return src
+    })
+    .then(clbck);
 }
 
 /*
