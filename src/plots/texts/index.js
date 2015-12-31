@@ -24,7 +24,7 @@ export const getTextRenderData = (props, datum) => {
   const textBaseline = props.textBaselineValue || get(datum, props.textBaseline) || datum.textBaseline
   const textAlign = props.textAlignValue || get(datum, props.textAlign) || datum.textAlign
   const fill = plotValue(props, datum, 'fill')
-  const renderDatum = {
+  return {
     alpha,
     fill,
     textAlign,
@@ -34,7 +34,6 @@ export const getTextRenderData = (props, datum) => {
     x,
     y,
   }
-  return renderDatum
 }
 
 /*
