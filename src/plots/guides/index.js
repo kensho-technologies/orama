@@ -13,7 +13,7 @@ const getGuideRenderData = (props, datum) => {
   const x = plotValue(props, datum, 'x')
   const y = plotValue(props, datum, 'y')
   const stroke = plotValue(props, datum, 'stroke')
-  const strokeWidth = plotValue(props, datum, 'strokeWidth')
+  const lineWidth = plotValue(props, datum, 'lineWidth')
   const lineDash = plotValue(props, datum, 'lineDash')
   const alpha = plotValue(props, datum, 'alpha')
   if (isNumber(x)) {
@@ -30,7 +30,7 @@ const getGuideRenderData = (props, datum) => {
     lineDash,
     path2D,
     stroke,
-    strokeWidth,
+    lineWidth,
     type: 'line',
   }
 }
