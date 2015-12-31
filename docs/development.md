@@ -19,17 +19,44 @@ $ npm run cov
 # generate coverage information from tests
 # open coverage report on the browser
 
-# For publishing
-$ npm run build
-$ npm version [prerelease/path/minor]
-$ npm publish
-
 # Read package.json to see all scripts
 ```
 
 ## Style guide
 
 We use an extended version of the Airbnb js style guide plus some extra conventions on the Orama code base. The syntax rules are enforced by our linter, the conventions that are not linter enforced are presented bellow.
+
+## Commit messages
+
+Commit messages should have the following structure:
+```
+(TYPE) mainAffectedFile: action taken
+```
+Example of commits:
+```
+texts: clean function return
+(FIX) guides: lineWidth was not rendering
+(FTR) basicRender: add clip config option
+(BRK) Chart: stop rendering root as a layer
+```
+Type can be:
+- `empty` for chores, docs, tests, refactors without noticeable speed improvements, typos, etc.
+- `FIX` for bugs, fixes, performance, etc, a patch semver (0.0.x), performance, etc.
+- `FTR` for new features and functionality, a minor semver (0.x.0).
+- `BRK` for breaking changes, which will need updates to dependents of the code, a major semver (x.0.0).
+
+When type is not empty, the commits should also contain a description of the change, the message and description will go directly to the release logs.
+
+**Each commit on a pull request should be meaningful and follow this convention   
+(After a PR revision, squash and edit commits as needed to achieve this.)**
+```
+// BAD
+d92d3953 wip refactor texts return
+2fbcd415 fix linter and style as requested
+
+// GOOD
+d92d3953 texts: clean function return
+```
 
 ### File structure
 
@@ -107,8 +134,10 @@ const myObj = {
 - Use stateless 'pure' functions defined on the root of each file
 - Keep a small line count on functions (~15)
 
+
 - Don't mutate data from functions input
 - Don't write functions that mutate variables from the file scope
+
 
 - Whenever possible use `const` instead of `var` and `let`
 
@@ -138,7 +167,7 @@ ExampleComponent.propTypes = {
 }
 ```
 
-### Style
+### CSS Styles
 
 - Only inline style
 - Use `react-display` components whenever possible
