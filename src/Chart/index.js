@@ -61,9 +61,9 @@ export const _Chart = props => {
   return (
     <Block
       background={props.theme.backgroundFill}
-      height={transformedProps.height}
+      paddingBottom={`${transformedProps.height / transformedProps.width * 100}%`}
       position='relative'
-      width={transformedProps.width}
+      width='100%'
     >
       <ChartBackground
         {...transformedProps}

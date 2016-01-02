@@ -18,7 +18,7 @@ export const TextBody = props => (
     justifyContent='center'
   >
     <Row
-      flexShrink='1'
+      flexBasis='100%'
       flexWrap='wrap'
       justifyContent='center'
       margin='0 10px'
@@ -34,7 +34,8 @@ TextBody.propTypes = {
 }
 const ChartMargin = props => (
   <Block
-    flex='1 1 40%'
+    flexBasis={400}
+    flexGrow={1}
     padding={30}
     {...props}
   />

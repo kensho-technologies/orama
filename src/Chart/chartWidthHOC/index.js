@@ -29,7 +29,7 @@ export const chartWidthHOC = InputComponent => {
     },
     updateWidth() {
       if (this.divNode && !this.props.width) {
-        const width = this.divNode.offsetWidth
+        const width = this.divNode.clientWidth
         if (this.state.width !== width) {
           this.setState({width})
         }

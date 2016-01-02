@@ -61,9 +61,8 @@ export const CanvasRender = React.createClass({
         ref={this.handleCanvasRef}
         style={{
           display: 'block',
-          height: this.props.height,
           position: 'absolute',
-          width: this.props.width,
+          width: '100%',
         }}
         width={this.props.width * 2}
       />

@@ -156,10 +156,11 @@ export const CanvasInput = React.createClass({
           onMouseUp={this.handleMouseUp}
           ref={this.handleCanvasRef}
           style={{
+            cursor: 'pointer',
             display: 'block',
             position: 'absolute',
-            cursor: 'pointer',
             userSelect: 'none',
+            width: '100%',
           }}
           width={props.width}
         />
