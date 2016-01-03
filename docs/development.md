@@ -41,9 +41,9 @@ texts: clean function return
 ```
 Type can be:
 - `empty` for chores, docs, tests, refactors without noticeable speed improvements, typos, etc.
-- `FIX` for bugs, fixes, performance, etc, a patch semver (0.0.x), performance, etc.
-- `FTR` for new features and functionality, a minor semver (0.x.0).
-- `BRK` for breaking changes, which will need updates to dependents of the code, a major semver (x.0.0).
+- `FIX` for bugs, fixes, performance, etc (patch semver -> 0.0.x).
+- `FTR` for new features and functionality (minor semver -> 0.x.0).
+- `BRK` for breaking changes, which will need updates to dependents of the code (major semver -> x.0.0).
 
 When type is not empty, the commits should also contain a description of the change, the message and description will go directly to the release logs.
 
