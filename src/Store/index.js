@@ -1,3 +1,4 @@
+/* eslint no-param-reassign:0 */
 
 import React from 'react'
 import _ from 'lodash'

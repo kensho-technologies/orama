@@ -31,7 +31,9 @@ export const getType = (props, key) => {
   const counter = _.reduce(
     array,
     (acc, d) => {
+      /* eslint-disable no-param-reassign */
       acc[toType(d)] ++
+      /* eslint-enable no-param-reassign */
       return acc
     },
     {number: 0, string: 0, date: 0}
@@ -48,16 +50,16 @@ export const getDomain = (props, key) => {
     [`${key}ZeroBased`]: zeroBased,
   } = props
   switch (type) {
-  case 'ordinal':
-    return _.uniq(array)
-  default:
-    if (zeroBased) {
-      return [
-        _.min([_.min(array), 0]),
-        _.max([_.max(array), 0]),
-      ]
-    }
-    return [_.min(array), _.max(array)]
+    case 'ordinal':
+      return _.uniq(array)
+    default:
+      if (zeroBased) {
+        return [
+          _.min([_.min(array), 0]),
+          _.max([_.max(array), 0]),
+        ]
+      }
+      return [_.min(array), _.max(array)]
   }
 }
 export const getRange = (props, key) => {
@@ -67,43 +69,43 @@ export const getRange = (props, key) => {
     [`${key}Type`]: type = TYPE,
   } = props
   switch (key) {
-  case 'y':
-    return [rectUtils.getMaxY(plotRect), plotRect.y]
-  case 'radius':
-    switch (type) {
-    case 'ordinal':
-      return [2, 4, 8, 12, 16, 20]
+    case 'y':
+      return [rectUtils.getMaxY(plotRect), plotRect.y]
+    case 'radius':
+      switch (type) {
+        case 'ordinal':
+          return [2, 4, 8, 12, 16, 20]
+        default:
+          return [2, 20]
+      }
+      break
+    case 'lineWidth':
+      switch (type) {
+        case 'ordinal':
+          return [1, 2, 3, 4]
+        default:
+          return [0.5, 4]
+      }
+      break
+    case 'lineDash':
+      return [
+        [2],
+        [4],
+        [8],
+        [7, 4, 2, 4],
+      ]
+    case 'fill':
+    case 'stroke':
+      switch (type) {
+        case 'ordinal':
+          return props.theme.plotOrdinalRangeFill
+        default:
+          return props.theme.plotLinearRangeFill
+      }
+      break
+    case 'x':
     default:
-      return [2, 20]
-    }
-    break
-  case 'lineWidth':
-    switch (type) {
-    case 'ordinal':
-      return [1, 2, 3, 4]
-    default:
-      return [0.5, 4]
-    }
-    break
-  case 'lineDash':
-    return [
-      [2],
-      [4],
-      [8],
-      [7, 4, 2, 4],
-    ]
-  case 'fill':
-  case 'stroke':
-    switch (type) {
-    case 'ordinal':
-      return props.theme.plotOrdinalRangeFill
-    default:
-      return props.theme.plotLinearRangeFill
-    }
-    break
-  case 'x':
-  default:
-    return [plotRect.x, rectUtils.getMaxX(plotRect)]
+      return [plotRect.x, rectUtils.getMaxX(plotRect)]
   }
 }
 export const getTickCount = (props, key) => {
@@ -113,14 +115,14 @@ export const getTickCount = (props, key) => {
     [`${key}TickSpace`]: _tickSpace,
   } = props
   switch (key) {
-  case 'y':
-    const xTickSpace = _tickSpace || TICK_Y_SPACE
-    return Math.ceil((range[0] - range[1]) / xTickSpace)
-  case 'x':
-    const yTickSpace = _tickSpace || TICK_X_SPACE
-    return Math.ceil((range[1] - range[0]) / yTickSpace)
-  default:
-    return 0
+    case 'y':
+      const xTickSpace = _tickSpace || TICK_Y_SPACE
+      return Math.ceil((range[0] - range[1]) / xTickSpace)
+    case 'x':
+      const yTickSpace = _tickSpace || TICK_X_SPACE
+      return Math.ceil((range[1] - range[0]) / yTickSpace)
+    default:
+      return 0
   }
 }
 export const getTickFormat = (props, key) => {
@@ -157,24 +159,24 @@ export function getTicks(props, key) {
     [`${key}Scale`]: scale = getScale(props, key),
   } = props
   switch (type) {
-  case 'ordinal':
-    return _.map(
-      domain,
-      d => ({
-        value: d,
-        text: d,
-      })
-    )
-  case 'linear':
-  default:
-    const tickFormat = getTickFormat({...props, scale}, key)
-    const ticks = scale.ticks(tickCount)
-    return _.map(
-      ticks,
-      d => ({
-        value: d,
-        text: tickFormat(d),
-      })
-    )
+    case 'ordinal':
+      return _.map(
+        domain,
+        d => ({
+          value: d,
+          text: d,
+        })
+      )
+    case 'linear':
+    default:
+      const tickFormat = getTickFormat({...props, scale}, key)
+      const ticks = scale.ticks(tickCount)
+      return _.map(
+        ticks,
+        d => ({
+          value: d,
+          text: tickFormat(d),
+        })
+      )
   }
 }

@@ -63,21 +63,21 @@ export const getAxisScale = (props, key) => {
     [`${key}Nice`]: nice = NICE,
   } = props
   switch (type) {
-  case 'ordinal':
-    const scaleOrdinal = d3Scale.point()
-      .domain(domain)
-      .range(range)
-      .padding(0.5)
-    return scaleOrdinal
-  default:
-    if (domain[0] === domain[1]) {
-      const midRange = range[0] + (range[1] - range[0]) / 2
-      const linearScaleFlatDomain = () => midRange
-      linearScaleFlatDomain.tickFormat = () => d => d
-      linearScaleFlatDomain.ticks = () => [domain[0]]
-      return linearScaleFlatDomain
-    }
-    return getBaseScales(type, domain, range, nice, tickCount)
+    case 'ordinal':
+      const scaleOrdinal = d3Scale.point()
+        .domain(domain)
+        .range(range)
+        .padding(0.5)
+      return scaleOrdinal
+    default:
+      if (domain[0] === domain[1]) {
+        const midRange = range[0] + (range[1] - range[0]) / 2
+        const linearScaleFlatDomain = () => midRange
+        linearScaleFlatDomain.tickFormat = () => d => d
+        linearScaleFlatDomain.ticks = () => [domain[0]]
+        return linearScaleFlatDomain
+      }
+      return getBaseScales(type, domain, range, nice, tickCount)
   }
 }
 export const getDefaultScale = (props, key) => {
@@ -89,13 +89,13 @@ export const getDefaultScale = (props, key) => {
     [`${key}Nice`]: nice = NICE,
   } = props
   switch (type) {
-  case 'ordinal':
-    const scaleOrdinal = d3Scale.ordinal()
-      .domain(domain)
-      .range(range)
-    return scaleOrdinal
-  default:
-    return getBaseScales(type, domain, range, nice, tickCount)
+    case 'ordinal':
+      const scaleOrdinal = d3Scale.ordinal()
+        .domain(domain)
+        .range(range)
+      return scaleOrdinal
+    default:
+      return getBaseScales(type, domain, range, nice, tickCount)
   }
 }
 /*
@@ -103,10 +103,10 @@ Main exported function, used outside of the module on the Chart props transform 
 */
 export const getScale = (props, key) => {
   switch (key) {
-  case 'x':
-  case 'y':
-    return getAxisScale(props, key)
-  default:
-    return getDefaultScale(props, key)
+    case 'x':
+    case 'y':
+      return getAxisScale(props, key)
+    default:
+      return getDefaultScale(props, key)
   }
 }

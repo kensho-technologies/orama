@@ -152,7 +152,9 @@ export const mergeDimArrays = (props, _dimArrays) => {
         (acc2, d) => localCompact(acc2.concat(_dimArrays[d])),
         []
       )
+      /* eslint-disable no-param-reassign */
       if (array.length > 0) acc[key] = array
+      /* eslint-enable no-param-reassign */
       return acc
     },
     omitGroups(_dimArrays, accessorsGroups)

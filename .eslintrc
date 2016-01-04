@@ -1,5 +1,6 @@
 {
   "extends": "eslint-config-airbnb",
+  "parser": "babel-eslint",
   "rules": {
     "id-length": 0,
     "jsx-quotes": [2, "prefer-single"],
@@ -7,6 +8,7 @@
     "no-unused-expressions": 2,
     "no-use-before-define": [2, "nofunc"],
     "no-var": 0,
+    "object-curly-spacing": 0,
     "react/display-name": [0, {"acceptTranspilerName": true}],
     "react/jsx-boolean-value": 0,
     "react/jsx-closing-bracket-location": 2,
@@ -17,8 +19,11 @@
     "react/jsx-no-undef": 2,
     "react/jsx-sort-prop-types": 1,
     "react/jsx-sort-props": 1,
+    "max-len": 0,
     "react/no-multi-comp": 0,
     "react/prop-types": 1,
+    "react/prefer-es6-class": 0,
+    "react/jsx-no-bind": 0,
     "react/sort-comp": 0,
     "semi": [2, "never"],
     "vars-on-top": 0,

@@ -18,7 +18,7 @@ const ContentEditable = React.createClass({
   },
   componentDidUpdate() {
     const node = this.refs.block
-    if ( this.props.text !== node.innerText ) {
+    if (this.props.text !== node.innerText) {
       node.innerText = this.props.text || ''
     }
   },
