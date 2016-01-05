@@ -12,6 +12,7 @@ export const clearAndClip = (props, ctx) => {
     width,
     height
   )
+  if (props.layerProps && props.layerProps.clipPlot === false) return
   if (props.plotRect && props.clip) {
     ctx.beginPath()
     ctx.rect(

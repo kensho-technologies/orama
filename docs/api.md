@@ -153,3 +153,7 @@ Override the hoverSolver function.
 
 **groupedKeys:** `Array<string>`  
 If this property is present the addDimArrays step is skipped.
+
+**clipPlot:** `bool`  
+If set to false, it won't clip the plot of the layer to the plotRect bounds. The plotRect is created by insetting the size of the chart by its margins, leaving space to the axis labels and ticks.
+Defaults to `true`

@@ -32,6 +32,7 @@ const _ChartRender = props => (
           clip={true}
           height={props.height}
           key={i}
+          layerProps={renderLayer.layerProps}
           plotRect={props.plotRect}
           render={basicRender}
           renderData={renderLayer.renderData}
