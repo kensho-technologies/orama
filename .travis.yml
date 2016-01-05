@@ -8,7 +8,7 @@ notifications:
 before_deploy:
 - npm run lib
 after_deploy:
-- node scripts/release
+- node scripts/githubRelease
 deploy:
   skip_cleanup: true
   provider: npm
