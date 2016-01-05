@@ -6,5 +6,5 @@ import {Store} from './Store'
 
 ReactDOM.render(
   <Store/>,
-  document.getElementById('root')
+  document.getElementById('rootNode')
 )
