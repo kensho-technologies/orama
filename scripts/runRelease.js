@@ -33,13 +33,16 @@ const getBody = ({fixes, features, breaks}) => (
   )('')
 )
 
-const getRelease = commits => ({
-  owner: 'Kensho',
-  repo: 'orama',
-  tag_name: 'v' + pkg.version,
-  name: pkg.version,
-  body: getBody(commits),
-})
+const getRelease = commits => {
+  const slug = process.env.TRAVIS_REPO_SLUG.split('/')
+  return {
+    owner: slug[0],
+    repo: slug[1],
+    tag_name: 'v' + pkg.version,
+    name: pkg.version,
+    body: getBody(commits),
+  }
+}
 
 getCommits(commits => {
   const release = getRelease(commits)
