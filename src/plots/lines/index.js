@@ -1,8 +1,12 @@
 
-import {
-  each, isArray, first, reduce,
-  findIndex, get, last,
-} from 'lodash'
+import {each} from 'lodash'
+import {isArray} from 'lodash'
+import {first} from 'lodash'
+import {reduce} from 'lodash'
+import {findIndex} from 'lodash'
+import {get} from 'lodash'
+import {last} from 'lodash'
+import {find} from 'lodash'
 import {getPath2D} from '../../utils/path2DUtils'
 import {plotValue} from '../../plots/plotValue'
 
@@ -42,6 +46,10 @@ const hoverSolver = (
   props, _hoverData, renderDatum, localMouse
 ) => {
   const xRaw = props.xScale.invert(localMouse.x)
+  if (props.xType === 'ordinal') {
+    const hoverData = find(_hoverData, d => get(d, props.x) === xRaw)
+    return getHoverSolverObj(props, renderDatum, hoverData)
+  }
   const hoverIndex = findIndex(_hoverData, d => get(d, props.x) > xRaw)
   if (hoverIndex === 0) {
     const hoverData = _hoverData[hoverIndex]

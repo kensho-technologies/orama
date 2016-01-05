@@ -1,12 +1,12 @@
 
+import _ from 'lodash'
 import d3Scale from 'd3-scale'
-import {
-  DOMAIN,
-  NICE,
-  RANGE,
-  TICK_COUNT,
-  TYPE,
-} from '../defaults'
+
+import {DOMAIN} from '../defaults'
+import {NICE} from '../defaults'
+import {RANGE} from '../defaults'
+import {TICK_COUNT} from '../defaults'
+import {TYPE} from '../defaults'
 
 /*
 `getScale` returns the scale for a key according to configurations on props object.
@@ -54,6 +54,31 @@ const getBaseScales = (type, domain, range, nice, tickCount) => {
   return linearScale
 }
 
+export const getOrdinalInvert = scale => {
+  const mapArray = _.map(scale.domain(), raw => ({
+    raw, mapped: scale(raw),
+  }))
+  return input => {
+    const hoverIndex = _.findIndex(mapArray, d => _.get(d, 'mapped') > input)
+    if (hoverIndex === 0) {
+      const hoverData = mapArray[hoverIndex]
+      return hoverData.raw
+    }
+    if (hoverIndex === -1) {
+      const hoverData = _.last(mapArray)
+      return hoverData.raw
+    }
+    const px = _.get(mapArray[hoverIndex], 'mapped')
+    const x = _.get(mapArray[hoverIndex - 1], 'mapped')
+    if (input - px < x - input) {
+      const hoverData = mapArray[hoverIndex - 1]
+      return hoverData.raw
+    }
+    const hoverData = mapArray[hoverIndex]
+    return hoverData.raw
+  }
+}
+
 export const getAxisScale = (props, key) => {
   const {
     [`${key}Type`]: type = TYPE,
@@ -68,6 +93,7 @@ export const getAxisScale = (props, key) => {
         .domain(domain)
         .range(range)
         .padding(0.5)
+      scaleOrdinal.invert = getOrdinalInvert(scaleOrdinal)
       return scaleOrdinal
     default:
       if (domain[0] === domain[1]) {

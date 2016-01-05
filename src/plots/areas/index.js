@@ -1,7 +1,7 @@
 
 import {
   isArray, first, last, reduce, findIndex, get,
-  each, eachRight, isNumber,
+  each, eachRight, isNumber, find,
 } from 'lodash'
 import {getPath2D} from '../../utils/path2DUtils'
 import {getMaxY} from '../../utils/rectUtils'
@@ -37,6 +37,10 @@ const hoverSolver = (
   props, _hoverData, renderDatum, localMouse
 ) => {
   const xRaw = props.xScale.invert(localMouse.x)
+  if (props.xType === 'ordinal') {
+    const hoverData = find(_hoverData, d => get(d, props.x) === xRaw)
+    return getHoverSolverObj(props, renderDatum, hoverData)
+  }
   const hoverIndex = findIndex(_hoverData, d => get(d, props.x) > xRaw)
   if (hoverIndex === 0) {
     const hoverData = _hoverData[hoverIndex]

@@ -2,6 +2,8 @@
 import {it as test} from 'mocha'
 import assert from 'assert'
 
+import d3Scale from 'd3-scale'
+
 import * as methods from './'
 
 test('Chart.getAxisScale | case 1', () => {
@@ -85,4 +87,12 @@ test('Chart.getScale | case 2', () => {
     fillRange: [0, 500],
   }
   assert(methods.getScale(props, 'fill'))
+})
+test('getScale.getOrdinalInvert', () => {
+  const scale = d3Scale.point()
+    .domain(['a', 'b', 'c', 'd'])
+    .range([0, 100])
+  const invert = methods.getOrdinalInvert(scale)
+  assert.equal(invert(0), 'a')
+  assert.equal(invert(20), 'b')
 })
