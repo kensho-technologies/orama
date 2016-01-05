@@ -1,9 +1,21 @@
 language: node_js
 node_js:
-  - "0.12"
-  - "4"
+- '5'
 before_install:
-  - "npm i -g npm"
-script: "npm test"
+- npm i -g npm
 notifications:
   email: false
+before_deploy:
+- npm run lib
+after_deploy:
+- node scripts/release
+deploy:
+  skip_cleanup: true
+  provider: npm
+  email: info@luiscarli.com
+  api_key:
+    secure: Tl8z39dCDr2IySYfDF6ziClMCvwkjWakFx23EtnVw3CfiqJmmxTe2pY37y9/MzHbIlNwrOW5fkPhWpqw5lL+hh/1dC0luG2gtVLQuN1sVnFQG2h9HYeJUNPML0urwH8cnywjIH3tiWKq/krY2iD8eepsTDn5UzKG1HGil96NoY+enn2MunSnqyfKRaKejpReyqkWXIPBnsB43s3WoByry7rB6BHTyWLms/xQTzPB1fd5oWZINwb3f1H2ov4aRI9+2rJTTclluOHhKObtfnamaY2zsC1c4tq8njZlaN2vZUreulZfE6+vGLKRSddFl9T0g0i6B5llp/SBQipJFsPXnoiP6uYxgk6DLq0kB1zKQ0c+DWQH4eRbpA+T0OxYsV8GvuSSxwoy89kcW53hVMgVSIF3Vkox/EywmvaoICqQPXQ2ZMzkseaV+6eRiBkeZCsIBrXGGqGh7roilZ7g0xzjgSwr3lgDHrVm5jHYsD01LkDTI/E9papYE6xJmt+AV276lfakwPe2R3P8ZKWRf+ficTI5CxGVBbYw7Cd+FlAcQ75kL5oE3TSX6sXQ2BmiN5GtIA+VTbS+NBH2PN3Cw30/x6fAQsIQNA+bMt5Zgl8PPWLg/zPJg1nSc/3rg7N38Jk00MB2BXVdHKlIETUlu34FQ5CFjBvkrMyNt1BV6bLMTHE=
+  on:
+    tags: true
+    repo: kensho/orama
+    branch: master

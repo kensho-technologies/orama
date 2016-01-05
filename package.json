@@ -13,7 +13,8 @@
     "test": "NODE_ENV=test mocha --compilers js:babel-register -R dot 'src/**/*.test.js' && eslint src",
     "test:watch": "onchange src -- npm test",
     "cov": "NODE_ENV=test babel-node node_modules/.bin/isparta cover --report text --report lcovonly --report html node_modules/.bin/_mocha -- -R dot 'src/**/*.test.js'",
-    "postcov": "open coverage/index.html"
+    "postcov": "open coverage/index.html",
+    "publish": "node scripts/publish"
   },
   "repository": {
     "type": "git",
