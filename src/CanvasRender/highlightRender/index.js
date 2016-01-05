@@ -27,6 +27,7 @@ export const highlightRender = (props, ctx) => {
   _.each(
     renderData,
     d => {
+      if (!d) return
       ctx.globalAlpha = d.alpha || 1
       if (d.type === 'line') {
         ctx.lineWidth = d.lineWidth || 2
