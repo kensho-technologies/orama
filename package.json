@@ -40,6 +40,7 @@
     "eslint-config-airbnb": "^3.0.0",
     "eslint-plugin-react": "^3.6.3",
     "express": "^4.13.3",
+    "github": "^0.2.4",
     "isparta": "^4.0.0",
     "mocha": "^2.3.3",
     "onchange": "^2.0.0",
