@@ -1,13 +1,8 @@
 
-import {each} from 'lodash'
-import {isArray} from 'lodash'
-import {first} from 'lodash'
-import {reduce} from 'lodash'
-import {findIndex} from 'lodash'
-import {get} from 'lodash'
-import {last} from 'lodash'
-import {find} from 'lodash'
+import _ from 'lodash'
+
 import {getPath2D} from '../../utils/path2DUtils'
+import {notPlotNumber} from '../../utils'
 import {plotValue} from '../../plots/plotValue'
 
 /*
@@ -29,6 +24,7 @@ const getPointData = (props, datum) => {
     props, datum, 'y'
   )
   const r = plotValue(props, datum, 'strokeWidth', 2) + 1.5
+  if (notPlotNumber([x, y, r])) return undefined
   path2D.arc(x, y, r, 0, 2 * Math.PI)
   return {
     hoverAlpha: 0.8,
@@ -47,20 +43,20 @@ const hoverSolver = (
 ) => {
   const xRaw = props.xScale.invert(localMouse.x)
   if (props.xType === 'ordinal') {
-    const hoverData = find(_hoverData, d => get(d, props.x) === xRaw)
+    const hoverData = _.find(_hoverData, d => _.get(d, props.x) === xRaw)
     return getHoverSolverObj(props, renderDatum, hoverData)
   }
-  const hoverIndex = findIndex(_hoverData, d => get(d, props.x) > xRaw)
+  const hoverIndex = _.findIndex(_hoverData, d => _.get(d, props.x) > xRaw)
   if (hoverIndex === 0) {
     const hoverData = _hoverData[hoverIndex]
     return getHoverSolverObj(props, renderDatum, hoverData)
   }
   if (hoverIndex === -1) {
-    const hoverData = last(_hoverData)
+    const hoverData = _.last(_hoverData)
     return getHoverSolverObj(props, renderDatum, hoverData)
   }
-  const px = get(_hoverData[hoverIndex], props.x)
-  const x = get(_hoverData[hoverIndex - 1], props.x)
+  const px = _.get(_hoverData[hoverIndex], props.x)
+  const x = _.get(_hoverData[hoverIndex - 1], props.x)
   if (xRaw - px < x - xRaw) {
     const hoverData = _hoverData[hoverIndex - 1]
     return getHoverSolverObj(props, renderDatum, hoverData)
@@ -73,23 +69,24 @@ const hoverSolver = (
 generates the array of render data
 */
 const getLineRenderData = (props, data) => {
+  if (_.isEmpty(data)) return undefined
   const path2D = getPath2D()
-  const stroke = plotValue(props, first(data), 'stroke')
+  const stroke = plotValue(props, _.first(data), 'stroke')
   const lineWidth = plotValue(
-    props, first(data), 'lineWidth'
+    props, _.first(data), 'lineWidth'
   )
   const lineDash = plotValue(
-    props, first(data), 'lineDash'
+    props, _.first(data), 'lineDash'
   )
   path2D.moveTo(
-    plotValue(props, first(data), 'x'),
-    plotValue(props, first(data), 'y')
+    plotValue(props, _.first(data), 'x', 0, 0),
+    plotValue(props, _.first(data), 'y', 0, 0)
   )
-  each(data, d => {
-    path2D.lineTo(
-      plotValue(props, d, 'x'),
-      plotValue(props, d, 'y')
-    )
+  _.each(data, d => {
+    const x = plotValue(props, d, 'x')
+    const y = plotValue(props, d, 'y')
+    if (notPlotNumber([x, y])) return
+    path2D.lineTo(x, y)
   })
   return {
     data,
@@ -104,8 +101,8 @@ const getLineRenderData = (props, data) => {
 }
 export const lines = props => {
   if (!props.xScale || !props.yScale) return undefined
-  if (isArray(first(props.data))) {
-    return reduce(
+  if (_.isArray(_.first(props.data))) {
+    return _.reduce(
       props.data,
       (acc, data) => acc.concat(getLineRenderData(props, data)),
       []
