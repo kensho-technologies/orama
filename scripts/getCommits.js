@@ -16,7 +16,7 @@ const formatCommits = (titles, messages) => {
   const commits = _.map(titles, (d, i) => ({
     title: titles[i],
     message: messages[i],
-  }))
+  })).reverse()
   const fixes = filterCommits(commits, '(FIX)')
   const features = filterCommits(commits, '(FTR)')
   const breaks = filterCommits(commits, '(BRK)')

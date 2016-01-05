@@ -31,7 +31,7 @@ export const getCommits = clbck => {
       console.log('error getting git log titles')
       return
     }
-    const commits = stdout.split('\n')
+    const commits = stdout.split('\n').reverse()
     exec(TIME_CMD, (error2, time) => {
       if (error2) {
         console.log('error getting time since last tag')
