@@ -5,7 +5,7 @@
   "main": "src/components/App.js",
   "scripts": {
     "prestart": "npm prune && npm update",
-    "start": "parallelshell 'node devServer.js' 'npm run test:watch' 'npm outdated'",
+    "start": "parallelshell 'node devServer.js' 'npm run test:watch' 'npm outdated' 'node scripts/lastPublishInfo'",
     "clean": "rimraf lib dist/bundle.js",
     "build": "npm run lib && npm run bundle",
     "lib": "NODE_ENV=production babel src --out-dir lib",
