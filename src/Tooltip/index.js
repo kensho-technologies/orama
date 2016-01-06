@@ -55,6 +55,7 @@ export const TooltipInner = props => (
     fontFamily={props.theme.fontFamily}
     fontSize={props.theme.tooltipFontSize}
     maxWidth={MAX_WIDTH}
+    opacity={0.96}
   >
     {props.title ?
       <TableRow>
