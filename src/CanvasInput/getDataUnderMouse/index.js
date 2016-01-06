@@ -54,47 +54,42 @@ export const findInRenderLayers = ({ctx, localMouse, renderLayers, findFunc}) =>
 /*
 Format return for getDataUnderMouse
 */
-const formatReturnData = (foundData, localMouse, mouse) => ({
+const formatReturnData = (foundData, localMouse) => ({
   layerProps: foundData.layerProps,
   renderDatum: foundData.renderDatum,
   hoverRenderData: foundData.hoverRenderData,
   hoverData: foundData.hoverData,
   localMouse,
-  mouse,
 })
 /*
 Find on the render data the geom that intersect whith the mouse position.
 */
-export const getDataUnderMouse = (props, evt, canvasNode) => {
+export const getDataUnderMouse = (props, mouse, canvasNode) => {
   const {
     renderLayers,
   } = props
 
   const canvasRect = canvasNode.getBoundingClientRect()
   const ctx = canvasNode.getContext('2d')
-  const mouse = {
-    x: evt.clientX,
-    y: evt.clientY,
-  }
   const localMouse = {
-    x: evt.clientX - canvasRect.left,
-    y: evt.clientY - canvasRect.top,
+    x: mouse.x - canvasRect.left,
+    y: mouse.y - canvasRect.top,
   }
+
   ctx.lineWidth = 10
   const inPathData = findInRenderLayers({
     ctx, localMouse, renderLayers, findFunc: findFirstPass,
   })
 
-  if (inPathData) return formatReturnData(inPathData, localMouse, mouse)
+  if (inPathData) return formatReturnData(inPathData, localMouse)
 
   ctx.lineWidth = 18
   const inStrokeData = findInRenderLayers({
     ctx, localMouse, renderLayers, findFunc: findSecondPass,
   })
 
-  if (inStrokeData) return formatReturnData(inStrokeData, localMouse, mouse)
+  if (inStrokeData) return formatReturnData(inStrokeData, localMouse)
   return {
-    mouse,
     localMouse,
   }
 }
