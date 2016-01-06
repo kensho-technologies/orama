@@ -14,7 +14,12 @@ github.authenticate({
   type: 'oauth',
   token: process.env.GIT_TOKEN,
 })
-
+const plotTitle = (body, commitsType, name) => {
+  if (!_.isEmpty(commitsType)) {
+    return body.concat(`\n**${commitsType.length} ${name}**\n`)
+  }
+  return body
+}
 const plotCommits = (body, commitsType) => (
   _.reduce(commitsType, (acc, commit) => {
     let txt = acc.concat(`${commit.title}\n`)
@@ -27,8 +32,11 @@ const plotCommits = (body, commitsType) => (
 
 const getBody = ({fixes, features, breaks}) => (
   _.flow(
+    body => plotTitle(body, breaks, 'break change(s)'),
     body => plotCommits(body, breaks),
+    body => plotTitle(body, features, 'feature(s)'),
     body => plotCommits(body, features),
+    body => plotTitle(body, fixes, 'fixe(s)'),
     body => plotCommits(body, fixes),
   )('')
 )

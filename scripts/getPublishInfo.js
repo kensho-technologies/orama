@@ -45,8 +45,8 @@ export const getCommits = clbck => {
 getCommits(({fixes, features, breaks}, time) => {
   console.log('\n')
   console.log(`last published: ${c.yellow(time)}`)
-  plotLevel(fixes, 'fixe(s)')
-  plotLevel(features, 'feature(s)')
   plotLevel(breaks, 'break change(s)')
+  plotLevel(features, 'feature(s)')
+  plotLevel(fixes, 'fixe(s)')
   console.log('\n')
 })
