@@ -96,7 +96,8 @@ export const CanvasInput = React.createClass({
       renderDatum: solvedData.renderDatum,
       hoverRenderData: solvedData.hoverRenderData,
       hoverData: solvedData.hoverData,
-      localMouse: solvedData.hoverData,
+      localMouse: solvedData.localMouse,
+      layerProps: solvedData.layerProps,
     })
     this.setState({
       mouseDrag: true,
@@ -125,7 +126,8 @@ export const CanvasInput = React.createClass({
       renderDatum: solvedData.renderDatum,
       hoverRenderData: solvedData.hoverRenderData,
       hoverData: solvedData.hoverData,
-      localMouse: solvedData.hoverData,
+      localMouse: solvedData.localMouse,
+      layerProps: solvedData.layerProps,
     })
     this.setState({
       mouse,
