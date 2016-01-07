@@ -7,6 +7,7 @@ import {PROPORTION} from '../Chart/defaults'
 import {WIDTH} from '../Chart/defaults'
 
 import {addLocalDimensionsToProps} from '../Chart/addDimArrays'
+import {chartWidthHOC} from '../Chart/chartWidthHOC'
 import {getLayers} from '../Chart/getLayers'
 import {getMemoizeAddDimArrays} from '../Chart/memoize'
 import {getMemoizeAddDomains} from '../Chart/memoize'
@@ -20,15 +21,13 @@ import {getTheme} from '../defaultTheme'
 import {PropTypes} from 'react'
 import {removeDimArrays} from '../Chart/addDimArrays'
 import {stateHOC} from 'on-update'
-import {chartWidthHOC} from '../Chart/chartWidthHOC'
 
 import {Block} from 'react-display'
-import {ChartBackground} from '../ChartBackground'
-import {basicRender} from '../CanvasRender/renders'
 import {CanvasInput} from '../CanvasInput'
-import {CanvasRender} from '../CanvasRender'
+import {ChartBackground} from '../ChartBackground'
+import {ChartRender} from '../ChartRender'
 
-const PROPS_TO_OMIT = ['memoizers', 'onUpdate', 'onState', 'layerProps', 'chartProps']
+const PROPS_TO_OMIT = ['memoizers', 'onUpdate', 'onState', 'layerProps', 'rootProps']
 
 const handleChartRender = (props, childProps) => {
   props.onUpdate({
@@ -73,22 +72,11 @@ export const _Chart = props => {
       <ChartBackground
         {...rootProps}
       />
-      {_.map(
-        renderLayers,
-        (renderLayer, i) => (
-          <CanvasRender // basicRender
-            clip={true}
-            height={rootProps.height}
-            key={i}
-            layerProps={renderLayer.layerProps}
-            plotRect={rootProps.plotRect}
-            render={basicRender}
-            renderData={renderLayer.renderData}
-            theme={props.theme}
-            width={rootProps.width}
-          />
-        )
-      )}
+      <ChartRender
+        renderLayers={renderLayers}
+        rootProps={rootProps}
+        theme={props.theme}
+      />
       <CanvasInput
         onUpdate={childProps => handleChartRender(props, childProps)}
         renderLayers={renderLayers}
