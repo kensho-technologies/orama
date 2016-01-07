@@ -125,8 +125,19 @@ export const CanvasInput = React.createClass({
   handleMouseUp(evt) {
     evt.stopPropagation()
     evt.preventDefault()
+    const mouse = getMouseFromEvt(evt)
+    const solvedData = runHoverSolverOn(
+      getDataUnderMouse(this.props, mouse, this.canvasNode, evt)
+    )
     this.props.onUpdate({
       action: 'mouseUp',
+      mouse,
+      renderDatum: solvedData.renderDatum,
+      hoverRenderData: solvedData.hoverRenderData,
+      hoverData: solvedData.hoverData,
+      localMouse: solvedData.localMouse,
+      layerProps: solvedData.layerProps,
+      rootProps: this.props.rootProps,
     })
     this.setState({
       mouseDown: false,
