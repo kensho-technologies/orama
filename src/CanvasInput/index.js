@@ -51,11 +51,10 @@ Get hovered and clicked data on renderData using a <canvas/> element
 */
 export const CanvasInput = React.createClass({
   propTypes: {
-    height: PropTypes.number,
     onUpdate: PropTypes.func.isRequired,
     renderLayers: PropTypes.array,
+    rootProps: PropTypes.object,
     theme: PropTypes.object,
-    width: PropTypes.number,
   },
   getDefaultProps() {
     return {
@@ -100,6 +99,7 @@ export const CanvasInput = React.createClass({
       hoverData: solvedData.hoverData,
       localMouse: solvedData.localMouse,
       layerProps: solvedData.layerProps,
+      rootProps: this.props.rootProps,
     })
     this.setState({
       mouseDrag: true,
@@ -131,6 +131,7 @@ export const CanvasInput = React.createClass({
       hoverData: solvedData.hoverData,
       localMouse: solvedData.localMouse,
       layerProps: solvedData.layerProps,
+      rootProps: this.props.rootProps,
     })
     this.setState({
       mouse,
@@ -161,19 +162,20 @@ export const CanvasInput = React.createClass({
   },
   render() {
     const {props, state} = this
+    const {rootProps} = props
     return (
       <div>
         <CanvasRender // hoverRender
           clip={true}
-          height={props.height}
-          plotRect={props.plotRect}
+          height={rootProps.height}
+          plotRect={rootProps.plotRect}
           render={hoverRender}
           renderData={state.hoverRenderData}
           theme={props.theme}
-          width={props.width}
+          width={rootProps.width}
         />
         <canvas
-          height={props.height}
+          height={rootProps.height}
           onClick={this.handleClick}
           onDoubleClick={this.handleDoubleClick}
           onMouseDown={this.handleMouseDown}
@@ -191,7 +193,7 @@ export const CanvasInput = React.createClass({
             userSelect: 'none',
             width: '100%',
           }}
-          width={props.width}
+          width={rootProps.width}
         />
         {state.mouse && state.hoverData ?
           <TooltipWrapper

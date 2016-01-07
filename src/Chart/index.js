@@ -24,7 +24,11 @@ import {chartWidthHOC} from '../Chart/chartWidthHOC'
 
 import {Block} from 'react-display'
 import {ChartBackground} from '../ChartBackground'
-import {ChartRender} from '../ChartRender'
+import {basicRender} from '../CanvasRender/renders'
+import {CanvasInput} from '../CanvasInput'
+import {CanvasRender} from '../CanvasRender'
+
+const PROPS_TO_OMIT = ['memoizers', 'onUpdate', 'onState', 'layerProps', 'chartProps']
 
 const handleChartRender = (props, childProps) => {
   props.onUpdate({
@@ -49,44 +53,55 @@ export const _Chart = props => {
     memoizers.addTickCounts,
     memoizers.addScales,
     removeDimArrays,
-    _props => _.omit(_props, 'memoizers', 'onUpdate', 'onState'),
+    _props => _.omit(_props, PROPS_TO_OMIT),
   )
   const layers = getLayers(props)
-  const transformedProps = transformProps({
+  const rootProps = transformProps({
     layers,
     ...props,
     theme: getTheme(props.theme),
   })
-  const renderLayers = memoizers.renderLayers(transformedProps)
+  const renderLayers = memoizers.renderLayers(rootProps)
   return (
     <Block
       background={props.theme.backgroundFill}
-      paddingBottom={`${transformedProps.height / transformedProps.width * 100}%`}
+      paddingBottom={`${rootProps.height / rootProps.width * 100}%`}
       position='relative'
-      width='100%'
       userSelect='none'
+      width='100%'
     >
       <ChartBackground
-        {...transformedProps}
+        {...rootProps}
       />
-      <ChartRender
-        {...transformedProps}
+      {_.map(
+        renderLayers,
+        (renderLayer, i) => (
+          <CanvasRender // basicRender
+            clip={true}
+            height={rootProps.height}
+            key={i}
+            layerProps={renderLayer.layerProps}
+            plotRect={rootProps.plotRect}
+            render={basicRender}
+            renderData={renderLayer.renderData}
+            theme={props.theme}
+            width={rootProps.width}
+          />
+        )
+      )}
+      <CanvasInput
         onUpdate={childProps => handleChartRender(props, childProps)}
         renderLayers={renderLayers}
+        rootProps={rootProps}
+        theme={props.theme}
       />
     </Block>
   )
 }
 _Chart.propTypes = {
-  data: PropTypes.array,
-  layers: PropTypes.array,
   memoizers: PropTypes.object,
   onUpdate: PropTypes.func,
-  plot: PropTypes.func,
-  radius: PropTypes.string,
   theme: PropTypes.object,
-  x: PropTypes.string,
-  y: PropTypes.string,
 }
 _Chart.defaultProps = {
   proportion: PROPORTION,

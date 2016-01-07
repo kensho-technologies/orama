@@ -13,8 +13,10 @@ import {CanvasInput} from '../CanvasInput'
 import {CanvasRender} from '../CanvasRender'
 
 const handleCanvasInputUpdate = (props, childProps) => {
+  props.onUpdate({
+    ...childProps,
+    rootProps: props.rootProps,
   })
-  props.onUpdate(childProps)
 }
 /*
 Used inside <ChartRenderWrapper/>
@@ -26,37 +28,33 @@ const _ChartRender = props => (
       (renderLayer, i) => (
         <CanvasRender // basicRender
           clip={true}
-          height={props.height}
+          height={props.rootProps.height}
           key={i}
           layerProps={renderLayer.layerProps}
-          plotRect={props.plotRect}
+          plotRect={props.rootProps.plotRect}
           render={basicRender}
           renderData={renderLayer.renderData}
-          theme={props.theme}
-          width={props.width}
+          theme={props.rootProps.theme}
+          width={props.rootProps.width}
         />
       )
     )}
     <CanvasInput
-      height={props.height}
+      height={props.rootProps.height}
       onUpdate={childProps => handleCanvasInputUpdate(props, childProps)}
-      plotRect={props.plotRect}
+      plotRect={props.rootProps.plotRect}
       renderLayers={props.renderLayers}
-      theme={props.theme}
-      width={props.width}
+      theme={props.rootProps.theme}
+      width={props.rootProps.width}
     />
   </Block>
 )
 
 _ChartRender.propTypes = {
-  height: PropTypes.number,
-  highlightData: PropTypes.array,
-  hoverRenderData: PropTypes.array,
   onUpdate: PropTypes.func,
-  plotRect: PropTypes.object,
   renderLayers: PropTypes.array,
+  rootProps: PropTypes.object,
   theme: PropTypes.object,
-  width: PropTypes.number,
 }
 _ChartRender.defaultProps = {
   theme: DEFAULT_THEME,
