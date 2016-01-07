@@ -6,7 +6,6 @@ import {DEFAULT_THEME} from '../defaultTheme'
 import {map} from 'lodash'
 
 import {basicRender} from '../CanvasRender/renders'
-import {highlightRender} from '../CanvasRender/renders'
 import {hoverRender} from '../CanvasRender/renders'
 import {stateHOC} from 'on-update'
 
@@ -41,15 +40,6 @@ const _ChartRender = props => (
         />
       )
     )}
-    <CanvasRender // highlightRender
-      clip={true}
-      height={props.height}
-      plotRect={props.plotRect}
-      render={highlightRender}
-      renderData={props.highlightData}
-      theme={props.theme}
-      width={props.width}
-    />
     <CanvasRender // hoverRender
       clip={true}
       height={props.height}
