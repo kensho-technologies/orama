@@ -20,7 +20,8 @@ const formatCommits = (titles, messages) => {
   const fixes = filterCommits(commits, '(FIX)')
   const features = filterCommits(commits, '(FTR)')
   const breaks = filterCommits(commits, '(BRK)')
-  return {fixes, features, breaks}
+  const choresLength = titles.length - fixes.length - features.length - breaks.length
+  return {fixes, features, breaks, chores: _.range(choresLength)}
 }
 
 export const getCommits = clbck => {
