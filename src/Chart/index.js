@@ -29,10 +29,8 @@ import {ChartRender} from '../ChartRender'
 
 const PROPS_TO_OMIT = ['memoizers', 'onUpdate', 'onState', 'layerProps', 'rootProps']
 
-const handleChartRender = (props, childProps) => {
-  props.onUpdate({
-    ...childProps,
-  })
+const handleCanvasInput = (props, childProps) => {
+  props.onUpdate(childProps)
 }
 
 /*
@@ -78,7 +76,7 @@ export const _Chart = props => {
         theme={props.theme}
       />
       <CanvasInput
-        onUpdate={childProps => handleChartRender(props, childProps)}
+        onUpdate={childProps => handleCanvasInput(props, childProps)}
         renderLayers={renderLayers}
         rootProps={rootProps}
         theme={props.theme}
