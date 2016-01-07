@@ -6,7 +6,6 @@ import {DEFAULT_THEME} from '../defaultTheme'
 import {map} from 'lodash'
 
 import {basicRender} from '../CanvasRender/renders'
-import {hoverRender} from '../CanvasRender/renders'
 import {stateHOC} from 'on-update'
 
 import {Block} from 'react-display'
@@ -14,8 +13,6 @@ import {CanvasInput} from '../CanvasInput'
 import {CanvasRender} from '../CanvasRender'
 
 const handleCanvasInputUpdate = (props, childProps) => {
-  props.onState({
-    hoverRenderData: childProps.hoverRenderData,
   })
   props.onUpdate(childProps)
 }
@@ -40,18 +37,10 @@ const _ChartRender = props => (
         />
       )
     )}
-    <CanvasRender // hoverRender
-      clip={true}
-      height={props.height}
-      plotRect={props.plotRect}
-      render={hoverRender}
-      renderData={props.hoverRenderData}
-      theme={props.theme}
-      width={props.width}
-    />
     <CanvasInput
       height={props.height}
       onUpdate={childProps => handleCanvasInputUpdate(props, childProps)}
+      plotRect={props.plotRect}
       renderLayers={props.renderLayers}
       theme={props.theme}
       width={props.width}

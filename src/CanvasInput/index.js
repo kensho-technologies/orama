@@ -2,8 +2,10 @@
 import React, {PropTypes} from 'react'
 
 import {getDataUnderMouse} from './getDataUnderMouse'
+import {hoverRender} from '../CanvasRender/renders'
 
 import {TooltipWrapper} from '../TooltipWrapper'
+import {CanvasRender} from '../CanvasRender'
 
 const runHoverSolverOn = dataUnderMouse => {
   const {
@@ -102,6 +104,7 @@ export const CanvasInput = React.createClass({
     this.setState({
       mouseDrag: true,
       mouse,
+      hoverRenderData: solvedData.hoverRenderData,
       hoverData: solvedData.hoverData,
       layerProps: solvedData.layerProps,
     })
@@ -131,6 +134,7 @@ export const CanvasInput = React.createClass({
     })
     this.setState({
       mouse,
+      hoverRenderData: solvedData.hoverRenderData,
       hoverData: solvedData.hoverData,
       layerProps: solvedData.layerProps,
     })
@@ -150,6 +154,7 @@ export const CanvasInput = React.createClass({
     })
     this.setState({
       mouse: undefined,
+      hoverRenderData: undefined,
       hoverData: undefined,
       layerProps: undefined,
     })
@@ -158,6 +163,15 @@ export const CanvasInput = React.createClass({
     const {props, state} = this
     return (
       <div>
+        <CanvasRender // hoverRender
+          clip={true}
+          height={props.height}
+          plotRect={props.plotRect}
+          render={hoverRender}
+          renderData={state.hoverRenderData}
+          theme={props.theme}
+          width={props.width}
+        />
         <canvas
           height={props.height}
           onClick={this.handleClick}
