@@ -87,7 +87,7 @@ TooltipInner.propTypes = {
 }
 TooltipInner.defaultProps = {
   theme: DEFAULT_THEME,
-  showKeys: true,
+  showKeys: false,
 }
 
 export const Tooltip = props => {
