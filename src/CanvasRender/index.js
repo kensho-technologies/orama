@@ -62,7 +62,8 @@ export const CanvasRender = React.createClass({
         style={{
           display: 'block',
           position: 'absolute',
-          width: '100%',
+          width: this.props.width,
+          height: this.props.height,
         }}
         width={this.props.width * 2}
       />
