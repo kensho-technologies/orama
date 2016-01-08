@@ -14,7 +14,7 @@ github.authenticate({
   type: 'oauth',
   token: process.env.GIT_TOKEN,
 })
-const plotTitle = (body, commitsType, name, pre) => {
+const plotTitle = (body, commitsType, name, pre = '') => {
   if (!_.isEmpty(commitsType)) {
     return body.concat(`\n${pre}**${commitsType.length} ${name}**\n`)
   }
@@ -22,9 +22,9 @@ const plotTitle = (body, commitsType, name, pre) => {
 }
 const plotCommits = (body, commitsType) => (
   _.reduce(commitsType, (acc, commit) => {
-    let txt = acc.concat(`${commit.title}\n`)
+    let txt = acc.concat(`- ${commit.title}.\t\t\n`)
     if (!_.isEmpty(commit.message)) {
-      txt = txt.concat(`${commit.message}\n`)
+      txt = txt.concat(`*${commit.message}*\n`)
     }
     return txt
   }, body)
