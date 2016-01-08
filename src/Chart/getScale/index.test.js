@@ -89,7 +89,7 @@ test('Chart.getScale | case 2', () => {
   assert(methods.getScale(props, 'fill'))
 })
 test('getScale.getOrdinalInvert', () => {
-  const scale = d3Scale.point()
+  const scale = d3Scale.scalePoint()
     .domain(['a', 'b', 'c', 'd'])
     .range([0, 100])
   const invert = methods.getOrdinalInvert(scale)

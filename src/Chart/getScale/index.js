@@ -34,20 +34,20 @@ get a scale with logic for the x and y axis, if the domain starts and finishes o
 */
 const getBaseScales = (type, domain, range, nice, tickCount) => {
   if (type === 'time') {
-    const timeScale = d3Scale.time()
+    const timeScale = d3Scale.scaleTime()
       .domain(domain)
       .range(range)
     if (nice) timeScale.nice(tickCount)
     return timeScale
   }
   if (type === 'log') {
-    const logScale = d3Scale.log()
+    const logScale = d3Scale.scaleLog()
       .domain(domain)
       .range(range)
     if (nice) logScale.nice(tickCount)
     return logScale
   }
-  const linearScale = d3Scale.linear()
+  const linearScale = d3Scale.scaleLinear()
     .domain(domain)
     .range(range)
   if (nice) linearScale.nice(tickCount)
@@ -89,7 +89,7 @@ export const getAxisScale = (props, key) => {
   } = props
   switch (type) {
     case 'ordinal':
-      const scaleOrdinal = d3Scale.point()
+      const scaleOrdinal = d3Scale.scalePoint()
         .domain(domain)
         .range(range)
         .padding(0.5)
@@ -116,7 +116,7 @@ export const getDefaultScale = (props, key) => {
   } = props
   switch (type) {
     case 'ordinal':
-      const scaleOrdinal = d3Scale.ordinal()
+      const scaleOrdinal = d3Scale.scaleOrdinal()
         .domain(domain)
         .range(range)
       return scaleOrdinal

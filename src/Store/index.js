@@ -2,8 +2,8 @@
 
 import React from 'react'
 import _ from 'lodash'
-import {csv} from 'd3-request'
-import {utcFormat} from 'd3-time-format'
+import {requestCsv} from 'd3-request'
+import {utcParse} from 'd3-time-format'
 
 import {App} from '../App'
 
@@ -21,14 +21,14 @@ export function parseString(string) {
   return string
 }
 const parseCSV = data => _.map(data, d => _.mapValues(d, parseString))
-const parseDate = utcFormat('%Y-%m-%d').parse
+const parseDate = utcParse('%Y-%m-%d')
 
 export const Store = React.createClass({
   getInitialState() {
     return {}
   },
   componentDidMount() {
-    csv('https://raw.githubusercontent.com/curran/data/gh-pages/bokeh/IBM.csv', (error, payload) => {
+    requestCsv('https://raw.githubusercontent.com/curran/data/gh-pages/bokeh/IBM.csv', (error, payload) => {
       const appl = parseCSV(payload)
       _.each(appl, d => {
         d.Date = parseDate(d.Date)
@@ -37,7 +37,7 @@ export const Store = React.createClass({
       })
       this.setState({appl})
     })
-    csv('https://raw.githubusercontent.com/curran/data/gh-pages/bokeh/MSFT.csv', (error, payload) => {
+    requestCsv('https://raw.githubusercontent.com/curran/data/gh-pages/bokeh/MSFT.csv', (error, payload) => {
       const fb = parseCSV(payload)
       _.each(fb, d => {
         d.Date = parseDate(d.Date)
