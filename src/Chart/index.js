@@ -65,7 +65,7 @@ export const _Chart = props => {
       height={rootProps.height}
       position='relative'
       userSelect='none'
-      width={rootProps.width}
+      width='100%'
     >
       <ChartBackground
         {...rootProps}
