@@ -4,8 +4,8 @@ import {exec} from 'child_process'
 import _ from 'lodash'
 
 const BASE_CMD = 'git log `git describe --tags --abbrev=0 HEAD^`..HEAD'
-const TITLES_CMD = `${BASE_CMD} --pretty=format:"%s"`
-const MSGS_CMD = `${BASE_CMD} --pretty=format:"%b"`
+const TITLES_CMD = `${BASE_CMD} --pretty=format:":: %s"`
+const MSGS_CMD = `${BASE_CMD} --pretty=format:":: %b"`
 
 const filterCommits = (commits, pattern) => {
   var regex = new RegExp(pattern, 'g')
@@ -30,13 +30,13 @@ export const getCommits = clbck => {
       console.log('error getting git log titles')
       return
     }
-    const titles = stdout.split('\n')
+    const titles = stdout.split('::').map(d => d.trim())
     exec(MSGS_CMD, (error2, stdout2) => {
       if (error2) {
         console.log('error getting git log messages')
         return
       }
-      const messages = stdout2.split('\n')
+      const messages = stdout2.split('::').map(d => d.trim())
       clbck(formatCommits(titles, messages))
     })
   })
