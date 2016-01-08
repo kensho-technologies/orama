@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
 import {DEFAULT_THEME} from '../defaultTheme'
-import {Table, TableRow, TableCell} from 'react-display'
+import {Block, Table, TableRow, TableCell} from 'react-display'
 import {extractTooltipData} from '../Chart/extractTooltipData'
 
 const MAX_WIDTH = 320
@@ -48,7 +48,7 @@ row.propTypes = {
 }
 
 export const TooltipInner = props => (
-  <Table
+  <Block
     background={props.theme.tooltipBackgroundFill}
     boxShadow={`1px 1px 1px ${props.theme.tooltipBoxShadowFill}`}
     color={props.theme.textFill}
@@ -58,25 +58,25 @@ export const TooltipInner = props => (
     opacity={0.96}
   >
     {props.title ?
-      <TableRow>
-        {props.showKeys ? <TableCell/> : null}
-        <TableCell // Name
-          fontSize={props.theme.tooltipTitleFontSize}
-          fontWeight={props.theme.tooltipTitleFontWeight}
-          padding={10}
-          textAlign='left'
-          verticalAlign='top'
-        >
-          {props.title}
-        </TableCell>
-        <TableCell/>
-      </TableRow>
+      <Block
+        fontSize={props.theme.tooltipTitleFontSize}
+        fontWeight={props.theme.tooltipTitleFontWeight}
+        padding={10}
+        textAlign='left'
+        verticalAlign='top'
+      >
+      {props.title}
+      </Block>
     : null}
-    {_.map(
-      props.values,
-      (d, i) => row(props, d, i)
-    )}
-  </Table>
+    <Table
+      width='100%'
+    >
+      {_.map(
+        props.values,
+        (d, i) => row(props, d, i)
+      )}
+    </Table>
+  </Block>
 )
 TooltipInner.propTypes = {
   mouse: PropTypes.object,
