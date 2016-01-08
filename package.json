@@ -1,6 +1,6 @@
 {
   "name": "orama",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Chart components for React",
   "main": "src/components/App.js",
   "scripts": {
