@@ -12,13 +12,13 @@ import {Points} from '../../Layer'
 const identityScale = d => d
 identityScale.invert = d => d
 
-const reorder = bound => ({
+export const reorder = bound => ({
   x1: _.min([bound.x1, bound.x2]),
   x2: _.max([bound.x1, bound.x2]),
   y1: _.min([bound.y1, bound.y2]),
   y2: _.max([bound.y1, bound.y2]),
 })
-const isOutbound = (bound, plotRect) => {
+export const isOutbound = (bound, plotRect) => {
   if (
     bound.x1 < plotRect.x ||
     bound.x2 > plotRect.x + plotRect.width ||
@@ -63,7 +63,6 @@ const handleChart = (props, childProps) => {
         p2: {x, y},
       })
     } else {
-
       props.onState({
         p1: {
           x: props.p1.x - childProps.mouseDelta.x,
