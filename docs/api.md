@@ -3,6 +3,16 @@
 ## `<Chart/>`
 `import {Chart} from 'orama/lib/Chart'`
 
+```jsx
+<Chart>
+  <Points
+    data={data}
+    x='prop1'
+    y='prop2'
+  />
+</Chart>
+```
+
 **width:** `number`  
 Sets the width of the chart.  
 Defaults to `500`.
