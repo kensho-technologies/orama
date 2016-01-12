@@ -17,7 +17,7 @@ import {rerunCheckAddTickCounts} from '../../Chart/rerunChecks'
 import {rerunCheckAddScales} from '../../Chart/rerunChecks'
 import {rerunCheckRenderLayer} from '../../Chart/rerunChecks'
 
-export const getMemoize = (rerunCheck, transformFunc) => {
+export const getMemoize = (rerunCheck, transformFunc, isLayer) => {
   let savedResult
   let prevProps = {}
   const memoizer = props => {
@@ -25,6 +25,9 @@ export const getMemoize = (rerunCheck, transformFunc) => {
     prevProps = props
     if (rerun) {
       savedResult = transformFunc(props)
+    }
+    if (isLayer) {
+      return savedResult || transformFunc(props)
     }
     return {
       ...(savedResult || transformFunc(props)),
@@ -56,19 +59,12 @@ export const getMemoizeAddScales = () => getMemoize(
   rerunCheckAddScales, addScales
 )
 export const getMemoizeRenderLayer = () => getMemoize(
-  rerunCheckRenderLayer, getLayer
+  rerunCheckRenderLayer, getLayer, true
 )
 
 export const getMemoizeForRenderLayers = () => {
-  const rootMemoize = getMemoizeRenderLayer()
   const layersMemoize = []
-  // let prevLayers = []
   const memoizeForLayers = props => {
-    const renderRoot = rootMemoize(props)
-    // bail out of layers mapping, if they are the same
-    // if (prevLayers === props.layers) {
-    //   return props
-    // }
     const renderLayers = map(
       props.layers,
       (layer, i) => {
@@ -80,11 +76,7 @@ export const getMemoizeForRenderLayers = () => {
         return layerMemoize({...props, ...layer})
       }
     )
-    // prevLayers = props.layers
-    return [
-      renderRoot,
-      ...renderLayers,
-    ]
+    return renderLayers
   }
   return memoizeForLayers
 }
