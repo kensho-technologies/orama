@@ -6,7 +6,7 @@ before_install:
 notifications:
   email: false
 before_deploy:
-- npm run lib
+- npm run bundle
 after_deploy:
 - node scripts/githubRelease
 deploy:

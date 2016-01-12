@@ -3,11 +3,13 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main',
+  entry: './src/index',
   output: {
+    filename: 'orama.min.js',
+    library: 'orama',
+    libraryTarget: 'umd',
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: '/'
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
