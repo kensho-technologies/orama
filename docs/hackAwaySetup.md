@@ -1,7 +1,7 @@
 
 ## Hack away setup
 
-If you don't know what npm/webpack/babel is, or if you don't want to do any complex setup yet, you can start prototyping with Orama by scripting inside a HTML file with the following setup.
+If you don't know what npm/webpack/babel is, or if you don't want to do any complex setup yet, you can start prototyping with Orama by scripting inside a HTML file with the following code.
 
 > It's not recommended to use this setup for any serious work, or any production facing app.
 
@@ -14,6 +14,7 @@ If you don't know what npm/webpack/babel is, or if you don't want to do any comp
 <div id="root"/>
 
 <script type="text/babel">
+
   const {Chart, Lines} = orama
   const linesData = orama.getTimeSeries(_.range(1000))
 
@@ -28,6 +29,7 @@ If you don't know what npm/webpack/babel is, or if you don't want to do any comp
   )
 
   ReactDOM.render(myChart, document.getElementById('root'))
+
 </script>
 ```
 
