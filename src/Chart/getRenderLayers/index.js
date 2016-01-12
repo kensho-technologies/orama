@@ -1,6 +1,5 @@
 
 import _ from 'lodash'
-import {points} from '../../plots'
 
 /*
 generate the renderLayers and renderData by running the plot functions of the props root and the props.layers
@@ -8,7 +7,7 @@ generate the renderLayers and renderData by running the plot functions of the pr
 
 export const getLayer = props => {
   const {
-    plot = points,
+    plot = () => [],
   } = props
   return {
     layerProps: props,
