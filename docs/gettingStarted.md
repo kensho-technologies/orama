@@ -5,7 +5,7 @@
 npm i orama --save
 ```
 
-(if you don't want to do a npm/webpack/babel setup yet, see the ['Hack Away setup'](hackAwaySetup.md))
+(if you don't want to do a npm/webpack/babel setup yet, see the ['Quick setup'](quickSetup.md))
 
 #### Basic example
 ```jsx
