@@ -9,7 +9,9 @@ Sane defaults and clean functional APIs focused on data exploration.
 
 (The library is currently under development)
 
-**More Information**
+**Docs**
 
+- [Getting started](/docs/gettingStarted.md)
+- [Quick setup](/docs/quickSetup.md)
 - [API](/docs/api.md)
 - [Development Guide](/docs/development.md)

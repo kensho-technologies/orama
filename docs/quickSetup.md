@@ -38,3 +38,8 @@ This example uses [ES6](https://babeljs.io/docs/learn-es2015/) and [JSX](http://
 Orama uses [React](http://facebook.github.io/react/) for its view rendering and component architecture. You don't need to leverage React for the rest of your application if you just want to use the charts, you can render then on pre-defined nodes by using the `ReactDOM.render` call as shown above.
 
 For convenience, the `orama.min.js` bundle globally exports React, ReactDOM and lodash.
+
+#### Other
+
+- [Getting started](gettingStarted.md)
+- [API docs](api.md)

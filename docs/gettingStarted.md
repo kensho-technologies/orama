@@ -5,7 +5,7 @@
 npm i orama --save
 ```
 
-(if you don't want to do a npm/webpack/babel setup yet, see the ['Quick setup'](quickSetup.md))
+> if you don't want to do a npm/webpack/babel setup yet, see the ['Quick setup'](quickSetup.md)
 
 #### Basic example
 ```jsx
@@ -33,7 +33,15 @@ Chart layers need to have at least a `data` and `accessor` properties, the acces
 Orama comes with the following plot layers: `<Points/>`, `<Lines/>`, `<Areas/>`, `<Bars/>`, `<Guides/>`, `<Ranges/>` and `<Texts/>` (new custom plot layers are easy to be created).
 
 ##### Data
-The `data` for the layers can be an *array of objects*, or an *array of arrays of objects*, the objects should contain only numbers, strings or dates. Data as an array of arrays is meant to represent grouped data, as for example for multi-lines plots, in which each array will represent a line and each object a point on the line.
+Orama uses the concept of [tidy data](http://vita.had.co.nz/papers/tidy-data.pdf), in which the data array is an observational unit with each object representing an observation and each property of the object a variable.
+
+The `data` for the layers can be an:
+- `array` of `objects`
+- `array` of `arrays` of `objects` (grouped data)
+
+The data `objects` should contain only `numbers`, `strings` or `dates`.
+
+Data as an array of arrays is meant to represent grouped data, as for example for multi-lines plots, in which each array will represent a line and each object a point on the line.
 
 ##### Dimensions
 Each plot layer can respond to a specific set of dimensions, for example the `<Points/>` layer understand the dimensions: `x`, `y`, `radius`, `fill` and `alpha`
@@ -66,4 +74,5 @@ Each layer get those configurations and use them for mapping their data into ren
 
 #### Other
 
+- [Quick setup](quickSetup.md)
 - [API docs](api.md)
