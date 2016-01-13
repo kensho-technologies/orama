@@ -2,5 +2,6 @@ node_modules
 *.log
 .DS_Store
 dist/bundle.js*
+dist/img
 src
 coverage
