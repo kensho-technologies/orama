@@ -5,7 +5,7 @@
 npm i orama --save
 ```
 
-(if you don't want to do a npm/webpack/babel setup yet, see the ['Hack Away setup']('/hackAwaySetup.md'))
+(if you don't want to do a npm/webpack/babel setup yet, see the ['Hack Away setup'](hackAwaySetup.md))
 
 #### Basic example
 ```jsx
@@ -33,10 +33,10 @@ Chart layers need to have at least a `data` and `accessor` properties, the acces
 Orama comes with the following plot layers: `<Points/>`, `<Lines/>`, `<Areas/>`, `<Bars/>`, `<Guides/>`, `<Ranges/>` and `<Texts/>` (new custom plot layers are easy to be created).
 
 ##### Data
-The `data` for the layers can be an array of objects, or array of arrays of objects, the objects should contain only numbers, strings or dates. Data as an array of arrays is meant to represent grouped data, as for example for multi-lines plots, in which each array will represent a line and each object a point on the line.
+The `data` for the layers can be an *array of objects*, or an *array of arrays of objects*, the objects should contain only numbers, strings or dates. Data as an array of arrays is meant to represent grouped data, as for example for multi-lines plots, in which each array will represent a line and each object a point on the line.
 
 ##### Dimensions
-Each plot layer may respond a specific set of dimensions, for example the `<Points/>` layer understand the dimensions: `x`, `y`, `radius`, `fill` and `alpha`
+Each plot layer can respond to a specific set of dimensions, for example the `<Points/>` layer understand the dimensions: `x`, `y`, `radius`, `fill` and `alpha`
 
 The name of the dimension can be suffixed for defining several configurations for the layer or chart, for example:
 
@@ -60,11 +60,10 @@ The name of the dimension can be suffixed for defining several configurations fo
 
 Before the `<Chart/>` gets rendered there's a series of transformations that happens to generate all the configurations that are not explicit passed to the `<Chart/>` and layers.
 
-First the data for each dimension is extracted from all the layers. From this extracted data the type, domain, range and scales are calculated for each dimension.
+First the data for each dimension is extracted from all the layers. From this extracted data the `type`, `domain`, `range`, `scales` and others, are calculated for each dimension.
 
-Each layer use those configurations for mapping the data into render data. Orama uses the render data for plotting the graphs on the screen and also to manage all the interaction on those.
-
+Each layer get those configurations and use them for mapping their data into render data (data that represents visual marks). Orama uses the render data for plotting the graphs on the screen and to automatically manage all the interaction on those.
 
 #### Other
 
-- [Api docs](/api.md)
+- [API docs](api.md)

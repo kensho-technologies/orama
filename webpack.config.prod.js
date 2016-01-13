@@ -3,7 +3,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/index',
+  entry: ['./src/index'],
   output: {
     filename: 'orama.min.js',
     library: 'orama',
@@ -25,6 +25,10 @@ module.exports = {
       },
     }),
   ],
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM',
+  },
   module: {
     loaders: [{
       test: /\.jsx?$/,

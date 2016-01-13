@@ -8,6 +8,8 @@ If you don't know what npm/webpack/babel is, or if you don't want to do any comp
 ```html
 <!DOCTYPE html>
 <meta charset="utf-8">
+<script src="https://npmcdn.com/react/dist/react.min.js"></script>
+<script src="https://npmcdn.com/react-dom/dist/react-dom.min.js"></script>
 <script src="https://npmcdn.com/orama/dist/orama.min.js"></script>
 <script src="https://npmcdn.com/babel-core@5.8.34/browser.min.js"></script>
 
