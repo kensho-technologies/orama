@@ -4,8 +4,9 @@
   "description": "Chart components for React",
   "main": "lib/index.js",
   "scripts": {
-    "prestart": "npm prune && npm update",
+    "prestart": "npm prune && npm update && npm test",
     "start": "parallelshell 'node devServer.js' 'npm run test:watch' 'npm outdated' 'node scripts/lastPublishInfo'",
+    "devServer": "node devServer.js",
     "clean": "rimraf lib dist/**.js",
     "lib": "NODE_ENV=production babel src --out-dir lib",
     "dist": "NODE_ENV=production webpack --config webpack.dist.js",
