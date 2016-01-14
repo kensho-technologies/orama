@@ -15,7 +15,7 @@ lines{
 }
 */
 
-const getPointData = (props, datum) => {
+export const getPointData = (props, datum) => {
   const path2D = getPath2D()
   const x = plotValue(
     props, datum, 'x'
@@ -38,7 +38,7 @@ const getHoverSolverObj = (props, renderDatum, hoverData) => ({
   hoverData,
 })
 
-const hoverSolver = (
+export const hoverSolver = (
   props, _hoverData, renderDatum, localMouse
 ) => {
   const xRaw = props.xScale.invert(localMouse.x)

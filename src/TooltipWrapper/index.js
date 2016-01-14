@@ -14,7 +14,7 @@ const handleBlockSizeUpdate = (props, childProps) => {
     height: childProps.height,
   })
 }
-const getTooltipPosition = props => {
+export const getTooltipPosition = props => {
   const {
     mouse,
     width,
@@ -46,7 +46,7 @@ const getTooltipPosition = props => {
   return pos
 }
 
-const _TooltipWrapper = props => {
+export const _TooltipWrapper = props => {
   if (!props.mouse || !props.hoverData) return null
   const {
     Tooltip = DefaultTooltip,

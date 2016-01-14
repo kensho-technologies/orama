@@ -7,7 +7,7 @@ import {notPlotNumber} from '../../utils'
 import {isPlotNumber} from '../../utils'
 import {plotValue} from '../../plots/plotValue'
 
-const getPointData = (props, datum, yKey) => {
+export const getPointData = (props, datum, yKey) => {
   const path2D = getPath2D()
   const x = plotValue(
     props, datum, 'x'
@@ -34,7 +34,7 @@ const getHoverSolverObj = (props, renderDatum, hoverData) => ({
   hoverData,
 })
 
-const hoverSolver = (
+export const hoverSolver = (
   props, _hoverData, renderDatum, localMouse
 ) => {
   const xRaw = props.xScale.invert(localMouse.x)

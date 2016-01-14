@@ -2,7 +2,7 @@
 import {it as test, describe} from 'mocha'
 import assert from 'assert'
 
-import {lines} from './'
+import {areas} from './'
 import {getPointData} from './'
 import {hoverSolver} from './'
 
@@ -10,8 +10,8 @@ const identity = d => d
 const scale = identity
 scale.invert = identity
 
-test('Chart/lines 1', () => {
-  const renderData = lines({
+test('Chart/areas 1', () => {
+  const renderData = areas({
     data: [{x: 1, y: 1}],
     xScale: d => d,
     yScale: d => d,
@@ -20,14 +20,43 @@ test('Chart/lines 1', () => {
     renderData[0],
     {
       ...renderData[0],
-      type: 'line',
+      type: 'area',
       stroke: undefined,
-      lineWidth: undefined,
     }
   )
 })
-test('Chart/lines grouped data', () => {
-  const renderData = lines({
+test('Chart/areas 2', () => {
+  const renderData = areas({
+    data: [{x: 1, y: 1, y0: 1}],
+    xScale: d => d,
+    yScale: d => d,
+  })
+  assert.deepEqual(
+    renderData[0],
+    {
+      ...renderData[0],
+      type: 'area',
+      stroke: undefined,
+    }
+  )
+})
+test('Chart/areas 2', () => {
+  const renderData = areas({
+    data: [{x: 1, y: 1, x0: 1}],
+    xScale: d => d,
+    yScale: d => d,
+  })
+  assert.deepEqual(
+    renderData[0],
+    {
+      ...renderData[0],
+      type: 'area',
+      stroke: undefined,
+    }
+  )
+})
+test('Chart/areas grouped data', () => {
+  const renderData = areas({
     data: [[{x: 1, y: 1}]],
     xScale: d => d,
     yScale: d => d,
@@ -36,27 +65,26 @@ test('Chart/lines grouped data', () => {
     renderData[0],
     {
       ...renderData[0],
-      type: 'line',
+      type: 'area',
       stroke: undefined,
-      lineWidth: undefined,
     }
   )
 })
 
-test('Chart/lines.getPointData 1', () => {
+test('Chart/areas.getPointData 1', () => {
   const pointData = getPointData({}, {})
   assert.deepEqual(
     pointData,
     undefined
   )
 })
-test('Chart/lines.getPointData 2', () => {
+test('Chart/areas.getPointData 2', () => {
   const props = {
     x: 'x', y: 'y',
     xScale: d => d, yScale: d => d,
   }
   const datum = {x: 10, y: 10}
-  const pointData = getPointData(props, datum)
+  const pointData = getPointData(props, datum, 'y')
 
   assert.deepEqual(
     pointData.type,
@@ -64,7 +92,7 @@ test('Chart/lines.getPointData 2', () => {
   )
 })
 
-describe('Chart/lines.hoverSolver', () => {
+describe('Chart/areas.hoverSolver', () => {
   const props = {
     x: 'x', y: 'y',
     xScale: scale,
