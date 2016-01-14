@@ -14,4 +14,4 @@ Sane defaults and clean functional APIs focused on data exploration.
 - [Getting started](/docs/gettingStarted.md)
 - [Quick setup](/docs/quickSetup.md)
 - [API](/docs/api.md)
-- [Development Guide](/docs/development.md)
+- [Contributing](/docs/contributing.md)

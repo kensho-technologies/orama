@@ -1,4 +1,10 @@
-# Development guide
+# Contributing
+
+Before opening an issue, please search the issue tracker to make sure your issue hasn't already been reported.
+
+For support, please ask any general and implementation specific questions on Stack Overflow with a Orama tag.
+
+For new features, it's recommended to first open an issue with a proposal before starting on the work. We don't want you to waste your efforts on a pull request that don't fit into the library architecture and roadmap.
 
 ## Development
 
@@ -22,13 +28,21 @@ $ npm run cov
 # Read package.json to see all scripts
 ```
 
-## Style guide
+## Submitting Changes
 
-We use an extended version of the Airbnb js style guide plus some extra conventions on the Orama code base. The syntax rules are enforced by our linter, the conventions that are not linter enforced are presented bellow.
+- Open a new issue in the [Issue tracker](https://github.com/kensho/orama/issues).
+- Fork the repo.
+- Create a new feature branch based off the master branch.
+- **Check if you achieved all items of the PR checklist**
+- Please try to keep your pull request focused in scope and avoid including unrelated commits.
 
-Before doing a pull request check if your code pass the following checklist:
 
-- [ ] [Commit message format, (TYPE) mainAffectedFile: action taken](#commit-messages)
+## Pull request checklist
+
+Before doing a pull request check if your code pass the following checklist.
+
+- [ ] **Tests and linter is passing**
+- [ ] [Commit message format](#commit-messages)
 - [ ] [File structure, depth and naming](#file-structure)
 - [ ] [Only named exports](#only-named-exports)
 - [ ] [Only arrow function expressions](#only-arrow-function-expressions)
@@ -37,6 +51,10 @@ Before doing a pull request check if your code pass the following checklist:
 - [ ] [Inline styles and theme handle](#inline-styles-and-theme-handle)
 - [ ] [State management with onUpdate](#state-management-with-onupdate)
 - [ ] [Unit tests](#unit-tests)
+
+## Style guide
+
+We use an extended version of the Airbnb js style guide plus some extra conventions on the Orama code base. The syntax rules are enforced by our linter, the conventions that are not linter enforced are presented bellow.
 
 ### Commit messages
 
@@ -59,8 +77,8 @@ Type can be:
 
 When type is not empty, the commits should also contain a description of the change, the message and description will go directly to the release logs.
 
-**Each commit on a pull request should be meaningful and follow this convention   
-(After a PR revision, squash and edit commits as needed to achieve this.)**
+Each commit on a pull request should be meaningful and follow this convention.  
+([Squash and edit commits as needed to achieve this](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages))
 ```
 // BAD
 d92d3953 wip refactor texts return
@@ -256,6 +274,8 @@ export const ExampleComponent = stateHOC(_ExampleComponent)
 ```
 
 ### Unit tests
+
+All tests are colocated with the files they are testing, following the file structure of the repo.
 
 - Focus first on doing code coverage.
 - Components tests are done using shallow render.
