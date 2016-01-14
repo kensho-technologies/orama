@@ -2,7 +2,7 @@
 
 ## Development
 
-Development needs node >= 0.12 and npm >= 3.
+Development needs node >= 5 and npm >= 3.  
 To update npm do `$ npm i -g npm`
 
 **Scripts**
@@ -26,7 +26,19 @@ $ npm run cov
 
 We use an extended version of the Airbnb js style guide plus some extra conventions on the Orama code base. The syntax rules are enforced by our linter, the conventions that are not linter enforced are presented bellow.
 
-## Commit messages
+Before doing a pull request check if your code pass the following checklist:
+
+- [ ] [Commit message format, (TYPE) mainAffectedFile: action taken](#commit-messages)
+- [ ] [File structure, depth and naming](#file-structure)
+- [ ] [Only named exports](#only-named-exports)
+- [ ] [Only arrow function expressions](#only-arrow-function-expressions)
+- [ ] [Functional approach](#functional-approach)
+- [ ] [Stateless functional components](#stateless-functional-components)
+- [ ] [Inline styles and theme handle](#inline-styles-and-theme-handle)
+- [ ] [State management with onUpdate](#state-management-with-onupdate)
+- [ ] [Unit tests](#unit-tests)
+
+### Commit messages
 
 Commit messages should have the following structure:
 ```
@@ -82,9 +94,9 @@ Those are the possible folder compositions of the code base:
 The `/src/main.js` file is the entry point of the devServer bundle.
 The `/src/index.js` file is the entry point of the package.
 
-### No default exports
+### Only named exports
 
-Use only named exports, for consistency.
+For consistency, use only named exports (no default exports).
 
 ```jsx
 // BAD
@@ -94,7 +106,7 @@ export default function() {...}
 export const calculateMethod = input => output
 ```
 
-### Function declaration
+### Only arrow function expressions
 
 Use only *arrow function expression*, with exception of functions declared for class components methods.
 
@@ -141,7 +153,7 @@ const myObj = {
 
 - Whenever possible use `const` instead of `var` and `let`
 
-### Stateless Functional Components
+### Stateless functional components
 
 - Whenever possible use stateless functional components  
 (The exception goes to components that need DOM manipulation or caching that can't be solved with `componentShouldUpdate`)
@@ -167,10 +179,10 @@ ExampleComponent.propTypes = {
 }
 ```
 
-### CSS Styles
+### Inline styles and theme handle
 
 - Only inline style
-- Use `react-display` components whenever possible
+- Use [`react-display`](https://github.com/luiscarli/react-display) components whenever possible
 
 ```jsx
 // BAD
@@ -219,13 +231,12 @@ export const Example = props => (
 State that is not transient should be held by the root component.
 Orama bubbles up state update by using 'onUpdate' callbacks.
 
-onUpdate calls should return the full updated props from the component.
+onUpdate calls should return the updated props from the component, plus any other info.
 
 Example:
 ```jsx
 export const handleAnnotationUpdate = (props, annotationProps) => {
   props.onUpdate({
-    ...props,
     text: annotationProps.text,
   })
 }
@@ -254,11 +265,11 @@ Function test example:
 import {it as test} from 'mocha'
 import assert from 'assert'
 
-import * as methods from './'
+import {getScaleKeyByHash} from './'
 
 test('Chart.getScaleKeyByHash', () => {
   assert.deepEqual(
-    methods.getScaleKeyByHash({}, 'x0'),
+    getScaleKeyByHash({}, 'x0'),
     'x'
   )
 })
