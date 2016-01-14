@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
 
-import {basicRender} from '../CanvasRender/renders'
+import {basicRender} from '../CanvasRender/basicRender'
 import {CanvasRender} from '../CanvasRender'
 import {DEFAULT_THEME} from '../defaultTheme'
 

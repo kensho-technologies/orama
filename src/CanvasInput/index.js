@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 
 import {getDataUnderMouse} from '../CanvasInput/getDataUnderMouse'
 import {getMouseFromEvt} from '../CanvasInput/methods'
-import {hoverRender} from '../CanvasRender/renders'
+import {hoverRender} from '../CanvasRender/hoverRender'
 import {runHoverSolverOn} from '../CanvasInput/methods'
 import {TooltipWrapper} from '../TooltipWrapper'
 
