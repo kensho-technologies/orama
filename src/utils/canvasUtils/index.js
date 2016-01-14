@@ -29,6 +29,8 @@ export const ctxMock = {
   strokeText: noop,
   transform: noop,
   translate: noop,
+  stroke: noop,
+  setLineDash: noop,
 }
 export const canvasMock = {
   getContext: () => ctxMock,
