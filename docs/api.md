@@ -1,19 +1,24 @@
 
 # API
 
-The API is separated by files, all component and functions from the files are named exports.  
+The components and functions from Orama can be accessed both from the main entry point as directly from its source.  All exports are named exports.
 
 ```jsx
+import {Chart} from 'orama'
 import {Chart} from 'orama/lib/Chart'
 ```
 
-The main file from the package also re-exports most of the files specified here, but we only recommend using it on prototypes.
+On the [prototype bundle](quickSetup.md) the components and functions can be accessed from the global export.
+```jsx
+var Chart = orama.Chart
+```
+*On the repo the `/src` folder contain the original files, the npm package contain the transpiled version under the `/lib` folder.*
 
-On the repo the `/src` folder contain the original files, the npm package contain the transpiled version under the `/lib` folder.
 
 - ['Chart'](#oramalibchart)
 - ['Layer'](#oramaliblayer)
 - ['utils/dataGeneration'](#oramalibutilsdatageneration)
+
 
 ## 'orama/lib/Chart'
 

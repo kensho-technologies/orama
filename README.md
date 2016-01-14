@@ -1,9 +1,14 @@
 
 (This library is currently under development)
 
-![logo](/dist/imgs/logo.png)[![Build Status](https://travis-ci.org/kensho/orama.svg)](https://travis-ci.org/kensho/orama)
+![Orama js](/dist/imgs/logo.png)[![Build Status](https://travis-ci.org/kensho/orama.svg)](https://travis-ci.org/kensho/orama)
 
-Data visualization components with functional APIs, go from quick data exploration to complex custom visualizations.
+React data visualization components.  
+**Functional API's for going from quick data exploration to complex custom visualizations.**
+
+- Orama js handles the type extraction, domains calculation across multiple layers, managing interaction and tooltips, etc. so that you can focus on how you want your data to look.
+- Aesthetics are fast to be configured trough simple theme objects.
+- Smart extension points allow the creation of custom marks and interaction wrapper components (brushes, zooms, annotation, etc). Orama does the heavy lifting, so extensions can focus on functionality.
 
 ```
 npm i orama --save
@@ -24,7 +29,7 @@ const MyChart = (props) => (
   </Chart>
 )
 ```
-**if you don't want to do a npm/webpack/babel setup yet, or if you don't care about React, see the ['Quick setup'](docs/quickSetup.md)**
+If you don't want to do a npm/webpack/babel setup yet, or if you don't care about React, see the [Quick setup](docs/quickSetup.md)
 
 ### Docs
 
