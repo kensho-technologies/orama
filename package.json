@@ -1,7 +1,7 @@
 {
   "name": "orama",
   "version": "0.1.4",
-  "description": "Chart components for React",
+  "description": "Data visualization components",
   "main": "lib/index.js",
   "scripts": {
     "prestart": "npm prune && npm update && npm test",
@@ -37,6 +37,8 @@
     "babel-preset-stage-0": "^6.3.13",
     "babel-register": "^6.3.13",
     "colors": "^1.1.2",
+    "d3-request": "^0.3.0",
+    "d3-time-format": "^0.3.0",
     "eslint-config-airbnb": "^3.0.0",
     "eslint-plugin-react": "^3.6.3",
     "eslint": "^1.7.3",
@@ -47,8 +49,6 @@
     "onchange": "^2.0.0",
     "parallelshell": "^2.0.0",
     "prompt": "^0.2.14",
-    "react-dnd-html5-backend": "^2.0.0",
-    "react-dnd": "^2.0.2",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.1.1",
@@ -58,9 +58,7 @@
     "webpack": "^1.12.2"
   },
   "dependencies": {
-    "d3-request": "^0.3.0",
     "d3-scale": "^0.5.0",
-    "d3-time-format": "^0.3.0",
     "lodash": "^3.10.1",
     "on-update": "^1.0.0",
     "react-display": "^1.0.0",

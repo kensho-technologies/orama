@@ -3,7 +3,7 @@
 
 ![logo](/dist/imgs/logo.png)[![Build Status](https://travis-ci.org/kensho/orama.svg)](https://travis-ci.org/kensho/orama)
 
-Data visualization components with functional APIs for going from quick data exploration to complex custom visualizations.
+Data visualization components with functional APIs, go from quick data exploration to complex custom visualizations.
 
 ```
 npm i orama --save

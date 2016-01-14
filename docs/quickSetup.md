@@ -3,7 +3,7 @@
 
 If you don't know what npm/webpack/babel is, or if you don't want to do any complex setup yet, you can start prototyping with Orama by scripting inside a HTML file with the following code.
 
-> It's not recommended to use this setup for any serious work, or any production facing app.
+It's recommended to use this setup only for prototypes.
 
 ```html
 <!DOCTYPE html>
