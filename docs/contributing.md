@@ -41,7 +41,7 @@ $ npm run cov
 
 Before doing a pull request check if your code pass the following checklist.
 
-- [ ] **Tests and linter is passing**
+- [ ] **Tests and linter are passing**
 - [ ] [Commit message format](#commit-messages)
 - [ ] [File structure, depth and naming](#file-structure)
 - [ ] [Only named exports](#only-named-exports)

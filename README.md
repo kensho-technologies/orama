@@ -9,7 +9,7 @@ Data visualization components with functional APIs for going from quick data exp
 npm i orama --save
 ```
 
-<img align="right" width="50%" src="dist/imgs/gettingStarted01.png">
+<img align="right" width="440px" src="dist/imgs/gettingStarted01.png">
 
 ```jsx
 import {Chart, Lines} from 'orama'
@@ -18,8 +18,8 @@ const MyChart = (props) => (
   <Chart>
     <Lines
       data={props.data}
-      x='prop1'
-      y='prop2'
+      x='position'
+      y='value'
     />
   </Chart>
 )
