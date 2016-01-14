@@ -5,12 +5,10 @@
 npm i orama --save
 ```
 
-> if you don't want to do a npm/webpack/babel setup yet, see the ['Quick setup'](quickSetup.md)
+<img align="right" width="50%" src="../dist/imgs/gettingStarted01.png">
 
-#### Basic example
 ```jsx
-import {Chart} from 'orama/lib/Chart'
-import {Lines} from 'orama/lib/Layer'
+import {Chart, Lines} from 'orama'
 
 const MyChart = (props) => (
   <Chart>
@@ -22,7 +20,7 @@ const MyChart = (props) => (
   </Chart>
 )
 ```
-![Alt text](../dist/imgs/gettingStarted01.png)
+**if you don't want to do a npm/webpack/babel setup yet, or if you don't care about React, see the ['Quick setup'](quickSetup.md)**
 
 ##### Chart
 The `<Chart/>` component is a wrapper that can contains configurations that affects all his layers. Each children of the `<Chart/>` will be a layer in the resulting plot.
