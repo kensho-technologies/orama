@@ -20,7 +20,7 @@ const MyChart = (props) => (
   </Chart>
 )
 ```
-**if you don't want to do a npm/webpack/babel setup yet, or if you don't care about React, see the ['Quick setup'](quickSetup.md)**
+if you don't want to do a npm/webpack/babel setup yet, or if you don't care about React, see the ['Quick setup'](quickSetup.md)
 
 ##### Chart
 The `<Chart/>` component is a wrapper that can contains configurations that affects all his layers. Each children of the `<Chart/>` will be a layer in the resulting plot.
