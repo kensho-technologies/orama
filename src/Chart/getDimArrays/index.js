@@ -13,7 +13,7 @@ Dimension arrays are also grouped according to accessorsGroups
 /*
 Add 'Array' sufix to dimArrays, add groupedKeys props
 */
-const wrapUpNewProps = dimArrays => ({
+export const wrapUpNewProps = dimArrays => ({
   ..._.mapKeys(dimArrays, (value, key) => `${key}Array`),
   groupedKeys: _.keys(dimArrays),
 })
