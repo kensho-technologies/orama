@@ -1,6 +1,8 @@
 
 import _ from 'lodash'
 
+const PROPS_TO_OMIT = ['memoizers', 'onUpdate', 'onState', 'layerProps', 'rootProps']
+
 /*
 Start with the input props, send then to the first transform, merge the returned new props back to the props. Do again with the next transform.
 
@@ -24,7 +26,7 @@ const transformFlow = arg =>
       ...acc,
       ...d(acc),
     }),
-    arg[0]
+    _.omit(arg[0], PROPS_TO_OMIT)
   )
 
 export const chartTransformFlow = (...arg) =>

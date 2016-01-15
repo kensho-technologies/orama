@@ -27,18 +27,14 @@ import {CanvasInput} from '../CanvasInput'
 import {ChartBackground} from '../ChartBackground'
 import {ChartRender} from '../ChartRender'
 
-const PROPS_TO_OMIT = ['memoizers', 'onUpdate', 'onState', 'layerProps', 'rootProps']
-
 const handleCanvasInput = (props, childProps) => {
   props.onUpdate(childProps)
 }
 
 export const _Chart = props => {
-  const {
-    memoizers,
-  } = props
+  const {memoizers} = props
   const rootProps = chartTransformFlow(
-    _.omit(props, PROPS_TO_OMIT),
+    props,
     getTheme,
     getLayers,
     getLocalKeys,
@@ -50,7 +46,6 @@ export const _Chart = props => {
     memoizers.addTickCounts,
     memoizers.addScales,
   )
-
   const renderLayers = memoizers.renderLayers(rootProps)
   return (
     <Block
