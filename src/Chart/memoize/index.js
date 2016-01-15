@@ -1,11 +1,11 @@
 
-import {addDimArrays} from '../../Chart/addDimArrays'
-import {addTypes} from '../../Chart/addMethods'
-import {addDomains} from '../../Chart/addMethods'
-import {addPlotRect} from '../../Chart/addPlotRect'
-import {addRanges} from '../../Chart/addMethods'
-import {addTickCounts} from '../../Chart/addMethods'
-import {addScales} from '../../Chart/addMethods'
+import {getDimArrays} from '../../Chart/getDimArrays'
+import {getTypes} from '../../Chart/getForProps'
+import {getDomains} from '../../Chart/getForProps'
+import {getPlotRect} from '../../Chart/getPlotRect'
+import {getRanges} from '../../Chart/getForProps'
+import {getTickCounts} from '../../Chart/getForProps'
+import {getScales} from '../../Chart/getForProps'
 import {getLayer} from '../../Chart/getRenderLayers'
 import {map} from 'lodash'
 import {rerunCheckAddTypes} from '../../Chart/rerunChecks'
@@ -35,25 +35,25 @@ export const getMemoize = (rerunCheck, transformFunc, isLayer) => {
 }
 
 export const getMemoizeAddDimArrays = () => getMemoize(
-  rerunCheckDimArrays, addDimArrays
+  rerunCheckDimArrays, getDimArrays
 )
 export const getMemoizeAddTypes = () => getMemoize(
-  rerunCheckAddTypes, addTypes
+  rerunCheckAddTypes, getTypes
 )
 export const getMemoizeAddDomains = () => getMemoize(
-  rerunCheckAddDomains, addDomains
+  rerunCheckAddDomains, getDomains
 )
 export const getMemoizeAddPlotRect = () => getMemoize(
-  rerunCheckAddPlotRect, addPlotRect
+  rerunCheckAddPlotRect, getPlotRect
 )
 export const getMemoizeAddRanges = () => getMemoize(
-  rerunCheckAddRanges, addRanges
+  rerunCheckAddRanges, getRanges
 )
 export const getMemoizeAddTickCounts = () => getMemoize(
-  rerunCheckAddTickCounts, addTickCounts
+  rerunCheckAddTickCounts, getTickCounts
 )
 export const getMemoizeAddScales = () => getMemoize(
-  rerunCheckAddScales, addScales
+  rerunCheckAddScales, getScales
 )
 export const getMemoizeRenderLayer = () => getMemoize(
   rerunCheckRenderLayer, getLayer, true

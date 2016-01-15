@@ -5,7 +5,7 @@ import {
   getRange,
   getTickCount,
   getTicks,
-} from '../getMethods'
+} from '../../Chart/getForKey'
 import {
   AXIS_LABEL_OFFSET,
   AXIS_TICK_OFFSET,
@@ -140,7 +140,7 @@ const getRightMargin = props => {
   return backgroundOffset
 }
 
-export const addPlotRect = props => {
+export const getPlotRect = props => {
   if (props.plotRect) return props
   const {
     backgroundOffset = BACKGROUND_OFFSET,

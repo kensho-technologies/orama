@@ -4,7 +4,7 @@ import _ from 'lodash'
 import {DEFAULT_THEME} from '../defaultTheme'
 import {BACKGROUND_OFFSET} from '../Chart/defaults'
 import {getPath2D} from '../utils/path2DUtils'
-import {getTicks} from '../Chart/getMethods'
+import {getTicks} from '../Chart/getForKey'
 import {inset} from '../utils/rectUtils'
 
 import {Block} from 'react-display'

@@ -3,7 +3,7 @@ import {it as test} from 'mocha'
 import assert from 'assert'
 import {DEFAULT_THEME as theme} from '../../defaultTheme'
 
-import * as methods from '../getMethods'
+import * as methods from './'
 
 test('visUtils.toType', () => {
   assert.deepEqual(methods.toType(), 'undefined')

@@ -1,7 +1,7 @@
 
 import _ from 'lodash'
 import * as rectUtils from '../../utils/rectUtils'
-import {getScale} from '../getScale'
+import {getScale} from '../../Chart/getScale'
 import {
   DOMAIN,
   JS_TO_VIS_TYPE,
@@ -9,14 +9,14 @@ import {
   TICK_X_SPACE,
   TICK_Y_SPACE,
   TYPE,
-} from '../defaults'
+} from '../../Chart/defaults'
 
 /*
 get methods that are used on the addMethods module
 addMethods add new properties to the props object, these new properties are generated using these getMethods.
 */
 
-export {getScale} from '../getScale'
+export {getScale} from '../../Chart/getScale'
 
 export function toType(input) {
   return ({}).toString.call(input).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
