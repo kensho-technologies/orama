@@ -4,7 +4,7 @@
   "description": "React data visualization components",
   "main": "lib/index.js",
   "scripts": {
-    "prestart": "npm prune && npm update && npm test",
+    "prestart": "npm prune && npm update",
     "start": "parallelshell 'node devServer.js' 'npm run test:watch' 'npm outdated' 'node scripts/lastPublishInfo'",
     "devServer": "node devServer.js",
     "clean": "rimraf lib dist/**.js",

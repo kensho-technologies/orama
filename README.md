@@ -7,7 +7,7 @@ React js data visualization components.
 **Functional API's for going from quick data exploration to custom complex web visualizations.**
 
 - Orama js handles the type extraction, domain calculation from multiple layers, smart interaction and tooltip management across marks, etc. so that you can focus on how you want your data to look.
-- Powerful layer abstraction allow for complex layouts to be achieved by manipulating the data before sending it to the chart.
+- Powerful layer abstraction allow for complex layouts creation and composition.
 - Aesthetics are fast to be configured trough simple theme objects.
 - Smart extension points allow the creation of custom marks, axis and interaction wrapper components (brushes, zooms, annotation, etc). Orama does the heavy lifting, so extensions can focus on functionality.
 
