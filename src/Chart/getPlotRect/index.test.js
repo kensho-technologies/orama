@@ -1,39 +1,39 @@
 
 import {it as test} from 'mocha'
 import assert from 'assert'
-
-import * as methods from './'
+import {BACKGROUND_OFFSET as backgroundOffset} from '../../Chart/defaults'
 import {DEFAULT_THEME} from '../../defaultTheme'
 
-test('Chart/addPlotRect.getMaxTextWidth', () => {
+import {getMaxTextWidth} from './'
+import {getPlotRect} from './'
+
+test('Chart/getPlotRect.getMaxTextWidth', () => {
   const ticks = [
     {value: 'a', text: 'a'},
     {value: 'amadeus', text: 'amadeus'},
   ]
-  assert.deepEqual(
-    methods.getMaxTextWidth(DEFAULT_THEME, ticks),
-    7
-  )
+  const actual = getMaxTextWidth(DEFAULT_THEME, ticks)
+  const expected = 7
+  assert.deepEqual(actual, expected)
 })
 
-test('Chart/addPlotRect.addPlotRect', () => {
+test('Chart/getPlotRect', () => {
   const props = {
-    backgroundOffset: 15,
+    backgroundOffset,
     width: 500,
     height: 500,
     theme: DEFAULT_THEME,
-    x: 'p2',
-    y: 'p1',
     yDomain: [0, 100],
     yType: 'linear',
     groupedKeys: ['x', 'y'],
   }
-  assert.deepEqual(
-    methods.addPlotRect(props),
-    {
-      ...props,
-      plotRect: {x: 54.75, y: 15, width: 430.25, height: 426.25},
-      margin: {bottom: 58.75, left: 54.75, right: 15, top: 15},
-    }
-  )
+  const actual = getPlotRect(props)
+  const expected = {
+    backgroundOffset,
+    height: 500,
+    width: 500,
+    plotRect: {x: 54.75, y: 15, width: 430.25, height: 426.25},
+    margin: {bottom: 58.75, left: 54.75, right: 15, top: 15},
+  }
+  assert.deepEqual(actual, expected)
 })
