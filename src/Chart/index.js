@@ -5,21 +5,14 @@ import {DEFAULT_THEME} from '../defaultTheme'
 import {PROPORTION} from '../Chart/defaults'
 import {WIDTH} from '../Chart/defaults'
 
+import {chartTransformFlow} from '../Chart/chartTransformFlow'
 import {chartWidthHOC} from '../Chart/chartWidthHOC'
 import {getLayers} from '../Chart/getLayers'
-import {getMemoizeDimArrays} from '../Chart/memoize'
-import {getMemoizeDomains} from '../Chart/memoize'
-import {getMemoizePlotRect} from '../Chart/memoize'
-import {getMemoizeRanges} from '../Chart/memoize'
-import {getMemoizeScales} from '../Chart/memoize'
-import {getMemoizeTickCounts} from '../Chart/memoize'
-import {getMemoizeTypes} from '../Chart/memoize'
-import {getMemoizeRenderLayers} from '../Chart/memoize'
+import {getLocalKeys} from '../Chart/getLocalKeys'
 import {getTheme} from '../defaultTheme'
 import {PropTypes} from 'react'
 import {stateHOC} from 'on-update'
-import {chartTransformFlow} from '../Chart/chartTransformFlow'
-import {getLocalKeys} from '../Chart/getLocalKeys'
+import * as memoize from '../Chart/memoize'
 
 import {Block} from 'react-display'
 import {CanvasInput} from '../CanvasInput'
@@ -83,14 +76,14 @@ _Chart.defaultProps = {
 }
 _Chart.initialState = () => ({
   memoizers: {
-    getDimArrays: getMemoizeDimArrays(),
-    getTypes: getMemoizeTypes(),
-    getDomains: getMemoizeDomains(),
-    getPlotRect: getMemoizePlotRect(),
-    getRanges: getMemoizeRanges(),
-    getTickCounts: getMemoizeTickCounts(),
-    getScales: getMemoizeScales(),
-    getRenderLayers: getMemoizeRenderLayers(),
+    getDimArrays: memoize.getMemoizeDimArrays(),
+    getTypes: memoize.getMemoizeTypes(),
+    getDomains: memoize.getMemoizeDomains(),
+    getPlotRect: memoize.getMemoizePlotRect(),
+    getRanges: memoize.getMemoizeRanges(),
+    getTickCounts: memoize.getMemoizeTickCounts(),
+    getScales: memoize.getMemoizeScales(),
+    getRenderLayers: memoize.getMemoizeRenderLayers(),
   },
 })
 export const StateChart = stateHOC(_Chart)
