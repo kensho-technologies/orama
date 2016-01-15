@@ -5,7 +5,7 @@ import _ from 'lodash'
 checker for the local compact
 */
 const checkUndefinedValue = value => (
-  _.isUndefined(value) || _.isNaN(value)
+  _.isUndefined(value) || _.isNaN(value) || _.isNull(value)
 )
 /*
 same as _.compact, but keep the zeros, they are important for dataVis
