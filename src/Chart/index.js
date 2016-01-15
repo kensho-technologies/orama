@@ -7,14 +7,14 @@ import {WIDTH} from '../Chart/defaults'
 
 import {chartWidthHOC} from '../Chart/chartWidthHOC'
 import {getLayers} from '../Chart/getLayers'
-import {getMemoizeAddDimArrays} from '../Chart/memoize'
-import {getMemoizeAddDomains} from '../Chart/memoize'
-import {getMemoizeAddPlotRect} from '../Chart/memoize'
-import {getMemoizeAddRanges} from '../Chart/memoize'
-import {getMemoizeAddScales} from '../Chart/memoize'
-import {getMemoizeAddTickCounts} from '../Chart/memoize'
-import {getMemoizeAddTypes} from '../Chart/memoize'
-import {getMemoizeForRenderLayers} from '../Chart/memoize'
+import {getMemoizeDimArrays} from '../Chart/memoize'
+import {getMemoizeDomains} from '../Chart/memoize'
+import {getMemoizePlotRect} from '../Chart/memoize'
+import {getMemoizeRanges} from '../Chart/memoize'
+import {getMemoizeScales} from '../Chart/memoize'
+import {getMemoizeTickCounts} from '../Chart/memoize'
+import {getMemoizeTypes} from '../Chart/memoize'
+import {getMemoizeRenderLayers} from '../Chart/memoize'
 import {getTheme} from '../defaultTheme'
 import {PropTypes} from 'react'
 import {stateHOC} from 'on-update'
@@ -37,15 +37,15 @@ export const _Chart = props => {
     getTheme,
     getLayers,
     getLocalKeys,
-    memoizers.addDimArrays,
-    memoizers.addTypes,
-    memoizers.addDomains,
-    memoizers.addPlotRect,
-    memoizers.addRanges,
-    memoizers.addTickCounts,
-    memoizers.addScales,
+    memoizers.getDimArrays,
+    memoizers.getTypes,
+    memoizers.getDomains,
+    memoizers.getPlotRect,
+    memoizers.getRanges,
+    memoizers.getTickCounts,
+    memoizers.getScales,
   )
-  const renderLayers = memoizers.renderLayers(rootProps)
+  const renderLayers = memoizers.getRenderLayers(rootProps)
   return (
     <Block
       background={props.theme.backgroundFill}
@@ -83,14 +83,14 @@ _Chart.defaultProps = {
 }
 _Chart.initialState = () => ({
   memoizers: {
-    addDimArrays: getMemoizeAddDimArrays(),
-    addTypes: getMemoizeAddTypes(),
-    addDomains: getMemoizeAddDomains(),
-    addPlotRect: getMemoizeAddPlotRect(),
-    addRanges: getMemoizeAddRanges(),
-    addTickCounts: getMemoizeAddTickCounts(),
-    addScales: getMemoizeAddScales(),
-    renderLayers: getMemoizeForRenderLayers(),
+    getDimArrays: getMemoizeDimArrays(),
+    getTypes: getMemoizeTypes(),
+    getDomains: getMemoizeDomains(),
+    getPlotRect: getMemoizePlotRect(),
+    getRanges: getMemoizeRanges(),
+    getTickCounts: getMemoizeTickCounts(),
+    getScales: getMemoizeScales(),
+    getRenderLayers: getMemoizeRenderLayers(),
   },
 })
 export const StateChart = stateHOC(_Chart)

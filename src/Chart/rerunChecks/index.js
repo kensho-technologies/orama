@@ -22,34 +22,34 @@ export const getRerunCheckForNames = (keyNames, rootNames) => (props, prevProps)
   )
 }
 
-export const rerunCheckAddTypes = getRerunCheckForNames(
+export const rerunCheckGetTypes = getRerunCheckForNames(
   ['Type', 'Array']
 )
-export const rerunCheckAddDomains = getRerunCheckForNames(
+export const rerunCheckGetDomains = getRerunCheckForNames(
   ['Domain', 'Array', 'Type', 'ZeroBased']
 )
-export const rerunCheckAddPlotRect = getRerunCheckForNames(
+export const rerunCheckGetPlotRect = getRerunCheckForNames(
   ['Array', 'ShowTicks', 'ShowLabel'],
   ['width', 'height', 'margin', 'proportion']
 )
-export const rerunCheckAddRanges = getRerunCheckForNames(
+export const rerunCheckGetRanges = getRerunCheckForNames(
   ['Range', 'Type', 'Array'],
   ['plotRect']
 )
-export const rerunCheckAddTickCounts = getRerunCheckForNames(
+export const rerunCheckGetTickCounts = getRerunCheckForNames(
   ['TickCount', 'Range', 'TickSpace']
 )
-export const rerunCheckAddScales = getRerunCheckForNames(
+export const rerunCheckGetScales = getRerunCheckForNames(
   ['Type', 'Domain', 'Range', 'TickCount', 'Nice']
 )
 
-export const rerunCheckRenderLayer = getRerunCheckForNames(
+export const rerunCheckGetRenderLayers = getRerunCheckForNames(
   ['Array', 'Domain', 'Range', 'Scale'],
   ['data']
 )
 
 // check change for root and layers on: accessors, data, and skipExtractArrays
-export const rerunCheckDimArrays = (props, prevProps) => {
+export const rerunCheckGetDimArrays = (props, prevProps) => {
   // now there are layers
   if (!prevProps.layers && props.layers) return true
   // for each layer
