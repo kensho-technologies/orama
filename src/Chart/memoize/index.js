@@ -29,10 +29,7 @@ export const getMemoize = (rerunCheck, transformFunc, isLayer) => {
     if (isLayer) {
       return savedResult || transformFunc(props)
     }
-    return {
-      ...(savedResult || transformFunc(props)),
-      ...props,
-    }
+    return savedResult || transformFunc(props)
   }
   return memoizer
 }

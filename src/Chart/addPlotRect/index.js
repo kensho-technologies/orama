@@ -182,7 +182,6 @@ export const addPlotRect = props => {
     newWidth = left + right
   }
   return {
-    ...props,
     backgroundOffset,
     margin,
     plotRect,

@@ -39,8 +39,9 @@ export const DEFAULT_THEME = {
 }
 
 export const getTheme = _theme => {
-  return {
+  const theme = {
     ...DEFAULT_THEME,
     ..._theme,
   }
+  return {theme}
 }

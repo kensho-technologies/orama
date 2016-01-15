@@ -6,7 +6,6 @@ import {DEFAULT_THEME} from '../defaultTheme'
 import {PROPORTION} from '../Chart/defaults'
 import {WIDTH} from '../Chart/defaults'
 
-import {addLocalDimensionsToProps} from '../Chart/addDimArrays'
 import {chartWidthHOC} from '../Chart/chartWidthHOC'
 import {getLayers} from '../Chart/getLayers'
 import {getMemoizeAddDimArrays} from '../Chart/memoize'
@@ -19,8 +18,9 @@ import {getMemoizeAddTypes} from '../Chart/memoize'
 import {getMemoizeForRenderLayers} from '../Chart/memoize'
 import {getTheme} from '../defaultTheme'
 import {PropTypes} from 'react'
-import {removeDimArrays} from '../Chart/addDimArrays'
 import {stateHOC} from 'on-update'
+import {chartTransformFlow} from '../Chart/chartTransformFlow'
+import {getLocalKeys} from '../Chart/getLocalKeys'
 
 import {Block} from 'react-display'
 import {CanvasInput} from '../CanvasInput'
@@ -33,15 +33,15 @@ const handleCanvasInput = (props, childProps) => {
   props.onUpdate(childProps)
 }
 
-/*
-Used inside </>
-*/
 export const _Chart = props => {
   const {
     memoizers,
   } = props
-  const transformProps = _.flow(
-    addLocalDimensionsToProps,
+  const rootProps = chartTransformFlow(
+    _.omit(props, PROPS_TO_OMIT),
+    getTheme,
+    getLayers,
+    getLocalKeys,
     memoizers.addDimArrays,
     memoizers.addTypes,
     memoizers.addDomains,
@@ -49,15 +49,8 @@ export const _Chart = props => {
     memoizers.addRanges,
     memoizers.addTickCounts,
     memoizers.addScales,
-    removeDimArrays,
-    _props => _.omit(_props, PROPS_TO_OMIT),
   )
-  const layers = getLayers(props)
-  const rootProps = transformProps({
-    layers,
-    ...props,
-    theme: getTheme(props.theme),
-  })
+
   const renderLayers = memoizers.renderLayers(rootProps)
   return (
     <Block
