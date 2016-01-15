@@ -2,18 +2,17 @@
 import {it as test} from 'mocha'
 import assert from 'assert'
 
-import * as methods from './'
+import {getMemoizeDimArrays} from './'
 
-test('memoize.getMemoizeAddDimArrays', () => {
-  const memoizeAddDimArrays = methods.getMemoizeAddDimArrays()
+test('Chart/memoize.getMemoizeDimArrays', () => {
+  const memoizeAddDimArrays = getMemoizeDimArrays()
   const props = {
     localAccessors: {x: 'x'},
     data: [{x: 1}, {x: 2}, {x: 3}],
     x: 'x',
   }
-  const memoizedProps = memoizeAddDimArrays(props)
-  assert.equal(
-    memoizeAddDimArrays(props).xArray,
-    memoizedProps.xArray,
-  )
+  const result = memoizeAddDimArrays(props)
+  const expected = memoizeAddDimArrays(props).xArray
+  const actual = result.xArray
+  assert.equal(expected, actual)
 })
