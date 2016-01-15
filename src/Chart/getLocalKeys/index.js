@@ -1,8 +1,8 @@
 
 import _ from 'lodash'
-import {ACCESSORS_NAMES} from '../defaults'
+import {ACCESSORS_NAMES} from '../../Chart/defaults'
 
-const layerMapper = layer => {
+export const layerMapper = layer => {
   const localDefinedAccessors = _.pick(
     layer, layer.accessorsNames || ACCESSORS_NAMES
   )
