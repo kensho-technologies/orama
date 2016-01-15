@@ -16,7 +16,7 @@ const tidyFlatten = data => {
 /*
 for a layer.data, extract the dim array using an accessor
 */
-const extractDimArray = (data, accessor) =>
+export const extractDimArray = (data, accessor) =>
   _.flow(
     tidyFlatten,
     _data => _.map(_data, accessor),
@@ -27,9 +27,9 @@ according to the local defined accessors, extract and compact the dimArrays
 */
 export const getDimArraysForLayer = layer => {
   if (layer.skipExtractArrays === true) return {}
-  const {localDefinedAccessors} = layer
+  const {localAccessors} = layer
   return _.reduce(
-    localDefinedAccessors,
+    localAccessors,
     (acc, accessor, key) => {
       if (checkUndefinedAccessor(accessor)) return acc
       const dimArray = extractDimArray(layer.data, accessor)

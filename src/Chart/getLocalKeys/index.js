@@ -3,13 +3,13 @@ import _ from 'lodash'
 import {ACCESSORS_NAMES} from '../../Chart/defaults'
 
 export const layerMapper = layer => {
-  const localDefinedAccessors = _.pick(
+  const localAccessors = _.pick(
     layer, layer.accessorsNames || ACCESSORS_NAMES
   )
   return {
     ...layer,
-    localDefinedAccessors,
-    localKeys: _.keys(localDefinedAccessors),
+    localAccessors,
+    localKeys: _.keys(localAccessors),
   }
 }
 export const getLocalKeys = props => ({

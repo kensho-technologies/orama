@@ -98,11 +98,11 @@ test('Chart/addDimArrays.addDimArrays', () => {
     _.assign({}, props, {
       layers: [
         _.assign({}, props.layers[0], {
-          localDefinedAccessors: {x0: 'p0', x: 'p1', y: 'p2', fill: 'p3'},
+          localAccessors: {x0: 'p0', x: 'p1', y: 'p2', fill: 'p3'},
           localKeys: ['x', 'x0', 'y', 'fill'],
         }),
         _.assign({}, props.layers[1], {
-          localDefinedAccessors: {x: 'p10', y: 'p2', fill: 'p3'},
+          localAccessors: {x: 'p10', y: 'p2', fill: 'p3'},
           localKeys: ['x', 'y', 'fill'],
         }),
       ],
@@ -129,7 +129,7 @@ test('Chart/addDimArrays.addDimArrays -> missing data 1', () => {
       layers: [{
         data: [{x: 1}],
         x: 'x',
-        localDefinedAccessors: {x: 'x'},
+        localAccessors: {x: 'x'},
         localKeys: ['x'],
       }],
       x: '',
@@ -149,7 +149,7 @@ test('Chart/addDimArrays.addDimArrays -> missing data 2', () => {
     {
       layers: [{
         x: 'x',
-        localDefinedAccessors: {x: 'x'},
+        localAccessors: {x: 'x'},
         localKeys: ['x'],
       }],
       groupedKeys: [],
@@ -169,7 +169,7 @@ test('Chart/addDimArrays.addDimArrays -> missing data 3', () => {
     {
       layers: [{
         data: [{x: 1}],
-        localDefinedAccessors: {x: 'x', y: 'y'},
+        localAccessors: {x: 'x', y: 'y'},
         localKeys: ['x', 'y'],
         y: 'y',
         x: 'x',
@@ -192,7 +192,7 @@ test('Chart/addDimArrays.addDimArrays -> dont skip the zero', () => {
       layers: [{
         data: [{x: 0}, {x: 1}, {x: 2}],
         x: 'x',
-        localDefinedAccessors: {x: 'x'},
+        localAccessors: {x: 'x'},
         localKeys: ['x'],
       }],
       xArray: [0, 1, 2],

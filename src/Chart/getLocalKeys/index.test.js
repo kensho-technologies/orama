@@ -8,7 +8,7 @@ import {getLocalKeys} from './'
 test('Chart/getLocalKeys.layerMapper 1', () => {
   const actual = layerMapper({})
   const expected = {
-    localDefinedAccessors: {},
+    localAccessors: {},
     localKeys: [],
   }
   assert.deepEqual(actual, expected)
@@ -20,7 +20,7 @@ test('Chart/getLocalKeys.layerMapper 2', () => {
   const actual = layerMapper(layer)
   const expected = {
     ...layer,
-    localDefinedAccessors: {x: 'x', x1: 'x1', y: 'y'},
+    localAccessors: {x: 'x', x1: 'x1', y: 'y'},
     localKeys: ['x', 'x1', 'y'],
   }
   assert.deepEqual(actual, expected)
@@ -35,7 +35,7 @@ test('Chart/getLocalKeys.getLocalKeys 1', () => {
   const actual = result.layers[0]
   const expected = {
     ...layer,
-    localDefinedAccessors: {x: 'x', x1: 'x1', y: 'y'},
+    localAccessors: {x: 'x', x1: 'x1', y: 'y'},
     localKeys: ['x', 'x1', 'y'],
   }
   assert.ok(result.layers)

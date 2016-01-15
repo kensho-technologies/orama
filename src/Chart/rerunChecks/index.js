@@ -65,8 +65,8 @@ export const rerunCheckGetDimArrays = (props, prevProps) => {
       if (layer.data !== prevLayer.data) return true
       // new accessors on the layer
       return !shallowEqual(
-        layer.localDefinedAccessors,
-        prevLayer.localDefinedAccessors,
+        layer.localAccessors,
+        prevLayer.localAccessors,
       )
     }
   )

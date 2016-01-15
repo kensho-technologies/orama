@@ -7,7 +7,7 @@ import * as methods from './'
 test('memoize.getMemoizeAddDimArrays', () => {
   const memoizeAddDimArrays = methods.getMemoizeAddDimArrays()
   const props = {
-    localDefinedAccessors: {x: 'x'},
+    localAccessors: {x: 'x'},
     data: [{x: 1}, {x: 2}, {x: 3}],
     x: 'x',
   }
