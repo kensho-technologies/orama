@@ -30,22 +30,7 @@ export const getScaleKeyByHash = (props, key) => {
   const hash = generateAccessorGroupHash(accessorsGroups)
   return hash[key] || key
 }
-/*
-converts an accessor key back to the main of the group, if it exists.
-*/
-export const getScaleKey = (props, key) => {
-  const {
-    accessorsGroups = ACCESSORS_GROUPS,
-  } = props
-  return _.reduce(
-    accessorsGroups,
-    (acc, values, _key) => {
-      if (_.contains(values, key)) return _key
-      return acc
-    },
-    key
-  )
-}
+
 export const plotValue = (
   props, d, key, defaultValue, undefinedValue
 ) => {

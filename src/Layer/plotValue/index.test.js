@@ -2,48 +2,28 @@
 import {it as test} from 'mocha'
 import assert from 'assert'
 
-import * as methods from './'
+import {getScaleKeyByHash} from './'
+import {plotValue} from './'
 
-test('Chart.getScaleKeyByHash', () => {
-  assert.deepEqual(
-    methods.getScaleKeyByHash({}, 'x0'),
-    'x'
-  )
+test('Chart/plotValue.getScaleKeyByHash', () => {
+  const actual = getScaleKeyByHash({}, 'x0')
+  const expected = 'x'
+  assert.deepEqual(actual, expected)
 })
-test('Chart.getScaleKey', () => {
-  assert.deepEqual(
-    methods.getScaleKey({}, 'x0'),
-    'x'
-  )
+test('Chart/plotValue scale defined', () => {
+  const props = {xScale: d => d, x: 'x'}
+  const actual = plotValue(props, {x: 10}, 'x')
+  const expected = 10
+  assert.deepEqual(actual, expected)
 })
-test('Chart.plotValue, scale defined', () => {
-  assert.deepEqual(
-    methods.plotValue(
-      {xScale: d => d, x: 'x'},
-      {x: 10},
-      'x',
-    ),
-    10
-  )
+test('Chart/plotValue value defined', () => {
+  const props = {xValue: 20}
+  const actual = plotValue(props, 10, 'x')
+  const expected = 20
+  assert.deepEqual(actual, expected)
 })
-test('Chart.plotValue, value defined', () => {
-  assert.deepEqual(
-    methods.plotValue(
-      {xValue: 20},
-      10,
-      'x',
-    ),
-    20
-  )
-})
-test('Chart.plotValue, map undefined', () => {
-  assert.deepEqual(
-    methods.plotValue(
-      {},
-      10,
-      'x',
-      20,
-    ),
-    20
-  )
+test('Chart/plotValue map undefined', () => {
+  const actual = plotValue({}, 10, 'x', 20)
+  const expected = 20
+  assert.deepEqual(actual, expected)
 })
