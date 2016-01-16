@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 import {stateHOC} from 'on-update'
 import {getWindow} from '../utils/windowUtils'
 
-import {BlockSize} from '../BlockSize'
+import {BlockSize} from '../utilComponents/BlockSize'
 import {Tooltip as DefaultTooltip} from '../Tooltip'
 
 const TOOLTIP_MARGIN = 15

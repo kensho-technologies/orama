@@ -1,12 +1,12 @@
 
-import {areas} from '../plots/areas'
-import {bars} from '../plots/bars'
-import {brushes} from '../plots/brushes'
-import {guides} from '../plots/guides'
-import {lines} from '../plots/lines'
-import {points} from '../plots/points'
-import {ranges} from '../plots/ranges'
-import {texts} from '../plots/texts'
+import {areas} from '../Layer/areas'
+import {bars} from '../Layer/bars'
+import {brushes} from '../Layer/brushes'
+import {guides} from '../Layer/guides'
+import {lines} from '../Layer/lines'
+import {points} from '../Layer/points'
+import {ranges} from '../Layer/ranges'
+import {texts} from '../Layer/texts'
 
 export const Layer = () => null
 export const Areas = () => null

@@ -1,5 +1,5 @@
 
-import {BACKGROUND_OFFSET} from '../../Chart/defaults'
+import {BACKGROUND_OFFSET} from '../../chartCore/defaults'
 
 export const clearAndClip = (props, ctx) => {
   const {

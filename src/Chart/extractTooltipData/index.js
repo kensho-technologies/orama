@@ -1,7 +1,7 @@
 
 import _ from 'lodash'
-import {ACCESSORS_TOOLTIP_ORDER} from '../defaults'
-import {getTooltipFormat} from '../../Chart/getForKey'
+import {ACCESSORS_TOOLTIP_ORDER} from '../../chartCore/defaults'
+import {getTooltipFormat} from '../../chartCore/getForKey'
 
 const getDatum = data => {
   if (_.isArray(data)) return _.first(data)

@@ -5,7 +5,7 @@ import assert from 'assert'
 import React from 'react'
 import shallowRender from '@luiscarli/shallow-render'
 import {DEFAULT_THEME as theme} from '../defaultTheme'
-import {PLOT_RECT} from '../Chart/defaults'
+import {PLOT_RECT} from '../chartCore/defaults'
 
 import {
   ChartBackground,

@@ -2,22 +2,22 @@
 import React from 'react'
 
 import {DEFAULT_THEME} from '../defaultTheme'
-import {PROPORTION} from '../Chart/defaults'
-import {WIDTH} from '../Chart/defaults'
+import {PROPORTION} from '../chartCore/defaults'
+import {WIDTH} from '../chartCore/defaults'
 
-import {chartTransformFlow} from '../Chart/chartTransformFlow'
+import {chartTransformFlow} from '../chartCore/chartTransformFlow'
 import {chartWidthHOC} from '../Chart/chartWidthHOC'
-import {getLayers} from '../Chart/getLayers'
-import {getLocalKeys} from '../Chart/getLocalKeys'
+import {getLayers} from '../chartCore/getLayers'
+import {getLocalKeys} from '../chartCore/getLocalKeys'
 import {getTheme} from '../defaultTheme'
 import {PropTypes} from 'react'
 import {stateHOC} from 'on-update'
-import * as memoize from '../Chart/memoize'
+import * as memoize from '../chartCore/memoize'
 
 import {Block} from 'react-display'
 import {CanvasInput} from '../CanvasInput'
 import {ChartBackground} from '../ChartBackground'
-import {ChartRender} from '../ChartRender'
+import {ChartRender} from '../Chart/ChartRender'
 
 const handleCanvasInput = (props, childProps) => {
   props.onUpdate(childProps)

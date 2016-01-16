@@ -1,8 +1,9 @@
+// devServer entry point
 
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import {Store} from './Store'
+import {Store} from './devDemo/Store'
 
 ReactDOM.render(
   <Store/>,

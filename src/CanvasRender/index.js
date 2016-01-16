@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 import {DEFAULT_THEME} from '../defaultTheme'
-import {WIDTH, HEIGHT} from '../Chart/defaults'
+import {WIDTH, HEIGHT} from '../chartCore/defaults'
 import {basicRender} from './basicRender'
 
 /**

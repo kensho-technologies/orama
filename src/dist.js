@@ -1,3 +1,4 @@
+// quick setup bundle entry point
 
 export * from './'
 
