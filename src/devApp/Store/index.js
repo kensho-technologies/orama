@@ -5,7 +5,7 @@ import _ from 'lodash'
 import {requestCsv} from 'd3-request'
 import {utcParse} from 'd3-time-format'
 
-import {App} from '../../devDemo/App'
+import {App} from '../../devApp/App'
 
 export function parseString(string) {
   if (/%$/.test(string)) {
