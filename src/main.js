@@ -7,5 +7,5 @@ import {Store} from './devApp/Store'
 
 ReactDOM.render(
   <Store/>,
-  document.getElementById('rootNode')
+  document.getElementById('root')
 )
