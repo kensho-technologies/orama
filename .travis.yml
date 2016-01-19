@@ -6,9 +6,10 @@ before_install:
 notifications:
   email: false
 before_deploy:
-- npm run lib && npm run dist
+- npm run bates -- lib
+- npm run bates -- dist
 after_deploy:
-- node scripts/githubRelease
+- npm run bates -- githubRelease
 deploy:
   skip_cleanup: true
   provider: npm
