@@ -114,7 +114,7 @@ const getBrushData = props => {
 const _Brush = props => (
   <Block padding={30}>
     <Chart
-      height={200}
+      height={400}
       onUpdate={childProps => handleChart(props, childProps)}
       yType='log'
     >
