@@ -2,54 +2,45 @@
 import {it as test} from 'mocha'
 import assert from 'assert'
 
-import * as methods from './'
+import {notPlotNumber} from './'
+import {isPlotNumber} from './'
+import {isDatum} from './'
 
 test('utils.notPlotNumber NaN', () => {
-  assert.equal(
-    methods.notPlotNumber(NaN),
-    true
-  )
+  assert.equal(notPlotNumber(NaN), true)
 })
 test('utils.notPlotNumber "a"', () => {
-  assert.equal(
-    methods.notPlotNumber('a'),
-    true
-  )
+  assert.equal(notPlotNumber('a'), true)
 })
 test('utils.notPlotNumber undefined', () => {
-  assert.equal(
-    methods.notPlotNumber(undefined),
-    true
-  )
+  assert.equal(notPlotNumber(undefined), true)
 })
 test('utils.notPlotNumber 32', () => {
-  assert.equal(
-    methods.notPlotNumber(32),
-    false
-  )
+  assert.equal(notPlotNumber(32), false)
 })
 
 test('utils.isPlotNumber NaN', () => {
-  assert.equal(
-    methods.isPlotNumber(NaN),
-    false
-  )
+  assert.equal(isPlotNumber(NaN), false)
 })
 test('utils.isPlotNumber "a"', () => {
-  assert.equal(
-    methods.isPlotNumber('a'),
-    false
-  )
+  assert.equal(isPlotNumber('a'), false)
 })
 test('utils.isPlotNumber undefined', () => {
-  assert.equal(
-    methods.isPlotNumber(undefined),
-    false
-  )
+  assert.equal(isPlotNumber(undefined), false)
 })
 test('utils.isPlotNumber 32', () => {
-  assert.equal(
-    methods.isPlotNumber(32),
-    true
-  )
+  assert.equal(isPlotNumber(32), true)
+})
+
+test('utils.isDatum NaN', () => {
+  assert.equal(isDatum(NaN), false)
+})
+test('utils.isDatum "a"', () => {
+  assert.equal(isDatum('a'), true)
+})
+test('utils.isDatum undefined', () => {
+  assert.equal(isDatum(undefined), false)
+})
+test('utils.isDatum 32', () => {
+  assert.equal(isDatum(32), true)
 })

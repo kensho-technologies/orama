@@ -16,3 +16,9 @@ export const isPlotNumber = value => {
   if (!_.isArray(value)) return checkIsPlotNumber(value)
   return _.any(value, checkIsPlotNumber)
 }
+
+export const notDatum = value => (
+  _.isUndefined(value) || _.isNaN(value) || _.isNull(value)
+)
+
+export const isDatum = value => !notDatum(value)
