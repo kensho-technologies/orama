@@ -37,7 +37,8 @@ const MyChart = props => (
 - [Getting started](/docs/gettingStarted.md)
 - [Quick setup](/docs/quickSetup.md)
 - [API](/docs/api.md)
-- [Contributing](/docs/contributing.md)
+- [Development Guide](/docs/devGuide.md)
+- [Contributing](CONTRIBUTING.md)
 
 
 *This library is heavily influenced by the work of Mike Bostock, Hadley Wickham, and many other academics and practitioners from the data visualization community.*

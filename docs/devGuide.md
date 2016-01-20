@@ -1,60 +1,28 @@
-# Contributing
-
-Before opening an issue, please search the issue tracker to make sure your issue hasn't already been reported.
-
-For support, please ask any general and implementation specific questions on Stack Overflow with a Orama tag.
-
-For new features, it's recommended to first open an issue with a proposal before starting on the work. We don't want you to waste your efforts on a pull request that don't fit into the library architecture and roadmap.
-
-## Development
+## Development Guide
 
 Development needs node >= 5 and npm >= 3.  
-To update npm do `$ npm i -g npm`
 
 **Scripts**
 ```bash
 $ npm start
+$ npm run bates -- start
 # install dependencies,
 # start a hot reload development server on http://localhost:3000/
 # run unit tests and lint on source change
 
 $ npm test
+$ npm run bates -- test
 # executes unit tests and lint files
 
-$ npm run cov
+$ npm run bates -- cov
 # generate coverage information from tests
 # open coverage report on the browser
-
-# Read package.json to see all scripts
 ```
-
-## Submitting Changes
-
-- Open a new issue in the [Issue tracker](https://github.com/kensho/orama/issues).
-- Fork the repo.
-- Create a new feature branch based off the master branch.
-- **Check if you achieved all items of the PR checklist**
-- Please try to keep your pull request focused in scope and avoid including unrelated commits.
-
-
-## Pull request checklist
-
-Before doing a pull request check if your code pass the following checklist.
-
-- [ ] **Tests and linter are passing**
-- [ ] [Commit message format](#commit-messages)
-- [ ] [File structure, depth and naming](#file-structure)
-- [ ] [Only named exports](#only-named-exports)
-- [ ] [Only arrow function expressions](#only-arrow-function-expressions)
-- [ ] [Functional approach](#functional-approach)
-- [ ] [Stateless functional components](#stateless-functional-components)
-- [ ] [Inline styles and theme handle](#inline-styles-and-theme-handle)
-- [ ] [State management with onUpdate](#state-management-with-onupdate)
-- [ ] [Unit tests](#unit-tests)
+Scripts are handled by [Bates](https://github.com/luiscarli/bates), you can see all the possible options over there
 
 ## Style guide
 
-We use an extended version of the Airbnb js style guide plus some extra conventions on the Orama code base. The syntax rules are enforced by our linter, the conventions that are not linter enforced are presented bellow.
+On the Orama code base, we use an extended version of the Airbnb js style guide plus some extra conventions. The syntax rules are enforced by our linter, the conventions that are not linter enforced are presented bellow.
 
 ### Commit messages
 
