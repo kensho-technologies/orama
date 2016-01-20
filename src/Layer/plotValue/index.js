@@ -2,7 +2,7 @@
 import _ from 'lodash'
 import {ACCESSORS_GROUPS} from '../../chartCore/defaults'
 
-import {notDatum, isDatum} from '../../utils'
+import {isDatum} from '../../utils'
 
 /*
 `plotValue` is a helper to get back the mapped value plotted from a object.
@@ -22,6 +22,11 @@ const generateAccessorGroupHash = _.memoize(
     {}
   )
 )
+
+/*
+getScaleKeyByHash is used to return the main key for a group of accessors.
+For example, x, x0, x1 and x2 all will return 'x'
+*/
 export const getScaleKeyByHash = (props, key) => {
   const {
     accessorsGroups = ACCESSORS_GROUPS,
@@ -30,8 +35,15 @@ export const getScaleKeyByHash = (props, key) => {
   return hash[key] || key
 }
 
+/*
+Plot values returns the value to be plotted from the input.
+It has the following resolution order:
+1. ${key}Value on the props
+2. scaled data accessed with the accessor
+3. ${key}Value on the data
+*/
 export const plotValue = (
-  props, d, key, defaultValue, undefinedValue
+  props, datum, key, defaultValue
 ) => {
   const scaleKey = getScaleKeyByHash(props, key)
   const {
@@ -39,13 +51,13 @@ export const plotValue = (
     [`${key}Value`]: value,
     [`${scaleKey}Scale`]: scale,
   } = props
-  if (value) return value
-  if (!scale) return defaultValue
-  const mappedValue = scale(_.get(d, accessor))
-  if (notDatum(mappedValue)) {
-    const mappedValue2 = scale(_.get(d, key))
-    if (isDatum(mappedValue2)) return mappedValue2
-    return undefinedValue || defaultValue
+
+  if (isDatum(value)) return value
+  if (scale) {
+    const mappedValue = scale(_.get(datum, accessor))
+    if (isDatum(mappedValue)) return mappedValue
   }
-  return mappedValue
+  const objKeyValue = _.get(datum, `${key}Value`)
+  if (isDatum(objKeyValue)) return objKeyValue
+  return defaultValue
 }
