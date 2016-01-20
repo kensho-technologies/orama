@@ -7,9 +7,7 @@ import {extractTooltipData} from '../Chart/extractTooltipData'
 
 const MAX_WIDTH = 320
 
-/*
-Used inside <ChartRenderWrapper/>
-*/
+const getPadding = props => props.theme.tooltipFontSize / 2
 
 const row = (props, d, i) => (
   <TableRow
@@ -19,13 +17,13 @@ const row = (props, d, i) => (
     {props.showKeys ?
       <TableCell
         borderRight={`2px solid ${props.theme.tooltipKeyBorderStroke}`}
-        padding={10}
+        padding={getPadding(props)}
       >
         {d.key}
       </TableCell>
     : null}
     <TableCell // Name
-      padding={10}
+      padding={getPadding(props)}
       textAlign='left'
       verticalAlign='top'
     >
@@ -34,7 +32,7 @@ const row = (props, d, i) => (
     <TableCell // Value
       fontFamily={props.theme.fontFamilyMono}
       fontSize={props.theme.tooltipValueFontSize}
-      padding={10}
+      padding={getPadding(props)}
       textAlign='right'
       verticalAlign='top'
     >
@@ -61,7 +59,7 @@ export const TooltipInner = props => (
       <Block
         fontSize={props.theme.tooltipTitleFontSize}
         fontWeight={props.theme.tooltipTitleFontWeight}
-        padding={10}
+        padding={getPadding(props)}
         textAlign='left'
         verticalAlign='top'
       >
