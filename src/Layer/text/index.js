@@ -4,16 +4,6 @@ import {getMidX, getMidY} from '../../utils/rectUtils'
 import {plotValue} from '../../Layer/plotValue'
 
 /*
-`points` is used to generate render data for dots and similar.
-it handles `x`, `y`, 'radius' and 'fill'.
-
-@calling logic
-points{
-  textsDataMap(retrieveTextsData){}
-}
-*/
-
-/*
 generates the array of render data
 */
 export const getTextRenderData = (props, datum) => {
@@ -39,7 +29,7 @@ export const getTextRenderData = (props, datum) => {
 /*
 Main entry point, if there's only `xMap` or `yMap` it will output an one dimension plot.
 */
-export const texts = props => {
+export const text = props => {
   if (!props.xScale && !props.yScale) return undefined
   return map(
     flatten(props.data),

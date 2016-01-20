@@ -96,7 +96,7 @@ If set to false, it won't clip the plot of the layer to the plotRect bounds. The
 
 ## 'orama/lib/Layer'
 
-### `<Points/>`, `<Lines/>`, `<Areas/>`, `<Bars/>`, `<Guides/>`, `<Ranges/>` and `<Texts/>`
+### `<Points/>`, `<Lines/>`, `<Areas/>`, `<Bars/>`, `<Guides/>`, `<Ranges/>` and `<Text/>`
 
 Layers are used as children of the `<Chart/>` component, they specify the map and marks for rendering the data. Orama comes with a group of default layers, but new ones can be easily created.
 

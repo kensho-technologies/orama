@@ -32,7 +32,7 @@ Commit messages should have the following structure:
 ```
 Example of commits:
 ```
-texts: clean function return
+text: clean function return
 (FIX) guides: lineWidth was not rendering
 (FTR) basicRender: add clip config option
 (BRK) Chart: stop rendering root as a layer
@@ -49,11 +49,11 @@ Each commit on a pull request should be meaningful and follow this convention.
 ([Squash and edit commits as needed to achieve this](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages))
 ```
 // BAD
-d92d3953 wip refactor texts return
+d92d3953 wip refactor text return
 2fbcd415 fix linter and style as requested
 
 // GOOD
-d92d3953 texts: clean function return
+d92d3953 text: clean function return
 ```
 
 ### File structure

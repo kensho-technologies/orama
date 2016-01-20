@@ -28,7 +28,7 @@ The `<Chart/>` component is a wrapper that can contains configurations that affe
 ##### Layers
 Chart layers need to have at least a `data` and `accessor` properties, the accessors tell what value on the data will be used for each plot dimension.
 
-Orama comes with the following plot layers: `<Points/>`, `<Lines/>`, `<Areas/>`, `<Bars/>`, `<Guides/>`, `<Ranges/>` and `<Texts/>` (new custom plot layers are easy to be created).
+Orama comes with the following plot layers: `<Points/>`, `<Lines/>`, `<Areas/>`, `<Bars/>`, `<Guides/>`, `<Ranges/>` and `<Text/>` (new custom plot layers are easy to be created).
 
 ##### Data
 Orama uses the concept of [tidy data](http://vita.had.co.nz/papers/tidy-data.pdf), in which the data array is an observational unit with each object representing an observation and each property of the object a variable.

@@ -11,7 +11,7 @@ import {Guides} from '../../Layer'
 import {Lines} from '../../Layer'
 import {Points} from '../../Layer'
 import {Ranges} from '../../Layer'
-import {Texts} from '../../Layer'
+import {Text} from '../../Layer'
 
 export const TextBody = props => (
   <Row
@@ -87,7 +87,7 @@ export const App = props => (
             x='Date'
             y='Close'
           />
-          <Texts
+          <Text
             data={[
               {
                 value: 'Text Plot', Date: new Date(2004, 1),

@@ -6,7 +6,7 @@ import {guides} from '../Layer/guides'
 import {lines} from '../Layer/lines'
 import {points} from '../Layer/points'
 import {ranges} from '../Layer/ranges'
-import {texts} from '../Layer/texts'
+import {text} from '../Layer/text'
 
 export const Layer = () => null
 export const Areas = () => null
@@ -23,5 +23,5 @@ export const Points = () => null
 Points.plot = points
 export const Ranges = () => null
 Ranges.plot = ranges
-export const Texts = () => null
-Texts.plot = texts
+export const Text = () => null
+Text.plot = text
