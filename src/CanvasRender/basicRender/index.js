@@ -41,7 +41,7 @@ export const basicRender = (props, ctx) => {
         ctx.fillStyle = d.fill || theme.textFill
         ctx.textAlign = d.textAlign || 'left'
         ctx.textBaseline = d.textBaseline || 'alphabetic'
-        ctx.fillText(d.value, d.x, d.y)
+        ctx.fillText(d.label, d.x, d.y)
       }
     },
   )
