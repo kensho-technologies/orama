@@ -8,6 +8,8 @@ import {points} from '../Layer/points'
 import {ranges} from '../Layer/ranges'
 import {text} from '../Layer/text'
 
+export {plotValue} from '../Layer/plotValue'
+
 export const Layer = () => null
 export const Areas = () => null
 Areas.plot = areas
