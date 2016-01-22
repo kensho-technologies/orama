@@ -8,6 +8,7 @@ import {BACKGROUND_OFFSET} from '../../chartCore/defaults'
 const getGuideRenderData = (props, datum) => {
   const {
     backgroundOffset = BACKGROUND_OFFSET,
+    plotRect,
   } = props
   const path2D = getPath2D()
   const x = plotValue(props, datum, 'x')
@@ -17,14 +18,15 @@ const getGuideRenderData = (props, datum) => {
   const lineDash = plotValue(props, datum, 'lineDash')
   const alpha = plotValue(props, datum, 'alpha')
   if (isNumber(x)) {
-    path2D.moveTo(x, getMinY(props.plotRect) - backgroundOffset)
-    path2D.lineTo(x, getMaxY(props.plotRect) + backgroundOffset)
+    path2D.moveTo(x, getMinY(plotRect) - backgroundOffset)
+    path2D.lineTo(x, getMaxY(plotRect) + backgroundOffset)
   } else if (isNumber(y)) {
-    path2D.moveTo(getMinX(props.plotRect) - backgroundOffset, y)
-    path2D.lineTo(getMaxX(props.plotRect) + backgroundOffset, y)
+    path2D.moveTo(getMinX(plotRect) - backgroundOffset, y)
+    path2D.lineTo(getMaxX(plotRect) + backgroundOffset, y)
   }
 
   return {
+    x, y,
     alpha,
     data: datum,
     lineDash,
