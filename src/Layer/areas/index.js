@@ -109,7 +109,7 @@ export const getAreaRenderData = (props, data) => {
   const stroke = plotValue(props, _.first(data), 'fill')
   const alpha = plotValue(props, _.first(data), 'alpha')
   return {
-    hoverAlpha: 0.25,
+    hoverAlpha: props.hoverAlphaValue || 0.25,
     alpha,
     data,
     fill,

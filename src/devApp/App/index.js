@@ -78,9 +78,9 @@ export const App = props => (
           />
           <Points
             data={[
-              {Date: new Date(2010, 5), Close: 80},
-              {Date: new Date(2010, 6), Close: 90},
-              {Date: new Date(2010, 7), Close: 60},
+            {Date: new Date(2010, 5), Close: 80},
+            {Date: new Date(2010, 6), Close: 90},
+            {Date: new Date(2010, 7), Close: 60},
             ]}
             radiusValue={3}
             skipExtractArrays={true}
@@ -89,11 +89,14 @@ export const App = props => (
           />
           <Text
             data={[
-              {
-                value: 'Text Plot', Date: new Date(2004, 1),
-                Close: 150, textAlign: 'center',
-              },
+            {
+            value: 'Text Plot', Date: new Date(2004, 1),
+            Close: 150,
+            },
             ]}
+            rotateValue={- Math.PI / 4}
+            xOffsetValue={20}
+            yOffsetValue={-20}
             text='value'
             x='Date'
             y='Close'

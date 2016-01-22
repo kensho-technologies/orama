@@ -38,12 +38,16 @@ export const basicRender = (props, ctx) => {
         ctx.fill(d.path2D)
       } else if (d.type === 'text') {
         if (notDatum(d.text)) return
+        ctx.save()
         ctx.globalAlpha = d.alpha
         ctx.font = d.font || `${theme.plotFontSize}px ${theme.fontFamilyMono}`
         ctx.fillStyle = d.fill || theme.textFill
         ctx.textAlign = d.textAlign || 'left'
         ctx.textBaseline = d.textBaseline || 'alphabetic'
-        ctx.fillText(d.text, d.x, d.y)
+        ctx.translate(d.x + (d.xOffset || 0), d.y + (d.yOffset || 0))
+        ctx.rotate(d.rotate)
+        ctx.fillText(d.text, 0, 0)
+        ctx.restore()
       }
     },
   )
