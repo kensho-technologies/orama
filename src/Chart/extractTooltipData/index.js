@@ -82,7 +82,7 @@ export const extractTooltipData = (props, hoverData) => {
     _.sortBy(tooltipValues, 'order'),
     values => _.omit(values, 'order'),
   )
-  const title = props.labelValue || datum[props[`label`]]
+  const title = props.titleValue || datum[props[`title`]]
   return {
     title,
     values: orderedTooltipValues.concat(extraTooltipValues),

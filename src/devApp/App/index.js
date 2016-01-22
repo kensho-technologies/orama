@@ -55,8 +55,8 @@ export const App = props => (
             alphaValue={0.3}
             data={[props.appl, props.fb]}
             fill='Name'
-            label='Name'
             radiusValue={2}
+            title='Name'
             tooltipExtraDimensions={['Date']}
             tooltipKeys={['x', 'y']}
             x='Open'
@@ -71,7 +71,7 @@ export const App = props => (
         >
           <Lines
             data={[props.appl, props.fb]}
-            label='Name'
+            title='Name'
             tooltipKeys={['x', 'y']}
             x='Date'
             y='Close'
@@ -256,7 +256,7 @@ export const App = props => (
               {Name: 'FB2', value: 100},
               {Name: 'GOOGL2', value: 0},
             ]}
-            label='Name'
+            title='Name'
             tooltipKeys={['y']}
             tooltipShowKeys={false}
             x='Name'
