@@ -31,30 +31,30 @@ test('Chart/plotValue, scaled data accessed with the accessor', () => {
   const expected = 'mapped'
   assert.deepEqual(actual, expected)
 })
-test('Chart/plotValue, ${key}Value on the data', () => {
+test('Chart/plotValue, ${key}Value on the data 1', () => {
   const props = {
     xScale: () => null,
-    x: 'x',
+    x: 'prop1',
     xValue: NaN,
   }
   const actual = plotValue(props, {x: 10, xValue: 20}, 'x')
   const expected = 20
   assert.deepEqual(actual, expected)
 })
-test('Chart/plotValue, ${key}Value on the data', () => {
+test('Chart/plotValue, ${key}Value on the data 2', () => {
   const props = {
-    x: 'x',
+    x: 'prop1',
   }
   const actual = plotValue(props, {x: 10, xValue: 20}, 'x')
   const expected = 20
   assert.deepEqual(actual, expected)
 })
-test('Chart/plotValue, ${key}Value on the data', () => {
+test('Chart/plotValue, ${key}Value on the data 3', () => {
   const props = {
     x: 'x',
   }
   const actual = plotValue(props, {x: 10}, 'x')
-  const expected = undefined
+  const expected = 10
   assert.deepEqual(actual, expected)
 })
 

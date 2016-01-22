@@ -94,7 +94,7 @@ export const App = props => (
                 Close: 150, textAlign: 'center',
               },
             ]}
-            label='value'
+            text='value'
             x='Date'
             y='Close'
           />
@@ -168,12 +168,15 @@ export const App = props => (
             showHover={false}
             tooltipExtraDimensions={['x1', 'x2', 'y1', 'y2']}
             tooltipShowKeys={false}
+            x1='x1' x2='x2'
+            y1='y1' y2='y2'
           />
           <Guides
             data={[{x: 3.5}, {y: 125}]}
             strokeValue='red'
             tooltipExtraDimensions={['x', 'y']}
             tooltipShowKeys={false}
+            x='x' y='y'
           />
           <Lines
             data={[

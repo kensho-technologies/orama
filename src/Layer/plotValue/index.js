@@ -57,6 +57,8 @@ export const plotValue = (
     const mappedValue = scale(_.get(datum, accessor))
     if (isDatum(mappedValue)) return mappedValue
   }
+  const objValue = _.get(datum, accessor)
+  if (isDatum(objValue)) return objValue
   const objKeyValue = _.get(datum, `${key}Value`)
   if (isDatum(objKeyValue)) return objKeyValue
   return defaultValue
