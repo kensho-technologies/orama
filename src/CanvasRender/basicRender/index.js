@@ -2,6 +2,7 @@
 
 import _ from 'lodash'
 import {clearAndClip} from '../clearAndClip'
+import {notDatum} from '../../utils'
 
 const extractRenderDataFromLayers = renderLayers => _.flatten(_.pluck(renderLayers, 'renderData'))
 
@@ -36,12 +37,13 @@ export const basicRender = (props, ctx) => {
         ctx.fillStyle = d.fill || theme.plotFill
         ctx.fill(d.path2D)
       } else if (d.type === 'text') {
+        if (notDatum(d.text)) return
         ctx.globalAlpha = d.alpha
         ctx.font = d.font || `${theme.plotFontSize}px ${theme.fontFamilyMono}`
         ctx.fillStyle = d.fill || theme.textFill
         ctx.textAlign = d.textAlign || 'left'
         ctx.textBaseline = d.textBaseline || 'alphabetic'
-        ctx.fillText(d.label, d.x, d.y)
+        ctx.fillText(d.text, d.x, d.y)
       }
     },
   )

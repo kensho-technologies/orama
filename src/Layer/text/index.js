@@ -1,5 +1,5 @@
 
-import {map, flatten, get} from 'lodash'
+import {map, flatten} from 'lodash'
 import {getMidX, getMidY} from '../../utils/rectUtils'
 import {plotValue} from '../../Layer/plotValue'
 
@@ -10,9 +10,9 @@ export const getTextRenderData = (props, datum) => {
   const x = plotValue(props, datum, 'x', getMidX(props.plotRect))
   const y = plotValue(props, datum, 'y', getMidY(props.plotRect))
   const alpha = plotValue(props, datum, 'alpha')
-  const label = props.labelValue || get(datum, props.label) || datum.label
-  const textBaseline = props.textBaselineValue || get(datum, props.textBaseline) || datum.textBaseline
-  const textAlign = props.textAlignValue || get(datum, props.textAlign) || datum.textAlign
+  const text = plotValue(props, datum, 'text')
+  const textBaseline = plotValue(props, datum, 'textBaseline')
+  const textAlign = plotValue(props, datum, 'textAlign')
   const fill = plotValue(props, datum, 'fill')
   return {
     alpha,
@@ -20,7 +20,7 @@ export const getTextRenderData = (props, datum) => {
     textAlign,
     textBaseline,
     type: 'text',
-    label,
+    text,
     x,
     y,
   }

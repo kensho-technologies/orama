@@ -115,7 +115,7 @@ export const getXText = props => {
     xTicks,
     d => ({
       type: 'text',
-      value: d.text,
+      text: d.text,
       x: xScale(d.value),
       y: _.sum([
         backgroundOffset,
@@ -145,7 +145,7 @@ export const getYText = props => {
     yTicks,
     d => ({
       type: 'text',
-      value: d.text,
+      text: d.text,
       x: _.sum([
         plotRect.x,
         -backgroundOffset,
