@@ -38,10 +38,10 @@ export const DEFAULT_THEME = {
   plotOrdinalRangeFill: ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3', '#a6d854', '#ffd92f', '#e5c494', '#b3b3b3'],
 }
 
-export const getTheme = _theme => {
+export const getTheme = props => {
   const theme = {
     ...DEFAULT_THEME,
-    ..._theme,
+    ...props.theme,
   }
   return {theme}
 }
