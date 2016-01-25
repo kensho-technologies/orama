@@ -26,11 +26,11 @@ const getPointRenderData = (props, datum) => {
   const y = plotValue(
     props, datum, 'y', getMidY(props.plotRect)
   )
-  const r = plotValue(props, datum, 'radius', 5)
+  const radius = plotValue(props, datum, 'radius', 5)
   const fill = plotValue(props, datum, 'fill')
   const alpha = plotValue(props, datum, 'alpha')
-  path2D.arc(x, y, r, 0, 2 * Math.PI)
-  hover2ndPath2D.arc(x, y, r + 8, 0, 2 * Math.PI)
+  path2D.arc(x, y, radius, 0, 2 * Math.PI)
+  hover2ndPath2D.arc(x, y, radius + 8, 0, 2 * Math.PI)
 
   return {
     alpha,

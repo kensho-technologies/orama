@@ -117,8 +117,8 @@ Override the tooltip component.
 Add extra dimensions to the tooltip, each dimension works as an accessor to the data.
 - **tooltipKeys** ?: `Array<string>`  
 Sets the keys used for the tooltip, instead of calculating it based on the chart options.
-- [\`${dimension}**Label**\`] ?: `string`  
-The label *dimension* sets the accessor in the data used to get the title on the tooltip.
+- [\`${dimension}**Title**\`] ?: `string`  
+The title *dimension* sets the accessor in the data used to get the title on the tooltip.
 - [\`${dimension}**Alias**\`] ?: `string`  
 Sets an alias for *dimension* to be used on the tooltip
 - [\`${dimension}**TooltipFormat**\`] ?: `function`  
