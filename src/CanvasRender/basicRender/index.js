@@ -16,6 +16,16 @@ const getRenderObjects = props => {
   return []
 }
 
+const stroke = (theme, ctx, d) => {
+  ctx.globalAlpha = d.strokeAlpha || d.alpha || theme.plotAlpha
+  ctx.lineWidth = d.lineWidth || theme.plotLineWidth
+  ctx.strokeStyle = d.stroke || theme.plotFill
+  if (d.lineDash) {
+    ctx.setLineDash(d.lineDash)
+  }
+  ctx.stroke(d.path2D)
+}
+
 export const basicRender = (props, ctx) => {
   const {theme} = props
   ctx.save()
@@ -25,17 +35,12 @@ export const basicRender = (props, ctx) => {
     d => {
       if (!d) return
       if (d.type === 'line') {
-        ctx.globalAlpha = d.strokeAlpha || d.alpha || theme.plotAlpha
-        ctx.lineWidth = d.lineWidth || theme.plotLineWidth
-        ctx.strokeStyle = d.stroke || theme.plotFill
-        if (d.lineDash) {
-          ctx.setLineDash(d.lineDash)
-        }
-        ctx.stroke(d.path2D)
+        stroke(theme, ctx, d)
       } else if (d.type === 'area') {
         ctx.globalAlpha = d.fillAlpha || d.alpha || theme.plotAlpha
         ctx.fillStyle = d.fill || theme.plotFill
         ctx.fill(d.path2D)
+        if (d.stroke) stroke(theme, ctx, d)
       } else if (d.type === 'text') {
         if (notDatum(d.text)) return
         ctx.save()

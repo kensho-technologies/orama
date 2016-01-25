@@ -114,6 +114,7 @@ export const App = props => (
               _.filter(props.fb, d => d.Date.getFullYear() > 2011),
             ]}
             fill='Name'
+            stroke='Name'
             x='Date'
             y='High'
             y0='Low'
@@ -156,6 +157,7 @@ export const App = props => (
               {Name: 'FB2', value: 100},
               {Name: 'GOOGL2', value: 0},
             ]}
+            strokeValue='black'
             x='value'
             y='Name'
           />
