@@ -2,8 +2,8 @@
 import {map, flatten, isNumber} from 'lodash'
 import {getMinX, getMaxX, getMinY, getMaxY} from '../../utils/rectUtils'
 import {getPath2D} from '../../utils/path2DUtils'
-import {plotValue} from '../../Layer/plotValue'
 import {BACKGROUND_OFFSET} from '../../chartCore/defaults'
+import {getPlotValues} from '../../Layer/getPlotValues'
 
 const getGuideRenderData = (props, datum) => {
   const {
@@ -11,28 +11,18 @@ const getGuideRenderData = (props, datum) => {
     plotRect,
   } = props
   const path2D = getPath2D()
-  const x = plotValue(props, datum, 'x')
-  const y = plotValue(props, datum, 'y')
-  const stroke = plotValue(props, datum, 'stroke')
-  const lineWidth = plotValue(props, datum, 'lineWidth')
-  const lineDash = plotValue(props, datum, 'lineDash')
-  const alpha = plotValue(props, datum, 'alpha')
-  if (isNumber(x)) {
-    path2D.moveTo(x, getMinY(plotRect) - backgroundOffset)
-    path2D.lineTo(x, getMaxY(plotRect) + backgroundOffset)
-  } else if (isNumber(y)) {
-    path2D.moveTo(getMinX(plotRect) - backgroundOffset, y)
-    path2D.lineTo(getMaxX(plotRect) + backgroundOffset, y)
+  const values = getPlotValues(props, datum)
+  if (isNumber(values.x)) {
+    path2D.moveTo(values.x, getMinY(plotRect) - backgroundOffset)
+    path2D.lineTo(values.x, getMaxY(plotRect) + backgroundOffset)
+  } else if (isNumber(values.y)) {
+    path2D.moveTo(getMinX(plotRect) - backgroundOffset, values.y)
+    path2D.lineTo(getMaxX(plotRect) + backgroundOffset, values.y)
   }
 
   return {
-    x, y,
-    alpha,
-    data: datum,
-    lineDash,
+    ...values,
     path2D,
-    stroke,
-    lineWidth,
     type: 'line',
   }
 }

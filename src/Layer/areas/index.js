@@ -3,8 +3,9 @@ import _ from 'lodash'
 
 import {getMaxY} from '../../utils/rectUtils'
 import {getPath2D} from '../../utils/path2DUtils'
-import {notPlotNumber} from '../../utils'
+import {getPlotValues} from '../../Layer/getPlotValues'
 import {isPlotNumber} from '../../utils'
+import {notPlotNumber} from '../../utils'
 import {plotValue} from '../../Layer/plotValue'
 
 export const getPointData = (props, datum, yKey) => {
@@ -65,8 +66,8 @@ export const getAreaRenderData = (props, data) => {
   if (_.isEmpty(data)) return {showHover: false}
   const path2D = getPath2D()
   path2D.moveTo(
-    plotValue(props, _.first(data), 'x', 0, 0),
-    plotValue(props, _.first(data), 'y', 0, 0)
+    plotValue(props, _.first(data), 'x', 0),
+    plotValue(props, _.first(data), 'y', 0)
   )
   _.each(data, d => {
     const x = plotValue(props, d, 'x')
@@ -80,11 +81,11 @@ export const getAreaRenderData = (props, data) => {
   if (notPlotNumber(y0) && notPlotNumber(x0)) {
     const localY0 = props.yScale(0) || getMaxY(props.plotRect)
     path2D.lineTo(
-      plotValue(props, _.last(data), 'x', 0, 0),
+      plotValue(props, _.last(data), 'x', 0),
       localY0,
     )
     path2D.lineTo(
-      plotValue(props, _.first(data), 'x', 0, 0),
+      plotValue(props, _.first(data), 'x', 0),
       localY0,
     )
   // if the base is on the y axis
@@ -105,15 +106,13 @@ export const getAreaRenderData = (props, data) => {
     })
   }
   path2D.closePath()
-  const fill = plotValue(props, _.first(data), 'fill')
-  const stroke = plotValue(props, _.first(data), 'fill')
-  const alpha = plotValue(props, _.first(data), 'alpha')
+
+  const values = getPlotValues(props, _.first(data), {
+    hoverAlpha: 0.25,
+  })
   return {
-    hoverAlpha: props.hoverAlphaValue || 0.25,
-    alpha,
+    ...values,
     data,
-    fill,
-    stroke,
     hoverSolver,
     path2D,
     type: 'area',

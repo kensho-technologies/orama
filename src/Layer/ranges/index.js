@@ -1,8 +1,8 @@
 
 import {map, flatten, isNumber} from 'lodash'
 import {getPath2D} from '../../utils/path2DUtils'
-import {plotValue} from '../../Layer/plotValue'
 import {BACKGROUND_OFFSET} from '../../chartCore/defaults'
+import {getPlotValues} from '../../Layer/getPlotValues'
 
 const rangesRender = (props, datum) => {
   const {
@@ -10,32 +10,25 @@ const rangesRender = (props, datum) => {
     plotRect,
   } = props
   const path2D = getPath2D()
-  const x1 = plotValue(props, datum, 'x1')
-  const x2 = plotValue(props, datum, 'x2')
-  const y1 = plotValue(props, datum, 'y1')
-  const y2 = plotValue(props, datum, 'y2')
-  const alpha = plotValue(props, datum, 'alpha')
-  const fill = plotValue(props, datum, 'fill')
-  if (isNumber(x1) && isNumber(x2) && isNumber(y1) && isNumber(y2)) {
+  const values = getPlotValues(props, datum)
+  if (isNumber(values.x1) && isNumber(values.x2) && isNumber(values.y1) && isNumber(values.y2)) {
     path2D.rect(
-      x1, y1,
-      x2 - x1, y2 - y1
+      values.x1, values.y1,
+      values.x2 - values.x1, values.y2 - values.y1
     )
-  } else if (isNumber(x1) && isNumber(x2)) {
+  } else if (isNumber(values.x1) && isNumber(values.x2)) {
     path2D.rect(
-      x1, plotRect.y - backgroundOffset,
-      x2 - x1, plotRect.height + backgroundOffset * 2
+      values.x1, plotRect.y - backgroundOffset,
+      values.x2 - values.x1, plotRect.height + backgroundOffset * 2
     )
-  } else if (isNumber(y1) && isNumber(y2)) {
+  } else if (isNumber(values.y1) && isNumber(values.y2)) {
     path2D.rect(
-      plotRect.x - backgroundOffset, y1,
-      plotRect.width + backgroundOffset * 2, y2 - y1
+      plotRect.x - backgroundOffset, values.y1,
+      plotRect.width + backgroundOffset * 2, values.y2 - values.y1
     )
   }
   return {
-    alpha,
-    data: datum,
-    fill,
+    ...values,
     path2D,
     type: 'area',
   }

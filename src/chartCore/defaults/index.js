@@ -7,6 +7,15 @@ export const ACCESSORS_NAMES = [
   'alpha',
   'lineWidth', 'lineDash',
 ]
+export const ACCESSORS_NAMES_NON_SCALABLE = [
+  'fillAlpha', 'strokeAlpha',
+  'hoverAlpha',
+  'text',
+  'rotate',
+  'textAlign', 'textBaseline', 'textSnap',
+  'xOffset', 'yOffset',
+]
+
 export const ACCESSORS_GROUPS = {
   x: ['x', 'x0', 'x1', 'x2'],
   y: ['y', 'y0', 'y1', 'y2'],

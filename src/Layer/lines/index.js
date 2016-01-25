@@ -4,6 +4,7 @@ import _ from 'lodash'
 import {getPath2D} from '../../utils/path2DUtils'
 import {notPlotNumber} from '../../utils'
 import {plotValue} from '../../Layer/plotValue'
+import {getPlotValues} from '../../Layer/getPlotValues'
 
 /*
 `points` is used to generate render data for lines and multilines.
@@ -71,17 +72,10 @@ generates the array of render data
 const getLineRenderData = (props, data) => {
   if (_.isEmpty(data)) return undefined
   const path2D = getPath2D()
-  const stroke = plotValue(props, _.first(data), 'stroke')
-  const lineWidth = plotValue(
-    props, _.first(data), 'lineWidth'
-  )
-  const lineDash = plotValue(
-    props, _.first(data), 'lineDash'
-  )
-  path2D.moveTo(
-    plotValue(props, _.first(data), 'x', 0, 0),
-    plotValue(props, _.first(data), 'y', 0, 0)
-  )
+  const values = getPlotValues(props, _.first(data), {
+    hoverAlpha: 0.3,
+  })
+  path2D.moveTo(values.x, values.y)
   _.each(data, d => {
     const x = plotValue(props, d, 'x')
     const y = plotValue(props, d, 'y')
@@ -89,13 +83,10 @@ const getLineRenderData = (props, data) => {
     path2D.lineTo(x, y)
   })
   return {
+    ...values,
     data,
-    hoverAlpha: 0.3,
     hoverSolver,
-    lineDash,
-    lineWidth,
     path2D,
-    stroke,
     type: 'line',
   }
 }

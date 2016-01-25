@@ -2,7 +2,6 @@
 import {map, flatten, isNumber} from 'lodash'
 
 import {BACKGROUND_OFFSET} from '../../chartCore/defaults'
-import {getPath2D} from '../../utils/path2DUtils'
 import {bottomHorizontalLine} from '../../Layer/getBrushesRenderData'
 import {bottomCenterLine} from '../../Layer/getBrushesRenderData'
 import {centerArea} from '../../Layer/getBrushesRenderData'
@@ -18,28 +17,24 @@ import {rightBottomLine} from '../../Layer/getBrushesRenderData'
 import {leftBottomLine} from '../../Layer/getBrushesRenderData'
 import {leftTopLine} from '../../Layer/getBrushesRenderData'
 import {rightTopLine} from '../../Layer/getBrushesRenderData'
-import {plotValue} from '../../Layer/plotValue'
+import {getPlotValues} from '../../Layer/getPlotValues'
 
 const brushesRender = (props, datum) => {
   const {
     backgroundOffset = BACKGROUND_OFFSET,
     plotRect,
   } = props
-  const path2D = getPath2D()
-  const x1 = plotValue(props, datum, 'x1')
-  const x2 = plotValue(props, datum, 'x2')
-  const y1 = plotValue(props, datum, 'y1')
-  const y2 = plotValue(props, datum, 'y2')
-  const fillAlpha = plotValue(props, datum, 'fillAlpha', 0.4)
-  const fill = plotValue(props, datum, 'fill')
-  const stroke = plotValue(props, datum, 'stroke')
-  const lineWidth = plotValue(props, datum, 'lineWidth', 3)
+  const values = getPlotValues(props, datum, {
+    fillAlpha: 0.4,
+    lineWidth: 3,
+  })
 
   const renderArgs = {
-    x1, x2, y1, y2, fillAlpha, fill, stroke, lineWidth, plotRect, backgroundOffset, datum,
+    values,
+    plotRect, backgroundOffset,
   }
 
-  if (isNumber(x1) && isNumber(x2) && isNumber(y1) && isNumber(y2)) {
+  if (isNumber(values.x1) && isNumber(values.x2) && isNumber(values.y1) && isNumber(values.y2)) {
     return [
       centerArea(renderArgs),
       leftCenterLine(renderArgs),
@@ -51,25 +46,20 @@ const brushesRender = (props, datum) => {
       rightTopLine(renderArgs),
       rightBottomLine(renderArgs),
     ]
-  } else if (isNumber(x1) && isNumber(x2)) {
+  } else if (isNumber(values.x1) && isNumber(values.x2)) {
     return [
       verticalArea(renderArgs),
       leftVerticalLine(renderArgs),
       rightVerticalLine(renderArgs),
     ]
-  } else if (isNumber(y1) && isNumber(y2)) {
+  } else if (isNumber(values.y1) && isNumber(values.y2)) {
     return [
       horizontalArea(renderArgs),
       topHorizontalLine(renderArgs),
       bottomHorizontalLine(renderArgs),
     ]
   }
-  return {
-    data: datum,
-    hoverFill: 'transparent',
-    path2D,
-    type: 'area',
-  }
+  return {showHover: false, type: 'area'}
 }
 
 export const brushes = props => {
