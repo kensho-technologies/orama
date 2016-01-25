@@ -18,6 +18,7 @@ export const ChartRender = props => (
           clip={true}
           height={props.rootProps.height}
           key={i}
+          layerProps={renderLayer.layerProps}
           plotRect={props.rootProps.plotRect}
           render={basicRender}
           renderData={renderLayer.renderData}
