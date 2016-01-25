@@ -12,8 +12,8 @@ const isDisplayable = value => (
   !_.isUndefined(value) &&
   !_.isNaN(value)
 )
-const tooltipValuesForStrings = (tooltipExtraDimensions, datum) => {
-  return _.reduce(
+const tooltipValuesForStrings = (tooltipExtraDimensions, datum) =>
+  _.reduce(
     tooltipExtraDimensions,
     (acc, key) => {
       let value = _.get(datum, key)
@@ -27,9 +27,8 @@ const tooltipValuesForStrings = (tooltipExtraDimensions, datum) => {
     },
     []
   )
-}
-const tooltipValuesForObjects = (tooltipExtraDimensions, datum) => {
-  return _.reduce(
+const tooltipValuesForObjects = (tooltipExtraDimensions, datum) =>
+  _.reduce(
     tooltipExtraDimensions,
     (acc, obj) => {
       const {
@@ -46,7 +45,6 @@ const tooltipValuesForObjects = (tooltipExtraDimensions, datum) => {
     },
     []
   )
-}
 const getExtraTooltipValues = (props, datum) => {
   const {tooltipExtraDimensions} = props
   if (_.any(tooltipExtraDimensions, _.isString)) {

@@ -24,8 +24,8 @@ export function generateSrc(node, clbck) {
       const img = document.createElement('img')
       img.src = canvas.toDataURL('image/png')
       img.setAttribute('style', canvas.getAttribute('style'))
-      img.setAttribute('width', canvas.getAttribute('width') + 'px')
-      img.setAttribute('height', canvas.getAttribute('height') + 'px')
+      img.setAttribute('width', `${canvas.getAttribute('width')} px`)
+      img.setAttribute('height', `${canvas.getAttribute('height')} px`)
       cloneCanvas.parentNode.replaceChild(img, cloneCanvas)
     }
   )
@@ -43,7 +43,7 @@ export function generateSrc(node, clbck) {
         ${serializer.serializeToString(cloned)}
       </foreignObject>
     </svg>`
-  const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(data)
+  const url = `data:image/svg+xml;charset=utf-8, ${encodeURIComponent(data)}`
   const img = new Image()
   img.setAttribute('crossOrigin', 'anonymous')
   img.src = url

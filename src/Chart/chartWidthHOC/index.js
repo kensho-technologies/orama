@@ -5,8 +5,8 @@ import _ from 'lodash'
 /*
 This component wrapps up the <InputComponent/> and add a width prop when it's not present
 */
-export const chartWidthHOC = InputComponent => {
-  return React.createClass({
+export const chartWidthHOC = InputComponent =>
+  React.createClass({
     displayName: 'ChartWidthHOC',
     propTypes: {
       width: PropTypes.number,
@@ -51,4 +51,3 @@ export const chartWidthHOC = InputComponent => {
       )
     },
   })
-}

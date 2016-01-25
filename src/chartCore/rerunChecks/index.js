@@ -5,9 +5,7 @@ import shallowEqual from 'on-update/lib/shallowEqual'
 export const getRerunCheckForNames = (keyNames, rootNames) => (props, prevProps) => {
   const checkRootNames = _.any(
     rootNames,
-    name => {
-      return props[`${name}`] !== prevProps[`${name}`]
-    }
+    name => props[`${name}`] !== prevProps[`${name}`]
   )
   if (checkRootNames) return true
   if (!keyNames) return false
@@ -15,9 +13,7 @@ export const getRerunCheckForNames = (keyNames, rootNames) => (props, prevProps)
     props.groupedKeys,
     key => (_.any(
       keyNames,
-      name => {
-        return props[`${key}${name}`] !== prevProps[`${key}${name}`]
-      }
+      name => props[`${key}${name}`] !== prevProps[`${key}${name}`]
     ))
   )
 }

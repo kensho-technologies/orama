@@ -14,9 +14,8 @@ export const getLayer = props => {
     renderData: plot(props),
   }
 }
-export const getRenderLayers = props => {
-  return _.map(
+export const getRenderLayers = props =>
+  _.map(
     props.layers,
     layer => getLayer({...props, ...layer}),
   )
-}
