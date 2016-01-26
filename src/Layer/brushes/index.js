@@ -18,6 +18,7 @@ import {leftBottomLine} from '../../Layer/getBrushesRenderData'
 import {leftTopLine} from '../../Layer/getBrushesRenderData'
 import {rightTopLine} from '../../Layer/getBrushesRenderData'
 import {getPlotValues} from '../../Layer/getPlotValues'
+import {getPath2D} from '../../utils/path2DUtils'
 
 const brushesRender = (props, datum) => {
   const {
@@ -30,7 +31,7 @@ const brushesRender = (props, datum) => {
   })
 
   const renderArgs = {
-    values,
+    ...values,
     plotRect, backgroundOffset,
   }
 
@@ -59,7 +60,7 @@ const brushesRender = (props, datum) => {
       bottomHorizontalLine(renderArgs),
     ]
   }
-  return {showHover: false, type: 'area'}
+  return {showHover: false, type: 'area', path2D: getPath2D()}
 }
 
 export const brushes = props => {
