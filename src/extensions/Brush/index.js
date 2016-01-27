@@ -9,110 +9,167 @@ import {Chart} from '../../Chart'
 import {Brushes} from '../../Layer'
 import {Points} from '../../Layer'
 
-const identityScale = d => d
-identityScale.invert = d => d
+const BRUSH_ELEMENT_NAMES = ['brushesCenter', 'brushesLeft', 'brushesRight', 'brushesTop', 'brushesBottom', 'brushesLeftTop', 'brushesRightTop', 'brushesRightBottom', 'brushesLeftBottom']
 
-export const reorder = bound => ({
-  x1: _.min([bound.x1, bound.x2]),
-  x2: _.max([bound.x1, bound.x2]),
-  y1: _.min([bound.y1, bound.y2]),
-  y2: _.max([bound.y1, bound.y2]),
+const reorder = bounds => ({
+  x1: _.min([bounds.x1, bounds.x2]),
+  x2: _.max([bounds.x1, bounds.x2]),
+  y1: _.min([bounds.y1, bounds.y2]),
+  y2: _.max([bounds.y1, bounds.y2]),
 })
-export const isOutbound = (bound, plotRect) => {
+const isOutOfBounds = (bounds, plotRect) => {
   if (
-    bound.x1 < plotRect.x ||
-    bound.x2 > plotRect.x + plotRect.width ||
-    bound.y1 < plotRect.y ||
-    bound.y2 > plotRect.y + plotRect.height
+    bounds.x1 < plotRect.x ||
+    bounds.x2 > plotRect.x + plotRect.width ||
+    bounds.y1 < plotRect.y ||
+    bounds.y2 > plotRect.y + plotRect.height
   ) return true
   return false
 }
-
-const handleChart = (props, childProps) => {
-  if (childProps.action === 'mouseClick') {
-    if (!props.element) {
-      props.onState({
-        bound: {},
-      })
-    }
-  }
-  if (childProps.action === 'mouseDown') {
-    const element = childProps.renderDatum && childProps.renderDatum.name
-    if (!element) {
-      const x = childProps.localMouse.x
-      const y = childProps.localMouse.y
-      props.onState({
-        xScale: childProps.rootProps.xScale,
-        yScale: childProps.rootProps.yScale,
-        plotRect: childProps.rootProps.plotRect,
-        p1: {x, y},
-        p2: {},
-        element,
-      })
-    } else {
-      props.onState({
-        element,
-      })
-    }
-  }
-  if (childProps.action === 'mouseDrag') {
-    if (!props.element) {
-      const x = childProps.localMouse.x
-      const y = childProps.localMouse.y
-      props.onState({
-        p2: {x, y},
-      })
-    } else {
-      props.onState({
-        p1: {
-          x: props.p1.x - childProps.mouseDelta.x,
-          y: props.p1.y - childProps.mouseDelta.y,
-        },
-        p2: {
-          x: props.p2.x - childProps.mouseDelta.x,
-          y: props.p2.y - childProps.mouseDelta.y,
-        },
-      })
-    }
-  }
-  if (childProps.action === 'mouseUp') {
-    const element = childProps.renderDatum && childProps.renderDatum.name
-    if (!element) {
-      props.onState({
-        element: undefined,
-      })
-    }
-  }
-}
-const constraintToPlotRect = (bound, plotRect) => {
-  let x1 = bound.x1
+const constraintToPlotRect = (bounds, childProps) => {
+  const {rootProps: {plotRect}} = childProps
+  let x1 = bounds.x1
   if (x1 < plotRect.x) x1 = plotRect.x
-  let x2 = bound.x2
+  let x2 = bounds.x2
   if (x2 > plotRect.x + plotRect.width) x2 = plotRect.x + plotRect.width
-  let y1 = bound.y1
+  let y1 = bounds.y1
   if (y1 < plotRect.y) y1 = plotRect.y
-  let y2 = bound.y2
+  let y2 = bounds.y2
   if (y2 > plotRect.y + plotRect.height) y2 = plotRect.y + plotRect.height
   return {x1, x2, y1, y2}
 }
-const getBrushData = props => {
-  const _bound = {
-    x1: _.min([props.p1.x, props.p2.x]),
-    x2: _.max([props.p1.x, props.p2.x]),
-    y1: _.min([props.p1.y, props.p2.y]),
-    y2: _.max([props.p1.y, props.p2.y]),
-  }
-  const bound = constraintToPlotRect(_bound, props.plotRect)
+const domainToBounds = (props, childProps) => {
+  const {rootProps} = childProps
   return {
-    x1: props.xScale.invert(bound.x1),
-    x2: props.xScale.invert(bound.x2),
-    y1: props.yScale.invert(bound.y1),
-    y2: props.yScale.invert(bound.y2),
+    x1: rootProps.xScale(props.xDomain[0]),
+    x2: rootProps.xScale(props.xDomain[1]),
+    y1: rootProps.yScale(props.yDomain[0]),
+    y2: rootProps.yScale(props.yDomain[1]),
+  }
+}
+const boundsToDomain = (bounds, childProps) => {
+  const {rootProps} = childProps
+  return {
+    xDomain: [
+      rootProps.xScale.invert(bounds.x1),
+      rootProps.xScale.invert(bounds.x2),
+    ],
+    yDomain: [
+      rootProps.yScale.invert(bounds.y1),
+      rootProps.yScale.invert(bounds.y2),
+    ],
+  }
+}
+const getBrushData = props => ({
+  x1: props.xDomain[0],
+  x2: props.xDomain[1],
+  y1: props.yDomain[0],
+  y2: props.yDomain[1],
+})
+const updateBounds = (props, childProps, partialBounds) => {
+  const newBounds = reorder({
+    ...props._bounds,
+    ...partialBounds,
+  })
+  if (isOutOfBounds(newBounds, childProps.rootProps.plotRect)) {
+    const constrainedBounds = constraintToPlotRect(newBounds, childProps)
+    props.onState(boundsToDomain(constrainedBounds, childProps))
+  } else {
+    props.onState(boundsToDomain(newBounds, childProps))
   }
 }
 
+const mouseDown = (props, childProps) => {
+  const brushElementName = childProps.renderDatum && childProps.renderDatum.name
+  if (!_.contains(BRUSH_ELEMENT_NAMES, brushElementName)) {
+    props.onState({
+      xDomain: [], yDomain: [],
+      _bounds: {
+        x1: childProps.localMouse.x,
+        y1: childProps.localMouse.y,
+      },
+      brushElementName,
+    })
+  } else {
+    props.onState({
+      _bounds: domainToBounds(props, childProps),
+      brushElementName,
+    })
+  }
+}
+const mouseDrag = (props, childProps) => {
+  if (props.brushElementName === 'brushesCenter') {
+    const bounds = domainToBounds(props, childProps)
+    const mBounds = {
+      x1: bounds.x1 - childProps.mouseDelta.x,
+      x2: bounds.x2 - childProps.mouseDelta.x,
+      y1: bounds.y1 - childProps.mouseDelta.y,
+      y2: bounds.y2 - childProps.mouseDelta.y,
+    }
+    if (isOutOfBounds(mBounds, childProps.rootProps.plotRect)) {
+      props.onState(boundsToDomain(bounds, childProps))
+    } else {
+      props.onState(boundsToDomain(mBounds, childProps))
+    }
+  } else if (props.brushElementName === 'brushesLeft') {
+    updateBounds(props, childProps, {x1: childProps.localMouse.x})
+  } else if (props.brushElementName === 'brushesRight') {
+    updateBounds(props, childProps, {x2: childProps.localMouse.x})
+  } else if (props.brushElementName === 'brushesTop') {
+    updateBounds(props, childProps, {y1: childProps.localMouse.y})
+  } else if (props.brushElementName === 'brushesBottom') {
+    updateBounds(props, childProps, {y2: childProps.localMouse.y})
+  } else if (props.brushElementName === 'brushesLeftTop') {
+    updateBounds(props, childProps, {
+      x1: childProps.localMouse.x,
+      y1: childProps.localMouse.y,
+    })
+  } else if (props.brushElementName === 'brushesRightTop') {
+    updateBounds(props, childProps, {
+      x2: childProps.localMouse.x,
+      y1: childProps.localMouse.y,
+    })
+  } else if (props.brushElementName === 'brushesRightBottom') {
+    updateBounds(props, childProps, {
+      x2: childProps.localMouse.x,
+      y2: childProps.localMouse.y,
+    })
+  } else if (props.brushElementName === 'brushesLeftBottom') {
+    updateBounds(props, childProps, {
+      x1: childProps.localMouse.x,
+      y2: childProps.localMouse.y,
+    })
+  } else {
+    const bounds = reorder({
+      ...props._bounds,
+      x2: childProps.localMouse.x,
+      y2: childProps.localMouse.y,
+    })
+    const cBounds = constraintToPlotRect(bounds, childProps)
+    props.onState(boundsToDomain(cBounds, childProps))
+  }
+}
+const handleChart = (props, childProps) => {
+  switch (childProps.action) {
+    case 'mouseDown': mouseDown(props, childProps)
+      break
+    case 'mouseDrag': mouseDrag(props, childProps)
+      break
+    default:
+  }
+}
+
+const ChartMargin = props => (
+  <Block
+    flexBasis={400}
+    flexGrow={1}
+    padding={30}
+    {...props}
+  />
+)
+
 const _Brush = props => (
-  <Block padding={30}>
+  <ChartMargin>
     <Chart
       height={400}
       onUpdate={childProps => handleChart(props, childProps)}
@@ -138,22 +195,16 @@ const _Brush = props => (
         y2='y2'
       />
     </Chart>
-  </Block>
+  </ChartMargin>
 )
 _Brush.propTypes = {
   data: PropTypes.array,
-  x1: PropTypes.number,
-  x2: PropTypes.number,
-  y1: PropTypes.number,
-  y2: PropTypes.number,
+  xDomain: PropTypes.array,
+  yDomain: PropTypes.array,
 }
 _Brush.defaultProps = {
-  data: [],
-  p1: {},
-  p2: {},
-  xScale: identityScale,
-  yScale: identityScale,
-  plotRect: {},
+  xDomain: [],
+  yDomain: [],
 }
 
 export const Brush = stateHOC(_Brush)
