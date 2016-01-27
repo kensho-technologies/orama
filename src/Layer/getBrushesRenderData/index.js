@@ -161,7 +161,7 @@ export const leftVerticalLine = (
     HOVER_OFFSET_X2, plotRect.height + backgroundOffset * 2
   )
   return {
-    name: 'brushesLeftVertical',
+    name: 'brushesLeft',
     lineWidth,
     stroke,
     data,
@@ -184,7 +184,7 @@ export const leftCenterLine = (
     HOVER_OFFSET_X2, y2 - y1 - BRUSH_HANDLE_OFFSET * 2
   )
   return {
-    name: 'brushesLeftCenter',
+    name: 'brushesLeft',
     lineWidth,
     stroke,
     data,
@@ -207,7 +207,7 @@ export const rightVerticalLine = (
     HOVER_OFFSET_X2, plotRect.height + backgroundOffset * 2
   )
   return {
-    name: 'brushesRightVertical',
+    name: 'brushesRight',
     lineWidth,
     stroke,
     data,
@@ -230,7 +230,7 @@ export const rightCenterLine = (
     HOVER_OFFSET_X2, y2 - y1 - BRUSH_HANDLE_OFFSET * 2
   )
   return {
-    name: 'brushesRightCenter',
+    name: 'brushesRight',
     lineWidth,
     stroke,
     data,
@@ -255,7 +255,7 @@ export const topHorizontalLine = (
     plotRect.width + backgroundOffset * 2, HOVER_OFFSET_X2
   )
   return {
-    name: 'brushesTopHorizontal',
+    name: 'brushesTop',
     lineWidth,
     stroke,
     data,
@@ -276,7 +276,7 @@ export const topCenterLine = (
     x2 - x1, HOVER_OFFSET_X2
   )
   return {
-    name: 'brushesTopCenter',
+    name: 'brushesTop',
     lineWidth,
     stroke,
     data,
@@ -301,7 +301,7 @@ export const bottomHorizontalLine = (
     plotRect.width + backgroundOffset * 2, HOVER_OFFSET_X2
   )
   return {
-    name: 'brushesBottomHorizontal',
+    name: 'brushesBottom',
     lineWidth,
     stroke,
     data,
@@ -322,7 +322,7 @@ export const bottomCenterLine = (
     x2 - x1, HOVER_OFFSET_X2
   )
   return {
-    name: 'brushesBottomCenter',
+    name: 'brushesBottom',
     lineWidth,
     stroke,
     data,
