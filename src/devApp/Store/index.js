@@ -3,7 +3,7 @@
 import React from 'react'
 import _ from 'lodash'
 import {requestCsv} from 'd3-request'
-import {utcParse} from 'd3-time-format'
+import {timeParse} from 'd3-time-format'
 
 import {App} from '../../devApp/App'
 
@@ -21,7 +21,7 @@ export function parseString(string) {
   return string
 }
 const parseCSV = data => _.map(data, d => _.mapValues(d, parseString))
-const parseDate = utcParse('%Y-%m-%d')
+const parseDate = timeParse('%Y-%m-%d')
 
 export const Store = React.createClass({
   getInitialState() {
