@@ -48,8 +48,8 @@ export const DOMAIN = [0, 1]
 export const TYPE = 'linear'
 export const NICE = false
 export const TICK_COUNT = 1
-export const TICK_X_SPACE = 100
-export const TICK_Y_SPACE = 90
+export const TICK_X_SPACE = 150
+export const TICK_Y_SPACE = 75
 export const SHOW_TICKS = true
 export const SHOW_LABELS = true
 export const AXIS_LABEL_OFFSET = theme => (
