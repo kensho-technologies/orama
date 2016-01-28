@@ -34,15 +34,19 @@ export const CanvasInput = React.createClass({
         getDataUnderMouse(props, this.state.mouse, this.canvasNode)
       )
       this.setState({
+        renderDatum: solvedData.renderDatum,
         hoverRenderData: solvedData.hoverRenderData,
+        hoverData: solvedData.hoverData,
+        localMouse: solvedData.localMouse,
+        layerProps: solvedData.layerProps,
       })
     }
   },
   componentDidUpdate(props, state) {
     if (this.state.mouseDrag && !state.mouseDrag) {
-      document.addEventListener('mouseup', this.onMouseUp)
+      document.addEventListener('mouseup', this.handleMouseUp)
     } else if (!this.state.mouseDrag && state.mouseDrag) {
-      document.removeEventListener('mouseup', this.onMouseUp)
+      document.removeEventListener('mouseup', this.handleMouseUp)
     }
   },
   handleCanvasRef(canvasNode) {
@@ -150,6 +154,7 @@ export const CanvasInput = React.createClass({
       rootProps: this.props.rootProps,
     })
     this.setState({
+      mouseDrag: false,
       mouseDown: false,
     })
   },
