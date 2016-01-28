@@ -6,6 +6,7 @@ export const findFirstPass = (ctx, localMouse, renderData) => (
     d => {
       if (!d) return false
       if (d.showHover === false) return false
+      ctx.lineJoin = 'round'
       if (d.hover1stPath2D) {
         return ctx.isPointInPath(d.hover1stPath2D, localMouse.x, localMouse.y)
       }
@@ -24,6 +25,7 @@ export const findSecondPass = (ctx, localMouse, renderData) => (
     d => {
       if (!d) return false
       if (d.showHover === false) return false
+      ctx.lineJoin = 'round'
       if (d.hover2ndPath2D) {
         return ctx.isPointInPath(d.hover2ndPath2D, localMouse.x, localMouse.y)
       }

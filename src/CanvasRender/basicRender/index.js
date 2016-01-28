@@ -29,6 +29,7 @@ const stroke = (theme, ctx, d) => {
 export const basicRender = (props, ctx) => {
   const {theme} = props
   ctx.save()
+  ctx.lineJoin = 'round'
   clearAndClip(props, ctx)
   _.each(
     getRenderObjects(props),
