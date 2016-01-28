@@ -98,7 +98,7 @@ test('Chart/getMethods.getTickCount', () => {
   }
   assert.deepEqual(
     methods.getTickCount(props, 'x'),
-    5
+    4
   )
   assert.deepEqual(
     methods.getTickCount(props, 'y'),
