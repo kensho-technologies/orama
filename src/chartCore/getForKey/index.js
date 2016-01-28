@@ -128,9 +128,11 @@ export const getTickCount = (props, key) => {
 export const getTickFormat = (props, key) => {
   if (props[`${key}TickFormat`]) return props[`${key}TickFormat`]
   const {
+    [`${key}Type`]: type,
     [`${key}Scale`]: scale = getScale(props, key),
     [`${key}TickCount`]: tickCount = TICK_COUNT,
   } = props
+  if (type === 'time') return scale.tickFormat()
   return scale.tickFormat(tickCount)
 }
 export const getTooltipFormat = (props, key) => {
