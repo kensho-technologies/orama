@@ -25,14 +25,19 @@ const brushesRender = (props, datum) => {
     backgroundOffset = BACKGROUND_OFFSET,
     plotRect,
   } = props
-  const values = getPlotValues(props, datum, {
-    fillAlpha: 0.4,
-    lineWidth: 3,
-  })
+  const stroke = props.strokeValue
+  const fill = props.fillValue
+  const fillAlpha = props.fillAlphaValue || 0.4
+  const lineWidth = props.lineWidthValue || 3
+  const values = getPlotValues(props, datum)
 
   const renderArgs = {
     ...values,
     plotRect, backgroundOffset,
+    stroke,
+    fill,
+    fillAlpha,
+    lineWidth,
   }
 
   if (isNumber(values.x1) && isNumber(values.x2) && isNumber(values.y1) && isNumber(values.y2)) {

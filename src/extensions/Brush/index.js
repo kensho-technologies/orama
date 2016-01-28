@@ -145,11 +145,20 @@ const mouseDrag = (props, childProps) => {
     props.onUpdate(boundsToDomain(cBounds, childProps))
   }
 }
+const mouseUp = props => {
+  props.onUpdate({
+    action: 'mouseUp',
+    xDomain: props.xDomain,
+    yDomain: props.yDomain,
+  })
+}
 const handleChart = (props, childProps) => {
   switch (childProps.action) {
     case 'mouseDown': mouseDown(props, childProps)
       break
     case 'mouseDrag': mouseDrag(props, childProps)
+      break
+    case 'mouseUp': mouseUp(props, childProps)
       break
     default:
   }
@@ -161,8 +170,12 @@ const _Brush = props => {
     const BrushElement = (
       <Brushes
         data={[getBrushData(props)]}
+        fillAlphaValue={props.fillAlphaValue}
+        fillValue={props.fillValue}
         key='brushes'
+        lineWidthValue={props.lineWidthValue}
         skipExtractArrays={true}
+        strokeValue={props.strokeValue}
         tooltipShowKeys={false}
         x1='x1'
         x2='x2'
@@ -183,9 +196,13 @@ const _Brush = props => {
 }
 
 _Brush.propTypes = {
+  children: PropTypes.node,
+  fillAlphaValue: PropTypes.number,
+  fillValue: PropTypes.number,
+  lineWidthValue: PropTypes.number,
+  strokeValue: PropTypes.number,
   xDomain: PropTypes.array,
   yDomain: PropTypes.array,
-  children: PropTypes.node,
 }
 _Brush.defaultProps = {
   xDomain: [],
