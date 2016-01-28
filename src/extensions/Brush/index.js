@@ -145,20 +145,12 @@ const mouseDrag = (props, childProps) => {
     props.onUpdate(boundsToDomain(cBounds, childProps))
   }
 }
-const mouseUp = props => {
-  props.onUpdate({
-    action: 'mouseUp',
-    xDomain: props.xDomain,
-    yDomain: props.yDomain,
-  })
-}
+
 const handleChart = (props, childProps) => {
   switch (childProps.action) {
     case 'mouseDown': mouseDown(props, childProps)
       break
     case 'mouseDrag': mouseDrag(props, childProps)
-      break
-    case 'mouseUp': mouseUp(props, childProps)
       break
     default:
   }
