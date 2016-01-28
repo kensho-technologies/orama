@@ -2,6 +2,7 @@
 import _ from 'lodash'
 import {ACCESSORS_TOOLTIP_ORDER} from '../../chartCore/defaults'
 import {getTooltipFormat} from '../../chartCore/getForKey'
+import {getScaleKeyByHash} from '../../Layer/plotValue'
 
 const getDatum = data => {
   if (_.isArray(data)) return _.first(data)
@@ -63,9 +64,10 @@ export const extractTooltipData = (props, hoverData) => {
   const tooltipValues = _.reduce(
     tooltipKeys || localKeys,
     (acc, key) => {
+      const scaleKey = getScaleKeyByHash(props, key)
       const keyAlias = props[`${key}Alias`] || key
       const name = props[`${key}Name`] || props[key]
-      const formatter = props[`${key}TooltipFormat`] || getTooltipFormat(props, key)
+      const formatter = props[`${scaleKey}TooltipFormat`] || getTooltipFormat(props, scaleKey)
       const value = formatter(_.get(datum, props[key]))
       const order = accessorsTooltipOrder[key]
       if (isDisplayable(value)) {
