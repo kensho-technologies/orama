@@ -3,11 +3,7 @@ import React, {PropTypes} from 'react'
 import _ from 'lodash'
 
 import {stateHOC} from 'on-update'
-
-import {Block} from 'react-display'
-import {Chart} from '../../Chart'
 import {Brushes} from '../../Layer'
-import {Points} from '../../Layer'
 
 const BRUSH_ELEMENT_NAMES = ['brushesCenter', 'brushesLeft', 'brushesRight', 'brushesTop', 'brushesBottom', 'brushesLeftTop', 'brushesRightTop', 'brushesRightBottom', 'brushesLeftBottom']
 
@@ -73,9 +69,9 @@ const updateBounds = (props, childProps, partialBounds) => {
   })
   if (isOutOfBounds(newBounds, childProps.rootProps.plotRect)) {
     const constrainedBounds = constraintToPlotRect(newBounds, childProps)
-    props.onState(boundsToDomain(constrainedBounds, childProps))
+    props.onUpdate(boundsToDomain(constrainedBounds, childProps))
   } else {
-    props.onState(boundsToDomain(newBounds, childProps))
+    props.onUpdate(boundsToDomain(newBounds, childProps))
   }
 }
 
@@ -83,13 +79,13 @@ const mouseDown = (props, childProps) => {
   const brushElementName = childProps.renderDatum && childProps.renderDatum.name
   if (!_.contains(BRUSH_ELEMENT_NAMES, brushElementName)) {
     props.onState({
-      xDomain: [], yDomain: [],
       _bounds: {
         x1: childProps.localMouse.x,
         y1: childProps.localMouse.y,
       },
       brushElementName,
     })
+    props.onUpdate({xDomain: undefined, yDomain: undefined})
   } else {
     props.onState({
       _bounds: domainToBounds(props, childProps),
@@ -107,9 +103,9 @@ const mouseDrag = (props, childProps) => {
       y2: bounds.y2 - childProps.mouseDelta.y,
     }
     if (isOutOfBounds(mBounds, childProps.rootProps.plotRect)) {
-      props.onState(boundsToDomain(bounds, childProps))
+      props.onUpdate(boundsToDomain(bounds, childProps))
     } else {
-      props.onState(boundsToDomain(mBounds, childProps))
+      props.onUpdate(boundsToDomain(mBounds, childProps))
     }
   } else if (props.brushElementName === 'brushesLeft') {
     updateBounds(props, childProps, {x1: childProps.localMouse.x})
@@ -146,7 +142,7 @@ const mouseDrag = (props, childProps) => {
       y2: childProps.localMouse.y,
     })
     const cBounds = constraintToPlotRect(bounds, childProps)
-    props.onState(boundsToDomain(cBounds, childProps))
+    props.onUpdate(boundsToDomain(cBounds, childProps))
   }
 }
 const handleChart = (props, childProps) => {
@@ -159,34 +155,13 @@ const handleChart = (props, childProps) => {
   }
 }
 
-const ChartMargin = props => (
-  <Block
-    flexBasis={400}
-    flexGrow={1}
-    padding={30}
-    {...props}
-  />
-)
-
-const _Brush = props => (
-  <ChartMargin>
-    <Chart
-      height={400}
-      onUpdate={childProps => handleChart(props, childProps)}
-      yType='log'
-    >
-      <Points
-        alphaValue={0.3}
-        data={props.data}
-        fill='Name'
-        label='Name'
-        radiusValue={2}
-        tooltipExtraDimensions={['Date']}
-        x='Open'
-        y='Volume'
-      />
+const _Brush = props => {
+  const child = React.Children.only(props.children)
+  if (child.type.displayName === 'ChartWidthHOC') {
+    const BrushElement = (
       <Brushes
         data={[getBrushData(props)]}
+        key='brushes'
         skipExtractArrays={true}
         tooltipShowKeys={false}
         x1='x1'
@@ -194,13 +169,23 @@ const _Brush = props => (
         y1='y1'
         y2='y2'
       />
-    </Chart>
-  </ChartMargin>
-)
+    )
+    const layers = React.Children.toArray(child.props.children).concat(
+      BrushElement,
+    )
+    return React.cloneElement(
+      child,
+      {onUpdate: childProps => handleChart(props, childProps)},
+      layers
+    )
+  }
+  return <div/>
+}
+
 _Brush.propTypes = {
-  data: PropTypes.array,
   xDomain: PropTypes.array,
   yDomain: PropTypes.array,
+  children: PropTypes.node,
 }
 _Brush.defaultProps = {
   xDomain: [],
