@@ -73,7 +73,7 @@ const getLineRenderData = (props, data) => {
   if (_.isEmpty(data)) return undefined
   const path2D = getPath2D()
   const values = getPlotValues(props, _.first(data), {
-    hoverAlpha: 0.3,
+    hoverAlpha: 0.2,
   })
   path2D.moveTo(values.x, values.y)
   _.each(data, d => {

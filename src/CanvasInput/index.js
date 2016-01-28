@@ -28,6 +28,16 @@ export const CanvasInput = React.createClass({
   getInitialState() {
     return {}
   },
+  componentWillReceiveProps(props) {
+    if (this.state.mouse) {
+      const solvedData = runHoverSolverOn(
+        getDataUnderMouse(props, this.state.mouse, this.canvasNode)
+      )
+      this.setState({
+        hoverRenderData: solvedData.hoverRenderData,
+      })
+    }
+  },
   componentDidUpdate(props, state) {
     if (this.state.mouseDrag && !state.mouseDrag) {
       document.addEventListener('mouseup', this.onMouseUp)
@@ -44,7 +54,7 @@ export const CanvasInput = React.createClass({
     if (!this.state.mouseDrag) {
       const mouse = getMouseFromEvt(evt)
       const solvedData = runHoverSolverOn(
-        getDataUnderMouse(this.props, mouse, this.canvasNode, evt)
+        getDataUnderMouse(this.props, mouse, this.canvasNode)
       )
       this.props.onUpdate({
         action: 'mouseClick',
@@ -69,7 +79,7 @@ export const CanvasInput = React.createClass({
   handleMouseDown(evt) {
     const mouse = getMouseFromEvt(evt)
     const solvedData = runHoverSolverOn(
-      getDataUnderMouse(this.props, mouse, this.canvasNode, evt)
+      getDataUnderMouse(this.props, mouse, this.canvasNode)
     )
     this.props.onUpdate({
       action: 'mouseDown',
@@ -93,7 +103,7 @@ export const CanvasInput = React.createClass({
   handleMouseMove(evt) {
     const mouse = getMouseFromEvt(evt)
     const solvedData = runHoverSolverOn(
-      getDataUnderMouse(this.props, mouse, this.canvasNode, evt)
+      getDataUnderMouse(this.props, mouse, this.canvasNode)
     )
     let mouseDelta
     if (this.lastMouse) {
