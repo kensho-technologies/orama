@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
 
-import {stateHOC} from 'on-update'
+import {State} from 'on-update'
 import {Chart, Brush, Lines} from '../../'
 
 const LINES_OPTS = {
@@ -19,10 +19,12 @@ const filterData = props =>
   })
 
 const handleUpdate = (props, childProps) => {
-  props.onState({xDomain: childProps.xDomain})
+  props.setState({
+    xDomain: childProps.xDomain,
+  })
 }
 
-const _BrushedTimeLine = props =>
+const InnerBrushTimeLine = props =>
   <div>
     <Chart
       proportion={0.3}
@@ -49,14 +51,16 @@ const _BrushedTimeLine = props =>
       </Chart>
     </Brush>
   </div>
-_BrushedTimeLine.defaultProps = {
+InnerBrushTimeLine.defaultProps = {
   data: [],
 }
-_BrushedTimeLine.propTypes = {
+InnerBrushTimeLine.propTypes = {
   data: PropTypes.array,
   xDomain: PropTypes.array,
   yDomain: PropTypes.array,
 }
 
-
-export const BrushedTimeLine = stateHOC(_BrushedTimeLine)
+export const BrushedTimeLine = props =>
+  <State {...props}>
+    <InnerBrushTimeLine/>
+  </State>
