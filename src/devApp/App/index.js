@@ -12,7 +12,6 @@ import {Lines} from '../../Layer'
 import {Points} from '../../Layer'
 import {Ranges} from '../../Layer'
 import {Text} from '../../Layer'
-import {BrushedTimeline} from '../../devApp/BrushedTimeline'
 
 export const TextBody = props => (
   <Row
@@ -48,13 +47,6 @@ const ChartMargin = props => (
 export const App = props => (
   <Main>
     <TextBody>
-      <ChartMargin
-        flexBasis={800}
-      >
-        <BrushedTimeline
-          data={props.appl}
-        />
-      </ChartMargin>
       <ChartMargin>
         <Chart // scaterplot
           yType='log'
