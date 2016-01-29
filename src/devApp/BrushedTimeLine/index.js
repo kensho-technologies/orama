@@ -24,7 +24,7 @@ const handleUpdate = (props, childProps) => {
   })
 }
 
-const InnerBrushTimeLine = props =>
+const InnerBrushTimeline = props =>
   <div>
     <Chart
       proportion={0.3}
@@ -51,16 +51,16 @@ const InnerBrushTimeLine = props =>
       </Chart>
     </Brush>
   </div>
-InnerBrushTimeLine.defaultProps = {
+InnerBrushTimeline.defaultProps = {
   data: [],
 }
-InnerBrushTimeLine.propTypes = {
+InnerBrushTimeline.propTypes = {
   data: PropTypes.array,
   xDomain: PropTypes.array,
   yDomain: PropTypes.array,
 }
 
-export const BrushedTimeLine = props =>
+export const BrushedTimeline = props =>
   <State {...props}>
-    <InnerBrushTimeLine/>
+    <InnerBrushTimeline/>
   </State>

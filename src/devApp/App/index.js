@@ -12,7 +12,7 @@ import {Lines} from '../../Layer'
 import {Points} from '../../Layer'
 import {Ranges} from '../../Layer'
 import {Text} from '../../Layer'
-import {BrushedTimeLine} from '../../devApp/BrushedTimeLine'
+import {BrushedTimeline} from '../../devApp/BrushedTimeline'
 
 export const TextBody = props => (
   <Row
@@ -51,7 +51,7 @@ export const App = props => (
       <ChartMargin
         flexBasis={800}
       >
-        <BrushedTimeLine
+        <BrushedTimeline
           data={props.appl}
         />
       </ChartMargin>
