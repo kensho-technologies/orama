@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 import _ from 'lodash'
 
 import {State} from 'on-update'
-import {Chart, Brush, Lines} from '../../'
+import {Chart, Brush, Lines} from '../../index'
 
 const LINES_OPTS = {
   stroke: 'Name',
