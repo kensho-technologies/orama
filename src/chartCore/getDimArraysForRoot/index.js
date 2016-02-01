@@ -10,7 +10,7 @@ const checkUndefinedAccessor = value => (
 quick check if data is array of arrays
 */
 const tidyFlatten = data => {
-  if (_.isArray(_.first(data))) return _.flatten(data)
+  if (_.isArray(_.head(data))) return _.flatten(data)
   return data
 }
 /*
@@ -47,7 +47,7 @@ Get dimension array from each layer, and merge the arrays with the same key.
 */
 export const getDimArraysForRoot = props => {
   const layersArrays = _.map(props.layers, getDimArraysForLayer)
-  const dimArrays = _.merge(
+  const dimArrays = _.mergeWith(
     {},
     ...layersArrays,
     (a, b) => {

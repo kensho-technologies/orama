@@ -77,7 +77,7 @@ const updateBounds = (props, childProps, partialBounds) => {
 
 const mouseDown = (props, childProps) => {
   const brushElementName = childProps.renderDatum && childProps.renderDatum.name
-  if (!_.contains(BRUSH_ELEMENT_NAMES, brushElementName)) {
+  if (!_.includes(BRUSH_ELEMENT_NAMES, brushElementName)) {
     props.onState({
       _bounds: {
         x1: childProps.localMouse.x,

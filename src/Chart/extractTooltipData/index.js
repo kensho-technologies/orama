@@ -5,7 +5,7 @@ import {getTooltipFormat} from '../../chartCore/getForKey'
 import {getScaleKeyByHash} from '../../Layer/plotValue'
 
 const getDatum = data => {
-  if (_.isArray(data)) return _.first(data)
+  if (_.isArray(data)) return _.head(data)
   return data
 }
 const isDisplayable = value => (
@@ -48,7 +48,7 @@ const tooltipValuesForObjects = (tooltipExtraDimensions, datum) =>
   )
 const getExtraTooltipValues = (props, datum) => {
   const {tooltipExtraDimensions} = props
-  if (_.any(tooltipExtraDimensions, _.isString)) {
+  if (_.some(tooltipExtraDimensions, _.isString)) {
     return tooltipValuesForStrings(tooltipExtraDimensions, datum)
   }
   return tooltipValuesForObjects(tooltipExtraDimensions, datum)

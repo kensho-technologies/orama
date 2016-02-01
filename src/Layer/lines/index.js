@@ -72,7 +72,7 @@ generates the array of render data
 const getLineRenderData = (props, data) => {
   if (_.isEmpty(data)) return undefined
   const path2D = getPath2D()
-  const values = getPlotValues(props, _.first(data), {
+  const values = getPlotValues(props, _.head(data), {
     hoverAlpha: 0.2,
   })
   path2D.moveTo(values.x, values.y)
@@ -92,7 +92,7 @@ const getLineRenderData = (props, data) => {
 }
 export const lines = props => {
   if (!props.xScale || !props.yScale) return undefined
-  if (_.isArray(_.first(props.data))) {
+  if (_.isArray(_.head(props.data))) {
     return _.reduce(
       props.data,
       (acc, data) => acc.concat(getLineRenderData(props, data)),
