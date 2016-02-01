@@ -38,8 +38,8 @@ export const getType = (props, key) => {
     },
     {number: 0, string: 0, date: 0}
   )
-  const counterPairs = _.pairs(counter)
-  const maxName = _.max(counterPairs, '1')[0]
+  const counterPairs = _.toPairs(counter)
+  const maxName = _.maxBy(counterPairs, '1')[0]
   return JS_TO_VIS_TYPE[maxName]
 }
 export const getDomain = (props, key) => {

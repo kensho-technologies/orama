@@ -91,7 +91,7 @@ const getBottomMargin = props => {
     xLabelOffset = AXIS_LABEL_OFFSET(theme),
   } = props
   if (!_.isUndefined(margin.bottom)) return margin.bottom + backgroundOffset
-  if (!_.contains(groupedKeys, 'x')) return backgroundOffset
+  if (!_.includes(groupedKeys, 'x')) return backgroundOffset
   return _.sum([
     backgroundOffset,
     xShowTicks ? xTickOffset + theme.axisTickFontSize : 0,
@@ -110,7 +110,7 @@ const getLeftMargin = props => {
     yLabelOffset = AXIS_LABEL_OFFSET(theme),
   } = props
   if (!_.isUndefined(margin.left)) return margin.left + backgroundOffset
-  if (!_.contains(groupedKeys, 'y')) return backgroundOffset
+  if (!_.includes(groupedKeys, 'y')) return backgroundOffset
   if (!yShowTicks) {
     return _.sum([
       backgroundOffset,
@@ -165,11 +165,11 @@ export const getPlotRect = props => {
   let newWidth = width
   let newHeight = height
   const plotRect = rectUtils.marginInset(margin, {width, height})
-  if (!_.contains(groupedKeys, 'x')) {
+  if (!_.includes(groupedKeys, 'x')) {
     newWidth -= plotRect.width
     plotRect.width = 0
   }
-  if (!_.contains(groupedKeys, 'y')) {
+  if (!_.includes(groupedKeys, 'y')) {
     newHeight -= plotRect.height
     plotRect.height = 0
   }

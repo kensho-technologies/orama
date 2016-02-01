@@ -4,7 +4,7 @@ import _ from 'lodash'
 import {clearAndClip} from '../clearAndClip'
 import {notDatum} from '../../utils'
 
-const extractRenderDataFromLayers = renderLayers => _.flatten(_.pluck(renderLayers, 'renderData'))
+const extractRenderDataFromLayers = renderLayers => _.flatten(_.map(renderLayers, 'renderData'))
 
 const getRenderObjects = props => {
   const {

@@ -66,8 +66,8 @@ export const getAreaRenderData = (props, data) => {
   if (_.isEmpty(data)) return {showHover: false}
   const path2D = getPath2D()
   path2D.moveTo(
-    plotValue(props, _.first(data), 'x', 0),
-    plotValue(props, _.first(data), 'y', 0)
+    plotValue(props, _.head(data), 'x', 0),
+    plotValue(props, _.head(data), 'y', 0)
   )
   _.each(data, d => {
     const x = plotValue(props, d, 'x')
@@ -75,8 +75,8 @@ export const getAreaRenderData = (props, data) => {
     if (notPlotNumber([x, y])) return
     path2D.lineTo(x, y)
   })
-  const y0 = plotValue(props, _.first(data), 'y0')
-  const x0 = plotValue(props, _.first(data), 'x0')
+  const y0 = plotValue(props, _.head(data), 'y0')
+  const x0 = plotValue(props, _.head(data), 'x0')
   // if there's no base position accessors
   if (notPlotNumber(y0) && notPlotNumber(x0)) {
     const localY0 = props.yScale(0) || getMaxY(props.plotRect)
@@ -85,7 +85,7 @@ export const getAreaRenderData = (props, data) => {
       localY0,
     )
     path2D.lineTo(
-      plotValue(props, _.first(data), 'x', 0),
+      plotValue(props, _.head(data), 'x', 0),
       localY0,
     )
   // if the base is on the y axis
@@ -107,7 +107,7 @@ export const getAreaRenderData = (props, data) => {
   }
   path2D.closePath()
 
-  const values = getPlotValues(props, _.first(data), {
+  const values = getPlotValues(props, _.head(data), {
     hoverAlpha: 0.25,
   })
   return {
@@ -120,7 +120,7 @@ export const getAreaRenderData = (props, data) => {
 }
 export const areas = props => {
   if (!props.xScale || !props.yScale) return undefined
-  if (_.isArray(_.first(props.data))) {
+  if (_.isArray(_.head(props.data))) {
     return _.reduce(
       props.data,
       (acc, data) => acc.concat(getAreaRenderData(props, data)),

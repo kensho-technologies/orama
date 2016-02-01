@@ -3,15 +3,15 @@ import _ from 'lodash'
 import shallowEqual from 'on-update/lib/shallowEqual'
 
 export const getRerunCheckForNames = (keyNames, rootNames) => (props, prevProps) => {
-  const checkRootNames = _.any(
+  const checkRootNames = _.some(
     rootNames,
     name => props[`${name}`] !== prevProps[`${name}`]
   )
   if (checkRootNames) return true
   if (!keyNames) return false
-  return _.any(
+  return _.some(
     props.groupedKeys,
-    key => (_.any(
+    key => (_.some(
       keyNames,
       name => props[`${key}${name}`] !== prevProps[`${key}${name}`]
     ))
@@ -49,7 +49,7 @@ export const rerunCheckGetDimArrays = (props, prevProps) => {
   // now there are layers
   if (!prevProps.layers && props.layers) return true
   // for each layer
-  const layerCheck = _.any(
+  const layerCheck = _.some(
     props.layers,
     (layer, i) => {
       // should skip
