@@ -3,13 +3,15 @@ import React, {PropTypes} from 'react'
 import _ from 'lodash'
 
 import {State} from 'on-update'
-import {Chart, Brush, Lines} from '../../index'
+import {Chart} from '../../Chart'
+import {Brush} from '../../extensions/Brush'
+import {Lines} from '../../Layer'
 
 const LINES_OPTS = {
-  stroke: 'Name',
+  // stroke: 'Name',
   title: 'Name',
   x: 'Date',
-  y: 'Adj Close',
+  y: 'Adj. Close',
 }
 
 const filterData = props =>
@@ -21,6 +23,7 @@ const filterData = props =>
 const handleUpdate = (props, childProps) => {
   props.setState({
     xDomain: childProps.xDomain,
+    yDomain: childProps.yDomain,
   })
 }
 
@@ -41,7 +44,7 @@ const InnerBrushTimeline = props =>
       xDomain={props.xDomain}
     >
       <Chart
-        proportion={0.1}
+        proportion={0.2}
       >
         <Lines
           {...LINES_OPTS}

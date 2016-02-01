@@ -47,7 +47,7 @@ Layers props can be used on `<Chart/>` (with exception of data and data accessor
 The Layer components to be used for rendering the data.
 
 - **onUpdate** ?: `function`  
-Callback for the interaction events on the Chart, see what can be returned on the [Chart onUpdate API](#chart-onUpdatecallback).
+Callback for the interaction events on the Chart, see what can be returned on the [Chart onUpdate API](#chart-onupdatecallback).
 
 - **width** ?: `number = 500`  
 Sets the width of the chart.
@@ -141,7 +141,7 @@ const myChart = props =>
 The callback returns an object with the following properties:
 
 - **action** : `string`  
-The action defines the type of event, it can be: 'mouseClick', 'mouseDown', 'mouseMove' 'mouseDrag', 'mouseUp', 'mouseLeave'.
+The action defines the type of event. It can be: 'mouseClick', 'mouseDown', 'mouseMove' 'mouseDrag', 'mouseUp', 'mouseLeave'.
 
 - **mouse** : `{x: number, y: number}`  
 Mouse position of the action, relative to the page.
@@ -239,10 +239,10 @@ The onUpdate callback on the Brush returns the xDomain and yDomain of the select
 - **onUpdate** ?: `function`  
 Callback for the Brush data, it gets called with an object containing the updated props of the Brush.
 
-- **xDomain** ?: 'Array<string|number|Date>'  
+- **xDomain** ?: `Array<string|number|Date>`  
 The x domain to be used on the selection.
 
-- **yDomain** ?: 'Array<string|number|Date>'  
+- **yDomain** ?: `Array<string|number|Date>`  
 The y domain to be used on the selection.
 
 ## 'orama/lib/utils'
