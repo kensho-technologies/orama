@@ -211,7 +211,7 @@ Override the hoverSolver function.
 
 ## 'orama/lib/extensions'
 
-The extensions are component wrappers that add new functionality to the <Chart/>
+The extensions are component wrappers that add new functionality to the `<Chart/>`.
 
 ### `<Brush/>`
 
