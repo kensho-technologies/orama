@@ -24,8 +24,8 @@ Post.propTypes = {
 
 export const postsData = [
   {
-    title: 'Examples',
-    description: 'Base examples',
+    title: 'Line chart examples',
+    description: 'Multi lines, and hoverstroke mapping',
     id: 'examples',
   },
   {

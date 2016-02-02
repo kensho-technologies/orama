@@ -60,7 +60,7 @@ const lineTransform = _.flow(
 
 export const Post = props =>
   <TextBody>
-    <H1>Base Examples</H1>
+    <H1>Line chart examples</H1>
     <H2>Multi line chart</H2>
     <Chart>
       <Lines

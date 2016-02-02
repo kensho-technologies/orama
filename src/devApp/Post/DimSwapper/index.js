@@ -17,18 +17,19 @@ const startWith = async props => {
 }
 
 const snippet = `
+
+const MyChart = () =>
+  <State startWith={startWith}>
+    <InnerMyChart/>
+  </State>
+
+
 const startWith = async props =>
   props.setState({
     data: await fetch(url).then(r => r.json())
   })
 
-export const MyChart = () => (
-  <State startWith={startWith}>
-    <InnerMyChart/>
-  </State>
-)
-
-const InnerPost = props =>
+const InnerMyChart = props =>
   <div>
     <SelectorGroup {...props}/>
     <Chart>
@@ -42,7 +43,7 @@ const InnerPost = props =>
     </Chart>
   </div>
 
-export const SelectorGroup = props =>
+const SelectorGroup = props =>
   <div>
     {map(
       d => <Selector {...props} key={d} dimension={d}/>,
