@@ -21,8 +21,8 @@ document.title = 'Orama'
 
 const getDate = timeParse('%Y-%m-%d')
 
-const APPL_URL = 'https://www.quandl.com/api/v3/datasets/WIKI/AAPL/data.json?start_date=2014-01-01&auth_token=WpsneDZ79Xem9zJc5amR'
-const FB_URL = 'https://www.quandl.com/api/v3/datasets/WIKI/FB/data.json?start_date=2014-01-01&auth_token=WpsneDZ79Xem9zJc5amR'
+const APPL_URL = 'https://www.quandl.com/api/v3/datasets/WIKI/AAPL/data.json?start_date=2000-01-01&auth_token=WpsneDZ79Xem9zJc5amR'
+const FB_URL = 'https://www.quandl.com/api/v3/datasets/WIKI/FB/data.json?start_date=2000-01-01&auth_token=WpsneDZ79Xem9zJc5amR'
 
 const quandlMap = flow(
   get('dataset_data.column_names'),
@@ -31,7 +31,6 @@ const quandlMap = flow(
 
 const quandlFlow = (result, name) =>
   flow(
-    d => {console.log(d); return d},
     get('dataset_data.data'),
     map(quandlMap(result)),
     each(d => {
