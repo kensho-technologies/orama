@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 
 import {Post as Examples} from '../Post/Examples'
 import {Post as BrushExamples} from '../Post/BrushExamples'
-import {FetchTest} from '../Post/FetchTest'
+import {Post as DimSwapper} from '../Post/DimSwapper'
 import {Page404} from '../Page404'
 
 export const Post = props => {
@@ -12,8 +12,8 @@ export const Post = props => {
       return <Examples {...props}/>
     case 'brush-examples':
       return <BrushExamples {...props}/>
-    case 'fetch-test':
-      return <FetchTest {...props}/>
+    case 'dim-swapper':
+      return <DimSwapper {...props}/>
     default:
       return <Page404/>
   }
@@ -34,8 +34,8 @@ export const postsData = [
     id: 'brush-examples',
   },
   {
-    title: 'Fetch test',
-    description: 'Change dimensions on a fetched data',
-    id: 'fetch-test',
+    title: 'Dimension Swapper',
+    description: 'Change the displayed dimensions on a scatterplot',
+    id: 'dim-swapper',
   },
 ]
