@@ -10,6 +10,7 @@ export const hoverRender = (props, ctx) => {
   } = props
 
   ctx.save()
+  ctx.lineJoin = 'round'
   clearAndClip(props, ctx)
 
   _.each(
