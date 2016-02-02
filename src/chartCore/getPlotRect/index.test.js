@@ -32,8 +32,8 @@ test('chartCore/getPlotRect', () => {
     backgroundOffset,
     height: 500,
     width: 500,
-    plotRect: {x: 54.75, y: 15, width: 430.25, height: 426.25},
-    margin: {bottom: 58.75, left: 54.75, right: 15, top: 15},
+    plotRect: {x: 56.5, y: 15, width: 428.5, height: 424.5},
+    margin: {bottom: 60.5, left: 56.5, right: 15, top: 15},
   }
   assert.deepEqual(actual, expected)
 })
