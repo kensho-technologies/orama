@@ -1,17 +1,13 @@
 
 import React, {PropTypes} from 'react'
+import _ from 'lodash/fp'
 
-import {BrushedTimeline} from '../../BrushedTimeline'
 import {TextBody} from '../../basics/TextBody'
-import {H1, H2, Code} from '../../basics'
-import {Chart} from '../../../Chart'
-import {Lines} from '../../../Layer'
+import {H1, H2, Code, P} from '../../basics'
+import {Chart, Lines} from '../../../'
+import {timeFormat} from 'd3-time-format'
 
-export const Examples = props => (
-<TextBody>
-<H1>Base Examples</H1>
-<H2>Multi line chart</H2>
-<Chart>
+const example1 = `<Chart>
   <Lines
     data={[props.applData, props.fbData]}
     title='Name'
@@ -19,48 +15,81 @@ export const Examples = props => (
     x='Date'
     y='Adj. Close'
   />
-</Chart>
-<Code>
-{`<Chart>
-  <Lines
-    data={[props.applData, props.fbData]}
-    title='Name'
-    stroke='Name'
-    x='Date'
-    y='Adj. Close'
-  />
-</Chart>`}
-</Code>
-<BrushedTimeline data={props.applData}/>
-<Code>
-{`<Chart
-  proportion={0.3}
-  xDomain={props.xDomain}
-  xShowLabel={false}
->
-  <Lines
-    {...LINES_OPTS}
-    data={filterData(props)}
-  />
-</Chart>
-<Brush
-  onUpdate={childProps => handleUpdate(props, childProps)}
-  xDomain={props.xDomain}
->
-  <Chart
-    proportion={0.2}
-  >
-    <Lines
-      {...LINES_OPTS}
-      data={props.data}
-      showHover={false}
-    />
-  </Chart>
-</Brush>`}
-</Code>
-</TextBody>
+</Chart>`
+
+const example2 = `
+const lineTransform = _.flow(
+  _.groupBy(d => d.Date.getFullYear()),
+  _.toPairs,
+  _.map(pair =>
+    _.map(d => ({
+      ...d,
+      Year: +pair[0],
+      Day: +dayFormat(d.Date),
+    }), pair[1])
+  ),
 )
-Examples.propTypes = {
+
+const myChart = () =>
+  <Chart>
+    <Lines
+      data={lineTransform(props.applData)}
+      strokeValue='lightgray'
+      hoverLineWidthValue={4}
+      hoverStroke='Year'
+      title='Name'
+      x='Day'
+      y='Adj. Close'
+      hoverAlphaValue={1}
+    />
+  </Chart>`
+
+const dayFormat = timeFormat('%j')
+
+const lineTransform = _.flow(
+  _.groupBy(d => d.Date.getFullYear()),
+  _.toPairs,
+  _.map(pair =>
+    _.map(d => ({
+      ...d,
+      Year: +pair[0],
+      Day: +dayFormat(d.Date),
+    }), pair[1])
+  ),
+)
+
+export const Post = props =>
+  <TextBody>
+    <H1>Base Examples</H1>
+    <H2>Multi line chart</H2>
+    <Chart>
+      <Lines
+        data={[props.applData, props.fbData]}
+        stroke='Name'
+        title='Name'
+        x='Date'
+        y='Adj. Close'
+      />
+    </Chart>
+    <Code flex={1}>{example1}</Code>
+    <H2>Cyclical year chart, with hoverStroke</H2>
+    <Chart>
+      <Lines
+        data={lineTransform(props.applData)}
+        hoverAlphaValue={1}
+        hoverLineWidthValue={4}
+        hoverStroke='Year'
+        strokeValue='lightgray'
+        title='Name'
+        x='Day'
+        y='Adj. Close'
+      />
+    </Chart>
+    <P>Hover the Chart to see a color mapped to the hoverStroke</P>
+    <Code flex={1}>{example2}</Code>
+  </TextBody>
+
+Post.propTypes = {
   applData: PropTypes.array,
   fbData: PropTypes.array,
 }
