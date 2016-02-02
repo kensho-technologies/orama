@@ -7,7 +7,7 @@ export const H2 = props => (
   <Block
     color={theme.accentColor}
     fontSize={16 * 1}
-    // fontWeight='bold'
+    fontWeight='bold'
     marginBottom={16}
     marginTop={16 * 1}
     {...props}
