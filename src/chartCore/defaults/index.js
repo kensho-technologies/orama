@@ -6,10 +6,11 @@ export const ACCESSORS_NAMES = [
   'fill', 'stroke',
   'alpha',
   'lineWidth', 'lineDash',
+  'hoverStroke', 'hoverFill',
 ]
 export const ACCESSORS_NAMES_NON_SCALABLE = [
   'fillAlpha', 'strokeAlpha',
-  'hoverAlpha',
+  'hoverAlpha', 'hoverLineWidth',
   'text',
   'rotate',
   'textAlign', 'textBaseline', 'textSnap',

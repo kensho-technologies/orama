@@ -96,6 +96,7 @@ export const getRange = (props, key) => {
       ]
     case 'fill':
     case 'stroke':
+    case 'hoverStroke':
       switch (type) {
         case 'ordinal':
           return props.theme.plotOrdinalRangeFill
