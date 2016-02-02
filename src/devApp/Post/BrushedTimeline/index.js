@@ -3,12 +3,11 @@ import React, {PropTypes} from 'react'
 import _ from 'lodash'
 
 import {State} from 'on-update'
-import {Chart} from '../../Chart'
-import {Brush} from '../../extensions/Brush'
-import {Lines} from '../../Layer'
+import {Chart} from '../../../Chart'
+import {Brush} from '../../../extensions/Brush'
+import {Lines} from '../../../Layer'
 
 const LINES_OPTS = {
-  // stroke: 'Name',
   title: 'Name',
   x: 'Date',
   y: 'Adj. Close',
@@ -45,6 +44,7 @@ const InnerBrushTimeline = props =>
     >
       <Chart
         proportion={0.2}
+        yName=' '
       >
         <Lines
           {...LINES_OPTS}
@@ -56,7 +56,7 @@ const InnerBrushTimeline = props =>
   </div>
 InnerBrushTimeline.defaultProps = {
   data: [],
-  xDomain: [new Date(2015, 6), new Date(2015, 10)]
+  xDomain: [new Date(2015, 6), new Date(2015, 10)],
 }
 InnerBrushTimeline.propTypes = {
   data: PropTypes.array,
