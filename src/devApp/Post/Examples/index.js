@@ -14,6 +14,7 @@ export const Examples = props => (
 <Chart>
   <Lines
     data={[props.applData, props.fbData]}
+    title='Name'
     stroke='Name'
     x='Date'
     y='Adj. Close'
@@ -23,6 +24,7 @@ export const Examples = props => (
 {`<Chart>
   <Lines
     data={[props.applData, props.fbData]}
+    title='Name'
     stroke='Name'
     x='Date'
     y='Adj. Close'

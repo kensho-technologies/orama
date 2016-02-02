@@ -56,6 +56,7 @@ const InnerBrushTimeline = props =>
   </div>
 InnerBrushTimeline.defaultProps = {
   data: [],
+  xDomain: [new Date(2015, 6), new Date(2015, 10)]
 }
 InnerBrushTimeline.propTypes = {
   data: PropTypes.array,

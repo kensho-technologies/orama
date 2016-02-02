@@ -7,7 +7,7 @@ import 'whatwg-fetch'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {flow, get, map, zipObject, each} from 'lodash/fp'
+import {flow, get, map, zipObject, each, sortBy} from 'lodash/fp'
 
 import {State} from './devApp/State'
 import {Router} from './devApp/Router'
@@ -31,12 +31,14 @@ const quandlMap = flow(
 
 const quandlFlow = (result, name) =>
   flow(
+    d => {console.log(d); return d},
     get('dataset_data.data'),
     map(quandlMap(result)),
     each(d => {
       d.Name = name
       d.Date = getDate(d.Date)
-    })
+    }),
+    sortBy('Date'),
   )(result)
 
 const startWith = async props => {
