@@ -12,7 +12,7 @@ export const Code = props => (
     lineHeight={1}
     marginBottom={16 * 1.4}
     marginTop={16 * 1.4}
-    whiteSpace='pre'
+    whiteSpace='pre-wrap'
     {...props}
   />
 )
