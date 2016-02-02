@@ -1,9 +1,7 @@
 
 import React, {PropTypes} from 'react'
 import {map, keys, first} from 'lodash/fp'
-import _ from 'lodash/fp'
 
-import {H1, H2, Code, P} from '../../basics'
 import {Table, TableRow, TableCell} from 'react-display'
 
 const handleSelect = (props, childProps, key) =>
@@ -28,11 +26,20 @@ const Selector = props =>
       </select>
     </TableCell>
   </TableRow>
+Selector.propTypes = {
+  dimension: PropTypes.string,
+  data: PropTypes.array,
+}
 
 export const DimSwapperSelectorGroup = props =>
   <Table fontSize={15} marginBottom={15}>
     {map(
-      d => <Selector {...props} key={d} dimension={d}/>,
+      d =>
+        <Selector
+          {...props}
+          dimension={d}
+          key={d}
+        />,
       ['x', 'y', 'radius', 'fill']
     )}
   </Table>

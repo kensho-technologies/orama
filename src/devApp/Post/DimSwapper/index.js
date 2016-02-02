@@ -78,17 +78,20 @@ const InnerPost = props =>
     <Chart>
       <Points
         data={props.fbData}
+        fill={props.fill}
+        radius={props.radius}
         x={props.x}
         y={props.y}
-        radius={props.radius}
-        fill={props.fill}
       />
     </Chart>
     <Code>{snippet}</Code>
   </TextBody>
 
 InnerPost.propTypes = {
-  applData: PropTypes.array,
+  fbData: PropTypes.array,
+  fill: PropTypes.string,
+  radius: PropTypes.string,
+  setState: PropTypes.func,
   x: PropTypes.string,
   y: PropTypes.string,
 }
