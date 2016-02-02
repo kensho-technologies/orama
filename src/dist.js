@@ -1,5 +1,9 @@
 // dist entry point
 
+import 'babel-regenerator-runtime'
+import 'es6-promise'
+import 'whatwg-fetch'
+
 export * from './'
 
 import React from 'react'
