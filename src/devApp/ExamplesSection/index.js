@@ -53,7 +53,7 @@ const handleExampleCard = (props, childProps, d) => {
 
 export const ExamplesSection = props => (
   <TextBody>
-    <Row flexWrap='wrap'>
+    <Row flexWrap='wrap' justifyContent='center'>
       {_.map(
         examplesData,
         (d, i) => (
