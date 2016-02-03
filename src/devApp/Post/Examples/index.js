@@ -7,15 +7,17 @@ import {H1, H2, Code, P} from '../../basics'
 import {Chart, Lines} from '../../../'
 import {timeFormat} from 'd3-time-format'
 
-const example1 = `<Chart>
-  <Lines
-    data={[props.applData, props.fbData]}
-    title='Name'
-    stroke='Name'
-    x='Date'
-    y='Adj. Close'
-  />
-</Chart>`
+const example1 = `
+const MyChart = () =>
+  <Chart>
+    <Lines
+      data={[props.applData, props.fbData]}
+      title='Name'
+      stroke='Name'
+      x='Date'
+      y='Adj. Close'
+    />
+  </Chart>`
 
 const example2 = `
 const lineTransform = _.flow(
@@ -30,7 +32,7 @@ const lineTransform = _.flow(
   ),
 )
 
-const myChart = () =>
+const MyChart = () =>
   <Chart>
     <Lines
       data={lineTransform(props.applData)}
