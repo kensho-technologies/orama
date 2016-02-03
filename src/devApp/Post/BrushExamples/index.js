@@ -42,7 +42,7 @@ export const BrushTimeline = props =>
     <InnerBrushTimeline/>
   </State>`
 
-export const Post = props =>
+export const BrushExamples = props =>
   <TextBody>
     <H1>Brush Examples</H1>
     <H2>Brushed line chart</H2>
@@ -51,7 +51,7 @@ export const Post = props =>
     <Code flex={1}>{brushedCode}</Code>
   </TextBody>
 
-Post.propTypes = {
+BrushExamples.propTypes = {
   applData: PropTypes.array,
   fbData: PropTypes.array,
 }

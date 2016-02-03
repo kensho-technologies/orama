@@ -5,7 +5,7 @@ import _ from 'lodash/fp'
 import {TextBody} from '../../basics/TextBody'
 import {Chart, Lines, Points, Areas, Text, Bars, Ranges, Guides} from '../../../index.js'
 
-export const Post = props =>
+export const OldExamples = props =>
   <TextBody>
     <Chart // scaterplot
       yType='log'
@@ -224,7 +224,7 @@ export const Post = props =>
     </Chart>
   </TextBody>
 
-Post.propTypes = {
+OldExamples.propTypes = {
   applData: PropTypes.array,
   fbData: PropTypes.array,
 }

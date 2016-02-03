@@ -101,7 +101,7 @@ InnerPost.propTypes = {
 InnerPost.defaultProps = {
 }
 
-export const Post = props => (
+export const DimSwapper = props => (
   <State startWith={startWith}>
     <InnerPost {...props}/>
   </State>

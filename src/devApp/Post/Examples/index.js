@@ -60,7 +60,7 @@ const lineTransform = _.flow(
   ),
 )
 
-export const Post = props =>
+export const Examples = props =>
   <TextBody>
     <H1>Line chart examples</H1>
     <H2>Multi line chart</H2>
@@ -91,7 +91,7 @@ export const Post = props =>
     <Code flex={1}>{example2}</Code>
   </TextBody>
 
-Post.propTypes = {
+Examples.propTypes = {
   applData: PropTypes.array,
   fbData: PropTypes.array,
 }
