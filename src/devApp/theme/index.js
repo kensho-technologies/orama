@@ -5,7 +5,7 @@ export const theme = {
   fontFamilyMono: '"Inconsolata", monospace',
   fontSize: 16,
   gutter: 10,
-  module: 300,
+  module: 400,
   textColor: 'hsl(0, 0%, 0%)',
   accentColor: 'hsl(201, 78%, 28%)',
 }
