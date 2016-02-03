@@ -55,7 +55,9 @@ const Selector = props =>
   <div>
     {props.dimension}
     <select
-      onChange={childProps => handleSelect(props, childProps, props.dimension)}
+      onChange={childProps =>
+        handleSelect(props, childProps, props.dimension)
+      }
       value={props[props.dimension]}
     >
       {map(

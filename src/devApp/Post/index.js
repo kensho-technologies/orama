@@ -4,6 +4,7 @@ import React, {PropTypes} from 'react'
 import {Post as Examples} from '../Post/Examples'
 import {Post as BrushExamples} from '../Post/BrushExamples'
 import {Post as DimSwapper} from '../Post/DimSwapper'
+import {Post as OldExamples} from '../Post/OldExamples'
 import {Page404} from '../Page404'
 
 export const Post = props => {
@@ -14,6 +15,8 @@ export const Post = props => {
       return <BrushExamples {...props}/>
     case 'dim-swapper':
       return <DimSwapper {...props}/>
+    case 'old-examples':
+      return <OldExamples {...props}/>
     default:
       return <Page404/>
   }
@@ -37,5 +40,10 @@ export const postsData = [
     title: 'Dimension Swapper',
     description: 'Change the displayed dimensions on a scatterplot',
     id: 'dim-swapper',
+  },
+  {
+    title: 'Old Examples',
+    description: 'A bit of everything',
+    id: 'old-examples',
   },
 ]
