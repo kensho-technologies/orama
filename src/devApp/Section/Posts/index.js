@@ -3,9 +3,9 @@ import React, {PropTypes} from 'react'
 import _ from 'lodash'
 
 import {theme} from '../../theme'
-
 import {TextBody} from '../../basics/TextBody'
 import {A, H1, P} from '../../basics'
+import {postsData} from '../../Post'
 
 const PostDescr = props => (
   <div>
@@ -44,7 +44,7 @@ const handlePostDesc = (props, childProps, d) => {
 export const Posts = props => (
   <TextBody>
     {_.map(
-      props.postsData,
+      postsData,
       (d, i) => (
         <PostDescr
           key={i}

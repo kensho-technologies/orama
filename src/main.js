@@ -12,7 +12,6 @@ import {flow, get, map, zipObject, each, sortBy} from 'lodash/fp'
 import {State} from './devApp/State'
 import {Router} from './devApp/Router'
 import {App} from './devApp/App'
-import {postsData} from './devApp/Post'
 import {sectionsData} from './devApp/Section'
 import {fetchJson} from './devApp/fetchers'
 import {timeParse} from 'd3-time-format'
@@ -42,7 +41,7 @@ const quandlFlow = (result, name) =>
 
 const startWith = async props => {
   props.setState({
-    postsData, sectionsData,
+    sectionsData,
   })
   const applData = await fetchJson(APPL_URL).then(d => quandlFlow(d, 'Apple'))
   const fbData = await fetchJson(FB_URL).then(d => quandlFlow(d, 'Facebook'))

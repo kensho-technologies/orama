@@ -1,17 +1,17 @@
 
 import React, {PropTypes} from 'react'
 
-import {Posts} from '../Section/Posts'
-import {Post} from '../Post'
+import {ExamplesSection} from '../ExamplesSection'
+import {ExamplesViewer} from '../ExamplesViewer'
 
 export const Section = props => {
   switch (props.routerSection) {
-    case 'posts':
-      return <Posts {...props}/>
-    case 'post':
-      return <Post {...props}/>
+    case 'examples':
+      return <ExamplesSection {...props}/>
+    case 'example':
+      return <ExamplesViewer {...props}/>
     default:
-      return <Posts {...props}/>
+      return <ExamplesSection {...props}/>
   }
 }
 Section.propTypes = {
@@ -21,7 +21,7 @@ Section.propTypes = {
 export const sectionsData = [
   {
     name: 'Examples',
-    id: 'posts',
+    id: 'examples',
     showOnMenu: true,
   },
 ]
