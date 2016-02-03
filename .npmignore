@@ -5,3 +5,4 @@ dist/bundle.js
 dist/img
 src
 coverage
+lib/devApp
