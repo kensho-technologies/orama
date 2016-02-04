@@ -11,7 +11,7 @@ export const ExamplesViewer = props => {
   const DataVis = examples[props.routerSubSection] && examples[props.routerSubSection].DataVis
   if (!DataVis) return <Page404/>
   return (
-    <ExampleLayout {...exampleProps}>
+    <ExampleLayout {...props} {...exampleProps}>
       <DataVis {...props}/>
     </ExampleLayout>
   )

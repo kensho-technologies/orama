@@ -41,7 +41,7 @@ const quandlFlow = (result, name) =>
 
 const startWith = async props => {
   props.setState({
-    sectionsData,
+    sectionsData, codeStyle: 'Bundler',
   })
   const applData = await fetchJson(APPL_URL).then(d => quandlFlow(d, 'Apple'))
   const fbData = await fetchJson(FB_URL).then(d => quandlFlow(d, 'Facebook'))

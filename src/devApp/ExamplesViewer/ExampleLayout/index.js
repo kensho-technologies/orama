@@ -1,8 +1,50 @@
+/* eslint react/prop-types: 0 */
 
 import React, {PropTypes} from 'react'
 
 import {TextBody} from '../../basics/TextBody'
-import {H1, Code, P} from '../../basics'
+import {Block, Row} from 'react-display'
+import {H1, H2, Code, P} from '../../basics'
+import {getHtmlCode} from '../getHtmlCode'
+
+const handleSwitchBtn = props =>
+  props.setState({codeStyle: props.children})
+
+const SwitchBtn = props =>
+  <Block
+    backgroundColor={props.codeStyle ? 'hsl(201, 35%, 45%)' : 'white'}
+    border='2px solid hsl(201, 35%, 45%)'
+    color={props.codeStyle ? 'white' : 'hsl(201, 35%, 45%)'}
+    cursor='pointer'
+    onClick={() => handleSwitchBtn(props)}
+    padding='2px 4px'
+    {...props}
+  />
+
+const Switcher = props =>
+  <Row
+    fontSize={13}
+  >
+    <SwitchBtn {...props} codeStyle={props.codeStyle === 'Bundler'}>Bundler</SwitchBtn>
+    <SwitchBtn {...props} codeStyle={props.codeStyle === 'Html'}>Html</SwitchBtn>
+  </Row>
+
+const ExampleCode = props => {
+  if (props.codeStyle === 'Bundler') {
+    return (
+      <Code marginTop={0}>
+        {props.imports}
+        <br/><br/>
+        {props.code}
+      </Code>
+    )
+  }
+  return (
+    <Code marginTop={0}>
+      {getHtmlCode(props.code)}
+    </Code>
+  )
+}
 
 export const ExampleLayout = props =>
   <TextBody>
@@ -11,13 +53,12 @@ export const ExampleLayout = props =>
       {props.date && props.date.toDateString()}
     </P>
     {props.children}
-    <P marginTop={15}>{props.description}</P>
-    <Code>
-      {props.imports}
-      <br/><br/>
-      {props.code}
-    </Code>
+    {props.description ? <H2>Description</H2> : null}
+    <P marginBottom={25} marginTop={0}>{props.description}</P>
+    <Row flex={1} justifyContent='flex-end'><Switcher {...props}/></Row>
+    <ExampleCode {...props}/>
   </TextBody>
+
 ExampleLayout.propTypes = {
   children: PropTypes.node,
   code: PropTypes.string,
