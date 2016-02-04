@@ -34,7 +34,7 @@ const ExampleCode = props => {
     return (
       <Code marginTop={0}>
         {props.imports}
-        <br/><br/>
+        {props.imports ? [<br/>, <br/>] : null}
         {props.code}
       </Code>
     )
@@ -55,8 +55,8 @@ export const ExampleLayout = props =>
     {props.children}
     {props.description ? <H2>Description</H2> : null}
     <P marginBottom={25} marginTop={0}>{props.description}</P>
-    <Row flex={1} justifyContent='flex-end'><Switcher {...props}/></Row>
-    <ExampleCode {...props}/>
+    {props.code ? <Row flex={1} justifyContent='flex-end'><Switcher {...props}/></Row> : null}
+    {props.code ? <ExampleCode {...props}/> : null}
   </TextBody>
 
 ExampleLayout.propTypes = {
