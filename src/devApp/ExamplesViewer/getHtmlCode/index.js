@@ -1,4 +1,6 @@
 
+import _ from 'lodash'
+
 export const getHtmlCode = code => `<!DOCTYPE html>
 <meta charset="utf-8">
 <script src="https://npmcdn.com/orama/dist/orama.min.js"></script>
@@ -6,7 +8,7 @@ export const getHtmlCode = code => `<!DOCTYPE html>
 <div id="root"/>
 <script type="text/babel">
 
-${code}
+${_.replace(code, 'export ', '')}
 
 ReactDOM.render(<DataVis/>, document.getElementById('root'))
 </script>`
