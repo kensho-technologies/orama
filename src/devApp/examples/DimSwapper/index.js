@@ -71,9 +71,9 @@ const startWith = props => {
 }
 
 export const DataVis = props =>
-<State startWith={startWith}>
-  <Component {...props}/>
-</State>
+  <State startWith={startWith}>
+    <Component {...props}/>
+  </State>
 
 export const description = ``
 export const imports = `import {map, keys, first} from 'lodash/fp'
@@ -142,6 +142,6 @@ const startWith = props => {
 }
 
 export const DataVis = props =>
-<State startWith={startWith}>
-  <Component {...props}/>
-</State>`
+  <State startWith={startWith}>
+    <Component {...props}/>
+  </State>`
