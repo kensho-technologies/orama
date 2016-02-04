@@ -20,6 +20,7 @@ const runMatch = children =>
 
 export const Code = props => (
   <Block
+    backgroundColor='hsl(0, 0%, 98%)'
     color='hsl(201, 78%, 28%)'
     flex={1}
     fontFamily={theme.fontFamilyMono}
@@ -27,7 +28,10 @@ export const Code = props => (
     lineHeight={1}
     marginBottom={16 * 1.4}
     marginTop={16 * 1.4}
+    overflowY='scroll'
+    padding='16'
     whiteSpace='pre-wrap'
+    wordBreak='break-all'
     {...props}
   >
     {runMatch(props.children)}

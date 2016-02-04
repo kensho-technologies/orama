@@ -7,6 +7,7 @@ export const P = props => (
     fontSize={15}
     lineHeight={1.5}
     marginBottom={15}
+    whiteSpace='pre-wrap'
     {...props}
   />
 )
