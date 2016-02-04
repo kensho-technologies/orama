@@ -11,13 +11,19 @@ export const State = React.createClass({
   propTypes: {
     children: PropTypes.node,
     onUpdate: PropTypes.func,
-    startWith: PropTypes.func,
+    startWith: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+    ]),
   },
   getInitialState() {
     return {}
   },
   componentWillMount() {
-    if (this.props.startWith) {
+    if (this.props.startWith && _.isObject(this.props.startWith)) {
+      this.setState(this.props.startWith)
+    }
+    if (this.props.startWith && _.isFunction(this.props.startWith)) {
       this.props.startWith({
         ...this.props,
         ...this.state,
