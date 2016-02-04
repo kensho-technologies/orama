@@ -16,7 +16,7 @@ const handleError = evt => {
 const ExampleCard = props => (
   <Block
     cursor='pointer'
-    height='160px'
+    height='140px'
     margin={10}
     onClick={() => props.onUpdate({click: true})}
     overflowY='hidden'
@@ -25,6 +25,7 @@ const ExampleCard = props => (
     <H2
       fontSize={17}
       marginBottom={5}
+      marginTop={0}
     >
       <A>
         {props.title}

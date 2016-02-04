@@ -1,4 +1,6 @@
-import React, {PropTypes} from 'react'
+/* eslint react/prop-types:0 */
+
+import React from 'react'
 
 import {map, keys, first} from 'lodash/fp'
 import {Table, TableRow, TableCell} from 'react-display'

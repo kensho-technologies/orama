@@ -1,4 +1,6 @@
-import React, {PropTypes} from 'react'
+/* eslint react/prop-types:0 */
+
+import React from 'react'
 
 import _ from 'lodash/fp'
 import {Chart, Lines} from '../../../'
