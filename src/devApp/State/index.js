@@ -20,9 +20,6 @@ export const State = React.createClass({
     return {}
   },
   componentWillMount() {
-    if (this.props.startWith && _.isObject(this.props.startWith)) {
-      this.setState(this.props.startWith)
-    }
     if (this.props.startWith && _.isFunction(this.props.startWith)) {
       this.props.startWith({
         ...this.props,
@@ -30,6 +27,8 @@ export const State = React.createClass({
         onUpdate: this.props.onUpdate || this.handleChildUpdate,
         setState: this.handleChildUpdate,
       })
+    } else if (this.props.startWith && _.isPlainObject(this.props.startWith)) {
+      this.setState(this.props.startWith)
     }
   },
   shouldComponentUpdate: shouldPureComponentUpdate,
