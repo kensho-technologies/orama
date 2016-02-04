@@ -57,7 +57,9 @@ export const imports = `import {Chart, Lines, Points} from 'orama'
 import {State} from '../../State'
 import {fetchQuandl} from '../../fetchers'`
 export const code = `const Component = props =>
-  <Chart>
+  <Chart
+    radiusRange={[2, 8]}
+  >
     <Lines
       data={props.data}
       stroke='Name'
@@ -67,8 +69,9 @@ export const code = `const Component = props =>
     />
     <Points
       data={props.data}
-      stroke='Name'
       fill='Name'
+      radius='Date'
+      strokeValue=''
       title='Name'
       x='Adj. Volume'
       y='Adj. Close'
