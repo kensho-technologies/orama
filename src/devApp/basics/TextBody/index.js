@@ -13,6 +13,7 @@ export const TextBody = props => (
   >
     <Block
       flexBasis={theme.module * 2}
+      fontSize={15}
       margin='0 10px'
       {...props}
     >
