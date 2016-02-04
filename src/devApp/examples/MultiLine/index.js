@@ -19,8 +19,7 @@ export const DataVis = props =>
     />
   </Chart>
 
-export const description = `
-Data for each line is an Array of Objects, each object represents a point in the lines. Multiple lines are repesented as an Array of Arrays of Objects.`
+export const description = `Data for each line is an Array of Objects, each object represents a point in the lines. Multiple lines are repesented as an Array of Arrays of Objects.`
 export const imports = `import {Chart, Lines} from 'orama'`
 export const code = `export const DataVis = props =>
   <Chart>
