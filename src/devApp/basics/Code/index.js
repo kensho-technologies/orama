@@ -4,7 +4,7 @@ import _ from 'lodash/fp'
 import {Block, Inline} from 'react-display'
 import {theme} from '../../theme'
 
-const chartTest = /<Chart>/g
+const chartTest = /<Chart/g
 const mapSplit = _.map(d => {
   if (!chartTest.test(d)) return d
   return <Inline fontWeight='bold'>{d}</Inline>
@@ -13,7 +13,7 @@ const mapSplit = _.map(d => {
 const runMatch = children =>
   React.Children.map(children, d => {
     if (!_.isString(d)) return d
-    const split = d.split(/(<Chart[\s\S][^>]+>[\s\S]+?<\/Chart>)/g)
+    const split = d.split(/(<Chart[\s\S][^>]+>[\s\S]+?<\/Chart>)/gm)
     return mapSplit(split)
   })
 
