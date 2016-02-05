@@ -34,7 +34,7 @@ const ExampleCode = props => {
     return (
       <Code marginTop={0}>
         {props.imports}
-        {props.imports ? [<br/>, <br/>] : null}
+        {props.imports ? [<br key='0'/>, <br key='1'/>] : null}
         {props.code}
       </Code>
     )
