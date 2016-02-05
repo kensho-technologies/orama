@@ -110,7 +110,7 @@ export const getRange = (props, key) => {
   }
 }
 export const getTickCount = (props, key) => {
-  if (props[`${key}TickCount`]) return props[`${key}TickCount`]
+  if (_.isNumber(props[`${key}TickCount`])) return props[`${key}TickCount`]
   const {
     [`${key}Range`]: range,
     [`${key}TickSpace`]: _tickSpace,
