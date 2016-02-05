@@ -53,13 +53,13 @@ export const _Chart = props => {
       <ChartRender
         renderLayers={renderLayers}
         rootProps={rootProps}
-        theme={props.theme}
+        theme={rootProps.theme}
       />
       <CanvasInput
         onUpdate={childProps => handleCanvasInput(props, childProps)}
         renderLayers={renderLayers}
         rootProps={rootProps}
-        theme={props.theme}
+        theme={rootProps.theme}
       />
     </Block>
   )
