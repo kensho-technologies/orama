@@ -29,7 +29,7 @@ export const CanvasInput = React.createClass({
     return {}
   },
   componentWillReceiveProps(props) {
-    if (this.state.mouse) {
+    if (this.state.mouse && !this.mouseLeave) {
       const solvedData = runHoverSolverOn(
         getDataUnderMouse(props, this.state.mouse, this.canvasNode)
       )
@@ -135,6 +135,7 @@ export const CanvasInput = React.createClass({
       layerProps: solvedData.layerProps,
     })
     this.lastMouse = mouse
+    this.mouseLeave = false
   },
   handleMouseUp(evt) {
     evt.stopPropagation()
@@ -168,6 +169,7 @@ export const CanvasInput = React.createClass({
       hoverData: undefined,
       layerProps: undefined,
     })
+    this.mouseLeave = true
   },
   render() {
     const {props, state} = this
@@ -200,7 +202,8 @@ export const CanvasInput = React.createClass({
             display: 'block',
             position: 'absolute',
             userSelect: 'none',
-            width: '100%',
+            width: rootProps.width,
+            height: rootProps.height,
           }}
           width={rootProps.width}
         />
