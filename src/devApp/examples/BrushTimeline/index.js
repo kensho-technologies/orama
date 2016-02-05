@@ -65,7 +65,7 @@ export const DataVis = props =>
     <Component {...props}/>
   </State>
 
-export const description = ``
+export const description = `For the yDomain of the chart to match the extent of the brushed data, the data is filtered using the xDomain returned by the brush.`
 export const imports = ``
 export const code = `const LINES_OPTS = {
   title: 'Name',
