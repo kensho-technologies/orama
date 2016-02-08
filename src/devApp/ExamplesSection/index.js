@@ -7,7 +7,9 @@ import {Block, Row} from 'react-display'
 import {theme} from '../theme'
 import {TextBody} from '../basics/TextBody'
 import {A, H2} from '../basics'
-import {examplesData} from '../examplesData'
+import {examplesData, kExamplesData} from '../examplesData'
+
+console.log(kExamplesData)
 
 const handleError = evt => {
   if (!evt.target.src.match(/\/imgs\/error.png/g)) {
@@ -56,6 +58,18 @@ const handleExampleCard = (props, childProps, d) => {
 
 export const ExamplesSection = props => (
   <TextBody>
+    <Row flexWrap='wrap' justifyContent='center'>
+      {_.map(
+        kExamplesData,
+        (d, i) => (
+          <ExampleCard
+            key={i}
+            onUpdate={childProps => handleExampleCard(props, childProps, d)}
+            {...d}
+          />
+        )
+      )}
+    </Row>
     <Row flexWrap='wrap' justifyContent='center'>
       {_.map(
         examplesData,
