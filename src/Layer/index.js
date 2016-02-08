@@ -8,6 +8,15 @@ import {points} from '../Layer/points'
 import {ranges} from '../Layer/ranges'
 import {text} from '../Layer/text'
 
+export {areas} from '../Layer/areas'
+export {bars} from '../Layer/bars'
+export {brushes} from '../Layer/brushes'
+export {guides} from '../Layer/guides'
+export {lines} from '../Layer/lines'
+export {points} from '../Layer/points'
+export {ranges} from '../Layer/ranges'
+export {text} from '../Layer/text'
+
 export {plotValue} from '../Layer/plotValue'
 
 export const Layer = () => null
