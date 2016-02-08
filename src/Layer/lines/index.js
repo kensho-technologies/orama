@@ -92,7 +92,7 @@ const getLineRenderData = (props, data) => {
 }
 export const lines = props => {
   if (!props.xScale || !props.yScale) return undefined
-  if (_.isArray(_.head(props.data))) {
+  if (_.some(props.data, _.isArray)) {
     return _.reduce(
       props.data,
       (acc, data) => acc.concat(getLineRenderData(props, data)),
