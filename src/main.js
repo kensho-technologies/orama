@@ -9,7 +9,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {flow, get, map, zipObject, each, sortBy} from 'lodash/fp'
 
-import {State} from './devApp/State'
+import {State} from 'on-update'
 import {Router} from './devApp/Router'
 import {App} from './devApp/App'
 import {sectionsData} from './devApp/Section'

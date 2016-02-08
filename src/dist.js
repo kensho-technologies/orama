@@ -10,7 +10,7 @@ import _ from 'lodash/fp'
 
 export * from './'
 import * as orama from './'
-import {State} from './devApp/State'
+import {State} from 'on-update'
 import * as fetchers from './devApp/fetchers'
 
 global.orama = orama

@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react'
 
-import {State} from '../../State'
+import {State} from 'on-update'
 import {TextBody} from '../../basics/TextBody'
 import {H1, Code} from '../../basics'
 import {Chart, Points} from '../../../index'

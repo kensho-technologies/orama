@@ -4,7 +4,7 @@ import React from 'react'
 
 import _ from 'lodash'
 import {Chart, Lines, Brush} from '../../../'
-import {State} from '../../State'
+import {State} from 'on-update'
 
 export const title = 'Brushed Timeline'
 export const tags = []

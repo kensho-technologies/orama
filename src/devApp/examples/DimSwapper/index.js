@@ -4,7 +4,7 @@ import React from 'react'
 
 import {map, keys, first} from 'lodash/fp'
 import {Table, TableRow, TableCell} from 'react-display'
-import {State} from '../../State'
+import {State} from 'on-update'
 import {Chart, Points} from '../../../'
 
 export const title = 'Dimension Swap'

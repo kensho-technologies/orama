@@ -3,7 +3,7 @@
 import React from 'react'
 
 import {Chart, Lines, Points} from '../../../'
-import {State} from '../../State'
+import {State} from 'on-update'
 import {fetchQuandl} from '../../fetchers'
 
 export const title = 'Connected Scatterplot'
@@ -54,7 +54,7 @@ export const DataVis = () =>
 export const description = `Data for the example is composed of an Array<Array<Objects>>, each Object represents a point and each Array<Objects> an array of points.
 The same data can be used for drawing the lines and points using two layers on the chart.`
 export const imports = `import {Chart, Lines, Points} from 'orama'
-import {State} from '../../State'
+import {State} from 'on-update'
 import {fetchQuandl} from '../../fetchers'`
 export const code = `const Component = props =>
   <Chart
