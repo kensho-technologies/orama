@@ -2,5 +2,7 @@ node_modules
 *.log
 .DS_Store
 dist/**/*.js
+src/devApp/kExamples
+dist/kImgs
 lib
 coverage
