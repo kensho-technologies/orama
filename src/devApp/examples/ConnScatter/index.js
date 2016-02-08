@@ -33,7 +33,7 @@ const Component = props =>
   </Chart>
 
 const getURL = ticker =>
-  `https://www.quandl.com/api/v3/datasets/WIKI/${ticker}/data.json?start_date=2015-01-01&collapse=monthly&auth_token=WpsneDZ79Xem9zJc5amR`
+  `https://www.quandl.com/api/v3/datasets/WIKI/${ticker}/data.json?start_date=2015-10-01&collapse=monthly&auth_token=WpsneDZ79Xem9zJc5amR`
 
 const startWith = async props =>
   props.setState({

@@ -1,5 +1,6 @@
 
 import React, {PropTypes} from 'react'
+import _ from 'lodash/fp'
 
 import {ExampleLayout} from './ExampleLayout'
 import {Page404} from '../Page404'
@@ -18,7 +19,7 @@ export const ExamplesViewer = props => {
   if (!DataVis) return <Page404/>
   return (
     <ExampleLayout {...props} {...exampleProps}>
-      <DataVis {...props}/>
+      <DataVis {..._.omit('theme', props)}/>
     </ExampleLayout>
   )
 }

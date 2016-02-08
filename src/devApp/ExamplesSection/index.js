@@ -30,7 +30,7 @@ const ExampleCard = props => (
       marginTop={0}
     >
       <A>
-        {props.title}
+        {`${props.k ? '(K) ' : ''}${props.title}`}
       </A>
     </H2>
     <img
