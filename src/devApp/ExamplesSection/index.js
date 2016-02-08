@@ -10,7 +10,9 @@ import {A, H2} from '../basics'
 import {examplesData} from '../examplesData'
 
 const handleError = evt => {
-  evt.target.src = '/imgs/error.png'
+  if (!evt.target.src.match(/\/imgs\/error.png/g)) {
+    evt.target.src = '/imgs/error.png'
+  }
 }
 
 const ExampleCard = props => (
