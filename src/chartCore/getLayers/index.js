@@ -1,13 +1,19 @@
 
+import _ from 'lodash/fp'
 import {Children} from 'react'
 
 export const getLayers = props => {
   const layers = Children.map(
     props.children,
-    layer => ({
-      plot: layer.type.plot,
-      ...layer.props,
-    })
+    layer => {
+      const plot = _.get('type.plot', layer)
+      if (plot) {
+        return {
+          plot,
+          ...layer.props,
+        }
+      }
+    }
   )
   return {layers}
 }
