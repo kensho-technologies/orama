@@ -4,7 +4,13 @@ import React, {PropTypes} from 'react'
 import {ExampleLayout} from './ExampleLayout'
 import {Page404} from '../Page404'
 
-import * as examples from '../examples'
+import * as _examples from '../examples'
+import * as kExamples from '../kExamples'
+
+const examples = {
+  ..._examples,
+  ...kExamples,
+}
 
 export const ExamplesViewer = props => {
   const exampleProps = examples[props.routerSubSection]

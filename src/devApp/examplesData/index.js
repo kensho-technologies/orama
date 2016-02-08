@@ -16,6 +16,7 @@ export const kExamplesData = map(
   omit(kExamples, 'default'),
   (value, key) => ({
     ...value,
+    k: true,
     id: key,
   })
 )

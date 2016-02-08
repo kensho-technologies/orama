@@ -9,8 +9,6 @@ import {TextBody} from '../basics/TextBody'
 import {A, H2} from '../basics'
 import {examplesData, kExamplesData} from '../examplesData'
 
-console.log(kExamplesData)
-
 const handleError = evt => {
   if (!evt.target.src.match(/\/imgs\/error.png/g)) {
     evt.target.src = '/imgs/error.png'
@@ -37,15 +35,16 @@ const ExampleCard = props => (
     </H2>
     <img
       onError={handleError}
-      src={`/imgs/${props.id}.png`}
+      src={`/${props.k ? 'kImgs' : 'imgs'}/${props.id}.png`}
       width='100%'
     />
   </Block>
 )
 ExampleCard.propTypes = {
-  id: PropTypes.string,
   date: PropTypes.instanceOf(Date),
   description: PropTypes.string,
+  id: PropTypes.string,
+  k: PropTypes.bool,
   title: PropTypes.string,
 }
 const handleExampleCard = (props, childProps, d) => {
@@ -60,19 +59,7 @@ export const ExamplesSection = props => (
   <TextBody>
     <Row flexWrap='wrap' justifyContent='center'>
       {_.map(
-        kExamplesData,
-        (d, i) => (
-          <ExampleCard
-            key={i}
-            onUpdate={childProps => handleExampleCard(props, childProps, d)}
-            {...d}
-          />
-        )
-      )}
-    </Row>
-    <Row flexWrap='wrap' justifyContent='center'>
-      {_.map(
-        examplesData,
+        examplesData.concat(kExamplesData),
         (d, i) => (
           <ExampleCard
             key={i}
