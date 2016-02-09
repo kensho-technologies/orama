@@ -21,6 +21,7 @@ export const DEFAULT_THEME = {
   axisTickTextFill: 'hsl(0, 0%, 0%)',
 
   tooltipFontSize: 13,
+  tooltipTextFill: 'hsl(0, 0%, 0%)',
   tooltipTitleFontSize: 13,
   tooltipTitleFontWeight: 'bold',
   tooltipValueFontSize: 13,

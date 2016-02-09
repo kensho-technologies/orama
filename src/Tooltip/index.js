@@ -49,7 +49,7 @@ export const TooltipInner = props => (
   <Block
     background={props.theme.tooltipBackgroundFill}
     boxShadow={`1px 1px 1px ${props.theme.tooltipBoxShadowFill}`}
-    color={props.theme.textFill}
+    color={props.theme.tooltipTextFill}
     fontFamily={props.theme.fontFamily}
     fontSize={props.theme.tooltipFontSize}
     maxWidth={MAX_WIDTH}
