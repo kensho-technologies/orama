@@ -6,7 +6,7 @@ export const getLayers = props => {
   const layers = Children.map(
     props.children,
     layer => {
-      const plot = _.get('type.plot', layer)
+      const plot = _.get('type.plot', layer) || _.get('props.plot', layer)
       if (plot) {
         return {
           plot,
