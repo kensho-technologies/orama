@@ -18,6 +18,7 @@ export {ranges} from '../Layer/ranges'
 export {text} from '../Layer/text'
 
 export {plotValue} from '../Layer/plotValue'
+export {getPlotValues} from '../Layer/getPlotValues'
 
 export const Layer = () => null
 export const Areas = () => null
