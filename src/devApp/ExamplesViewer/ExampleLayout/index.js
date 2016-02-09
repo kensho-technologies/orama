@@ -33,15 +33,13 @@ const ExampleCode = props => {
   if (props.codeStyle === 'Bundler') {
     return (
       <Code marginTop={0}>
-        {props.imports}
-        {props.imports ? [<br key='0'/>, <br key='1'/>] : null}
-        {props.code}
+        {props.code.split('export code from \'!!raw!./\'')[1].trim()}
       </Code>
     )
   }
   return (
     <Code marginTop={0}>
-      {getHtmlCode(props.code)}
+      {getHtmlCode(props.code.split('export code from \'!!raw!./\'')[1].trim())}
     </Code>
   )
 }
