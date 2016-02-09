@@ -13,7 +13,11 @@ const mapSplit = _.map(d => {
 const runMatch = children =>
   React.Children.map(children, d => {
     if (!_.isString(d)) return d
-    const split = d.split(/(<Chart[\s\S][^>]+>[\s\S]+?<\/Chart>)/gm)
+    const replaced = _.flow(
+      _.replace('\'orama\'', /'..\/..\/..\/'/g),
+      _.replace('\'~/components/charts/themes\'', /'..\/kTheme'/g),
+    )(d)
+    const split = replaced.split(/(<Chart[\s\S][^>]+>[\s\S]+?<\/Chart>)/gm)
     return mapSplit(split)
   })
 
