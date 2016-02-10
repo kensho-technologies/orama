@@ -7,7 +7,7 @@ import {Block, Row} from 'react-display'
 import {theme} from '../theme'
 import {TextBody} from '../basics/TextBody'
 import {A, H2} from '../basics'
-import {examplesData, kExamplesData} from '../examplesData'
+import {examplesData} from '../examplesData'
 
 const handleError = evt => {
   if (!evt.target.src.match(/\/imgs\/error.png/g)) {
@@ -59,7 +59,7 @@ export const ExamplesSection = props => (
   <TextBody>
     <Row flexWrap='wrap' justifyContent='center'>
       {_.map(
-        examplesData.concat(kExamplesData),
+        examplesData,
         (d, i) => (
           <ExampleCard
             key={i}
