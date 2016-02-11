@@ -8,8 +8,6 @@ export const description = `Test for simulating flex layout inside of canvas`
 export code from '!!raw!./'
 
 import React from 'react'
-import {Chart, Lines} from '../../../'
-import {State} from 'on-update'
 import {Row, Block} from 'react-display'
 
 export const DataVis = () =>
@@ -21,20 +19,20 @@ export const DataVis = () =>
         margin={10} paddingLeft={100}
         paddingTop={30}
       >
-        <Block background='lightblue' height='100%' flex={1}/>
+        <Block background='lightblue' flex={1} height='100%' />
       </Block>
       <Block
         background='steelblue' flex={1} height={100}
         margin={10}
       >
-        <Block background='lightblue' height='100%' flex={1}/>
+        <Block background='lightblue' flex={1} height='100%' />
       </Block>
       <Block
         background='steelblue' flex={1} height={100}
         margin={10}
         paddingTop={60}
       >
-        <Block background='lightblue' height='100%' flex={1}/>
+        <Block background='lightblue' flex={1} height='100%' />
       </Block>
     </Row>
 
@@ -43,20 +41,20 @@ export const DataVis = () =>
         background='steelblue' flex={1} height={100}
         margin={10} paddingLeft={100}
       >
-        <Block background='lightblue' height='100%' flex={1}/>
+        <Block background='lightblue' flex={1} height='100%'/>
       </Block>
       <Block
         background='steelblue' flex={1} height={100}
         margin={10}
         paddingBottom={20}
       >
-        <Block background='lightblue' height='100%' flex={1}/>
+        <Block background='lightblue' flex={1} height='100%'/>
       </Block>
       <Block
         background='steelblue' flex={1} height={100}
         margin={10}
       >
-        <Block background='lightblue' height='100%' flex={1}/>
+        <Block background='lightblue' flex={1} height='100%'/>
       </Block>
     </Row>
 
