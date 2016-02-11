@@ -24,7 +24,7 @@ const kExamplesData = map(
 export const examplesData = filter(
   _examplesData.concat(kExamplesData),
   d => {
-    if (process.env !== 'production') return true
+    if (process.env.NODE_ENV !== 'production') return true
     if (d.hide) return false
     return true
   },
