@@ -43,7 +43,7 @@ It has the following resolution order:
 3. ${key}Value on the data
 */
 export const plotValue = (
-  props, datum, key, defaultValue
+  props, datum, idx, key, defaultValue
 ) => {
   const scaleKey = getScaleKeyByHash(props, key)
   const {
@@ -52,7 +52,7 @@ export const plotValue = (
     [`${scaleKey}Scale`]: scale,
   } = props
 
-  if (_.isFunction(value)) return value(props, datum)
+  if (_.isFunction(value)) return value(props, datum, idx)
   if (isDatum(value)) return value
   if (scale) {
     const mappedValue = scale(_.get(datum, accessor))

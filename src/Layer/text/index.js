@@ -8,9 +8,9 @@ import {getPlotValues} from '../../Layer/getPlotValues'
 /*
 generates the array of render data
 */
-export const getTextRenderData = (props, datum) => {
+export const getTextRenderData = (props, datum, idx) => {
   const {plotRect} = props
-  const values = getPlotValues(props, datum, {
+  const values = getPlotValues(props, datum, idx, {
     x: getMidX(props.plotRect),
     y: getMidY(props.plotRect),
   })
@@ -33,6 +33,6 @@ export const text = props => {
   if (!props.xScale && !props.yScale) return undefined
   return map(
     flatten(props.data),
-    datum => getTextRenderData(props, datum),
+    (datum, idx) => getTextRenderData(props, datum, idx),
   )
 }

@@ -5,10 +5,10 @@ import {getPlotValues} from '../../Layer/getPlotValues'
 
 const GUTTER = 1
 
-export const getBarsRenderData = (props, datum) => {
+export const getBarsRenderData = (props, datum, idx) => {
   const {barsGutter: gutter = GUTTER} = props
   const path2D = getPath2D()
-  const values = getPlotValues(props, datum, {
+  const values = getPlotValues(props, datum, idx, {
     x: props.plotRect.x,
     y: props.plotRect.y,
   })
@@ -71,6 +71,6 @@ export const bars = props => {
   if (!props.xScale || !props.yScale) return undefined
   return map(
     flatten(props.data),
-    datum => getBarsRenderData(props, datum),
+    (datum, idx) => getBarsRenderData(props, datum, idx),
   )
 }

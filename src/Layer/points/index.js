@@ -2,7 +2,7 @@
 import {getMidX, getMidY} from '../../utils/rectUtils'
 import {getPath2D} from '../../utils/path2DUtils'
 import {getPlotValues} from '../../Layer/getPlotValues'
-import {map, flatten} from 'lodash'
+import {map, flatten, isArray} from 'lodash'
 
 /*
 `points` is used to generate render data for dots and similar.
@@ -17,8 +17,8 @@ points{
 /*
 generates the array of render data
 */
-const getPointRenderData = (props, datum) => {
-  const values = getPlotValues(props, datum, {
+const getPointRenderData = (props, datum, idx) => {
+  const values = getPlotValues(props, datum, idx, {
     hoverAlpha: 0.75,
     radius: 5,
     x: getMidX(props.plotRect),
@@ -42,8 +42,13 @@ Main entry point, if there's only `xMap` or `yMap` it will output an one dimensi
 */
 export const points = props => {
   if (!props.xScale && !props.yScale) return undefined
-  return map(
-    flatten(props.data),
-    datum => getPointRenderData(props, datum),
-  )
+  return flatten(map(
+    props.data,
+    (datum, idx) => {
+      if (isArray(datum)) {
+        return map(datum, (d, i) => getPointRenderData(props, d, i))
+      }
+      return getPointRenderData(props, datum, idx)
+    },
+  ))
 }

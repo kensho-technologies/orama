@@ -45,7 +45,7 @@ test('Layer/getPlotValues 2', () => {
   const props = {x: 'x'}
   const datum = {x: 10}
   const defaults = {alpha: 0.5}
-  const actual = getPlotValues(props, datum, defaults)
+  const actual = getPlotValues(props, datum, undefined, defaults)
   const expected = {
     alpha: 0.5,
     data: datum,
