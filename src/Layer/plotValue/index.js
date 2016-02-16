@@ -52,6 +52,7 @@ export const plotValue = (
     [`${scaleKey}Scale`]: scale,
   } = props
 
+  if (_.isFunction(value)) return value(props, datum)
   if (isDatum(value)) return value
   if (scale) {
     const mappedValue = scale(_.get(datum, accessor))
