@@ -102,6 +102,9 @@ Sets the inset margin of the chart, instead of calculating it based on the chart
 - [\`${dimension}**ShowTicks**\`] ?: `bool = true`  
 Show or hide the axis ticks for *dimension*.  
 
+- [\`${dimension}**ShowGuides**\`] ?: `bool = true`  
+Show or hide the axis guides for *dimension*.  
+
 - [\`${dimension}**ShowLabel**\`] ?: `bool = true`  
 Show or hide the axis label for *dimension*.  
 
