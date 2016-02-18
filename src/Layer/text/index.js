@@ -19,6 +19,22 @@ export const getTextRenderData = (props, datum, idx) => {
   if (values.textSnap === 'bottom') values.y = getMaxY(plotRect)
   if (values.textSnap === 'left') values.x = getMinX(plotRect)
   if (values.textSnap === 'right') values.x = getMaxX(plotRect)
+  if (values.textSnap === 'topLeft') {
+    values.x = getMinX(plotRect)
+    values.y = getMinY(plotRect)
+  }
+  if (values.textSnap === 'topRight') {
+    values.x = getMaxX(plotRect)
+    values.y = getMinY(plotRect)
+  }
+  if (values.textSnap === 'bottomLeft') {
+    values.x = getMinX(plotRect)
+    values.y = getMaxY(plotRect)
+  }
+  if (values.textSnap === 'bottomRight') {
+    values.x = getMaxX(plotRect)
+    values.y = getMaxY(plotRect)
+  }
 
   return {
     ...values,
