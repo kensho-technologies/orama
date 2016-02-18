@@ -37,6 +37,7 @@ test('Layer/getPlotValues 1', () => {
     y1: undefined,
     y2: undefined,
     yOffset: undefined,
+    font: undefined,
   }
   assert.deepEqual(actual, expected)
 })
@@ -75,6 +76,7 @@ test('Layer/getPlotValues 2', () => {
     y1: undefined,
     y2: undefined,
     yOffset: undefined,
+    font: undefined,
   }
   assert.deepEqual(actual, expected)
 })
