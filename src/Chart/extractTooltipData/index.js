@@ -40,7 +40,7 @@ const tooltipValuesForObjects = (tooltipExtraDimensions, datum) =>
       } = obj
       acc.push({
         name: name || accessor,
-        value: format(value) || format(_.get(datum, accessor)),
+        value: format(value || _.get(datum, accessor)),
       })
       return acc
     },
