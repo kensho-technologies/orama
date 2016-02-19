@@ -36,7 +36,7 @@ const data = [
   ],
 ]
 
-export const Component = () =>
+export const DataVis = () =>
   <Chart
     xShowGuides={false}
     yShowGuides={false}
@@ -61,6 +61,3 @@ export const Component = () =>
       y='y'
     />
   </Chart>
-
-export const DataVis = props =>
-  <Component {...props}/>

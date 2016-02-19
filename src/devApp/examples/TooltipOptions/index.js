@@ -12,8 +12,8 @@ export code from '!!raw!./'
 
 import React from 'react'
 import {Chart, Points} from '../../../'
-import {State} from 'on-update'
 import {Block, Row} from 'react-display'
+import {H2} from '../../basics'
 
 const data = [
   {value: 10, value2: 10, name: 'Name 1', date: new Date(2010, 0)},
@@ -22,53 +22,61 @@ const data = [
 ]
 
 const options = {
-  data: data,
+  data,
   radiusValue: 15,
   y: 'value',
   x: 'value2',
 }
 
-export const DataVis = props =>
+export const DataVis = () =>
   <Row>
     <Block flex='1'>
-      <Chart proportion={0.7}
+      <Chart
+        proportion={0.7}
         title='name'
         tooltipShowKeys
       >
-        <Points {...options}
+        <Points
+          {...options}
           fillValue='HSL(278, 51%, 43%)'
         />
       </Chart>
     </Block>
     <Block flex='1'>
-      <Chart proportion={0.7}
+      <Chart
+        proportion={0.7}
         tooltipKeys={['x']}
-        xTooltipFormat={d => `${d}%`}
         xName='New Name'
+        xTooltipFormat={d => `${d}%`}
       >
-        <Points {...options}
+        <Points
+          {...options}
           fillValue='HSL(219, 79%, 58%)'
         />
       </Chart>
     </Block>
     <Block flex='1'>
-      <Chart proportion={0.7}
+      <Chart
+        proportion={0.7}
         tooltipExtraDimensions={['name', 'date']}
         tooltipShowKeys
       >
-        <Points {...options}
+        <Points
+          {...options}
           fillValue='HSL(158, 100%, 45%)'
         />
       </Chart>
     </Block>
     <Block flex='1'>
-      <Chart proportion={0.7}
+      <Chart
+        proportion={0.7}
         tooltipExtraDimensions={[
-          {accessor: 'value', name: 'new name', format: d => `${d}%`}
+          {accessor: 'value', name: 'new name', format: d => `${d}%`},
         ]}
         tooltipShowKeys
       >
-        <Points {...options}
+        <Points
+          {...options}
           fillValue='HSL(88, 85%, 59%)'
         />
       </Chart>

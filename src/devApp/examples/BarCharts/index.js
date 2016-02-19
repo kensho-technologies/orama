@@ -30,7 +30,7 @@ const linearData = [
   {binStart: 30, binEnd: 50, value: 87.5},
 ]
 
-export const Component = () =>
+export const DataVis = () =>
   <Block>
     <H2>Ordinal Bars</H2>
     <Row>
@@ -77,6 +77,3 @@ export const Component = () =>
       </Block>
     </Row>
   </Block>
-
-export const DataVis = props =>
-  <Component {...props}/>
