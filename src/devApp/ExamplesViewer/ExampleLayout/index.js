@@ -61,7 +61,7 @@ ExampleLayout.propTypes = {
   children: PropTypes.node,
   code: PropTypes.string,
   date: PropTypes.instanceOf(Date),
-  description: PropTypes.string,
+  description: PropTypes.any,
   imports: PropTypes.string,
   title: PropTypes.string,
 }

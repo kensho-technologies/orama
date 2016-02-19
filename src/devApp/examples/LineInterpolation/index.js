@@ -1,10 +1,14 @@
 /* eslint react/prop-types:0 */
 
+import {P, A} from '../../basics'
+
 export const title = 'Line Interpolation'
 export const tags = []
 export const hide = false
 export const date = new Date('Feb 18, 2016')
-export const description = ``
+export const description = <P>
+  Uses <A href='http://scaledinnovation.com/analytics/splines/aboutSplines.html'>http://scaledinnovation.com/analytics/splines/aboutSplines.html</A>
+</P>
 export code from '!!raw!./'
 
 import React from 'react'

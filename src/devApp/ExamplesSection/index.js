@@ -43,7 +43,7 @@ const ExampleCard = props => (
 )
 ExampleCard.propTypes = {
   date: PropTypes.instanceOf(Date),
-  description: PropTypes.string,
+  description: PropTypes.any,
   id: PropTypes.string,
   k: PropTypes.bool,
   title: PropTypes.string,
