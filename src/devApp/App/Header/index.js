@@ -4,7 +4,7 @@ import _ from 'lodash'
 import {theme} from '../../theme'
 import {TextBody} from '../../basics/TextBody'
 import {A} from '../../basics'
-import {Block, Row} from 'react-display'
+import {Block, Row, Inline} from 'react-display'
 
 const getMenuSections = props => (
   _.filter(props.sectionsData, 'showOnMenu')
@@ -51,12 +51,16 @@ export const Header = props => (
       color={theme.accentColor}
     >
       <A
-        fontSize={theme.fontSize * 1.3}
+        fontSize={theme.fontSize * 1.6}
         fontWeight='bold'
         onClick={() => handleLogoClick(props)}
         strokeWidth={0}
       >
         {props.title}
+        {' '}
+        <Inline fontSize='14' verticalAlign='top' paddingLeft='3'>
+          {props.version}
+        </Inline>
       </A>
       <Row
         alignItems='baseline'
