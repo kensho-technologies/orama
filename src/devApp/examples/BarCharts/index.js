@@ -6,12 +6,13 @@ export const tags = []
 export const hide = false
 export const date = new Date('Fri Feb 19 2016 12:57:27 GMT-0500 (EST)')
 export const description = `Bars can use linear or ordinal domain (for histograms).
-Linear x1/x2 dont need to keep a fixed size across bars.`
+Linear x1/x2 dont need to keep a fixed size across bars.
+
+On bar charts it's important for the bar start from zero, this can be done by adding 'xZeroBased' or 'yZeroBased' to the chart.`
 export code from '!!raw!./'
 
 import React from 'react'
 import {Chart, Bars} from '../../../'
-import {State} from 'on-update'
 import {Row, Block} from 'react-display'
 import {H2} from '../../basics'
 
@@ -77,11 +78,5 @@ export const Component = props =>
     </Row>
   </Block>
 
-const startWith = props => {
-  props.setState({})
-}
-
 export const DataVis = props =>
-  <State startWith={startWith}>
-    <Component {...props}/>
-  </State>
+  <Component {...props}/>
