@@ -17,11 +17,11 @@ const handleError = evt => {
 
 const ExampleCard = props => (
   <Block
-    opacity={props.hide ? 0.5 : 1}
     cursor='pointer'
     height='140px'
     margin={10}
     onClick={() => props.onUpdate({click: true})}
+    opacity={props.hide ? 0.5 : 1}
     overflowY='hidden'
     width={245}
   >
@@ -44,6 +44,7 @@ const ExampleCard = props => (
 ExampleCard.propTypes = {
   date: PropTypes.instanceOf(Date),
   description: PropTypes.any,
+  hide: PropTypes.bool,
   id: PropTypes.string,
   k: PropTypes.bool,
   title: PropTypes.string,

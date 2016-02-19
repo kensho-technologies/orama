@@ -6,6 +6,8 @@ import {TextBody} from '../../basics/TextBody'
 import {A} from '../../basics'
 import {Block, Row, Inline} from 'react-display'
 
+const {version} = require('json!../../../../package.json')
+
 const getMenuSections = props => (
   _.filter(props.sectionsData, 'showOnMenu')
 )
@@ -58,8 +60,12 @@ export const Header = props => (
       >
         {props.title}
         {' '}
-        <Inline fontSize='14' verticalAlign='top' paddingLeft='3'>
-          {props.version}
+        <Inline
+          fontSize='14'
+          paddingLeft='3'
+          verticalAlign='top'
+        >
+          {version}
         </Inline>
       </A>
       <Row

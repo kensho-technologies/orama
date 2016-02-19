@@ -6,14 +6,13 @@ export const title = 'Line Interpolation'
 export const tags = []
 export const hide = false
 export const date = new Date('Feb 18, 2016')
-export const description = <P>
+export const description = (<P>
   Uses <A href='http://scaledinnovation.com/analytics/splines/aboutSplines.html'>http://scaledinnovation.com/analytics/splines/aboutSplines.html</A>
-</P>
+</P>)
 export code from '!!raw!./'
 
 import React from 'react'
 import {Chart, Lines, Points} from '../../../'
-import {State} from 'on-update'
 
 const data = [
   [
@@ -63,11 +62,5 @@ export const Component = () =>
     />
   </Chart>
 
-const startWith = props => {
-  props.setState({})
-}
-
 export const DataVis = props =>
-  <State startWith={startWith}>
-    <Component {...props}/>
-  </State>
+  <Component {...props}/>

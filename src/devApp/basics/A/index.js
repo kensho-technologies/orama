@@ -3,6 +3,7 @@ import React, {PropTypes} from 'react'
 import _ from 'lodash'
 import {stateHOC} from 'on-update'
 import {Inline} from 'react-display'
+import {theme} from '../../theme'
 
 const handleMouseEnter = props => {
   props.onState({hover: true})
@@ -34,7 +35,7 @@ export const _A = props => (
   <Inline
     backgroundColor={getBackground(props)}
     boxShadow={getBoxShadow(props)}
-    color='hsl(201, 78%, 28%)'
+    color={theme.accentColor}
     cursor='pointer'
     onClick={_.partial(handleClick, props)}
     onMouseDown={_.partial(handleMouseDown, props)}

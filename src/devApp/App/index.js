@@ -8,8 +8,6 @@ import {Header} from '../App/Header'
 import {Main, Column} from 'react-display'
 import {Section} from '../Section'
 
-const {version} = require('json!../../../package.json')
-
 export const App = props => (
   <Main
     fontFamily={theme.fontFamily}
@@ -19,7 +17,6 @@ export const App = props => (
     <Header
       {...props}
       title={`Orama`}
-      version={version}
     />
     <Column
       marginBottom='auto'

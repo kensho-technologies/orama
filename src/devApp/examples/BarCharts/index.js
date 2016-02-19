@@ -30,7 +30,7 @@ const linearData = [
   {binStart: 30, binEnd: 50, value: 87.5},
 ]
 
-export const Component = props =>
+export const Component = () =>
   <Block>
     <H2>Ordinal Bars</H2>
     <Row>
@@ -70,8 +70,8 @@ export const Component = props =>
         <Chart xZeroBased>
           <Bars
             data={linearData}
-            y1='binStart' y2='binEnd'
             x='value'
+            y1='binStart' y2='binEnd'
           />
         </Chart>
       </Block>
