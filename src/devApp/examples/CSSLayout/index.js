@@ -5,7 +5,7 @@ export const title = 'CSS Layout'
 export const hide = true
 export const tags = []
 export const date = new Date('Feb 9, 2016')
-export const description = `Test for simulating flex layout inside of canvas`
+export const description = ``
 export code from '!!raw!./'
 
 import React from 'react'
@@ -22,9 +22,7 @@ export const DataVis = () =>
       >
         <Block
           background='lightblue'
-          height='100%'
           position='absolute'
-          width='100%'
         />
       </Block>
       <Block
