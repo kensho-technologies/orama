@@ -1,4 +1,5 @@
 
+import _ from 'lodash/fp'
 import {plotValue} from '../../Layer/plotValue'
 
 export const getControlPoints = (x0, y0, x1, y1, x2, y2, t) => {
@@ -20,13 +21,13 @@ export const getControlPoints = (x0, y0, x1, y1, x2, y2, t) => {
 export const splineInterpolation = (props, data, path) => {
   const t = 0.5
   const pts = _.reduce(
-    data,
     (acc, d) => {
       acc.push(plotValue(props, d, undefined, 'x'))
       acc.push(plotValue(props, d, undefined, 'y'))
       return acc
     },
-    []
+    [],
+    data,
   )
   let cp = []
   const n = pts.length

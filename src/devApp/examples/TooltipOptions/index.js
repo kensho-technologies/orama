@@ -13,7 +13,6 @@ export code from '!!raw!./'
 import React from 'react'
 import {Chart, Points} from '../../../'
 import {Block, Row} from 'react-display'
-import {H2} from '../../basics'
 
 const data = [
   {value: 10, value2: 10, name: 'Name 1', date: new Date(2010, 0)},
