@@ -5,6 +5,7 @@ import {getPath2D} from '../../utils/path2DUtils'
 import {notPlotNumber} from '../../utils'
 import {plotValue} from '../../Layer/plotValue'
 import {getPlotValues} from '../../Layer/getPlotValues'
+import {splineInterpolation} from '../../Layer/splineInterpolation'
 
 /*
 `points` is used to generate render data for lines and multilines.
@@ -75,13 +76,17 @@ const getLineRenderData = (props, data, idx) => {
   const values = getPlotValues(props, _.head(data), idx, {
     hoverAlpha: 0.2,
   })
-  path2D.moveTo(values.x, values.y)
-  _.each(data, d => {
-    const x = plotValue(props, d, idx, 'x')
-    const y = plotValue(props, d, idx, 'y')
-    if (notPlotNumber([x, y])) return
-    path2D.lineTo(x, y)
-  })
+  if (props.interpolate) {
+    splineInterpolation(props, data, path2D)
+  } else {
+    path2D.moveTo(values.x, values.y)
+    _.each(data, d => {
+      const x = plotValue(props, d, idx, 'x')
+      const y = plotValue(props, d, idx, 'y')
+      if (notPlotNumber([x, y])) return
+      path2D.lineTo(x, y)
+    })
+  }
   return {
     ...values,
     data,
