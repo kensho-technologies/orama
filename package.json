@@ -6,7 +6,8 @@
   "scripts": {
     "start": "bates start",
     "bates": "bates",
-    "test": "bates test"
+    "test": "bates test",
+    "example": "node scripts/example"
   },
   "repository": {
     "type": "git",
