@@ -17,6 +17,7 @@ const handleError = evt => {
 
 const ExampleCard = props => (
   <Block
+    opacity={props.hide ? 0.5 : 1}
     cursor='pointer'
     height='140px'
     margin={10}
@@ -29,7 +30,7 @@ const ExampleCard = props => (
       marginBottom={5}
       marginTop={0}
     >
-      <A>
+      <A color={props.hide ? 'black' : undefined}>
         {`${props.k ? '(K) ' : ''}${props.title}`}
       </A>
     </H2>
