@@ -85,6 +85,21 @@ export const Header = props => (
             />
           )
         )}
+        <Block marginLeft={10} flexShrink={1}>
+          <A href='https://github.com/kensho/orama/blob/master/docs/api.md'>
+            API
+          </A>
+        </Block>
+        <Block marginLeft={10} flexShrink={1}>
+          <A href='https://github.com/kensho/orama/blob/master/docs/gettingStarted.md'>
+            Getting Started
+          </A>
+        </Block>
+        <Block marginLeft={10} flexShrink={1}>
+          <A href='https://github.com/kensho/orama/'>
+            Github
+          </A>
+        </Block>
       </Row>
     </Row>
   </TextBody>

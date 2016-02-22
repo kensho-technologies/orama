@@ -18,12 +18,13 @@ const handleError = evt => {
 const ExampleCard = props => (
   <Block
     cursor='pointer'
+    flexBasis={245}
+    flexGrow={1}
     height='140px'
-    margin={10}
     onClick={() => props.onUpdate({click: true})}
     opacity={props.hide ? 0.5 : 1}
     overflowY='hidden'
-    width={245}
+    padding={10}
   >
     <H2
       fontSize={17}
@@ -49,6 +50,10 @@ ExampleCard.propTypes = {
   k: PropTypes.bool,
   title: PropTypes.string,
 }
+
+const Spacer = () =>
+  <Block flexBasis={245} flexGrow={1} paddingLeft={20}/>
+
 const handleExampleCard = (props, childProps, d) => {
   if (childProps.click === true) {
     props.onUpdate({
@@ -58,8 +63,8 @@ const handleExampleCard = (props, childProps, d) => {
 }
 
 export const ExamplesSection = props => (
-  <TextBody>
-    <Row flexWrap='wrap' justifyContent='center'>
+  <TextBody flexBasis={undefined} margin={0}>
+    <Row flexWrap='wrap' justifyContent='space-between'>
       {_.map(
         examplesData,
         (d, i) => (
@@ -70,6 +75,8 @@ export const ExamplesSection = props => (
           />
         )
       )}
+    <Spacer/><Spacer/><Spacer/>
+    <Spacer/><Spacer/><Spacer/>
     </Row>
   </TextBody>
 )

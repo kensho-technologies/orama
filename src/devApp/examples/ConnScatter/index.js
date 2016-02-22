@@ -19,7 +19,6 @@ const Component = props =>
   >
     <Lines
       data={props.data}
-      interpolate
       showHover={false}
       stroke='Name'
       title='Name'

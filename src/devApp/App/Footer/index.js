@@ -18,7 +18,7 @@ export const Footer = () => (
       <Block
         fontSize={theme.fontSize * 0.85}
       >
-        ©2015 <A href='https://github.com/kensho/orama'>GitHub</A>
+        ©2015 <A href='http://luiscarli.com'>Luis Carli</A>
       </Block>
     </Row>
   </TextBody>
