@@ -3,7 +3,7 @@
 export const title = 'Brushed Timeline'
 export const tags = []
 export const date = new Date('Feb 4, 2016')
-export const description = `For the yDomain of the chart to match the extent of the brushed data, the data is filtered using the xDomain returned by the brush.`
+export const description = 'For the yDomain of the chart to match the extent of the brushed data, the data is filtered using the xDomain returned by the brush.'
 export code from '!!raw!./'
 
 import React from 'react'

@@ -15,8 +15,8 @@ import * as fetchers from './devApp/fetchers'
 
 global.orama = orama
 global.State = State
-_.each((value, key) => global[key] = value, orama)
-_.each((value, key) => global[key] = value, fetchers)
+_.each((value, key) => {global[key] = value}, orama)
+_.each((value, key) => {global[key] = value}, fetchers)
 
 global.React = React
 global.ReactDOM = ReactDOM

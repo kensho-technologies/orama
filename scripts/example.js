@@ -12,7 +12,7 @@ export const title = '${title}'
 export const tags = []
 export const hide = false
 export const date = new Date('${new Date()}')
-export const description = \`\`
+export const description = ''
 export code from '!!raw!./'
 
 import React from 'react'

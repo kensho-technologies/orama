@@ -13,6 +13,7 @@ export const getLayers = props => {
           ...layer.props,
         }
       }
+      return undefined
     }
   )
   return {layers}

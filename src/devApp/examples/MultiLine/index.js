@@ -3,7 +3,7 @@
 export const title = 'Multi Line'
 export const tags = []
 export const date = new Date('Feb 3, 2016')
-export const description = `Data for each line is an Array of Objects, each object represents a point in the lines. Multiple lines are repesented as an Array of Arrays of Objects.`
+export const description = 'Data for each line is an Array of Objects, each object represents a point in the lines. Multiple lines are repesented as an Array of Arrays of Objects.'
 export code from '!!raw!./'
 
 import React from 'react'

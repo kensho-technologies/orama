@@ -16,7 +16,7 @@ export const App = props => (
   >
     <Header
       {...props}
-      title={`Orama`}
+      title='Orama'
     />
     <Column
       marginBottom='auto'

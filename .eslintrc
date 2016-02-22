@@ -1,0 +1,33 @@
+{
+  "extends": "eslint-config-airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "id-length": 0,
+    "jsx-quotes": [2, "prefer-single"],
+    "max-len": 0,
+    "new-cap": 0,
+    "no-case-declarations": 0,
+    "no-confusing-arrow": 0,
+    "no-unneeded-ternary": 0,
+    "no-unused-expressions": 2,
+    "no-use-before-define": [2, "nofunc"],
+    "no-var": 0,
+    "object-curly-spacing": 0,
+    "react/jsx-boolean-value": 0,
+    "react/jsx-closing-bracket-location": 2,
+    "react/jsx-curly-spacing": [2, "never"],
+    "react/jsx-indent-props": [1, 2],
+    "react/jsx-max-props-per-line": [1, {"maximum": 3}],
+    "react/jsx-no-bind": 0,
+    "react/jsx-no-duplicate-props": 2,
+    "react/jsx-no-undef": 2,
+    "react/jsx-sort-props": 0,
+    "react/jsx-space-before-closing": 0,
+    "react/no-multi-comp": 0,
+    "react/prefer-es6-class": 0,
+    "react/prop-types": 0,
+    "react/sort-comp": 0,
+    "semi": [2, "never"],
+    "vars-on-top": 0
+  }
+}

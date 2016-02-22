@@ -54,6 +54,7 @@ export const findInRenderLayers = ({ctx, localMouse, renderLayers, findFunc}) =>
       layerProps: layer.layerProps,
     }
   }
+  return undefined
 }
 /*
 Format return for getDataUnderMouse

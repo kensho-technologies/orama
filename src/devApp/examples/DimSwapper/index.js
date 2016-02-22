@@ -3,7 +3,7 @@
 export const title = 'Dimension Swap'
 export const tags = []
 export const date = new Date('Feb 3, 2016')
-export const description = ``
+export const description = ''
 export code from '!!raw!./'
 
 import React from 'react'

@@ -19,7 +19,7 @@
   "author": "Luis Carli",
   "license": "MIT",
   "devDependencies": {
-    "bates": "^0.3.0",
+    "bates": "^0.4.0",
     "history": "^2.0.0"
   },
   "dependencies": {

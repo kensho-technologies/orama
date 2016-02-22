@@ -43,7 +43,7 @@ const handleMenu = (props, childProps, d) => {
 /*
 Used inside <App/>
 */
-export const Header = props => (
+export const Header = (props) => (
   <TextBody
     marginBottom={20}
     marginTop={20}
@@ -85,17 +85,17 @@ export const Header = props => (
             />
           )
         )}
-        <Block marginLeft={10} flexShrink={1}>
+        <Block flexShrink={1} marginLeft={10}>
           <A href='https://github.com/kensho/orama/blob/master/docs/api.md'>
             API
           </A>
         </Block>
-        <Block marginLeft={10} flexShrink={1}>
+        <Block flexShrink={1} marginLeft={10}>
           <A href='https://github.com/kensho/orama/blob/master/docs/gettingStarted.md'>
             Getting Started
           </A>
         </Block>
-        <Block marginLeft={10} flexShrink={1}>
+        <Block flexShrink={1} marginLeft={10}>
           <A href='https://github.com/kensho/orama/'>
             Github
           </A>

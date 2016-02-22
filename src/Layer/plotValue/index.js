@@ -15,7 +15,7 @@ const generateAccessorGroupHash = _.memoize(
     accessorsGroups,
     (acc, values, key) => {
       /* eslint-disable no-param-reassign */
-      _.each(values, d => acc[d] = key)
+      _.each(values, d => {acc[d] = key})
       /* eslint-enable no-param-reassign */
       return acc
     },

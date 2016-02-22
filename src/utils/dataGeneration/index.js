@@ -18,7 +18,7 @@ export const getTimeSeries = (range, coeff = 0.05) => {
   const array = []
   _.forEach(
     range,
-    (d, i) => array[i] = coeff + coeff * Math.random()
+    (d, i) => {array[i] = coeff + coeff * Math.random()}
   )
   _.forEach(range, () => bump(array))
   return _.map(array, (d, i) => ({x: range[i], y: Math.max(0, d)}))

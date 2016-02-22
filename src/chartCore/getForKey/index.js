@@ -78,7 +78,6 @@ export const getRange = (props, key) => {
         default:
           return [2, 20]
       }
-      break
     case 'lineWidth':
       switch (type) {
         case 'ordinal':
@@ -86,7 +85,6 @@ export const getRange = (props, key) => {
         default:
           return [0.5, 4]
       }
-      break
     case 'lineDash':
       return [
         [2],
@@ -103,7 +101,6 @@ export const getRange = (props, key) => {
         default:
           return props.theme.plotLinearRangeFill
       }
-      break
     case 'x':
     default:
       return [plotRect.x, rectUtils.getMaxX(plotRect)]
