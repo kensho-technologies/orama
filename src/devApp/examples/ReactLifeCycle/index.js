@@ -9,6 +9,13 @@ export const description = ``
 export code from '!!raw!./'
 
 import React from 'react'
+import {State} from 'on-update'
+
+const handleClick = props =>
+  props.setState({value: 'value'})
+
+const InnerComponent = props =>
+  <div onClick={() => handleClick(props)}>Test</div>
 
 export const Component = React.createClass({
   statics: {
@@ -36,8 +43,11 @@ export const Component = React.createClass({
   componentDidMount() {
     console.log('componentDidMount Component ' + this.props.number)
   },
+  handleClick() {
+    this.props.setState({yo: 'yo'})
+  },
   render() {
-    return <div ref={this.handleRef}>Test</div>
+    return <InnerComponent ref={this.handleRef} {...this.props}/>
   }
 })
 
@@ -66,13 +76,13 @@ export const DataVis = React.createClass({
   },
   render() {
     return (
-      <div>
+      <State>
         <Component
           ref={(node) => this.handleRef(node)}
           number={1}
         />
         <Component ref='Component2' number={2}/>
-      </div>
+      </State>
     )
   },
 })
