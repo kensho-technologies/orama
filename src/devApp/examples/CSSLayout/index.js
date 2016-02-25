@@ -24,6 +24,32 @@ const TableCell = (props) =>
 
 export const DataVis = () =>
   <div>
+    <Block>
+      <Row>
+        <Block background='steelblue' margin='10' maxWidth='100'>Test Test Test Test Test Test</Block>
+        <Block background='steelblue' margin='10'>
+          <Block position='relative' background='red' top='50'>
+            Text text
+          </Block>
+        </Block>
+        <Block background='steelblue' margin='10' flex='1'>Test</Block>
+        <Block background='steelblue' margin='10' width='70'>Test</Block>
+      </Row>
+      <Block background='steelblue' margin='10'>Middle Title</Block>
+      <Row>
+        <Block background='steelblue' margin='10' width='70'>Test</Block>
+        <Block background='steelblue' margin='10' flex='1'>Test</Block>
+        <Block background='steelblue' margin='10' flex='1'>Test</Block>
+        <Block background='steelblue' margin='10' width='70'></Block>
+      </Row>
+      <Row>
+        <Block background='steelblue' margin='10' width='70'>Test</Block>
+        <Block background='steelblue' margin='10' flex='1'>Test</Block>
+        <Block background='steelblue' margin='10' flex='1'>Test</Block>
+        <Block background='steelblue' margin='10' width='70'></Block>
+      </Row>
+    </Block>
+    <Block height='100'/>
     <Table width='100%' borderSpacing='1'>
       <tr>
         <TableCell background='lightgray'/>
