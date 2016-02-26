@@ -4,9 +4,9 @@ import _ from 'lodash'
 
 export const getTimeSeries = (range, coeff = 0.05) => {
   function bump(_array) {
-    const x = 1 / (0.1 + Math.random())
-    const y = 2 * Math.random() - 0.5
-    const z = 10 / (0.1 + Math.random())
+    const x = 10 / (0.01 + Math.random())
+    const y = 5 * Math.random() - 0.01
+    const z = 10 / (0.01 + Math.random())
     _.forEach(
       range,
       (d, i) => {
