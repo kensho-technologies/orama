@@ -23,12 +23,13 @@
     "history": "^2.0.0"
   },
   "dependencies": {
+    "d3-array": "^0.7.1",
     "d3-scale": "^0.6.1",
     "lodash": "^4.1.0",
     "on-update": "^1.0.0",
+    "react": "^0.14.0",
     "react-display": "^1.0.0",
-    "react-dom": "^0.14.0",
-    "react": "^0.14.0"
+    "react-dom": "^0.14.0"
   },
   "engines": {
     "node": ">=5.0.0",
