@@ -6,8 +6,11 @@ export const tags = []
 export const hide = false
 export const date = new Date('Fri Feb 19 2016 13:55:41 GMT-0500 (EST)')
 export const description = `Use 'title' for a a title accessor for the tooltip.
-Use 'tooltipKeys' to limit the dimensions displayed on the tooltip
-Use 'tooltipExtraDimensions' to add new dimensions on the tooltip, it can be used with Array<string> or Array<Object>.`
+
+The tooltip automatically shows the dimensions that were mapped on the Chart (for eg. 'x', 'y', 'fill').
+
+Use 'tooltipKeys' to limit the default dimensions displayed on the tooltip.
+For adding new dimensions to the tooltip that were not used to map any key of the layer, use 'tooltipExtraDimensions', it can be used with Array<string> or Array<Object>.`
 export code from '!!raw!./'
 
 import React from 'react'
