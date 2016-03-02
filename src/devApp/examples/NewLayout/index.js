@@ -1,6 +1,4 @@
 
-/* eslint react/prop-types:0 */
-
 export const title = 'New Layout'
 export const tags = []
 export const hide = true

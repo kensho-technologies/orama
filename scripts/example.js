@@ -6,8 +6,6 @@ const title = process.argv[2] || 'Example'
 const name = _.upperFirst(_.camelCase(title))
 
 const file = `
-/* eslint react/prop-types:0 */
-
 export const title = '${title}'
 export const tags = []
 export const hide = false
