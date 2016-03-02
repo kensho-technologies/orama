@@ -4,7 +4,7 @@ import {findDOMNode} from 'react-dom'
 
 import _ from 'lodash/fp'
 import {max} from 'd3-array'
-import {Column, Row, Block, Inline} from 'react-display'
+import {Column, Row, Block} from 'react-display'
 
 export const Table = React.createClass({
   getInitialState() {
@@ -19,7 +19,6 @@ export const Table = React.createClass({
       idx => max(this.data, d => d[idx]),
       _.range(0, length),
     )
-    console.log(colSizes)
     this.setState({colSizes})
   },
   shouldComponentUpdate(nextProps, nextState) {
@@ -34,20 +33,18 @@ export const Table = React.createClass({
       <Row
         background='steelblue'
         padding='1'
-        height='500'
         {...props}
       >
         {React.Children.map(
           props.children,
-          (child, rowIdx) => {
-            return React.cloneElement(
+          (child, rowIdx) =>
+            React.cloneElement(
               child, {rowIdx, colClbk, colSizes: state.colSizes}
-            )
-          },
+            ),
         )}
       </Row>
     )
-  }
+  },
 })
 
 export const TableColumn = React.createClass({
@@ -56,12 +53,10 @@ export const TableColumn = React.createClass({
       colSizes: [],
     }
   },
-  componentDidMount() {
-    // console.log(findDOMNode(this).clientHeight)
-  },
-  componentDidUpdate() {
-    // console.log(findDOMNode(this).clientHeight)
-  },
+  // componentDidMount() {
+  // },
+  // componentDidUpdate() {
+  // },
   rowClbck(values) {
     const {props} = this
     props.colClbk({
@@ -83,15 +78,14 @@ export const TableColumn = React.createClass({
       >
         {React.Children.map(
           props.children,
-          (child, colIdx) => {
-            return React.cloneElement(
+          (child, colIdx) =>
+            React.cloneElement(
               child, {colIdx, rowClbck, colHeight: props.colSizes[colIdx]}
-            )
-          },
+            ),
         )}
       </Column>
     )
-  }
+  },
 })
 
 
@@ -117,14 +111,11 @@ export const TableCell = React.createClass({
         flex='1'
         {...props}
         flexShrink='0'
-        height={props.colHeight}
+        height={props.colHeight ? props.colHeight : props.height}
         overflowY='hidden'
       >
-        <Inline color='lightgray' fontSize='11' marginRight='10'>
-          {`row(${props.colIdx}) `}
-        </Inline>
         {props.children}
       </Block>
     )
-  }
+  },
 })
