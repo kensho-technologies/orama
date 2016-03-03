@@ -103,7 +103,8 @@ const mouseDrag = (props, childProps) => {
       y2: bounds.y2 - childProps.mouseDelta.y,
     }
     if (isOutOfBounds(mBounds, childProps.rootProps.plotRect)) {
-      props.onUpdate(boundsToDomain(bounds, childProps))
+      const constrainedBounds = constraintToPlotRect(bounds, childProps)
+      props.onUpdate(boundsToDomain(constrainedBounds, childProps))
     } else {
       props.onUpdate(boundsToDomain(mBounds, childProps))
     }
