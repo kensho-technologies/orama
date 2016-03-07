@@ -37,3 +37,6 @@ export const DataVis = props =>
       yOffsetValue={5}
     />
   </Chart>
+DataVis.defaultProps = {
+  fbData: [],
+}
