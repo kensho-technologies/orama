@@ -33,6 +33,7 @@ export const Table = React.createClass({
       <Row
         background='steelblue'
         padding='1'
+        boxSizing='border-box'
         {...props}
       >
         {React.Children.map(
@@ -53,10 +54,10 @@ export const TableColumn = React.createClass({
       colSizes: [],
     }
   },
-  // componentDidMount() {
-  // },
-  // componentDidUpdate() {
-  // },
+  componentDidMount() {
+  },
+  componentDidUpdate() {
+  },
   rowClbck(values) {
     const {props} = this
     props.colClbk({
@@ -74,6 +75,7 @@ export const TableColumn = React.createClass({
         margin='1'
         padding='1'
         position='relative'
+        boxSizing='border-box'
         {...props}
       >
         {React.Children.map(
@@ -87,7 +89,6 @@ export const TableColumn = React.createClass({
     )
   },
 })
-
 
 export const TableCell = React.createClass({
   componentDidMount() { this.mountUpdate() },
@@ -104,11 +105,12 @@ export const TableCell = React.createClass({
     const {props} = this
     return (
       <Block
+        position='relative'
+        boxSizing='border-box'
         background='steelblue'
         color='white'
         margin='1'
         padding='5'
-        flex='1'
         {...props}
         flexShrink='0'
         height={props.colHeight ? props.colHeight : props.height}

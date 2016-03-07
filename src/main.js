@@ -1,4 +1,4 @@
-/* eslint no-param-reassign:0 */
+/* eslint no-param-reassign:0, react/prefer-stateless-function:0 */
 // site main entry point
 
 import 'babel-regenerator-runtime'

@@ -8,6 +8,7 @@ export code from '!!raw!./'
 
 import React from 'react'
 import {Table, TableColumn, TableCell} from '../../../layout'
+import {Block} from 'react-display'
 
 export const DataVis = () =>
   <Table>
@@ -21,7 +22,18 @@ export const DataVis = () =>
     </TableColumn>
     <TableColumn flex='1'>
       <TableCell flex='0'/>
-      <TableCell>Plot1</TableCell>
+      <TableCell>
+        <Block
+          position='relative'
+          background='orangered'
+          height='150'
+          width='100%'
+          right='0'
+          top='0'
+        >
+          Plot1
+        </Block>
+      </TableCell>
       <TableCell>Plot3</TableCell>
       <TableCell flex='0'/>
     </TableColumn>
