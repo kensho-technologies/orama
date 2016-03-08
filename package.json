@@ -20,11 +20,11 @@
   "license": "MIT",
   "devDependencies": {
     "bates": "^1.0.0",
+    "d3-array": "^0.7.1",
+    "d3-random": "^0.2.1",
     "history": "^2.0.0"
   },
   "dependencies": {
-    "d3-array": "^0.7.1",
-    "d3-dsv": "^0.3.0",
     "d3-scale": "^0.6.1",
     "lodash": "^4.1.0",
     "on-update": "^1.0.0",
