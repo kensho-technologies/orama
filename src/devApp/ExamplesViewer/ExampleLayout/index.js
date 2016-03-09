@@ -47,9 +47,6 @@ const ExampleCode = props => {
 export const ExampleLayout = props =>
   <TextBody>
     <H1 marginBottom={5}>{props.title}</H1>
-    {/*<P color='grey' fontSize={13}>
-      {props.date && props.date.toDateString()}
-    </P>*/}
     {props.children}
     {props.description ? <H2>Description</H2> : null}
     <P marginBottom={25} marginTop={0}>{props.description}</P>
