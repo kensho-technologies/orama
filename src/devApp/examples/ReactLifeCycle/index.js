@@ -9,80 +9,70 @@ export const description = ``
 export code from '!!raw!./'
 
 import React from 'react'
-import {State} from 'on-update'
-
-const handleClick = props =>
-  props.setState({value: 'value'})
-
-const InnerComponent = props =>
-  <div onClick={() => handleClick(props)}>Test</div>
+import _ from 'lodash/fp'
 
 export const Component = React.createClass({
-  statics: {
-    customMethod: (a) => 12 + a,
-  },
   componentWillMount() {
-    console.log('componentWillMount Component ' + this.props.number)
-  },
-  componentWillReceiveProps() {
-    console.log('componentWillReceiveProps Component ' + this.props.number, this.props)
-  },
-  componentWillUpdate() {
-    console.log('componentWillUpdate Component ' + this.props.number)
-  },
-  componentDidUpdate() {
-    console.log('componentDidUpdate Component ' + this.props.number)
-  },
-  componentWillUnmount() {
-    console.log('componentWillUnmount Component ' + this.props.number)
-  },
-  handleRef(node) {
-    this.div = node
-    console.log('compo', node, this)
+    console.log('componentWillMount - ' + this.props.number)
   },
   componentDidMount() {
-    console.log('componentDidMount Component ' + this.props.number)
+    console.log('componentDidMount - ' + this.props.number)
   },
-  handleClick() {
-    this.props.setState({yo: 'yo'})
+  componentWillReceiveProps() {
+    console.log('componentWillReceiveProps - ' + this.props.number)
+  },
+  componentWillUpdate() {
+    console.log('componentWillUpdate - ' + this.props.number)
+  },
+  componentDidUpdate() {
+    console.log('componentDidUpdate - ' + this.props.number)
+  },
+  componentWillUnmount() {
+    console.log('componentWillUnmount - ' + this.props.number)
   },
   render() {
-    return <InnerComponent ref={this.handleRef} {...this.props}/>
+    return <div>{this.props.number}</div>
   }
 })
 
 export const DataVis = React.createClass({
+  getInitialState() {
+    return {n: 2}
+  },
   componentWillMount() {
-    console.log('componentWillMount')
-  },
-  componentWillReceiveProps() {
-    console.log('componentWillReceiveProps', this.props)
-  },
-  componentWillUpdate() {
-    console.log('componentWillUpdate')
-  },
-  componentDidUpdate() {
-    console.log('componentDidUpdate')
-  },
-  componentWillUnmount() {
-    console.log('componentWillUnmount')
-  },
-  handleRef(node) {
-    this.component = node
-    console.log(node, this)
+    console.log('componentWillMount - wrap')
   },
   componentDidMount() {
-    console.log('componentDidMount')
+    console.log('componentDidMount - wrap')
+  },
+  componentWillReceiveProps() {
+    console.log('componentWillReceiveProps - wrap')
+  },
+  componentWillUpdate() {
+    console.log('componentWillUpdate - wrap')
+  },
+  componentDidUpdate() {
+    console.log('componentDidUpdate - wrap')
+  },
+  componentWillUnmount() {
+    console.log('componentWillUnmount - wrap')
+  },
+  add() {
+    this.setState(state => ({n: state.n + 1}))
+  },
+  remove() {
+    this.setState(state => ({n: state.n - 1}))
   },
   render() {
     return (
-      <State>
-        <Component
-          ref={(node) => this.handleRef(node)}
-          number={1}
-        />
-        <Component ref='Component2' number={2}/>
-      </State>
+      <div>
+        <div onClick={this.add}>+</div>
+        <div onClick={this.remove}>-</div>
+        {_.map(
+          d => <Component number={d} key={d}/>,
+          _.range(0, this.state.n)
+        )}
+      </div>
     )
   },
 })
