@@ -21,8 +21,8 @@ const generateData = (n) =>
   _.map(() => ({x: random() * 100, y: random() * 100}), _.range(0, n))
 
 const smData = generateData(2)
-const mdData = generateData(100)
-const bgData = generateData(10000)
+const mdData = generateData(200)
+const bgData = generateData(2000)
 
 
 export const Component = () =>
@@ -38,7 +38,7 @@ export const Component = () =>
         data={smData}
         x='x'
         y='y'
-        radiusValue={14}
+        radiusValue={12}
       />
     </Chart>
     <H2>100 points</H2>
@@ -50,9 +50,10 @@ export const Component = () =>
         data={mdData}
         x='x'
         y='y'
+        alphaValue={0.75}
       />
     </Chart>
-    <H2>10000 points</H2>
+    <H2>2000 points</H2>
     <Chart
       xTooltipFormat={formatNumber}
       yTooltipFormat={formatNumber}
@@ -61,8 +62,8 @@ export const Component = () =>
         data={bgData}
         x='x'
         y='y'
-        radiusValue={2}
-        alphaValue={0.2}
+        radiusValue={3}
+        alphaValue={0.35}
       />
     </Chart>
   </div>
