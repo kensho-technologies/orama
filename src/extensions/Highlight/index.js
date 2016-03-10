@@ -3,8 +3,6 @@ import React from 'react'
 
 import {State} from 'on-update'
 import {Points} from '../../Layer'
-import {Block, Column} from 'react-display'
-import {DEFAULT_THEME as theme} from '../../defaultTheme'
 import _ from 'lodash/fp'
 
 const mouseDown = (props, childProps) => {
