@@ -11,6 +11,7 @@ import _ from 'lodash'
 
 import {Chart, Lines, Brush} from '../../../'
 import {State} from 'on-update'
+import {max, min} from 'd3-array'
 
 const LINES_OPTS = {
   title: 'Name',
@@ -60,9 +61,18 @@ export const Component = props =>
     </Brush>
   </div>
 
-const startWith = {xDomain: [new Date(2011, 0), new Date(2014, 0)]}
+// Here we're calculating the initial brush from the min date of the data or 2010 (which one is bigger), to the max date of the data.
+const getXDomain = props => {
+  if (props.applData) {
+    return [
+      max([new Date(2010, 0), min(props.applData, d => d.Date)]),
+      max(props.applData, d => d.Date),
+    ]
+  }
+  return undefined
+}
 
 export const DataVis = props =>
-  <State startWith={startWith}>
-    <Component {...props}/>
+  <State>
+    <Component {...props} xDomain={getXDomain(props)}/>
   </State>
