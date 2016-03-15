@@ -1,17 +1,28 @@
 ## Development Guide
 
 Development needs node >= 5 and npm >= 3.  
+```bash
+# check the versions
+$ node -v && npm -v
+# update if necessary
+# use nvm to help you manage node versions https://github.com/creationix/nvm
+$ nvm i 5
+$ npm i npm -g
+```
+
+After cloning the repo, install the packages dependencies
+```bash
+$ npm i
+```
 
 **Scripts**
 ```bash
 $ npm start
-$ npm run bates -- start
-# install dependencies,
+# update node_modules dependencies if necessary,
 # start a hot reload development server on http://localhost:3000/
 # run unit tests and lint on source change
 
 $ npm test
-$ npm run bates -- test
 # executes unit tests and lint files
 
 $ npm run bates -- cov
