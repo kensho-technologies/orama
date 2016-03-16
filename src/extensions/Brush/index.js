@@ -193,7 +193,7 @@ _Brush.propTypes = {
   fillAlphaValue: PropTypes.number,
   fillValue: PropTypes.number,
   lineWidthValue: PropTypes.number,
-  strokeValue: PropTypes.number,
+  strokeValue: PropTypes.string,
   xDomain: PropTypes.array,
   yDomain: PropTypes.array,
 }
