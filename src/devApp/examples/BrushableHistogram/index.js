@@ -8,7 +8,7 @@ export code from '!!raw!./'
 
 import React from 'react'
 import {Block} from 'react-display'
-import {Chart, Bars, Brush, Text, Layer} from '../../../'
+import {Chart, Bars, Brush, Layer} from '../../../'
 import {State} from 'on-update'
 import d3Array from 'd3-array'
 import _ from 'lodash/fp'
