@@ -3,7 +3,7 @@ export const title = 'Scatterplot Density'
 export const tags = []
 export const hide = false
 export const date = new Date('Tue Mar 08 2016 11:32:09 GMT-0500 (EST)')
-export const description = 'Configuration changes for properly displaying data in a scatterplot according to the number of points to be mapped.'
+export const description = 'Configurations for optimizing the display of data according to the density of points on the screen.'
 export code from '!!raw!./'
 
 import React from 'react'
