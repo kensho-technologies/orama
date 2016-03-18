@@ -55,6 +55,9 @@ Sets the width of the chart.
 - **height** ?: `number`  
 Sets the height of the chart.
 
+- **proportion** ?: `number = 0.5`  
+Sets the proportion of the chart.
+
 - **theme** ?: `object = DEFAULT_THEME`  
 Sets the aesthetics of the chart, defaults to DEFAULT_THEME located on orama/lib/defaultTheme.
 
