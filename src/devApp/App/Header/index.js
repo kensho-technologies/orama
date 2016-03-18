@@ -96,6 +96,11 @@ export const Header = (props) => (
           </A>
         </Block>
         <Block flexShrink={1} marginLeft={10}>
+          <A href='https://github.com/kensho/orama/blob/master/docs/devGuide.md'>
+            Dev Guide
+          </A>
+        </Block>
+        <Block flexShrink={1} marginLeft={10}>
           <A href='https://github.com/kensho/orama/'>
             Github
           </A>
