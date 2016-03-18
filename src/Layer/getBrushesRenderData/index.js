@@ -157,8 +157,8 @@ export const leftVerticalLine = (
     x1, plotRect.y + plotRect.height + backgroundOffset
   )
   hover1stPath2D.rect(
-    x1 - HOVER_OFFSET, plotRect.y - backgroundOffset,
-    HOVER_OFFSET_X2, plotRect.height + backgroundOffset * 2
+    x1 - HOVER_OFFSET_X2, plotRect.y - backgroundOffset,
+    HOVER_OFFSET_X2 + 1, plotRect.height + backgroundOffset * 2
   )
   return {
     name: 'brushesLeft',
@@ -203,7 +203,7 @@ export const rightVerticalLine = (
   path2D.lineTo(
     x2, plotRect.y + plotRect.height + backgroundOffset)
   hover1stPath2D.rect(
-    x2 - HOVER_OFFSET, plotRect.y - backgroundOffset,
+    x2 - 1, plotRect.y - backgroundOffset,
     HOVER_OFFSET_X2, plotRect.height + backgroundOffset * 2
   )
   return {
@@ -251,8 +251,8 @@ export const topHorizontalLine = (
     plotRect.x + plotRect.width + backgroundOffset, y1
   )
   hover1stPath2D.rect(
-    plotRect.x - backgroundOffset, y1 - HOVER_OFFSET,
-    plotRect.width + backgroundOffset * 2, HOVER_OFFSET_X2
+    plotRect.x - backgroundOffset, y1 - HOVER_OFFSET_X2,
+    plotRect.width + backgroundOffset * 2, HOVER_OFFSET_X2 + 1
   )
   return {
     name: 'brushesTop',
@@ -297,7 +297,7 @@ export const bottomHorizontalLine = (
     plotRect.x + plotRect.width + backgroundOffset, y2
   )
   hover1stPath2D.rect(
-    plotRect.x - backgroundOffset, y2 - HOVER_OFFSET,
+    plotRect.x - backgroundOffset, y2 - 1,
     plotRect.width + backgroundOffset * 2, HOVER_OFFSET_X2
   )
   return {
