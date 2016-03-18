@@ -98,12 +98,6 @@ const ticksBottom = (props) => {
   return _.flatten([ticksRData, textRData])
 }
 
-const filterData = props =>
-  _.filter(d => {
-    if (!props.xDomain) return true
-    return d.x1 >= props.xDomain[0] && d.x2 <= props.xDomain[1]
-  }, props.data)
-
 const handleUpdate = (props, childProps) => {
   props.setState({
     xDomain: childProps.xDomain,
@@ -114,8 +108,6 @@ export const Component = props =>
   <Brush
     onUpdate={childProps => handleUpdate(props, childProps)}
     xDomain={props.xDomain}
-    strokeValue='black'
-    lineWidthValue={2}
   >
     <Chart
       proportion={0.25}
@@ -132,12 +124,6 @@ export const Component = props =>
         data={props.data}
         x1='x1' x2='x2' y='y'
         fillValue='gray'
-      />
-      <Bars
-        showHover={false}
-        skipExtractArrays
-        data={filterData(props)}
-        x1='x1' x2='x2' y='y'
       />
       <Layer // ticksTop
         showHover={false}

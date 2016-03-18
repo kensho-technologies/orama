@@ -44,7 +44,6 @@ const InnerHighlight = props => {
         x='Volume'
         y='Adj. Close'
         fillValue='black'
-        tooltipKeys={[]}
       />
     )
     const layers = React.Children.toArray(child.props.children).concat(
