@@ -34,7 +34,7 @@ export const Component = props =>
     <Block flex={1}>
       <Chart
         groupedKeys={['x', 'y']}
-        height={400}
+        proportion={0.7}
         xDomain={props.xDomain}
         yDomain={[props.yDomain[1], props.yDomain[0]]}
         xType='linear'
