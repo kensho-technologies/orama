@@ -61,8 +61,8 @@ export const Header = (props) => (
         {props.title}
         {' '}
         <Inline
-          fontSize='14'
-          paddingLeft='3'
+          fontSize={14}
+          paddingLeft={3}
           verticalAlign='top'
         >
           {version}

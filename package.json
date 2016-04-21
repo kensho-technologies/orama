@@ -19,19 +19,23 @@
   "author": "Luis Carli",
   "license": "MIT",
   "devDependencies": {
-    "bates": "^1.0.0",
+    "bates": "^2.0.0",
     "d3-array": "^0.7.1",
     "d3-dsv": "^0.3.0",
     "d3-random": "^0.2.1",
     "history": "^2.0.0"
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0"
   },
   "dependencies": {
     "d3-scale": "^0.6.1",
     "lodash": "^4.1.0",
-    "on-update": "^1.0.0",
-    "react": "^0.14.0",
-    "react-display": "^1.0.0",
-    "react-dom": "^0.14.0"
+    "on-update": "^2.0.0",
+    "react-display": "^2.0.0"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0-rc.1",
+    "react-dom": "^0.14.0 || ^15.0.0-rc.1"
   },
   "engines": {
     "node": ">=5.0.0",

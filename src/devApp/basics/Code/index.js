@@ -33,7 +33,7 @@ export const Code = props => (
     marginBottom={16 * 1.4}
     marginTop={16 * 1.4}
     overflowY='scroll'
-    padding='16'
+    padding={16}
     whiteSpace='pre-wrap'
     wordBreak='break-all'
     {...props}

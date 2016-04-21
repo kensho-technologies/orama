@@ -20,7 +20,7 @@ const ExampleCard = props => (
     cursor='pointer'
     flexBasis={245}
     flexGrow={1}
-    height='140px'
+    height={140}
     onClick={() => props.onUpdate({click: true})}
     opacity={props.hide ? 0.5 : 1}
     overflowY='hidden'
