@@ -10,17 +10,17 @@ import _ from 'lodash'
 import React from 'react'
 import {Chart, Lines, Layer} from '../../../'
 import {State} from 'on-update'
-import {getPath2D} from '../../../utils/path2DUtils'
+// import {getPath2D} from '../../../utils/path2DUtils'
 
 const timeSkimLayer = (props) => {
   if (!props.xScale || !props.yScale) return undefined
+  return undefined
 }
 
 const data1 = _.map(
   _.range(0, 2, 0.1),
   (d) => ({x: d, y: Math.pow(d, 2.5) * 16}),
 )
-console.log('value')
 
 const data2 = [
   {x: 0, y: 2},
