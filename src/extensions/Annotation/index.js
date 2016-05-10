@@ -46,7 +46,7 @@ const Popup = (props) =>
     padding={1}
   >
     <Block
-      fontSize='12'
+      fontSize={12}
       textAlign='center'
     >Add Label</Block>
     <textarea
