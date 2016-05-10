@@ -8,9 +8,11 @@ export const description = ''
 export code from '!!raw!./'
 
 import React from 'react'
-import _ from 'lodash/fp'
+import fp from 'lodash/fp'
 import {timeMonths} from 'd3-time'
 import {Chart, Areas, getTimeSeries} from '../../../'
+
+const _ = fp.convert({cap: false})
 
 const data = _.map(
   idx => _.each(
