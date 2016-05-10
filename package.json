@@ -28,7 +28,7 @@
     "react-dom": "^15.0.0"
   },
   "dependencies": {
-    "d3-scale": "^0.6.1",
+    "d3-scale": "^0.7.0",
     "lodash": "^4.1.0",
     "on-update": "^2.0.0",
     "react-display": "^2.0.0"
