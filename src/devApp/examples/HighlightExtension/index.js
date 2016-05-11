@@ -11,7 +11,14 @@ import {Chart, Points, Highlight} from '../../../'
 import {State} from 'on-update'
 
 export const Component = props =>
-  <Highlight>
+  <Highlight
+    Component={Points}
+    componentProps={{
+      x: 'Volume',
+      y: 'Adj. Close',
+      alphaValue: 0,
+    }}
+  >
     <Chart
       xType='log'
     >

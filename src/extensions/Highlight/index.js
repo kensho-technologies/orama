@@ -2,7 +2,6 @@
 import React from 'react'
 
 import {State} from 'on-update'
-import {Points} from '../../Layer'
 import _ from 'lodash/fp'
 
 const mouseDown = (props, childProps) => {
@@ -37,16 +36,17 @@ const InnerHighlight = props => {
   const child = React.Children.only(props.children)
   if (child.type.displayName === 'ChartWidthHOC') {
     const HighlightElement = (
-      <Points
+      <props.Component
         skipExtractArrays={true}
-        data={props.data}
-        key='annotation'
-        x='Volume'
-        y='Adj. Close'
+        key='InnerHighlight'
         fillValue='black'
+        alphaValue={0.5}
+        data={props.data}
+        {...props.componentProps}
       />
     )
-    const layers = React.Children.toArray(child.props.children).concat(
+    const layers = React.Children.toArray(child.props.children)
+    layers.splice(props.slice, 0,
       HighlightElement,
     )
     return (
@@ -62,6 +62,7 @@ const InnerHighlight = props => {
   return <div/>
 }
 InnerHighlight.defaultProps = {
+  slice: 1,
   data: [],
 }
 
