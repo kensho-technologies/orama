@@ -7,7 +7,7 @@ export const description = ''
 export code from '!!raw!./'
 
 import React from 'react'
-import {Chart, Points, Brush} from '../../../'
+import {Chart, Points, Brush, Highlight} from '../../../'
 import {State} from 'on-update'
 import _ from 'lodash/fp'
 import {Block, Row} from 'react-display'
@@ -27,11 +27,21 @@ const handleUpdate = (props, childProps) => {
   })
 }
 
-export const Component = props =>
-  <Row
-    position='relative'
-  >
-    <Block flex={1}>
+const handleClose = (props) => {
+  props.setState({showMap: !props.showMap})
+}
+
+const MainChart = (props) =>
+  <Block flex={1}>
+    <Highlight
+      Component={Points}
+      componentProps={{
+        x: props.x,
+        y: props.y,
+        radiusValue: 4,
+        alphaValue: 1,
+      }}
+    >
       <Chart
         groupedKeys={['x', 'y']}
         proportion={0.7}
@@ -48,31 +58,59 @@ export const Component = props =>
           radiusValue={3}
         />
       </Chart>
-    </Block>
-    <Block
-      width={150}
-      marginLeft={5}
-    >
-      <Brush
-        onUpdate={childProps => handleUpdate(props, childProps)}
-        xDomain={props.xDomain}
-        yDomain={props.yDomain}
-      >
-        <Chart
-          proportion={1}
-          yShowLabel={false}
-          xShowLabel={false}
-          backgroundOffset={0}
+    </Highlight>
+  </Block>
+
+const getLayout = (props) => {
+  if (props.showMap) {
+    return (
+      <Row flex={1}>
+        <MainChart {...props} />
+        <Block
+          width={150}
+          marginLeft={5}
         >
-          <Points
-            data={props.data}
-            x={props.x}
-            y={props.y}
-            fillValue='gray'
-            radiusValue={2}
-          />
-        </Chart>
-      </Brush>
+          <Brush
+            onUpdate={childProps => handleUpdate(props, childProps)}
+            xDomain={props.xDomain}
+            yDomain={props.yDomain}
+          >
+            <Chart
+              proportion={1}
+              yShowLabel={false}
+              xShowLabel={false}
+              backgroundOffset={0}
+            >
+              <Points
+                data={props.data}
+                x={props.x}
+                y={props.y}
+                fillValue='gray'
+                radiusValue={2}
+              />
+            </Chart>
+          </Brush>
+        </Block>
+      </Row>
+    )
+  }
+  return <MainChart {...props} />
+}
+
+export const Component = (props) =>
+  <Row
+    position='relative'
+  >
+    {getLayout(props)}
+    <Block
+      position='absolute'
+      top={-25}
+      right={0}
+      cursor='pointer'
+      onClick={() => handleClose(props)}
+      fontSize={13}
+    >
+      {props.showMap ? 'close map' : 'show map'}
     </Block>
   </Row>
 const startWith = props => {
@@ -88,5 +126,6 @@ export const DataVis = props =>
       data={_.filter(d => d.Volume < 200000000, props.fbData)}
       x='Volume'
       y='Adj. Close'
+      showMap={true}
     />
   </State>
