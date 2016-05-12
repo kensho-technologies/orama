@@ -11,11 +11,11 @@ const mouseDown = (props, childProps) => {
     const index = _.indexOf(hoverData, data)
     if (index > -1) {
       data.splice(index, 1)
-      props.setState({
+      props.onUpdate({
         data: [...data],
       })
     } else {
-      props.setState({
+      props.onUpdate({
         data: [...data, hoverData],
       })
     }
@@ -67,6 +67,6 @@ InnerHighlight.defaultProps = {
 }
 
 export const Highlight = props =>
-  <State>
-    <InnerHighlight {...props}/>
+  <State {..._.omit('children', props)}>
+    <InnerHighlight children={props.children}/>
   </State>
