@@ -3,7 +3,8 @@ export const title = 'Bar Labels'
 export const tags = []
 export const hide = false
 export const date = new Date('Tue May 10 2016 18:33:39 GMT-0400 (EDT)')
-export const description = ''
+export const description = `Labels + click to highlight.
+To control what gets highlighted, pass an onUpdate callback and send down the highlighted data.`
 export code from '!!raw!./'
 
 import React from 'react'
@@ -59,6 +60,7 @@ const barLabel = (props) => {
 
 export const Component = () =>
   <Highlight
+    // onUpdate={(d)=>console.log(d)}
     Component={Bars}
     componentProps={{
       x: 'value',
