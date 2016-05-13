@@ -7,6 +7,7 @@ import {lines} from '../Layer/lines'
 import {points} from '../Layer/points'
 import {ranges} from '../Layer/ranges'
 import {text} from '../Layer/text'
+import {scatterplotLabels} from '../Layer/scatterplotLabels'
 
 export {areas} from '../Layer/areas'
 export {bars} from '../Layer/bars'
@@ -37,3 +38,6 @@ export const Ranges = () => null
 Ranges.plot = ranges
 export const Text = () => null
 Text.plot = text
+
+export const ScatterplotLabels = () => null
+ScatterplotLabels.plot = scatterplotLabels
