@@ -14,6 +14,7 @@
     "no-var": 0,
     "object-curly-spacing": 0,
     "react/jsx-boolean-value": 0,
+    "react/wrap-multilines": 0,
     "react/jsx-closing-bracket-location": 2,
     "react/jsx-curly-spacing": [2, "never"],
     "react/jsx-indent-props": [1, 2],
