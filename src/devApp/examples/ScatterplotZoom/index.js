@@ -3,21 +3,22 @@ export const title = 'Scatterplot Zoom'
 export const tags = []
 export const hide = false
 export const date = new Date('Fri Mar 18 2016 13:28:39 GMT-0400 (EDT)')
-export const description = ''
+export const description = `Example of scatterplot with zoom and highlight.`
 export code from '!!raw!./'
 
 import React from 'react'
-import {Chart, Points, Brush, Highlight} from '../../../'
+import {Chart, Points, Brush, Highlight, ScatterplotLabels} from '../../../'
 import {State} from 'on-update'
 import _ from 'lodash/fp'
 import {Block, Row} from 'react-display'
+import d3Array from 'd3-array'
 
 const filterData = props =>
   _.filter(d => {
     if (!props.xDomain) return true
     const xValue = _.get(props.x, d)
     const yValue = _.get(props.y, d)
-    return xValue > props.xDomain[0] && xValue < props.xDomain[1] && yValue > props.yDomain[1] && yValue < props.yDomain[0]
+    return xValue >= props.xDomain[0] && xValue <= props.xDomain[1] && yValue >= props.yDomain[1] && yValue <= props.yDomain[0]
   }, props.data)
 
 const handleUpdate = (props, childProps) => {
@@ -57,6 +58,13 @@ const MainChart = (props) =>
           y={props.y}
           radiusValue={3}
         />
+        <ScatterplotLabels
+          skipExtractArrays
+          data={filterData(props)}
+          x={props.x}
+          y={props.y}
+          text='Name'
+        />
       </Chart>
     </Highlight>
   </Block>
@@ -79,7 +87,7 @@ const getLayout = (props) => {
               proportion={1}
               yShowLabel={false}
               xShowLabel={false}
-              backgroundOffset={0}
+              backgroundOffset={5}
             >
               <Points
                 data={props.data}
@@ -121,9 +129,9 @@ export const DataVis = props =>
   <State startWith={startWith}>
     <Component
       {...props}
-      xDomain={[10000000, 100000000]}
-      yDomain={[100, 50]}
-      data={_.filter(d => d.Volume < 200000000, props.fbData)}
+      xDomain={d3Array.extent(_.slice(20, 60, props.fbData), d => d.Volume)}
+      yDomain={d3Array.extent(_.slice(20, 60, props.fbData), d => d['Adj. Close']).reverse()}
+      data={_.slice(20, 60, props.fbData)}
       x='Volume'
       y='Adj. Close'
       showMap={true}
