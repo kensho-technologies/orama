@@ -12,6 +12,7 @@ import {State} from 'on-update'
 
 export const Component = props =>
   <Highlight
+    // onUpdate={(d)=>console.log(d)}
     Component={Points}
     componentProps={{
       x: 'Volume',
