@@ -42,7 +42,7 @@ export const Router = React.createClass({
     this.props.onUpdate({
       routerSection: paths[0],
       routerSubSection: paths[1],
-      routerSubSubSection: paths[1],
+      routerSubSubSection: paths[2],
     })
   },
   handleRoute(childProps) {
