@@ -3,7 +3,7 @@ export const title = 'Scatterplot Zoom'
 export const tags = []
 export const hide = false
 export const date = new Date('Fri Mar 18 2016 13:28:39 GMT-0400 (EDT)')
-export const description = `Example of scatterplot with zoom and highlight.`
+export const description = 'Example of scatterplot with zoom and highlight.'
 export code from '!!raw!./'
 
 import React from 'react'
