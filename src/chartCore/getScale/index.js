@@ -1,6 +1,6 @@
 
 import _ from 'lodash'
-import d3Scale from 'd3-scale'
+import * as d3Scale from 'd3-scale'
 
 import {DOMAIN} from '../../chartCore/defaults'
 import {NICE} from '../../chartCore/defaults'

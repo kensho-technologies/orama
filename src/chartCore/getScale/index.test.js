@@ -2,7 +2,7 @@
 import {it as test} from 'mocha'
 import assert from 'assert'
 
-import d3Scale from 'd3-scale'
+import * as d3Scale from 'd3-scale'
 
 import * as methods from './'
 
