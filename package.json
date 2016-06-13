@@ -20,15 +20,15 @@
   "license": "MIT",
   "devDependencies": {
     "bates": "^2.0.0",
-    "d3-array": "^0.7.1",
-    "d3-dsv": "^0.3.0",
-    "d3-random": "^0.2.1",
+    "d3-array": "^0.8.0",
+    "d3-dsv": "^0.4.0",
+    "d3-random": "^0.3.0",
     "history": "^2.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0"
   },
   "dependencies": {
-    "d3-scale": "^0.8.0",
+    "d3-scale": "^0.9.0",
     "lodash": "^4.1.0",
     "on-update": "^2.0.0",
     "react-display": "^2.0.0"
