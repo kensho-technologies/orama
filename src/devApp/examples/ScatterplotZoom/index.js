@@ -11,7 +11,7 @@ import {Chart, Points, Brush, Highlight, ScatterplotLabels} from '../../../'
 import {State} from 'on-update'
 import _ from 'lodash/fp'
 import {Block, Row} from 'react-display'
-import d3Array from 'd3-array'
+import * as d3Array from 'd3-array'
 
 const filterData = props =>
   _.filter(d => {
