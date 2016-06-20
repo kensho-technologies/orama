@@ -3,7 +3,11 @@ export const title = 'Scatterplot Zoom'
 export const tags = []
 export const hide = false
 export const date = new Date('Fri Mar 18 2016 13:28:39 GMT-0400 (EDT)')
-export const description = 'Example of scatterplot with zoom and highlight.'
+export const description = `Example of scatterplot with zoom and highlight.
+
+Some of the complexity of the underneath code is for performance tweaking while leaving multiple endpoints open for customization: which labels should be shown, extra callbacks for data manipulation and saving.
+
+For simple use cases the code can be extracted in a separate component, using the DataVis component as a configuration entry point.`
 export code from '!!raw!./'
 
 import React from 'react'
