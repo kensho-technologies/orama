@@ -58,16 +58,24 @@ const MainChart = (props) =>
           y={props.y}
           radiusValue={3}
         />
-        <ScatterplotLabels
+        {!props.mouseDown ? <ScatterplotLabels
           skipExtractArrays
           data={filterData(props)}
           x={props.x}
           y={props.y}
           text='Name'
-        />
+        /> : null}
       </Chart>
     </Highlight>
   </Block>
+
+const handleBrushMouseDown = (props) => {
+  props.setState({mouseDown: true})
+}
+
+const handleBrushMouseUp = (props) => {
+  props.setState({mouseDown: false})
+}
 
 const getLayout = (props) => {
   if (props.showMap) {
@@ -82,6 +90,8 @@ const getLayout = (props) => {
             onUpdate={childProps => handleUpdate(props, childProps)}
             xDomain={props.xDomain}
             yDomain={props.yDomain}
+            onMouseUp={() => handleBrushMouseUp(props)}
+            onMouseDown={() => handleBrushMouseDown(props)}
           >
             <Chart
               proportion={1}
@@ -121,12 +131,9 @@ export const Component = (props) =>
       {props.showMap ? 'close map' : 'show map'}
     </Block>
   </Row>
-const startWith = props => {
-  props.setState({})
-}
 
 export const DataVis = props =>
-  <State startWith={startWith}>
+  <State>
     <Component
       {...props}
       xDomain={d3Array.extent(_.slice(20, 60, props.fbData), d => d.Volume)}
