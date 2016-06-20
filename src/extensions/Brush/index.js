@@ -145,6 +145,11 @@ const mouseDrag = (props, childProps) => {
     const cBounds = constraintToPlotRect(bounds, childProps)
     props.onUpdate(boundsToDomain(cBounds, childProps))
   }
+  if (props.onMouseDown) props.onMouseDown()
+}
+
+const mouseUp = (props) => {
+  if (props.onMouseUp) props.onMouseUp()
 }
 
 const handleChart = (props, childProps) => {
@@ -152,6 +157,8 @@ const handleChart = (props, childProps) => {
     case 'mouseDown': mouseDown(props, childProps)
       break
     case 'mouseDrag': mouseDrag(props, childProps)
+      break
+    case 'mouseUp': mouseUp(props, childProps)
       break
     default:
   }
