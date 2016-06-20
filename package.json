@@ -21,6 +21,7 @@
   "devDependencies": {
     "bates": "^2.0.0",
     "d3-array": "^0.8.0",
+    "d3-dsv": "^1.0.0",
     "d3-random": "^0.3.0",
     "history": "^2.0.0",
     "react": "^15.0.0",
