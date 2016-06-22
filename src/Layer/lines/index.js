@@ -37,6 +37,7 @@ export const getPointData = (props, datum) => {
 
 const getHoverSolverObj = (props, renderDatum, hoverData) => ({
   hoverRenderData: [renderDatum, getPointData(props, hoverData)],
+  renderDatum,
   hoverData,
 })
 

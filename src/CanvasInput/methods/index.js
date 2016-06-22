@@ -19,6 +19,7 @@ export const runHoverSolverOn = dataUnderMouse => {
     hoverOriginalData: hoverData,
     hoverRenderData: hoverSolverData.hoverRenderData,
     hoverData: hoverSolverData.hoverData,
+    renderDatum,
     localMouse,
     mouse,
   }

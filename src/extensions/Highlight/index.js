@@ -6,9 +6,9 @@ import _ from 'lodash/fp'
 
 const mouseDown = (props, childProps) => {
   const {data} = props
-  const {hoverData} = childProps
-  if (hoverData) {
-    const index = _.indexOf(hoverData, data)
+  const {renderDatum} = childProps
+  if (renderDatum) {
+    const index = _.indexOf(renderDatum.data, data)
     if (index > -1) {
       data.splice(index, 1)
       props.onUpdate({
@@ -16,7 +16,7 @@ const mouseDown = (props, childProps) => {
       })
     } else {
       props.onUpdate({
-        data: [...data, hoverData],
+        data: [...data, renderDatum.data],
       })
     }
   }
@@ -68,5 +68,8 @@ InnerHighlight.defaultProps = {
 
 export const Highlight = props =>
   <State {..._.omit('children', props)}>
-    <InnerHighlight children={props.children}/>
+    <InnerHighlight
+      children={props.children}
+      onUpdate={props.onUpdate}
+    />
   </State>
