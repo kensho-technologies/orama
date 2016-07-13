@@ -12,6 +12,7 @@ const getTextRenderData = (props, datum, idx) => {
   const {
     plotRect,
     theme = DEFAULT_THEME,
+    scatterplotLabelsBounds = true,
   } = props
   const values = getPlotValues(props, datum, idx, {
     text: '',
@@ -22,10 +23,13 @@ const getTextRenderData = (props, datum, idx) => {
   const width = ctx.measureText(values.text).width
   ctx.restore()
 
-  if (values.x + width > plotRect.width + plotRect.x) {
-    values.x = values.x - width - 20
+  if (scatterplotLabelsBounds) {
+    if (values.x + width > plotRect.width + plotRect.x) {
+      values.x = values.x - width - 20
+    }
+    if (values.y < plotRect.y + 20) values.y += 20
   }
-  if (values.y < plotRect.y + 20) values.y += 20
+
 
   return {
     ...values,
