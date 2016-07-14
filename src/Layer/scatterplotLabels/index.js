@@ -16,6 +16,7 @@ const getTextRenderData = (props, datum, idx) => {
   } = props
   const values = getPlotValues(props, datum, idx, {
     text: '',
+    fill: theme.textFill,
   })
 
   ctx.save()
@@ -39,7 +40,6 @@ const getTextRenderData = (props, datum, idx) => {
     selected: true,
     height: 22,
     textAlign: 'left',
-    fill: theme.textFill,
     textBaseline: 'middle',
     type: 'text',
   }
