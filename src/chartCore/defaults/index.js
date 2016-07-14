@@ -15,7 +15,7 @@ export const ACCESSORS_NAMES_NON_SCALABLE = [
   'rotate',
   'textAlign', 'textBaseline', 'textSnap',
   'xOffset', 'yOffset',
-  'font',
+  'font', 'fontSize',
 ]
 
 export const ACCESSORS_GROUPS = {

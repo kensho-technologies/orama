@@ -46,7 +46,7 @@ export const basicRender = (props, ctx) => {
         if (notDatum(d.text)) return
         ctx.save()
         ctx.globalAlpha = d.alpha
-        ctx.font = d.font || `${theme.plotFontSize}px ${theme.fontFamilyMono}`
+        ctx.font = d.font || `${d.fontSize || theme.plotFontSize}px ${theme.fontFamilyMono}`
         ctx.fillStyle = d.fill || theme.textFill
         ctx.textAlign = d.textAlign || 'left'
         ctx.textBaseline = d.textBaseline || 'alphabetic'
