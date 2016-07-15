@@ -181,6 +181,7 @@ const _Brush = props => {
         x2='x2'
         y1='y1'
         y2='y2'
+        {...props}
       />
     )
     const layers = React.Children.toArray(child.props.children).concat(
