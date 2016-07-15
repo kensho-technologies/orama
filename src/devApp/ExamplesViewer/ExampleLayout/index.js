@@ -1,6 +1,7 @@
 /* eslint react/prop-types: 0 */
 
 import React, {PropTypes} from 'react'
+import _ from 'lodash/fp'
 
 import {TextBody} from '../../basics/TextBody'
 import {Block, Row} from 'react-display'
@@ -18,7 +19,7 @@ const SwitchBtn = props =>
     cursor='pointer'
     onClick={() => handleSwitchBtn(props)}
     padding='2px 4px'
-    {...props}
+    {..._.omit(['onUpdate', 'onState'], props)}
   />
 
 const Switcher = props =>

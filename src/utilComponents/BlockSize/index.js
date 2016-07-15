@@ -2,6 +2,7 @@
 import React, {PropTypes} from 'react'
 import {findDOMNode} from 'react-dom'
 import {Block} from 'react-display'
+import _ from 'lodash/fp'
 
 export const BlockSize = React.createClass({
   propTypes: {
@@ -28,7 +29,7 @@ export const BlockSize = React.createClass({
     }
     return (
       <Block
-        {...this.props}
+        {..._.omit(['onUpdate', 'onState'], this.props)}
         ref={refClbck}
       />
     )

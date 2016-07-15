@@ -42,7 +42,7 @@ export const _A = props => (
     onMouseEnter={_.partial(handleMouseEnter, props)}
     onMouseLeave={_.partial(handleMouseLeave, props)}
     onMouseUp={_.partial(handleMouseUp, props)}
-    {...props}
+    {..._.omit(props, ['onUpdate', 'onState'])}
   />
 )
 _A.propTypes = {

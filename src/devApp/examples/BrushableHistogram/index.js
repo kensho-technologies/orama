@@ -7,7 +7,6 @@ export const description = ''
 export code from '!!raw!./'
 
 import React from 'react'
-import {Block} from 'react-display'
 import {Chart, Bars, Brush, Layer} from '../../../'
 import {State} from 'on-update'
 import * as d3Array from 'd3-array'
@@ -157,7 +156,6 @@ export const DataVis = props => {
   const dataArray = _.map('Adj. Close', props.fbData)
   return (
     <State startWith={startWith}>
-      <Block marginBottom='20'>using FB close price data</Block>
       <Component
         {...props}
         data={getHistData(dataArray)}
