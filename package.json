@@ -1,6 +1,6 @@
 {
   "name": "orama",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "React data visualization components",
   "main": "lib/index.js",
   "scripts": {
