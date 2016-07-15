@@ -73,10 +73,13 @@ const getTextRenderData = (props, datum, idx) => {
   const width = ctx.measureText(yTickFormat(values.text)).width
   ctx.restore()
 
+  let fill = theme.textFill
+  if (props.layerSelected === datum.Name) fill = 'white'
+
   return {
     ...values,
     boxFill: values.fill,
-    fill: theme.textFill,
+    fill,
     id: idx,
     name: values.text,
     width: width + 7,
@@ -150,50 +153,67 @@ const ticksRight = (props) => {
   return _.flatten([ticksRData, textRData])
 }
 
-export const DataVis = props => {
-  const lastData = _.map(_.last, filterData([props.applData, props.fbData]))
-  const marginRight = getMarginRight({
-    data: lastData,
-    theme: DEFAULT_THEME,
-    yTickFormat: nFormat,
-    y: 'Adj. Close',
-  })
-  return <Chart
-    yNice={true}
-    yShowTicks={false}
-    yShowGuides={false}
-    yShowLabel={false}
-    margin={{top: 5, right: marginRight + 15}}
-    backgroundOffset={0}
-  >
-    <Layer
-      clipPlot={false}
-      showHover={false}
-      plot={ticksRight}
-      skipExtractArrays
-      y='value'
-      strokeValue='lightgray'
-      lineWidthValue={1}
-    />
-    <Lines
-      data={filterData([props.applData, props.fbData])}
-      stroke='Name'
-      title='Name'
-      x='Date'
-      y='Adj. Close'
-    />
-    <Layer
-      plot={labelsRight}
-      data={lastData}
-      showHover={false}
-      x='Date'
-      y='Adj. Close'
-      fill='Name'
-      text='Adj. Close'
-      xOffsetValue={-3}
-      textBaseline={'middle'}
-      yTickFormat={nFormat}
-      clipPlot={false}
-    />
-  </Chart>
+export class DataVis extends React.Component {
+  state = {selected: undefined}
+  handleChartUpdate(childProps) {
+    if (childProps.action === 'mouseClick' && childProps.hoverData) {
+      this.setState({selected: childProps.hoverData.Name})
+    }
+  }
+  render() {
+    const {props} = this
+    const lastData = _.map(_.last, filterData([props.applData, props.fbData]))
+    const marginRight = getMarginRight({
+      data: lastData,
+      theme: DEFAULT_THEME,
+      yTickFormat: nFormat,
+      y: 'Adj. Close',
+    })
+    return <Chart
+      onUpdate={this.handleChartUpdate.bind(this)}
+      yNice={true}
+      yShowTicks={false}
+      yShowGuides={false}
+      yShowLabel={false}
+      margin={{top: 5, right: marginRight + 15}}
+      backgroundOffset={0}
+    >
+      <Layer
+        clipPlot={false}
+        showHover={false}
+        plot={ticksRight}
+        skipExtractArrays
+        y='value'
+        strokeValue='lightgray'
+        lineWidthValue={1}
+      />
+      <Lines
+        data={filterData([props.applData, props.fbData])}
+        strokeValue={(p, d, i) => {
+          if (this.state.selected === d.Name) return 'black'
+          return DEFAULT_THEME.plotOrdinalRangeFill[i]
+        }}
+        title='Name'
+        x='Date'
+        y='Adj. Close'
+      />
+      <Layer
+        plot={labelsRight}
+        layerSelected={this.state.selected}
+        data={lastData}
+        showHover={false}
+        x='Date'
+        y='Adj. Close'
+        fillValue={(p, d, i) => {
+          if (this.state.selected === d.Name) return 'black'
+          return DEFAULT_THEME.plotOrdinalRangeFill[i]
+        }}
+        text='Adj. Close'
+        xOffsetValue={-3}
+        textBaseline={'middle'}
+        yTickFormat={nFormat}
+        clipPlot={false}
+      />
+    </Chart>
+  }
 }
