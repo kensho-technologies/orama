@@ -2,8 +2,12 @@
 import _ from 'lodash'
 
 export * as canvasUtils from './canvasUtils'
-export * as rectUtils from './rectUtils'
+export * as dataGeneration from './dataGeneration'
+export * as imageRender from './imageRender'
+export labeler from './labeler'
 export * as path2DUtils from './path2DUtils'
+export * as rectUtils from './rectUtils'
+export * as windowUtils from './windowUtils'
 
 const checkNotPlotNumber = value => _.isNaN(value) || !_.isNumber(value)
 export const notPlotNumber = value => {
