@@ -7,7 +7,7 @@ import 'whatwg-fetch'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {flow, get, map, zipObject, each, sortBy} from 'lodash/fp'
+import _ from 'lodash/fp'
 
 import {State} from 'on-update'
 import {Router} from './devApp/Router'
@@ -16,6 +16,8 @@ import {sectionsData} from './devApp/Section'
 import {fetchJson} from './devApp/fetchers'
 import {timeParse} from 'd3-time-format'
 
+_.map = _.map.convert({cap: false})
+
 document.title = 'Orama'
 
 const getDate = timeParse('%Y-%m-%d')
@@ -23,20 +25,20 @@ const getDate = timeParse('%Y-%m-%d')
 const APPL_URL = 'https://www.quandl.com/api/v3/datasets/WIKI/AAPL/data.json?start_date=2000-01-01&auth_token=WpsneDZ79Xem9zJc5amR'
 const FB_URL = 'https://www.quandl.com/api/v3/datasets/WIKI/FB/data.json?start_date=2000-01-01&auth_token=WpsneDZ79Xem9zJc5amR'
 
-const quandlMap = flow(
-  get('dataset_data.column_names'),
-  zipObject,
+const quandlMap = _.flow(
+  _.get('dataset_data.column_names'),
+  _.zipObject,
 )
 
 const quandlFlow = (result, name) =>
-  flow(
-    get('dataset_data.data'),
-    map(quandlMap(result)),
-    each(d => {
+  _.flow(
+    _.get('dataset_data.data'),
+    _.map(quandlMap(result)),
+    _.each(d => {
       d.Name = name
       d.Date = getDate(d.Date)
     }),
-    sortBy('Date'),
+    _.sortBy('Date'),
   )(result)
 
 const startWith = async props => {
