@@ -34,7 +34,7 @@ get a scale with logic for the x and y axis, if the domain starts and finishes o
 */
 const getBaseScales = (type, domain, range, nice, tickCount) => {
   if (type === 'time') {
-    const timeScale = d3Scale.scaleTime()
+    const timeScale = d3Scale.scaleUtc()
       .domain(domain)
       .range(range)
     if (nice) timeScale.nice(tickCount)
