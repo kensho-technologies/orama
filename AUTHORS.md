@@ -1,0 +1,4 @@
+- Luis Carli <info@luiscarli.com>
+- Joseph Ong <jong@college.harvard.edu>
+- Billy Janitsch
+- Martin Camacho

@@ -1,0 +1,38 @@
+{
+  "name": "orama",
+  "version": "1.1.11",
+  "description": "React data visualization components",
+  "main": "lib/index.js",
+  "scripts": {
+    "prebuild": "rm -rf lib",
+    "build": "babel src -d lib",
+    "test": "mocha --compilers js:babel-register -R dot 'src/**/*.test.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kensho/orama"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org/"
+  },
+  "author": "Luis Carli <info@luiscarli.com>",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-kensho": "^2.0.0",
+    "babel-register": "^6.24.1",
+    "mocha": "^3.2.0",
+    "react-test-renderer": "^15.5.4"
+  },
+  "dependencies": {
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "prop-types": "^15.5.8",
+    "d3-scale": "^1.0.0",
+    "lodash": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=6.0.0",
+    "npm": ">=3.0.0"
+  }
+}
