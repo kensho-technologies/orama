@@ -6,7 +6,8 @@
   "scripts": {
     "prebuild": "rm -rf lib",
     "build": "babel src -d lib",
-    "test": "mocha --compilers js:babel-register -R dot 'src/**/*.test.js'"
+    "test": "nyc mocha --compilers js:babel-register -R dot 'src/**/*.test.js'",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,9 @@
     "babel-cli": "^6.24.1",
     "babel-preset-kensho": "^2.0.0",
     "babel-register": "^6.24.1",
+    "coveralls": "^2.13.1",
     "mocha": "^3.2.0",
+    "nyc": "^10.3.2",
     "react-test-renderer": "^15.5.4"
   },
   "dependencies": {
