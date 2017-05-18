@@ -7,7 +7,7 @@ Plug and Play [React](https://facebook.github.io/react/) Charts
 - Canvas rendering and caching optimizations
 - Configurable theme
 
-Orama has been powering [Kensho's](http://kensho.com) charts for more than a year. With ~95% code coverage, it's a battle tested and production ready library.
+Orama has been powering [Kensho's](https://www.kensho.com) charts in production for more than a year.
 
 > /horáō, "to see, spiritually and mentally" – a vision, focusing on the impact it has on the one beholding the vision.
 
