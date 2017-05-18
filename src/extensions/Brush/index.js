@@ -168,7 +168,7 @@ const handleChart = (props, childProps) => {
 
 const _Brush = props => {
   const child = React.Children.only(props.children)
-  if (child.type.displayName === 'ChartWidthHOC') {
+  if (child.type.name === 'ChartWidthHOC') {
     const BrushElement = (
       <Brushes
         data={[getBrushData(props)]}

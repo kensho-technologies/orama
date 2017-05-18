@@ -35,7 +35,7 @@ const handleChart = (props, childProps) => {
 
 const InnerHighlight = props => {
   const child = React.Children.only(props.children)
-  if (child.type.displayName === 'ChartWidthHOC') {
+  if (child.type.name === 'ChartWidthHOC') {
     const HighlightElement = (
       <props.Component
         skipExtractArrays={true}
