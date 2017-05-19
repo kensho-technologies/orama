@@ -2,3 +2,4 @@
 - Joseph Ong
 - Billy Janitsch
 - Martin Camacho
+- Jordan Hayashi
