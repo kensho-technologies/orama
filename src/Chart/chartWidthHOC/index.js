@@ -12,6 +12,7 @@ export const chartWidthHOC = InputComponent =>
     static propTypes = {
       width: PropTypes.number,
     }
+    static displayName = 'ChartWidthHOC'
     state = {}
     componentWillReceiveProps = () => {
       this.updateWidth()
