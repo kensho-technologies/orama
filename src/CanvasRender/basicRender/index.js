@@ -50,7 +50,7 @@ export const basicRender = (props, ctx) => {
         ctx.fillStyle = d.fill || theme.textFill
         ctx.textAlign = d.textAlign || 'left'
         ctx.textBaseline = d.textBaseline || 'alphabetic'
-        ctx.translate(d.x + (d.xOffset || 0), d.y + (d.yOffset || 0))
+        ctx.translate(d.x, d.y)
         ctx.rotate(d.rotate)
         ctx.fillText(d.text, 0, 0)
         ctx.restore()

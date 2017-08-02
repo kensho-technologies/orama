@@ -5,12 +5,13 @@ import {getMinX, getMinY} from '../../utils/rectUtils'
 import {getMidX, getMidY} from '../../utils/rectUtils'
 import {getMaxX, getMaxY} from '../../utils/rectUtils'
 import {getPlotValues} from '../../Layer/getPlotValues'
+import {fitCheckText} from '../../utils/textUtils'
 
 /*
 generates the array of render data
 */
 export const getTextRenderData = (props, datum, idx) => {
-  const {plotRect} = props
+  const {plotRect, theme, width, height} = props
   const values = getPlotValues(props, datum, idx, {
     x: getMidX(props.plotRect),
     y: getMidY(props.plotRect),
@@ -37,8 +38,10 @@ export const getTextRenderData = (props, datum, idx) => {
     values.y = getMaxY(plotRect)
   }
 
+  const newValues = fitCheckText(values, width, height, theme)
+
   return {
-    ...values,
+    ...newValues,
     type: 'text',
   }
 }

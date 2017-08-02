@@ -15,9 +15,7 @@ export const ctxMock = {
   isPointInPath: noop,
   isPointInStroke: noop,
   lineTo: noop,
-  measureText(text) {
-    return {width: text.toString().length}
-  },
+  measureText: (text) => ({width: text.toString().length}),
   arcTo: noop,
   moveTo: noop,
   quadraticCurveTo: noop,
