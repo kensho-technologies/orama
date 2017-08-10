@@ -42,6 +42,8 @@ It has the following resolution order:
 1. ${key}Value on the props
 2. scaled data accessed with the accessor
 3. ${key}Value on the data
+4. defaultValue from arguments
+5. value of datum[accessor] (can be undefined)
 */
 export const plotValue = (
   props, datum, idx, key, defaultValue
@@ -55,13 +57,20 @@ export const plotValue = (
 
   if (_.isFunction(value)) return value(props, datum, idx)
   if (isDatum(value)) return value
-  if (scale) {
-    const mappedValue = scale(_.get(datum, accessor))
-    if (isDatum(mappedValue)) return mappedValue
-  }
   const objValue = _.get(datum, accessor)
+  if (scale) {
+    const mappedValue = scale(objValue)
+    if (isDatum(mappedValue) && isDatum(objValue)) return mappedValue
+  }
   if (isDatum(objValue)) return objValue
   const objKeyValue = _.get(datum, `${key}Value`)
   if (isDatum(objKeyValue)) return objKeyValue
-  return defaultValue
+  return defaultValue || objValue
 }
+
+export const isNullPoint = props => (datum, idx) => (
+  plotValue(props, datum, idx, 'x', null) === null
+  || plotValue(props, datum, idx, 'x0', null) === null
+  || plotValue(props, datum, idx, 'y', null) === null
+  || plotValue(props, datum, idx, 'y0', null) === null
+)

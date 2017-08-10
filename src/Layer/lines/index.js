@@ -82,12 +82,14 @@ const getLineRenderData = (props, data, idx) => {
     splineInterpolation(props, data, path2D)
   } else {
     path2D.moveTo(values.x, values.y)
-    _.each(data, d => {
+    _.reduce(data, (shouldDrawPoint, d) => {
       const x = plotValue(props, d, idx, 'x')
       const y = plotValue(props, d, idx, 'y')
-      if (notPlotNumber([x, y])) return
-      path2D.lineTo(x, y)
-    })
+      if (notPlotNumber([x, y])) return false
+      if (shouldDrawPoint) path2D.lineTo(x, y)
+      else path2D.moveTo(x, y)
+      return true
+    }, true)
   }
   return {
     ...values,

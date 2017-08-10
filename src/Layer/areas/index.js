@@ -5,9 +5,8 @@ import _ from 'lodash'
 import {getMaxY} from '../../utils/rectUtils'
 import {getPath2D} from '../../utils/path2DUtils'
 import {getPlotValues} from '../../Layer/getPlotValues'
-import {isPlotNumber} from '../../utils'
-import {notPlotNumber} from '../../utils'
-import {plotValue} from '../../Layer/plotValue'
+import {isPlotNumber, notPlotNumber, splitBy} from '../../utils'
+import {plotValue, isNullPoint} from '../../Layer/plotValue'
 
 export const getPointData = (props, datum, yKey) => {
   const path2D = getPath2D()
@@ -119,11 +118,21 @@ export const getAreaRenderData = (props, data, idx) => {
     type: 'area',
   }
 }
+
+const splitDataAtNulls = (props, data) => {
+  const checkNullPoint = isNullPoint(props)
+  return _.reject(
+    splitBy(data, checkNullPoint).map(arr => _.reject(arr, checkNullPoint)),
+    _.isEmpty
+  )
+}
+
 export const areas = props => {
   if (!props.xScale || !props.yScale) return undefined
-  if (_.isArray(_.head(props.data))) {
+  const data = splitDataAtNulls(props, props.data)
+  if (_.isArray(_.head(data))) {
     return _.reduce(
-      props.data,
+      data,
       (acc, data, idx) => acc.concat(getAreaRenderData(props, data, idx)),
       []
     )

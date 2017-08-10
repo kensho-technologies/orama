@@ -28,3 +28,16 @@ export const notDatum = value => (
 )
 
 export const isDatum = value => !notDatum(value)
+
+// returns (start, end] as opposed to [].slice() returning [start, end)
+const slice = (arr, start, end) => arr.slice(start + 1, end + 1)
+
+export const splitBy = (arr, iteratee) => {
+  const {sliceFrom, returnArray} = _.reduce(arr, ({sliceFrom, returnArray}, val, idx) => {
+    if (iteratee(val, idx)) {
+      return {sliceFrom: idx, returnArray: [...returnArray, slice(arr, sliceFrom, idx)]}
+    }
+    return {sliceFrom, returnArray}
+  }, {sliceFrom: 0, returnArray: []})
+  return [...returnArray, slice(arr, sliceFrom, arr.length)]
+}
