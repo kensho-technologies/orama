@@ -6,6 +6,7 @@ import stateHOC from '../utils/stateHOC'
 import {getWindow} from '../utils/windowUtils'
 
 import {BlockSize} from '../utilComponents/BlockSize'
+import Portal from '../utilComponents/Portal'
 import {Tooltip as DefaultTooltip} from '../Tooltip'
 
 const TOOLTIP_MARGIN = 15
@@ -54,22 +55,24 @@ export const _TooltipWrapper = props => {
     Tooltip = DefaultTooltip,
   } = props.layerProps
   return (
-    <BlockSize
-      onUpdate={childProps => handleBlockSizeUpdate(props, childProps)}
-      style={{
-        margin: TOOLTIP_MARGIN,
-        pointerEvents: 'none',
-        position: 'fixed',
-        zIndex: '999999',
-        ...getTooltipPosition(props),
-      }}
-    >
-      <Tooltip
-        hoverData={props.hoverData}
-        layerProps={props.layerProps}
-        theme={props.theme}
-      />
-    </BlockSize>
+    <Portal>
+      <BlockSize
+        onUpdate={childProps => handleBlockSizeUpdate(props, childProps)}
+        style={{
+          margin: TOOLTIP_MARGIN,
+          pointerEvents: 'none',
+          position: 'fixed',
+          zIndex: '999999',
+          ...getTooltipPosition(props),
+        }}
+      >
+        <Tooltip
+          hoverData={props.hoverData}
+          layerProps={props.layerProps}
+          theme={props.theme}
+        />
+      </BlockSize>
+    </Portal>
   )
 }
 _TooltipWrapper.propTypes = {
