@@ -1,3 +1,5 @@
+// Copyright 2017 Kensho Technologies, LLC.
+
 import {it as test, describe, beforeEach} from 'mocha'
 import assert from 'assert'
 

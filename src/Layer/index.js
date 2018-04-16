@@ -1,4 +1,4 @@
-// Copyright 2017 Kensho Technologies, Inc.
+// Copyright 2017 Kensho Technologies, LLC.
 
 import {areas} from '../Layer/areas'
 import {bars} from '../Layer/bars'

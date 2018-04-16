@@ -1,4 +1,4 @@
-// Copyright 2017 Kensho Technologies, Inc.
+// Copyright 2017 Kensho Technologies, LLC.
 
 import React from 'react'
 import PropTypes from 'prop-types'

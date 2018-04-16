@@ -1,3 +1,5 @@
+// Copyright 2017 Kensho Technologies, LLC.
+
 import {update} from 'lodash'
 import {getTextWidth} from '../../chartCore/getPlotRect'
 

@@ -1,4 +1,4 @@
-// Copyright 2017 Kensho Technologies, Inc.
+// Copyright 2017 Kensho Technologies, LLC.
 
 import {getMidX, getMidY} from '../../utils/rectUtils'
 import {getPath2D} from '../../utils/path2DUtils'

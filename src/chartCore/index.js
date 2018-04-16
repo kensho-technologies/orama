@@ -1,4 +1,4 @@
-// Copyright 2017 Kensho Technologies, Inc.
+// Copyright 2017 Kensho Technologies, LLC.
 
 exports.getForKey = require('./getForKey')
 exports.getForProps = require('./getForProps')

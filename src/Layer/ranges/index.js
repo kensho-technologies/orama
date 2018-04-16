@@ -1,4 +1,4 @@
-// Copyright 2017 Kensho Technologies, Inc.
+// Copyright 2017 Kensho Technologies, LLC.
 
 import {map, flatten, isNumber} from 'lodash'
 import {getPath2D} from '../../utils/path2DUtils'

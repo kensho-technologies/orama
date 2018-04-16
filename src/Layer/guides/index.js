@@ -1,4 +1,4 @@
-// Copyright 2017 Kensho Technologies, Inc.
+// Copyright 2017 Kensho Technologies, LLC.
 
 import {map, flatten, isNumber} from 'lodash'
 import {getMinX, getMaxX, getMinY, getMaxY} from '../../utils/rectUtils'
