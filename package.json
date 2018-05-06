@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "rm -rf lib",
     "build": "babel src -d lib",
-    "test": "nyc mocha --compilers js:babel-register -R dot 'src/**/*.test.js'",
+    "test": "nyc mocha --require @babel/register -R dot 'src/**/*.test.js'",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
@@ -19,9 +19,10 @@
   "author": "Luis Carli <info@luiscarli.com>",
   "license": "Apache-2.0",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-preset-kensho": "^2.0.0",
-    "babel-register": "^6.24.1",
+    "@babel/cli": "7.0.0-beta.44",
+    "@babel/core": "7.0.0-beta.44",
+    "@babel/register": "7.0.0-beta.44",
+    "babel-preset-kensho": "4.0.0-alpha.8",
     "coveralls": "^2.13.1",
     "mocha": "^3.2.0",
     "nyc": "^10.3.2",
@@ -34,9 +35,10 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "prop-types": "^15.5.8",
+    "@babel/runtime": "7.0.0-beta.44",
     "d3-scale": "^1.0.0",
-    "lodash": "^4.1.0"
+    "lodash": "^4.1.0",
+    "prop-types": "^15.5.8"
   },
   "engines": {
     "node": ">=6.0.0",
