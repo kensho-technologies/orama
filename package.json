@@ -4,18 +4,11 @@
   "description": "React data visualization components",
   "main": "lib/index.js",
   "scripts": {
-    "prebuild": "rm -rf lib",
-    "build": "babel src -d lib",
+    "prepublishOnly": "rm -rf lib && babel src -d lib",
     "test": "nyc mocha --require @babel/register -R dot 'src/**/*.test.js'",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kensho-technologies/orama"
-  },
-  "publishConfig": {
-    "registry": "http://registry.npmjs.org/"
-  },
+  "repository": "kensho-technologies/orama",
   "author": "Luis Carli <info@luiscarli.com>",
   "license": "Apache-2.0",
   "devDependencies": {
