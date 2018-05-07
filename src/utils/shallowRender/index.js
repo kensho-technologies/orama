@@ -1,6 +1,6 @@
 // Copyright 2017 Kensho Technologies, LLC.
 
-const ReactShallowRenderer = require('react-test-renderer/shallow')
+import ReactShallowRenderer from 'react-test-renderer/shallow'
 
 export default function shallowRender(element) {
   const renderer = new ReactShallowRenderer();

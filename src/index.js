@@ -7,6 +7,5 @@ export {DEFAULT_THEME} from './defaultTheme'
 export * from './utils/dataGeneration'
 export {getPath2D} from './utils/path2DUtils'
 export {getCachedContext} from './utils/canvasUtils'
-
-exports.utils = require('./utils')
-exports.chartCore = require('./chartCore')
+export * as utils from './utils'
+export * as chartCore from './chartCore'

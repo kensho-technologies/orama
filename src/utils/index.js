@@ -2,14 +2,14 @@
 
 import _ from 'lodash'
 
-exports.labeler = require('./labeler')
-exports.canvasUtils = require('./canvasUtils')
-exports.dataGeneration = require('./dataGeneration')
-exports.imageRender = require('./imageRender')
-exports.path2DUtils = require('./path2DUtils')
-exports.rectUtils = require('./rectUtils')
-exports.windowUtils = require('./windowUtils')
-exports.stateHOC = require('./stateHOC')
+export {default as labeler} from './labeler'
+export {default as stateHOC} from './stateHOC'
+export * as canvasUtils from './canvasUtils'
+export * as dataGeneration from './dataGeneration'
+export * as imageRender from './imageRender'
+export * as path2DUtils from './path2DUtils'
+export * as rectUtils from './rectUtils'
+export * as windowUtils from './windowUtils'
 
 const checkNotPlotNumber = value => _.isNaN(value) || !_.isNumber(value)
 export const notPlotNumber = value => {

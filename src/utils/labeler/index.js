@@ -393,4 +393,4 @@ var Labeler = function() {
   return labeler;
 };
 
-module.exports = Labeler;
+export default Labeler;
