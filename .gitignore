@@ -1,7 +1,5 @@
-node_modules
-*.log
-.DS_Store
-lib
-coverage
-.nyc_output
-es
+/node_modules/
+/.nyc_output/
+/coverage/
+/lib/
+/es/
