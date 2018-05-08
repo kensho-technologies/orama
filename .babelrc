@@ -1,3 +1,3 @@
 {
-  "presets": [["kensho", {"runtime": true, "modules": "commonjs"}]]
+  "presets": [["kensho", {"runtime": true}]]
 }
