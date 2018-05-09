@@ -4,6 +4,7 @@
   "description": "React data visualization components",
   "main": "lib",
   "module": "es",
+  "sideEffects": false,
   "scripts": {
     "prepublishOnly": "rm -rf lib es && babel src -d es && BABEL_ENV=cjs babel src -d lib",
     "test": "NODE_ENV=test nyc mocha --require @babel/register -R dot 'src/**/*.test.js'",
