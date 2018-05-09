@@ -1,6 +1,6 @@
 // Copyright 2017 Kensho Technologies, LLC.
 
-import React from 'react'
+import * as React from 'react'
 
 import {DEFAULT_THEME} from '../defaultTheme'
 import {PROPORTION} from '../chartCore/defaults'

@@ -1,6 +1,6 @@
 // Copyright 2017 Kensho Technologies, LLC.
 
-import React from 'react'
+import * as React from 'react'
 import PropTypes from 'prop-types'
 import {DEFAULT_THEME} from '../defaultTheme'
 import {WIDTH, HEIGHT} from '../chartCore/defaults'

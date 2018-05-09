@@ -1,6 +1,6 @@
 // Copyright 2017 Kensho Technologies, LLC.
 
-import React from 'react'
+import * as React from 'react'
 
 import State from '../../utils/State'
 import _ from 'lodash'

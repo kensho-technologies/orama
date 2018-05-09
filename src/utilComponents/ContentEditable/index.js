@@ -1,6 +1,6 @@
 // Copyright 2017 Kensho Technologies, LLC.
 
-import React from 'react'
+import * as React from 'react'
 import PropTypes from 'prop-types'
 
 class ContentEditable extends React.Component {

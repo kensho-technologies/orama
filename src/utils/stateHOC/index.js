@@ -1,6 +1,6 @@
 // Copyright 2017 Kensho Technologies, LLC.
 
-import React from 'react'
+import * as React from 'react'
 import isStatelessComponentFunction from '../isStatelessComponentFunction'
 
 function isFunction(functionToCheck) {

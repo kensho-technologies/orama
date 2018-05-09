@@ -1,9 +1,9 @@
 // Copyright 2017 Kensho Technologies, LLC.
 
-import {Component} from 'react'
+import * as React from 'react'
 import {unmountComponentAtNode, unstable_renderSubtreeIntoContainer as render} from 'react-dom'
 
-export default class Portal extends Component {
+export default class Portal extends React.Component {
 
   componentDidMount() {
     this.container = document.createElement('div')

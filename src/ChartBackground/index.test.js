@@ -3,7 +3,7 @@
 import {it as test} from 'mocha'
 import assert from 'assert'
 
-import React from 'react'
+import * as React from 'react'
 import shallowRender from '../utils/shallowRender'
 import {DEFAULT_THEME as theme} from '../defaultTheme'
 import {PLOT_RECT} from '../chartCore/defaults'

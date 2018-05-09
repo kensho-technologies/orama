@@ -3,7 +3,7 @@
 import {it as test} from 'mocha'
 import assert from 'assert'
 
-import React from 'react'
+import * as React from 'react'
 import _ from 'lodash'
 import shallowRender from '../../utils/shallowRender'
 
