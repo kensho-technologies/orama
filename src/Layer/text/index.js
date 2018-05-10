@@ -1,4 +1,4 @@
-// Copyright 2017 Kensho Technologies, LLC.
+// Copyright 2018 Kensho Technologies, LLC.
 
 import {map, flatten} from 'lodash'
 import {getMinX, getMinY} from '../../utils/rectUtils'

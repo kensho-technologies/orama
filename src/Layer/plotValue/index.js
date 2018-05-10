@@ -1,4 +1,4 @@
-// Copyright 2017 Kensho Technologies, LLC.
+// Copyright 2018 Kensho Technologies, LLC.
 
 import _ from 'lodash'
 import {ACCESSORS_GROUPS} from '../../chartCore/defaults'

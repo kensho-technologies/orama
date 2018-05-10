@@ -1,4 +1,4 @@
-// Copyright 2017 Kensho Technologies, LLC.
+// Copyright 2018 Kensho Technologies, LLC.
 
 export const windowMock = {
   innerWidth: 1000,

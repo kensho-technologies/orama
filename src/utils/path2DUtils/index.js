@@ -1,4 +1,4 @@
-// Copyright 2017 Kensho Technologies, LLC.
+// Copyright 2018 Kensho Technologies, LLC.
 
 /**
  * Returns a Path2D object if the constructor exists, otherwise returns a mocking object.
