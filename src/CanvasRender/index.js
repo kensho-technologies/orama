@@ -29,17 +29,17 @@ export class CanvasRender extends React.Component {
   handleCanvasRef = (canvasNode) => {
     this.canvasNode = canvasNode
   }
-  componentDidMount = () => {
+  componentDidMount() {
     this.handleUpdate(this.props)
   }
-  shouldComponentUpdate = (nextProps) => {
+  shouldComponentUpdate(nextProps) {
     if (this.props.width !== nextProps.width || this.props.height !== nextProps.height) return true
     return false
   }
-  componentDidUpdate = () => {
+  componentDidUpdate() {
     this.handleUpdate(this.props)
   }
-  componentWillReceiveProps = (nextProps) => {
+  componentWillReceiveProps(nextProps) {
     if (this.props.renderData !== nextProps.renderData) {
       this.handleUpdate(nextProps)
     }
@@ -47,7 +47,7 @@ export class CanvasRender extends React.Component {
       this.handleUpdate(nextProps)
     }
   }
-  handleUpdate = (props) => {
+  handleUpdate(props) {
     const ctx = this.canvasNode.getContext('2d')
     ctx.save()
     ctx.scale(2, 2)

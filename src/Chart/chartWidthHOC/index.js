@@ -14,17 +14,14 @@ export const chartWidthHOC = InputComponent =>
     }
     static displayName = 'ChartWidthHOC'
     state = {}
-    componentWillReceiveProps = () => {
+    componentWillReceiveProps() {
       this.updateWidth()
     }
-    componentWillMount = () => {
-      this.handleResize = _.throttle(this.updateWidth, 500)
-    }
-    componentDidMount = () => {
+    componentDidMount() {
       window.addEventListener('resize', this.handleResize)
       this.updateWidth()
     }
-    componentWillUnmount = () => {
+    componentWillUnmount() {
       window.removeEventListener('resize', this.handleResize)
     }
     updateWidth = () => {
@@ -35,6 +32,7 @@ export const chartWidthHOC = InputComponent =>
         }
       }
     }
+    handleResize = _.throttle(this.updateWidth, 500)
     handleRef = (divNode) => {
       this.divNode = divNode
     }

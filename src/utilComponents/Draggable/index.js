@@ -42,11 +42,11 @@ export class Draggable extends React.Component {
   state = {
     dragging: false,
   }
-  componentDidUpdate = (props, state) => {
-    if (this.state.dragging && !state.dragging) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.dragging && !prevState.dragging) {
       document.addEventListener('mousemove', this.onMouseMove)
       document.addEventListener('mouseup', this.onMouseUp)
-    } else if (!this.state.dragging && state.dragging) {
+    } else if (!this.state.dragging && prevState.dragging) {
       document.removeEventListener('mousemove', this.onMouseMove)
       document.removeEventListener('mouseup', this.onMouseUp)
     }

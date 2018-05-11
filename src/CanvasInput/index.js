@@ -26,10 +26,10 @@ export class CanvasInput extends React.Component {
     renderLayers: [],
   }
   state = {}
-  componentWillReceiveProps = (props) => {
+  componentWillReceiveProps(nextProps) {
     if (this.state.mouse && !this.mouseLeave) {
       const solvedData = runHoverSolverOn(
-        getDataUnderMouse(props, this.state.mouse, this.canvasNode)
+        getDataUnderMouse(nextProps, this.state.mouse, this.canvasNode)
       )
       this.setState({
         renderDatum: solvedData.renderDatum,
@@ -40,10 +40,10 @@ export class CanvasInput extends React.Component {
       })
     }
   }
-  componentDidUpdate = (props, state) => {
-    if (this.state.mouseDrag && !state.mouseDrag) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.mouseDrag && !prevState.mouseDrag) {
       document.addEventListener('mouseup', this.handleMouseUp)
-    } else if (!this.state.mouseDrag && state.mouseDrag) {
+    } else if (!this.state.mouseDrag && prevState.mouseDrag) {
       document.removeEventListener('mouseup', this.handleMouseUp)
     }
   }

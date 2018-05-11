@@ -15,7 +15,7 @@ class ContentEditable extends React.Component {
     onUpdate: () => undefined,
     textEditable: true,
   }
-  componentDidUpdate = () => {
+  componentDidUpdate() {
     const node = this.refs.block
     if (this.props.text !== node.innerText) {
       node.innerText = this.props.text || ''

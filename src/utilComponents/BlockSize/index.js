@@ -9,10 +9,10 @@ export class BlockSize extends React.Component {
   static propTypes = {
     onUpdate: PropTypes.func.isRequired,
   }
-  componentDidMount = () => {
+  componentDidMount() {
     this.update()
   }
-  componentDidUpdate = () => {
+  componentDidUpdate() {
     this.update()
   }
   update = () => {
