@@ -1,6 +1,7 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 import {update} from 'lodash'
+
 import {getTextWidth} from '../../chartCore/getPlotRect'
 
 export const fitCheckText = (textObj, canvasWidth, canvasHeight, theme) => {
@@ -22,7 +23,7 @@ export const fitCheckText = (textObj, canvasWidth, canvasHeight, theme) => {
 
 const getTextBounds = (textObj, isRotated, theme) => {
   const textAlign = textObj.textAlign || 'left'
-  const textWidth = getTextWidth(theme, textObj.text) * (textAlign === 'center' ? .5 : 1)
+  const textWidth = getTextWidth(theme, textObj.text) * (textAlign === 'center' ? 0.5 : 1)
   const initialCoord = isRotated ? textObj.y : textObj.x
   const rightAligned = ['right', 'end'].includes(textAlign)
   const leftAligned = ['left', 'start'].includes(textAlign)

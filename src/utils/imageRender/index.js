@@ -3,11 +3,8 @@
 import {each, reduce} from 'lodash'
 
 const serializer = typeof window === 'object' && new XMLSerializer()
-const serializeNodeList = nodeList => reduce(
-  nodeList,
-  (acc, node) => acc + serializer.serializeToString(node),
-  ''
-)
+const serializeNodeList = nodeList =>
+  reduce(nodeList, (acc, node) => acc + serializer.serializeToString(node), '')
 
 /**
  * Renders a DOM node to a dataURL source, which can be used to generate a
@@ -25,18 +22,15 @@ export function generateSrc(clbck, node, multiplier = 1) {
   const cloned = node.cloneNode(true)
   const canvasNodes = node.querySelectorAll('canvas')
   const styleNodes = document.querySelectorAll('style')
-  each(
-    cloned.querySelectorAll('canvas'),
-    (cloneCanvas, idx) => {
-      const canvas = canvasNodes[idx]
-      const img = document.createElement('img')
-      img.src = canvas.toDataURL('image/png')
-      img.setAttribute('style', canvas.getAttribute('style'))
-      img.setAttribute('width', `${canvas.getAttribute('width')} px`)
-      img.setAttribute('height', `${canvas.getAttribute('height')} px`)
-      cloneCanvas.parentNode.replaceChild(img, cloneCanvas)
-    }
-  )
+  each(cloned.querySelectorAll('canvas'), (cloneCanvas, idx) => {
+    const canvas = canvasNodes[idx]
+    const img = document.createElement('img')
+    img.src = canvas.toDataURL('image/png')
+    img.setAttribute('style', canvas.getAttribute('style'))
+    img.setAttribute('width', `${canvas.getAttribute('width')} px`)
+    img.setAttribute('height', `${canvas.getAttribute('height')} px`)
+    cloneCanvas.parentNode.replaceChild(img, cloneCanvas)
+  })
   const canvas = document.createElement('canvas')
   canvas.width = width * multiplier
   canvas.height = height * multiplier

@@ -3,6 +3,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+
 import {DEFAULT_THEME} from '../defaultTheme'
 import {extractTooltipData} from '../Chart/extractTooltipData'
 
@@ -17,7 +18,7 @@ const row = (props, d, i) => (
     }}
     key={i}
   >
-    {props.showKeys ?
+    {props.showKeys ? (
       <td
         style={{
           borderRight: `2px solid ${props.theme.tooltipKeyBorderStroke}`,
@@ -26,7 +27,7 @@ const row = (props, d, i) => (
       >
         {d.key}
       </td>
-    : null}
+    ) : null}
     <td // Name
       style={{
         padding: getPadding(props),
@@ -66,7 +67,7 @@ export const TooltipInner = props => (
       opacity: 0.96,
     }}
   >
-    {props.title ?
+    {props.title ? (
       <div
         style={{
           fontSize: props.theme.tooltipTitleFontSize,
@@ -76,18 +77,11 @@ export const TooltipInner = props => (
           verticalAlign: 'top',
         }}
       >
-      {props.title}
+        {props.title}
       </div>
-    : null}
-    <table
-      style={{width: '100%', borderCollapse: "collapse"}}
-    >
-      <tbody>
-        {_.map(
-          props.values,
-          (d, i) => row(props, d, i)
-        )}
-      </tbody>
+    ) : null}
+    <table style={{width: '100%', borderCollapse: 'collapse'}}>
+      <tbody>{_.map(props.values, (d, i) => row(props, d, i))}</tbody>
     </table>
   </div>
 )
@@ -104,10 +98,7 @@ TooltipInner.defaultProps = {
 }
 
 export const Tooltip = props => {
-  const tooltipData = extractTooltipData(
-    props.layerProps,
-    props.hoverData,
-  )
+  const tooltipData = extractTooltipData(props.layerProps, props.hoverData)
   return (
     <TooltipInner
       showKeys={props.layerProps.tooltipShowKeys}
@@ -117,10 +108,7 @@ export const Tooltip = props => {
   )
 }
 Tooltip.propTypes = {
-  hoverData: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
+  hoverData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   layerProps: PropTypes.object,
   theme: PropTypes.object,
 }

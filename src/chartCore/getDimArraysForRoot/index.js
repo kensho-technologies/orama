@@ -2,11 +2,9 @@
 
 import _ from 'lodash'
 
-import {compactData} from '../../chartCore/compactData'
+import {compactData} from '../compactData'
 
-const checkUndefinedAccessor = value => (
-  !_.isString(value) || value === ''
-)
+const checkUndefinedAccessor = value => !_.isString(value) || value === ''
 /*
 quick check if data is array of arrays
 */
@@ -18,11 +16,7 @@ const tidyFlatten = data => {
 for a layer.data, extract the dim array using an accessor
 */
 export const extractDimArray = (data, accessor) =>
-  _.flow(
-    tidyFlatten,
-    _data => _.map(_data, accessor),
-    compactData,
-  )(data)
+  _.flow(tidyFlatten, _data => _.map(_data, accessor), compactData)(data)
 /*
 according to the local defined accessors, extract and compact the dimArrays
 */
@@ -48,14 +42,10 @@ Get dimension array from each layer, and merge the arrays with the same key.
 */
 export const getDimArraysForRoot = props => {
   const layersArrays = _.map(props.layers, getDimArraysForLayer)
-  const dimArrays = _.mergeWith(
-    {},
-    ...layersArrays,
-    (a, b) => {
-      if (_.isUndefined(a)) return b
-      if (_.isUndefined(b)) return a
-      return a.concat(b)
-    }
-  )
+  const dimArrays = _.mergeWith({}, ...layersArrays, (a, b) => {
+    if (_.isUndefined(a)) return b
+    if (_.isUndefined(b)) return a
+    return a.concat(b)
+  })
   return dimArrays
 }

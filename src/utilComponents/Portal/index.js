@@ -4,7 +4,6 @@ import * as React from 'react'
 import {unmountComponentAtNode, unstable_renderSubtreeIntoContainer as render} from 'react-dom'
 
 export default class Portal extends React.Component {
-
   componentDidMount() {
     this.container = document.createElement('div')
     this.container.position = 'absolute'

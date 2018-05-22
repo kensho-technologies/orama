@@ -1,11 +1,11 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {it as test} from 'mocha'
 import assert from 'assert'
 
+import {it as test} from 'mocha'
 import * as d3Scale from 'd3-scale'
 
-import * as methods from './'
+import * as methods from '.'
 
 test('Chart.getAxisScale | case 1', () => {
   const props = {
@@ -90,7 +90,8 @@ test('Chart.getScale | case 2', () => {
   assert(methods.getScale(props, 'fill'))
 })
 test('getScale.getOrdinalInvert', () => {
-  const scale = d3Scale.scalePoint()
+  const scale = d3Scale
+    .scalePoint()
     .domain(['a', 'b', 'c', 'd'])
     .range([0, 100])
   const invert = methods.getOrdinalInvert(scale)

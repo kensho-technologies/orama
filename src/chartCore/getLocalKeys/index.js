@@ -1,12 +1,11 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 import _ from 'lodash'
-import {ACCESSORS_NAMES} from '../../chartCore/defaults'
+
+import {ACCESSORS_NAMES} from '../defaults'
 
 export const layerMapper = layer => {
-  const localAccessors = _.pick(
-    layer, layer.accessorsNames || ACCESSORS_NAMES
-  )
+  const localAccessors = _.pick(layer, layer.accessorsNames || ACCESSORS_NAMES)
   return {
     ...layer,
     localAccessors,

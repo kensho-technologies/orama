@@ -1,11 +1,12 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {it as test} from 'mocha'
 import assert from 'assert'
 
-import {notPlotNumber} from './'
-import {isPlotNumber} from './'
-import {isDatum} from './'
+import {it as test} from 'mocha'
+
+import {notPlotNumber} from '.'
+import {isPlotNumber} from '.'
+import {isDatum} from '.'
 
 test('utils.notPlotNumber NaN', () => {
   assert.equal(notPlotNumber(NaN), true)

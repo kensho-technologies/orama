@@ -1,9 +1,9 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 import * as React from 'react'
+import _ from 'lodash'
 
 import State from '../../utils/State'
-import _ from 'lodash'
 
 const mouseDown = (props, childProps) => {
   const {data} = props
@@ -25,7 +25,8 @@ const mouseDown = (props, childProps) => {
 
 const handleChart = (props, childProps) => {
   switch (childProps.action) {
-    case 'mouseDown': mouseDown(props, childProps)
+    case 'mouseDown':
+      mouseDown(props, childProps)
       break
     // case 'mouseDrag': mouseDrag(props, childProps)
     //   break
@@ -38,18 +39,16 @@ const InnerHighlight = props => {
   if (child.type.displayName === 'ChartWidthHOC') {
     const HighlightElement = (
       <props.Component
-        skipExtractArrays={true}
-        key='InnerHighlight'
-        fillValue='black'
+        skipExtractArrays
+        key="InnerHighlight"
+        fillValue="black"
         alphaValue={0.5}
         data={props.data}
         {...props.componentProps}
       />
     )
     const layers = React.Children.toArray(child.props.children)
-    layers.splice(props.slice, 0,
-      HighlightElement,
-    )
+    layers.splice(props.slice, 0, HighlightElement)
     return (
       <div>
         {React.cloneElement(
@@ -60,17 +59,15 @@ const InnerHighlight = props => {
       </div>
     )
   }
-  return <div/>
+  return <div />
 }
 InnerHighlight.defaultProps = {
   slice: 1,
   data: [],
 }
 
-export const Highlight = props =>
+export const Highlight = props => (
   <State {..._.omit(props, 'children')}>
-    <InnerHighlight
-      children={props.children}
-      onUpdate={props.onUpdate}
-    />
+    <InnerHighlight children={props.children} onUpdate={props.onUpdate} />
   </State>
+)

@@ -1,39 +1,34 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 import _ from 'lodash'
+
 import * as rectUtils from '../../utils/rectUtils'
-import {getScale} from '../../chartCore/getScale'
-import {
-  DOMAIN,
-  JS_TO_VIS_TYPE,
-  TICK_COUNT,
-  TICK_X_SPACE,
-  TICK_Y_SPACE,
-  TYPE,
-} from '../../chartCore/defaults'
+import {getScale} from '../getScale'
+import {DOMAIN, JS_TO_VIS_TYPE, TICK_COUNT, TICK_X_SPACE, TICK_Y_SPACE, TYPE} from '../defaults'
 
 /*
 get methods that are used on the addMethods module
 addMethods add new properties to the props object, these new properties are generated using these getMethods.
 */
 
-export {getScale} from '../../chartCore/getScale'
+export {getScale} from '../getScale'
 
 export function toType(input) {
-  return ({}).toString.call(input).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+  return {}.toString
+    .call(input)
+    .match(/\s([a-zA-Z]+)/)[1]
+    .toLowerCase()
 }
 
 export const getType = (props, key) => {
   if (props[`${key}Type`]) return props[`${key}Type`]
-  const {
-    [`${key}Array`]: array,
-  } = props
+  const {[`${key}Array`]: array} = props
   if (!array) return undefined
   const counter = _.reduce(
     array,
     (acc, d) => {
       /* eslint-disable no-param-reassign */
-      acc[toType(d)] ++
+      acc[toType(d)]++
       /* eslint-enable no-param-reassign */
       return acc
     },
@@ -55,20 +50,14 @@ export const getDomain = (props, key) => {
       return _.uniq(array)
     default:
       if (zeroBased) {
-        return [
-          _.min([_.min(array), 0]),
-          _.max([_.max(array), 0]),
-        ]
+        return [_.min([_.min(array), 0]), _.max([_.max(array), 0])]
       }
       return [_.min(array), _.max(array)]
   }
 }
 export const getRange = (props, key) => {
   if (props[`${key}Range`]) return props[`${key}Range`]
-  const {
-    plotRect,
-    [`${key}Type`]: type = TYPE,
-  } = props
+  const {plotRect, [`${key}Type`]: type = TYPE} = props
   switch (key) {
     case 'y':
       return [rectUtils.getMaxY(plotRect), plotRect.y]
@@ -87,12 +76,7 @@ export const getRange = (props, key) => {
           return [0.5, 4]
       }
     case 'lineDash':
-      return [
-        [2],
-        [4],
-        [8],
-        [7, 4, 2, 4],
-      ]
+      return [[2], [4], [8], [7, 4, 2, 4]]
     case 'fill':
     case 'stroke':
     case 'hoverStroke':
@@ -109,10 +93,7 @@ export const getRange = (props, key) => {
 }
 export const getTickCount = (props, key) => {
   if (_.isNumber(props[`${key}TickCount`])) return props[`${key}TickCount`]
-  const {
-    [`${key}Range`]: range,
-    [`${key}TickSpace`]: _tickSpace,
-  } = props
+  const {[`${key}Range`]: range, [`${key}TickSpace`]: _tickSpace} = props
   switch (key) {
     case 'y':
       const xTickSpace = _tickSpace || TICK_Y_SPACE
@@ -161,23 +142,17 @@ export function getTicks(props, key) {
   } = props
   switch (type) {
     case 'ordinal':
-      return _.map(
-        domain,
-        d => ({
-          value: d,
-          text: d,
-        })
-      )
+      return _.map(domain, d => ({
+        value: d,
+        text: d,
+      }))
     case 'linear':
     default:
       const tickFormat = getTickFormat({...props, scale}, key)
       const ticks = scale.ticks(tickCount)
-      return _.map(
-        ticks,
-        d => ({
-          value: d,
-          text: tickFormat(d),
-        })
-      )
+      return _.map(ticks, d => ({
+        value: d,
+        text: tickFormat(d),
+      }))
   }
 }

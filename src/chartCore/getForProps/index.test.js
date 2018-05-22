@@ -1,9 +1,10 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {it as test} from 'mocha'
 import assert from 'assert'
 
-import {getForProps} from './'
+import {it as test} from 'mocha'
+
+import {getForProps} from '.'
 
 test('Chart/getForProps 1', () => {
   const getFunc = () => 'test'

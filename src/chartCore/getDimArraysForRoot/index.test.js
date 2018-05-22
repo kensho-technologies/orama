@@ -1,11 +1,12 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {it as test} from 'mocha'
 import assert from 'assert'
 
-import {extractDimArray} from './'
-import {getDimArraysForLayer} from './'
-import {getDimArraysForRoot} from './'
+import {it as test} from 'mocha'
+
+import {extractDimArray} from '.'
+import {getDimArraysForLayer} from '.'
+import {getDimArraysForRoot} from '.'
 
 test('Chart/getDimArraysForRoot.extractDimArray 1', () => {
   const data = [{x: 1}, {x: 2}]

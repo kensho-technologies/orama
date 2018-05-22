@@ -1,7 +1,8 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 import _ from 'lodash'
-import {plotValue} from '../../Layer/plotValue'
+
+import {plotValue} from '../plotValue'
 
 export const getControlPoints = (x0, y0, x1, y1, x2, y2, t) => {
   const d01 = Math.sqrt(Math.pow(x1 - x0, 2) + Math.pow(y1 - y0, 2))
@@ -28,7 +29,7 @@ export const splineInterpolation = (props, data, path) => {
       acc.push(plotValue(props, d, undefined, 'y'))
       return acc
     },
-    [],
+    []
   )
   let cp = []
   const n = pts.length
@@ -41,7 +42,14 @@ export const splineInterpolation = (props, data, path) => {
   path.quadraticCurveTo(cp[0], cp[1], pts[2], pts[3])
   for (let i = 2; i < pts.length - 5; i += 2) {
     path.moveTo(pts[i], pts[i + 1])
-    path.bezierCurveTo(cp[2 * i - 2], cp[2 * i - 1], cp[2 * i], cp[2 * i + 1], pts[i + 2], pts[i + 3])
+    path.bezierCurveTo(
+      cp[2 * i - 2],
+      cp[2 * i - 1],
+      cp[2 * i],
+      cp[2 * i + 1],
+      pts[i + 2],
+      pts[i + 3]
+    )
   }
   path.moveTo(pts[n - 2], pts[n - 1])
   path.quadraticCurveTo(cp[2 * n - 10], cp[2 * n - 9], pts[n - 4], pts[n - 3])

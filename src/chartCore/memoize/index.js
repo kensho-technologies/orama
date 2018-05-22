@@ -2,15 +2,15 @@
 
 import {map} from 'lodash'
 
-import {getDimArrays} from '../../chartCore/getDimArrays'
-import {getDomains} from '../../chartCore/getForProps'
-import {getLayer} from '../../chartCore/getRenderLayers'
-import {getPlotRect} from '../../chartCore/getPlotRect'
-import {getRanges} from '../../chartCore/getForProps'
-import {getScales} from '../../chartCore/getForProps'
-import {getTickCounts} from '../../chartCore/getForProps'
-import {getTypes} from '../../chartCore/getForProps'
-import * as rerunChecks from '../../chartCore/rerunChecks'
+import {getDimArrays} from '../getDimArrays'
+import {getDomains} from '../getForProps'
+import {getLayer} from '../getRenderLayers'
+import {getPlotRect} from '../getPlotRect'
+import {getRanges} from '../getForProps'
+import {getScales} from '../getForProps'
+import {getTickCounts} from '../getForProps'
+import {getTypes} from '../getForProps'
+import * as rerunChecks from '../rerunChecks'
 
 export const getMemoize = (rerunCheck, transformFunc, isLayer) => {
   let savedResult
@@ -29,45 +29,29 @@ export const getMemoize = (rerunCheck, transformFunc, isLayer) => {
   return memoizer
 }
 
-export const getMemoizeDimArrays = () => getMemoize(
-  rerunChecks.rerunCheckGetDimArrays, getDimArrays
-)
-export const getMemoizeTypes = () => getMemoize(
-  rerunChecks.rerunCheckGetTypes, getTypes
-)
-export const getMemoizeDomains = () => getMemoize(
-  rerunChecks.rerunCheckGetDomains, getDomains
-)
-export const getMemoizePlotRect = () => getMemoize(
-  rerunChecks.rerunCheckGetPlotRect, getPlotRect
-)
-export const getMemoizeRanges = () => getMemoize(
-  rerunChecks.rerunCheckGetRanges, getRanges
-)
-export const getMemoizeTickCounts = () => getMemoize(
-  rerunChecks.rerunCheckGetTickCounts, getTickCounts
-)
-export const getMemoizeScales = () => getMemoize(
-  rerunChecks.rerunCheckGetScales, getScales
-)
-export const getMemoizeRenderLayer = () => getMemoize(
-  rerunChecks.rerunCheckGetRenderLayers, getLayer, true
-)
+export const getMemoizeDimArrays = () =>
+  getMemoize(rerunChecks.rerunCheckGetDimArrays, getDimArrays)
+export const getMemoizeTypes = () => getMemoize(rerunChecks.rerunCheckGetTypes, getTypes)
+export const getMemoizeDomains = () => getMemoize(rerunChecks.rerunCheckGetDomains, getDomains)
+export const getMemoizePlotRect = () => getMemoize(rerunChecks.rerunCheckGetPlotRect, getPlotRect)
+export const getMemoizeRanges = () => getMemoize(rerunChecks.rerunCheckGetRanges, getRanges)
+export const getMemoizeTickCounts = () =>
+  getMemoize(rerunChecks.rerunCheckGetTickCounts, getTickCounts)
+export const getMemoizeScales = () => getMemoize(rerunChecks.rerunCheckGetScales, getScales)
+export const getMemoizeRenderLayer = () =>
+  getMemoize(rerunChecks.rerunCheckGetRenderLayers, getLayer, true)
 
 export const getMemoizeRenderLayers = () => {
   const layersMemoize = []
   const memoizeForLayers = props => {
-    const renderLayers = map(
-      props.layers,
-      (layer, i) => {
-        let layerMemoize = layersMemoize[i]
-        if (!layerMemoize) {
-          layersMemoize[i] = getMemoizeRenderLayer()
-          layerMemoize = layersMemoize[i]
-        }
-        return layerMemoize({...props, ...layer})
+    const renderLayers = map(props.layers, (layer, i) => {
+      let layerMemoize = layersMemoize[i]
+      if (!layerMemoize) {
+        layersMemoize[i] = getMemoizeRenderLayer()
+        layerMemoize = layersMemoize[i]
       }
-    )
+      return layerMemoize({...props, ...layer})
+    })
     return renderLayers
   }
   return memoizeForLayers

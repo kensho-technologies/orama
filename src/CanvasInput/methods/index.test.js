@@ -1,15 +1,13 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {it as test} from 'mocha'
 import assert from 'assert'
 
-import * as methods from './'
+import {it as test} from 'mocha'
+
+import * as methods from '.'
 
 test('CanvasInput/methods.runHoverSolverOn 1', () => {
-  assert.deepEqual(
-    methods.runHoverSolverOn({}),
-    {}
-  )
+  assert.deepEqual(methods.runHoverSolverOn({}), {})
 })
 
 test('CanvasInput/methods.runHoverSolverOn 2', () => {
@@ -18,20 +16,14 @@ test('CanvasInput/methods.runHoverSolverOn 2', () => {
       hoverSolver: d => d,
     },
   }
-  assert.deepEqual(
-    methods.runHoverSolverOn(dataUnderMouse),
-    dataUnderMouse
-  )
+  assert.deepEqual(methods.runHoverSolverOn(dataUnderMouse), dataUnderMouse)
 })
 
 test('CanvasInput/methods.getMouseFromEvt 1', () => {
-  assert.deepEqual(
-    methods.getMouseFromEvt({}),
-    {
-      x: undefined,
-      y: undefined,
-    }
-  )
+  assert.deepEqual(methods.getMouseFromEvt({}), {
+    x: undefined,
+    y: undefined,
+  })
 })
 test('CanvasInput/methods.getMouseFromEvt 2', () => {
   assert.deepEqual(

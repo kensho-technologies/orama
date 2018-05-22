@@ -12,18 +12,24 @@ export const chartWidthHOC = InputComponent =>
     static propTypes = {
       width: PropTypes.number,
     }
+
     static displayName = 'ChartWidthHOC'
+
     state = {}
+
     componentWillReceiveProps() {
       this.updateWidth()
     }
+
     componentDidMount() {
       window.addEventListener('resize', this.handleResize)
       this.updateWidth()
     }
+
     componentWillUnmount() {
       window.removeEventListener('resize', this.handleResize)
     }
+
     updateWidth = () => {
       if (this.divNode && !this.props.width) {
         const width = this.divNode.clientWidth
@@ -32,19 +38,17 @@ export const chartWidthHOC = InputComponent =>
         }
       }
     }
+
     handleResize = _.throttle(this.updateWidth, 500)
-    handleRef = (divNode) => {
+
+    handleRef = divNode => {
       this.divNode = divNode
     }
+
     render() {
       return (
-        <div
-          ref={this.handleRef}
-        >
-          <InputComponent
-            {...this.state}
-            {...this.props}
-          />
+        <div ref={this.handleRef}>
+          <InputComponent {...this.state} {...this.props} />
         </div>
       )
     }

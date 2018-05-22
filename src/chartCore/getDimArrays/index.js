@@ -2,8 +2,8 @@
 
 import _ from 'lodash'
 
-import {getDimArraysForRoot} from '../../chartCore/getDimArraysForRoot'
-import {mergeDimArrays} from '../../chartCore/mergeDimArrays'
+import {getDimArraysForRoot} from '../getDimArraysForRoot'
+import {mergeDimArrays} from '../mergeDimArrays'
 
 /*
 Dimension arrays are lists with the values extracted from the data for a certain dimension, eg. xArray: [1, 2, 3, 4, 5]
@@ -26,7 +26,7 @@ export const getDimArrays = props => {
   const getArraysFlow = _.flow(
     getDimArraysForRoot,
     dimArrays => mergeDimArrays(dimArrays, props.accessorsGroups),
-    wrapUpNewProps,
+    wrapUpNewProps
   )
   return getArraysFlow(props)
 }

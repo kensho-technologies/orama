@@ -1,11 +1,13 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {it as test} from 'mocha'
 import assert from 'assert'
+
+import {it as test} from 'mocha'
+
 import {PLOT_RECT as plotRect} from '../../chartCore/defaults'
 import {DEFAULT_THEME as defaultTheme} from '../../defaultTheme'
 
-import {text} from './'
+import {text} from '.'
 
 test('Chart/text 1', () => {
   const renderData = text({

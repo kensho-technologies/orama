@@ -1,9 +1,10 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {it as test} from 'mocha'
 import assert from 'assert'
 
-import {getPlotValues} from './'
+import {it as test} from 'mocha'
+
+import {getPlotValues} from '.'
 
 test('Layer/getPlotValues 1', () => {
   const props = {x: 'x'}

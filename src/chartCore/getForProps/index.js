@@ -1,22 +1,16 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 import _ from 'lodash'
-import {
-  getType,
-  getDomain,
-  getRange,
-  getTickCount,
-  getScale,
-  getTickFormat,
-} from '../../chartCore/getForKey'
+
+import {getType, getDomain, getRange, getTickCount, getScale, getTickFormat} from '../getForKey'
 
 /*
 Functions to be used on the Chart props transformation flow.
 The transformation flow starts with the <Chart/> props and successively adds the variables needed for plotting, the transformed props are used for generating render data.
 */
 
-export {getDimArrays} from '../../chartCore/getDimArrays'
-export {getPlotRect} from '../../chartCore/getPlotRect'
+export {getDimArrays} from '../getDimArrays'
+export {getPlotRect} from '../getPlotRect'
 
 export const getForProps = (value, getFunc) => props =>
   _.reduce(

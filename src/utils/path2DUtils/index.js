@@ -6,7 +6,6 @@
  * @namespace /utils/path
  */
 
-
 /**
  * Creates a pathMock object
  * @memberOf /utils/path

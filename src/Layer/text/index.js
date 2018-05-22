@@ -1,10 +1,11 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 import {map, flatten} from 'lodash'
+
 import {getMinX, getMinY} from '../../utils/rectUtils'
 import {getMidX, getMidY} from '../../utils/rectUtils'
 import {getMaxX, getMaxY} from '../../utils/rectUtils'
-import {getPlotValues} from '../../Layer/getPlotValues'
+import {getPlotValues} from '../getPlotValues'
 import {fitCheckText} from '../../utils/textUtils'
 
 /*
@@ -51,8 +52,5 @@ Main entry point, if there's only `xMap` or `yMap` it will output an one dimensi
 */
 export const text = props => {
   if (!props.xScale && !props.yScale) return undefined
-  return map(
-    flatten(props.data),
-    (datum, idx) => getTextRenderData(props, datum, idx),
-  )
+  return map(flatten(props.data), (datum, idx) => getTextRenderData(props, datum, idx))
 }

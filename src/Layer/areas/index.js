@@ -4,18 +4,14 @@ import _ from 'lodash'
 
 import {getMaxY} from '../../utils/rectUtils'
 import {getPath2D} from '../../utils/path2DUtils'
-import {getPlotValues} from '../../Layer/getPlotValues'
+import {getPlotValues} from '../getPlotValues'
 import {isPlotNumber, notPlotNumber, splitBy} from '../../utils'
-import {plotValue, isNullPoint} from '../../Layer/plotValue'
+import {plotValue, isNullPoint} from '../plotValue'
 
 export const getPointData = (props, datum, yKey) => {
   const path2D = getPath2D()
-  const x = plotValue(
-    props, datum, undefined, 'x'
-  )
-  const y = plotValue(
-    props, datum, undefined, yKey
-  )
+  const x = plotValue(props, datum, undefined, 'x')
+  const y = plotValue(props, datum, undefined, yKey)
   const r = plotValue(props, datum, undefined, 'strokeWidth', 2) + 1.5
   if (notPlotNumber([x, y, r])) return undefined
   path2D.arc(x, y, r, 0, 2 * Math.PI)
@@ -35,9 +31,7 @@ const getHoverSolverObj = (props, renderDatum, hoverData) => ({
   hoverData,
 })
 
-export const hoverSolver = (
-  props, _hoverData, renderDatum, localMouse
-) => {
+export const hoverSolver = (props, _hoverData, renderDatum, localMouse) => {
   const xRaw = props.xScale.invert(localMouse.x)
   if (props.xType === 'ordinal') {
     const hoverData = _.find(_hoverData, d => _.get(d, props.x) === xRaw)
@@ -80,15 +74,9 @@ export const getAreaRenderData = (props, data, idx) => {
   // if there's no base position accessors
   if (notPlotNumber(y0) && notPlotNumber(x0)) {
     const localY0 = props.yScale(0) || getMaxY(props.plotRect)
-    path2D.lineTo(
-      plotValue(props, _.last(data), idx, 'x', 0),
-      localY0,
-    )
-    path2D.lineTo(
-      plotValue(props, _.head(data), idx, 'x', 0),
-      localY0,
-    )
-  // if the base is on the y axis
+    path2D.lineTo(plotValue(props, _.last(data), idx, 'x', 0), localY0)
+    path2D.lineTo(plotValue(props, _.head(data), idx, 'x', 0), localY0)
+    // if the base is on the y axis
   } else if (isPlotNumber(y0) && notPlotNumber(x0)) {
     _.eachRight(data, d => {
       const x = plotValue(props, d, idx, 'x')
@@ -96,7 +84,7 @@ export const getAreaRenderData = (props, data, idx) => {
       if (notPlotNumber([x, localY0])) return
       path2D.lineTo(x, localY0)
     })
-  // if the base is on the x axis
+    // if the base is on the x axis
   } else if (notPlotNumber(y0) && isPlotNumber(x0)) {
     _.eachRight(data, d => {
       const localX0 = plotValue(props, d, idx, 'x0')
@@ -131,11 +119,7 @@ export const areas = props => {
   if (!props.xScale || !props.yScale) return undefined
   const data = splitDataAtNulls(props, props.data)
   if (_.isArray(_.head(data))) {
-    return _.reduce(
-      data,
-      (acc, data, idx) => acc.concat(getAreaRenderData(props, data, idx)),
-      []
-    )
+    return _.reduce(data, (acc, data, idx) => acc.concat(getAreaRenderData(props, data, idx)), [])
   }
   return [getAreaRenderData(props, props.data)]
 }

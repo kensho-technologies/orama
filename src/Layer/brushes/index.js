@@ -3,29 +3,26 @@
 import {map, flatten, isNumber} from 'lodash'
 
 import {BACKGROUND_OFFSET} from '../../chartCore/defaults'
-import {bottomHorizontalLine} from '../../Layer/getBrushesRenderData'
-import {bottomCenterLine} from '../../Layer/getBrushesRenderData'
-import {centerArea} from '../../Layer/getBrushesRenderData'
-import {verticalArea} from '../../Layer/getBrushesRenderData'
-import {horizontalArea} from '../../Layer/getBrushesRenderData'
-import {leftVerticalLine} from '../../Layer/getBrushesRenderData'
-import {leftCenterLine} from '../../Layer/getBrushesRenderData'
-import {rightVerticalLine} from '../../Layer/getBrushesRenderData'
-import {rightCenterLine} from '../../Layer/getBrushesRenderData'
-import {topHorizontalLine} from '../../Layer/getBrushesRenderData'
-import {topCenterLine} from '../../Layer/getBrushesRenderData'
-import {rightBottomLine} from '../../Layer/getBrushesRenderData'
-import {leftBottomLine} from '../../Layer/getBrushesRenderData'
-import {leftTopLine} from '../../Layer/getBrushesRenderData'
-import {rightTopLine} from '../../Layer/getBrushesRenderData'
-import {getPlotValues} from '../../Layer/getPlotValues'
+import {bottomHorizontalLine} from '../getBrushesRenderData'
+import {bottomCenterLine} from '../getBrushesRenderData'
+import {centerArea} from '../getBrushesRenderData'
+import {verticalArea} from '../getBrushesRenderData'
+import {horizontalArea} from '../getBrushesRenderData'
+import {leftVerticalLine} from '../getBrushesRenderData'
+import {leftCenterLine} from '../getBrushesRenderData'
+import {rightVerticalLine} from '../getBrushesRenderData'
+import {rightCenterLine} from '../getBrushesRenderData'
+import {topHorizontalLine} from '../getBrushesRenderData'
+import {topCenterLine} from '../getBrushesRenderData'
+import {rightBottomLine} from '../getBrushesRenderData'
+import {leftBottomLine} from '../getBrushesRenderData'
+import {leftTopLine} from '../getBrushesRenderData'
+import {rightTopLine} from '../getBrushesRenderData'
+import {getPlotValues} from '../getPlotValues'
 import {getPath2D} from '../../utils/path2DUtils'
 
 const brushesRender = (props, datum) => {
-  const {
-    backgroundOffset = BACKGROUND_OFFSET,
-    plotRect,
-  } = props
+  const {backgroundOffset = BACKGROUND_OFFSET, plotRect} = props
   const stroke = props.strokeValue
   const fill = props.fillValue
   const fillAlpha = props.fillAlphaValue || 0.4
@@ -34,7 +31,8 @@ const brushesRender = (props, datum) => {
 
   const renderArgs = {
     ...values,
-    plotRect, backgroundOffset,
+    plotRect,
+    backgroundOffset,
     stroke,
     fill,
     fillAlpha,
@@ -54,11 +52,7 @@ const brushesRender = (props, datum) => {
       rightBottomLine(renderArgs),
     ]
   } else if (isNumber(values.x1) && isNumber(values.x2)) {
-    return [
-      verticalArea(renderArgs),
-      leftVerticalLine(renderArgs),
-      rightVerticalLine(renderArgs),
-    ]
+    return [verticalArea(renderArgs), leftVerticalLine(renderArgs), rightVerticalLine(renderArgs)]
   } else if (isNumber(values.y1) && isNumber(values.y2)) {
     return [
       horizontalArea(renderArgs),
@@ -71,8 +65,5 @@ const brushesRender = (props, datum) => {
 
 export const brushes = props => {
   if (!props.xScale && !props.yScale) return undefined
-  return flatten(map(
-    flatten(props.data),
-    datum => brushesRender(props, datum),
-  ))
+  return flatten(map(flatten(props.data), datum => brushesRender(props, datum)))
 }

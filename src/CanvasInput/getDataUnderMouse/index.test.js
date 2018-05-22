@@ -1,36 +1,27 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {it as test} from 'mocha'
 import assert from 'assert'
+
+import {it as test} from 'mocha'
+
 import {canvasMock, ctxMock} from '../../utils/canvasUtils'
 
-import * as methods from './'
+import * as methods from '.'
 
 test('getDataUnderMouse.getDataUnderMouse', () => {
-  assert.deepEqual(
-    methods.getDataUnderMouse({}, {x: 100, y: 100}, canvasMock),
-    {
-      localMouse: {x: 100, y: 100},
-    }
-  )
+  assert.deepEqual(methods.getDataUnderMouse({}, {x: 100, y: 100}, canvasMock), {
+    localMouse: {x: 100, y: 100},
+  })
 })
 test('getDataUnderMouse.findFirstPass', () => {
   assert.deepEqual(
-    methods.findFirstPass(
-      ctxMock,
-      {x: 0, y: 0},
-      [{type: 'text'}, {type: 'area'}, {type: 'line'}]
-    ),
+    methods.findFirstPass(ctxMock, {x: 0, y: 0}, [{type: 'text'}, {type: 'area'}, {type: 'line'}]),
     undefined
   )
 })
 test('getDataUnderMouse.findSecondPass', () => {
   assert.deepEqual(
-    methods.findSecondPass(
-      ctxMock,
-      {x: 0, y: 0},
-      [{type: 'text'}, {type: 'area'}, {type: 'line'}]
-    ),
+    methods.findSecondPass(ctxMock, {x: 0, y: 0}, [{type: 'text'}, {type: 'area'}, {type: 'line'}]),
     undefined
   )
 })

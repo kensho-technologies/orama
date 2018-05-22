@@ -1,10 +1,11 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {it as test} from 'mocha'
 import assert from 'assert'
 
-import {wrapUpNewProps} from './'
-import {getDimArrays} from './'
+import {it as test} from 'mocha'
+
+import {wrapUpNewProps} from '.'
+import {getDimArrays} from '.'
 
 test('Chart/getDimArrays.wrapUpNewProps 1', () => {
   const dimArrays = {

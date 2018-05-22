@@ -30,5 +30,4 @@ const transformFlow = arg =>
     _.omit(arg[0], PROPS_TO_OMIT)
   )
 
-export const chartTransformFlow = (...arg) =>
-  removeDimArrays(transformFlow(arg))
+export const chartTransformFlow = (...arg) => removeDimArrays(transformFlow(arg))

@@ -23,9 +23,7 @@ export const isPlotNumber = value => {
   return _.some(value, checkIsPlotNumber)
 }
 
-export const notDatum = value => (
-  _.isUndefined(value) || _.isNaN(value) || _.isNull(value)
-)
+export const notDatum = value => _.isUndefined(value) || _.isNaN(value) || _.isNull(value)
 
 export const isDatum = value => !notDatum(value)
 
@@ -33,11 +31,15 @@ export const isDatum = value => !notDatum(value)
 const slice = (arr, start, end) => arr.slice(start + 1, end + 1)
 
 export const splitBy = (arr, iteratee) => {
-  const {sliceFrom, returnArray} = _.reduce(arr, ({sliceFrom, returnArray}, val, idx) => {
-    if (iteratee(val, idx)) {
-      return {sliceFrom: idx, returnArray: [...returnArray, slice(arr, sliceFrom, idx)]}
-    }
-    return {sliceFrom, returnArray}
-  }, {sliceFrom: 0, returnArray: []})
+  const {sliceFrom, returnArray} = _.reduce(
+    arr,
+    ({sliceFrom, returnArray}, val, idx) => {
+      if (iteratee(val, idx)) {
+        return {sliceFrom: idx, returnArray: [...returnArray, slice(arr, sliceFrom, idx)]}
+      }
+      return {sliceFrom, returnArray}
+    },
+    {sliceFrom: 0, returnArray: []}
+  )
   return [...returnArray, slice(arr, sliceFrom, arr.length)]
 }

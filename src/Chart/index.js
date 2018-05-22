@@ -1,23 +1,22 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 import * as React from 'react'
+import PropTypes from 'prop-types'
 
 import {DEFAULT_THEME} from '../defaultTheme'
 import {PROPORTION} from '../chartCore/defaults'
 import {WIDTH} from '../chartCore/defaults'
-
 import {chartTransformFlow} from '../chartCore/chartTransformFlow'
-import {chartWidthHOC} from '../Chart/chartWidthHOC'
 import {getLayers} from '../chartCore/getLayers'
 import {getLocalKeys} from '../chartCore/getLocalKeys'
 import {getTheme} from '../defaultTheme'
-import PropTypes from 'prop-types'
 import stateHOC from '../utils/stateHOC'
 import * as memoize from '../chartCore/memoize'
-
 import {CanvasInput} from '../CanvasInput'
 import {ChartBackground} from '../ChartBackground'
-import {ChartRender} from '../Chart/ChartRender'
+
+import {chartWidthHOC} from './chartWidthHOC'
+import {ChartRender} from './ChartRender'
 
 const handleCanvasInput = (props, childProps) => {
   props.onUpdate(childProps)
@@ -36,7 +35,7 @@ export const _Chart = props => {
     memoizers.getPlotRect,
     memoizers.getRanges,
     memoizers.getTickCounts,
-    memoizers.getScales,
+    memoizers.getScales
   )
   const renderLayers = memoizers.getRenderLayers(rootProps)
   return (
@@ -49,14 +48,8 @@ export const _Chart = props => {
         width: '100%',
       }}
     >
-      <ChartBackground
-        {...rootProps}
-      />
-      <ChartRender
-        renderLayers={renderLayers}
-        rootProps={rootProps}
-        theme={rootProps.theme}
-      />
+      <ChartBackground {...rootProps} />
+      <ChartRender renderLayers={renderLayers} rootProps={rootProps} theme={rootProps.theme} />
       <CanvasInput
         onUpdate={childProps => handleCanvasInput(props, childProps)}
         renderLayers={renderLayers}

@@ -1,22 +1,37 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 export const ACCESSORS_NAMES = [
-  'x', 'x0', 'x1', 'x2',
-  'y', 'y0', 'y1', 'y2',
+  'x',
+  'x0',
+  'x1',
+  'x2',
+  'y',
+  'y0',
+  'y1',
+  'y2',
   'radius',
-  'fill', 'stroke',
+  'fill',
+  'stroke',
   'alpha',
-  'lineWidth', 'lineDash',
-  'hoverStroke', 'hoverFill',
+  'lineWidth',
+  'lineDash',
+  'hoverStroke',
+  'hoverFill',
 ]
 export const ACCESSORS_NAMES_NON_SCALABLE = [
-  'fillAlpha', 'strokeAlpha',
-  'hoverAlpha', 'hoverLineWidth',
+  'fillAlpha',
+  'strokeAlpha',
+  'hoverAlpha',
+  'hoverLineWidth',
   'text',
   'rotate',
-  'textAlign', 'textBaseline', 'textSnap',
-  'xOffset', 'yOffset',
-  'font', 'fontSize',
+  'textAlign',
+  'textBaseline',
+  'textSnap',
+  'xOffset',
+  'yOffset',
+  'font',
+  'fontSize',
 ]
 
 export const ACCESSORS_GROUPS = {
@@ -55,13 +70,12 @@ export const TICK_X_SPACE = 150
 export const TICK_Y_SPACE = 75
 export const SHOW_TICKS = true
 export const SHOW_LABELS = true
-export const AXIS_LABEL_OFFSET = theme => (
-  theme.axisLabelFontSize * (theme.lineHeight - 0.75)
-)
-export const AXIS_TICK_OFFSET = theme => (
-  theme.axisTickFontSize * (theme.lineHeight - 0.75)
-)
+export const AXIS_LABEL_OFFSET = theme => theme.axisLabelFontSize * (theme.lineHeight - 0.75)
+export const AXIS_TICK_OFFSET = theme => theme.axisTickFontSize * (theme.lineHeight - 0.75)
 export const PLOT_RECT = {
-  x: 10, y: 10, width: 480, height: 480,
+  x: 10,
+  y: 10,
+  width: 480,
+  height: 480,
 }
 export const MARGIN_RIGHT = 15

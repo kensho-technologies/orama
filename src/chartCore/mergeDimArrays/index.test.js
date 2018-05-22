@@ -1,11 +1,13 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {it as test} from 'mocha'
 import assert from 'assert'
-import {ACCESSORS_GROUPS} from '../../chartCore/defaults'
 
-import {omitGroups} from './'
-import {mergeDimArrays} from './'
+import {it as test} from 'mocha'
+
+import {ACCESSORS_GROUPS} from '../defaults'
+
+import {omitGroups} from '.'
+import {mergeDimArrays} from '.'
 
 test('Chart/mergeDimArrays.omitGroups 1', () => {
   const dimArrays = {

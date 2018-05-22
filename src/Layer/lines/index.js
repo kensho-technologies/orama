@@ -4,9 +4,9 @@ import _ from 'lodash'
 
 import {getPath2D} from '../../utils/path2DUtils'
 import {notPlotNumber} from '../../utils'
-import {plotValue} from '../../Layer/plotValue'
-import {getPlotValues} from '../../Layer/getPlotValues'
-import {splineInterpolation} from '../../Layer/splineInterpolation'
+import {plotValue} from '../plotValue'
+import {getPlotValues} from '../getPlotValues'
+import {splineInterpolation} from '../splineInterpolation'
 
 /*
 `points` is used to generate render data for lines and multilines.
@@ -20,12 +20,8 @@ lines{
 
 export const getPointData = (props, datum) => {
   const path2D = getPath2D()
-  const x = plotValue(
-    props, datum, undefined, 'x'
-  )
-  const y = plotValue(
-    props, datum, undefined, 'y'
-  )
+  const x = plotValue(props, datum, undefined, 'x')
+  const y = plotValue(props, datum, undefined, 'y')
   const r = plotValue(props, datum, undefined, 'strokeWidth', 2) + 1.5
   if (notPlotNumber([x, y, r])) return undefined
   path2D.arc(x, y, r, 0, 2 * Math.PI)
@@ -42,9 +38,7 @@ const getHoverSolverObj = (props, renderDatum, hoverData) => ({
   hoverData,
 })
 
-export const hoverSolver = (
-  props, _hoverData, renderDatum, localMouse
-) => {
+export const hoverSolver = (props, _hoverData, renderDatum, localMouse) => {
   const xRaw = props.xScale.invert(localMouse.x)
   if (props.xType === 'ordinal') {
     const hoverData = _.find(_hoverData, d => _.get(d, props.x) === xRaw)
@@ -82,14 +76,18 @@ const getLineRenderData = (props, data, idx) => {
     splineInterpolation(props, data, path2D)
   } else {
     path2D.moveTo(values.x, values.y)
-    _.reduce(data, (shouldDrawPoint, d) => {
-      const x = plotValue(props, d, idx, 'x')
-      const y = plotValue(props, d, idx, 'y')
-      if (notPlotNumber([x, y])) return false
-      if (shouldDrawPoint) path2D.lineTo(x, y)
-      else path2D.moveTo(x, y)
-      return true
-    }, true)
+    _.reduce(
+      data,
+      (shouldDrawPoint, d) => {
+        const x = plotValue(props, d, idx, 'x')
+        const y = plotValue(props, d, idx, 'y')
+        if (notPlotNumber([x, y])) return false
+        if (shouldDrawPoint) path2D.lineTo(x, y)
+        else path2D.moveTo(x, y)
+        return true
+      },
+      true
+    )
   }
   return {
     ...values,

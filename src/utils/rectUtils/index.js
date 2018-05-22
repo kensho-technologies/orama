@@ -17,8 +17,8 @@ export var marginBase = {left: 0, right: 0, top: 0, bottom: 0}
  * @return {Rect}
  */
 export function marginInset(marginInput, rectInput) {
-  var rect = {...rectBase, ...rectInput}
-  var margin = {...marginBase, ...marginInput}
+  const rect = {...rectBase, ...rectInput}
+  const margin = {...marginBase, ...marginInput}
   return {
     x: rect.x + margin.left,
     y: rect.y + margin.top,
@@ -38,7 +38,7 @@ export function marginInset(marginInput, rectInput) {
  * @return {Rect}
  */
 export function inset(value, rectInput) {
-  var rect = {...rectBase, ...rectInput}
+  const rect = {...rectBase, ...rectInput}
   return {
     x: rect.x + value,
     y: rect.y + value,
@@ -63,7 +63,7 @@ export function getMinY(rectInput) {
  * @return {number}
  */
 export function getMaxX(rectInput) {
-  var rect = {...rectBase, ...rectInput}
+  const rect = {...rectBase, ...rectInput}
   return rect.x + rect.width
 }
 
@@ -75,7 +75,7 @@ export function getMaxX(rectInput) {
  * @return {number}
  */
 export function getMaxY(rectInput) {
-  var rect = {...rectBase, ...rectInput}
+  const rect = {...rectBase, ...rectInput}
   return rect.y + rect.height
 }
 
@@ -85,7 +85,7 @@ export function getMaxY(rectInput) {
  * @return {Range}
  */
 export function getRangeX(rectInput) {
-  var rect = {...rectBase, ...rectInput}
+  const rect = {...rectBase, ...rectInput}
   return [rect.x, getMaxX(rect)]
 }
 
@@ -95,7 +95,7 @@ export function getRangeX(rectInput) {
  * @return {Range}
  */
 export function getRangeY(rectInput) {
-  var rect = {...rectBase, ...rectInput}
+  const rect = {...rectBase, ...rectInput}
   return [getMaxY(rect), rect.y]
 }
 
@@ -107,7 +107,7 @@ export function getRangeY(rectInput) {
  * @return {number}
  */
 export function getMidX(rectInput) {
-  var rect = {...rectBase, ...rectInput}
+  const rect = {...rectBase, ...rectInput}
   return rect.x + rect.width / 2
 }
 
@@ -119,15 +119,17 @@ export function getMidX(rectInput) {
  * @return {number}
  */
 export function getMidY(rectInput) {
-  var rect = {...rectBase, ...rectInput}
+  const rect = {...rectBase, ...rectInput}
   return rect.y + rect.height / 2
 }
 
 export const isPointInsideRect = (point, rect) => {
-  if (point.x > rect.x &&
+  if (
+    point.x > rect.x &&
     point.x < rect.x + rect.width &&
     point.y > rect.y &&
     point.y < rect.y + rect.height
-  ) return true
+  )
+    return true
   return false
 }

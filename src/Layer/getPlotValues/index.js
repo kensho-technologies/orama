@@ -2,7 +2,7 @@
 
 import _ from 'lodash'
 
-import {plotValue} from '../../Layer/plotValue'
+import {plotValue} from '../plotValue'
 import {ACCESSORS_NAMES} from '../../chartCore/defaults'
 import {ACCESSORS_NAMES_NON_SCALABLE} from '../../chartCore/defaults'
 

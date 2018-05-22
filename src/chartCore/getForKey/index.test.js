@@ -1,10 +1,12 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {it as test} from 'mocha'
 import assert from 'assert'
+
+import {it as test} from 'mocha'
+
 import {DEFAULT_THEME as theme} from '../../defaultTheme'
 
-import * as methods from './'
+import * as methods from '.'
 
 test('visUtils.toType', () => {
   assert.deepEqual(methods.toType(), 'undefined')
@@ -20,22 +22,10 @@ test('Chart/getMethods.getType', () => {
     yArray: ['a', 'b', 1, new Date()],
     fillArray: [new Date(), new Date(), 'a', 1],
   }
-  assert.deepEqual(
-    methods.getType(props, 'x'),
-    'linear'
-  )
-  assert.deepEqual(
-    methods.getType(props, 'y'),
-    'ordinal'
-  )
-  assert.deepEqual(
-    methods.getType(props, 'fill'),
-    'time'
-  )
-  assert.deepEqual(
-    methods.getType(props),
-    undefined
-  )
+  assert.deepEqual(methods.getType(props, 'x'), 'linear')
+  assert.deepEqual(methods.getType(props, 'y'), 'ordinal')
+  assert.deepEqual(methods.getType(props, 'fill'), 'time')
+  assert.deepEqual(methods.getType(props), undefined)
 })
 test('Chart/getMethods.getDomain', () => {
   const props = {
@@ -46,18 +36,9 @@ test('Chart/getMethods.getDomain', () => {
     yType: 'ordinal',
     fillType: 'time',
   }
-  assert.deepEqual(
-    methods.getDomain(props, 'x'),
-    [1, 4]
-  )
-  assert.deepEqual(
-    methods.getDomain(props, 'y'),
-    ['a', 'b', 'c']
-  )
-  assert.deepEqual(
-    methods.getDomain(props, 'fill'),
-    [new Date(2015, 1), new Date(2015, 3)]
-  )
+  assert.deepEqual(methods.getDomain(props, 'x'), [1, 4])
+  assert.deepEqual(methods.getDomain(props, 'y'), ['a', 'b', 'c'])
+  assert.deepEqual(methods.getDomain(props, 'fill'), [new Date(2015, 1), new Date(2015, 3)])
 })
 test('Chart/getMethods.getDomain zeroBased', () => {
   const props = {
@@ -65,10 +46,7 @@ test('Chart/getMethods.getDomain zeroBased', () => {
     xType: 'linear',
     xZeroBased: true,
   }
-  assert.deepEqual(
-    methods.getDomain(props, 'x'),
-    [0, 4]
-  )
+  assert.deepEqual(methods.getDomain(props, 'x'), [0, 4])
 })
 test('Chart/getMethods.getRange', () => {
   const props = {
@@ -78,18 +56,9 @@ test('Chart/getMethods.getRange', () => {
     fillType: 'time',
     theme,
   }
-  assert.deepEqual(
-    methods.getRange(props, 'x'),
-    [0, 500]
-  )
-  assert.deepEqual(
-    methods.getRange(props, 'y'),
-    [500, 0]
-  )
-  assert.deepEqual(
-    methods.getRange(props, 'fill'),
-    theme.plotLinearRangeFill
-  )
+  assert.deepEqual(methods.getRange(props, 'x'), [0, 500])
+  assert.deepEqual(methods.getRange(props, 'y'), [500, 0])
+  assert.deepEqual(methods.getRange(props, 'fill'), theme.plotLinearRangeFill)
 })
 test('Chart/getMethods.getTickCount', () => {
   const props = {
@@ -97,12 +66,6 @@ test('Chart/getMethods.getTickCount', () => {
     yRange: [500, 0],
     yTickSpace: 10,
   }
-  assert.deepEqual(
-    methods.getTickCount(props, 'x'),
-    4
-  )
-  assert.deepEqual(
-    methods.getTickCount(props, 'y'),
-    50
-  )
+  assert.deepEqual(methods.getTickCount(props, 'x'), 4)
+  assert.deepEqual(methods.getTickCount(props, 'y'), 50)
 })

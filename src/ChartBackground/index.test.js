@@ -1,9 +1,10 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {it as test} from 'mocha'
 import assert from 'assert'
 
+import {it as test} from 'mocha'
 import * as React from 'react'
+
 import shallowRender from '../utils/shallowRender'
 import {DEFAULT_THEME as theme} from '../defaultTheme'
 import {PLOT_RECT} from '../chartCore/defaults'
@@ -16,12 +17,10 @@ import {
   getXText,
   getYText,
   getBackgroundRenderData,
-} from './'
+} from '.'
 
 test('ChartBackground', () => {
-  const component = shallowRender(
-    <ChartBackground/>
-  )
+  const component = shallowRender(<ChartBackground />)
   assert.deepEqual(component.type, 'div')
 })
 test('ChartBackground.getBackground', () => {
@@ -29,14 +28,8 @@ test('ChartBackground.getBackground', () => {
     theme,
   }
   const background = getBackground(props)
-  assert.deepEqual(
-    background.type,
-    'area'
-  )
-  assert.deepEqual(
-    background.fill,
-    theme.plotBackgroundFill
-  )
+  assert.deepEqual(background.type, 'area')
+  assert.deepEqual(background.fill, theme.plotBackgroundFill)
 })
 test('ChartBackground.getXGuides', () => {
   const props = {
@@ -47,10 +40,7 @@ test('ChartBackground.getXGuides', () => {
     plotRect: PLOT_RECT,
   }
   const xGuides = getXGuides(props)
-  assert.deepEqual(
-    xGuides[0].type,
-    'line'
-  )
+  assert.deepEqual(xGuides[0].type, 'line')
 })
 test('ChartBackground.getYGuides', () => {
   const props = {
@@ -61,10 +51,7 @@ test('ChartBackground.getYGuides', () => {
     plotRect: PLOT_RECT,
   }
   const yGuides = getYGuides(props)
-  assert.deepEqual(
-    yGuides[0].type,
-    'line'
-  )
+  assert.deepEqual(yGuides[0].type, 'line')
 })
 test('ChartBackground.getXText', () => {
   const props = {
@@ -75,10 +62,7 @@ test('ChartBackground.getXText', () => {
     plotRect: PLOT_RECT,
   }
   const xGuides = getXText(props)
-  assert.deepEqual(
-    xGuides[0].type,
-    'text'
-  )
+  assert.deepEqual(xGuides[0].type, 'text')
 })
 test('ChartBackground.getYText', () => {
   const props = {
@@ -89,18 +73,12 @@ test('ChartBackground.getYText', () => {
     plotRect: PLOT_RECT,
   }
   const yGuides = getYText(props)
-  assert.deepEqual(
-    yGuides[0].type,
-    'text'
-  )
+  assert.deepEqual(yGuides[0].type, 'text')
 })
 test('ChartBackground.getBackgroundRenderData', () => {
   const props = {
     theme,
   }
   const backgroundRenderData = getBackgroundRenderData(props)
-  assert.deepEqual(
-    backgroundRenderData[0].type,
-    'area'
-  )
+  assert.deepEqual(backgroundRenderData[0].type, 'area')
 })

@@ -15,7 +15,7 @@ export const ctxMock = {
   isPointInPath: noop,
   isPointInStroke: noop,
   lineTo: noop,
-  measureText: (text) => ({width: text.toString().length}),
+  measureText: text => ({width: text.toString().length}),
   arcTo: noop,
   moveTo: noop,
   quadraticCurveTo: noop,
@@ -52,29 +52,14 @@ export function getCachedContext() {
 }
 
 export function clearRect(ctx, rectInput) {
-  var rect = {...rectBase, ...rectInput}
-  ctx.clearRect(
-    rect.x,
-    rect.y,
-    rect.width,
-    rect.height
-  )
+  const rect = {...rectBase, ...rectInput}
+  ctx.clearRect(rect.x, rect.y, rect.width, rect.height)
 }
 export function fillRect(ctx, rectInput) {
-  var rect = {...rectBase, ...rectInput}
-  ctx.fillRect(
-    rect.x,
-    rect.y,
-    rect.width,
-    rect.height
-  )
+  const rect = {...rectBase, ...rectInput}
+  ctx.fillRect(rect.x, rect.y, rect.width, rect.height)
 }
 export function strokeRect(ctx, rectInput) {
-  var rect = {...rectBase, ...rectInput}
-  ctx.strokeRect(
-    rect.x,
-    rect.y,
-    rect.width,
-    rect.height
-  )
+  const rect = {...rectBase, ...rectInput}
+  ctx.strokeRect(rect.x, rect.y, rect.width, rect.height)
 }

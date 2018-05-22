@@ -1,17 +1,14 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 import _ from 'lodash'
-import {ACCESSORS_GROUPS} from '../../chartCore/defaults'
 
-import {compactData} from '../../chartCore/compactData'
+import {ACCESSORS_GROUPS} from '../defaults'
+import {compactData} from '../compactData'
 
-export const omitGroups = (dimArrays, accessorsGroups) => (
-  _.flow(
-    _.values,
-    _.flatten,
-    accessorsValues => _.omit(dimArrays, accessorsValues),
-  )(accessorsGroups)
-)
+export const omitGroups = (dimArrays, accessorsGroups) =>
+  _.flow(_.values, _.flatten, accessorsValues => _.omit(dimArrays, accessorsValues))(
+    accessorsGroups
+  )
 /*
 Merge keys according to their groups, eg. 'x', 'x0', 'x1' get merged into one xArray
 */

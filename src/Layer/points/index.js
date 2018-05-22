@@ -1,9 +1,10 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
+import {map, flatten, isArray} from 'lodash'
+
 import {getMidX, getMidY} from '../../utils/rectUtils'
 import {getPath2D} from '../../utils/path2DUtils'
-import {getPlotValues} from '../../Layer/getPlotValues'
-import {map, flatten, isArray} from 'lodash'
+import {getPlotValues} from '../getPlotValues'
 
 /*
 `points` is used to generate render data for dots and similar.
@@ -43,13 +44,12 @@ Main entry point, if there's only `xMap` or `yMap` it will output an one dimensi
 */
 export const points = props => {
   if (!props.xScale && !props.yScale) return undefined
-  return flatten(map(
-    props.data,
-    (datum, idx) => {
+  return flatten(
+    map(props.data, (datum, idx) => {
       if (isArray(datum)) {
         return map(datum, (d, i) => getPointRenderData(props, d, i))
       }
       return getPointRenderData(props, datum, idx)
-    },
-  ))
+    })
+  )
 }

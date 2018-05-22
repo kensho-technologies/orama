@@ -1,20 +1,12 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 export const runHoverSolverOn = dataUnderMouse => {
-  const {
-    layerProps,
-    renderDatum,
-    hoverData,
-    localMouse,
-    mouse,
-  } = dataUnderMouse
+  const {layerProps, renderDatum, hoverData, localMouse, mouse} = dataUnderMouse
 
   if (!renderDatum || !layerProps) return dataUnderMouse
   const hoverSolver = layerProps.hoverSolver || renderDatum.hoverSolver
   if (!hoverSolver) return dataUnderMouse
-  const hoverSolverData = hoverSolver(
-    layerProps, hoverData, renderDatum, localMouse,
-  )
+  const hoverSolverData = hoverSolver(layerProps, hoverData, renderDatum, localMouse)
   return {
     layerProps,
     hoverOriginalData: hoverData,

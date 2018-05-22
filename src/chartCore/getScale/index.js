@@ -3,11 +3,11 @@
 import _ from 'lodash'
 import * as d3Scale from 'd3-scale'
 
-import {DOMAIN} from '../../chartCore/defaults'
-import {NICE} from '../../chartCore/defaults'
-import {RANGE} from '../../chartCore/defaults'
-import {TICK_COUNT} from '../../chartCore/defaults'
-import {TYPE} from '../../chartCore/defaults'
+import {DOMAIN} from '../defaults'
+import {NICE} from '../defaults'
+import {RANGE} from '../defaults'
+import {TICK_COUNT} from '../defaults'
+import {TYPE} from '../defaults'
 
 /*
 `getScale` returns the scale for a key according to configurations on props object.
@@ -35,20 +35,23 @@ get a scale with logic for the x and y axis, if the domain starts and finishes o
 */
 const getBaseScales = (type, domain, range, nice, tickCount) => {
   if (type === 'time') {
-    const timeScale = d3Scale.scaleUtc()
+    const timeScale = d3Scale
+      .scaleUtc()
       .domain(domain)
       .range(range)
     if (nice) timeScale.nice(tickCount)
     return timeScale
   }
   if (type === 'log') {
-    const logScale = d3Scale.scaleLog()
+    const logScale = d3Scale
+      .scaleLog()
       .domain(domain)
       .range(range)
     if (nice) logScale.nice(tickCount)
     return logScale
   }
-  const linearScale = d3Scale.scaleLinear()
+  const linearScale = d3Scale
+    .scaleLinear()
     .domain(domain)
     .range(range)
   if (nice) linearScale.nice(tickCount)
@@ -57,7 +60,8 @@ const getBaseScales = (type, domain, range, nice, tickCount) => {
 
 export const getOrdinalInvert = scale => {
   const mapArray = _.map(scale.domain(), raw => ({
-    raw, mapped: scale(raw),
+    raw,
+    mapped: scale(raw),
   }))
   return input => {
     const hoverIndex = _.findIndex(mapArray, d => _.get(d, 'mapped') > input)
@@ -90,7 +94,8 @@ export const getAxisScale = (props, key) => {
   } = props
   switch (type) {
     case 'ordinal':
-      const scaleOrdinal = d3Scale.scalePoint()
+      const scaleOrdinal = d3Scale
+        .scalePoint()
         .domain(domain)
         .range(range)
         .padding(0.5)
@@ -117,7 +122,8 @@ export const getDefaultScale = (props, key) => {
   } = props
   switch (type) {
     case 'ordinal':
-      const scaleOrdinal = d3Scale.scaleOrdinal()
+      const scaleOrdinal = d3Scale
+        .scaleOrdinal()
         .domain(domain)
         .range(range)
       return scaleOrdinal

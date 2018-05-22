@@ -1,7 +1,8 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 export const DEFAULT_THEME = {
-  fontFamily: '-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif',
+  fontFamily:
+    '-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif',
   fontFamilyMono: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace',
   titleFontWeight: 'bold',
   fontSize: 14,
@@ -38,7 +39,14 @@ export const DEFAULT_THEME = {
 
   plotLinearRangeFill: ['#edf8b1', '#2c7fb8'],
   plotOrdinalRangeFill: [
-    "#1b9e77", "#d95f02", "#7570b3", "#e7298a", "#66a61e", "#e6ab02", "#a6761d", "#666666"
+    '#1b9e77',
+    '#d95f02',
+    '#7570b3',
+    '#e7298a',
+    '#66a61e',
+    '#e6ab02',
+    '#a6761d',
+    '#666666',
   ],
 }
 

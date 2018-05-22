@@ -9,12 +9,15 @@ export class BlockSize extends React.Component {
   static propTypes = {
     onUpdate: PropTypes.func.isRequired,
   }
+
   componentDidMount() {
     this.update()
   }
+
   componentDidUpdate() {
     this.update()
   }
+
   update = () => {
     if (!this.element) return
     const node = findDOMNode(this.element)
@@ -24,15 +27,11 @@ export class BlockSize extends React.Component {
       height: node.offsetHeight,
     })
   }
+
   render() {
     const refClbck = element => {
       this.element = element
     }
-    return (
-      <div
-        {..._.omit(this.props, ['onUpdate', 'onState'])}
-        ref={refClbck}
-      />
-    )
+    return <div {..._.omit(this.props, ['onUpdate', 'onState'])} ref={refClbck} />
   }
 }

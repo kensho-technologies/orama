@@ -2,9 +2,9 @@
 
 import * as React from 'react'
 import PropTypes from 'prop-types'
+
 import stateHOC from '../utils/stateHOC'
 import {getWindow} from '../utils/windowUtils'
-
 import {BlockSize} from '../utilComponents/BlockSize'
 import Portal from '../utilComponents/Portal'
 import {Tooltip as DefaultTooltip} from '../Tooltip'
@@ -18,11 +18,7 @@ const handleBlockSizeUpdate = (props, childProps) => {
   })
 }
 export const getTooltipPosition = props => {
-  const {
-    mouse,
-    width,
-    height,
-  } = props
+  const {mouse, width, height} = props
   if (!width || !height) {
     return {}
   }
@@ -51,9 +47,7 @@ export const getTooltipPosition = props => {
 
 export const _TooltipWrapper = props => {
   if (!props.mouse || !props.hoverData) return null
-  const {
-    Tooltip = DefaultTooltip,
-  } = props.layerProps
+  const {Tooltip = DefaultTooltip} = props.layerProps
   return (
     <Portal>
       <BlockSize
@@ -66,20 +60,13 @@ export const _TooltipWrapper = props => {
           ...getTooltipPosition(props),
         }}
       >
-        <Tooltip
-          hoverData={props.hoverData}
-          layerProps={props.layerProps}
-          theme={props.theme}
-        />
+        <Tooltip hoverData={props.hoverData} layerProps={props.layerProps} theme={props.theme} />
       </BlockSize>
     </Portal>
   )
 }
 _TooltipWrapper.propTypes = {
-  hoverData: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
+  hoverData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   layerProps: PropTypes.object,
   mouse: PropTypes.object,
   theme: PropTypes.object,

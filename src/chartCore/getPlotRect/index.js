@@ -1,12 +1,9 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 import _ from 'lodash'
+
 import {getCachedContext} from '../../utils/canvasUtils'
-import {
-  getRange,
-  getTickCount,
-  getTicks,
-} from '../../chartCore/getForKey'
+import {getRange, getTickCount, getTicks} from '../getForKey'
 import {
   AXIS_LABEL_OFFSET,
   AXIS_TICK_OFFSET,
@@ -54,14 +51,7 @@ export const getMaxTextWidth = (theme, ticks) => {
   const ctx = getCachedContext()
   ctx.save()
   ctx.font = `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`
-  const maxWidth = _.reduce(
-    ticks,
-    (acc, d) => _.max([
-      acc,
-      ctx.measureText(d.text).width,
-    ]),
-    0
-  )
+  const maxWidth = _.reduce(ticks, (acc, d) => _.max([acc, ctx.measureText(d.text).width]), 0)
   ctx.restore()
   return maxWidth
 }
@@ -75,10 +65,7 @@ const getTopMargin = props => {
   } = props
   if (!_.isUndefined(margin.top)) return margin.top + backgroundOffset
   if (yShowTicks === false || !y) return backgroundOffset
-  return _.max([
-    backgroundOffset,
-    theme.axisTickFontSize / 2,
-  ])
+  return _.max([backgroundOffset, theme.axisTickFontSize / 2])
 }
 const getBottomMargin = props => {
   const {theme} = props
@@ -113,10 +100,7 @@ const getLeftMargin = props => {
   if (!_.isUndefined(margin.left)) return margin.left + backgroundOffset
   if (!_.includes(groupedKeys, 'y')) return backgroundOffset
   if (!yShowTicks) {
-    return _.sum([
-      backgroundOffset,
-      yShowLabel ? yLabelOffset + theme.axisLabelFontSize : 0,
-    ])
+    return _.sum([backgroundOffset, yShowLabel ? yLabelOffset + theme.axisLabelFontSize : 0])
   }
   const yRange = props.yRange || getRange(props, 'y')
   const yTickCount = props.yTickCount || getTickCount({...props, yRange}, 'y')
@@ -130,12 +114,7 @@ const getLeftMargin = props => {
   ])
 }
 const getRightMargin = props => {
-  const {
-    backgroundOffset = BACKGROUND_OFFSET,
-    margin = {},
-    x,
-    xShowTicks = SHOW_TICKS,
-  } = props
+  const {backgroundOffset = BACKGROUND_OFFSET, margin = {}, x, xShowTicks = SHOW_TICKS} = props
   if (!_.isUndefined(margin.right)) return margin.right + backgroundOffset
   if (!x || !xShowTicks) return backgroundOffset
   return backgroundOffset

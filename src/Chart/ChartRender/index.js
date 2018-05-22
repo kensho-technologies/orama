@@ -13,22 +13,19 @@ Used inside <Chart/>
 */
 export const ChartRender = props => (
   <div>
-    {_.map(
-      props.renderLayers,
-      (renderLayer, i) => (
-        <CanvasRender // basicRender
-          clip={true}
-          height={props.rootProps.height}
-          key={i}
-          layerProps={renderLayer.layerProps}
-          plotRect={props.rootProps.plotRect}
-          render={basicRender}
-          renderData={renderLayer.renderData}
-          theme={props.theme}
-          width={props.rootProps.width}
-        />
-      )
-    )}
+    {_.map(props.renderLayers, (renderLayer, i) => (
+      <CanvasRender // basicRender
+        clip
+        height={props.rootProps.height}
+        key={i}
+        layerProps={renderLayer.layerProps}
+        plotRect={props.rootProps.plotRect}
+        render={basicRender}
+        renderData={renderLayer.renderData}
+        theme={props.theme}
+        width={props.rootProps.width}
+      />
+    ))}
   </div>
 )
 

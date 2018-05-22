@@ -1,17 +1,12 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {it as test} from 'mocha'
 import assert from 'assert'
 
-import {getName} from './'
+import {it as test} from 'mocha'
+
+import {getName} from '.'
 
 test('getName', () => {
-  assert.equal(
-    getName('Chart'),
-    'Chart'
-  )
-  assert.equal(
-    getName('_Chart'),
-    'Chart'
-  )
+  assert.equal(getName('Chart'), 'Chart')
+  assert.equal(getName('_Chart'), 'Chart')
 })

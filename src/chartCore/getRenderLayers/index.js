@@ -7,16 +7,10 @@ generate the renderLayers and renderData by running the plot functions of the pr
 */
 
 export const getLayer = props => {
-  const {
-    plot = () => [],
-  } = props
+  const {plot = () => []} = props
   return {
     layerProps: props,
     renderData: plot(props),
   }
 }
-export const getRenderLayers = props =>
-  _.map(
-    props.layers,
-    layer => getLayer({...props, ...layer}),
-  )
+export const getRenderLayers = props => _.map(props.layers, layer => getLayer({...props, ...layer}))

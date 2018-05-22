@@ -1,10 +1,12 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {it as test} from 'mocha'
 import assert from 'assert'
+
+import {it as test} from 'mocha'
+
 import {PLOT_RECT as plotRect} from '../../chartCore/defaults'
 
-import {brushes} from './'
+import {brushes} from '.'
 
 test('Chart/brushes 1', () => {
   const renderData = brushes({

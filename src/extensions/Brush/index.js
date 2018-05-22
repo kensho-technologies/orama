@@ -7,7 +7,17 @@ import _ from 'lodash'
 import stateHOC from '../../utils/stateHOC'
 import {Brushes} from '../../Layer'
 
-const BRUSH_ELEMENT_NAMES = ['brushesCenter', 'brushesLeft', 'brushesRight', 'brushesTop', 'brushesBottom', 'brushesLeftTop', 'brushesRightTop', 'brushesRightBottom', 'brushesLeftBottom']
+const BRUSH_ELEMENT_NAMES = [
+  'brushesCenter',
+  'brushesLeft',
+  'brushesRight',
+  'brushesTop',
+  'brushesBottom',
+  'brushesLeftTop',
+  'brushesRightTop',
+  'brushesRightBottom',
+  'brushesLeftBottom',
+]
 
 const reorder = bounds => ({
   x1: _.min([bounds.x1, bounds.x2]),
@@ -21,11 +31,14 @@ const isOutOfBounds = (bounds, plotRect) => {
     bounds.x2 > plotRect.x + plotRect.width ||
     bounds.y1 < plotRect.y ||
     bounds.y2 > plotRect.y + plotRect.height
-  ) return true
+  )
+    return true
   return false
 }
 const constraintToPlotRect = (bounds, childProps) => {
-  const {rootProps: {plotRect}} = childProps
+  const {
+    rootProps: {plotRect},
+  } = childProps
   let x1 = bounds.x1
   if (x1 < plotRect.x) x1 = plotRect.x
   let x2 = bounds.x2
@@ -48,14 +61,8 @@ const domainToBounds = (props, childProps) => {
 const boundsToDomain = (bounds, childProps) => {
   const {rootProps} = childProps
   return {
-    xDomain: [
-      rootProps.xScale.invert(bounds.x1),
-      rootProps.xScale.invert(bounds.x2),
-    ],
-    yDomain: [
-      rootProps.yScale.invert(bounds.y1),
-      rootProps.yScale.invert(bounds.y2),
-    ],
+    xDomain: [rootProps.xScale.invert(bounds.x1), rootProps.xScale.invert(bounds.x2)],
+    yDomain: [rootProps.yScale.invert(bounds.y1), rootProps.yScale.invert(bounds.y2)],
   }
 }
 const getBrushData = props => ({
@@ -150,17 +157,20 @@ const mouseDrag = (props, childProps) => {
   if (props.onMouseDown) props.onMouseDown()
 }
 
-const mouseUp = (props) => {
+const mouseUp = props => {
   if (props.onMouseUp) props.onMouseUp()
 }
 
 const handleChart = (props, childProps) => {
   switch (childProps.action) {
-    case 'mouseDown': mouseDown(props, childProps)
+    case 'mouseDown':
+      mouseDown(props, childProps)
       break
-    case 'mouseDrag': mouseDrag(props, childProps)
+    case 'mouseDrag':
+      mouseDrag(props, childProps)
       break
-    case 'mouseUp': mouseUp(props, childProps)
+    case 'mouseUp':
+      mouseUp(props, childProps)
       break
     default:
   }
@@ -174,28 +184,26 @@ const _Brush = props => {
         data={[getBrushData(props)]}
         fillAlphaValue={props.fillAlphaValue}
         fillValue={props.fillValue}
-        key='brushes'
+        key="brushes"
         lineWidthValue={props.lineWidthValue}
-        skipExtractArrays={true}
+        skipExtractArrays
         strokeValue={props.strokeValue}
         tooltipShowKeys={false}
-        x1='x1'
-        x2='x2'
-        y1='y1'
-        y2='y2'
+        x1="x1"
+        x2="x2"
+        y1="y1"
+        y2="y2"
         {...props}
       />
     )
-    const layers = React.Children.toArray(child.props.children).concat(
-      BrushElement,
-    )
+    const layers = React.Children.toArray(child.props.children).concat(BrushElement)
     return React.cloneElement(
       child,
       {onUpdate: childProps => handleChart(props, childProps)},
       layers
     )
   }
-  return <div/>
+  return <div />
 }
 
 _Brush.propTypes = {

@@ -29,19 +29,22 @@ export class Draggable extends React.Component {
     children: PropTypes.element,
     onUpdate: PropTypes.func.isRequired,
   }
+
   updateOnlyTypes = {
     deltaX: PropTypes.number,
     deltaY: PropTypes.number,
   }
-  canUpdate = [
-    'deltaX', 'deltaY',
-  ]
+
+  canUpdate = ['deltaX', 'deltaY']
+
   static defaultProps = {
     initialPos: {x: 0, y: 0},
   }
+
   state = {
     dragging: false,
   }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.state.dragging && !prevState.dragging) {
       document.addEventListener('mousemove', this.onMouseMove)
@@ -51,8 +54,9 @@ export class Draggable extends React.Component {
       document.removeEventListener('mouseup', this.onMouseUp)
     }
   }
+
   // calculate relative position to the mouse and set dragging=true
-  onMouseDown = (evt) => {
+  onMouseDown = evt => {
     // only left mouse button
     if (evt.button !== 0) return
     evt.stopPropagation()
@@ -65,12 +69,14 @@ export class Draggable extends React.Component {
       dragging: true,
     })
   }
-  onMouseUp = (evt) => {
+
+  onMouseUp = evt => {
     evt.stopPropagation()
     evt.preventDefault()
     this.setState({dragging: false})
   }
-  onMouseMove = (evt) => {
+
+  onMouseMove = evt => {
     if (!this.state.dragging) return
     evt.stopPropagation()
     evt.preventDefault()
@@ -84,12 +90,10 @@ export class Draggable extends React.Component {
       y: evt.clientY,
     }
   }
+
   render() {
-    return (
-      React.cloneElement(
-        React.Children.only(this.props.children),
-        {onMouseDown: this.onMouseDown},
-      )
-    )
+    return React.cloneElement(React.Children.only(this.props.children), {
+      onMouseDown: this.onMouseDown,
+    })
   }
 }

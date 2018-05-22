@@ -1,12 +1,13 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 import _ from 'lodash'
+
 import {notDatum} from '../../utils'
 
 /*
 same as _.compact, but keep the zeros, they are important for dataVis
 */
-export const compactData = array => (
+export const compactData = array =>
   _.reduce(
     array,
     (acc, d) => {
@@ -16,4 +17,3 @@ export const compactData = array => (
     },
     []
   )
-)

@@ -1,10 +1,11 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {it as test} from 'mocha'
 import assert from 'assert'
 
-import {getScaleKeyByHash} from './'
-import {plotValue} from './'
+import {it as test} from 'mocha'
+
+import {getScaleKeyByHash} from '.'
+import {plotValue} from '.'
 
 test('Chart/plotValue.getScaleKeyByHash', () => {
   const actual = getScaleKeyByHash({}, 'x0')

@@ -1,6 +1,7 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 import * as React from 'react'
+
 import isStatelessComponentFunction from '../isStatelessComponentFunction'
 
 function isFunction(functionToCheck) {
@@ -52,14 +53,18 @@ const stateHOC = (Child, initialState = {}) => {
   if (isStatelessComponentFunction(Child)) {
     return class stateHOC extends React.PureComponent {
       static displayName = `${getName(Child.name)}(state)`
+
       static defaultProps = Child.defaultProps
+
       state = {
         ...getInitialState(Child.initialState),
         ...getInitialState(initialState),
       }
-      handleChildUpdate = (childProps) => {
+
+      handleChildUpdate = childProps => {
         this.setState(childProps)
       }
+
       render() {
         return Child({
           ...this.props,
@@ -72,14 +77,18 @@ const stateHOC = (Child, initialState = {}) => {
   }
   return class stateHOC extends React.PureComponent {
     static displayName = `${Child.displayName}(state)`
+
     static defaultProps = {}
+
     state = {
       ...getInitialState(Child.initialState),
       ...getInitialState(initialState),
     }
-    handleChildUpdate = (childProps) => {
+
+    handleChildUpdate = childProps => {
       this.setState(childProps)
     }
+
     render() {
       return (
         <Child
