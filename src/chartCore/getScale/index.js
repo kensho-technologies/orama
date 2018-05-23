@@ -1,7 +1,7 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 import _ from 'lodash'
-import * as d3Scale from 'd3-scale'
+import {scaleLinear, scaleLog, scaleOrdinal, scalePoint, scaleUtc} from 'd3-scale'
 
 import {DOMAIN, NICE, RANGE, TICK_COUNT, TYPE} from '../defaults'
 
@@ -31,23 +31,20 @@ get a scale with logic for the x and y axis, if the domain starts and finishes o
 */
 const getBaseScales = (type, domain, range, nice, tickCount) => {
   if (type === 'time') {
-    const timeScale = d3Scale
-      .scaleUtc()
+    const timeScale = scaleUtc()
       .domain(domain)
       .range(range)
     if (nice) timeScale.nice(tickCount)
     return timeScale
   }
   if (type === 'log') {
-    const logScale = d3Scale
-      .scaleLog()
+    const logScale = scaleLog()
       .domain(domain)
       .range(range)
     if (nice) logScale.nice(tickCount)
     return logScale
   }
-  const linearScale = d3Scale
-    .scaleLinear()
+  const linearScale = scaleLinear()
     .domain(domain)
     .range(range)
   if (nice) linearScale.nice(tickCount)
@@ -90,13 +87,12 @@ export const getAxisScale = (props, key) => {
   } = props
   switch (type) {
     case 'ordinal':
-      const scaleOrdinal = d3Scale
-        .scalePoint()
+      const ordinalScale = scalePoint()
         .domain(domain)
         .range(range)
         .padding(0.5)
-      scaleOrdinal.invert = getOrdinalInvert(scaleOrdinal)
-      return scaleOrdinal
+      ordinalScale.invert = getOrdinalInvert(ordinalScale)
+      return ordinalScale
     default:
       if (domain[0] === domain[1]) {
         const midRange = range[0] + (range[1] - range[0]) / 2
@@ -118,11 +114,9 @@ export const getDefaultScale = (props, key) => {
   } = props
   switch (type) {
     case 'ordinal':
-      const scaleOrdinal = d3Scale
-        .scaleOrdinal()
+      return scaleOrdinal()
         .domain(domain)
         .range(range)
-      return scaleOrdinal
     default:
       return getBaseScales(type, domain, range, nice, tickCount)
   }
