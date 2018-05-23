@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 import {ACCESSORS_NAMES} from '../defaults'
 
-export const layerMapper = layer => {
+export function layerMapper(layer) {
   const localAccessors = _.pick(layer, layer.accessorsNames || ACCESSORS_NAMES)
   return {
     ...layer,

@@ -9,7 +9,7 @@ import {fitCheckText} from '../../utils/textUtils'
 /*
 generates the array of render data
 */
-export const getTextRenderData = (props, datum, idx) => {
+export function getTextRenderData(props, datum, idx) {
   const {plotRect, theme, width, height} = props
   const values = getPlotValues(props, datum, idx, {
     x: getMidX(props.plotRect),
@@ -48,7 +48,7 @@ export const getTextRenderData = (props, datum, idx) => {
 /*
 Main entry point, if there's only `xMap` or `yMap` it will output an one dimension plot.
 */
-export const text = props => {
+export function text(props) {
   if (!props.xScale && !props.yScale) return undefined
   return map(flatten(props.data), (datum, idx) => getTextRenderData(props, datum, idx))
 }

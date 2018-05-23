@@ -6,7 +6,7 @@ import _ from 'lodash'
 
 import State from '../../utils/State'
 
-const mouseDown = (props, childProps) => {
+function mouseDown(props, childProps) {
   const {data} = props
   const {renderDatum} = childProps
   if (renderDatum) {
@@ -24,7 +24,7 @@ const mouseDown = (props, childProps) => {
   }
 }
 
-const handleChart = (props, childProps) => {
+function handleChart(props, childProps) {
   switch (childProps.action) {
     case 'mouseDown':
       mouseDown(props, childProps)
@@ -35,7 +35,7 @@ const handleChart = (props, childProps) => {
   }
 }
 
-const InnerHighlight = props => {
+function InnerHighlight(props) {
   const child = React.Children.only(props.children)
   if (child.type.displayName === 'ChartWidthHOC') {
     const HighlightElement = (

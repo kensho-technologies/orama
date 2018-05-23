@@ -11,13 +11,13 @@ import {Tooltip as DefaultTooltip} from '../Tooltip'
 
 const TOOLTIP_MARGIN = 15
 
-const handleBlockSizeUpdate = (props, childProps) => {
+function handleBlockSizeUpdate(props, childProps) {
   props.onState({
     width: childProps.width,
     height: childProps.height,
   })
 }
-export const getTooltipPosition = props => {
+export function getTooltipPosition(props) {
   const {mouse, width, height} = props
   if (!width || !height) {
     return {}
@@ -45,7 +45,7 @@ export const getTooltipPosition = props => {
   return pos
 }
 
-export const _TooltipWrapper = props => {
+export function _TooltipWrapper(props) {
   if (!props.mouse || !props.hoverData) return null
   const {Tooltip = DefaultTooltip} = props.layerProps
   return (

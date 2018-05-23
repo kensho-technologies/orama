@@ -6,7 +6,7 @@ import _ from 'lodash'
 generate the renderLayers and renderData by running the plot functions of the props root and the props.layers
 */
 
-export const getLayer = props => {
+export function getLayer(props) {
   const {plot = () => []} = props
   return {
     layerProps: props,

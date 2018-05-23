@@ -29,7 +29,7 @@ returns {
 /*
 get a scale with logic for the x and y axis, if the domain starts and finishes on the same number returns the mid range value.
 */
-const getBaseScales = (type, domain, range, nice, tickCount) => {
+function getBaseScales(type, domain, range, nice, tickCount) {
   if (type === 'time') {
     const timeScale = scaleUtc()
       .domain(domain)
@@ -51,7 +51,7 @@ const getBaseScales = (type, domain, range, nice, tickCount) => {
   return linearScale
 }
 
-export const getOrdinalInvert = scale => {
+export function getOrdinalInvert(scale) {
   const mapArray = _.map(scale.domain(), raw => ({
     raw,
     mapped: scale(raw),
@@ -77,7 +77,7 @@ export const getOrdinalInvert = scale => {
   }
 }
 
-export const getAxisScale = (props, key) => {
+export function getAxisScale(props, key) {
   const {
     [`${key}Type`]: type = TYPE,
     [`${key}Domain`]: domain = DOMAIN,
@@ -104,7 +104,7 @@ export const getAxisScale = (props, key) => {
       return getBaseScales(type, domain, range, nice, tickCount)
   }
 }
-export const getDefaultScale = (props, key) => {
+export function getDefaultScale(props, key) {
   const {
     [`${key}Type`]: type = TYPE,
     [`${key}Domain`]: domain = DOMAIN,
@@ -124,7 +124,7 @@ export const getDefaultScale = (props, key) => {
 /*
 Main exported function, used outside of the module on the Chart props transform flow.
 */
-export const getScale = (props, key) => {
+export function getScale(props, key) {
   switch (key) {
     case 'x':
     case 'y':

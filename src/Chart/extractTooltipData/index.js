@@ -6,7 +6,7 @@ import {ACCESSORS_TOOLTIP_ORDER} from '../../chartCore/defaults'
 import {getTooltipFormat} from '../../chartCore/getForKey'
 import {getScaleKeyByHash} from '../../Layer/plotValue'
 
-const getDatum = data => {
+function getDatum(data) {
   if (_.isArray(data)) return _.head(data)
   return data
 }
@@ -39,14 +39,14 @@ const tooltipValuesForObjects = (tooltipExtraDimensions, datum) =>
     },
     []
   )
-const getExtraTooltipValues = (props, datum) => {
+function getExtraTooltipValues(props, datum) {
   const {tooltipExtraDimensions} = props
   if (_.some(tooltipExtraDimensions, _.isString)) {
     return tooltipValuesForStrings(tooltipExtraDimensions, datum)
   }
   return tooltipValuesForObjects(tooltipExtraDimensions, datum)
 }
-export const extractTooltipData = (props, hoverData) => {
+export function extractTooltipData(props, hoverData) {
   const {localKeys, tooltipKeys, accessorsTooltipOrder = ACCESSORS_TOOLTIP_ORDER} = props
 
   const datum = getDatum(hoverData)

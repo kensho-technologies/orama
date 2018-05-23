@@ -19,7 +19,7 @@ points{
 /*
 generates the array of render data
 */
-const getPointRenderData = (props, datum, idx) => {
+function getPointRenderData(props, datum, idx) {
   const values = getPlotValues(props, datum, idx, {
     hoverAlpha: 0.75,
     radius: 4,
@@ -42,7 +42,7 @@ const getPointRenderData = (props, datum, idx) => {
 /*
 Main entry point, if there's only `xMap` or `yMap` it will output an one dimension plot.
 */
-export const points = props => {
+export function points(props) {
   if (!props.xScale && !props.yScale) return undefined
   return flatten(
     map(props.data, (datum, idx) => {

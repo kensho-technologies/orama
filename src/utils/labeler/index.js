@@ -32,7 +32,7 @@ const Labeler = function Labeler() {
 
   let user_defined_energy, user_defined_schedule
 
-  const energy = index => {
+  function energy(index) {
     // energy function, tailored for label placement
     let m = lab.length,
       ener = 0,
@@ -104,7 +104,7 @@ const Labeler = function Labeler() {
     return ener
   }
 
-  const mcmove = currT => {
+  function mcmove(currT) {
     // Monte Carlo translation move
 
     // select a random label if once hasn't been passed in
@@ -153,7 +153,7 @@ const Labeler = function Labeler() {
     }
   }
 
-  const mcrotate = currT => {
+  function mcrotate(currT) {
     // Monte Carlo rotation move
 
     // select a random label if once hasn't been passed in
@@ -245,10 +245,10 @@ const Labeler = function Labeler() {
   // chose a random label from the ones that are movable
   var select_label_index = () => movable[Math.floor(Math.random() * movable.length)]
 
-  const set_movable_labels = () => {
+  function set_movable_labels() {
     // determine which labels can move after a label selection change
 
-    const unchanged_from_last_selection = label_index => {
+    function unchanged_from_last_selection(label_index) {
       const _id = lab[label_index]._id
       return (
         _id in past_state &&
@@ -257,7 +257,7 @@ const Labeler = function Labeler() {
       )
     }
 
-    const not_in_current_label_set = _id => {
+    function not_in_current_label_set(_id) {
       for (const i in lab) {
         if (_id === lab[i]._id) return false
       }
@@ -282,7 +282,7 @@ const Labeler = function Labeler() {
 
     const rerun_near = new_labels.map(i => lab[i]).concat(removed_labels)
 
-    const near_new_label = label_index => {
+    function near_new_label(label_index) {
       const label = lab[label_index]
       const threshold = 10 * label.name.length
       for (let i = 0; i < rerun_near.length; i++) {
@@ -296,7 +296,7 @@ const Labeler = function Labeler() {
     movable = new_labels.concat(old_labels.filter(near_new_label))
   }
 
-  const initialize_labels = () => {
+  function initialize_labels() {
     lab.forEach((label, i) => {
       if (label._id in past_state) {
         lab[i].x = past_state[lab[i]._id].label.x

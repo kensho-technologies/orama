@@ -9,12 +9,12 @@ function isFunction(functionToCheck) {
   const getType = {}
   return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]'
 }
-export const getName = name => {
+export function getName(name) {
   if (!name) return 'unknown'
   if (name[0] === '_') return name.substring(1)
   return name
 }
-export const getInitialState = initialState => {
+export function getInitialState(initialState) {
   if (isFunction(initialState)) return initialState()
   return initialState
 }
@@ -27,7 +27,7 @@ export const getInitialState = initialState => {
  * import {Block} from '@luiscarli/display'
  * import Annotation from '../Annotation'
  *
- * export const handleAnnotationUpdate = (props, annotationProps) => {
+ * export function handleAnnotationUpdate(props, annotationProps) {
  *   props.onUpdate({
  *     ...props,
  *     text: annotationProps.text,
@@ -50,7 +50,7 @@ export const getInitialState = initialState => {
  *
  * export default ExampleComponent
  */
-const stateHOC = (Child, initialState = {}) => {
+function stateHOC(Child, initialState = {}) {
   if (isStatelessComponentFunction(Child)) {
     return class stateHOC extends React.PureComponent {
       static displayName = `${getName(Child.name)}(state)`

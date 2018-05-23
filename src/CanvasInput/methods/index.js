@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-export const runHoverSolverOn = dataUnderMouse => {
+export function runHoverSolverOn(dataUnderMouse) {
   const {layerProps, renderDatum, hoverData, localMouse, mouse} = dataUnderMouse
 
   if (!renderDatum || !layerProps) return dataUnderMouse
@@ -18,7 +18,7 @@ export const runHoverSolverOn = dataUnderMouse => {
   }
 }
 
-export const getMouseFromEvt = evt => {
+export function getMouseFromEvt(evt) {
   if (evt.touches) {
     return {
       x: evt.touches[0].clientX,

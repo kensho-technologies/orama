@@ -30,7 +30,7 @@ const generateAccessorGroupHash = _.memoize(accessorsGroups =>
 getScaleKeyByHash is used to return the main key for a group of accessors.
 For example, x, x0, x1 and x2 all will return 'x'
 */
-export const getScaleKeyByHash = (props, key) => {
+export function getScaleKeyByHash(props, key) {
   const {accessorsGroups = ACCESSORS_GROUPS} = props
   const hash = generateAccessorGroupHash(accessorsGroups)
   return hash[key] || key
@@ -45,7 +45,7 @@ It has the following resolution order:
 4. defaultValue from arguments
 5. value of datum[accessor] (can be undefined)
 */
-export const plotValue = (props, datum, idx, key, defaultValue) => {
+export function plotValue(props, datum, idx, key, defaultValue) {
   const scaleKey = getScaleKeyByHash(props, key)
   const {[key]: accessor, [`${key}Value`]: value, [`${scaleKey}Scale`]: scale} = props
 

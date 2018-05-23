@@ -2,7 +2,7 @@
 
 import _ from 'lodash'
 
-export const getTimeSeries = (range, coeff = 0.05) => {
+export function getTimeSeries(range, coeff = 0.05) {
   function bump(_array) {
     const x = 10 / (0.01 + Math.random())
     const y = 5 * Math.random() - 0.01

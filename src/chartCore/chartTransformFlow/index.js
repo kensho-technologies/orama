@@ -15,7 +15,7 @@ const rootProps = chartTransformFlow(
 )
 */
 
-export const removeDimArrays = props => {
+export function removeDimArrays(props) {
   const names = _.map(props.groupedKeys, key => `${key}Array`)
   return _.omit(props, names)
 }

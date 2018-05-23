@@ -7,14 +7,14 @@ import {notDatum} from '../../utils'
 
 const extractRenderDataFromLayers = renderLayers => _.flatten(_.map(renderLayers, 'renderData'))
 
-const getRenderObjects = props => {
+function getRenderObjects(props) {
   const {renderData, renderLayers} = props
   if (renderData) return renderData
   if (renderLayers) return extractRenderDataFromLayers(renderLayers)
   return []
 }
 
-const stroke = (theme, ctx, d) => {
+function stroke(theme, ctx, d) {
   ctx.globalAlpha = d.strokeAlpha || d.alpha || theme.plotAlpha
   ctx.lineWidth = d.lineWidth || theme.plotLineWidth
   ctx.strokeStyle = d.stroke || theme.plotFill
@@ -24,7 +24,7 @@ const stroke = (theme, ctx, d) => {
   ctx.stroke(d.path2D)
 }
 
-export const basicRender = (props, ctx) => {
+export function basicRender(props, ctx) {
   const {theme} = props
   ctx.save()
   ctx.lineJoin = 'round'

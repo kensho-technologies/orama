@@ -21,7 +21,7 @@ export const wrapUpNewProps = dimArrays => ({
 /*
 Main exported function, used outside of the module on the Chart props transform flow.
 */
-export const getDimArrays = props => {
+export function getDimArrays(props) {
   if (props.groupedKeys) return {}
   const getArraysFlow = _.flow(
     getDimArraysForRoot,

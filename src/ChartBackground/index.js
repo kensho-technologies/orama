@@ -14,7 +14,7 @@ import {CanvasRender} from '../CanvasRender'
 import {BottomLabel} from './BottomLabel'
 import {LeftLabel} from './LeftLabel'
 
-export const getBackground = props => {
+export function getBackground(props) {
   if (props.backgroundShow === false) return undefined
   const {backgroundOffset = BACKGROUND_OFFSET, plotRect, theme} = props
   const backgroundRect = inset(-backgroundOffset, plotRect)
@@ -32,7 +32,7 @@ export const getBackground = props => {
     type: 'area',
   }
 }
-export const getXGuides = (props, thick) => {
+export function getXGuides(props, thick) {
   if (!_.includes(props.groupedKeys, 'x')) return undefined
   if (props.xShowGuides === false) return undefined
   const {backgroundOffset = BACKGROUND_OFFSET, plotRect, theme, xScale, xTicks} = props
@@ -49,7 +49,7 @@ export const getXGuides = (props, thick) => {
     }
   })
 }
-export const getYGuides = (props, thick) => {
+export function getYGuides(props, thick) {
   if (!_.includes(props.groupedKeys, 'y')) return undefined
   if (props.yShowGuides === false) return undefined
   const {backgroundOffset = BACKGROUND_OFFSET, plotRect, theme, yScale, yTicks} = props
@@ -66,7 +66,7 @@ export const getYGuides = (props, thick) => {
     }
   })
 }
-export const getXText = props => {
+export function getXText(props) {
   if (!_.includes(props.groupedKeys, 'x')) return undefined
   if (props.xShowTicks === false) return undefined
   const {theme} = props
@@ -88,7 +88,7 @@ export const getXText = props => {
     font: `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`,
   }))
 }
-export const getYText = props => {
+export function getYText(props) {
   if (!_.includes(props.groupedKeys, 'y')) return undefined
   if (props.yShowTicks === false) return undefined
   const {theme} = props
@@ -111,7 +111,7 @@ export const getYText = props => {
     font: `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`,
   }))
 }
-export const getBackgroundRenderData = props => {
+export function getBackgroundRenderData(props) {
   const background = getBackground(props)
   const xTicks = props.xTicks || getTicks(props, 'x')
   const yTicks = props.yTicks || getTicks(props, 'y')
@@ -138,7 +138,7 @@ export const getBackgroundRenderData = props => {
   )
 }
 
-const getLabelText = (props, key) => {
+function getLabelText(props, key) {
   const text = props[`${key}Name`] || props[key]
   if (text) return text
   const layer = _.findLast(props.layers, d => d[`${key}Name`] || d[key])

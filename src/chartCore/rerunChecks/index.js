@@ -55,7 +55,7 @@ export const rerunCheckGetRenderLayers = getRerunCheckForNames(
 )
 
 // check change for root and layers on: accessors, data, and skipExtractArrays
-export const rerunCheckGetDimArrays = (props, prevProps) => {
+export function rerunCheckGetDimArrays(props, prevProps) {
   // now there are layers
   if (!prevProps.layers && props.layers) return true
   // for each layer

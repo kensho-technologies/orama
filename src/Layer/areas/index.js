@@ -8,7 +8,7 @@ import {getPlotValues} from '../getPlotValues'
 import {isPlotNumber, notPlotNumber, splitBy} from '../../utils'
 import {plotValue, isNullPoint} from '../plotValue'
 
-export const getPointData = (props, datum, yKey) => {
+export function getPointData(props, datum, yKey) {
   const path2D = getPath2D()
   const x = plotValue(props, datum, undefined, 'x')
   const y = plotValue(props, datum, undefined, yKey)
@@ -31,7 +31,7 @@ const getHoverSolverObj = (props, renderDatum, hoverData) => ({
   hoverData,
 })
 
-export const hoverSolver = (props, _hoverData, renderDatum, localMouse) => {
+export function hoverSolver(props, _hoverData, renderDatum, localMouse) {
   const xRaw = props.xScale.invert(localMouse.x)
   if (props.xType === 'ordinal') {
     const hoverData = _.find(_hoverData, d => _.get(d, props.x) === xRaw)
@@ -56,7 +56,7 @@ export const hoverSolver = (props, _hoverData, renderDatum, localMouse) => {
   return getHoverSolverObj(props, renderDatum, hoverData)
 }
 
-export const getAreaRenderData = (props, data, idx) => {
+export function getAreaRenderData(props, data, idx) {
   if (_.isEmpty(data)) return {showHover: false}
   const path2D = getPath2D()
   path2D.moveTo(
@@ -107,7 +107,7 @@ export const getAreaRenderData = (props, data, idx) => {
   }
 }
 
-const splitDataAtNulls = (props, data) => {
+function splitDataAtNulls(props, data) {
   const checkNullPoint = isNullPoint(props)
   return _.reject(
     splitBy(data, checkNullPoint).map(arr => _.reject(arr, checkNullPoint)),
@@ -115,7 +115,7 @@ const splitDataAtNulls = (props, data) => {
   )
 }
 
-export const areas = props => {
+export function areas(props) {
   if (!props.xScale || !props.yScale) return undefined
   const data = splitDataAtNulls(props, props.data)
   if (_.isArray(_.head(data))) {

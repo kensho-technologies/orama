@@ -33,7 +33,7 @@ export const pathMock = () => ({
  * @function DEFAULT
  * @return {Path2D | pathMock}
  */
-export const getPath2D = () => {
+export function getPath2D() {
   if (global.Path2D) return new Path2D()
   return pathMock()
 }

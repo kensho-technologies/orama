@@ -7,7 +7,7 @@ import {getPath2D} from '../../utils/path2DUtils'
 import {BACKGROUND_OFFSET} from '../../chartCore/defaults'
 import {getPlotValues} from '../getPlotValues'
 
-const getGuideRenderData = (props, datum, idx) => {
+function getGuideRenderData(props, datum, idx) {
   const {backgroundOffset = BACKGROUND_OFFSET, plotRect} = props
   const path2D = getPath2D()
   const values = getPlotValues(props, datum, idx)
@@ -26,7 +26,7 @@ const getGuideRenderData = (props, datum, idx) => {
   }
 }
 
-export const guides = props => {
+export function guides(props) {
   if (!props.xScale && !props.yScale) return undefined
   return map(flatten(props.data), (datum, idx) => getGuideRenderData(props, datum, idx))
 }

@@ -16,11 +16,11 @@ import {ChartBackground} from '../ChartBackground'
 import {chartWidthHOC} from './chartWidthHOC'
 import {ChartRender} from './ChartRender'
 
-const handleCanvasInput = (props, childProps) => {
+function handleCanvasInput(props, childProps) {
   props.onUpdate(childProps)
 }
 
-export const StatelessChart = props => {
+export function StatelessChart(props) {
   const {memoizers} = props
   const rootProps = chartTransformFlow(
     props,

@@ -123,7 +123,7 @@ export function getMidY(rectInput) {
   return rect.y + rect.height / 2
 }
 
-export const isPointInsideRect = (point, rect) => {
+export function isPointInsideRect(point, rect) {
   if (
     point.x > rect.x &&
     point.x < rect.x + rect.width &&

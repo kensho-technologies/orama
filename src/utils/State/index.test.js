@@ -23,7 +23,7 @@ test('State 1', () => {
 })
 
 test('State 2', () => {
-  const startWith = props => {
+  function startWith(props) {
     props.setState({test: true})
   }
   const component = shallowRender(

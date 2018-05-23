@@ -8,7 +8,7 @@ const checkUndefinedAccessor = value => !_.isString(value) || value === ''
 /*
 quick check if data is array of arrays
 */
-const tidyFlatten = data => {
+function tidyFlatten(data) {
   if (_.isArray(_.head(data))) return _.flatten(data)
   return data
 }
@@ -20,7 +20,7 @@ export const extractDimArray = (data, accessor) =>
 /*
 according to the local defined accessors, extract and compact the dimArrays
 */
-export const getDimArraysForLayer = layer => {
+export function getDimArraysForLayer(layer) {
   if (layer.skipExtractArrays === true) return {}
   const {localAccessors} = layer
   return _.reduce(
@@ -40,7 +40,7 @@ export const getDimArraysForLayer = layer => {
 /*
 Get dimension array from each layer, and merge the arrays with the same key.
 */
-export const getDimArraysForRoot = props => {
+export function getDimArraysForRoot(props) {
   const layersArrays = _.map(props.layers, getDimArraysForLayer)
   const dimArrays = _.mergeWith({}, ...layersArrays, (a, b) => {
     if (_.isUndefined(a)) return b

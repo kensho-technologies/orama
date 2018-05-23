@@ -6,7 +6,7 @@ import {getPath2D} from '../../utils/path2DUtils'
 import {BACKGROUND_OFFSET} from '../../chartCore/defaults'
 import {getPlotValues} from '../getPlotValues'
 
-const rangesRender = (props, datum, idx) => {
+function rangesRender(props, datum, idx) {
   const {backgroundOffset = BACKGROUND_OFFSET, plotRect} = props
   const path2D = getPath2D()
   const values = getPlotValues(props, datum, idx)
@@ -34,7 +34,7 @@ const rangesRender = (props, datum, idx) => {
   }
 }
 
-export const ranges = props => {
+export function ranges(props) {
   if (!props.xScale && !props.yScale) return undefined
   return map(flatten(props.data), (datum, idx) => rangesRender(props, datum, idx))
 }

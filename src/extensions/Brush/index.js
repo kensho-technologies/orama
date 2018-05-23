@@ -25,7 +25,7 @@ const reorder = bounds => ({
   y1: _.min([bounds.y1, bounds.y2]),
   y2: _.max([bounds.y1, bounds.y2]),
 })
-const isOutOfBounds = (bounds, plotRect) => {
+function isOutOfBounds(bounds, plotRect) {
   if (
     bounds.x1 < plotRect.x ||
     bounds.x2 > plotRect.x + plotRect.width ||
@@ -35,7 +35,7 @@ const isOutOfBounds = (bounds, plotRect) => {
     return true
   return false
 }
-const constraintToPlotRect = (bounds, childProps) => {
+function constraintToPlotRect(bounds, childProps) {
   const {
     rootProps: {plotRect},
   } = childProps
@@ -46,7 +46,7 @@ const constraintToPlotRect = (bounds, childProps) => {
   if (y2 > plotRect.y + plotRect.height) y2 = plotRect.y + plotRect.height
   return {x1, x2, y1, y2}
 }
-const domainToBounds = (props, childProps) => {
+function domainToBounds(props, childProps) {
   const {rootProps} = childProps
   return {
     x1: rootProps.xScale(props.xDomain[0]),
@@ -55,7 +55,7 @@ const domainToBounds = (props, childProps) => {
     y2: rootProps.yScale(props.yDomain[1]),
   }
 }
-const boundsToDomain = (bounds, childProps) => {
+function boundsToDomain(bounds, childProps) {
   const {rootProps} = childProps
   return {
     xDomain: [rootProps.xScale.invert(bounds.x1), rootProps.xScale.invert(bounds.x2)],
@@ -68,7 +68,7 @@ const getBrushData = props => ({
   y1: props.yDomain[0],
   y2: props.yDomain[1],
 })
-const updateBounds = (props, childProps, partialBounds) => {
+function updateBounds(props, childProps, partialBounds) {
   const newBounds = reorder({
     ...props._bounds,
     ...partialBounds,
@@ -81,7 +81,7 @@ const updateBounds = (props, childProps, partialBounds) => {
   }
 }
 
-const mouseDown = (props, childProps) => {
+function mouseDown(props, childProps) {
   const brushElementName = childProps.renderDatum && childProps.renderDatum.name
   if (!_.includes(BRUSH_ELEMENT_NAMES, brushElementName)) {
     props.onState({
@@ -99,7 +99,7 @@ const mouseDown = (props, childProps) => {
     })
   }
 }
-const mouseDrag = (props, childProps) => {
+function mouseDrag(props, childProps) {
   if (props.brushElementName === 'brushesCenter') {
     const bounds = domainToBounds(props, childProps)
     const mBounds = {
@@ -154,11 +154,11 @@ const mouseDrag = (props, childProps) => {
   if (props.onMouseDown) props.onMouseDown()
 }
 
-const mouseUp = props => {
+function mouseUp(props) {
   if (props.onMouseUp) props.onMouseUp()
 }
 
-const handleChart = (props, childProps) => {
+function handleChart(props, childProps) {
   switch (childProps.action) {
     case 'mouseDown':
       mouseDown(props, childProps)
@@ -173,7 +173,7 @@ const handleChart = (props, childProps) => {
   }
 }
 
-const StatelessBrush = props => {
+function StatelessBrush(props) {
   const child = React.Children.only(props.children)
   if (child.type.displayName === 'ChartWidthHOC') {
     const BrushElement = (

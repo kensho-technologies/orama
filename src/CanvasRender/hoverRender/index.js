@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 import {clearAndClip} from '../clearAndClip'
 
-export const hoverRender = (props, ctx) => {
+export function hoverRender(props, ctx) {
   const {renderData = [], theme} = props
 
   ctx.save()

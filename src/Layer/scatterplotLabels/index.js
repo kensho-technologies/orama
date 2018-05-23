@@ -10,7 +10,7 @@ import {DEFAULT_THEME} from '../../defaultTheme'
 const localLabeler = labeler()
 const ctx = getCachedContext()
 
-const getTextRenderData = (props, datum, idx) => {
+function getTextRenderData(props, datum, idx) {
   const {plotRect, theme = DEFAULT_THEME, scatterplotLabelsBounds = true} = props
   const values = getPlotValues(props, datum, idx, {
     text: '',
@@ -42,7 +42,7 @@ const getTextRenderData = (props, datum, idx) => {
   }
 }
 
-export const scatterplotLabels = props => {
+export function scatterplotLabels(props) {
   if (!props.xScale && !props.yScale) return undefined
 
   const labelData = _.map(_.flatten(props.data), (datum, idx) =>

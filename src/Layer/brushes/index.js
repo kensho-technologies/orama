@@ -23,7 +23,7 @@ import {
 import {getPlotValues} from '../getPlotValues'
 import {getPath2D} from '../../utils/path2DUtils'
 
-const brushesRender = (props, datum) => {
+function brushesRender(props, datum) {
   const {backgroundOffset = BACKGROUND_OFFSET, plotRect} = props
   const stroke = props.strokeValue
   const fill = props.fillValue
@@ -65,7 +65,7 @@ const brushesRender = (props, datum) => {
   return {showHover: false, type: 'area', path2D: getPath2D()}
 }
 
-export const brushes = props => {
+export function brushes(props) {
   if (!props.xScale && !props.yScale) return undefined
   return flatten(map(flatten(props.data), datum => brushesRender(props, datum)))
 }

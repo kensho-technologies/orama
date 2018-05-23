@@ -35,7 +35,7 @@ addPlotRect({size})
 returns {size, plotRect}
 */
 
-export const getTextWidth = (theme, string) => {
+export function getTextWidth(theme, string) {
   const ctx = getCachedContext()
   ctx.save()
   ctx.font = `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`
@@ -47,7 +47,7 @@ export const getTextWidth = (theme, string) => {
 get the maximum width of the strings contained in `ticks`.
 Uses a offscreen canvas for doing the measure and takes into consideration the theme object.
 */
-export const getMaxTextWidth = (theme, ticks) => {
+export function getMaxTextWidth(theme, ticks) {
   const ctx = getCachedContext()
   ctx.save()
   ctx.font = `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`
@@ -55,7 +55,7 @@ export const getMaxTextWidth = (theme, ticks) => {
   ctx.restore()
   return maxWidth
 }
-const getTopMargin = props => {
+function getTopMargin(props) {
   const {
     backgroundOffset = BACKGROUND_OFFSET,
     margin = {},
@@ -67,7 +67,7 @@ const getTopMargin = props => {
   if (yShowTicks === false || !y) return backgroundOffset
   return _.max([backgroundOffset, theme.axisTickFontSize / 2])
 }
-const getBottomMargin = props => {
+function getBottomMargin(props) {
   const {theme} = props
   const {
     backgroundOffset = BACKGROUND_OFFSET,
@@ -86,7 +86,7 @@ const getBottomMargin = props => {
     xShowLabel ? xLabelOffset + theme.axisLabelFontSize : 0,
   ])
 }
-const getLeftMargin = props => {
+function getLeftMargin(props) {
   const {theme} = props
   const {
     backgroundOffset = BACKGROUND_OFFSET,
@@ -113,14 +113,14 @@ const getLeftMargin = props => {
     yShowLabel ? yLabelOffset + 5 + theme.axisLabelFontSize : 0,
   ])
 }
-const getRightMargin = props => {
+function getRightMargin(props) {
   const {backgroundOffset = BACKGROUND_OFFSET, margin = {}, x, xShowTicks = SHOW_TICKS} = props
   if (!_.isUndefined(margin.right)) return margin.right + backgroundOffset
   if (!x || !xShowTicks) return backgroundOffset
   return backgroundOffset
 }
 
-export const getPlotRect = props => {
+export function getPlotRect(props) {
   if (props.plotRect) return props
   const {
     backgroundOffset = BACKGROUND_OFFSET,

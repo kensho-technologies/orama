@@ -18,7 +18,7 @@ lines{
 }
 */
 
-export const getPointData = (props, datum) => {
+export function getPointData(props, datum) {
   const path2D = getPath2D()
   const x = plotValue(props, datum, undefined, 'x')
   const y = plotValue(props, datum, undefined, 'y')
@@ -38,7 +38,7 @@ const getHoverSolverObj = (props, renderDatum, hoverData) => ({
   hoverData,
 })
 
-export const hoverSolver = (props, _hoverData, renderDatum, localMouse) => {
+export function hoverSolver(props, _hoverData, renderDatum, localMouse) {
   const xRaw = props.xScale.invert(localMouse.x)
   if (props.xType === 'ordinal') {
     const hoverData = _.find(_hoverData, d => _.get(d, props.x) === xRaw)
@@ -66,7 +66,7 @@ export const hoverSolver = (props, _hoverData, renderDatum, localMouse) => {
 /*
 generates the array of render data
 */
-const getLineRenderData = (props, data, idx) => {
+function getLineRenderData(props, data, idx) {
   if (_.isEmpty(data)) return undefined
   const path2D = getPath2D()
   const values = getPlotValues(props, _.head(data), idx, {
@@ -97,7 +97,7 @@ const getLineRenderData = (props, data, idx) => {
     type: 'line',
   }
 }
-export const lines = props => {
+export function lines(props) {
   if (!props.xScale || !props.yScale) return undefined
   if (_.some(props.data, _.isArray)) {
     return _.reduce(

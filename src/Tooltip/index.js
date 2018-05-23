@@ -98,7 +98,7 @@ TooltipInner.defaultProps = {
   showKeys: false,
 }
 
-export const Tooltip = props => {
+export function Tooltip(props) {
   const tooltipData = extractTooltipData(props.layerProps, props.hoverData)
   return (
     <TooltipInner

@@ -20,7 +20,7 @@ export function toType(input) {
     .toLowerCase()
 }
 
-export const getType = (props, key) => {
+export function getType(props, key) {
   if (props[`${key}Type`]) return props[`${key}Type`]
   const {[`${key}Array`]: array} = props
   if (!array) return undefined
@@ -38,7 +38,7 @@ export const getType = (props, key) => {
   const maxName = _.maxBy(counterPairs, '1')[0]
   return JS_TO_VIS_TYPE[maxName]
 }
-export const getDomain = (props, key) => {
+export function getDomain(props, key) {
   if (props[`${key}Domain`]) return props[`${key}Domain`]
   const {
     [`${key}Array`]: array,
@@ -55,7 +55,7 @@ export const getDomain = (props, key) => {
       return [_.min(array), _.max(array)]
   }
 }
-export const getRange = (props, key) => {
+export function getRange(props, key) {
   if (props[`${key}Range`]) return props[`${key}Range`]
   const {plotRect, [`${key}Type`]: type = TYPE} = props
   switch (key) {
@@ -91,7 +91,7 @@ export const getRange = (props, key) => {
       return [plotRect.x, rectUtils.getMaxX(plotRect)]
   }
 }
-export const getTickCount = (props, key) => {
+export function getTickCount(props, key) {
   if (_.isNumber(props[`${key}TickCount`])) return props[`${key}TickCount`]
   const {[`${key}Range`]: range, [`${key}TickSpace`]: _tickSpace} = props
   switch (key) {
@@ -105,7 +105,7 @@ export const getTickCount = (props, key) => {
       return 0
   }
 }
-export const getTickFormat = (props, key) => {
+export function getTickFormat(props, key) {
   if (props[`${key}TickFormat`]) return props[`${key}TickFormat`]
   const {
     [`${key}Type`]: type,
@@ -115,7 +115,7 @@ export const getTickFormat = (props, key) => {
   if (type === 'time') return scale.tickFormat()
   return scale.tickFormat(tickCount)
 }
-export const getTooltipFormat = (props, key) => {
+export function getTooltipFormat(props, key) {
   if (props[`${key}TooltipFormat`]) return props[`${key}TooltipFormat`]
   const {
     [`${key}Type`]: type = TYPE,

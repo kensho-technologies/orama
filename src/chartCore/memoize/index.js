@@ -8,10 +8,10 @@ import {getPlotRect} from '../getPlotRect'
 import {getDomains, getRanges, getScales, getTickCounts, getTypes} from '../getForProps'
 import * as rerunChecks from '../rerunChecks'
 
-export const getMemoize = (rerunCheck, transformFunc, isLayer) => {
+export function getMemoize(rerunCheck, transformFunc, isLayer) {
   let savedResult
   let prevProps = {}
-  const memoizer = props => {
+  function memoizer(props) {
     const rerun = rerunCheck(props, prevProps)
     prevProps = props
     if (rerun) {
@@ -37,9 +37,9 @@ export const getMemoizeScales = () => getMemoize(rerunChecks.rerunCheckGetScales
 export const getMemoizeRenderLayer = () =>
   getMemoize(rerunChecks.rerunCheckGetRenderLayers, getLayer, true)
 
-export const getMemoizeRenderLayers = () => {
+export function getMemoizeRenderLayers() {
   const layersMemoize = []
-  const memoizeForLayers = props => {
+  function memoizeForLayers(props) {
     const renderLayers = map(props.layers, (layer, i) => {
       let layerMemoize = layersMemoize[i]
       if (!layerMemoize) {

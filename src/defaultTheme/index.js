@@ -50,7 +50,7 @@ export const DEFAULT_THEME = {
   ],
 }
 
-export const getTheme = props => {
+export function getTheme(props) {
   const theme = {
     ...DEFAULT_THEME,
     ...props.theme,

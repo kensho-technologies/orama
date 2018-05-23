@@ -6,7 +6,7 @@ export const windowMock = {
   open: () => undefined,
 }
 
-export const getWindow = () => {
+export function getWindow() {
   if (global.window) return global.window
   return windowMock
 }

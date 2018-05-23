@@ -8,7 +8,7 @@ The <Draggable/> component makes its child 'draggable' by ovveriden its mouseDow
 The onUpdate callback is called with `{deltaX, deltaY}` position from the last call.
 
 @example
-const handleDraggableUpdate = (props, childProps) => {
+function handleDraggableUpdate(props, childProps) {
   props.onState({
     x: props.x - childProps.deltaX,
     y: props.y - childProps.deltaY,
