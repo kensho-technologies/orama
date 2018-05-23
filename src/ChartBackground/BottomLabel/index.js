@@ -29,11 +29,13 @@ export const BottomLabel = props => (
     {props.text}
   </div>
 )
+
 BottomLabel.propTypes = {
-  plotRect: PropTypes.object.isRequired,
+  plotRect: PropTypes.object,
   text: PropTypes.string,
   theme: PropTypes.object,
 }
+
 BottomLabel.defaultProps = {
   plotRect: {x: 0, y: 0, width: 0, height: 0},
   text: '',

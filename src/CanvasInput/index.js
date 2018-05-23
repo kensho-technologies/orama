@@ -8,8 +8,7 @@ import {TooltipWrapper} from '../TooltipWrapper'
 import {CanvasRender} from '../CanvasRender'
 
 import {getDataUnderMouse} from './getDataUnderMouse'
-import {getMouseFromEvt} from './methods'
-import {runHoverSolverOn} from './methods'
+import {getMouseFromEvt, runHoverSolverOn} from './methods'
 
 /*
 Usually used inside of <ChartRender/>
@@ -73,9 +72,7 @@ export class CanvasInput extends React.Component {
         rootProps: this.props.rootProps,
       })
     }
-    this.setState({
-      mouseDrag: false,
-    })
+    this.setState({mouseDrag: false})
   }
 
   handleDoubleClick = () => {
@@ -128,13 +125,13 @@ export class CanvasInput extends React.Component {
       layerProps: solvedData.layerProps,
       rootProps: this.props.rootProps,
     })
-    this.setState({
-      mouseDrag: !!this.state.mouseDown,
+    this.setState(prevState => ({
+      mouseDrag: !!prevState.mouseDown,
       mouse,
       hoverRenderData: solvedData.hoverRenderData,
       hoverData: solvedData.hoverData,
       layerProps: solvedData.layerProps,
-    })
+    }))
     this.lastMouse = mouse
     this.mouseLeave = false
   }
@@ -174,8 +171,8 @@ export class CanvasInput extends React.Component {
   }
 
   render() {
-    const {props, state} = this
-    const {rootProps} = props
+    const {rootProps, theme} = this.props
+    const {hoverRenderData, hoverData, layerProps, mouse} = this.state
     return (
       <div>
         <CanvasRender // hoverRender
@@ -183,8 +180,8 @@ export class CanvasInput extends React.Component {
           height={rootProps.height}
           plotRect={rootProps.plotRect}
           render={hoverRender}
-          renderData={state.hoverRenderData}
-          theme={props.theme}
+          renderData={hoverRenderData}
+          theme={theme}
           width={rootProps.width}
         />
         <canvas
@@ -209,12 +206,12 @@ export class CanvasInput extends React.Component {
           }}
           width={rootProps.width}
         />
-        {state.mouse && state.hoverData ? (
+        {mouse && hoverData ? (
           <TooltipWrapper
-            hoverData={state.hoverData}
-            layerProps={state.layerProps}
-            mouse={state.mouse}
-            theme={props.theme}
+            hoverData={hoverData}
+            layerProps={layerProps}
+            mouse={mouse}
+            theme={theme}
           />
         ) : null}
       </div>

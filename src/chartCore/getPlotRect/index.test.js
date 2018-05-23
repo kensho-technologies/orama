@@ -7,8 +7,7 @@ import {it as test} from 'mocha'
 import {BACKGROUND_OFFSET as backgroundOffset} from '../defaults'
 import {DEFAULT_THEME} from '../../defaultTheme'
 
-import {getMaxTextWidth} from '.'
-import {getPlotRect} from '.'
+import {getMaxTextWidth, getPlotRect} from '.'
 
 test('Chart/getPlotRect.getMaxTextWidth', () => {
   const ticks = [{value: 'a', text: 'a'}, {value: 'amadeus', text: 'amadeus'}]

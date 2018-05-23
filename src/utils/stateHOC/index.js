@@ -1,5 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
+import PropTypes from 'prop-types'
 import * as React from 'react'
 
 import isStatelessComponentFunction from '../isStatelessComponentFunction'
@@ -54,6 +55,10 @@ const stateHOC = (Child, initialState = {}) => {
     return class stateHOC extends React.PureComponent {
       static displayName = `${getName(Child.name)}(state)`
 
+      static propTypes = {
+        onUpdate: PropTypes.func,
+      }
+
       static defaultProps = Child.defaultProps
 
       state = {
@@ -77,6 +82,10 @@ const stateHOC = (Child, initialState = {}) => {
   }
   return class stateHOC extends React.PureComponent {
     static displayName = `${Child.displayName}(state)`
+
+    static propTypes = {
+      onUpdate: PropTypes.func,
+    }
 
     static defaultProps = {}
 

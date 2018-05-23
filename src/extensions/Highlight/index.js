@@ -1,5 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
+import PropTypes from 'prop-types'
 import * as React from 'react'
 import _ from 'lodash'
 
@@ -61,6 +62,14 @@ const InnerHighlight = props => {
   }
   return <div />
 }
+
+InnerHighlight.propTypes = {
+  children: PropTypes.node,
+  componentProps: PropTypes.object,
+  data: PropTypes.array,
+  slice: PropTypes.number,
+}
+
 InnerHighlight.defaultProps = {
   slice: 1,
   data: [],
@@ -71,3 +80,8 @@ export const Highlight = props => (
     <InnerHighlight children={props.children} onUpdate={props.onUpdate} />
   </State>
 )
+
+Highlight.propTypes = {
+  children: PropTypes.node,
+  onUpdate: PropTypes.func,
+}

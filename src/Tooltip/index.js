@@ -50,6 +50,7 @@ const row = (props, d, i) => (
     </td>
   </tr>
 )
+
 row.propTypes = {
   showKeys: PropTypes.bool,
   theme: PropTypes.object,
@@ -85,13 +86,13 @@ export const TooltipInner = props => (
     </table>
   </div>
 )
+
 TooltipInner.propTypes = {
-  mouse: PropTypes.object,
-  showKeys: PropTypes.bool,
   theme: PropTypes.object,
   title: PropTypes.string,
   values: PropTypes.array,
 }
+
 TooltipInner.defaultProps = {
   theme: DEFAULT_THEME,
   showKeys: false,
@@ -107,6 +108,7 @@ export const Tooltip = props => {
     />
   )
 }
+
 Tooltip.propTypes = {
   hoverData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   layerProps: PropTypes.object,

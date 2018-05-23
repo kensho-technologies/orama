@@ -1,6 +1,7 @@
 // Copyright 2018 Kensho Technologies, LLC.
+/* eslint-disable */
 
-const Labeler = function() {
+const Labeler = function Labeler() {
   let lab = [],
     anc = [],
     movable = [],
@@ -31,7 +32,7 @@ const Labeler = function() {
 
   let user_defined_energy, user_defined_schedule
 
-  const energy = function(index) {
+  const energy = index => {
     // energy function, tailored for label placement
     let m = lab.length,
       ener = 0,
@@ -103,7 +104,7 @@ const Labeler = function() {
     return ener
   }
 
-  const mcmove = function(currT) {
+  const mcmove = currT => {
     // Monte Carlo translation move
 
     // select a random label if once hasn't been passed in
@@ -152,7 +153,7 @@ const Labeler = function() {
     }
   }
 
-  const mcrotate = function(currT) {
+  const mcrotate = currT => {
     // Monte Carlo rotation move
 
     // select a random label if once hasn't been passed in
@@ -215,7 +216,7 @@ const Labeler = function() {
     }
   }
 
-  var intersect = function(x1, x2, x3, x4, y1, y2, y3, y4) {
+  var intersect = (x1, x2, x3, x4, y1, y2, y3, y4) => {
     // returns true if two lines intersect, else false
     // from http://paulbourke.net/geometry/lineline2d/
 
@@ -235,25 +236,19 @@ const Labeler = function() {
     return false
   }
 
-  const cooling_schedule = function(currT, initialT, nsweeps) {
-    // linear cooling
-    return currT - initialT / nsweeps
-  }
+  // linear cooling
+  const cooling_schedule = (currT, initialT, nsweeps) => currT - initialT / nsweeps
 
-  var move_to_new_pos = function(delta_energy, currT, i) {
-    // if false keep old position otherwise take new one
-    return Math.random() < Math.exp(-delta_energy / currT)
-  }
+  // if false keep old position otherwise take new one
+  var move_to_new_pos = (delta_energy, currT, i) => Math.random() < Math.exp(-delta_energy / currT)
 
-  var select_label_index = function() {
-    // chose a random label from the ones that are movable
-    return movable[Math.floor(Math.random() * movable.length)]
-  }
+  // chose a random label from the ones that are movable
+  var select_label_index = () => movable[Math.floor(Math.random() * movable.length)]
 
-  const set_movable_labels = function() {
+  const set_movable_labels = () => {
     // determine which labels can move after a label selection change
 
-    const unchanged_from_last_selection = function(label_index) {
+    const unchanged_from_last_selection = label_index => {
       const _id = lab[label_index]._id
       return (
         _id in past_state &&
@@ -262,7 +257,7 @@ const Labeler = function() {
       )
     }
 
-    const not_in_current_label_set = function(_id) {
+    const not_in_current_label_set = _id => {
       for (const i in lab) {
         if (_id === lab[i]._id) return false
       }
@@ -282,13 +277,12 @@ const Labeler = function() {
       .filter(not_in_current_label_set)
       .map(_id => past_state[_id].label)
 
-    const linear_distance = function(x1, y1, x2, y2) {
-      return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2))
-    }
+    const linear_distance = (x1, y1, x2, y2) =>
+      Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2))
 
     const rerun_near = new_labels.map(i => lab[i]).concat(removed_labels)
 
-    const near_new_label = function(label_index) {
+    const near_new_label = label_index => {
       const label = lab[label_index]
       const threshold = 10 * label.name.length
       for (let i = 0; i < rerun_near.length; i++) {
@@ -302,7 +296,7 @@ const Labeler = function() {
     movable = new_labels.concat(old_labels.filter(near_new_label))
   }
 
-  const initialize_labels = function() {
+  const initialize_labels = () => {
     lab.forEach((label, i) => {
       if (label._id in past_state) {
         lab[i].x = past_state[lab[i]._id].label.x
@@ -316,7 +310,7 @@ const Labeler = function() {
     })
   }
 
-  labeler.start = function(nsweeps) {
+  labeler.start = nsweeps => {
     // main simulated annealing function
     let m = lab.length,
       currT = 1.0,
@@ -345,7 +339,7 @@ const Labeler = function() {
     return labeler
   }
 
-  labeler.plotRect = function(plotRect) {
+  labeler.plotRect = plotRect => {
     // users insert graph plotRect {x1, x2, y1, y2}
     startX = plotRect.x
     startY = plotRect.y
@@ -356,35 +350,35 @@ const Labeler = function() {
     return labeler
   }
 
-  labeler.width = function(x) {
+  labeler.width = x => {
     // users insert graph width
     if (!arguments.length) return w
     w = x
     return labeler
   }
 
-  labeler.height = function(x) {
+  labeler.height = x => {
     // users insert graph height
     if (!arguments.length) return h
     h = x
     return labeler
   }
 
-  labeler.label = function(x) {
+  labeler.label = x => {
     // users insert label positions
     if (!arguments.length) return lab
     lab = x
     return labeler
   }
 
-  labeler.anchor = function(x) {
+  labeler.anchor = x => {
     // users insert anchor positions
     if (!arguments.length) return anc
     anc = x
     return labeler
   }
 
-  labeler.alt_energy = function(x) {
+  labeler.alt_energy = x => {
     // user defined energy
     if (!arguments.length) return energy
     user_defined_energy = x
@@ -392,7 +386,7 @@ const Labeler = function() {
     return labeler
   }
 
-  labeler.alt_schedule = function(x) {
+  labeler.alt_schedule = x => {
     // user defined cooling_schedule
     if (!arguments.length) return cooling_schedule
     user_defined_schedule = x

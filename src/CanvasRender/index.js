@@ -15,12 +15,13 @@ import {basicRender} from './basicRender'
 export class CanvasRender extends React.Component {
   static propTypes = {
     clip: PropTypes.bool,
-    height: PropTypes.number.isRequired,
+    height: PropTypes.number,
     plotRect: PropTypes.object,
-    render: PropTypes.func.isRequired,
+    render: PropTypes.func,
     renderData: PropTypes.array,
     renderLayers: PropTypes.array,
-    width: PropTypes.number.isRequired,
+    theme: PropTypes.object,
+    width: PropTypes.number,
   }
 
   static defaultProps = {

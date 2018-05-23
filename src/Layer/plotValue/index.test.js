@@ -4,8 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {getScaleKeyByHash} from '.'
-import {plotValue} from '.'
+import {getScaleKeyByHash, plotValue} from '.'
 
 test('Chart/plotValue.getScaleKeyByHash', () => {
   const actual = getScaleKeyByHash({}, 'x0')
@@ -13,7 +12,7 @@ test('Chart/plotValue.getScaleKeyByHash', () => {
   assert.deepEqual(actual, expected)
 })
 
-test('Chart/plotValue, ${key}Value on the props', () => {
+test('Chart/plotValue, <key>Value on the props', () => {
   const props = {
     xScale: () => 'mapped',
     x: 'x',
@@ -33,7 +32,7 @@ test('Chart/plotValue, scaled data accessed with the accessor', () => {
   const expected = 'mapped'
   assert.deepEqual(actual, expected)
 })
-test('Chart/plotValue, ${key}Value on the data 1', () => {
+test('Chart/plotValue, <key>Value on the data 1', () => {
   const props = {
     xScale: () => null,
     x: 'prop1',
@@ -43,7 +42,7 @@ test('Chart/plotValue, ${key}Value on the data 1', () => {
   const expected = 20
   assert.deepEqual(actual, expected)
 })
-test('Chart/plotValue, ${key}Value on the data 2', () => {
+test('Chart/plotValue, <key>Value on the data 2', () => {
   const props = {
     x: 'prop1',
   }
@@ -51,7 +50,7 @@ test('Chart/plotValue, ${key}Value on the data 2', () => {
   const expected = 20
   assert.deepEqual(actual, expected)
 })
-test('Chart/plotValue, ${key}Value on the data 3', () => {
+test('Chart/plotValue, <key>Value on the data 3', () => {
   const props = {
     x: 'x',
   }

@@ -3,13 +3,9 @@
 import {map} from 'lodash'
 
 import {getDimArrays} from '../getDimArrays'
-import {getDomains} from '../getForProps'
 import {getLayer} from '../getRenderLayers'
 import {getPlotRect} from '../getPlotRect'
-import {getRanges} from '../getForProps'
-import {getScales} from '../getForProps'
-import {getTickCounts} from '../getForProps'
-import {getTypes} from '../getForProps'
+import {getDomains, getRanges, getScales, getTickCounts, getTypes} from '../getForProps'
 import * as rerunChecks from '../rerunChecks'
 
 export const getMemoize = (rerunCheck, transformFunc, isLayer) => {

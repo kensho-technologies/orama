@@ -49,7 +49,7 @@ class ContentEditable extends React.Component {
     return (
       <div
         contentEditable={props.textEditable}
-        dangerouslySetInnerHTML={{__html: props.text}}
+        dangerouslySetInnerHTML={{__html: props.text}} // eslint-disable-line react/no-danger
         onBlur={handleInput}
         onInput={handleInput}
         onKeyDown={this.handleKeyDown}

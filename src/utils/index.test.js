@@ -4,9 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {notPlotNumber} from '.'
-import {isPlotNumber} from '.'
-import {isDatum} from '.'
+import {isDatum, isPlotNumber, notPlotNumber} from '.'
 
 test('utils.notPlotNumber NaN', () => {
   assert.equal(notPlotNumber(NaN), true)

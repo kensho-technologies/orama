@@ -3,8 +3,7 @@
 import _ from 'lodash'
 
 import {plotValue} from '../plotValue'
-import {ACCESSORS_NAMES} from '../../chartCore/defaults'
-import {ACCESSORS_NAMES_NON_SCALABLE} from '../../chartCore/defaults'
+import {ACCESSORS_NAMES, ACCESSORS_NAMES_NON_SCALABLE} from '../../chartCore/defaults'
 
 export const getPlotValues = (props = {}, datum = {}, idx, defaults = {}) => {
   const keys = ACCESSORS_NAMES.concat(ACCESSORS_NAMES_NON_SCALABLE)

@@ -3,13 +3,11 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-import {DEFAULT_THEME} from '../defaultTheme'
-import {PROPORTION} from '../chartCore/defaults'
-import {WIDTH} from '../chartCore/defaults'
+import {DEFAULT_THEME, getTheme} from '../defaultTheme'
+import {PROPORTION, WIDTH} from '../chartCore/defaults'
 import {chartTransformFlow} from '../chartCore/chartTransformFlow'
 import {getLayers} from '../chartCore/getLayers'
 import {getLocalKeys} from '../chartCore/getLocalKeys'
-import {getTheme} from '../defaultTheme'
 import stateHOC from '../utils/stateHOC'
 import * as memoize from '../chartCore/memoize'
 import {CanvasInput} from '../CanvasInput'
@@ -22,7 +20,7 @@ const handleCanvasInput = (props, childProps) => {
   props.onUpdate(childProps)
 }
 
-export const _Chart = props => {
+export const StatelessChart = props => {
   const {memoizers} = props
   const rootProps = chartTransformFlow(
     props,
@@ -59,17 +57,22 @@ export const _Chart = props => {
     </div>
   )
 }
-_Chart.propTypes = {
+
+StatelessChart.propTypes = {
   memoizers: PropTypes.object,
   onUpdate: PropTypes.func,
+  proportion: PropTypes.number,
   theme: PropTypes.object,
+  width: PropTypes.number,
 }
-_Chart.defaultProps = {
+
+StatelessChart.defaultProps = {
   proportion: PROPORTION,
   theme: DEFAULT_THEME,
   width: WIDTH,
 }
-_Chart.initialState = () => ({
+
+StatelessChart.initialState = () => ({
   memoizers: {
     getDimArrays: memoize.getMemoizeDimArrays(),
     getTypes: memoize.getMemoizeTypes(),
@@ -81,5 +84,6 @@ _Chart.initialState = () => ({
     getRenderLayers: memoize.getMemoizeRenderLayers(),
   },
 })
-export const StateChart = stateHOC(_Chart)
+
+export const StateChart = stateHOC(StatelessChart)
 export const Chart = chartWidthHOC(StateChart)

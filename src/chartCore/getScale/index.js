@@ -3,11 +3,7 @@
 import _ from 'lodash'
 import * as d3Scale from 'd3-scale'
 
-import {DOMAIN} from '../defaults'
-import {NICE} from '../defaults'
-import {RANGE} from '../defaults'
-import {TICK_COUNT} from '../defaults'
-import {TYPE} from '../defaults'
+import {DOMAIN, NICE, RANGE, TICK_COUNT, TYPE} from '../defaults'
 
 /*
 `getScale` returns the scale for a key according to configurations on props object.

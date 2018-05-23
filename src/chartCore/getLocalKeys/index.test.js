@@ -4,8 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {layerMapper} from '.'
-import {getLocalKeys} from '.'
+import {layerMapper, getLocalKeys} from '.'
 
 test('Chart/getLocalKeys.layerMapper 1', () => {
   const actual = layerMapper({})

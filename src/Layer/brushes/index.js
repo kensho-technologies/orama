@@ -3,21 +3,23 @@
 import {map, flatten, isNumber} from 'lodash'
 
 import {BACKGROUND_OFFSET} from '../../chartCore/defaults'
-import {bottomHorizontalLine} from '../getBrushesRenderData'
-import {bottomCenterLine} from '../getBrushesRenderData'
-import {centerArea} from '../getBrushesRenderData'
-import {verticalArea} from '../getBrushesRenderData'
-import {horizontalArea} from '../getBrushesRenderData'
-import {leftVerticalLine} from '../getBrushesRenderData'
-import {leftCenterLine} from '../getBrushesRenderData'
-import {rightVerticalLine} from '../getBrushesRenderData'
-import {rightCenterLine} from '../getBrushesRenderData'
-import {topHorizontalLine} from '../getBrushesRenderData'
-import {topCenterLine} from '../getBrushesRenderData'
-import {rightBottomLine} from '../getBrushesRenderData'
-import {leftBottomLine} from '../getBrushesRenderData'
-import {leftTopLine} from '../getBrushesRenderData'
-import {rightTopLine} from '../getBrushesRenderData'
+import {
+  bottomHorizontalLine,
+  bottomCenterLine,
+  centerArea,
+  verticalArea,
+  horizontalArea,
+  leftVerticalLine,
+  leftCenterLine,
+  rightVerticalLine,
+  rightCenterLine,
+  topHorizontalLine,
+  topCenterLine,
+  rightBottomLine,
+  leftBottomLine,
+  leftTopLine,
+  rightTopLine,
+} from '../getBrushesRenderData'
 import {getPlotValues} from '../getPlotValues'
 import {getPath2D} from '../../utils/path2DUtils'
 

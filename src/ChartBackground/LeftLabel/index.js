@@ -31,11 +31,13 @@ export const LeftLabel = props => (
     {props.text}
   </div>
 )
+
 LeftLabel.propTypes = {
-  plotRect: PropTypes.object.isRequired,
+  plotRect: PropTypes.object,
   text: PropTypes.string,
   theme: PropTypes.object,
 }
+
 LeftLabel.defaultProps = {
   plotRect: {x: 0, y: 0, width: 0, height: 0},
   text: '',

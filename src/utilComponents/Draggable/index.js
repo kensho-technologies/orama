@@ -27,6 +27,7 @@ const slider = props => (
 export class Draggable extends React.Component {
   static propTypes = {
     children: PropTypes.element,
+    initialPos: PropTypes.object,
     onUpdate: PropTypes.func.isRequired,
   }
 

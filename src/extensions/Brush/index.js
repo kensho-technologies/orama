@@ -39,13 +39,10 @@ const constraintToPlotRect = (bounds, childProps) => {
   const {
     rootProps: {plotRect},
   } = childProps
-  let x1 = bounds.x1
+  let {x1, x2, y1, y2} = bounds
   if (x1 < plotRect.x) x1 = plotRect.x
-  let x2 = bounds.x2
   if (x2 > plotRect.x + plotRect.width) x2 = plotRect.x + plotRect.width
-  let y1 = bounds.y1
   if (y1 < plotRect.y) y1 = plotRect.y
-  let y2 = bounds.y2
   if (y2 > plotRect.y + plotRect.height) y2 = plotRect.y + plotRect.height
   return {x1, x2, y1, y2}
 }
@@ -176,7 +173,7 @@ const handleChart = (props, childProps) => {
   }
 }
 
-const _Brush = props => {
+const StatelessBrush = props => {
   const child = React.Children.only(props.children)
   if (child.type.displayName === 'ChartWidthHOC') {
     const BrushElement = (
@@ -206,7 +203,7 @@ const _Brush = props => {
   return <div />
 }
 
-_Brush.propTypes = {
+StatelessBrush.propTypes = {
   children: PropTypes.node,
   fillAlphaValue: PropTypes.number,
   fillValue: PropTypes.number,
@@ -215,9 +212,10 @@ _Brush.propTypes = {
   xDomain: PropTypes.array,
   yDomain: PropTypes.array,
 }
-_Brush.defaultProps = {
+
+StatelessBrush.defaultProps = {
   xDomain: [],
   yDomain: [],
 }
 
-export const Brush = stateHOC(_Brush)
+export const Brush = stateHOC(StatelessBrush)

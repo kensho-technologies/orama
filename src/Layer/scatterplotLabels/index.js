@@ -19,7 +19,7 @@ const getTextRenderData = (props, datum, idx) => {
 
   ctx.save()
   ctx.font = `${theme.plotFontSize}px ${theme.fontFamilyMono}`
-  const width = ctx.measureText(values.text).width
+  const {width} = ctx.measureText(values.text)
   ctx.restore()
 
   if (scatterplotLabelsBounds) {

@@ -1,11 +1,5 @@
 extends: kensho
 rules:
-  block-scoped-var: 0
-  camelcase: 0
-  eqeqeq: 0
-  func-names: 0
-  import/no-duplicates: 0
-  import/no-mutable-exports: 0
   import/prefer-default-export: 0
   no-bitwise: 0
   no-case-declarations: 0
@@ -13,29 +7,15 @@ rules:
   no-new-func: 0
   no-param-reassign: 0
   no-plusplus: 0
-  no-restricted-properties: 0
-  no-restricted-syntax: 0
   no-shadow: 0
-  no-template-curly-in-string: 0
   no-underscore-dangle: 0
-  no-unused-vars: 0
-  no-use-before-define: 0
-  no-var: 0
-  one-var: 0
-  prefer-const: 0
-  prefer-destructuring: 0
-  react/default-props-match-prop-types: 0
   react/forbid-prop-types: 0
   react/no-access-state-in-setstate: 0
   react/no-children-prop: 0
-  react/no-danger: 0
   react/no-deprecated: 0
   react/no-find-dom-node: 0
   react/no-multi-comp: 0
   react/no-string-refs: 0
   react/no-unused-prop-types: 0
   react/no-unused-state: 0
-  react/prop-types: 0
-  react/react-in-jsx-scope: 0
   react/sort-comp: 0
-  vars-on-top: 0

@@ -39,7 +39,7 @@ export const getTextWidth = (theme, string) => {
   const ctx = getCachedContext()
   ctx.save()
   ctx.font = `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`
-  const width = ctx.measureText(string).width
+  const {width} = ctx.measureText(string)
   ctx.restore()
   return width
 }
