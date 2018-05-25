@@ -1,6 +1,6 @@
-// Copyright 2018 Kensho Technologies, LLC.
 /* eslint-disable */
 
+// adapted from https://github.com/tinker10/D3-Labeler by Evan Wang (MIT license)
 const Labeler = function Labeler() {
   let lab = [],
     anc = [],
