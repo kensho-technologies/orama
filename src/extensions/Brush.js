@@ -4,8 +4,8 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import {includes} from 'lodash'
 
-import stateHOC from '../../utils/stateHOC'
-import {Brushes} from '../../Layer'
+import stateHOC from '../utils/stateHOC'
+import {Brushes} from '../Layer'
 
 const BRUSH_ELEMENT_NAMES = [
   'brushesCenter',

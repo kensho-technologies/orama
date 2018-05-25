@@ -2,7 +2,7 @@
 
 import {reduce} from 'lodash'
 
-import {plotValue} from '../plotValue'
+import {plotValue} from './plotValue'
 
 export function getControlPoints(x0, y0, x1, y1, x2, y2, t) {
   const d01 = Math.sqrt((x1 - x0) ** 2 + (y1 - y0) ** 2)

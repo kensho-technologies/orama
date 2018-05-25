@@ -2,10 +2,11 @@
 
 import {cloneDeep, flatten, map} from 'lodash'
 
-import getPlotValues from '../getPlotValues'
-import {getCachedContext} from '../../utils/canvasUtils'
-import labeler from '../../utils/labeler'
-import {DEFAULT_THEME} from '../../defaultTheme'
+import {getCachedContext} from '../utils/canvasUtils'
+import labeler from '../utils/labeler'
+import {DEFAULT_THEME} from '../defaultTheme'
+
+import getPlotValues from './getPlotValues'
 
 const localLabeler = labeler()
 const ctx = getCachedContext()

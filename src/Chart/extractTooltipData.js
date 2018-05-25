@@ -2,9 +2,9 @@
 
 import {get, head, isArray, isDate, isNaN, isString, map, omit, reduce, some, sortBy} from 'lodash'
 
-import {ACCESSORS_TOOLTIP_ORDER} from '../../chartCore/defaults'
-import {getTooltipFormat} from '../../chartCore/getForKey'
-import {getScaleKeyByHash} from '../../Layer/plotValue'
+import {ACCESSORS_TOOLTIP_ORDER} from '../chartCore/defaults'
+import {getTooltipFormat} from '../chartCore/getForKey'
+import {getScaleKeyByHash} from '../Layer/plotValue'
 
 function getDatum(data) {
   if (isArray(data)) return head(data)

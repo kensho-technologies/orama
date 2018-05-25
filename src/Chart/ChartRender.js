@@ -4,9 +4,9 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import {map} from 'lodash'
 
-import basicRender from '../../CanvasRender/basicRender'
-import CanvasRender from '../../CanvasRender'
-import {DEFAULT_THEME} from '../../defaultTheme'
+import basicRender from '../CanvasRender/basicRender'
+import CanvasRender from '../CanvasRender'
+import {DEFAULT_THEME} from '../defaultTheme'
 
 // used inside <Chart />
 export default function ChartRender(props) {

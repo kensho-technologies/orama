@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import * as React from 'react'
 import {indexOf} from 'lodash'
 
-import State from '../../utils/State'
+import State from '../utils/State'
 
 function mouseDown(props, childProps) {
   const {data} = props
