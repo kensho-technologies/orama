@@ -2,7 +2,7 @@
 
 import PropTypes from 'prop-types'
 import * as React from 'react'
-import {indexOf, omit} from 'lodash'
+import {indexOf} from 'lodash'
 
 import State from '../../utils/State'
 
@@ -13,13 +13,9 @@ function mouseDown(props, childProps) {
     const index = indexOf(data, renderDatum.data)
     if (index > -1) {
       data.splice(index, 1)
-      props.onUpdate({
-        data: [...data],
-      })
+      props.onUpdate({data: [...data]})
     } else {
-      props.onUpdate({
-        data: [...data, renderDatum.data],
-      })
+      props.onUpdate({data: [...data, renderDatum.data]})
     }
   }
 }
@@ -50,15 +46,8 @@ function InnerHighlight(props) {
     )
     const layers = React.Children.toArray(child.props.children)
     layers.splice(props.slice, 0, HighlightElement)
-    return (
-      <div>
-        {React.cloneElement(
-          child,
-          {onUpdate: childProps => handleChart(props, childProps)},
-          layers
-        )}
-      </div>
-    )
+    const onUpdate = childProps => handleChart(props, childProps)
+    return <div>{React.cloneElement(child, {onUpdate}, layers)}</div>
   }
   return <div />
 }
@@ -75,11 +64,14 @@ InnerHighlight.defaultProps = {
   data: [],
 }
 
-export const Highlight = props => (
-  <State {...omit(props, 'children')}>
-    <InnerHighlight children={props.children} onUpdate={props.onUpdate} />
-  </State>
-)
+export default function Highlight(props) {
+  const {children, ...rest} = props
+  return (
+    <State {...rest}>
+      <InnerHighlight onUpdate={props.onUpdate}>{children}</InnerHighlight>
+    </State>
+  )
+}
 
 Highlight.propTypes = {
   children: PropTypes.node,

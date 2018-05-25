@@ -6,15 +6,15 @@ import PropTypes from 'prop-types'
 import {DEFAULT_THEME, getTheme} from '../defaultTheme'
 import {PROPORTION, WIDTH} from '../chartCore/defaults'
 import {chartTransformFlow} from '../chartCore/chartTransformFlow'
-import {getLayers} from '../chartCore/getLayers'
+import getLayers from '../chartCore/getLayers'
 import {getLocalKeys} from '../chartCore/getLocalKeys'
 import stateHOC from '../utils/stateHOC'
 import * as memoize from '../chartCore/memoize'
-import {CanvasInput} from '../CanvasInput'
+import CanvasInput from '../CanvasInput'
 import {ChartBackground} from '../ChartBackground'
 
-import {chartWidthHOC} from './chartWidthHOC'
-import {ChartRender} from './ChartRender'
+import chartWidthHOC from './chartWidthHOC'
+import ChartRender from './ChartRender'
 
 function handleCanvasInput(props, childProps) {
   props.onUpdate(childProps)

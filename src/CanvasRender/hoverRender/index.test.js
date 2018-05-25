@@ -8,7 +8,7 @@ import {pathMock} from '../../utils/path2DUtils'
 import {ctxMock} from '../../utils/canvasUtils'
 import {DEFAULT_THEME} from '../../defaultTheme'
 
-import {hoverRender} from '.'
+import hoverRender from '.'
 
 const theme = DEFAULT_THEME
 const plotRect = {x: 0, y: 0, width: 100, height: 100}

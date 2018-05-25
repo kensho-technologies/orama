@@ -8,7 +8,7 @@ import {pathMock} from '../../utils/path2DUtils'
 import {ctxMock} from '../../utils/canvasUtils'
 import {DEFAULT_THEME} from '../../defaultTheme'
 
-import {basicRender} from '.'
+import basicRender from '.'
 
 const theme = DEFAULT_THEME
 const plotRect = {x: 0, y: 0, width: 100, height: 100}

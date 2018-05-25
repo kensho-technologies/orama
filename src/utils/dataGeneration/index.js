@@ -2,6 +2,8 @@
 
 import {forEach, map} from 'lodash'
 
+// this export currently gets re-exported in complicated ways at the top-level
+// eslint-disable-next-line import/prefer-default-export
 export function getTimeSeries(range, coeff = 0.05) {
   function bump(_array) {
     const x = 10 / (0.01 + Math.random())

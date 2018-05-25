@@ -5,7 +5,7 @@ import {map, zipObject} from 'lodash'
 import {plotValue} from '../plotValue'
 import {ACCESSORS_NAMES, ACCESSORS_NAMES_NON_SCALABLE} from '../../chartCore/defaults'
 
-export function getPlotValues(props = {}, datum = {}, idx, defaults = {}) {
+export default function getPlotValues(props = {}, datum = {}, idx, defaults = {}) {
   const keys = ACCESSORS_NAMES.concat(ACCESSORS_NAMES_NON_SCALABLE)
   const values = map(keys, key => plotValue(props, datum, idx, key, defaults[key]))
   const result = zipObject(keys, values)

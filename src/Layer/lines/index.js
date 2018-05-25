@@ -5,7 +5,7 @@ import {find, findIndex, get, head, isEmpty, isArray, last, reduce, some} from '
 import {getPath2D} from '../../utils/path2DUtils'
 import {notPlotNumber} from '../../utils'
 import {plotValue} from '../plotValue'
-import {getPlotValues} from '../getPlotValues'
+import getPlotValues from '../getPlotValues'
 import {splineInterpolation} from '../splineInterpolation'
 
 /*

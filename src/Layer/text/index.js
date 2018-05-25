@@ -3,8 +3,8 @@
 import {map, flatten} from 'lodash'
 
 import {getMinX, getMinY, getMidX, getMidY, getMaxX, getMaxY} from '../../utils/rectUtils'
-import {getPlotValues} from '../getPlotValues'
-import {fitCheckText} from '../../utils/textUtils'
+import getPlotValues from '../getPlotValues'
+import fitCheckText from '../../utils/fitCheckText'
 
 /*
 generates the array of render data

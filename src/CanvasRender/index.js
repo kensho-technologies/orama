@@ -6,13 +6,13 @@ import PropTypes from 'prop-types'
 import {DEFAULT_THEME} from '../defaultTheme'
 import {WIDTH, HEIGHT} from '../chartCore/defaults'
 
-import {basicRender} from './basicRender'
+import basicRender from './basicRender'
 
 /**
  * Component create a Canvas and use the renderData for drawing geometries on it.
  * The renderData follows a specific format.
  */
-export class CanvasRender extends React.Component {
+export default class CanvasRender extends React.Component {
   static propTypes = {
     clip: PropTypes.bool,
     height: PropTypes.number,

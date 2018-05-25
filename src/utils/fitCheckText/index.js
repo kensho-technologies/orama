@@ -11,13 +11,15 @@ function getTextBounds(textObj, isRotated, theme) {
   const rightAligned = ['right', 'end'].includes(textAlign)
   const leftAligned = ['left', 'start'].includes(textAlign)
 
+  /* eslint-disable no-bitwise */
   return {
     textStart: !(isRotated ^ leftAligned) ? initialCoord - textWidth : initialCoord,
     textEnd: !(isRotated ^ rightAligned) ? initialCoord + textWidth : initialCoord,
   }
+  /* eslint-enable no-bitwise */
 }
 
-export function fitCheckText(textObj, canvasWidth, canvasHeight, theme) {
+export default function fitCheckText(textObj, canvasWidth, canvasHeight, theme) {
   const updateTextObj = (key, toAdd) => update(textObj, key, val => val + toAdd)
 
   updateTextObj('x', textObj.xOffset || 0)

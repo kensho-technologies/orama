@@ -20,7 +20,7 @@ import {
   leftTopLine,
   rightTopLine,
 } from '../getBrushesRenderData'
-import {getPlotValues} from '../getPlotValues'
+import getPlotValues from '../getPlotValues'
 import {getPath2D} from '../../utils/path2DUtils'
 
 function brushesRender(props, datum) {
@@ -65,7 +65,7 @@ function brushesRender(props, datum) {
   return {showHover: false, type: 'area', path2D: getPath2D()}
 }
 
-export function brushes(props) {
+export default function brushes(props) {
   if (!props.xScale && !props.yScale) return undefined
   return flatten(map(flatten(props.data), datum => brushesRender(props, datum)))
 }

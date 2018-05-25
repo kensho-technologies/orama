@@ -2,11 +2,10 @@
 
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import {findDOMNode} from 'react-dom'
-import {omit} from 'lodash'
 
-export class BlockSize extends React.Component {
+export default class BlockSize extends React.Component {
   static propTypes = {
+    onState: PropTypes.func,
     onUpdate: PropTypes.func.isRequired,
   }
 
@@ -18,20 +17,21 @@ export class BlockSize extends React.Component {
     this.update()
   }
 
-  update = () => {
+  update() {
     if (!this.element) return
-    const node = findDOMNode(this.element)
     this.props.onUpdate({
       ...this.props,
-      width: node.offsetWidth,
-      height: node.offsetHeight,
+      width: this.element.offsetWidth,
+      height: this.element.offsetHeight,
     })
   }
 
+  elementRef = ref => {
+    this.element = ref
+  }
+
   render() {
-    function refClbck(element) {
-      this.element = element
-    }
-    return <div {...omit(this.props, ['onUpdate', 'onState'])} ref={refClbck} />
+    const {onUpdate, onState, ...rest} = this.props
+    return <div {...rest} ref={this.elementRef} />
   }
 }

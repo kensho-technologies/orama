@@ -7,7 +7,7 @@ import * as React from 'react'
 
 import shallowRender from '../../utils/shallowRender'
 
-import {chartWidthHOC} from '.'
+import chartWidthHOC from '.'
 
 const InputComponent = () => <div />
 

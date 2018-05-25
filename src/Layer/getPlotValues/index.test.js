@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {getPlotValues} from '.'
+import getPlotValues from '.'
 
 test('Layer/getPlotValues 1', () => {
   const props = {x: 'x'}

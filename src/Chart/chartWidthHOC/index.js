@@ -4,11 +4,9 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import {throttle} from 'lodash'
 
-/*
-This component wrapps up the <InputComponent/> and add a width prop when it's not present
-*/
-export const chartWidthHOC = InputComponent =>
-  class ChartWidthHOC extends React.Component {
+// this component wraps <BaseComponent/> and adds a width prop when it's not present
+export default function chartWidthHOC(BaseComponent) {
+  return class ChartWidthHOC extends React.Component {
     static propTypes = {
       width: PropTypes.number,
     }
@@ -48,8 +46,9 @@ export const chartWidthHOC = InputComponent =>
     render() {
       return (
         <div ref={this.handleRef}>
-          <InputComponent {...this.state} {...this.props} />
+          <BaseComponent {...this.state} {...this.props} />
         </div>
       )
     }
   }
+}

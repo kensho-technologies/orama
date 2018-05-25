@@ -4,7 +4,7 @@ import {map, flatten, isArray} from 'lodash'
 
 import {getMidX, getMidY} from '../../utils/rectUtils'
 import {getPath2D} from '../../utils/path2DUtils'
-import {getPlotValues} from '../getPlotValues'
+import getPlotValues from '../getPlotValues'
 
 /*
 `points` is used to generate render data for dots and similar.
@@ -39,10 +39,8 @@ function getPointRenderData(props, datum, idx) {
   }
 }
 
-/*
-Main entry point, if there's only `xMap` or `yMap` it will output an one dimension plot.
-*/
-export function points(props) {
+// main entry point, if there's only `xMap` or `yMap` it will output a one dimension plot
+export default function points(props) {
   if (!props.xScale && !props.yScale) return undefined
   return flatten(
     map(props.data, (datum, idx) => {

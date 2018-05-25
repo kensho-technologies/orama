@@ -2,9 +2,9 @@
 
 import {each} from 'lodash'
 
-import {clearAndClip} from '../clearAndClip'
+import clearAndClip from '../clearAndClip'
 
-export function hoverRender(props, ctx) {
+export default function hoverRender(props, ctx) {
   const {renderData = [], theme} = props
 
   ctx.save()

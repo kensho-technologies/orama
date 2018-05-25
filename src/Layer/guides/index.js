@@ -5,7 +5,7 @@ import {map, flatten, isNumber} from 'lodash'
 import {getMinX, getMaxX, getMinY, getMaxY} from '../../utils/rectUtils'
 import {getPath2D} from '../../utils/path2DUtils'
 import {BACKGROUND_OFFSET} from '../../chartCore/defaults'
-import {getPlotValues} from '../getPlotValues'
+import getPlotValues from '../getPlotValues'
 
 function getGuideRenderData(props, datum, idx) {
   const {backgroundOffset = BACKGROUND_OFFSET, plotRect} = props
@@ -26,7 +26,7 @@ function getGuideRenderData(props, datum, idx) {
   }
 }
 
-export function guides(props) {
+export default function guides(props) {
   if (!props.xScale && !props.yScale) return undefined
   return map(flatten(props.data), (datum, idx) => getGuideRenderData(props, datum, idx))
 }

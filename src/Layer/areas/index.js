@@ -4,7 +4,7 @@ import {get, each, eachRight, find, findIndex, head, isEmpty, last, reduce, reje
 
 import {getMaxY} from '../../utils/rectUtils'
 import {getPath2D} from '../../utils/path2DUtils'
-import {getPlotValues} from '../getPlotValues'
+import getPlotValues from '../getPlotValues'
 import {isPlotNumber, notPlotNumber, splitBy} from '../../utils'
 import {plotValue, isNullPoint} from '../plotValue'
 

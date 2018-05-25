@@ -46,7 +46,8 @@ function getExtraTooltipValues(props, datum) {
   }
   return tooltipValuesForObjects(tooltipExtraDimensions, datum)
 }
-export function extractTooltipData(props, hoverData) {
+
+export default function extractTooltipData(props, hoverData) {
   const {localKeys, tooltipKeys, accessorsTooltipOrder = ACCESSORS_TOOLTIP_ORDER} = props
 
   const datum = getDatum(hoverData)

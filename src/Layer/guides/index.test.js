@@ -6,10 +6,10 @@ import {it as test} from 'mocha'
 
 import {PLOT_RECT} from '../../chartCore/defaults'
 
-import * as methods from '.'
+import guides from '.'
 
 test('Chart.guides', () => {
-  const renderData = methods.guides({
+  const renderData = guides({
     data: [{x: 1, y: 1}],
     plotRect: PLOT_RECT,
     xScale: d => d,
@@ -20,8 +20,9 @@ test('Chart.guides', () => {
     type: 'line',
   })
 })
+
 test('Chart.guides missing yMap', () => {
-  const renderData = methods.guides({
+  const renderData = guides({
     data: [{x: 1, y: 1}],
     plotRect: PLOT_RECT,
     xScale: d => d,
@@ -31,8 +32,9 @@ test('Chart.guides missing yMap', () => {
     type: 'line',
   })
 })
+
 test('Chart.guides grouped data', () => {
-  const renderData = methods.guides({
+  const renderData = guides({
     data: [[{x: 1, y: 1}]],
     plotRect: PLOT_RECT,
     xScale: d => d,

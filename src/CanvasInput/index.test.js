@@ -7,7 +7,7 @@ import * as React from 'react'
 
 import shallowRender from '../utils/shallowRender'
 
-import {CanvasInput} from '.'
+import CanvasInput from '.'
 
 test('CanvasInput', () => {
   const rootProps = {

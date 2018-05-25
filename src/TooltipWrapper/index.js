@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import stateHOC from '../utils/stateHOC'
 import {getWindow} from '../utils/windowUtils'
-import {BlockSize} from '../utilComponents/BlockSize'
+import BlockSize from '../utilComponents/BlockSize'
 import Portal from '../utilComponents/Portal'
 import {Tooltip as DefaultTooltip} from '../Tooltip'
 

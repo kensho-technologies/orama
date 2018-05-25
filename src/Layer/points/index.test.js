@@ -4,10 +4,10 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import * as methods from '.'
+import points from '.'
 
 test('Chart.points', () => {
-  const renderData = methods.points({
+  const renderData = points({
     data: [{x: 1, y: 1}],
     xScale: d => d,
     yScale: d => d,
@@ -17,8 +17,9 @@ test('Chart.points', () => {
     type: 'area',
   })
 })
+
 test('Chart.points missing yMap', () => {
-  const renderData = methods.points({
+  const renderData = points({
     data: [{x: 1, y: 1}],
     xScale: d => d,
   })
@@ -27,8 +28,9 @@ test('Chart.points missing yMap', () => {
     type: 'area',
   })
 })
+
 test('Chart.points grouped data', () => {
-  const renderData = methods.points({
+  const renderData = points({
     data: [[{x: 1, y: 1}]],
     xScale: d => d,
     yScale: d => d,

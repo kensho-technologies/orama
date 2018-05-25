@@ -2,7 +2,7 @@
 
 import {cloneDeep, flatten, map} from 'lodash'
 
-import {getPlotValues} from '../getPlotValues'
+import getPlotValues from '../getPlotValues'
 import {getCachedContext} from '../../utils/canvasUtils'
 import labeler from '../../utils/labeler'
 import {DEFAULT_THEME} from '../../defaultTheme'
@@ -42,7 +42,7 @@ function getTextRenderData(props, datum, idx) {
   }
 }
 
-export function scatterplotLabels(props) {
+export default function scatterplotLabels(props) {
   if (!props.xScale && !props.yScale) return undefined
 
   const labelData = map(flatten(props.data), (datum, idx) => getTextRenderData(props, datum, idx))

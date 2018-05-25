@@ -80,6 +80,7 @@ function stateHOC(Child, initialState = {}) {
       }
     }
   }
+  // eslint-disable-next-line react/no-multi-comp
   return class stateHOC extends React.PureComponent {
     static displayName = `${Child.displayName}(state)`
 

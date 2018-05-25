@@ -3,9 +3,9 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-import {hoverRender} from '../CanvasRender/hoverRender'
+import hoverRender from '../CanvasRender/hoverRender'
 import {TooltipWrapper} from '../TooltipWrapper'
-import {CanvasRender} from '../CanvasRender'
+import CanvasRender from '../CanvasRender'
 
 import {getDataUnderMouse} from './getDataUnderMouse'
 import {getMouseFromEvt, runHoverSolverOn} from './methods'
@@ -14,7 +14,7 @@ import {getMouseFromEvt, runHoverSolverOn} from './methods'
 Usually used inside of <ChartRender/>
 Get hovered and clicked data on renderData using a <canvas/> element
 */
-export class CanvasInput extends React.Component {
+export default class CanvasInput extends React.Component {
   static propTypes = {
     onUpdate: PropTypes.func.isRequired,
     renderLayers: PropTypes.array,

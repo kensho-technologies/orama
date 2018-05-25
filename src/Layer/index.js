@@ -2,25 +2,17 @@
 
 import {areas} from './areas'
 import {bars} from './bars'
-import {brushes} from './brushes'
-import {guides} from './guides'
+import brushes from './brushes'
+import guides from './guides'
 import {lines} from './lines'
-import {points} from './points'
-import {ranges} from './ranges'
+import points from './points'
+import ranges from './ranges'
 import {text} from './text'
-import {scatterplotLabels} from './scatterplotLabels'
+import scatterplotLabels from './scatterplotLabels'
 
-export {areas} from './areas'
-export {bars} from './bars'
-export {brushes} from './brushes'
-export {guides} from './guides'
-export {lines} from './lines'
-export {points} from './points'
-export {ranges} from './ranges'
-export {text} from './text'
-
+export {areas, bars, brushes, guides, lines, points, ranges, text}
 export {plotValue} from './plotValue'
-export {getPlotValues} from './getPlotValues'
+export {default as getPlotValues} from './getPlotValues'
 
 export const Layer = () => null
 export const Areas = () => null

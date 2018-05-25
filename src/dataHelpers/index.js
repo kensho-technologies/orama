@@ -9,10 +9,9 @@ export const tidyMap = (array, func) =>
 
 export const baseTransform = mapFunc => curry((arg, data) => tidyMap(data, mapFunc(arg)))
 
-//
-
 export const runTransArg = (arg, datum) =>
   mapValues(arg, funcString => {
+    // eslint-disable-next-line no-new-func
     const func = new Function(...keys(datum), `return  ${funcString}`)
     return func(...values(datum))
   })

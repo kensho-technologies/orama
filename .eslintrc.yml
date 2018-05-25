@@ -1,21 +1,12 @@
 extends: kensho
 rules:
-  import/prefer-default-export: 0
-  no-bitwise: 0
-  no-case-declarations: 0
   no-nested-ternary: 0
-  no-new-func: 0
   no-param-reassign: 0
-  no-plusplus: 0
   no-shadow: 0
   no-underscore-dangle: 0
   react/forbid-prop-types: 0
   react/no-access-state-in-setstate: 0
-  react/no-children-prop: 0
   react/no-deprecated: 0
-  react/no-find-dom-node: 0
-  react/no-multi-comp: 0
-  react/no-string-refs: 0
   react/no-unused-prop-types: 0
   react/no-unused-state: 0
   react/sort-comp: 0

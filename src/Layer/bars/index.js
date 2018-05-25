@@ -3,7 +3,7 @@
 import {flatten, map, isNumber} from 'lodash'
 
 import {getPath2D} from '../../utils/path2DUtils'
-import {getPlotValues} from '../getPlotValues'
+import getPlotValues from '../getPlotValues'
 
 const GUTTER = 1
 

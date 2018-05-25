@@ -7,7 +7,7 @@ import * as React from 'react'
 
 import shallowRender from '../utils/shallowRender'
 
-import {CanvasRender} from '.'
+import CanvasRender from '.'
 
 test('CanvasRender', () => {
   const component = shallowRender(<CanvasRender />)

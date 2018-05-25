@@ -9,10 +9,10 @@ import {BACKGROUND_OFFSET} from '../chartCore/defaults'
 import {getPath2D} from '../utils/path2DUtils'
 import {getTicks} from '../chartCore/getForKey'
 import {inset} from '../utils/rectUtils'
-import {CanvasRender} from '../CanvasRender'
+import CanvasRender from '../CanvasRender'
 
-import {BottomLabel} from './BottomLabel'
-import {LeftLabel} from './LeftLabel'
+import BottomLabel from './BottomLabel'
+import LeftLabel from './LeftLabel'
 
 export function getBackground(props) {
   if (props.backgroundShow === false) return undefined

@@ -4,7 +4,7 @@ import {map, flatten, isNumber} from 'lodash'
 
 import {getPath2D} from '../../utils/path2DUtils'
 import {BACKGROUND_OFFSET} from '../../chartCore/defaults'
-import {getPlotValues} from '../getPlotValues'
+import getPlotValues from '../getPlotValues'
 
 function rangesRender(props, datum, idx) {
   const {backgroundOffset = BACKGROUND_OFFSET, plotRect} = props
@@ -34,7 +34,7 @@ function rangesRender(props, datum, idx) {
   }
 }
 
-export function ranges(props) {
+export default function ranges(props) {
   if (!props.xScale && !props.yScale) return undefined
   return map(flatten(props.data), (datum, idx) => rangesRender(props, datum, idx))
 }

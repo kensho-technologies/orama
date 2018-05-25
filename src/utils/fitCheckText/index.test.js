@@ -6,7 +6,7 @@ import {it as test, describe, beforeEach} from 'mocha'
 
 import {DEFAULT_THEME as defaultTheme} from '../../defaultTheme'
 
-import {fitCheckText} from '.'
+import fitCheckText from '.'
 
 describe('utils.fitCheckText', () => {
   let textData

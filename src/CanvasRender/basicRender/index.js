@@ -2,7 +2,7 @@
 
 import {each, flatMap} from 'lodash'
 
-import {clearAndClip} from '../clearAndClip'
+import clearAndClip from '../clearAndClip'
 import {notDatum} from '../../utils'
 
 const extractRenderDataFromLayers = renderLayers => flatMap(renderLayers, 'renderData')
@@ -24,7 +24,7 @@ function stroke(theme, ctx, d) {
   ctx.stroke(d.path2D)
 }
 
-export function basicRender(props, ctx) {
+export default function basicRender(props, ctx) {
   const {theme} = props
   ctx.save()
   ctx.lineJoin = 'round'

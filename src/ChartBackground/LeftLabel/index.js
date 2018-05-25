@@ -5,32 +5,26 @@ import PropTypes from 'prop-types'
 
 import {DEFAULT_THEME} from '../../defaultTheme'
 
-/**
- * Component that position and style the bottom label of the `Chart` component
- */
-
-export const LeftLabel = props => (
-  <div
-    style={{
-      color: props.theme.textFill,
-      fontFamily: props.theme.fontFamily,
-      fontSize: props.theme.axisLabelFontSize,
-      fontWeight: props.theme.axisLabelFontWeight,
-      left: 0,
-      overflow: 'hidden',
-      position: 'absolute',
-      textAlign: 'center',
-      textOverflow: 'ellipsis',
-      top: props.plotRect.y,
-      transform: 'translate(-100%) rotate(-90deg)',
-      transformOrigin: '100% 0',
-      whiteSpace: 'nowrap',
-      width: props.plotRect.height,
-    }}
-  >
-    {props.text}
-  </div>
-)
+// component that positions and styles the left label of the `Chart` component
+export default function LeftLabel(props) {
+  const style = {
+    color: props.theme.textFill,
+    fontFamily: props.theme.fontFamily,
+    fontSize: props.theme.axisLabelFontSize,
+    fontWeight: props.theme.axisLabelFontWeight,
+    left: 0,
+    overflow: 'hidden',
+    position: 'absolute',
+    textAlign: 'center',
+    textOverflow: 'ellipsis',
+    top: props.plotRect.y,
+    transform: 'translate(-100%) rotate(-90deg)',
+    transformOrigin: '100% 0',
+    whiteSpace: 'nowrap',
+    width: props.plotRect.height,
+  }
+  return <div style={style}>{props.text}</div>
+}
 
 LeftLabel.propTypes = {
   plotRect: PropTypes.object,

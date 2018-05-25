@@ -6,7 +6,7 @@ import {it as test} from 'mocha'
 
 import {PLOT_RECT as plotRect} from '../../chartCore/defaults'
 
-import {brushes} from '.'
+import brushes from '.'
 
 test('Chart/brushes 1', () => {
   const renderData = brushes({

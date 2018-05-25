@@ -3,7 +3,7 @@
 import {flatten, flow, omit, reduce, values} from 'lodash'
 
 import {ACCESSORS_GROUPS} from '../defaults'
-import {compactData} from '../compactData'
+import compactData from '../compactData'
 
 export const omitGroups = (dimArrays, accessorsGroups) =>
   flow(values, flatten, accessorsValues => omit(dimArrays, accessorsValues))(accessorsGroups)

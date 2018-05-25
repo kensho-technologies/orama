@@ -6,33 +6,18 @@ import {it as test} from 'mocha'
 
 import {ctxMock} from '../../utils/canvasUtils'
 
-import * as methods from '.'
+import clearAndClip from '.'
 
 const plotRect = {x: 0, y: 0, width: 500, height: 500}
 
 test('CanvasRender/clearAndClip 1', () => {
-  assert.deepEqual(methods.clearAndClip({}, ctxMock), undefined)
+  assert.deepEqual(clearAndClip({}, ctxMock), undefined)
 })
+
 test('CanvasRender/clearAndClip 2', () => {
-  assert.deepEqual(
-    methods.clearAndClip(
-      {
-        clip: true,
-        plotRect,
-      },
-      ctxMock
-    ),
-    undefined
-  )
+  assert.deepEqual(clearAndClip({clip: true, plotRect}, ctxMock), undefined)
 })
+
 test('CanvasRender/clearAndClip 2', () => {
-  assert.deepEqual(
-    methods.clearAndClip(
-      {
-        layerProps: {clipPlot: false},
-      },
-      ctxMock
-    ),
-    undefined
-  )
+  assert.deepEqual(clearAndClip({layerProps: {clipPlot: false}}, ctxMock), undefined)
 })

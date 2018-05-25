@@ -7,7 +7,7 @@ import * as React from 'react'
 
 import shallowRender from '../../utils/shallowRender'
 
-import {LeftLabel} from '.'
+import LeftLabel from '.'
 
 test('LeftLabel', () => {
   const component = shallowRender(<LeftLabel />)

@@ -28,7 +28,7 @@ export function getType(props, key) {
     array,
     (acc, d) => {
       /* eslint-disable no-param-reassign */
-      acc[toType(d)]++
+      acc[toType(d)] += 1
       /* eslint-enable no-param-reassign */
       return acc
     },
@@ -38,6 +38,7 @@ export function getType(props, key) {
   const maxName = maxBy(counterPairs, '1')[0]
   return JS_TO_VIS_TYPE[maxName]
 }
+
 export function getDomain(props, key) {
   if (props[`${key}Domain`]) return props[`${key}Domain`]
   const {
@@ -55,6 +56,7 @@ export function getDomain(props, key) {
       return [min(array), max(array)]
   }
 }
+
 export function getRange(props, key) {
   if (props[`${key}Range`]) return props[`${key}Range`]
   const {plotRect, [`${key}Type`]: type = TYPE} = props
@@ -91,20 +93,21 @@ export function getRange(props, key) {
       return [plotRect.x, rectUtils.getMaxX(plotRect)]
   }
 }
+
 export function getTickCount(props, key) {
   if (isNumber(props[`${key}TickCount`])) return props[`${key}TickCount`]
   const {[`${key}Range`]: range, [`${key}TickSpace`]: _tickSpace} = props
-  switch (key) {
-    case 'y':
-      const xTickSpace = _tickSpace || TICK_Y_SPACE
-      return Math.ceil((range[0] - range[1]) / xTickSpace)
-    case 'x':
-      const yTickSpace = _tickSpace || TICK_X_SPACE
-      return Math.ceil((range[1] - range[0]) / yTickSpace)
-    default:
-      return 0
+  if (key === 'y') {
+    const xTickSpace = _tickSpace || TICK_Y_SPACE
+    return Math.ceil((range[0] - range[1]) / xTickSpace)
   }
+  if (key === 'x') {
+    const yTickSpace = _tickSpace || TICK_X_SPACE
+    return Math.ceil((range[1] - range[0]) / yTickSpace)
+  }
+  return 0
 }
+
 export function getTickFormat(props, key) {
   if (props[`${key}TickFormat`]) return props[`${key}TickFormat`]
   const {
@@ -115,6 +118,7 @@ export function getTickFormat(props, key) {
   if (type === 'time') return scale.tickFormat()
   return scale.tickFormat(tickCount)
 }
+
 export function getTooltipFormat(props, key) {
   if (props[`${key}TooltipFormat`]) return props[`${key}TooltipFormat`]
   const {
@@ -132,6 +136,7 @@ export function getTooltipFormat(props, key) {
   if (!scale.tickFormat) return d => d
   return scale.tickFormat(tickCount)
 }
+
 export function getTicks(props, key) {
   if (props[`${key}Ticks`]) return props[`${key}Ticks`]
   const {
@@ -140,19 +145,8 @@ export function getTicks(props, key) {
     [`${key}TickCount`]: tickCount = TICK_COUNT,
     [`${key}Scale`]: scale = getScale(props, key),
   } = props
-  switch (type) {
-    case 'ordinal':
-      return map(domain, d => ({
-        value: d,
-        text: d,
-      }))
-    case 'linear':
-    default:
-      const tickFormat = getTickFormat({...props, scale}, key)
-      const ticks = scale.ticks(tickCount)
-      return map(ticks, d => ({
-        value: d,
-        text: tickFormat(d),
-      }))
-  }
+  if (type === 'ordinal') return map(domain, d => ({value: d, text: d}))
+  const tickFormat = getTickFormat({...props, scale}, key)
+  const ticks = scale.ticks(tickCount)
+  return map(ticks, d => ({value: d, text: tickFormat(d)}))
 }

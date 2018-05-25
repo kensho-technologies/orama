@@ -218,4 +218,4 @@ StatelessBrush.defaultProps = {
   yDomain: [],
 }
 
-export const Brush = stateHOC(StatelessBrush)
+export default stateHOC(StatelessBrush)
