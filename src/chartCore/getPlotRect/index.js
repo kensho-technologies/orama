@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {includes, reduce, sum} from 'lodash'
 
 import {getCachedContext} from '../../utils/canvasUtils'
 import {getRange, getTickCount, getTicks} from '../getForKey'
@@ -51,7 +51,7 @@ export function getMaxTextWidth(theme, ticks) {
   const ctx = getCachedContext()
   ctx.save()
   ctx.font = `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`
-  const maxWidth = _.reduce(ticks, (acc, d) => _.max([acc, ctx.measureText(d.text).width]), 0)
+  const maxWidth = reduce(ticks, (acc, d) => Math.max(acc, ctx.measureText(d.text).width), 0)
   ctx.restore()
   return maxWidth
 }
@@ -63,9 +63,9 @@ function getTopMargin(props) {
     y,
     yShowTicks = SHOW_TICKS,
   } = props
-  if (!_.isUndefined(margin.top)) return margin.top + backgroundOffset
+  if (margin.top !== undefined) return margin.top + backgroundOffset
   if (yShowTicks === false || !y) return backgroundOffset
-  return _.max([backgroundOffset, theme.axisTickFontSize / 2])
+  return Math.max(backgroundOffset, theme.axisTickFontSize / 2)
 }
 function getBottomMargin(props) {
   const {theme} = props
@@ -78,9 +78,9 @@ function getBottomMargin(props) {
     xTickOffset = AXIS_TICK_OFFSET(theme),
     xLabelOffset = AXIS_LABEL_OFFSET(theme),
   } = props
-  if (!_.isUndefined(margin.bottom)) return margin.bottom + backgroundOffset
-  if (!_.includes(groupedKeys, 'x')) return backgroundOffset
-  return _.sum([
+  if (margin.bottom !== undefined) return margin.bottom + backgroundOffset
+  if (!includes(groupedKeys, 'x')) return backgroundOffset
+  return sum([
     backgroundOffset,
     xShowTicks ? xTickOffset + theme.axisTickFontSize : 0,
     xShowLabel ? xLabelOffset + theme.axisLabelFontSize : 0,
@@ -97,16 +97,16 @@ function getLeftMargin(props) {
     yTickOffset = AXIS_TICK_OFFSET(theme),
     yLabelOffset = AXIS_LABEL_OFFSET(theme),
   } = props
-  if (!_.isUndefined(margin.left)) return margin.left + backgroundOffset
-  if (!_.includes(groupedKeys, 'y')) return backgroundOffset
+  if (margin.left !== undefined) return margin.left + backgroundOffset
+  if (!includes(groupedKeys, 'y')) return backgroundOffset
   if (!yShowTicks) {
-    return _.sum([backgroundOffset, yShowLabel ? yLabelOffset + theme.axisLabelFontSize : 0])
+    return sum([backgroundOffset, yShowLabel ? yLabelOffset + theme.axisLabelFontSize : 0])
   }
   const yRange = props.yRange || getRange(props, 'y')
   const yTickCount = props.yTickCount || getTickCount({...props, yRange}, 'y')
   const yTicks = props.yTicks || getTicks({...props, yTickCount}, 'y')
   const yMaxTickWidth = getMaxTextWidth(theme, yTicks)
-  return _.sum([
+  return sum([
     backgroundOffset,
     yMaxTickWidth,
     yShowTicks ? yTickOffset : 0,
@@ -115,7 +115,7 @@ function getLeftMargin(props) {
 }
 function getRightMargin(props) {
   const {backgroundOffset = BACKGROUND_OFFSET, margin = {}, x, xShowTicks = SHOW_TICKS} = props
-  if (!_.isUndefined(margin.right)) return margin.right + backgroundOffset
+  if (margin.right !== undefined) return margin.right + backgroundOffset
   if (!x || !xShowTicks) return backgroundOffset
   return backgroundOffset
 }
@@ -145,11 +145,11 @@ export function getPlotRect(props) {
   let newWidth = width
   let newHeight = height
   const plotRect = rectUtils.marginInset(margin, {width, height})
-  if (!_.includes(groupedKeys, 'x')) {
+  if (!includes(groupedKeys, 'x')) {
     newWidth -= plotRect.width
     plotRect.width = 0
   }
-  if (!_.includes(groupedKeys, 'y')) {
+  if (!includes(groupedKeys, 'y')) {
     newHeight -= plotRect.height
     plotRect.height = 0
   }

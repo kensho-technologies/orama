@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {isNumber, map, max, maxBy, min, reduce, toPairs, uniq} from 'lodash'
 
 import * as rectUtils from '../../utils/rectUtils'
 import {getScale} from '../getScale'
@@ -24,7 +24,7 @@ export function getType(props, key) {
   if (props[`${key}Type`]) return props[`${key}Type`]
   const {[`${key}Array`]: array} = props
   if (!array) return undefined
-  const counter = _.reduce(
+  const counter = reduce(
     array,
     (acc, d) => {
       /* eslint-disable no-param-reassign */
@@ -34,8 +34,8 @@ export function getType(props, key) {
     },
     {number: 0, string: 0, date: 0}
   )
-  const counterPairs = _.toPairs(counter)
-  const maxName = _.maxBy(counterPairs, '1')[0]
+  const counterPairs = toPairs(counter)
+  const maxName = maxBy(counterPairs, '1')[0]
   return JS_TO_VIS_TYPE[maxName]
 }
 export function getDomain(props, key) {
@@ -47,12 +47,12 @@ export function getDomain(props, key) {
   } = props
   switch (type) {
     case 'ordinal':
-      return _.uniq(array)
+      return uniq(array)
     default:
       if (zeroBased) {
-        return [_.min([_.min(array), 0]), _.max([_.max(array), 0])]
+        return [min([min(array), 0]), max([max(array), 0])]
       }
-      return [_.min(array), _.max(array)]
+      return [min(array), max(array)]
   }
 }
 export function getRange(props, key) {
@@ -92,7 +92,7 @@ export function getRange(props, key) {
   }
 }
 export function getTickCount(props, key) {
-  if (_.isNumber(props[`${key}TickCount`])) return props[`${key}TickCount`]
+  if (isNumber(props[`${key}TickCount`])) return props[`${key}TickCount`]
   const {[`${key}Range`]: range, [`${key}TickSpace`]: _tickSpace} = props
   switch (key) {
     case 'y':
@@ -142,7 +142,7 @@ export function getTicks(props, key) {
   } = props
   switch (type) {
     case 'ordinal':
-      return _.map(domain, d => ({
+      return map(domain, d => ({
         value: d,
         text: d,
       }))
@@ -150,7 +150,7 @@ export function getTicks(props, key) {
     default:
       const tickFormat = getTickFormat({...props, scale}, key)
       const ticks = scale.ticks(tickCount)
-      return _.map(ticks, d => ({
+      return map(ticks, d => ({
         value: d,
         text: tickFormat(d),
       }))

@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {flow, keys, mapKeys} from 'lodash'
 
 import {getDimArraysForRoot} from '../getDimArraysForRoot'
 import {mergeDimArrays} from '../mergeDimArrays'
@@ -15,15 +15,15 @@ Dimension arrays are also grouped according to accessorsGroups
 Add 'Array' sufix to dimArrays, add groupedKeys props
 */
 export const wrapUpNewProps = dimArrays => ({
-  ..._.mapKeys(dimArrays, (value, key) => `${key}Array`),
-  groupedKeys: _.keys(dimArrays),
+  ...mapKeys(dimArrays, (value, key) => `${key}Array`),
+  groupedKeys: keys(dimArrays),
 })
 /*
 Main exported function, used outside of the module on the Chart props transform flow.
 */
 export function getDimArrays(props) {
   if (props.groupedKeys) return {}
-  const getArraysFlow = _.flow(
+  const getArraysFlow = flow(
     getDimArraysForRoot,
     dimArrays => mergeDimArrays(dimArrays, props.accessorsGroups),
     wrapUpNewProps

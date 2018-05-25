@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {each} from 'lodash'
 
 import {clearAndClip} from '../clearAndClip'
 
@@ -11,7 +11,7 @@ export function hoverRender(props, ctx) {
   ctx.lineJoin = 'round'
   clearAndClip(props, ctx)
 
-  _.each(renderData, d => {
+  each(renderData, d => {
     if (!d) return
     if (d.type === 'line') {
       ctx.globalAlpha = d.hoverAlpha || 0.5

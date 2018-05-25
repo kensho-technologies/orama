@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {each, isFunction, get, memoize, reduce} from 'lodash'
 
 import {ACCESSORS_GROUPS} from '../../chartCore/defaults'
 import {isDatum} from '../../utils'
@@ -11,12 +11,12 @@ It's used inside of the plotFunctions.
 According to the configuration on the props provided it has different behaviours.
 */
 
-const generateAccessorGroupHash = _.memoize(accessorsGroups =>
-  _.reduce(
+const generateAccessorGroupHash = memoize(accessorsGroups =>
+  reduce(
     accessorsGroups,
     (acc, values, key) => {
       /* eslint-disable no-param-reassign */
-      _.each(values, d => {
+      each(values, d => {
         acc[d] = key
       })
       /* eslint-enable no-param-reassign */
@@ -49,15 +49,15 @@ export function plotValue(props, datum, idx, key, defaultValue) {
   const scaleKey = getScaleKeyByHash(props, key)
   const {[key]: accessor, [`${key}Value`]: value, [`${scaleKey}Scale`]: scale} = props
 
-  if (_.isFunction(value)) return value(props, datum, idx)
+  if (isFunction(value)) return value(props, datum, idx)
   if (isDatum(value)) return value
-  const objValue = _.get(datum, accessor)
+  const objValue = get(datum, accessor)
   if (scale) {
     const mappedValue = scale(objValue)
     if (isDatum(mappedValue) && isDatum(objValue)) return mappedValue
   }
   if (isDatum(objValue)) return objValue
-  const objKeyValue = _.get(datum, `${key}Value`)
+  const objKeyValue = get(datum, `${key}Value`)
   if (isDatum(objKeyValue)) return objKeyValue
   return defaultValue || objValue
 }

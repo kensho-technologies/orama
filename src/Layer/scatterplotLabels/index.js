@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {cloneDeep, flatten, map} from 'lodash'
 
 import {getPlotValues} from '../getPlotValues'
 import {getCachedContext} from '../../utils/canvasUtils'
@@ -45,18 +45,16 @@ function getTextRenderData(props, datum, idx) {
 export function scatterplotLabels(props) {
   if (!props.xScale && !props.yScale) return undefined
 
-  const labelData = _.map(_.flatten(props.data), (datum, idx) =>
-    getTextRenderData(props, datum, idx)
-  )
+  const labelData = map(flatten(props.data), (datum, idx) => getTextRenderData(props, datum, idx))
 
-  const anchorData = _.map(labelData, d => ({
+  const anchorData = map(labelData, d => ({
     x: d.x,
     y: d.y,
     r: 8,
   }))
 
   localLabeler
-    .plotRect(_.cloneDeep(props.plotRect))
+    .plotRect(cloneDeep(props.plotRect))
     .label(labelData)
     .anchor(anchorData)
     .start(100)

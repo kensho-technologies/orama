@@ -1,22 +1,22 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {get, head, isArray, isDate, isNaN, isString, map, omit, reduce, some, sortBy} from 'lodash'
 
 import {ACCESSORS_TOOLTIP_ORDER} from '../../chartCore/defaults'
 import {getTooltipFormat} from '../../chartCore/getForKey'
 import {getScaleKeyByHash} from '../../Layer/plotValue'
 
 function getDatum(data) {
-  if (_.isArray(data)) return _.head(data)
+  if (isArray(data)) return head(data)
   return data
 }
-const isDisplayable = value => value !== 'NaN' && !_.isUndefined(value) && !_.isNaN(value)
+const isDisplayable = value => value !== 'NaN' && value !== undefined && !isNaN(value)
 const tooltipValuesForStrings = (tooltipExtraDimensions, datum) =>
-  _.reduce(
+  reduce(
     tooltipExtraDimensions,
     (acc, key) => {
-      let value = _.get(datum, key)
-      if (_.isDate(value)) {
+      let value = get(datum, key)
+      if (isDate(value)) {
         value = value.toDateString()
       }
       if (isDisplayable(value)) {
@@ -27,13 +27,13 @@ const tooltipValuesForStrings = (tooltipExtraDimensions, datum) =>
     []
   )
 const tooltipValuesForObjects = (tooltipExtraDimensions, datum) =>
-  _.reduce(
+  reduce(
     tooltipExtraDimensions,
     (acc, obj) => {
       const {accessor, value, format = d => d, name} = obj
       acc.push({
         name: name || accessor,
-        value: format(value || _.get(datum, accessor)),
+        value: format(value || get(datum, accessor)),
       })
       return acc
     },
@@ -41,7 +41,7 @@ const tooltipValuesForObjects = (tooltipExtraDimensions, datum) =>
   )
 function getExtraTooltipValues(props, datum) {
   const {tooltipExtraDimensions} = props
-  if (_.some(tooltipExtraDimensions, _.isString)) {
+  if (some(tooltipExtraDimensions, isString)) {
     return tooltipValuesForStrings(tooltipExtraDimensions, datum)
   }
   return tooltipValuesForObjects(tooltipExtraDimensions, datum)
@@ -50,14 +50,14 @@ export function extractTooltipData(props, hoverData) {
   const {localKeys, tooltipKeys, accessorsTooltipOrder = ACCESSORS_TOOLTIP_ORDER} = props
 
   const datum = getDatum(hoverData)
-  const tooltipValues = _.reduce(
+  const tooltipValues = reduce(
     tooltipKeys || localKeys,
     (acc, key) => {
       const scaleKey = getScaleKeyByHash(props, key)
       const keyAlias = props[`${key}Alias`] || key
       const name = props[`${key}Name`] || props[key]
       const formatter = props[`${scaleKey}TooltipFormat`] || getTooltipFormat(props, scaleKey)
-      const value = formatter(_.get(datum, props[key]))
+      const value = formatter(get(datum, props[key]))
       const order = accessorsTooltipOrder[key]
       if (isDisplayable(value)) {
         acc.push({key: keyAlias, name, value, order})
@@ -67,9 +67,7 @@ export function extractTooltipData(props, hoverData) {
     []
   )
   const extraTooltipValues = getExtraTooltipValues(props, datum)
-  const orderedTooltipValues = _.map(_.sortBy(tooltipValues, 'order'), values =>
-    _.omit(values, 'order')
-  )
+  const orderedTooltipValues = map(sortBy(tooltipValues, 'order'), values => omit(values, 'order'))
   const title = props.titleValue || datum[props.title]
   return {
     title,

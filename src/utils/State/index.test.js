@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 import * as React from 'react'
-import _ from 'lodash'
+import {isFunction} from 'lodash'
 
 import shallowRender from '../shallowRender'
 
@@ -18,8 +18,8 @@ test('State 1', () => {
       <TestClass />
     </State>
   )
-  assert(_.isFunction(component.props.onUpdate))
-  assert(_.isFunction(component.props.setState))
+  assert(isFunction(component.props.onUpdate))
+  assert(isFunction(component.props.setState))
 })
 
 test('State 2', () => {

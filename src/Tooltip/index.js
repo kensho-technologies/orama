@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
+import {map} from 'lodash'
 
 import {DEFAULT_THEME} from '../defaultTheme'
 import {extractTooltipData} from '../Chart/extractTooltipData'
@@ -82,7 +82,7 @@ export const TooltipInner = props => (
       </div>
     ) : null}
     <table style={{width: '100%', borderCollapse: 'collapse'}}>
-      <tbody>{_.map(props.values, (d, i) => row(props, d, i))}</tbody>
+      <tbody>{map(props.values, (d, i) => row(props, d, i))}</tbody>
     </table>
   </div>
 )

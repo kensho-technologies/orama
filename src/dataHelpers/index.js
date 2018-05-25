@@ -1,25 +1,20 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {curry, keys, map, mapValues, reduce, slice, values} from 'lodash'
 
-export const flow = (...arg) => _.reduce(_.slice(arg, 1), (acc, d) => d(acc), arg[0])
+export const flow = (...arg) => reduce(slice(arg, 1), (acc, d) => d(acc), arg[0])
 
 export const tidyMap = (array, func) =>
-  _.map(array, value => {
-    if (_.isArray(value)) {
-      return _.map(value, func)
-    }
-    return func(value)
-  })
+  map(array, value => (Array.isArray(value) ? map(value, func) : func(value)))
 
-export const baseTransform = mapFunc => _.curry((arg, data) => tidyMap(data, mapFunc(arg)))
+export const baseTransform = mapFunc => curry((arg, data) => tidyMap(data, mapFunc(arg)))
 
 //
 
 export const runTransArg = (arg, datum) =>
-  _.mapValues(arg, funcString => {
-    const func = new Function(..._.keys(datum), `return  ${funcString}`)
-    return func(..._.values(datum))
+  mapValues(arg, funcString => {
+    const func = new Function(...keys(datum), `return  ${funcString}`)
+    return func(...values(datum))
   })
 
 export const transMapFunc = arg => datum => ({

@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {some} from 'lodash'
 
 function shallowEqual(objA, objB) {
   if (objA === objB) {
@@ -25,11 +25,11 @@ function shallowEqual(objA, objB) {
 }
 
 export const getRerunCheckForNames = (keyNames, rootNames) => (props, prevProps) => {
-  const checkRootNames = _.some(rootNames, name => props[`${name}`] !== prevProps[`${name}`])
+  const checkRootNames = some(rootNames, name => props[`${name}`] !== prevProps[`${name}`])
   if (checkRootNames) return true
   if (!keyNames) return false
-  return _.some(props.groupedKeys, key =>
-    _.some(keyNames, name => props[`${key}${name}`] !== prevProps[`${key}${name}`])
+  return some(props.groupedKeys, key =>
+    some(keyNames, name => props[`${key}${name}`] !== prevProps[`${key}${name}`])
   )
 }
 
@@ -59,7 +59,7 @@ export function rerunCheckGetDimArrays(props, prevProps) {
   // now there are layers
   if (!prevProps.layers && props.layers) return true
   // for each layer
-  const layerCheck = _.some(props.layers, (layer, i) => {
+  const layerCheck = some(props.layers, (layer, i) => {
     // should skip
     if (layer.skipExtractArrays) return false
     const prevLayer = prevProps.layers[i]

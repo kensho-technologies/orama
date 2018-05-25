@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {findIndex, get, last, map} from 'lodash'
 import {scaleLinear, scaleLog, scaleOrdinal, scalePoint, scaleUtc} from 'd3-scale'
 
 import {DOMAIN, NICE, RANGE, TICK_COUNT, TYPE} from '../defaults'
@@ -52,22 +52,19 @@ function getBaseScales(type, domain, range, nice, tickCount) {
 }
 
 export function getOrdinalInvert(scale) {
-  const mapArray = _.map(scale.domain(), raw => ({
-    raw,
-    mapped: scale(raw),
-  }))
+  const mapArray = map(scale.domain(), raw => ({raw, mapped: scale(raw)}))
   return input => {
-    const hoverIndex = _.findIndex(mapArray, d => _.get(d, 'mapped') > input)
+    const hoverIndex = findIndex(mapArray, d => get(d, 'mapped') > input)
     if (hoverIndex === 0) {
       const hoverData = mapArray[hoverIndex]
       return hoverData.raw
     }
     if (hoverIndex === -1) {
-      const hoverData = _.last(mapArray)
+      const hoverData = last(mapArray)
       return hoverData.raw
     }
-    const px = _.get(mapArray[hoverIndex], 'mapped')
-    const x = _.get(mapArray[hoverIndex - 1], 'mapped')
+    const px = get(mapArray[hoverIndex], 'mapped')
+    const x = get(mapArray[hoverIndex - 1], 'mapped')
     if (input - px < x - input) {
       const hoverData = mapArray[hoverIndex - 1]
       return hoverData.raw

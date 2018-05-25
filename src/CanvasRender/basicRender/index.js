@@ -1,11 +1,11 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {each, flatMap} from 'lodash'
 
 import {clearAndClip} from '../clearAndClip'
 import {notDatum} from '../../utils'
 
-const extractRenderDataFromLayers = renderLayers => _.flatten(_.map(renderLayers, 'renderData'))
+const extractRenderDataFromLayers = renderLayers => flatMap(renderLayers, 'renderData')
 
 function getRenderObjects(props) {
   const {renderData, renderLayers} = props
@@ -29,7 +29,7 @@ export function basicRender(props, ctx) {
   ctx.save()
   ctx.lineJoin = 'round'
   clearAndClip(props, ctx)
-  _.each(getRenderObjects(props), d => {
+  each(getRenderObjects(props), d => {
     if (!d) return
     if (d.type === 'line') {
       stroke(theme, ctx, d)

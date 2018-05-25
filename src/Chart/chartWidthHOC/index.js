@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
+import {throttle} from 'lodash'
 
 /*
 This component wrapps up the <InputComponent/> and add a width prop when it's not present
@@ -39,7 +39,7 @@ export const chartWidthHOC = InputComponent =>
       }
     }
 
-    handleResize = _.throttle(this.updateWidth, 500)
+    handleResize = throttle(this.updateWidth, 500)
 
     handleRef = divNode => {
       this.divNode = divNode

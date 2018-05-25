@@ -3,7 +3,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import {findDOMNode} from 'react-dom'
-import _ from 'lodash'
+import {omit} from 'lodash'
 
 export class BlockSize extends React.Component {
   static propTypes = {
@@ -32,6 +32,6 @@ export class BlockSize extends React.Component {
     function refClbck(element) {
       this.element = element
     }
-    return <div {..._.omit(this.props, ['onUpdate', 'onState'])} ref={refClbck} />
+    return <div {...omit(this.props, ['onUpdate', 'onState'])} ref={refClbck} />
   }
 }

@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
+import {map} from 'lodash'
 
 import {basicRender} from '../../CanvasRender/basicRender'
 import {CanvasRender} from '../../CanvasRender'
@@ -13,7 +13,7 @@ Used inside <Chart/>
 */
 export const ChartRender = props => (
   <div>
-    {_.map(props.renderLayers, (renderLayer, i) => (
+    {map(props.renderLayers, (renderLayer, i) => (
       <CanvasRender // basicRender
         clip
         height={props.rootProps.height}

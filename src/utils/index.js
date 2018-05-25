@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {isNaN, isNumber, isNull, isUndefined, reduce, some} from 'lodash'
 
 export {default as labeler} from './labeler'
 export {default as stateHOC} from './stateHOC'
@@ -11,19 +11,19 @@ export * as path2DUtils from './path2DUtils'
 export * as rectUtils from './rectUtils'
 export * as windowUtils from './windowUtils'
 
-const checkNotPlotNumber = value => _.isNaN(value) || !_.isNumber(value)
+const checkNotPlotNumber = value => isNaN(value) || !isNumber(value)
 export function notPlotNumber(value) {
-  if (!_.isArray(value)) return checkNotPlotNumber(value)
-  return _.some(value, checkNotPlotNumber)
+  if (!Array.isArray(value)) return checkNotPlotNumber(value)
+  return some(value, checkNotPlotNumber)
 }
 
-const checkIsPlotNumber = value => !_.isNaN(value) && _.isNumber(value)
+const checkIsPlotNumber = value => !isNaN(value) && isNumber(value)
 export function isPlotNumber(value) {
-  if (!_.isArray(value)) return checkIsPlotNumber(value)
-  return _.some(value, checkIsPlotNumber)
+  if (!Array.isArray(value)) return checkIsPlotNumber(value)
+  return some(value, checkIsPlotNumber)
 }
 
-export const notDatum = value => _.isUndefined(value) || _.isNaN(value) || _.isNull(value)
+export const notDatum = value => isUndefined(value) || isNaN(value) || isNull(value)
 
 export const isDatum = value => !notDatum(value)
 
@@ -31,7 +31,7 @@ export const isDatum = value => !notDatum(value)
 const slice = (arr, start, end) => arr.slice(start + 1, end + 1)
 
 export function splitBy(arr, iteratee) {
-  const {sliceFrom, returnArray} = _.reduce(
+  const {sliceFrom, returnArray} = reduce(
     arr,
     ({sliceFrom, returnArray}, val, idx) => {
       if (iteratee(val, idx)) {

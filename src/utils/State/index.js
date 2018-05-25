@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
+import {isFunction, isPlainObject, omit} from 'lodash'
 
 export default class stateHOC extends React.PureComponent {
   static defaultProps = {}
@@ -16,14 +16,14 @@ export default class stateHOC extends React.PureComponent {
   state = {}
 
   componentWillMount() {
-    if (this.props.startWith && _.isFunction(this.props.startWith)) {
+    if (this.props.startWith && isFunction(this.props.startWith)) {
       this.props.startWith({
         onUpdate: this.props.onUpdate || this.handleChildUpdate,
-        ..._.omit(this.props, ['children', 'startWith']),
+        ...omit(this.props, ['children', 'startWith']),
         ...this.state,
         setState: this.handleChildUpdate,
       })
-    } else if (this.props.startWith && _.isPlainObject(this.props.startWith)) {
+    } else if (this.props.startWith && isPlainObject(this.props.startWith)) {
       this.setState(this.props.startWith)
     }
   }
@@ -31,7 +31,7 @@ export default class stateHOC extends React.PureComponent {
   childrenMap = (child, key = 0) =>
     React.cloneElement(child, {
       onUpdate: this.handleChildUpdate,
-      ..._.omit(this.props, ['children', 'startWith']),
+      ...omit(this.props, ['children', 'startWith']),
       ...this.state,
       setState: this.handleChildUpdate,
       key,

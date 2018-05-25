@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {reduce} from 'lodash'
 
 import {plotValue} from '../plotValue'
 
@@ -22,7 +22,7 @@ export function getControlPoints(x0, y0, x1, y1, x2, y2, t) {
 
 export function splineInterpolation(props, data, path) {
   const t = 0.5
-  const pts = _.reduce(
+  const pts = reduce(
     data,
     (acc, d) => {
       acc.push(plotValue(props, d, undefined, 'x'))

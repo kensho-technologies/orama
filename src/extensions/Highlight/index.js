@@ -2,7 +2,7 @@
 
 import PropTypes from 'prop-types'
 import * as React from 'react'
-import _ from 'lodash'
+import {indexOf, omit} from 'lodash'
 
 import State from '../../utils/State'
 
@@ -10,7 +10,7 @@ function mouseDown(props, childProps) {
   const {data} = props
   const {renderDatum} = childProps
   if (renderDatum) {
-    const index = _.indexOf(data, renderDatum.data)
+    const index = indexOf(data, renderDatum.data)
     if (index > -1) {
       data.splice(index, 1)
       props.onUpdate({
@@ -76,7 +76,7 @@ InnerHighlight.defaultProps = {
 }
 
 export const Highlight = props => (
-  <State {..._.omit(props, 'children')}>
+  <State {...omit(props, 'children')}>
     <InnerHighlight children={props.children} onUpdate={props.onUpdate} />
   </State>
 )

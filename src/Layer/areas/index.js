@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {get, each, eachRight, find, findIndex, head, isEmpty, last, reduce, reject} from 'lodash'
 
 import {getMaxY} from '../../utils/rectUtils'
 import {getPath2D} from '../../utils/path2DUtils'
@@ -34,20 +34,20 @@ const getHoverSolverObj = (props, renderDatum, hoverData) => ({
 export function hoverSolver(props, _hoverData, renderDatum, localMouse) {
   const xRaw = props.xScale.invert(localMouse.x)
   if (props.xType === 'ordinal') {
-    const hoverData = _.find(_hoverData, d => _.get(d, props.x) === xRaw)
+    const hoverData = find(_hoverData, d => get(d, props.x) === xRaw)
     return getHoverSolverObj(props, renderDatum, hoverData)
   }
-  const hoverIndex = _.findIndex(_hoverData, d => _.get(d, props.x) > xRaw)
+  const hoverIndex = findIndex(_hoverData, d => get(d, props.x) > xRaw)
   if (hoverIndex === 0) {
     const hoverData = _hoverData[hoverIndex]
     return getHoverSolverObj(props, renderDatum, hoverData)
   }
   if (hoverIndex === -1) {
-    const hoverData = _.last(_hoverData)
+    const hoverData = last(_hoverData)
     return getHoverSolverObj(props, renderDatum, hoverData)
   }
-  const px = _.get(_hoverData[hoverIndex], props.x)
-  const x = _.get(_hoverData[hoverIndex - 1], props.x)
+  const px = get(_hoverData[hoverIndex], props.x)
+  const x = get(_hoverData[hoverIndex - 1], props.x)
   if (xRaw - px < x - xRaw) {
     const hoverData = _hoverData[hoverIndex - 1]
     return getHoverSolverObj(props, renderDatum, hoverData)
@@ -57,28 +57,28 @@ export function hoverSolver(props, _hoverData, renderDatum, localMouse) {
 }
 
 export function getAreaRenderData(props, data, idx) {
-  if (_.isEmpty(data)) return {showHover: false}
+  if (isEmpty(data)) return {showHover: false}
   const path2D = getPath2D()
   path2D.moveTo(
-    plotValue(props, _.head(data), idx, 'x', 0),
-    plotValue(props, _.head(data), idx, 'y', 0)
+    plotValue(props, head(data), idx, 'x', 0),
+    plotValue(props, head(data), idx, 'y', 0)
   )
-  _.each(data, d => {
+  each(data, d => {
     const x = plotValue(props, d, idx, 'x')
     const y = plotValue(props, d, idx, 'y')
     if (notPlotNumber([x, y])) return
     path2D.lineTo(x, y)
   })
-  const y0 = plotValue(props, _.head(data), idx, 'y0')
-  const x0 = plotValue(props, _.head(data), idx, 'x0')
+  const y0 = plotValue(props, head(data), idx, 'y0')
+  const x0 = plotValue(props, head(data), idx, 'x0')
   // if there's no base position accessors
   if (notPlotNumber(y0) && notPlotNumber(x0)) {
     const localY0 = props.yScale(0) || getMaxY(props.plotRect)
-    path2D.lineTo(plotValue(props, _.last(data), idx, 'x', 0), localY0)
-    path2D.lineTo(plotValue(props, _.head(data), idx, 'x', 0), localY0)
+    path2D.lineTo(plotValue(props, last(data), idx, 'x', 0), localY0)
+    path2D.lineTo(plotValue(props, head(data), idx, 'x', 0), localY0)
     // if the base is on the y axis
   } else if (isPlotNumber(y0) && notPlotNumber(x0)) {
-    _.eachRight(data, d => {
+    eachRight(data, d => {
       const x = plotValue(props, d, idx, 'x')
       const localY0 = plotValue(props, d, idx, 'y0')
       if (notPlotNumber([x, localY0])) return
@@ -86,7 +86,7 @@ export function getAreaRenderData(props, data, idx) {
     })
     // if the base is on the x axis
   } else if (notPlotNumber(y0) && isPlotNumber(x0)) {
-    _.eachRight(data, d => {
+    eachRight(data, d => {
       const localX0 = plotValue(props, d, idx, 'x0')
       const y = plotValue(props, d, idx, 'y')
       if (notPlotNumber([localX0, y])) return
@@ -95,7 +95,7 @@ export function getAreaRenderData(props, data, idx) {
   }
   path2D.closePath()
 
-  const values = getPlotValues(props, _.head(data), idx, {
+  const values = getPlotValues(props, head(data), idx, {
     hoverAlpha: 0.25,
   })
   return {
@@ -109,17 +109,14 @@ export function getAreaRenderData(props, data, idx) {
 
 function splitDataAtNulls(props, data) {
   const checkNullPoint = isNullPoint(props)
-  return _.reject(
-    splitBy(data, checkNullPoint).map(arr => _.reject(arr, checkNullPoint)),
-    _.isEmpty
-  )
+  return reject(splitBy(data, checkNullPoint).map(arr => reject(arr, checkNullPoint)), isEmpty)
 }
 
 export function areas(props) {
   if (!props.xScale || !props.yScale) return undefined
   const data = splitDataAtNulls(props, props.data)
-  if (_.isArray(_.head(data))) {
-    return _.reduce(data, (acc, data, idx) => acc.concat(getAreaRenderData(props, data, idx)), [])
+  if (Array.isArray(head(data))) {
+    return reduce(data, (acc, data, idx) => acc.concat(getAreaRenderData(props, data, idx)), [])
   }
   return [getAreaRenderData(props, props.data)]
 }

@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
+import {includes} from 'lodash'
 
 import stateHOC from '../../utils/stateHOC'
 import {Brushes} from '../../Layer'
@@ -20,10 +20,10 @@ const BRUSH_ELEMENT_NAMES = [
 ]
 
 const reorder = bounds => ({
-  x1: _.min([bounds.x1, bounds.x2]),
-  x2: _.max([bounds.x1, bounds.x2]),
-  y1: _.min([bounds.y1, bounds.y2]),
-  y2: _.max([bounds.y1, bounds.y2]),
+  x1: Math.min(bounds.x1, bounds.x2),
+  x2: Math.max(bounds.x1, bounds.x2),
+  y1: Math.min(bounds.y1, bounds.y2),
+  y2: Math.max(bounds.y1, bounds.y2),
 })
 function isOutOfBounds(bounds, plotRect) {
   if (
@@ -83,7 +83,7 @@ function updateBounds(props, childProps, partialBounds) {
 
 function mouseDown(props, childProps) {
   const brushElementName = childProps.renderDatum && childProps.renderDatum.name
-  if (!_.includes(BRUSH_ELEMENT_NAMES, brushElementName)) {
+  if (!includes(BRUSH_ELEMENT_NAMES, brushElementName)) {
     props.onState({
       _bounds: {
         x1: childProps.localMouse.x,

@@ -1,9 +1,9 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {findLast} from 'lodash'
 
 export const findFirstPass = (ctx, localMouse, renderData) =>
-  _.findLast(renderData, d => {
+  findLast(renderData, d => {
     if (!d) return false
     if (d.showHover === false) return false
     ctx.lineJoin = 'round'
@@ -18,7 +18,7 @@ export const findFirstPass = (ctx, localMouse, renderData) =>
     return false
   })
 export const findSecondPass = (ctx, localMouse, renderData) =>
-  _.findLast(renderData, d => {
+  findLast(renderData, d => {
     if (!d) return false
     if (d.showHover === false) return false
     ctx.lineJoin = 'round'
@@ -30,7 +30,7 @@ export const findSecondPass = (ctx, localMouse, renderData) =>
   })
 export function findInRenderLayers({ctx, localMouse, renderLayers, findFunc}) {
   let renderDatum
-  const layer = _.findLast(renderLayers, _layer => {
+  const layer = findLast(renderLayers, _layer => {
     if (_layer.layerProps.showHover === false) return false
     renderDatum = findFunc(ctx, localMouse, _layer.renderData)
     return renderDatum

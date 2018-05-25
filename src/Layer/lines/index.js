@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {find, findIndex, get, head, isEmpty, isArray, last, reduce, some} from 'lodash'
 
 import {getPath2D} from '../../utils/path2DUtils'
 import {notPlotNumber} from '../../utils'
@@ -41,20 +41,20 @@ const getHoverSolverObj = (props, renderDatum, hoverData) => ({
 export function hoverSolver(props, _hoverData, renderDatum, localMouse) {
   const xRaw = props.xScale.invert(localMouse.x)
   if (props.xType === 'ordinal') {
-    const hoverData = _.find(_hoverData, d => _.get(d, props.x) === xRaw)
+    const hoverData = find(_hoverData, d => get(d, props.x) === xRaw)
     return getHoverSolverObj(props, renderDatum, hoverData)
   }
-  const hoverIndex = _.findIndex(_hoverData, d => _.get(d, props.x) > xRaw)
+  const hoverIndex = findIndex(_hoverData, d => get(d, props.x) > xRaw)
   if (hoverIndex === 0) {
     const hoverData = _hoverData[hoverIndex]
     return getHoverSolverObj(props, renderDatum, hoverData)
   }
   if (hoverIndex === -1) {
-    const hoverData = _.last(_hoverData)
+    const hoverData = last(_hoverData)
     return getHoverSolverObj(props, renderDatum, hoverData)
   }
-  const px = _.get(_hoverData[hoverIndex], props.x)
-  const x = _.get(_hoverData[hoverIndex - 1], props.x)
+  const px = get(_hoverData[hoverIndex], props.x)
+  const x = get(_hoverData[hoverIndex - 1], props.x)
   if (xRaw - px < x - xRaw) {
     const hoverData = _hoverData[hoverIndex - 1]
     return getHoverSolverObj(props, renderDatum, hoverData)
@@ -67,16 +67,16 @@ export function hoverSolver(props, _hoverData, renderDatum, localMouse) {
 generates the array of render data
 */
 function getLineRenderData(props, data, idx) {
-  if (_.isEmpty(data)) return undefined
+  if (isEmpty(data)) return undefined
   const path2D = getPath2D()
-  const values = getPlotValues(props, _.head(data), idx, {
+  const values = getPlotValues(props, head(data), idx, {
     hoverAlpha: 0.2,
   })
   if (props.interpolate) {
     splineInterpolation(props, data, path2D)
   } else {
     path2D.moveTo(values.x, values.y)
-    _.reduce(
+    reduce(
       data,
       (shouldDrawPoint, d) => {
         const x = plotValue(props, d, idx, 'x')
@@ -99,8 +99,8 @@ function getLineRenderData(props, data, idx) {
 }
 export function lines(props) {
   if (!props.xScale || !props.yScale) return undefined
-  if (_.some(props.data, _.isArray)) {
-    return _.reduce(
+  if (some(props.data, isArray)) {
+    return reduce(
       props.data,
       (acc, data, idx) => acc.concat(getLineRenderData(props, data, idx)),
       []

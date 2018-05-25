@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import _ from 'lodash'
+import {reduce} from 'lodash'
 
 import {getType, getDomain, getRange, getTickCount, getScale, getTickFormat} from '../getForKey'
 
@@ -13,7 +13,7 @@ export {getDimArrays} from '../getDimArrays'
 export {getPlotRect} from '../getPlotRect'
 
 export const getForProps = (value, getFunc) => props =>
-  _.reduce(
+  reduce(
     props.groupedKeys,
     (acc, key) => {
       if (props[`${key}${value}`]) return acc
