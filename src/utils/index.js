@@ -8,7 +8,6 @@ export * as canvasUtils from './canvasUtils'
 export * as dataGeneration from './dataGeneration'
 export * as path2DUtils from './path2DUtils'
 export * as rectUtils from './rectUtils'
-export * as windowUtils from './windowUtils'
 
 const checkNotPlotNumber = value => isNaN(value) || !isNumber(value)
 export function notPlotNumber(value) {
