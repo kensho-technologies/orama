@@ -5,28 +5,36 @@ import assert from 'assert'
 import {it as test} from 'mocha'
 
 import {canvasMock, ctxMock} from '../../src/utils/canvasUtils'
-import * as methods from '../../src/CanvasInput/getDataUnderMouse'
+import {
+  getDataUnderMouse,
+  findFirstPass,
+  findInRenderLayers,
+  findSecondPass,
+} from '../../src/CanvasInput/getDataUnderMouse'
 
 test('getDataUnderMouse.getDataUnderMouse', () => {
-  assert.deepEqual(methods.getDataUnderMouse({}, {x: 100, y: 100}, canvasMock), {
+  assert.deepEqual(getDataUnderMouse({}, {x: 100, y: 100}, canvasMock), {
     localMouse: {x: 100, y: 100},
   })
 })
+
 test('getDataUnderMouse.findFirstPass', () => {
   assert.deepEqual(
-    methods.findFirstPass(ctxMock, {x: 0, y: 0}, [{type: 'text'}, {type: 'area'}, {type: 'line'}]),
+    findFirstPass(ctxMock, {x: 0, y: 0}, [{type: 'text'}, {type: 'area'}, {type: 'line'}]),
     undefined
   )
 })
+
 test('getDataUnderMouse.findSecondPass', () => {
   assert.deepEqual(
-    methods.findSecondPass(ctxMock, {x: 0, y: 0}, [{type: 'text'}, {type: 'area'}, {type: 'line'}]),
+    findSecondPass(ctxMock, {x: 0, y: 0}, [{type: 'text'}, {type: 'area'}, {type: 'line'}]),
     undefined
   )
 })
+
 test('getDataUnderMouse.findInRenderLayers', () => {
   assert.deepEqual(
-    methods.findInRenderLayers({
+    findInRenderLayers({
       ctx: ctxMock,
       localMouse: {x: 0, y: 0},
       renderLayers: [{type: 'area', layerProps: {}}],

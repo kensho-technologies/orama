@@ -9,9 +9,18 @@ import chartTransformFlow from '../chartCore/chartTransformFlow'
 import getLayers from '../chartCore/getLayers'
 import getLocalKeys from '../chartCore/getLocalKeys'
 import stateHOC from '../utils/stateHOC'
-import * as memoize from '../chartCore/memoize'
 import CanvasInput from '../CanvasInput'
 import ChartBackground from '../ChartBackground'
+import {
+  getMemoizeDimArrays,
+  getMemoizeDomains,
+  getMemoizePlotRect,
+  getMemoizeRanges,
+  getMemoizeRenderLayers,
+  getMemoizeScales,
+  getMemoizeTickCounts,
+  getMemoizeTypes,
+} from '../chartCore/memoize'
 
 import chartWidthHOC from './chartWidthHOC'
 import ChartRender from './ChartRender'
@@ -74,14 +83,14 @@ StatelessChart.defaultProps = {
 
 StatelessChart.initialState = () => ({
   memoizers: {
-    getDimArrays: memoize.getMemoizeDimArrays(),
-    getTypes: memoize.getMemoizeTypes(),
-    getDomains: memoize.getMemoizeDomains(),
-    getPlotRect: memoize.getMemoizePlotRect(),
-    getRanges: memoize.getMemoizeRanges(),
-    getTickCounts: memoize.getMemoizeTickCounts(),
-    getScales: memoize.getMemoizeScales(),
-    getRenderLayers: memoize.getMemoizeRenderLayers(),
+    getDimArrays: getMemoizeDimArrays(),
+    getTypes: getMemoizeTypes(),
+    getDomains: getMemoizeDomains(),
+    getPlotRect: getMemoizePlotRect(),
+    getRanges: getMemoizeRanges(),
+    getTickCounts: getMemoizeTickCounts(),
+    getScales: getMemoizeScales(),
+    getRenderLayers: getMemoizeRenderLayers(),
   },
 })
 

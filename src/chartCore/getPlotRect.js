@@ -3,7 +3,7 @@
 import {includes, reduce, sum} from 'lodash'
 
 import {getCachedContext} from '../utils/canvasUtils'
-import * as rectUtils from '../utils/rectUtils'
+import {marginInset} from '../utils/rectUtils'
 
 import {getRange, getTickCount, getTicks} from './getForKey'
 import {
@@ -132,9 +132,9 @@ export function getPlotRect(props) {
 
   const top = getTopMargin(props)
   const bottom = getBottomMargin(props)
-  let partialPlotRect = rectUtils.marginInset({bottom, top}, {width, height})
+  let partialPlotRect = marginInset({bottom, top}, {width, height})
   const left = getLeftMargin({...props, plotRect: partialPlotRect})
-  partialPlotRect = rectUtils.marginInset({bottom, top, left}, {width, height})
+  partialPlotRect = marginInset({bottom, top, left}, {width, height})
   const right = getRightMargin({...props, plotRect: partialPlotRect})
 
   const margin = {
@@ -145,7 +145,7 @@ export function getPlotRect(props) {
   }
   let newWidth = width
   let newHeight = height
-  const plotRect = rectUtils.marginInset(margin, {width, height})
+  const plotRect = marginInset(margin, {width, height})
   if (!includes(groupedKeys, 'x')) {
     newWidth -= plotRect.width
     plotRect.width = 0

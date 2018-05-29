@@ -6,7 +6,16 @@ import getDimArrays from './getDimArrays'
 import {getLayer} from './getRenderLayers'
 import {getPlotRect} from './getPlotRect'
 import {getDomains, getRanges, getScales, getTickCounts, getTypes} from './getForProps'
-import * as rerunChecks from './rerunChecks'
+import {
+  rerunCheckGetDimArrays,
+  rerunCheckGetTypes,
+  rerunCheckGetDomains,
+  rerunCheckGetRanges,
+  rerunCheckGetPlotRect,
+  rerunCheckGetTickCounts,
+  rerunCheckGetScales,
+  rerunCheckGetRenderLayers,
+} from './rerunChecks'
 
 export function getMemoize(rerunCheck, transformFunc, isLayer) {
   let savedResult
@@ -25,17 +34,14 @@ export function getMemoize(rerunCheck, transformFunc, isLayer) {
   return memoizer
 }
 
-export const getMemoizeDimArrays = () =>
-  getMemoize(rerunChecks.rerunCheckGetDimArrays, getDimArrays)
-export const getMemoizeTypes = () => getMemoize(rerunChecks.rerunCheckGetTypes, getTypes)
-export const getMemoizeDomains = () => getMemoize(rerunChecks.rerunCheckGetDomains, getDomains)
-export const getMemoizePlotRect = () => getMemoize(rerunChecks.rerunCheckGetPlotRect, getPlotRect)
-export const getMemoizeRanges = () => getMemoize(rerunChecks.rerunCheckGetRanges, getRanges)
-export const getMemoizeTickCounts = () =>
-  getMemoize(rerunChecks.rerunCheckGetTickCounts, getTickCounts)
-export const getMemoizeScales = () => getMemoize(rerunChecks.rerunCheckGetScales, getScales)
-export const getMemoizeRenderLayer = () =>
-  getMemoize(rerunChecks.rerunCheckGetRenderLayers, getLayer, true)
+export const getMemoizeDimArrays = () => getMemoize(rerunCheckGetDimArrays, getDimArrays)
+export const getMemoizeTypes = () => getMemoize(rerunCheckGetTypes, getTypes)
+export const getMemoizeDomains = () => getMemoize(rerunCheckGetDomains, getDomains)
+export const getMemoizePlotRect = () => getMemoize(rerunCheckGetPlotRect, getPlotRect)
+export const getMemoizeRanges = () => getMemoize(rerunCheckGetRanges, getRanges)
+export const getMemoizeTickCounts = () => getMemoize(rerunCheckGetTickCounts, getTickCounts)
+export const getMemoizeScales = () => getMemoize(rerunCheckGetScales, getScales)
+export const getMemoizeRenderLayer = () => getMemoize(rerunCheckGetRenderLayers, getLayer, true)
 
 export function getMemoizeRenderLayers() {
   const layersMemoize = []

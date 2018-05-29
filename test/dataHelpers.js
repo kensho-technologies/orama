@@ -4,31 +4,35 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import * as methods from '../src/dataHelpers'
+import {flow, runTransArg, trans, transMapFunc} from '../src/dataHelpers'
 
 test('dataHelpers.flow', () => {
-  assert.deepEqual(methods.flow(10, d => d - 5, d => d * 100), 500)
+  assert.deepEqual(flow(10, d => d - 5, d => d * 100), 500)
 })
+
 test('dataHelpers.flow, no argument', () => {
-  assert.deepEqual(methods.flow(), undefined)
+  assert.deepEqual(flow(), undefined)
 })
+
 test('dataHelpers.flow, one argument', () => {
-  assert.deepEqual(methods.flow(10), 10)
+  assert.deepEqual(flow(10), 10)
 })
 
 test('dataHelpers.runTransArg', () => {
-  assert.deepEqual(methods.runTransArg({d: 'a + 1', c: 'c * 2'}, {a: 1, b: 2, c: 3}), {d: 2, c: 6})
+  assert.deepEqual(runTransArg({d: 'a + 1', c: 'c * 2'}, {a: 1, b: 2, c: 3}), {d: 2, c: 6})
 })
+
 test('dataHelpers.transMapFunc', () => {
-  assert.deepEqual(methods.transMapFunc({d: 'a + 1', c: 'c * 2'})({a: 1, b: 2, c: 3}), {
+  assert.deepEqual(transMapFunc({d: 'a + 1', c: 'c * 2'})({a: 1, b: 2, c: 3}), {
     a: 1,
     b: 2,
     d: 2,
     c: 6,
   })
 })
+
 test('dataHelpers.trans', () => {
-  assert.deepEqual(methods.trans({d: 'a + 1', c: 'c * 2'})([{a: 1, b: 2, c: 3}]), [
+  assert.deepEqual(trans({d: 'a + 1', c: 'c * 2'})([{a: 1, b: 2, c: 3}]), [
     {a: 1, b: 2, d: 2, c: 6},
   ])
 })

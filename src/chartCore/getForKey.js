@@ -2,7 +2,7 @@
 
 import {isNumber, map, max, maxBy, min, reduce, toPairs, uniq} from 'lodash'
 
-import * as rectUtils from '../utils/rectUtils'
+import {getMaxX, getMaxY} from '../utils/rectUtils'
 
 import {getScale} from './getScale'
 import {DOMAIN, JS_TO_VIS_TYPE, TICK_COUNT, TICK_X_SPACE, TICK_Y_SPACE, TYPE} from './defaults'
@@ -63,7 +63,7 @@ export function getRange(props, key) {
   const {plotRect, [`${key}Type`]: type = TYPE} = props
   switch (key) {
     case 'y':
-      return [rectUtils.getMaxY(plotRect), plotRect.y]
+      return [getMaxY(plotRect), plotRect.y]
     case 'radius':
       switch (type) {
         case 'ordinal':
@@ -91,7 +91,7 @@ export function getRange(props, key) {
       }
     case 'x':
     default:
-      return [plotRect.x, rectUtils.getMaxX(plotRect)]
+      return [plotRect.x, getMaxX(plotRect)]
   }
 }
 

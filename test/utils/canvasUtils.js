@@ -4,11 +4,12 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import * as methods from '../../src/utils/canvasUtils'
+import {canvasMock, ctxMock, getCachedContext} from '../../src/utils/canvasUtils'
 
 test('canvasMock.canvas', () => {
-  assert.equal(methods.canvasMock.getContext('2d'), methods.ctxMock)
+  assert.equal(canvasMock.getContext('2d'), ctxMock)
 })
+
 test('Chart methods.getCachedContext', () => {
-  assert.deepEqual(typeof methods.getCachedContext(), 'object')
+  assert.deepEqual(typeof getCachedContext(), 'object')
 })

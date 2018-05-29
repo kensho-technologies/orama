@@ -4,10 +4,10 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import * as methods from '../../src/CanvasInput/methods'
+import {getMouseFromEvt, runHoverSolverOn} from '../../src/CanvasInput/methods'
 
 test('CanvasInput/methods.runHoverSolverOn 1', () => {
-  assert.deepEqual(methods.runHoverSolverOn({}), {})
+  assert.deepEqual(runHoverSolverOn({}), {})
 })
 
 test('CanvasInput/methods.runHoverSolverOn 2', () => {
@@ -16,18 +16,18 @@ test('CanvasInput/methods.runHoverSolverOn 2', () => {
       hoverSolver: d => d,
     },
   }
-  assert.deepEqual(methods.runHoverSolverOn(dataUnderMouse), dataUnderMouse)
+  assert.deepEqual(runHoverSolverOn(dataUnderMouse), dataUnderMouse)
 })
 
 test('CanvasInput/methods.getMouseFromEvt 1', () => {
-  assert.deepEqual(methods.getMouseFromEvt({}), {
+  assert.deepEqual(getMouseFromEvt({}), {
     x: undefined,
     y: undefined,
   })
 })
 test('CanvasInput/methods.getMouseFromEvt 2', () => {
   assert.deepEqual(
-    methods.getMouseFromEvt({
+    getMouseFromEvt({
       touches: [{}],
     }),
     {
