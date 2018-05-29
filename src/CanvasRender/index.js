@@ -3,7 +3,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-import {DEFAULT_THEME} from '../defaultTheme'
+import DEFAULT_THEME from '../defaultTheme'
 import {WIDTH, HEIGHT} from '../chartCore/defaults'
 
 import basicRender from './basicRender'

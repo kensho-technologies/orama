@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {DEFAULT_THEME as theme} from '../../src/defaultTheme'
+import theme from '../../src/defaultTheme'
 import {getDomain, getRange, getTickCount, getType, toType} from '../../src/chartCore/getForKey'
 
 test('visUtils.toType', () => {

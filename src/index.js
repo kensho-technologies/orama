@@ -1,7 +1,7 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 export {default as Chart} from './Chart'
-export {DEFAULT_THEME} from './defaultTheme'
+export {default as DEFAULT_THEME} from './defaultTheme'
 export {getTimeSeries} from './utils/dataGeneration'
 export {getPath2D} from './utils/path2DUtils'
 export {getCachedContext} from './utils/canvasUtils'

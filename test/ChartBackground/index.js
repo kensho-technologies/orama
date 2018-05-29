@@ -6,7 +6,7 @@ import {it as test} from 'mocha'
 import * as React from 'react'
 
 import shallowRender from '../helpers/shallowRender'
-import {DEFAULT_THEME as theme} from '../../src/defaultTheme'
+import theme from '../../src/defaultTheme'
 import {PLOT_RECT} from '../../src/chartCore/defaults'
 import ChartBackground, {
   getBackground,
@@ -22,9 +22,7 @@ test('ChartBackground', () => {
   assert.deepEqual(component.type, 'div')
 })
 test('ChartBackground.getBackground', () => {
-  const props = {
-    theme,
-  }
+  const props = {theme}
   const background = getBackground(props)
   assert.deepEqual(background.type, 'area')
   assert.deepEqual(background.fill, theme.plotBackgroundFill)

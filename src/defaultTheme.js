@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-export const DEFAULT_THEME = {
+export default {
   fontFamily:
     '-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif',
   fontFamilyMono: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace',
@@ -48,12 +48,4 @@ export const DEFAULT_THEME = {
     '#a6761d',
     '#666666',
   ],
-}
-
-export function getTheme(props) {
-  const theme = {
-    ...DEFAULT_THEME,
-    ...props.theme,
-  }
-  return {theme}
 }

@@ -4,7 +4,7 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 
-import {DEFAULT_THEME} from '../defaultTheme'
+import DEFAULT_THEME from '../defaultTheme'
 import {BACKGROUND_OFFSET} from '../chartCore/defaults'
 import {getPath2D} from '../utils/path2DUtils'
 import {getTicks} from '../chartCore/getForKey'

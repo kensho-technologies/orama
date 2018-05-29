@@ -3,7 +3,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-import {DEFAULT_THEME} from '../defaultTheme'
+import DEFAULT_THEME from '../defaultTheme'
 
 // component that positions and styles the bottom label of the `Chart` component
 export default function BottomLabel(props) {

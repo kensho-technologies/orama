@@ -4,7 +4,7 @@ import {cloneDeep, flatten, map} from 'lodash'
 
 import {getCachedContext} from '../utils/canvasUtils'
 import labeler from '../utils/labeler'
-import {DEFAULT_THEME} from '../defaultTheme'
+import DEFAULT_THEME from '../defaultTheme'
 
 import getPlotValues from './getPlotValues'
 

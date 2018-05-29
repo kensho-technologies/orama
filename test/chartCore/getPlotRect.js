@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {DEFAULT_THEME} from '../../src/defaultTheme'
+import DEFAULT_THEME from '../../src/defaultTheme'
 import {BACKGROUND_OFFSET as backgroundOffset} from '../../src/chartCore/defaults'
 import {getMaxTextWidth, getPlotRect} from '../../src/chartCore/getPlotRect'
 

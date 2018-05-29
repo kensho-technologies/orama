@@ -3,7 +3,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-import {DEFAULT_THEME, getTheme} from '../defaultTheme'
+import DEFAULT_THEME from '../defaultTheme'
 import {PROPORTION, WIDTH} from '../chartCore/defaults'
 import chartTransformFlow from '../chartCore/chartTransformFlow'
 import getLayers from '../chartCore/getLayers'
@@ -24,6 +24,11 @@ import {
 
 import chartWidthHOC from './chartWidthHOC'
 import ChartRender from './ChartRender'
+
+function getTheme(props) {
+  const theme = {...DEFAULT_THEME, ...props.theme}
+  return {theme}
+}
 
 function handleCanvasInput(props, childProps) {
   props.onUpdate(childProps)

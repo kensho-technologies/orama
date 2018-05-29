@@ -6,7 +6,7 @@ import {it as test} from 'mocha'
 
 import {pathMock} from '../../src/utils/path2DUtils'
 import {ctxMock} from '../../src/utils/canvasUtils'
-import {DEFAULT_THEME} from '../../src/defaultTheme'
+import DEFAULT_THEME from '../../src/defaultTheme'
 import basicRender from '../../src/CanvasRender/basicRender'
 
 const theme = DEFAULT_THEME
