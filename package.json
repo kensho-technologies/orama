@@ -7,8 +7,7 @@
   "sideEffects": false,
   "scripts": {
     "prepublishOnly": "rm -rf lib es && babel src -d es && BABEL_ENV=cjs babel src -d lib",
-    "test": "eslint . && NODE_ENV=test nyc mocha --require @babel/register -R dot 'src/**/*.test.js'",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "test": "eslint . && NODE_ENV=test nyc mocha --require @babel/register -R dot 'src/**/*.test.js'"
   },
   "files": [
     "lib",
@@ -22,7 +21,6 @@
     "@babel/core": "7.0.0-beta.44",
     "@babel/register": "7.0.0-beta.44",
     "babel-preset-kensho": "4.0.0-alpha.10",
-    "coveralls": "^3.0.1",
     "eslint": "^4.19.1",
     "eslint-config-kensho": "5.0.0-alpha.3",
     "mocha": "^5.2.0",
