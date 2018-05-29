@@ -10,7 +10,9 @@ function getDatum(data) {
   if (isArray(data)) return head(data)
   return data
 }
+
 const isDisplayable = value => value !== 'NaN' && value !== undefined && !isNaN(value)
+
 const tooltipValuesForStrings = (tooltipExtraDimensions, datum) =>
   reduce(
     tooltipExtraDimensions,
@@ -26,6 +28,7 @@ const tooltipValuesForStrings = (tooltipExtraDimensions, datum) =>
     },
     []
   )
+
 const tooltipValuesForObjects = (tooltipExtraDimensions, datum) =>
   reduce(
     tooltipExtraDimensions,
@@ -39,6 +42,7 @@ const tooltipValuesForObjects = (tooltipExtraDimensions, datum) =>
     },
     []
   )
+
 function getExtraTooltipValues(props, datum) {
   const {tooltipExtraDimensions} = props
   if (some(tooltipExtraDimensions, isString)) {

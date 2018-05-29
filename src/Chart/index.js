@@ -5,13 +5,13 @@ import PropTypes from 'prop-types'
 
 import {DEFAULT_THEME, getTheme} from '../defaultTheme'
 import {PROPORTION, WIDTH} from '../chartCore/defaults'
-import {chartTransformFlow} from '../chartCore/chartTransformFlow'
+import chartTransformFlow from '../chartCore/chartTransformFlow'
 import getLayers from '../chartCore/getLayers'
-import {getLocalKeys} from '../chartCore/getLocalKeys'
+import getLocalKeys from '../chartCore/getLocalKeys'
 import stateHOC from '../utils/stateHOC'
 import * as memoize from '../chartCore/memoize'
 import CanvasInput from '../CanvasInput'
-import {ChartBackground} from '../ChartBackground'
+import ChartBackground from '../ChartBackground'
 
 import chartWidthHOC from './chartWidthHOC'
 import ChartRender from './ChartRender'
@@ -20,7 +20,7 @@ function handleCanvasInput(props, childProps) {
   props.onUpdate(childProps)
 }
 
-export function StatelessChart(props) {
+function StatelessChart(props) {
   const {memoizers} = props
   const rootProps = chartTransformFlow(
     props,
@@ -85,5 +85,5 @@ StatelessChart.initialState = () => ({
   },
 })
 
-export const StateChart = stateHOC(StatelessChart)
-export const Chart = chartWidthHOC(StateChart)
+export const Chart = stateHOC(StatelessChart)
+export default chartWidthHOC(Chart)

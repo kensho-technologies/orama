@@ -1,13 +1,13 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {areas} from './areas'
-import {bars} from './bars'
+import areas from './areas'
+import bars from './bars'
 import brushes from './brushes'
 import guides from './guides'
-import {lines} from './lines'
+import lines from './lines'
 import points from './points'
 import ranges from './ranges'
-import {text} from './text'
+import text from './text'
 import scatterplotLabels from './scatterplotLabels'
 
 export {areas, bars, brushes, guides, lines, points, ranges, text}

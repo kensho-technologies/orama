@@ -1,17 +1,17 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {flatten, flow, omit, reduce, values} from 'lodash'
+import {flatten, omit, reduce, values} from 'lodash'
 
 import {ACCESSORS_GROUPS} from '../defaults'
 import compactData from '../compactData'
 
-export const omitGroups = (dimArrays, accessorsGroups) =>
-  flow(values, flatten, accessorsValues => omit(dimArrays, accessorsValues))(accessorsGroups)
-/*
-Merge keys according to their groups, eg. 'x', 'x0', 'x1' get merged into one xArray
-*/
-export const mergeDimArrays = (dimArrays, accessorsGroups = ACCESSORS_GROUPS) =>
-  reduce(
+export function omitGroups(dimArrays, accessorsGroups) {
+  return omit(dimArrays, flatten(values(accessorsGroups)))
+}
+
+// merge keys according to their groups, e.g. 'x', 'x0', 'x1' get merged into one xArray
+export default function mergeDimArrays(dimArrays, accessorsGroups = ACCESSORS_GROUPS) {
+  return reduce(
     accessorsGroups,
     (acc, group, key) => {
       const mergedDimArray = reduce(group, (acc2, d) => compactData(acc2.concat(dimArrays[d])), [])
@@ -23,3 +23,4 @@ export const mergeDimArrays = (dimArrays, accessorsGroups = ACCESSORS_GROUPS) =>
     },
     omitGroups(dimArrays, accessorsGroups)
   )
+}

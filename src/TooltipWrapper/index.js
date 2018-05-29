@@ -7,7 +7,7 @@ import stateHOC from '../utils/stateHOC'
 import {getWindow} from '../utils/windowUtils'
 import BlockSize from '../utilComponents/BlockSize'
 import Portal from '../utilComponents/Portal'
-import {Tooltip as DefaultTooltip} from '../Tooltip'
+import DefaultTooltip from '../Tooltip'
 
 const TOOLTIP_MARGIN = 15
 
@@ -17,6 +17,7 @@ function handleBlockSizeUpdate(props, childProps) {
     height: childProps.height,
   })
 }
+
 export function getTooltipPosition(props) {
   const {mouse, width, height} = props
   if (!width || !height) {
@@ -45,7 +46,7 @@ export function getTooltipPosition(props) {
   return pos
 }
 
-export function _TooltipWrapper(props) {
+function TooltipWrapper(props) {
   if (!props.mouse || !props.hoverData) return null
   const {Tooltip = DefaultTooltip} = props.layerProps
   return (
@@ -65,10 +66,12 @@ export function _TooltipWrapper(props) {
     </Portal>
   )
 }
-_TooltipWrapper.propTypes = {
+
+TooltipWrapper.propTypes = {
   hoverData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   layerProps: PropTypes.object,
   mouse: PropTypes.object,
   theme: PropTypes.object,
 }
-export const TooltipWrapper = stateHOC(_TooltipWrapper)
+
+export default stateHOC(TooltipWrapper)

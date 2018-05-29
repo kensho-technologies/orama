@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {extractDimArray, getDimArraysForLayer, getDimArraysForRoot} from '.'
+import getDimArraysForRoot, {extractDimArray, getDimArraysForLayer} from '.'
 
 test('Chart/getDimArraysForRoot.extractDimArray 1', () => {
   const data = [{x: 1}, {x: 2}]

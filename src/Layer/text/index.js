@@ -6,10 +6,8 @@ import {getMinX, getMinY, getMidX, getMidY, getMaxX, getMaxY} from '../../utils/
 import getPlotValues from '../getPlotValues'
 import fitCheckText from '../../utils/fitCheckText'
 
-/*
-generates the array of render data
-*/
-export function getTextRenderData(props, datum, idx) {
+// generate the array of render data
+function getTextRenderData(props, datum, idx) {
   const {plotRect, theme, width, height} = props
   const values = getPlotValues(props, datum, idx, {
     x: getMidX(props.plotRect),
@@ -45,10 +43,8 @@ export function getTextRenderData(props, datum, idx) {
   }
 }
 
-/*
-Main entry point, if there's only `xMap` or `yMap` it will output an one dimension plot.
-*/
-export function text(props) {
+// if there's only `xMap` or `yMap`, output a one-dimensional plot
+export default function text(props) {
   if (!props.xScale && !props.yScale) return undefined
   return map(flatten(props.data), (datum, idx) => getTextRenderData(props, datum, idx))
 }

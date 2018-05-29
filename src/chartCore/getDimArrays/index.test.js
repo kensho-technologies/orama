@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {wrapUpNewProps, getDimArrays} from '.'
+import getDimArrays, {wrapUpNewProps} from '.'
 
 test('Chart/getDimArrays.wrapUpNewProps 1', () => {
   const dimArrays = {

@@ -6,7 +6,7 @@ import {it as test} from 'mocha'
 
 import {PLOT_RECT as plotRect} from '../../chartCore/defaults'
 
-import {bars} from '.'
+import bars from '.'
 
 const identity = d => d
 const xScale = identity

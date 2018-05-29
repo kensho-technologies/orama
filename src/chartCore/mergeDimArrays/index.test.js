@@ -6,7 +6,7 @@ import {it as test} from 'mocha'
 
 import {ACCESSORS_GROUPS} from '../defaults'
 
-import {omitGroups, mergeDimArrays} from '.'
+import mergeDimArrays, {omitGroups} from '.'
 
 test('Chart/mergeDimArrays.omitGroups 1', () => {
   const dimArrays = {

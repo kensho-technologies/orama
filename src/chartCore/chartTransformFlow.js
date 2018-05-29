@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {map, omit, reduce, slice} from 'lodash'
+import {map, omit, reduce} from 'lodash'
 
 const PROPS_TO_OMIT = ['memoizers', 'onUpdate', 'onState', 'layerProps', 'rootProps']
 
@@ -15,12 +15,15 @@ const rootProps = chartTransformFlow(
 )
 */
 
-export function removeDimArrays(props) {
+function removeDimArrays(props) {
   const names = map(props.groupedKeys, key => `${key}Array`)
   return omit(props, names)
 }
 
-const transformFlow = arg =>
-  reduce(slice(arg, 1), (acc, d) => ({...acc, ...d(acc)}), omit(arg[0], PROPS_TO_OMIT))
+function transformFlow(first, ...rest) {
+  return reduce(rest, (acc, d) => ({...acc, ...d(acc)}), omit(first, PROPS_TO_OMIT))
+}
 
-export const chartTransformFlow = (...arg) => removeDimArrays(transformFlow(arg))
+export default function chartTransformFlow(...args) {
+  return removeDimArrays(transformFlow(args))
+}

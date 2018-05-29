@@ -9,8 +9,7 @@ import shallowRender from '../utils/shallowRender'
 import {DEFAULT_THEME as theme} from '../defaultTheme'
 import {PLOT_RECT} from '../chartCore/defaults'
 
-import {
-  ChartBackground,
+import ChartBackground, {
   getBackground,
   getXGuides,
   getYGuides,

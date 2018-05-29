@@ -32,6 +32,7 @@ export function getBackground(props) {
     type: 'area',
   }
 }
+
 export function getXGuides(props, thick) {
   if (!_.includes(props.groupedKeys, 'x')) return undefined
   if (props.xShowGuides === false) return undefined
@@ -49,6 +50,7 @@ export function getXGuides(props, thick) {
     }
   })
 }
+
 export function getYGuides(props, thick) {
   if (!_.includes(props.groupedKeys, 'y')) return undefined
   if (props.yShowGuides === false) return undefined
@@ -66,6 +68,7 @@ export function getYGuides(props, thick) {
     }
   })
 }
+
 export function getXText(props) {
   if (!_.includes(props.groupedKeys, 'x')) return undefined
   if (props.xShowTicks === false) return undefined
@@ -88,6 +91,7 @@ export function getXText(props) {
     font: `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`,
   }))
 }
+
 export function getYText(props) {
   if (!_.includes(props.groupedKeys, 'y')) return undefined
   if (props.yShowTicks === false) return undefined
@@ -111,6 +115,7 @@ export function getYText(props) {
     font: `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`,
   }))
 }
+
 export function getBackgroundRenderData(props) {
   const background = getBackground(props)
   const xTicks = props.xTicks || getTicks(props, 'x')
@@ -146,26 +151,30 @@ function getLabelText(props, key) {
   return undefined
 }
 
-/*
-Used inside </>
-*/
-export const ChartBackground = props => (
-  <div>
-    <CanvasRender
-      height={props.height}
-      plotRect={props.plotRect}
-      renderData={getBackgroundRenderData(props)}
-      theme={props.theme}
-      width={props.width}
-    />
-    {props.yShowLabel ? (
-      <LeftLabel plotRect={props.plotRect} text={getLabelText(props, 'y')} theme={props.theme} />
-    ) : null}
-    {props.xShowLabel ? (
-      <BottomLabel plotRect={props.plotRect} text={getLabelText(props, 'x')} theme={props.theme} />
-    ) : null}
-  </div>
-)
+export default function ChartBackground(props) {
+  return (
+    <div>
+      <CanvasRender
+        height={props.height}
+        plotRect={props.plotRect}
+        renderData={getBackgroundRenderData(props)}
+        theme={props.theme}
+        width={props.width}
+      />
+      {props.yShowLabel ? (
+        <LeftLabel plotRect={props.plotRect} text={getLabelText(props, 'y')} theme={props.theme} />
+      ) : null}
+      {props.xShowLabel ? (
+        <BottomLabel
+          plotRect={props.plotRect}
+          text={getLabelText(props, 'x')}
+          theme={props.theme}
+        />
+      ) : null}
+    </div>
+  )
+}
+
 ChartBackground.propTypes = {
   height: PropTypes.number,
   onUpdate: PropTypes.func,
@@ -179,6 +188,7 @@ ChartBackground.propTypes = {
   yName: PropTypes.string,
   yShowLabel: PropTypes.bool,
 }
+
 ChartBackground.defaultProps = {
   theme: DEFAULT_THEME,
   xShowLabel: true,

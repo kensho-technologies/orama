@@ -9,11 +9,13 @@ function isFunction(functionToCheck) {
   const getType = {}
   return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]'
 }
+
 export function getName(name) {
   if (!name) return 'unknown'
   if (name[0] === '_') return name.substring(1)
   return name
 }
+
 export function getInitialState(initialState) {
   if (isFunction(initialState)) return initialState()
   return initialState
@@ -50,7 +52,7 @@ export function getInitialState(initialState) {
  *
  * export default ExampleComponent
  */
-function stateHOC(Child, initialState = {}) {
+export default function stateHOC(Child, initialState = {}) {
   if (isStatelessComponentFunction(Child)) {
     return class stateHOC extends React.PureComponent {
       static displayName = `${getName(Child.name)}(state)`
@@ -110,5 +112,3 @@ function stateHOC(Child, initialState = {}) {
     }
   }
 }
-
-export default stateHOC

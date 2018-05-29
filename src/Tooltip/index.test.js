@@ -7,7 +7,7 @@ import * as React from 'react'
 
 import shallowRender from '../utils/shallowRender'
 
-import {Tooltip} from '.'
+import Tooltip from '.'
 
 test('Tooltip', () => {
   const component = shallowRender(<Tooltip hoverData={{}} layerProps={{}} />)

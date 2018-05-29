@@ -36,7 +36,7 @@ export function getDimArraysForLayer(layer) {
 }
 
 // get dimension array from each layer, and merge the arrays with the same key
-export function getDimArraysForRoot(props) {
+export default function getDimArraysForRoot(props) {
   const layersArrays = map(props.layers, getDimArraysForLayer)
   const dimArrays = mergeWith({}, ...layersArrays, (a, b) => {
     if (a === undefined) return b

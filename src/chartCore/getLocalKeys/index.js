@@ -12,6 +12,7 @@ export function layerMapper(layer) {
     localKeys: keys(localAccessors),
   }
 }
-export const getLocalKeys = props => ({
-  layers: map(props.layers, layerMapper),
-})
+
+export default function getLocalKeys(props) {
+  return {layers: map(props.layers, layerMapper)}
+}

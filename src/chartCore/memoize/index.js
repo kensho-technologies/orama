@@ -2,7 +2,7 @@
 
 import {map} from 'lodash'
 
-import {getDimArrays} from '../getDimArrays'
+import getDimArrays from '../getDimArrays'
 import {getLayer} from '../getRenderLayers'
 import {getPlotRect} from '../getPlotRect'
 import {getDomains, getRanges, getScales, getTickCounts, getTypes} from '../getForProps'

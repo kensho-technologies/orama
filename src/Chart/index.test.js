@@ -7,9 +7,9 @@ import * as React from 'react'
 
 import shallowRender from '../utils/shallowRender'
 
-import {StateChart} from '.'
+import {Chart} from '.'
 
-test('StateChart', () => {
-  const component = shallowRender(<StateChart />)
+test('Chart', () => {
+  const component = shallowRender(<Chart />)
   assert.deepEqual(component.type, 'div')
 })

@@ -56,7 +56,7 @@ row.propTypes = {
   theme: PropTypes.object,
 }
 
-export const TooltipInner = props => (
+const TooltipInner = props => (
   <div
     style={{
       background: props.theme.tooltipBackgroundFill,
@@ -98,7 +98,7 @@ TooltipInner.defaultProps = {
   showKeys: false,
 }
 
-export function Tooltip(props) {
+export default function Tooltip(props) {
   const tooltipData = extractTooltipData(props.layerProps, props.hoverData)
   return (
     <TooltipInner

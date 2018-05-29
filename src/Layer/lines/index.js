@@ -63,9 +63,7 @@ export function hoverSolver(props, _hoverData, renderDatum, localMouse) {
   return getHoverSolverObj(props, renderDatum, hoverData)
 }
 
-/*
-generates the array of render data
-*/
+// generate the array of render data
 function getLineRenderData(props, data, idx) {
   if (isEmpty(data)) return undefined
   const path2D = getPath2D()
@@ -97,7 +95,8 @@ function getLineRenderData(props, data, idx) {
     type: 'line',
   }
 }
-export function lines(props) {
+
+export default function lines(props) {
   if (!props.xScale || !props.yScale) return undefined
   if (some(props.data, isArray)) {
     return reduce(

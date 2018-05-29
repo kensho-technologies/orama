@@ -56,7 +56,7 @@ export function hoverSolver(props, _hoverData, renderDatum, localMouse) {
   return getHoverSolverObj(props, renderDatum, hoverData)
 }
 
-export function getAreaRenderData(props, data, idx) {
+function getAreaRenderData(props, data, idx) {
   if (isEmpty(data)) return {showHover: false}
   const path2D = getPath2D()
   path2D.moveTo(
@@ -112,7 +112,7 @@ function splitDataAtNulls(props, data) {
   return reject(splitBy(data, checkNullPoint).map(arr => reject(arr, checkNullPoint)), isEmpty)
 }
 
-export function areas(props) {
+export default function areas(props) {
   if (!props.xScale || !props.yScale) return undefined
   const data = splitDataAtNulls(props, props.data)
   if (Array.isArray(head(data))) {
