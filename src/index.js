@@ -1,7 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-export {default as DEFAULT_THEME} from './defaultTheme'
-export {getTimeSeries} from './utils/dataGeneration'
+export {DEFAULT_THEME} from './defaultTheme'
 export {getPath2D} from './utils/path2DUtils'
 export {getCachedContext} from './utils/canvasUtils'
 export * as utils from './utils'

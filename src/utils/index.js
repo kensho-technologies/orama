@@ -5,7 +5,6 @@ import {isNaN, isNumber, isNull, isUndefined, reduce, some} from 'lodash'
 export {default as labeler} from './labeler'
 export {default as stateHOC} from './stateHOC'
 export * as canvasUtils from './canvasUtils'
-export * as dataGeneration from './dataGeneration'
 export * as path2DUtils from './path2DUtils'
 export * as rectUtils from './rectUtils'
 
