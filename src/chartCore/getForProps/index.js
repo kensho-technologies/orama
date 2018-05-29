@@ -6,7 +6,7 @@ import {getType, getDomain, getRange, getTickCount, getScale, getTickFormat} fro
 
 /*
 Functions to be used on the Chart props transformation flow.
-The transformation flow starts with the <Chart/> props and successively adds the variables needed for plotting, the transformed props are used for generating render data.
+The transformation flow starts with the <Chart /> props and successively adds the variables needed for plotting, the transformed props are used for generating render data.
 */
 
 export {default as getDimArrays} from '../getDimArrays'

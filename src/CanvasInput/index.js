@@ -11,8 +11,8 @@ import {getDataUnderMouse} from './getDataUnderMouse'
 import {getMouseFromEvt, runHoverSolverOn} from './methods'
 
 /*
-Usually used inside of <ChartRender/>
-Get hovered and clicked data on renderData using a <canvas/> element
+Usually used inside of <ChartRender />
+Get hovered and clicked data on renderData using a <canvas /> element
 */
 export default class CanvasInput extends React.Component {
   static propTypes = {

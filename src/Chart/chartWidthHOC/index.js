@@ -4,7 +4,7 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import {throttle} from 'lodash'
 
-// this component wraps <BaseComponent/> and adds a width prop when it's not present
+// this component wraps <BaseComponent /> and adds a width prop when it's not present
 export default function chartWidthHOC(BaseComponent) {
   return class ChartWidthHOC extends React.Component {
     static propTypes = {
