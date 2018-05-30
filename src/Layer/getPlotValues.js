@@ -4,7 +4,7 @@ import {map, zipObject} from 'lodash'
 
 import {ACCESSORS_NAMES, ACCESSORS_NAMES_NON_SCALABLE} from '../chartCore/defaults'
 
-import {plotValue} from './plotValue'
+import plotValue from './plotValue'
 
 export default function getPlotValues(props = {}, datum = {}, idx, defaults = {}) {
   const keys = ACCESSORS_NAMES.concat(ACCESSORS_NAMES_NON_SCALABLE)

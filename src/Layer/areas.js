@@ -7,7 +7,15 @@ import {getPath2D} from '../utils/path2DUtils'
 import {isPlotNumber, notPlotNumber, splitBy} from '../utils'
 
 import getPlotValues from './getPlotValues'
-import {plotValue, isNullPoint} from './plotValue'
+import plotValue from './plotValue'
+
+function isNullPoint(props) {
+  return (datum, idx) =>
+    plotValue(props, datum, idx, 'x', null) === null ||
+    plotValue(props, datum, idx, 'x0', null) === null ||
+    plotValue(props, datum, idx, 'y', null) === null ||
+    plotValue(props, datum, idx, 'y0', null) === null
+}
 
 export function getPointData(props, datum, yKey) {
   const path2D = getPath2D()

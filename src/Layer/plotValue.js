@@ -1,42 +1,16 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {each, isFunction, get, memoize, reduce} from 'lodash'
+import {isFunction, get} from 'lodash'
 
-import {ACCESSORS_GROUPS} from '../chartCore/defaults'
 import {isDatum} from '../utils'
+
+import getScaleKeyByHash from './getScaleKeyByHash'
 
 /*
 `plotValue` is a helper to get back the mapped value plotted from a object.
 It's used inside of the plotFunctions.
 According to the configuration on the props provided it has different behaviours.
-*/
 
-const generateAccessorGroupHash = memoize(accessorsGroups =>
-  reduce(
-    accessorsGroups,
-    (acc, values, key) => {
-      /* eslint-disable no-param-reassign */
-      each(values, d => {
-        acc[d] = key
-      })
-      /* eslint-enable no-param-reassign */
-      return acc
-    },
-    {}
-  )
-)
-
-/*
-getScaleKeyByHash is used to return the main key for a group of accessors.
-For example, x, x0, x1 and x2 all will return 'x'
-*/
-export function getScaleKeyByHash(props, key) {
-  const {accessorsGroups = ACCESSORS_GROUPS} = props
-  const hash = generateAccessorGroupHash(accessorsGroups)
-  return hash[key] || key
-}
-
-/*
 Plot values returns the value to be plotted from the input.
 It has the following resolution order:
 1. ${key}Value on the props
@@ -45,7 +19,7 @@ It has the following resolution order:
 4. defaultValue from arguments
 5. value of datum[accessor] (can be undefined)
 */
-export function plotValue(props, datum, idx, key, defaultValue) {
+export default function plotValue(props, datum, idx, key, defaultValue) {
   const scaleKey = getScaleKeyByHash(props, key)
   const {[key]: accessor, [`${key}Value`]: value, [`${scaleKey}Scale`]: scale} = props
 
@@ -61,9 +35,3 @@ export function plotValue(props, datum, idx, key, defaultValue) {
   if (isDatum(objKeyValue)) return objKeyValue
   return defaultValue || objValue
 }
-
-export const isNullPoint = props => (datum, idx) =>
-  plotValue(props, datum, idx, 'x', null) === null ||
-  plotValue(props, datum, idx, 'x0', null) === null ||
-  plotValue(props, datum, idx, 'y', null) === null ||
-  plotValue(props, datum, idx, 'y0', null) === null

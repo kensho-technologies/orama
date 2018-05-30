@@ -4,13 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {getScaleKeyByHash, plotValue} from '../../src/Layer/plotValue'
-
-test('Chart/plotValue.getScaleKeyByHash', () => {
-  const actual = getScaleKeyByHash({}, 'x0')
-  const expected = 'x'
-  assert.deepEqual(actual, expected)
-})
+import plotValue from '../../src/Layer/plotValue'
 
 test('Chart/plotValue, <key>Value on the props', () => {
   const props = {

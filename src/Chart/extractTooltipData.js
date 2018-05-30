@@ -4,7 +4,7 @@ import {get, head, isArray, isDate, isNaN, isString, map, omit, reduce, some, so
 
 import {ACCESSORS_TOOLTIP_ORDER} from '../chartCore/defaults'
 import {getTooltipFormat} from '../chartCore/getForKey'
-import {getScaleKeyByHash} from '../Layer/plotValue'
+import getScaleKeyByHash from '../Layer/getScaleKeyByHash'
 
 function getDatum(data) {
   if (isArray(data)) return head(data)

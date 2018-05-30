@@ -10,10 +10,6 @@ import ranges from './ranges'
 import text from './text'
 import scatterplotLabels from './scatterplotLabels'
 
-export {areas, bars, brushes, guides, lines, points, ranges, text}
-export {plotValue} from './plotValue'
-export {default as getPlotValues} from './getPlotValues'
-
 export const Layer = () => null
 export const Areas = () => null
 Areas.plot = areas
