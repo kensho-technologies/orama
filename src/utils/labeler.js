@@ -350,46 +350,46 @@ const Labeler = function Labeler() {
     return labeler
   }
 
-  labeler.width = x => {
+  labeler.width = (...args) => {
     // users insert graph width
-    if (!arguments.length) return w
-    w = x
+    if (!args.length) return w
+    w = args[0]
     return labeler
   }
 
-  labeler.height = x => {
+  labeler.height = (...args) => {
     // users insert graph height
-    if (!arguments.length) return h
-    h = x
+    if (!args.length) return h
+    h = args[0]
     return labeler
   }
 
-  labeler.label = x => {
+  labeler.label = (...args) => {
     // users insert label positions
-    if (!arguments.length) return lab
-    lab = x
+    if (!args.length) return lab
+    lab = args[0]
     return labeler
   }
 
-  labeler.anchor = x => {
+  labeler.anchor = (...args) => {
     // users insert anchor positions
-    if (!arguments.length) return anc
-    anc = x
+    if (!args.length) return anc
+    anc = args[0]
     return labeler
   }
 
-  labeler.alt_energy = x => {
+  labeler.alt_energy = (...args) => {
     // user defined energy
-    if (!arguments.length) return energy
-    user_defined_energy = x
+    if (!args.length) return energy
+    user_defined_energy = args[0]
     user_energy = true
     return labeler
   }
 
-  labeler.alt_schedule = x => {
+  labeler.alt_schedule = (...args) => {
     // user defined cooling_schedule
-    if (!arguments.length) return cooling_schedule
-    user_defined_schedule = x
+    if (!args.length) return cooling_schedule
+    user_defined_schedule = args[0]
     user_schedule = true
     return labeler
   }
