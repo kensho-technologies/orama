@@ -20,7 +20,7 @@ function removeDimArrays(props) {
   return omit(props, names)
 }
 
-function transformFlow(first, ...rest) {
+function transformFlow([first, ...rest]) {
   return reduce(rest, (acc, d) => ({...acc, ...d(acc)}), omit(first, PROPS_TO_OMIT))
 }
 
