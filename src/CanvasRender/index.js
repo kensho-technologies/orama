@@ -12,7 +12,7 @@ import basicRender from './basicRender'
  * Component create a Canvas and use the renderData for drawing geometries on it.
  * The renderData follows a specific format.
  */
-export default class CanvasRender extends React.Component {
+export default class CanvasRender extends React.PureComponent {
   static propTypes = {
     clip: PropTypes.bool,
     height: PropTypes.number,
@@ -36,32 +36,18 @@ export default class CanvasRender extends React.Component {
   }
 
   componentDidMount() {
-    this.handleUpdate(this.props)
-  }
-
-  shouldComponentUpdate(nextProps) {
-    if (this.props.width !== nextProps.width || this.props.height !== nextProps.height) return true
-    return false
+    this.handleUpdate()
   }
 
   componentDidUpdate() {
-    this.handleUpdate(this.props)
+    this.handleUpdate()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.renderData !== nextProps.renderData) {
-      this.handleUpdate(nextProps)
-    }
-    if (this.props.renderLayers !== nextProps.renderLayers) {
-      this.handleUpdate(nextProps)
-    }
-  }
-
-  handleUpdate(props) {
+  handleUpdate() {
     const ctx = this.canvasNode.getContext('2d')
     ctx.save()
     ctx.scale(2, 2)
-    this.props.render(props, ctx)
+    this.props.render(this.props, ctx)
     ctx.restore()
   }
 
