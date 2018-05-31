@@ -29,18 +29,19 @@ export default class CanvasInput extends React.Component {
   state = {}
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.mouse && !this.mouseLeave) {
+    this.setState(prevState => {
+      if (prevState.mouse && !this.mouseLeave) return null
       const solvedData = runHoverSolverOn(
-        getDataUnderMouse(nextProps, this.state.mouse, this.canvasNode)
+        getDataUnderMouse(nextProps, prevState.mouse, this.canvasNode)
       )
-      this.setState({
+      return {
         renderDatum: solvedData.renderDatum,
         hoverRenderData: solvedData.hoverRenderData,
         hoverData: solvedData.hoverData,
         localMouse: solvedData.localMouse,
         layerProps: solvedData.layerProps,
-      })
-    }
+      }
+    })
   }
 
   componentDidUpdate(prevProps, prevState) {
