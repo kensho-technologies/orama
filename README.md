@@ -40,10 +40,6 @@ var MyChart = () => (
 )
 ```
 
-## Examples
-
-View live examples at [oramajs.com](http://oramajs.com)
-
 # API
 
 Orama charts are all wrapped by the `<Chart>` tag, inside of which you can freely compose visual marks. The available marks are: `<Lines />`, `<Points />`, `<Areas />`, `<Guides />`, `<Ranges />`, and `<Text />`.
@@ -163,7 +159,6 @@ var MyChart = () => (
 )
 ```
 
-[Live examples](http://oramajs.com/)
 
 ## `<Areas />`
 
@@ -189,7 +184,6 @@ var MyChart = () => (
 )
 ```
 
-[Live examples](http://oramajs.com)
 
 ## `<Points />`
 
@@ -213,7 +207,6 @@ var MyChart = () => (
 )
 ```
 
-[Live examples](http://oramajs.com)
 
 ## `<Bars />`
 
@@ -239,7 +232,6 @@ var MyChart = () => (
 )
 ```
 
-[Live examples](http://oramajs.com)
 
 ## `<Guides />`
 
@@ -265,7 +257,6 @@ var MyChart = () => (
 )
 ```
 
-[Live examples](http://oramajs.com)
 
 ## `<Ranges />`
 
@@ -297,7 +288,6 @@ var MyChart = () => (
 )
 ```
 
-[Live examples](http://oramajs.com)
 
 ## `<Text />`
 
@@ -330,7 +320,6 @@ var MyChart = () => (
 )
 ```
 
-[Live examples](http://oramajs.com)
 
 ## Chart theme configuration
 
@@ -418,7 +407,6 @@ var MyChart = () => (
 )
 ```
 
-[Live examples](http://oramajs.com)
 
 ## Acknowledgment
 
