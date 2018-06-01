@@ -33,11 +33,11 @@ const slice = (arr, start, end) => arr.slice(start + 1, end + 1)
 export function splitBy(arr, iteratee) {
   const {sliceFrom, returnArray} = reduce(
     arr,
-    ({sliceFrom, returnArray}, val, idx) => {
+    (acc, val, idx) => {
       if (iteratee(val, idx)) {
-        return {sliceFrom: idx, returnArray: [...returnArray, slice(arr, sliceFrom, idx)]}
+        return {sliceFrom: idx, returnArray: [...acc.returnArray, slice(arr, acc.sliceFrom, idx)]}
       }
-      return {sliceFrom, returnArray}
+      return acc
     },
     {sliceFrom: 0, returnArray: []}
   )

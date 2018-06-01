@@ -28,6 +28,10 @@ export default class stateHOC extends React.PureComponent {
     }
   }
 
+  handleChildUpdate = childProps => {
+    this.setState(childProps)
+  }
+
   childrenMap = (child, key = 0) =>
     React.cloneElement(child, {
       onUpdate: this.handleChildUpdate,
@@ -36,10 +40,6 @@ export default class stateHOC extends React.PureComponent {
       setState: this.handleChildUpdate,
       key,
     })
-
-  handleChildUpdate = childProps => {
-    this.setState(childProps)
-  }
 
   render() {
     if (React.Children.count(this.props.children) === 0) return <span />

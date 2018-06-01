@@ -31,7 +31,7 @@ export default function fitCheckText(textObj, canvasWidth, canvasHeight, theme) 
   const overFlow = textEnd - (isRotated ? canvasHeight : canvasWidth)
   const underFlow = -textStart
 
-  const shift = overFlow > 0 ? -overFlow : underFlow > 0 ? underFlow : 0
+  const shift = (overFlow > 0 && -overFlow) || (underFlow > 0 && underFlow) || 0
 
   return updateTextObj(isRotated ? 'y' : 'x', shift)
 }

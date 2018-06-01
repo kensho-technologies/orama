@@ -125,7 +125,7 @@ export default function areas(props) {
   if (!props.xScale || !props.yScale) return undefined
   const data = splitDataAtNulls(props, props.data)
   if (Array.isArray(head(data))) {
-    return reduce(data, (acc, data, idx) => acc.concat(getAreaRenderData(props, data, idx)), [])
+    return reduce(data, (acc, datum, idx) => acc.concat(getAreaRenderData(props, datum, idx)), [])
   }
   return [getAreaRenderData(props, props.data)]
 }

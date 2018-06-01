@@ -15,12 +15,12 @@ export default function chartWidthHOC(BaseComponent) {
 
     state = {}
 
-    componentWillReceiveProps() {
+    componentDidMount() {
+      window.addEventListener('resize', this.handleResize)
       this.updateWidth()
     }
 
-    componentDidMount() {
-      window.addEventListener('resize', this.handleResize)
+    componentWillReceiveProps() {
       this.updateWidth()
     }
 
@@ -28,19 +28,19 @@ export default function chartWidthHOC(BaseComponent) {
       window.removeEventListener('resize', this.handleResize)
     }
 
-    updateWidth = () => {
+    handleResize = throttle(() => this.updateWidth(), 500)
+
+    handleRef = divNode => {
+      this.divNode = divNode
+    }
+
+    updateWidth() {
       if (this.divNode && !this.props.width) {
         const width = this.divNode.clientWidth
         if (this.state.width !== width) {
           this.setState({width})
         }
       }
-    }
-
-    handleResize = throttle(this.updateWidth, 500)
-
-    handleRef = divNode => {
-      this.divNode = divNode
     }
 
     render() {

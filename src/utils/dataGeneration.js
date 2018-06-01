@@ -11,7 +11,7 @@ export function getTimeSeries(range, coeff = 0.05) {
     const z = 10 / (0.01 + Math.random())
     forEach(range, (d, i) => {
       const w = (i / range.length - y) * z
-      _array[i] += x * Math.exp(-w * w)
+      _array[i] += x * Math.exp(-w * w) // eslint-disable-line no-param-reassign
     })
   }
   const array = []

@@ -54,7 +54,7 @@ export function getInitialState(initialState) {
  */
 export default function stateHOC(Child, initialState = {}) {
   if (isStatelessComponentFunction(Child)) {
-    return class stateHOC extends React.PureComponent {
+    return class StateHOC extends React.PureComponent {
       static displayName = `${getName(Child.name)}(state)`
 
       static propTypes = {
@@ -83,7 +83,7 @@ export default function stateHOC(Child, initialState = {}) {
     }
   }
   // eslint-disable-next-line react/no-multi-comp
-  return class stateHOC extends React.PureComponent {
+  return class StateHOC extends React.PureComponent {
     static displayName = `${Child.displayName}(state)`
 
     static propTypes = {

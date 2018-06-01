@@ -31,12 +31,17 @@ export default class CanvasRender extends React.Component {
     theme: DEFAULT_THEME,
   }
 
-  handleCanvasRef = canvasNode => {
-    this.canvasNode = canvasNode
-  }
-
   componentDidMount() {
     this.handleUpdate(this.props)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.renderData !== nextProps.renderData) {
+      this.handleUpdate(nextProps)
+    }
+    if (this.props.renderLayers !== nextProps.renderLayers) {
+      this.handleUpdate(nextProps)
+    }
   }
 
   shouldComponentUpdate(nextProps) {
@@ -48,13 +53,8 @@ export default class CanvasRender extends React.Component {
     this.handleUpdate(this.props)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.renderData !== nextProps.renderData) {
-      this.handleUpdate(nextProps)
-    }
-    if (this.props.renderLayers !== nextProps.renderLayers) {
-      this.handleUpdate(nextProps)
-    }
+  handleCanvasRef = canvasNode => {
+    this.canvasNode = canvasNode
   }
 
   handleUpdate(props) {
