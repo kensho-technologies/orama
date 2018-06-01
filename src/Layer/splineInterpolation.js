@@ -8,7 +8,7 @@ export function getControlPoints(x0, y0, x1, y1, x2, y2, t) {
   const d01 = Math.sqrt((x1 - x0) ** 2 + (y1 - y0) ** 2)
   const d12 = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
-  const fa = t * d01 / (d01 + d12)
+  const fa = (t * d01) / (d01 + d12)
   const fb = t - fa
 
   const p1x = x1 + fa * (x0 - x2)
