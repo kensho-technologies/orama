@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-export {DEFAULT_THEME} from './defaultTheme'
+export {default as DEFAULT_THEME} from './defaultTheme'
 export {getPath2D} from './utils/path2DUtils'
 export {getCachedContext} from './utils/canvasUtils'
 export * as utils from './utils'
