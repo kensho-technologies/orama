@@ -1,5 +1,8 @@
 # Orama
 
+[![travis](https://img.shields.io/travis/kensho-technologies/orama.svg)](https://travis-ci.org/kensho-technologies/orama)
+[![npm](https://img.shields.io/npm/v/orama.svg)](https://npm.im/orama)
+
 Plug and play [React](https://facebook.github.io/react/) charts.
 
 * Responsive layout
