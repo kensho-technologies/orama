@@ -31,6 +31,8 @@ export default class CanvasRender extends React.PureComponent {
     theme: DEFAULT_THEME,
   }
 
+  canvasRef = React.createRef()
+
   componentDidMount() {
     this.handleUpdate()
   }
@@ -39,12 +41,9 @@ export default class CanvasRender extends React.PureComponent {
     this.handleUpdate()
   }
 
-  handleCanvasRef = canvasNode => {
-    this.canvasNode = canvasNode
-  }
-
   handleUpdate() {
-    const ctx = this.canvasNode.getContext('2d')
+    if (!this.canvasRef.current) return
+    const ctx = this.canvasRef.current.getContext('2d')
     ctx.save()
     ctx.scale(2, 2)
     this.props.render(this.props, ctx)
@@ -52,18 +51,8 @@ export default class CanvasRender extends React.PureComponent {
   }
 
   render() {
-    return (
-      <canvas
-        height={this.props.height * 2}
-        ref={this.handleCanvasRef}
-        style={{
-          display: 'block',
-          position: 'absolute',
-          width: this.props.width,
-          height: this.props.height,
-        }}
-        width={this.props.width * 2}
-      />
-    )
+    const {height, width} = this.props
+    const style = {display: 'block', position: 'absolute', height, width}
+    return <canvas height={height * 2} ref={this.canvasRef} style={style} width={width * 2} />
   }
 }

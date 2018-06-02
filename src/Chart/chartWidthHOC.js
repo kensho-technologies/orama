@@ -13,6 +13,8 @@ export default function chartWidthHOC(BaseComponent) {
 
     static displayName = 'ChartWidthHOC'
 
+    divRef = React.createRef()
+
     state = {}
 
     componentDidMount() {
@@ -20,7 +22,7 @@ export default function chartWidthHOC(BaseComponent) {
       this.updateWidth()
     }
 
-    componentWillReceiveProps() {
+    componentDidUpdate() {
       this.updateWidth()
     }
 
@@ -30,22 +32,16 @@ export default function chartWidthHOC(BaseComponent) {
 
     handleResize = throttle(() => this.updateWidth(), 500)
 
-    handleRef = divNode => {
-      this.divNode = divNode
-    }
-
     updateWidth() {
-      if (this.divNode && !this.props.width) {
-        const width = this.divNode.clientWidth
-        if (this.state.width !== width) {
-          this.setState({width})
-        }
+      if (this.divRef.current && !this.props.width) {
+        const width = this.divRef.current.clientWidth
+        this.setState(prevState => (prevState.width === width ? null : {width}))
       }
     }
 
     render() {
       return (
-        <div ref={this.handleRef}>
+        <div ref={this.divRef}>
           <BaseComponent {...this.state} {...this.props} />
         </div>
       )

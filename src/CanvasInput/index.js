@@ -26,13 +26,15 @@ export default class CanvasInput extends React.Component {
     renderLayers: [],
   }
 
+  canvasRef = React.createRef()
+
   state = {}
 
   componentWillReceiveProps(nextProps) {
     this.setState(prevState => {
       if (prevState.mouse && !this.mouseLeave) return null
       const solvedData = runHoverSolverOn(
-        getDataUnderMouse(nextProps, prevState.mouse, this.canvasNode)
+        getDataUnderMouse(nextProps, prevState.mouse, this.canvasRef.current)
       )
       return {
         renderDatum: solvedData.renderDatum,
@@ -52,16 +54,14 @@ export default class CanvasInput extends React.Component {
     }
   }
 
-  handleCanvasRef = canvasNode => {
-    this.canvasNode = canvasNode
-  }
-
   handleClick = evt => {
     evt.stopPropagation()
     evt.preventDefault()
     if (!this.state.mouseDrag) {
       const mouse = getMouseFromEvt(evt)
-      const solvedData = runHoverSolverOn(getDataUnderMouse(this.props, mouse, this.canvasNode))
+      const solvedData = runHoverSolverOn(
+        getDataUnderMouse(this.props, mouse, this.canvasRef.current)
+      )
       this.props.onUpdate({
         action: 'mouseClick',
         mouse,
@@ -84,7 +84,9 @@ export default class CanvasInput extends React.Component {
 
   handleMouseDown = evt => {
     const mouse = getMouseFromEvt(evt)
-    const solvedData = runHoverSolverOn(getDataUnderMouse(this.props, mouse, this.canvasNode))
+    const solvedData = runHoverSolverOn(
+      getDataUnderMouse(this.props, mouse, this.canvasRef.current)
+    )
     this.props.onUpdate({
       action: 'mouseDown',
       mouse,
@@ -107,7 +109,9 @@ export default class CanvasInput extends React.Component {
 
   handleMouseMove = evt => {
     const mouse = getMouseFromEvt(evt)
-    const solvedData = runHoverSolverOn(getDataUnderMouse(this.props, mouse, this.canvasNode))
+    const solvedData = runHoverSolverOn(
+      getDataUnderMouse(this.props, mouse, this.canvasRef.current)
+    )
     let mouseDelta
     if (this.lastMouse) {
       mouseDelta = {
@@ -141,7 +145,9 @@ export default class CanvasInput extends React.Component {
     evt.stopPropagation()
     evt.preventDefault()
     const mouse = getMouseFromEvt(evt)
-    const solvedData = runHoverSolverOn(getDataUnderMouse(this.props, mouse, this.canvasNode, evt))
+    const solvedData = runHoverSolverOn(
+      getDataUnderMouse(this.props, mouse, this.canvasRef.current, evt)
+    )
     this.props.onUpdate({
       action: 'mouseUp',
       mouse,
@@ -196,7 +202,7 @@ export default class CanvasInput extends React.Component {
           onTouchEnd={this.handleMouseLeave}
           onTouchMove={this.handleMouseMove}
           onTouchStart={this.handleMouseDown}
-          ref={this.handleCanvasRef}
+          ref={this.canvasRef}
           style={{
             cursor: 'pointer',
             display: 'block',

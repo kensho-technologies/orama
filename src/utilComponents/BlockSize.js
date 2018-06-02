@@ -9,6 +9,8 @@ export default class BlockSize extends React.Component {
     onUpdate: PropTypes.func.isRequired,
   }
 
+  elementRef = React.createRef()
+
   componentDidMount() {
     this.update()
   }
@@ -18,16 +20,9 @@ export default class BlockSize extends React.Component {
   }
 
   update() {
-    if (!this.element) return
-    this.props.onUpdate({
-      ...this.props,
-      width: this.element.offsetWidth,
-      height: this.element.offsetHeight,
-    })
-  }
-
-  elementRef = ref => {
-    this.element = ref
+    if (!this.elementRef.current) return
+    const {offsetHeight: height, offsetWidth: width} = this.elementRef.current
+    this.props.onUpdate({...this.props, height, width})
   }
 
   render() {
