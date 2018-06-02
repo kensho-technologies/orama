@@ -19,18 +19,6 @@ import {
 props.size gets insetted by props.margin to generate the plotRect.
 when props.margin is not defined (or only partially defined), addPlotRect smartly calculates the margins, by taking into consideration axis label, ticks width and backgroundOffset.
 
-@calling logic
-addPlotRect{
-  getTopMargin{}
-  getBottomMargin{}
-  getLeftMargin{
-    getMaxTextWidth{}
-  }
-  getRightMargin{
-    getTextWidth{}
-  }
-}
-
 @example
 addPlotRect({size})
 returns {size, plotRect}
@@ -44,10 +32,9 @@ export function getTextWidth(theme, string) {
   ctx.restore()
   return width
 }
-/*
-get the maximum width of the strings contained in `ticks`.
-Uses a offscreen canvas for doing the measure and takes into consideration the theme object.
-*/
+
+// get the maximum width of the strings contained in `ticks`
+// uses a offscreen canvas for doing the measure and takes into consideration the theme object
 export function getMaxTextWidth(theme, ticks) {
   const ctx = getCachedContext()
   ctx.save()
@@ -56,6 +43,7 @@ export function getMaxTextWidth(theme, ticks) {
   ctx.restore()
   return maxWidth
 }
+
 function getTopMargin(props) {
   const {
     backgroundOffset = BACKGROUND_OFFSET,
@@ -68,6 +56,7 @@ function getTopMargin(props) {
   if (yShowTicks === false || !y) return backgroundOffset
   return Math.max(backgroundOffset, theme.axisTickFontSize / 2)
 }
+
 function getBottomMargin(props) {
   const {theme} = props
   const {
@@ -87,6 +76,7 @@ function getBottomMargin(props) {
     xShowLabel ? xLabelOffset + theme.axisLabelFontSize : 0,
   ])
 }
+
 function getLeftMargin(props) {
   const {theme} = props
   const {
@@ -114,6 +104,7 @@ function getLeftMargin(props) {
     yShowLabel ? yLabelOffset + 5 + theme.axisLabelFontSize : 0,
   ])
 }
+
 function getRightMargin(props) {
   const {backgroundOffset = BACKGROUND_OFFSET, margin = {}, x, xShowTicks = SHOW_TICKS} = props
   if (margin.right !== undefined) return margin.right + backgroundOffset
@@ -137,12 +128,7 @@ export function getPlotRect(props) {
   partialPlotRect = marginInset({bottom, top, left}, {width, height})
   const right = getRightMargin({...props, plotRect: partialPlotRect})
 
-  const margin = {
-    left,
-    bottom,
-    top,
-    right,
-  }
+  const margin = {left, bottom, top, right}
   let newWidth = width
   let newHeight = height
   const plotRect = marginInset(margin, {width, height})

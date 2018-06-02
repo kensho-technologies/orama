@@ -25,16 +25,16 @@ const reorder = bounds => ({
   y1: Math.min(bounds.y1, bounds.y2),
   y2: Math.max(bounds.y1, bounds.y2),
 })
+
 function isOutOfBounds(bounds, plotRect) {
-  if (
+  return (
     bounds.x1 < plotRect.x ||
     bounds.x2 > plotRect.x + plotRect.width ||
     bounds.y1 < plotRect.y ||
     bounds.y2 > plotRect.y + plotRect.height
   )
-    return true
-  return false
 }
+
 function constraintToPlotRect(bounds, childProps) {
   const {
     rootProps: {plotRect},
@@ -46,6 +46,7 @@ function constraintToPlotRect(bounds, childProps) {
   if (y2 > plotRect.y + plotRect.height) y2 = plotRect.y + plotRect.height
   return {x1, x2, y1, y2}
 }
+
 function domainToBounds(props, childProps) {
   const {rootProps} = childProps
   return {
@@ -55,6 +56,7 @@ function domainToBounds(props, childProps) {
     y2: rootProps.yScale(props.yDomain[1]),
   }
 }
+
 function boundsToDomain(bounds, childProps) {
   const {rootProps} = childProps
   return {
@@ -62,17 +64,16 @@ function boundsToDomain(bounds, childProps) {
     yDomain: [rootProps.yScale.invert(bounds.y1), rootProps.yScale.invert(bounds.y2)],
   }
 }
+
 const getBrushData = props => ({
   x1: props.xDomain[0],
   x2: props.xDomain[1],
   y1: props.yDomain[0],
   y2: props.yDomain[1],
 })
+
 function updateBounds(props, childProps, partialBounds) {
-  const newBounds = reorder({
-    ...props._bounds,
-    ...partialBounds,
-  })
+  const newBounds = reorder({...props._bounds, ...partialBounds})
   if (isOutOfBounds(newBounds, childProps.rootProps.plotRect)) {
     const constrainedBounds = constraintToPlotRect(newBounds, childProps)
     props.onUpdate(boundsToDomain(constrainedBounds, childProps))
@@ -99,6 +100,7 @@ function mouseDown(props, childProps) {
     })
   }
 }
+
 function mouseDrag(props, childProps) {
   if (props.brushElementName === 'brushesCenter') {
     const bounds = domainToBounds(props, childProps)
@@ -194,11 +196,8 @@ function StatelessBrush(props) {
       />
     )
     const layers = React.Children.toArray(child.props.children).concat(BrushElement)
-    return React.cloneElement(
-      child,
-      {onUpdate: childProps => handleChart(props, childProps)},
-      layers
-    )
+    const onUpdate = childProps => handleChart(props, childProps)
+    return React.cloneElement(child, {onUpdate}, layers)
   }
   return <div />
 }

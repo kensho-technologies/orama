@@ -1,6 +1,18 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {get, each, eachRight, find, findIndex, head, isEmpty, isNumber, last, reject} from 'lodash'
+import {
+  get,
+  each,
+  eachRight,
+  find,
+  findIndex,
+  head,
+  isEmpty,
+  isNaN,
+  isNumber,
+  last,
+  reject,
+} from 'lodash'
 
 import getMaxY from '../utils/rect/getMaxY'
 import getPath2D from '../utils/getPath2D'
@@ -11,8 +23,7 @@ import plotValue from './plotValue'
 
 const checkIsPlotNumber = value => !isNaN(value) && isNumber(value)
 export function isPlotNumber(value) {
-  if (!Array.isArray(value)) return checkIsPlotNumber(value)
-  return value.some(checkIsPlotNumber)
+  return Array.isArray(value) ? value.some(checkIsPlotNumber) : checkIsPlotNumber(value)
 }
 
 // returns (start, end] as opposed to [].slice() returning [start, end)
@@ -20,12 +31,10 @@ const slice = (arr, start, end) => arr.slice(start + 1, end + 1)
 
 function splitBy(arr, iteratee) {
   const {sliceFrom, returnArray} = arr.reduce(
-    (acc, val, idx) => {
-      if (iteratee(val, idx)) {
-        return {sliceFrom: idx, returnArray: [...acc.returnArray, slice(arr, acc.sliceFrom, idx)]}
-      }
-      return acc
-    },
+    (acc, val, idx) =>
+      iteratee(val, idx)
+        ? {sliceFrom: idx, returnArray: [...acc.returnArray, slice(arr, acc.sliceFrom, idx)]}
+        : acc,
     {sliceFrom: 0, returnArray: []}
   )
   return [...returnArray, slice(arr, sliceFrom, arr.length)]
@@ -126,9 +135,7 @@ function getAreaRenderData(props, data, idx) {
   }
   path2D.closePath()
 
-  const values = getPlotValues(props, head(data), idx, {
-    hoverAlpha: 0.25,
-  })
+  const values = getPlotValues(props, head(data), idx, {hoverAlpha: 0.25})
   return {
     ...values,
     data,

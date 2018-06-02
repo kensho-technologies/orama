@@ -29,9 +29,7 @@ export function getType(props, key) {
   const counter = reduce(
     array,
     (acc, d) => {
-      /* eslint-disable no-param-reassign */
-      acc[toType(d)] += 1
-      /* eslint-enable no-param-reassign */
+      acc[toType(d)] += 1 // eslint-disable-line no-param-reassign
       return acc
     },
     {number: 0, string: 0, date: 0}

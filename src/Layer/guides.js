@@ -22,12 +22,7 @@ function getGuideRenderData(props, datum, idx) {
     path2D.moveTo(getMinX(plotRect) - backgroundOffset, values.y)
     path2D.lineTo(getMaxX(plotRect) + backgroundOffset, values.y)
   }
-
-  return {
-    ...values,
-    path2D,
-    type: 'line',
-  }
+  return {...values, path2D, type: 'line'}
 }
 
 export default function guides(props) {

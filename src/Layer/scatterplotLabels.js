@@ -24,9 +24,7 @@ function getTextRenderData(props, datum, idx) {
   ctx.restore()
 
   if (scatterplotLabelsBounds) {
-    if (values.x + width > plotRect.width + plotRect.x) {
-      values.x = values.x - width - 20
-    }
+    if (values.x + width > plotRect.width + plotRect.x) values.x = values.x - width - 20
     if (values.y < plotRect.y + 20) values.y += 20
   }
 

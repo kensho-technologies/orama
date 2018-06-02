@@ -21,14 +21,7 @@ function mouseDown(props, childProps) {
 }
 
 function handleChart(props, childProps) {
-  switch (childProps.action) {
-    case 'mouseDown':
-      mouseDown(props, childProps)
-      break
-    // case 'mouseDrag': mouseDrag(props, childProps)
-    //   break
-    default:
-  }
+  if (childProps.action === 'mouseDown') mouseDown(props, childProps)
 }
 
 function InnerHighlight(props) {

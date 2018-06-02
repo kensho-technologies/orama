@@ -42,11 +42,7 @@ function getTextRenderData(props, datum, idx) {
   }
 
   const newValues = fitCheckText(values, width, height, theme)
-
-  return {
-    ...newValues,
-    type: 'text',
-  }
+  return {...newValues, type: 'text'}
 }
 
 // if there's only `xMap` or `yMap`, output a one-dimensional plot

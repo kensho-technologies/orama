@@ -9,15 +9,8 @@ import plotValue from './plotValue'
 import getPlotValues from './getPlotValues'
 import {splineInterpolation} from './splineInterpolation'
 
-/*
-`points` is used to generate render data for lines and multilines.
-it handles `x`, `y`, 'stroke'(color) and 'lineWisdth'.
-
-@calling logic
-lines{
-  getLineRenderData{}
-}
-*/
+// `points` is used to generate render data for lines and multilines
+// it handles `x`, `y`, 'stroke'(color) and 'lineWisdth'
 
 export function getPointData(props, datum) {
   const path2D = getPath2D()
@@ -68,9 +61,7 @@ export function hoverSolver(props, _hoverData, renderDatum, localMouse) {
 function getLineRenderData(props, data, idx) {
   if (isEmpty(data)) return undefined
   const path2D = getPath2D()
-  const values = getPlotValues(props, head(data), idx, {
-    hoverAlpha: 0.2,
-  })
+  const values = getPlotValues(props, head(data), idx, {hoverAlpha: 0.2})
   if (props.interpolate) {
     splineInterpolation(props, data, path2D)
   } else {
@@ -99,12 +90,7 @@ function getLineRenderData(props, data, idx) {
 
 export default function lines(props) {
   if (!props.xScale || !props.yScale) return undefined
-  if (some(props.data, isArray)) {
-    return reduce(
-      props.data,
-      (acc, data, idx) => acc.concat(getLineRenderData(props, data, idx)),
-      []
-    )
-  }
-  return [getLineRenderData(props, props.data)]
+  return some(props.data, isArray)
+    ? reduce(props.data, (acc, data, idx) => acc.concat(getLineRenderData(props, data, idx)), [])
+    : [getLineRenderData(props, props.data)]
 }

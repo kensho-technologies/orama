@@ -17,6 +17,7 @@ export const findFirstPass = (ctx, localMouse, renderData) =>
     if (d.type === 'line') return ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
     return false
   })
+
 export const findSecondPass = (ctx, localMouse, renderData) =>
   findLast(renderData, d => {
     if (!d) return false
@@ -28,6 +29,7 @@ export const findSecondPass = (ctx, localMouse, renderData) =>
     if (d.type === 'text') return false
     return ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
   })
+
 export function findInRenderLayers({ctx, localMouse, renderLayers, findFunc}) {
   let renderDatum
   const layer = findLast(renderLayers, _layer => {
@@ -45,9 +47,8 @@ export function findInRenderLayers({ctx, localMouse, renderLayers, findFunc}) {
   }
   return undefined
 }
-/*
-Format return for getDataUnderMouse
-*/
+
+// format return for getDataUnderMouse
 const formatReturnData = (foundData, localMouse) => ({
   layerProps: foundData.layerProps,
   renderDatum: foundData.renderDatum,
@@ -55,9 +56,8 @@ const formatReturnData = (foundData, localMouse) => ({
   hoverData: foundData.hoverData,
   localMouse,
 })
-/*
-Find on the render data the geom that intersect whith the mouse position.
-*/
+
+// find on the render data the geom that intersects with the mouse position
 export function getDataUnderMouse(props, mouse, canvasNode) {
   if (!canvasNode) return {}
   const {renderLayers} = props
@@ -88,7 +88,5 @@ export function getDataUnderMouse(props, mouse, canvasNode) {
   })
 
   if (inStrokeData) return formatReturnData(inStrokeData, localMouse)
-  return {
-    localMouse,
-  }
+  return {localMouse}
 }

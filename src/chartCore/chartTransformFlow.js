@@ -4,16 +4,9 @@ import {map, omit, reduce} from 'lodash'
 
 const PROPS_TO_OMIT = ['memoizers', 'onUpdate', 'onState', 'layerProps', 'rootProps']
 
-/*
-Start with the input props, send then to the first transform, merge the returned new props back to the props. Do again with the next transform.
-
-const rootProps = chartTransformFlow(
-  props,
-  t1,
-  t2,
-  t3
-)
-*/
+// Start with the input props, send them to the first transform, merge the returned new props back
+// to the props. Do again with the next transform.
+// const rootProps = chartTransformFlow(props, t1, t2, t3)
 
 function removeDimArrays(props) {
   const names = map(props.groupedKeys, key => `${key}Array`)

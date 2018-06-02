@@ -18,6 +18,7 @@ export const ACCESSORS_NAMES = [
   'hoverStroke',
   'hoverFill',
 ]
+
 export const ACCESSORS_NAMES_NON_SCALABLE = [
   'fillAlpha',
   'strokeAlpha',
@@ -38,6 +39,7 @@ export const ACCESSORS_GROUPS = {
   x: ['x', 'x0', 'x1', 'x2'],
   y: ['y', 'y0', 'y1', 'y2'],
 }
+
 export const ACCESSORS_TOOLTIP_ORDER = {
   y: 1,
   y0: 2,
@@ -52,11 +54,13 @@ export const ACCESSORS_TOOLTIP_ORDER = {
   stroke: 11,
   lineWidth: 12,
 }
+
 export const JS_TO_VIS_TYPE = {
   string: 'ordinal',
   number: 'linear',
   date: 'time',
 }
+
 export const WIDTH = 500
 export const HEIGHT = 500
 export const PROPORTION = 0.5
@@ -72,10 +76,5 @@ export const SHOW_TICKS = true
 export const SHOW_LABELS = true
 export const AXIS_LABEL_OFFSET = theme => theme.axisLabelFontSize * (theme.lineHeight - 0.75)
 export const AXIS_TICK_OFFSET = theme => theme.axisTickFontSize * (theme.lineHeight - 0.75)
-export const PLOT_RECT = {
-  x: 10,
-  y: 10,
-  width: 480,
-  height: 480,
-}
+export const PLOT_RECT = {x: 10, y: 10, width: 480, height: 480}
 export const MARGIN_RIGHT = 15

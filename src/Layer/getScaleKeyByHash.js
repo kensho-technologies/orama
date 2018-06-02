@@ -6,11 +6,9 @@ const generateAccessorGroupHash = memoize(accessorsGroups =>
   reduce(
     accessorsGroups,
     (acc, values, key) => {
-      /* eslint-disable no-param-reassign */
       each(values, d => {
-        acc[d] = key
+        acc[d] = key // eslint-disable-line no-param-reassign
       })
-      /* eslint-enable no-param-reassign */
       return acc
     },
     {}

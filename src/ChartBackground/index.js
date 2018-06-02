@@ -124,20 +124,8 @@ export function getBackgroundRenderData(props) {
   const yGuides = getYGuides({...props, yTicks})
   const xText = getXText({...props, xTicks})
   const yText = getYText({...props, yTicks})
-  const thickXGuide = getXGuides(
-    {
-      ...props,
-      xTicks: _.filter(xTicks, d => d.value === 0),
-    },
-    true
-  )
-  const thickYGuide = getYGuides(
-    {
-      ...props,
-      yTicks: _.filter(yTicks, d => d.value === 0),
-    },
-    true
-  )
+  const thickXGuide = getXGuides({...props, xTicks: _.filter(xTicks, d => d.value === 0)}, true)
+  const thickYGuide = getYGuides({...props, yTicks: _.filter(yTicks, d => d.value === 0)}, true)
   return _.flatten(
     _.compact([background, xGuides, yGuides, thickXGuide, thickYGuide, xText, yText])
   )
@@ -152,24 +140,21 @@ function getLabelText(props, key) {
 }
 
 export default function ChartBackground(props) {
+  const {height, plotRect, theme, width, xShowLabel, yShowLabel} = props
   return (
     <div>
       <CanvasRender
-        height={props.height}
-        plotRect={props.plotRect}
+        height={height}
+        plotRect={plotRect}
         renderData={getBackgroundRenderData(props)}
-        theme={props.theme}
-        width={props.width}
+        theme={theme}
+        width={width}
       />
-      {props.yShowLabel ? (
-        <LeftLabel plotRect={props.plotRect} text={getLabelText(props, 'y')} theme={props.theme} />
+      {yShowLabel ? (
+        <LeftLabel plotRect={plotRect} text={getLabelText(props, 'y')} theme={theme} />
       ) : null}
-      {props.xShowLabel ? (
-        <BottomLabel
-          plotRect={props.plotRect}
-          text={getLabelText(props, 'x')}
-          theme={props.theme}
-        />
+      {xShowLabel ? (
+        <BottomLabel plotRect={plotRect} text={getLabelText(props, 'x')} theme={theme} />
       ) : null}
     </div>
   )

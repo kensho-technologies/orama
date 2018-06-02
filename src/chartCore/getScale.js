@@ -5,30 +5,11 @@ import {scaleLinear, scaleLog, scaleOrdinal, scalePoint, scaleUtc} from 'd3-scal
 
 import {DOMAIN, NICE, RANGE, TICK_COUNT, TYPE} from './defaults'
 
-/*
-`getScale` returns the scale for a key according to configurations on props object.
+// `getScale` returns the scale for a key according to configurations on props object
+// e.g. getScale({xType, xDomain, xRange, xTickCount}, 'x') => {...props, xScale}
 
-@calling logic
-getScale{
-  getAxisScale{
-    d3Scale()
-  }
-  getDefaultScale{
-    d3Scale()
-  }
-}
-
-@example
-getScale({xType, xDomain, xRange, xTickCount}, 'x')
-returns {
-  ...props,
-  xScale,
-}
-*/
-
-/*
-get a scale with logic for the x and y axis, if the domain starts and finishes on the same number returns the mid range value.
-*/
+// get a scale with logic for the x and y axis, if the domain starts and finishes on the same
+// number returns the mid range value
 function getBaseScales(type, domain, range, nice, tickCount) {
   if (type === 'time') {
     const timeScale = scaleUtc()
