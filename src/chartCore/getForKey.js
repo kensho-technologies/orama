@@ -2,7 +2,8 @@
 
 import {isNumber, map, max, maxBy, min, reduce, toPairs, uniq} from 'lodash'
 
-import {getMaxX, getMaxY} from '../utils/rectUtils'
+import getMaxX from '../utils/rect/getMaxX'
+import getMaxY from '../utils/rect/getMaxY'
 
 import {getScale} from './getScale'
 import {DOMAIN, JS_TO_VIS_TYPE, TICK_COUNT, TICK_X_SPACE, TICK_Y_SPACE, TYPE} from './defaults'

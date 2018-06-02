@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import plotValue from '../../src/Layer/plotValue'
+import plotValue, {isDatum} from '../../src/Layer/plotValue'
 
 test('Chart/plotValue, <key>Value on the props', () => {
   const props = {
@@ -63,4 +63,17 @@ test('Chart/plotValue, function as value', () => {
   const actual = plotValue({xValue: (p, d, i) => i * 2}, {}, 1, 'x')
   const expected = 2
   assert.deepEqual(actual, expected)
+})
+
+test('plotValue.isDatum NaN', () => {
+  assert.equal(isDatum(NaN), false)
+})
+test('plotValue.isDatum "a"', () => {
+  assert.equal(isDatum('a'), true)
+})
+test('plotValue.isDatum undefined', () => {
+  assert.equal(isDatum(undefined), false)
+})
+test('plotValue.isDatum 32', () => {
+  assert.equal(isDatum(32), true)
 })

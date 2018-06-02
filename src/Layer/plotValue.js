@@ -2,9 +2,11 @@
 
 import {isFunction, get} from 'lodash'
 
-import {isDatum} from '../utils'
+import notDatum from '../utils/notDatum'
 
 import getScaleKeyByHash from './getScaleKeyByHash'
+
+export const isDatum = value => !notDatum(value)
 
 /*
 `plotValue` is a helper to get back the mapped value plotted from a object.

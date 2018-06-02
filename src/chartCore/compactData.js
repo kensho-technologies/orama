@@ -2,7 +2,7 @@
 
 import {filter} from 'lodash'
 
-import {notDatum} from '../utils'
+import notDatum from '../utils/notDatum'
 
 // same as _.compact, but keep the zeros, they are important for dataVis
 export default function compactData(array) {

@@ -4,7 +4,8 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {getPath2D, pathMock} from '../../src/utils/path2DUtils'
+import getPath2D from '../../src/utils/getPath2D'
+import pathMock from '../../src/utils/pathMock'
 
 test('path', () => {
   assert.deepEqual(typeof getPath2D(), 'object')

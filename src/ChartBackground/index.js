@@ -6,9 +6,9 @@ import _ from 'lodash'
 
 import DEFAULT_THEME from '../defaultTheme'
 import {BACKGROUND_OFFSET} from '../chartCore/defaults'
-import {getPath2D} from '../utils/path2DUtils'
+import getPath2D from '../utils/getPath2D'
 import {getTicks} from '../chartCore/getForKey'
-import {inset} from '../utils/rectUtils'
+import inset from '../utils/rect/inset'
 import CanvasRender from '../CanvasRender'
 
 import BottomLabel from './BottomLabel'

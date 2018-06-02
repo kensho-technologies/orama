@@ -2,8 +2,8 @@
 
 import {includes, reduce, sum} from 'lodash'
 
-import {getCachedContext} from '../utils/canvasUtils'
-import {marginInset} from '../utils/rectUtils'
+import getCachedContext from '../utils/getCachedContext'
+import marginInset from '../utils/rect/marginInset'
 
 import {getRange, getTickCount, getTicks} from './getForKey'
 import {

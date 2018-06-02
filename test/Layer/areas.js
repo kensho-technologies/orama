@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test, describe} from 'mocha'
 
-import areas, {getPointData, hoverSolver} from '../../src/Layer/areas'
+import areas, {getPointData, hoverSolver, isPlotNumber} from '../../src/Layer/areas'
 
 const identity = d => d
 const scale = identity
@@ -103,5 +103,20 @@ describe('Chart/areas.hoverSolver', () => {
     const localMouse = {x: 0, y: 1}
     const result = hoverSolver(props, hoverData, {}, localMouse)
     assert.deepEqual(result.hoverData, {x: 1, y: 1})
+  })
+})
+
+describe('Layer/areas.isPlotNumber', () => {
+  test('NaN', () => {
+    assert.equal(isPlotNumber(NaN), false)
+  })
+  test('"a"', () => {
+    assert.equal(isPlotNumber('a'), false)
+  })
+  test('undefined', () => {
+    assert.equal(isPlotNumber(undefined), false)
+  })
+  test('32', () => {
+    assert.equal(isPlotNumber(32), true)
   })
 })

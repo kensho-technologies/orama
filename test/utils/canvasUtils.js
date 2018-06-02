@@ -4,7 +4,9 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {canvasMock, ctxMock, getCachedContext} from '../../src/utils/canvasUtils'
+import canvasMock from '../../src/utils/canvasMock'
+import ctxMock from '../../src/utils/ctxMock'
+import getCachedContext from '../../src/utils/getCachedContext'
 
 test('canvasMock.canvas', () => {
   assert.equal(canvasMock.getContext('2d'), ctxMock)

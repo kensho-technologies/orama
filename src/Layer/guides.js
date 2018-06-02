@@ -2,8 +2,11 @@
 
 import {map, flatten, isNumber} from 'lodash'
 
-import {getMinX, getMaxX, getMinY, getMaxY} from '../utils/rectUtils'
-import {getPath2D} from '../utils/path2DUtils'
+import getMinX from '../utils/rect/getMinX'
+import getMaxX from '../utils/rect/getMaxX'
+import getMinY from '../utils/rect/getMinY'
+import getMaxY from '../utils/rect/getMaxY'
+import getPath2D from '../utils/getPath2D'
 import {BACKGROUND_OFFSET} from '../chartCore/defaults'
 
 import getPlotValues from './getPlotValues'

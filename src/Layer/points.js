@@ -2,8 +2,9 @@
 
 import {map, flatten, isArray} from 'lodash'
 
-import {getMidX, getMidY} from '../utils/rectUtils'
-import {getPath2D} from '../utils/path2DUtils'
+import getMidX from '../utils/rect/getMidX'
+import getMidY from '../utils/rect/getMidY'
+import getPath2D from '../utils/getPath2D'
 
 import getPlotValues from './getPlotValues'
 

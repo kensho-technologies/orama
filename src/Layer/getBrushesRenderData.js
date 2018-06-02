@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {getPath2D} from '../utils/path2DUtils'
+import getPath2D from '../utils/getPath2D'
 
 const BRUSH_HANDLE_OFFSET = 5
 const HOVER_OFFSET = 10

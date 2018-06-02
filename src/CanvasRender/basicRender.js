@@ -2,7 +2,7 @@
 
 import {each, flatMap} from 'lodash'
 
-import {notDatum} from '../utils'
+import notDatum from '../utils/notDatum'
 
 import clearAndClip from './clearAndClip'
 

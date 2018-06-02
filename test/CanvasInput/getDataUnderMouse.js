@@ -4,7 +4,8 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {canvasMock, ctxMock} from '../../src/utils/canvasUtils'
+import canvasMock from '../../src/utils/canvasMock'
+import ctxMock from '../../src/utils/ctxMock'
 import {
   getDataUnderMouse,
   findFirstPass,

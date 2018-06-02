@@ -1,10 +1,12 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
 export {default as DEFAULT_THEME} from './defaultTheme'
-export {getPath2D} from './utils/path2DUtils'
-export {getCachedContext} from './utils/canvasUtils'
-export * as utils from './utils'
 export * as chartCore from './chartCore'
+
+export {default as labeler} from './utils/labeler'
+export {default as stateHOC} from './utils/stateHOC'
+export {default as getCachedContext} from './utils/getCachedContext'
+export {default as getPath2D} from './utils/getPath2D'
 
 export {default as areas} from './Layer/areas'
 export {default as bars} from './Layer/bars'

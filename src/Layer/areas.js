@@ -1,13 +1,35 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {get, each, eachRight, find, findIndex, head, isEmpty, last, reduce, reject} from 'lodash'
+import {get, each, eachRight, find, findIndex, head, isEmpty, isNumber, last, reject} from 'lodash'
 
-import {getMaxY} from '../utils/rectUtils'
-import {getPath2D} from '../utils/path2DUtils'
-import {isPlotNumber, notPlotNumber, splitBy} from '../utils'
+import getMaxY from '../utils/rect/getMaxY'
+import getPath2D from '../utils/getPath2D'
+import notPlotNumber from '../utils/notPlotNumber'
 
 import getPlotValues from './getPlotValues'
 import plotValue from './plotValue'
+
+const checkIsPlotNumber = value => !isNaN(value) && isNumber(value)
+export function isPlotNumber(value) {
+  if (!Array.isArray(value)) return checkIsPlotNumber(value)
+  return value.some(checkIsPlotNumber)
+}
+
+// returns (start, end] as opposed to [].slice() returning [start, end)
+const slice = (arr, start, end) => arr.slice(start + 1, end + 1)
+
+function splitBy(arr, iteratee) {
+  const {sliceFrom, returnArray} = arr.reduce(
+    (acc, val, idx) => {
+      if (iteratee(val, idx)) {
+        return {sliceFrom: idx, returnArray: [...acc.returnArray, slice(arr, acc.sliceFrom, idx)]}
+      }
+      return acc
+    },
+    {sliceFrom: 0, returnArray: []}
+  )
+  return [...returnArray, slice(arr, sliceFrom, arr.length)]
+}
 
 function isNullPoint(props) {
   return (datum, idx) =>
@@ -125,7 +147,7 @@ export default function areas(props) {
   if (!props.xScale || !props.yScale) return undefined
   const data = splitDataAtNulls(props, props.data)
   if (Array.isArray(head(data))) {
-    return reduce(data, (acc, datum, idx) => acc.concat(getAreaRenderData(props, datum, idx)), [])
+    return data.reduce((acc, datum, idx) => acc.concat(getAreaRenderData(props, datum, idx)), [])
   }
   return [getAreaRenderData(props, props.data)]
 }

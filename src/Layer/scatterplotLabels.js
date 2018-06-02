@@ -2,7 +2,7 @@
 
 import {cloneDeep, flatten, map} from 'lodash'
 
-import {getCachedContext} from '../utils/canvasUtils'
+import getCachedContext from '../utils/getCachedContext'
 import labeler from '../utils/labeler'
 import DEFAULT_THEME from '../defaultTheme'
 

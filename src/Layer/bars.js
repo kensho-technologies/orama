@@ -2,7 +2,7 @@
 
 import {flatten, map, isNumber} from 'lodash'
 
-import {getPath2D} from '../utils/path2DUtils'
+import getPath2D from '../utils/getPath2D'
 
 import getPlotValues from './getPlotValues'
 

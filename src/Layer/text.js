@@ -2,7 +2,12 @@
 
 import {map, flatten} from 'lodash'
 
-import {getMinX, getMinY, getMidX, getMidY, getMaxX, getMaxY} from '../utils/rectUtils'
+import getMinX from '../utils/rect/getMinX'
+import getMinY from '../utils/rect/getMinY'
+import getMidX from '../utils/rect/getMidX'
+import getMidY from '../utils/rect/getMidY'
+import getMaxX from '../utils/rect/getMaxX'
+import getMaxY from '../utils/rect/getMaxY'
 import fitCheckText from '../utils/fitCheckText'
 
 import getPlotValues from './getPlotValues'

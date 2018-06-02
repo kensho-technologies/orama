@@ -1,0 +1,31 @@
+// Copyright 2018 Kensho Technologies, LLC.
+
+const noop = () => undefined
+export default {
+  beginPath: noop,
+  bezierCurveTo: noop,
+  clearRect: noop,
+  clip: noop,
+  closePath: noop,
+  fill: noop,
+  fillRect: noop,
+  fillText: noop,
+  isPointInPath: noop,
+  isPointInStroke: noop,
+  lineTo: noop,
+  measureText: text => ({width: text.toString().length}),
+  arcTo: noop,
+  moveTo: noop,
+  quadraticCurveTo: noop,
+  rect: noop,
+  restore: noop,
+  rotate: noop,
+  save: noop,
+  scale: noop,
+  strokeRect: noop,
+  strokeText: noop,
+  transform: noop,
+  translate: noop,
+  stroke: noop,
+  setLineDash: noop,
+}

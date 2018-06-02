@@ -2,8 +2,8 @@
 
 import {find, findIndex, get, head, isEmpty, isArray, last, reduce, some} from 'lodash'
 
-import {getPath2D} from '../utils/path2DUtils'
-import {notPlotNumber} from '../utils'
+import getPath2D from '../utils/getPath2D'
+import notPlotNumber from '../utils/notPlotNumber'
 
 import plotValue from './plotValue'
 import getPlotValues from './getPlotValues'
