@@ -32,7 +32,7 @@ export default class CanvasInput extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState(prevState => {
-      if (prevState.mouse && !this.mouseLeave) return null
+      if (!prevState.mouse || this.mouseLeave) return null
       const solvedData = runHoverSolverOn(
         getDataUnderMouse(nextProps, prevState.mouse, this.canvasRef.current)
       )
