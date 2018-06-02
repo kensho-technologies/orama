@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
+import {compact, findLast, filter, flatten, includes, map, sum} from 'lodash'
 
 import DEFAULT_THEME from '../defaultTheme'
 import {BACKGROUND_OFFSET} from '../chartCore/defaults'
@@ -34,10 +34,10 @@ export function getBackground(props) {
 }
 
 export function getXGuides(props, thick) {
-  if (!_.includes(props.groupedKeys, 'x')) return undefined
+  if (!includes(props.groupedKeys, 'x')) return undefined
   if (props.xShowGuides === false) return undefined
   const {backgroundOffset = BACKGROUND_OFFSET, plotRect, theme, xScale, xTicks} = props
-  return _.map(xTicks, d => {
+  return map(xTicks, d => {
     const linePath = getPath2D()
     const x = xScale(d.value)
     linePath.moveTo(x, plotRect.y - backgroundOffset)
@@ -52,10 +52,10 @@ export function getXGuides(props, thick) {
 }
 
 export function getYGuides(props, thick) {
-  if (!_.includes(props.groupedKeys, 'y')) return undefined
+  if (!includes(props.groupedKeys, 'y')) return undefined
   if (props.yShowGuides === false) return undefined
   const {backgroundOffset = BACKGROUND_OFFSET, plotRect, theme, yScale, yTicks} = props
-  return _.map(yTicks, d => {
+  return map(yTicks, d => {
     const linePath = getPath2D()
     const y = yScale(d.value)
     linePath.moveTo(plotRect.x - backgroundOffset, y)
@@ -70,7 +70,7 @@ export function getYGuides(props, thick) {
 }
 
 export function getXText(props) {
-  if (!_.includes(props.groupedKeys, 'x')) return undefined
+  if (!includes(props.groupedKeys, 'x')) return undefined
   if (props.xShowTicks === false) return undefined
   const {theme} = props
   const defaultOffset = theme.axisTickFontSize * (theme.lineHeight - 1)
@@ -81,11 +81,11 @@ export function getXText(props) {
     xTickOffset = defaultOffset,
     xTicks,
   } = props
-  return _.map(xTicks, d => ({
+  return map(xTicks, d => ({
     type: 'text',
     text: d.text,
     x: xScale(d.value),
-    y: _.sum([backgroundOffset, plotRect.y, plotRect.height, xTickOffset]),
+    y: sum([backgroundOffset, plotRect.y, plotRect.height, xTickOffset]),
     textBaseline: 'top',
     textAlign: 'center',
     font: `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`,
@@ -93,7 +93,7 @@ export function getXText(props) {
 }
 
 export function getYText(props) {
-  if (!_.includes(props.groupedKeys, 'y')) return undefined
+  if (!includes(props.groupedKeys, 'y')) return undefined
   if (props.yShowTicks === false) return undefined
   const {theme} = props
   const defaultOffset = theme.axisTickFontSize * (theme.lineHeight - 1)
@@ -104,10 +104,10 @@ export function getYText(props) {
     yTickOffset = defaultOffset,
     yTicks,
   } = props
-  return _.map(yTicks, d => ({
+  return map(yTicks, d => ({
     type: 'text',
     text: d.text,
-    x: _.sum([plotRect.x, -backgroundOffset, -yTickOffset]),
+    x: sum([plotRect.x, -backgroundOffset, -yTickOffset]),
     y: yScale(d.value),
     textAlign: 'right',
     textBaseline: 'middle',
@@ -124,17 +124,15 @@ export function getBackgroundRenderData(props) {
   const yGuides = getYGuides({...props, yTicks})
   const xText = getXText({...props, xTicks})
   const yText = getYText({...props, yTicks})
-  const thickXGuide = getXGuides({...props, xTicks: _.filter(xTicks, d => d.value === 0)}, true)
-  const thickYGuide = getYGuides({...props, yTicks: _.filter(yTicks, d => d.value === 0)}, true)
-  return _.flatten(
-    _.compact([background, xGuides, yGuides, thickXGuide, thickYGuide, xText, yText])
-  )
+  const thickXGuide = getXGuides({...props, xTicks: filter(xTicks, d => d.value === 0)}, true)
+  const thickYGuide = getYGuides({...props, yTicks: filter(yTicks, d => d.value === 0)}, true)
+  return flatten(compact([background, xGuides, yGuides, thickXGuide, thickYGuide, xText, yText]))
 }
 
 function getLabelText(props, key) {
   const text = props[`${key}Name`] || props[key]
   if (text) return text
-  const layer = _.findLast(props.layers, d => d[`${key}Name`] || d[key])
+  const layer = findLast(props.layers, d => d[`${key}Name`] || d[key])
   if (layer) return layer[`${key}Name`] || layer[key]
   return undefined
 }
