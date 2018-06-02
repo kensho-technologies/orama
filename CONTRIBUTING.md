@@ -11,7 +11,3 @@ Please report unacceptable behavior to orama@kensho.com.
 ## Contributor License Agreement
 
 Each contributor is required to agree to our Contributor License Agreement, to ensure that their contribution may be safely merged into the project codebase and released under the existing code license. This agreement does not change contributors' rights to use the contributions for any other purpose -- it is simply used for the protection of both the contributors and the project.
-
-## Style Guide
-
-Please refer to information on [Development Guide](/docs/devGuide.md)
