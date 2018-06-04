@@ -1,29 +1,40 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
+import PropTypes from 'prop-types'
 import * as React from 'react'
-import {unmountComponentAtNode, unstable_renderSubtreeIntoContainer as render} from 'react-dom'
+import {createPortal} from 'react-dom'
+
+const isBrowser = typeof document === 'object'
 
 export default class Portal extends React.Component {
-  componentDidMount() {
-    this.container = document.createElement('div')
-    this.container.position = 'absolute'
-    this.container.top = 0
-    this.container.left = 0
-    this.container.right = 0
-    document.body.appendChild(this.container)
-    this.componentDidUpdate()
+  static propTypes = {
+    children: PropTypes.node,
   }
 
-  componentDidUpdate() {
-    render(this, <div {...this.props} />, this.container)
+  state = {
+    hasMounted: false,
+  }
+
+  componentDidMount() {
+    if (isBrowser) {
+      this.containerElement = document.createElement('div')
+      this.containerElement.position = 'absolute'
+      this.containerElement.top = 0
+      this.containerElement.left = 0
+      this.containerElement.right = 0
+      document.body.appendChild(this.containerElement)
+      this.setState({hasMounted: true})
+    }
   }
 
   componentWillUnmount() {
-    unmountComponentAtNode(this.container)
-    document.body.removeChild(this.container)
+    if (isBrowser && this.containerElement) document.body.removeChild(this.containerElement)
   }
 
   render() {
-    return null
+    const {children} = this.props
+    const {hasMounted} = this.state
+    if (!hasMounted) return null
+    return createPortal(children, this.containerElement)
   }
 }
