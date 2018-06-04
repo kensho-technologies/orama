@@ -5,10 +5,9 @@ import assert from 'assert'
 import {it as test} from 'mocha'
 import {scalePoint} from 'd3-scale'
 
-import {
+import getScale, {
   getAxisScale,
   getDefaultScale,
-  getScale,
   getOrdinalInvert,
 } from '../../src/chartCore/getScale'
 

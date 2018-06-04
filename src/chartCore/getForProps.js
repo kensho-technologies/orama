@@ -2,15 +2,13 @@
 
 import {reduce} from 'lodash'
 
-import {getType, getDomain, getRange, getTickCount, getScale, getTickFormat} from './getForKey'
+import getScale from './getScale'
+import {getType, getDomain, getRange, getTickCount, getTickFormat} from './getForKey'
 
 /*
 Functions to be used on the Chart props transformation flow.
 The transformation flow starts with the <Chart /> props and successively adds the variables needed for plotting, the transformed props are used for generating render data.
 */
-
-export {default as getDimArrays} from './getDimArrays'
-export {getPlotRect} from './getPlotRect'
 
 export const getForProps = (value, getFunc) => props =>
   reduce(

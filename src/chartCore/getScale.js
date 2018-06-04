@@ -100,7 +100,7 @@ export function getDefaultScale(props, key) {
 }
 
 // main exported function, used outside of the module on the Chart props transform flow
-export function getScale(props, key) {
+export default function getScale(props, key) {
   switch (key) {
     case 'x':
     case 'y':
