@@ -33,4 +33,3 @@ export {
   ScatterplotLabels,
 } from './Layer'
 export {default as Brush} from './extensions/Brush'
-export {default as Highlight} from './extensions/Highlight'
