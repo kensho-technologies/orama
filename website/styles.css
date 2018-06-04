@@ -4,10 +4,20 @@ html {
 }
 
 body {
-  max-width: 780px;
-  margin: 0 auto;
+  margin: 60px;
 }
 
-section {
-  margin: 30px 0;
+h3 {
+  margin-top: 0;
+}
+
+.grid {
+  margin: -40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.example {
+  width: 460px;
+  margin: 40px;
 }

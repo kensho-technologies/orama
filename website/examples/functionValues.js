@@ -11,7 +11,12 @@ const data = [
 ]
 
 export default (
-  <Chart yZeroBased>
-    <Bars data={data} x="type" y="value" />
+  <Chart xZeroBased>
+    <Bars
+      data={data}
+      x="value"
+      y="type"
+      fillValue={(props, d) => (d.value > 0 ? 'steelblue' : 'crimson')}
+    />
   </Chart>
 )
