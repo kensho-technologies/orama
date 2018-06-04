@@ -6,8 +6,7 @@ import {it as test} from 'mocha'
 
 import canvasMock from '../helpers/canvasMock'
 import ctxMock from '../helpers/ctxMock'
-import {
-  getDataUnderMouse,
+import getDataUnderMouse, {
   findFirstPass,
   findInRenderLayers,
   findSecondPass,

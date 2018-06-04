@@ -7,8 +7,13 @@ import hoverRender from '../CanvasRender/hoverRender'
 import TooltipWrapper from '../TooltipWrapper'
 import CanvasRender from '../CanvasRender'
 
-import {getDataUnderMouse} from './getDataUnderMouse'
-import {getMouseFromEvt, runHoverSolverOn} from './methods'
+import getDataUnderMouse from './getDataUnderMouse'
+import runHoverSolverOn from './runHoverSolverOn'
+
+export function getMouseFromEvent(event) {
+  const {clientX, clientY} = event.touches ? event.touches[0] : event
+  return {x: clientX, y: clientY}
+}
 
 /*
 Usually used inside of <ChartRender />
@@ -58,7 +63,7 @@ export default class CanvasInput extends React.Component {
     evt.stopPropagation()
     evt.preventDefault()
     if (!this.state.mouseDrag) {
-      const mouse = getMouseFromEvt(evt)
+      const mouse = getMouseFromEvent(evt)
       const solvedData = runHoverSolverOn(
         getDataUnderMouse(this.props, mouse, this.canvasRef.current)
       )
@@ -83,7 +88,7 @@ export default class CanvasInput extends React.Component {
   }
 
   handleMouseDown = evt => {
-    const mouse = getMouseFromEvt(evt)
+    const mouse = getMouseFromEvent(evt)
     const solvedData = runHoverSolverOn(
       getDataUnderMouse(this.props, mouse, this.canvasRef.current)
     )
@@ -108,7 +113,7 @@ export default class CanvasInput extends React.Component {
   }
 
   handleMouseMove = evt => {
-    const mouse = getMouseFromEvt(evt)
+    const mouse = getMouseFromEvent(evt)
     const solvedData = runHoverSolverOn(
       getDataUnderMouse(this.props, mouse, this.canvasRef.current)
     )
@@ -144,7 +149,7 @@ export default class CanvasInput extends React.Component {
   handleMouseUp = evt => {
     evt.stopPropagation()
     evt.preventDefault()
-    const mouse = getMouseFromEvt(evt)
+    const mouse = getMouseFromEvent(evt)
     const solvedData = runHoverSolverOn(
       getDataUnderMouse(this.props, mouse, this.canvasRef.current, evt)
     )

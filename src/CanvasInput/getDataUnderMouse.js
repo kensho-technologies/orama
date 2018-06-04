@@ -58,7 +58,7 @@ const formatReturnData = (foundData, localMouse) => ({
 })
 
 // find on the render data the geom that intersects with the mouse position
-export function getDataUnderMouse(props, mouse, canvasNode) {
+export default function getDataUnderMouse(props, mouse, canvasNode) {
   if (!canvasNode) return {}
   const {renderLayers} = props
 
