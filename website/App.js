@@ -3,6 +3,7 @@ import * as React from 'react'
 
 import areas from './examples/areas'
 import bars from './examples/bars'
+import Brush from './examples/Brush'
 import customTheme from './examples/customTheme'
 import functionValues from './examples/functionValues'
 import guides from './examples/guides'
@@ -53,6 +54,7 @@ export default function App() {
         <Example title="Function values" content={functionValues} />
         <Example title="Hover effect" content={hoverEffect} />
         <Example title="Custom theme" content={customTheme} />
+        <Example title="Brush" content={<Brush />} />
       </div>
     </React.StrictMode>
   )
