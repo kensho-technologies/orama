@@ -13,7 +13,7 @@ export default {
   isPointInPath: noop,
   isPointInStroke: noop,
   lineTo: noop,
-  measureText: text => ({width: text.toString().length}),
+  measureText: noop,
   arcTo: noop,
   moveTo: noop,
   quadraticCurveTo: noop,

@@ -1,8 +1,8 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {includes, reduce, sum} from 'lodash'
+import {includes, sum} from 'lodash'
 
-import getCachedContext from '../utils/getCachedContext'
+import withCachedContext from '../utils/withCachedContext'
 import marginInset from '../utils/rect/marginInset'
 
 import {getRange, getTickCount, getTicks} from './getForKey'
@@ -25,23 +25,21 @@ returns {size, plotRect}
 */
 
 export function getTextWidth(theme, string) {
-  const ctx = getCachedContext()
-  ctx.save()
-  ctx.font = `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`
-  const {width} = ctx.measureText(string)
-  ctx.restore()
-  return width
+  return withCachedContext(ctx => {
+    if (!ctx) return string.length
+    ctx.font = `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`
+    return ctx.measureText(string).width
+  })
 }
 
 // get the maximum width of the strings contained in `ticks`
 // uses a offscreen canvas for doing the measure and takes into consideration the theme object
 export function getMaxTextWidth(theme, ticks) {
-  const ctx = getCachedContext()
-  ctx.save()
-  ctx.font = `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`
-  const maxWidth = reduce(ticks, (acc, d) => Math.max(acc, ctx.measureText(d.text).width), 0)
-  ctx.restore()
-  return maxWidth
+  return withCachedContext(ctx => {
+    if (!ctx) return Math.max(...ticks.map(d => d.text.length))
+    ctx.font = `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`
+    return Math.max(...ticks.map(d => ctx.measureText(d.text).width))
+  })
 }
 
 function getTopMargin(props) {

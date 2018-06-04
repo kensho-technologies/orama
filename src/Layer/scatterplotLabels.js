@@ -2,14 +2,13 @@
 
 import {cloneDeep, flatten, map} from 'lodash'
 
-import getCachedContext from '../utils/getCachedContext'
+import withCachedContext from '../utils/withCachedContext'
 import labeler from '../utils/labeler'
 import DEFAULT_THEME from '../defaultTheme'
 
 import getPlotValues from './getPlotValues'
 
 const localLabeler = labeler()
-const ctx = getCachedContext()
 
 function getTextRenderData(props, datum, idx) {
   const {plotRect, theme = DEFAULT_THEME, scatterplotLabelsBounds = true} = props
@@ -18,10 +17,11 @@ function getTextRenderData(props, datum, idx) {
     fill: theme.textFill,
   })
 
-  ctx.save()
-  ctx.font = `${theme.plotFontSize}px ${theme.fontFamilyMono}`
-  const {width} = ctx.measureText(values.text)
-  ctx.restore()
+  const width = withCachedContext(ctx => {
+    if (!ctx) return values.text.length
+    ctx.font = `${theme.plotFontSize}px ${theme.fontFamilyMono}`
+    return ctx.measureText(values.text).width
+  })
 
   if (scatterplotLabelsBounds) {
     if (values.x + width > plotRect.width + plotRect.x) values.x = values.x - width - 20

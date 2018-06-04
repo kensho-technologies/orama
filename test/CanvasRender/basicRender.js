@@ -5,7 +5,7 @@ import assert from 'assert'
 import {it as test} from 'mocha'
 
 import pathMock from '../../src/utils/pathMock'
-import ctxMock from '../../src/utils/ctxMock'
+import ctxMock from '../helpers/ctxMock'
 import DEFAULT_THEME from '../../src/defaultTheme'
 import basicRender from '../../src/CanvasRender/basicRender'
 

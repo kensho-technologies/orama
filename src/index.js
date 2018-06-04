@@ -5,7 +5,7 @@ export * as chartCore from './chartCore'
 
 export {default as labeler} from './utils/labeler'
 export {default as stateHOC} from './utils/stateHOC'
-export {default as getCachedContext} from './utils/getCachedContext'
+export {default as withCachedContext} from './utils/withCachedContext'
 export {default as getPath2D} from './utils/getPath2D'
 
 export {default as areas} from './Layer/areas'

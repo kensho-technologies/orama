@@ -4,8 +4,8 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
+import ctxMock from '../helpers/ctxMock'
 import pathMock from '../../src/utils/pathMock'
-import ctxMock from '../../src/utils/ctxMock'
 import DEFAULT_THEME from '../../src/defaultTheme'
 import hoverRender from '../../src/CanvasRender/hoverRender'
 
