@@ -34,7 +34,7 @@ Example.propTypes = {
 
 export default function App() {
   return (
-    <React.Fragment>
+    <React.StrictMode>
       <h1>Orama</h1>
       <div className="grid">
         <Example title="Lines" content={lines} />
@@ -54,6 +54,6 @@ export default function App() {
         <Example title="Hover effect" content={hoverEffect} />
         <Example title="Custom theme" content={customTheme} />
       </div>
-    </React.Fragment>
+    </React.StrictMode>
   )
 }
