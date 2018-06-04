@@ -6,6 +6,7 @@
   "module": "es",
   "sideEffects": false,
   "scripts": {
+    "start": "webpack-serve",
     "prepublishOnly": "rm -rf lib es && babel src -d es && BABEL_ENV=cjs babel src -d lib",
     "test": "eslint . && NODE_ENV=test nyc mocha --require @babel/register -R dot --recursive"
   },
@@ -20,15 +21,22 @@
     "@babel/cli": "7.0.0-beta.49",
     "@babel/core": "7.0.0-beta.49",
     "@babel/register": "7.0.0-beta.49",
+    "babel-loader": "8.0.0-beta.3",
     "babel-preset-kensho": "4.0.0-alpha.11",
+    "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "eslint-config-kensho": "5.0.0-alpha.3",
+    "eslint-import-resolver-webpack": "^0.10.0",
+    "html-webpack-plugin": "^3.2.0",
     "mocha": "^5.2.0",
     "nyc": "^12.0.1",
     "prettier": "^1.13.4",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-test-renderer": "^16.4.0"
+    "react-test-renderer": "^16.4.0",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.10.2",
+    "webpack-serve": "^1.0.2"
   },
   "peerDependencies": {
     "react": "^16.3.0",

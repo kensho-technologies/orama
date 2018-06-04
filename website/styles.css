@@ -1,0 +1,13 @@
+html {
+  font-family: -apple-system, 'system-ui', BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 14px;
+}
+
+body {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+section {
+  margin: 30px 0;
+}
