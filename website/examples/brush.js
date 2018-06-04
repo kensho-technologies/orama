@@ -10,7 +10,7 @@ const data = [
   {type: 'type 5', value: 12},
 ]
 
-export default class BrushExample extends React.Component {
+class BrushExample extends React.Component {
   state = {
     xDomain: ['type 2', 'type 4'],
   }
@@ -27,3 +27,5 @@ export default class BrushExample extends React.Component {
     )
   }
 }
+
+export default <BrushExample />
