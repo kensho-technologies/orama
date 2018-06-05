@@ -8,7 +8,8 @@ import {PROPORTION, WIDTH} from '../chartCore/defaults'
 import chartTransformFlow from '../chartCore/chartTransformFlow'
 import getLayers from '../chartCore/getLayers'
 import getLocalKeys from '../chartCore/getLocalKeys'
-import stateHOC from '../utils/stateHOC'
+import withComputedWidth from '../enhancers/withComputedWidth'
+import withControlledState from '../enhancers/withControlledState'
 import CanvasInput from '../CanvasInput'
 import ChartBackground from '../ChartBackground'
 import {
@@ -22,7 +23,6 @@ import {
   getMemoizeTypes,
 } from '../chartCore/memoize'
 
-import chartWidthHOC from './chartWidthHOC'
 import ChartRender from './ChartRender'
 
 function getTheme(props) {
@@ -34,8 +34,8 @@ function handleCanvasInput(props, childProps) {
   props.onUpdate(childProps)
 }
 
-function StatelessChart(props) {
-  const {memoizers} = props
+function Chart(props) {
+  const {memoizers, theme} = props
   const rootProps = chartTransformFlow(
     props,
     getTheme,
@@ -50,16 +50,15 @@ function StatelessChart(props) {
     memoizers.getScales
   )
   const renderLayers = memoizers.getRenderLayers(rootProps)
+  const style = {
+    background: theme.backgroundFill,
+    height: rootProps.height,
+    position: 'relative',
+    userSelect: 'none',
+    width: '100%',
+  }
   return (
-    <div
-      style={{
-        background: props.theme.backgroundFill,
-        height: rootProps.height,
-        position: 'relative',
-        userSelect: 'none',
-        width: '100%',
-      }}
-    >
+    <div style={style}>
       <ChartBackground {...rootProps} />
       <ChartRender renderLayers={renderLayers} rootProps={rootProps} theme={rootProps.theme} />
       <CanvasInput
@@ -72,7 +71,7 @@ function StatelessChart(props) {
   )
 }
 
-StatelessChart.propTypes = {
+Chart.propTypes = {
   memoizers: PropTypes.object,
   onUpdate: PropTypes.func,
   proportion: PropTypes.number,
@@ -80,13 +79,13 @@ StatelessChart.propTypes = {
   width: PropTypes.number,
 }
 
-StatelessChart.defaultProps = {
+Chart.defaultProps = {
   proportion: PROPORTION,
   theme: DEFAULT_THEME,
   width: WIDTH,
 }
 
-StatelessChart.initialState = () => ({
+const ControlledChart = withControlledState(Chart, () => ({
   memoizers: {
     getDimArrays: getMemoizeDimArrays(),
     getTypes: getMemoizeTypes(),
@@ -97,7 +96,6 @@ StatelessChart.initialState = () => ({
     getScales: getMemoizeScales(),
     getRenderLayers: getMemoizeRenderLayers(),
   },
-})
+}))
 
-export const Chart = stateHOC(StatelessChart)
-export default chartWidthHOC(Chart)
+export default withComputedWidth(ControlledChart)

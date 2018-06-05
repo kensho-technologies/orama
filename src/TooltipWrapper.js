@@ -3,7 +3,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-import stateHOC from './utils/stateHOC'
+import withControlledState from './enhancers/withControlledState'
 import BlockSize from './utilComponents/BlockSize'
 import Portal from './utilComponents/Portal'
 import DefaultTooltip from './Tooltip'
@@ -72,4 +72,4 @@ TooltipWrapper.propTypes = {
   theme: PropTypes.object,
 }
 
-export default stateHOC(TooltipWrapper)
+export default withControlledState(TooltipWrapper)

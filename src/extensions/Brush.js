@@ -4,7 +4,7 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import {includes} from 'lodash'
 
-import stateHOC from '../utils/stateHOC'
+import withControlledState from '../enhancers/withControlledState'
 import {Brushes} from '../Layer'
 
 const BRUSH_ELEMENT_NAMES = [
@@ -177,29 +177,26 @@ function handleChart(props, childProps) {
 
 function StatelessBrush(props) {
   const child = React.Children.only(props.children)
-  if (child.type.displayName === 'ChartWidthHOC') {
-    const BrushElement = (
-      <Brushes
-        data={[getBrushData(props)]}
-        fillAlphaValue={props.fillAlphaValue}
-        fillValue={props.fillValue}
-        key="brushes"
-        lineWidthValue={props.lineWidthValue}
-        skipExtractArrays
-        strokeValue={props.strokeValue}
-        tooltipShowKeys={false}
-        x1="x1"
-        x2="x2"
-        y1="y1"
-        y2="y2"
-        {...props}
-      />
-    )
-    const layers = React.Children.toArray(child.props.children).concat(BrushElement)
-    const onUpdate = childProps => handleChart(props, childProps)
-    return React.cloneElement(child, {onUpdate}, layers)
-  }
-  return <div />
+  const brushElement = (
+    <Brushes
+      data={[getBrushData(props)]}
+      fillAlphaValue={props.fillAlphaValue}
+      fillValue={props.fillValue}
+      key="brushes"
+      lineWidthValue={props.lineWidthValue}
+      skipExtractArrays
+      strokeValue={props.strokeValue}
+      tooltipShowKeys={false}
+      x1="x1"
+      x2="x2"
+      y1="y1"
+      y2="y2"
+      {...props}
+    />
+  )
+  const layers = React.Children.toArray(child.props.children).concat(brushElement)
+  const onUpdate = childProps => handleChart(props, childProps)
+  return React.cloneElement(child, {onUpdate}, layers)
 }
 
 StatelessBrush.propTypes = {
@@ -217,4 +214,4 @@ StatelessBrush.defaultProps = {
   yDomain: [],
 }
 
-export default stateHOC(StatelessBrush)
+export default withControlledState(StatelessBrush)

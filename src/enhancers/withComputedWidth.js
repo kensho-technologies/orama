@@ -4,14 +4,16 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import {throttle} from 'lodash'
 
-// this component wraps <BaseComponent /> and adds a width prop when it's not present
-export default function chartWidthHOC(BaseComponent) {
-  return class ChartWidthHOC extends React.Component {
+import wrapDisplayName from './wrapDisplayName'
+
+// this HOC wraps `BaseComponent` and adds a width prop when it's not present
+export default function withComputedWidth(BaseComponent) {
+  return class WithComputedWidth extends React.Component {
     static propTypes = {
       width: PropTypes.number,
     }
 
-    static displayName = 'ChartWidthHOC'
+    static displayName = wrapDisplayName('withComputedWidth', BaseComponent)
 
     divRef = React.createRef()
 
@@ -42,7 +44,7 @@ export default function chartWidthHOC(BaseComponent) {
     render() {
       return (
         <div ref={this.divRef}>
-          <BaseComponent {...this.state} {...this.props} />
+          <BaseComponent width={this.state.width} {...this.props} />
         </div>
       )
     }
