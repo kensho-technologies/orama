@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test, describe} from 'mocha'
 
-import lines, {getPointData, hoverSolver} from '../../src/Layer/lines'
+import lines, {getPointData, hoverSolver} from '../../src/plot/lines'
 
 const identity = d => d
 const scale = identity

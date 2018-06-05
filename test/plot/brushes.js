@@ -5,7 +5,7 @@ import assert from 'assert'
 import {it as test} from 'mocha'
 
 import {PLOT_RECT as plotRect} from '../../src/defaults'
-import brushes from '../../src/Layer/brushes'
+import brushes from '../../src/plot/brushes'
 
 test('Chart/brushes 1', () => {
   const renderData = brushes({

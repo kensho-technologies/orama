@@ -5,7 +5,7 @@ import assert from 'assert'
 import {it as test} from 'mocha'
 
 import {PLOT_RECT as plotRect} from '../../src/defaults'
-import ranges from '../../src/Layer/ranges'
+import ranges from '../../src/plot/ranges'
 
 test('Chart/ranges 1', () => {
   const renderData = ranges({

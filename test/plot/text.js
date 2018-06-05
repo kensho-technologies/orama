@@ -5,7 +5,7 @@ import assert from 'assert'
 import {it as test} from 'mocha'
 
 import {PLOT_RECT as plotRect, THEME as theme} from '../../src/defaults'
-import text from '../../src/Layer/text'
+import text from '../../src/plot/text'
 
 test('Chart/text 1', () => {
   const renderData = text({

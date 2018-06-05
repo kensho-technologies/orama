@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import {includes} from 'lodash'
 
 import withControlledState from '../enhancers/withControlledState'
-import {Brushes} from '../Layer'
+import Brushes from '../layers/Brushes'
 
 const BRUSH_ELEMENT_NAMES = [
   'brushesCenter',

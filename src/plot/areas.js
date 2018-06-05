@@ -1,18 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {
-  get,
-  each,
-  eachRight,
-  find,
-  findIndex,
-  head,
-  isEmpty,
-  isNaN,
-  isNumber,
-  last,
-  reject,
-} from 'lodash'
+import {get, each, eachRight, find, findIndex, head, isEmpty, isFinite, last, reject} from 'lodash'
 
 import getMaxY from '../utils/rect/getMaxY'
 import getPath2D from '../utils/getPath2D'
@@ -21,9 +9,8 @@ import notPlotNumber from '../utils/notPlotNumber'
 import getPlotValues from './getPlotValues'
 import plotValue from './plotValue'
 
-const checkIsPlotNumber = value => !isNaN(value) && isNumber(value)
 export function isPlotNumber(value) {
-  return Array.isArray(value) ? value.some(checkIsPlotNumber) : checkIsPlotNumber(value)
+  return Array.isArray(value) ? value.some(isFinite) : isFinite(value)
 }
 
 // returns (start, end] as opposed to [].slice() returning [start, end)

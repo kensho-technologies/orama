@@ -4,43 +4,39 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {PLOT_RECT} from '../../src/defaults'
-import guides from '../../src/Layer/guides'
+import points from '../../src/plot/points'
 
-test('Chart.guides', () => {
-  const renderData = guides({
+test('Chart.points', () => {
+  const renderData = points({
     data: [{x: 1, y: 1}],
-    plotRect: PLOT_RECT,
     xScale: d => d,
     yScale: d => d,
   })
   assert.deepEqual(renderData[0], {
     ...renderData[0],
-    type: 'line',
+    type: 'area',
   })
 })
 
-test('Chart.guides missing yMap', () => {
-  const renderData = guides({
+test('Chart.points missing yMap', () => {
+  const renderData = points({
     data: [{x: 1, y: 1}],
-    plotRect: PLOT_RECT,
     xScale: d => d,
   })
   assert.deepEqual(renderData[0], {
     ...renderData[0],
-    type: 'line',
+    type: 'area',
   })
 })
 
-test('Chart.guides grouped data', () => {
-  const renderData = guides({
+test('Chart.points grouped data', () => {
+  const renderData = points({
     data: [[{x: 1, y: 1}]],
-    plotRect: PLOT_RECT,
     xScale: d => d,
     yScale: d => d,
   })
   assert.deepEqual(renderData[0], {
     ...renderData[0],
-    type: 'line',
+    type: 'area',
   })
 })

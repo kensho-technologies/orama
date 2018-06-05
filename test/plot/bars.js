@@ -5,7 +5,7 @@ import assert from 'assert'
 import {it as test} from 'mocha'
 
 import {PLOT_RECT as plotRect} from '../../src/defaults'
-import bars from '../../src/Layer/bars'
+import bars from '../../src/plot/bars'
 
 const identity = d => d
 const xScale = identity

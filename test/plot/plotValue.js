@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import plotValue, {isDatum} from '../../src/Layer/plotValue'
+import plotValue, {isDatum} from '../../src/plot/plotValue'
 
 test('Chart/plotValue, <key>Value on the props', () => {
   const props = {

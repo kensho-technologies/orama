@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import getScaleKeyByHash from '../../src/Layer/getScaleKeyByHash'
+import getScaleKeyByHash from '../../src/plot/getScaleKeyByHash'
 
 test('Layer/getScaleKeyByHash', () => {
   const actual = getScaleKeyByHash({}, 'x0')
