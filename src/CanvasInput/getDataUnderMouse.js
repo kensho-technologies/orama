@@ -2,50 +2,46 @@
 
 import {findLast} from 'lodash'
 
-export const findFirstPass = (ctx, localMouse, renderData) =>
-  findLast(renderData, d => {
+export function findFirstPass(ctx, localMouse, renderData) {
+  const {x, y} = localMouse
+  ctx.lineJoin = 'round'
+  return findLast(renderData, d => {
     if (!d) return false
     if (d.showHover === false) return false
-    ctx.lineJoin = 'round'
-    if (d.hover1stPath2D) {
-      return ctx.isPointInPath(d.hover1stPath2D, localMouse.x, localMouse.y)
-    }
+    if (d.hover1stPath2D) return ctx.isPointInPath(d.hover1stPath2D, x, y)
     if (d.type === 'text') return false
-    if (d.type === 'area') {
-      return ctx.isPointInPath(d.path2D, localMouse.x, localMouse.y)
-    }
-    if (d.type === 'line') return ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
+    if (d.type === 'area') return ctx.isPointInPath(d.path2D, x, y)
+    if (d.type === 'line') return ctx.isPointInStroke(d.path2D, x, y)
     return false
   })
+}
 
-export const findSecondPass = (ctx, localMouse, renderData) =>
-  findLast(renderData, d => {
+export function findSecondPass(ctx, localMouse, renderData) {
+  const {x, y} = localMouse
+  ctx.lineJoin = 'round'
+  return findLast(renderData, d => {
     if (!d) return false
     if (d.showHover === false) return false
-    ctx.lineJoin = 'round'
-    if (d.hover2ndPath2D) {
-      return ctx.isPointInPath(d.hover2ndPath2D, localMouse.x, localMouse.y)
-    }
+    if (d.hover2ndPath2D) return ctx.isPointInPath(d.hover2ndPath2D, x, y)
     if (d.type === 'text') return false
-    return ctx.isPointInStroke(d.path2D, localMouse.x, localMouse.y)
+    return ctx.isPointInStroke(d.path2D, x, y)
   })
+}
 
-export function findInRenderLayers({ctx, localMouse, renderLayers, findFunc}) {
+export function findInRenderLayers(ctx, localMouse, renderLayers, findFunc) {
   let renderDatum
   const layer = findLast(renderLayers, _layer => {
     if (_layer.layerProps.showHover === false) return false
     renderDatum = findFunc(ctx, localMouse, _layer.renderData)
     return renderDatum
   })
-  if (layer) {
-    return {
-      renderDatum,
-      hoverRenderData: [renderDatum],
-      hoverData: renderDatum.data,
-      layerProps: layer.layerProps,
-    }
+  if (!layer) return undefined
+  return {
+    renderDatum,
+    hoverRenderData: [renderDatum],
+    hoverData: renderDatum.data,
+    layerProps: layer.layerProps,
   }
-  return undefined
 }
 
 // format return for getDataUnderMouse
@@ -70,23 +66,10 @@ export default function getDataUnderMouse(props, mouse, canvasNode) {
   }
 
   ctx.lineWidth = 10
-  const inPathData = findInRenderLayers({
-    ctx,
-    localMouse,
-    renderLayers,
-    findFunc: findFirstPass,
-  })
-
+  const inPathData = findInRenderLayers(ctx, localMouse, renderLayers, findFirstPass)
   if (inPathData) return formatReturnData(inPathData, localMouse)
-
   ctx.lineWidth = 18
-  const inStrokeData = findInRenderLayers({
-    ctx,
-    localMouse,
-    renderLayers,
-    findFunc: findSecondPass,
-  })
-
+  const inStrokeData = findInRenderLayers(ctx, localMouse, renderLayers, findSecondPass)
   if (inStrokeData) return formatReturnData(inStrokeData, localMouse)
   return {localMouse}
 }
