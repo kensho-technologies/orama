@@ -8,28 +8,19 @@ import {DOMAIN, NICE, RANGE, TICK_COUNT, TYPE} from '../defaults'
 // `getScale` returns the scale for a key according to configurations on props object
 // e.g. getScale({xType, xDomain, xRange, xTickCount}, 'x') => {...props, xScale}
 
+function createScale(factory, domain, range) {
+  return factory()
+    .domain(domain)
+    .range(range)
+}
+
 // get a scale with logic for the x and y axis, if the domain starts and finishes on the same
 // number returns the mid range value
 function getBaseScales(type, domain, range, nice, tickCount) {
-  if (type === 'time') {
-    const timeScale = scaleUtc()
-      .domain(domain)
-      .range(range)
-    if (nice) timeScale.nice(tickCount)
-    return timeScale
-  }
-  if (type === 'log') {
-    const logScale = scaleLog()
-      .domain(domain)
-      .range(range)
-    if (nice) logScale.nice(tickCount)
-    return logScale
-  }
-  const linearScale = scaleLinear()
-    .domain(domain)
-    .range(range)
-  if (nice) linearScale.nice(tickCount)
-  return linearScale
+  const factory = (type === 'time' && scaleUtc) || (type === 'log' && scaleLog) || scaleLinear
+  const scale = createScale(factory, domain, range)
+  if (nice) scale.nice(tickCount)
+  return scale
 }
 
 export function getOrdinalInvert(scale) {
@@ -64,10 +55,7 @@ export function getAxisScale(props, key) {
     [`${key}Nice`]: nice = NICE,
   } = props
   if (type === 'ordinal') {
-    const ordinalScale = scalePoint()
-      .domain(domain)
-      .range(range)
-      .padding(0.5)
+    const ordinalScale = createScale(scalePoint, domain, range).padding(0.5)
     ordinalScale.invert = getOrdinalInvert(ordinalScale)
     return ordinalScale
   }
@@ -89,23 +77,12 @@ export function getDefaultScale(props, key) {
     [`${key}TickCount`]: tickCount = TICK_COUNT,
     [`${key}Nice`]: nice = NICE,
   } = props
-  switch (type) {
-    case 'ordinal':
-      return scaleOrdinal()
-        .domain(domain)
-        .range(range)
-    default:
-      return getBaseScales(type, domain, range, nice, tickCount)
-  }
+  return type === 'ordinal'
+    ? createScale(scaleOrdinal, domain, range)
+    : getBaseScales(type, domain, range, nice, tickCount)
 }
 
 // main exported function, used outside of the module on the Chart props transform flow
 export default function getScale(props, key) {
-  switch (key) {
-    case 'x':
-    case 'y':
-      return getAxisScale(props, key)
-    default:
-      return getDefaultScale(props, key)
-  }
+  return key === 'x' || key === 'y' ? getAxisScale(props, key) : getDefaultScale(props, key)
 }

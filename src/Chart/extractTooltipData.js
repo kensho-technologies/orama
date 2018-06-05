@@ -3,8 +3,8 @@
 import {get, head, isArray, isDate, isNaN, isString, map, omit, reduce, some, sortBy} from 'lodash'
 
 import {ACCESSORS_TOOLTIP_ORDER} from '../defaults'
-import {getTooltipFormat} from '../chartCore/getForKey'
 import getScaleKeyByHash from '../plot/getScaleKeyByHash'
+import getTooltipFormat from '../chartCore/getTooltipFormat'
 
 function getDatum(data) {
   if (isArray(data)) return head(data)

@@ -2,11 +2,10 @@
 
 export {THEME as DEFAULT_THEME} from './defaults'
 
+export {default as getTicks} from './chartCore/getTicks'
 export {default as labeler} from './utils/labeler'
 export {default as withCachedContext} from './utils/withCachedContext'
 export {default as getPath2D} from './utils/getPath2D'
-
-export {getTicks} from './chartCore/getForKey'
 
 export {default as areas} from './plot/areas'
 export {default as bars} from './plot/bars'

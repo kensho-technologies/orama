@@ -1,3 +1,5 @@
+// Copyright 2018 Kensho Technologies, LLC.
+
 function getDisplayName(Component) {
   return Component.displayName || Component.name || 'Component'
 }

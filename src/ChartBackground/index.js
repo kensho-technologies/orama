@@ -6,7 +6,7 @@ import {compact, findLast, filter, flatten, includes, map, sum} from 'lodash'
 
 import {BACKGROUND_OFFSET, THEME} from '../defaults'
 import getPath2D from '../utils/getPath2D'
-import {getTicks} from '../chartCore/getForKey'
+import getTicks from '../chartCore/getTicks'
 import inset from '../utils/rect/inset'
 import CanvasRender from '../CanvasRender'
 

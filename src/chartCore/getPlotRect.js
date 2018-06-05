@@ -12,7 +12,9 @@ import {
   SHOW_TICKS,
 } from '../defaults'
 
-import {getRange, getTickCount, getTicks} from './getForKey'
+import getRange from './getRange'
+import getTicks from './getTicks'
+import getTickCount from './getTickCount'
 
 /*
 `addPlotRect` calculate and assign the plotRect to a new props.

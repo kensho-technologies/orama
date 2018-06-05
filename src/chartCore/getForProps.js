@@ -2,8 +2,12 @@
 
 import {reduce} from 'lodash'
 
+import getDomain from './getDomain'
+import getRange from './getRange'
 import getScale from './getScale'
-import {getType, getDomain, getRange, getTickCount, getTickFormat} from './getForKey'
+import getTickCount from './getTickCount'
+import getTickFormat from './getTickFormat'
+import getType from './getType'
 
 /*
 Functions to be used on the Chart props transformation flow.
