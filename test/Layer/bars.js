@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {PLOT_RECT as plotRect} from '../../src/chartCore/defaults'
+import {PLOT_RECT as plotRect} from '../../src/defaults'
 import bars from '../../src/Layer/bars'
 
 const identity = d => d

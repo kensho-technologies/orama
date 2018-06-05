@@ -3,8 +3,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-import DEFAULT_THEME from '../defaultTheme'
-import {PROPORTION, WIDTH} from '../chartCore/defaults'
+import {THEME, PROPORTION, WIDTH} from '../defaults'
 import chartTransformFlow from '../chartCore/chartTransformFlow'
 import getLayers from '../chartCore/getLayers'
 import getLocalKeys from '../chartCore/getLocalKeys'
@@ -26,7 +25,7 @@ import {
 import ChartRender from './ChartRender'
 
 function getTheme(props) {
-  const theme = {...DEFAULT_THEME, ...props.theme}
+  const theme = {...THEME, ...props.theme}
   return {theme}
 }
 
@@ -81,7 +80,7 @@ Chart.propTypes = {
 
 Chart.defaultProps = {
   proportion: PROPORTION,
-  theme: DEFAULT_THEME,
+  theme: THEME,
   width: WIDTH,
 }
 

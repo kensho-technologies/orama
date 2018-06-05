@@ -3,7 +3,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-import DEFAULT_THEME from '../defaultTheme'
+import {THEME} from '../defaults'
 
 // component that positions and styles the left label of the `Chart` component
 export default function LeftLabel(props) {
@@ -35,5 +35,5 @@ LeftLabel.propTypes = {
 LeftLabel.defaultProps = {
   plotRect: {x: 0, y: 0, width: 0, height: 0},
   text: '',
-  theme: DEFAULT_THEME,
+  theme: THEME,
 }

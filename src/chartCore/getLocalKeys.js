@@ -2,7 +2,7 @@
 
 import {keys, map, pick} from 'lodash'
 
-import {ACCESSORS_NAMES} from './defaults'
+import {ACCESSORS_NAMES} from '../defaults'
 
 export function layerMapper(layer) {
   const localAccessors = pick(layer, layer.accessorsNames || ACCESSORS_NAMES)

@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {BACKGROUND_OFFSET} from '../chartCore/defaults'
+import {BACKGROUND_OFFSET} from '../defaults'
 
 export default function clearAndClip(props, ctx) {
   const {width, height, backgroundOffset = BACKGROUND_OFFSET} = props

@@ -6,8 +6,7 @@ import {it as test} from 'mocha'
 import * as React from 'react'
 
 import shallowRender from '../helpers/shallowRender'
-import theme from '../../src/defaultTheme'
-import {PLOT_RECT} from '../../src/chartCore/defaults'
+import {PLOT_RECT, THEME as theme} from '../../src/defaults'
 import ChartBackground, {
   getBackground,
   getXGuides,

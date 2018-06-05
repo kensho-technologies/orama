@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-export {default as DEFAULT_THEME} from './defaultTheme'
+export {THEME as DEFAULT_THEME} from './defaults'
 
 export {default as labeler} from './utils/labeler'
 export {default as withCachedContext} from './utils/withCachedContext'

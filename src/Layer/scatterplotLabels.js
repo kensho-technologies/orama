@@ -4,14 +4,14 @@ import {cloneDeep, flatten, map} from 'lodash'
 
 import withCachedContext from '../utils/withCachedContext'
 import labeler from '../utils/labeler'
-import DEFAULT_THEME from '../defaultTheme'
+import {THEME} from '../defaults'
 
 import getPlotValues from './getPlotValues'
 
 const localLabeler = labeler()
 
 function getTextRenderData(props, datum, idx) {
-  const {plotRect, theme = DEFAULT_THEME, scatterplotLabelsBounds = true} = props
+  const {plotRect, theme = THEME, scatterplotLabelsBounds = true} = props
   const values = getPlotValues(props, datum, idx, {
     text: '',
     fill: theme.textFill,

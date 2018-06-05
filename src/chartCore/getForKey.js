@@ -2,11 +2,11 @@
 
 import {isNumber, map, max, maxBy, min, reduce, toPairs, uniq} from 'lodash'
 
+import {DOMAIN, JS_TO_VIS_TYPE, TICK_COUNT, TICK_X_SPACE, TICK_Y_SPACE, TYPE} from '../defaults'
 import getMaxX from '../utils/rect/getMaxX'
 import getMaxY from '../utils/rect/getMaxY'
 
 import getScale from './getScale'
-import {DOMAIN, JS_TO_VIS_TYPE, TICK_COUNT, TICK_X_SPACE, TICK_Y_SPACE, TYPE} from './defaults'
 
 /*
 get methods that are used on the addMethods module

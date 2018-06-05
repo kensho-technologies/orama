@@ -4,13 +4,12 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import DEFAULT_THEME from '../../src/defaultTheme'
-import {BACKGROUND_OFFSET as backgroundOffset} from '../../src/chartCore/defaults'
+import {BACKGROUND_OFFSET as backgroundOffset, THEME} from '../../src/defaults'
 import {getMaxTextWidth, getPlotRect} from '../../src/chartCore/getPlotRect'
 
 test('Chart/getPlotRect.getMaxTextWidth', () => {
   const ticks = [{value: 'a', text: 'a'}, {value: 'amadeus', text: 'amadeus'}]
-  const actual = getMaxTextWidth(DEFAULT_THEME, ticks)
+  const actual = getMaxTextWidth(THEME, ticks)
   const expected = 7
   assert.deepEqual(actual, expected)
 })
@@ -20,7 +19,7 @@ test('chartCore/getPlotRect', () => {
     backgroundOffset,
     width: 500,
     height: 500,
-    theme: DEFAULT_THEME,
+    theme: THEME,
     yDomain: [0, 100],
     yType: 'linear',
     groupedKeys: ['x', 'y'],

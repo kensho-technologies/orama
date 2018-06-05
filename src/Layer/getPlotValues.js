@@ -2,7 +2,7 @@
 
 import {map, zipObject} from 'lodash'
 
-import {ACCESSORS_NAMES, ACCESSORS_NAMES_NON_SCALABLE} from '../chartCore/defaults'
+import {ACCESSORS_NAMES, ACCESSORS_NAMES_NON_SCALABLE} from '../defaults'
 
 import plotValue from './plotValue'
 

@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {PLOT_RECT as plotRect} from '../../src/chartCore/defaults'
+import {PLOT_RECT as plotRect} from '../../src/defaults'
 import ranges from '../../src/Layer/ranges'
 
 test('Chart/ranges 1', () => {

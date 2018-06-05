@@ -4,7 +4,7 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import {map} from 'lodash'
 
-import DEFAULT_THEME from './defaultTheme'
+import {THEME} from './defaults'
 import extractTooltipData from './Chart/extractTooltipData'
 
 const MAX_WIDTH = 320
@@ -94,7 +94,7 @@ TooltipInner.propTypes = {
 }
 
 TooltipInner.defaultProps = {
-  theme: DEFAULT_THEME,
+  theme: THEME,
   showKeys: false,
 }
 

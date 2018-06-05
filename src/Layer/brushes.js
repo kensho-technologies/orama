@@ -2,7 +2,7 @@
 
 import {map, flatten, isNumber} from 'lodash'
 
-import {BACKGROUND_OFFSET} from '../chartCore/defaults'
+import {BACKGROUND_OFFSET} from '../defaults'
 import getPath2D from '../utils/getPath2D'
 
 import {

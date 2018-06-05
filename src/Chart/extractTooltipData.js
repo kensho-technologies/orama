@@ -2,7 +2,7 @@
 
 import {get, head, isArray, isDate, isNaN, isString, map, omit, reduce, some, sortBy} from 'lodash'
 
-import {ACCESSORS_TOOLTIP_ORDER} from '../chartCore/defaults'
+import {ACCESSORS_TOOLTIP_ORDER} from '../defaults'
 import {getTooltipFormat} from '../chartCore/getForKey'
 import getScaleKeyByHash from '../Layer/getScaleKeyByHash'
 

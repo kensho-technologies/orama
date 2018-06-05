@@ -4,15 +4,15 @@ import {includes, sum} from 'lodash'
 
 import withCachedContext from '../utils/withCachedContext'
 import marginInset from '../utils/rect/marginInset'
-
-import {getRange, getTickCount, getTicks} from './getForKey'
 import {
   AXIS_LABEL_OFFSET,
   AXIS_TICK_OFFSET,
   BACKGROUND_OFFSET,
   SHOW_LABELS,
   SHOW_TICKS,
-} from './defaults'
+} from '../defaults'
+
+import {getRange, getTickCount, getTicks} from './getForKey'
 
 /*
 `addPlotRect` calculate and assign the plotRect to a new props.

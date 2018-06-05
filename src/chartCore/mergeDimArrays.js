@@ -2,7 +2,8 @@
 
 import {flatten, omit, reduce, values} from 'lodash'
 
-import {ACCESSORS_GROUPS} from './defaults'
+import {ACCESSORS_GROUPS} from '../defaults'
+
 import compactData from './compactData'
 
 export function omitGroups(dimArrays, accessorsGroups) {

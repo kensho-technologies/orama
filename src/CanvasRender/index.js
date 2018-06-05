@@ -3,8 +3,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-import DEFAULT_THEME from '../defaultTheme'
-import {WIDTH, HEIGHT} from '../chartCore/defaults'
+import {THEME, WIDTH, HEIGHT} from '../defaults'
 
 import basicRender from './basicRender'
 import SCALE_RATIO from './scaleRatio'
@@ -29,7 +28,7 @@ export default class CanvasRender extends React.PureComponent {
     render: basicRender,
     width: WIDTH,
     height: HEIGHT,
-    theme: DEFAULT_THEME,
+    theme: THEME,
   }
 
   canvasRef = React.createRef()

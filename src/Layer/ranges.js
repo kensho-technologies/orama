@@ -3,7 +3,7 @@
 import {map, flatten, isNumber} from 'lodash'
 
 import getPath2D from '../utils/getPath2D'
-import {BACKGROUND_OFFSET} from '../chartCore/defaults'
+import {BACKGROUND_OFFSET} from '../defaults'
 
 import getPlotValues from './getPlotValues'
 

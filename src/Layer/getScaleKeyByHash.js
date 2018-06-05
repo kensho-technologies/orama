@@ -1,6 +1,6 @@
 import {each, memoize, reduce} from 'lodash'
 
-import {ACCESSORS_GROUPS} from '../chartCore/defaults'
+import {ACCESSORS_GROUPS} from '../defaults'
 
 const generateAccessorGroupHash = memoize(accessorsGroups =>
   reduce(

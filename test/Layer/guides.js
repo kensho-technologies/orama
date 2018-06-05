@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {PLOT_RECT} from '../../src/chartCore/defaults'
+import {PLOT_RECT} from '../../src/defaults'
 import guides from '../../src/Layer/guides'
 
 test('Chart.guides', () => {

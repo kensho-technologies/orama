@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {ACCESSORS_GROUPS} from '../../src/chartCore/defaults'
+import {ACCESSORS_GROUPS} from '../../src/defaults'
 import mergeDimArrays, {omitGroups} from '../../src/chartCore/mergeDimArrays'
 
 test('Chart/mergeDimArrays.omitGroups 1', () => {

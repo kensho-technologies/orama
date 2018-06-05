@@ -6,10 +6,9 @@ import {it as test} from 'mocha'
 
 import pathMock from '../../src/utils/pathMock'
 import ctxMock from '../helpers/ctxMock'
-import DEFAULT_THEME from '../../src/defaultTheme'
+import {THEME as theme} from '../../src/defaults'
 import basicRender from '../../src/CanvasRender/basicRender'
 
-const theme = DEFAULT_THEME
 const plotRect = {x: 0, y: 0, width: 100, height: 100}
 
 test('CanvasRender/basicRender 1', () => {

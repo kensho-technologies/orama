@@ -4,8 +4,7 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import {compact, findLast, filter, flatten, includes, map, sum} from 'lodash'
 
-import DEFAULT_THEME from '../defaultTheme'
-import {BACKGROUND_OFFSET} from '../chartCore/defaults'
+import {BACKGROUND_OFFSET, THEME} from '../defaults'
 import getPath2D from '../utils/getPath2D'
 import {getTicks} from '../chartCore/getForKey'
 import inset from '../utils/rect/inset'
@@ -173,7 +172,7 @@ ChartBackground.propTypes = {
 }
 
 ChartBackground.defaultProps = {
-  theme: DEFAULT_THEME,
+  theme: THEME,
   xShowLabel: true,
   yShowLabel: true,
 }
