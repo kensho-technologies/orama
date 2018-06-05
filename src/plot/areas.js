@@ -1,6 +1,18 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {get, each, eachRight, find, findIndex, head, isEmpty, isFinite, last, reject} from 'lodash'
+import {
+  get,
+  each,
+  eachRight,
+  find,
+  findIndex,
+  head,
+  initial,
+  isEmpty,
+  isFinite,
+  last,
+  reject,
+} from 'lodash'
 
 import getMaxY from '../utils/rect/getMaxY'
 import getPath2D from '../utils/getPath2D'
@@ -13,18 +25,11 @@ export function isPlotNumber(value) {
   return Array.isArray(value) ? value.some(isFinite) : isFinite(value)
 }
 
-// returns (start, end] as opposed to [].slice() returning [start, end)
-const slice = (arr, start, end) => arr.slice(start + 1, end + 1)
-
-function splitBy(arr, iteratee) {
-  const {sliceFrom, returnArray} = arr.reduce(
-    (acc, val, idx) =>
-      iteratee(val, idx)
-        ? {sliceFrom: idx, returnArray: [...acc.returnArray, slice(arr, acc.sliceFrom, idx)]}
-        : acc,
-    {sliceFrom: 0, returnArray: []}
+export function splitBy(arr, iteratee) {
+  return arr.reduce(
+    (acc, val, idx) => (iteratee(val, idx) ? [...acc, []] : [...initial(acc), [...last(acc), val]]),
+    [[]]
   )
-  return [...returnArray, slice(arr, sliceFrom, arr.length)]
 }
 
 function isNullPoint(props) {

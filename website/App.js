@@ -16,6 +16,7 @@ import multiYAreas from './examples/multiYAreas'
 import points from './examples/points'
 import overrideValues from './examples/overrideValues'
 import ranges from './examples/ranges'
+import splitAreas from './examples/splitAreas'
 import text from './examples/text'
 import unevenBars from './examples/unevenBars'
 
@@ -54,6 +55,7 @@ export default function App() {
         <Example title="Function values" content={functionValues} />
         <Example title="Hover effect" content={hoverEffect} />
         <Example title="Custom theme" content={customTheme} />
+        <Example title="Gaps in Areas" content={splitAreas} />
         <Example title="Brush" content={brush} />
       </div>
     </React.StrictMode>
