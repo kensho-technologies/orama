@@ -7,6 +7,7 @@ import DEFAULT_THEME from '../defaultTheme'
 import {WIDTH, HEIGHT} from '../chartCore/defaults'
 
 import basicRender from './basicRender'
+import SCALE_RATIO from './scaleRatio'
 
 /**
  * Component create a Canvas and use the renderData for drawing geometries on it.
@@ -45,7 +46,7 @@ export default class CanvasRender extends React.PureComponent {
     if (!this.canvasRef.current) return
     const ctx = this.canvasRef.current.getContext('2d')
     ctx.save()
-    ctx.scale(2, 2)
+    ctx.scale(SCALE_RATIO, SCALE_RATIO)
     this.props.render(this.props, ctx)
     ctx.restore()
   }
@@ -53,6 +54,13 @@ export default class CanvasRender extends React.PureComponent {
   render() {
     const {height, width} = this.props
     const style = {display: 'block', position: 'absolute', height, width}
-    return <canvas height={height * 2} ref={this.canvasRef} style={style} width={width * 2} />
+    return (
+      <canvas
+        height={height * SCALE_RATIO}
+        ref={this.canvasRef}
+        style={style}
+        width={width * SCALE_RATIO}
+      />
+    )
   }
 }
