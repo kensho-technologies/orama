@@ -9,11 +9,11 @@ import wrapDisplayName from './wrapDisplayName'
 // this HOC wraps `BaseComponent` and adds a width prop when it's not present
 export default function withComputedWidth(BaseComponent) {
   return class WithComputedWidth extends React.Component {
+    static displayName = wrapDisplayName('withComputedWidth', BaseComponent)
+
     static propTypes = {
       width: PropTypes.number,
     }
-
-    static displayName = wrapDisplayName('withComputedWidth', BaseComponent)
 
     divRef = React.createRef()
 
