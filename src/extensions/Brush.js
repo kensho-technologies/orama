@@ -73,7 +73,7 @@ const getBrushData = props => ({
 })
 
 function updateBounds(props, childProps, partialBounds) {
-  const newBounds = reorder({...props._bounds, ...partialBounds})
+  const newBounds = reorder({...props.bounds, ...partialBounds})
   if (isOutOfBounds(newBounds, childProps.rootProps.plotRect)) {
     const constrainedBounds = constraintToPlotRect(newBounds, childProps)
     props.onUpdate(boundsToDomain(constrainedBounds, childProps))
@@ -86,7 +86,7 @@ function mouseDown(props, childProps) {
   const brushElementName = childProps.renderDatum && childProps.renderDatum.name
   if (!includes(BRUSH_ELEMENT_NAMES, brushElementName)) {
     props.onState({
-      _bounds: {
+      bounds: {
         x1: childProps.localMouse.x,
         y1: childProps.localMouse.y,
       },
@@ -95,7 +95,7 @@ function mouseDown(props, childProps) {
     props.onUpdate({xDomain: undefined, yDomain: undefined})
   } else {
     props.onState({
-      _bounds: domainToBounds(props, childProps),
+      bounds: domainToBounds(props, childProps),
       brushElementName,
     })
   }
@@ -146,7 +146,7 @@ function mouseDrag(props, childProps) {
     })
   } else {
     const bounds = reorder({
-      ...props._bounds,
+      ...props.bounds,
       x2: childProps.localMouse.x,
       y2: childProps.localMouse.y,
     })
