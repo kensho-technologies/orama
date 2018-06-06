@@ -1,7 +1,7 @@
 {
   "name": "orama",
   "version": "1.5.1",
-  "description": "React data visualization components",
+  "description": "Plug and play React charts",
   "main": "lib",
   "module": "es",
   "sideEffects": false,
@@ -16,6 +16,13 @@
   ],
   "repository": "kensho-technologies/orama",
   "author": "Luis Carli <info@luiscarli.com>",
+  "contributors": [
+    "Billy Janitsch <billyjanitsch@gmail.com> (https://billyjanitsch.com)",
+    "Jordan Hayashi <jordan@haya.sh> (https://jordanhayashi.com)",
+    "Joseph Ong",
+    "Martin Camacho",
+    "Nabeel El-Husayni <n.elhusayni@gmail.com> (https://nabeel-elhusayni.com)"
+  ],
   "license": "Apache-2.0",
   "devDependencies": {
     "@babel/cli": "7.0.0-beta.49",
@@ -47,9 +54,5 @@
     "d3-scale": "^2.0.0",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.1"
-  },
-  "engines": {
-    "node": ">=6.0.0",
-    "npm": ">=3.0.0"
   }
 }
