@@ -4,7 +4,7 @@ import {reduce} from 'lodash'
 
 import plotValue from './plotValue'
 
-export function getControlPoints(x0, y0, x1, y1, x2, y2, t) {
+function getControlPoints(x0, y0, x1, y1, x2, y2, t) {
   const d01 = Math.sqrt((x1 - x0) ** 2 + (y1 - y0) ** 2)
   const d12 = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
@@ -20,7 +20,7 @@ export function getControlPoints(x0, y0, x1, y1, x2, y2, t) {
   return [p1x, p1y, p2x, p2y]
 }
 
-export function splineInterpolation(props, data, path) {
+export default function splineInterpolation(props, data, path) {
   const t = 0.5
   const pts = reduce(
     data,

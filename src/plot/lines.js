@@ -1,13 +1,13 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {find, findIndex, get, head, isEmpty, isArray, last, reduce, some} from 'lodash'
+import {find, findIndex, get, head, isEmpty, last, map, reduce, some} from 'lodash'
 
 import getPath2D from '../utils/getPath2D'
 import notPlotNumber from '../utils/notPlotNumber'
 
 import plotValue from './plotValue'
 import getPlotValues from './getPlotValues'
-import {splineInterpolation} from './splineInterpolation'
+import splineInterpolation from './splineInterpolation'
 
 // `points` is used to generate render data for lines and multilines
 // it handles `x`, `y`, 'stroke'(color) and 'lineWisdth'
@@ -90,7 +90,6 @@ function getLineRenderData(props, data, idx) {
 
 export default function lines(props) {
   if (!props.xScale || !props.yScale) return undefined
-  return some(props.data, isArray)
-    ? reduce(props.data, (acc, data, idx) => acc.concat(getLineRenderData(props, data, idx)), [])
-    : [getLineRenderData(props, props.data)]
+  const data = some(props.data, Array.isArray) ? props.data : [props.data]
+  return map(data, (d, i) => getLineRenderData(props, d, i))
 }
