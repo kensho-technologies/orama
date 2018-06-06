@@ -4,7 +4,7 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 
 import hoverRender from '../CanvasRender/hoverRender'
-import TooltipWrapper from '../TooltipWrapper'
+import TooltipWrapper from '../tooltips/TooltipWrapper'
 import CanvasRender from '../CanvasRender'
 
 import getDataUnderMouse from './getDataUnderMouse'
