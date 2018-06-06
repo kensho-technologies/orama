@@ -15,6 +15,6 @@ import pathMock from './pathMock'
  * @return {Path2D | pathMock}
  */
 export default function getPath2D() {
-  if (global.Path2D) return new Path2D()
+  if (typeof Path2D === 'function') return new Path2D()
   return pathMock()
 }
