@@ -2,7 +2,15 @@
 
 import {update} from 'lodash'
 
-import {getTextWidth} from '../chartCore/getPlotRect'
+import withCachedContext from './withCachedContext'
+
+function getTextWidth(theme, string) {
+  return withCachedContext(ctx => {
+    if (!ctx) return string.length
+    ctx.font = `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`
+    return ctx.measureText(string).width
+  })
+}
 
 function getTextBounds(textObj, isRotated, theme) {
   const textAlign = textObj.textAlign || 'left'

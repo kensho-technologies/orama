@@ -26,14 +26,6 @@ addPlotRect({size})
 returns {size, plotRect}
 */
 
-export function getTextWidth(theme, string) {
-  return withCachedContext(ctx => {
-    if (!ctx) return string.length
-    ctx.font = `${theme.axisTickFontSize}px ${theme.fontFamilyMono}`
-    return ctx.measureText(string).width
-  })
-}
-
 // get the maximum width of the strings contained in `ticks`
 // uses a offscreen canvas for doing the measure and takes into consideration the theme object
 export function getMaxTextWidth(theme, ticks) {
