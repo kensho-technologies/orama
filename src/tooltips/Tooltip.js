@@ -4,8 +4,6 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import {map} from 'lodash'
 
-import {THEME} from '../defaults'
-
 import extractTooltipData from './extractTooltipData'
 
 const MAX_WIDTH = 320
@@ -15,13 +13,12 @@ const getPadding = theme => theme.tooltipFontSize / 2
 class TooltipInner extends React.Component {
   static propTypes = {
     showKeys: PropTypes.bool,
-    theme: PropTypes.object,
+    theme: PropTypes.object.isRequired,
     title: PropTypes.string,
     values: PropTypes.array,
   }
 
   static defaultProps = {
-    theme: THEME,
     showKeys: false,
   }
 

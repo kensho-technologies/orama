@@ -9,6 +9,6 @@ import shallowRender from '../helpers/shallowRender'
 import CanvasRender from '../../src/CanvasRender'
 
 test('CanvasRender', () => {
-  const component = shallowRender(<CanvasRender />)
+  const component = shallowRender(<CanvasRender render={() => {}} theme={{}} />)
   assert.strictEqual(component.type, 'canvas')
 })

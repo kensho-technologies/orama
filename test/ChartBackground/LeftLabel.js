@@ -9,6 +9,6 @@ import shallowRender from '../helpers/shallowRender'
 import LeftLabel from '../../src/ChartBackground/LeftLabel'
 
 test('LeftLabel', () => {
-  const component = shallowRender(<LeftLabel />)
+  const component = shallowRender(<LeftLabel plotRect={{}} theme={{}} />)
   assert.strictEqual(component.type, 'div')
 })

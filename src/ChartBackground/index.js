@@ -4,11 +4,12 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import {compact, findLast, filter, flatten, includes, map, sum} from 'lodash'
 
-import {BACKGROUND_OFFSET, THEME} from '../defaults'
+import {BACKGROUND_OFFSET} from '../defaults'
 import getPath2D from '../utils/getPath2D'
 import getTicks from '../chartCore/getTicks'
 import inset from '../utils/rect/inset'
 import CanvasRender from '../CanvasRender'
+import basicRender from '../CanvasRender/basicRender'
 
 import BottomLabel from './BottomLabel'
 import LeftLabel from './LeftLabel'
@@ -143,6 +144,7 @@ export default function ChartBackground(props) {
       <CanvasRender
         height={height}
         plotRect={plotRect}
+        render={basicRender}
         renderData={getBackgroundRenderData(props)}
         theme={theme}
         width={width}
@@ -160,8 +162,8 @@ export default function ChartBackground(props) {
 ChartBackground.propTypes = {
   height: PropTypes.number,
   onUpdate: PropTypes.func,
-  plotRect: PropTypes.object,
-  theme: PropTypes.object,
+  plotRect: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   width: PropTypes.number,
   x: PropTypes.string,
   xName: PropTypes.string,
@@ -172,7 +174,6 @@ ChartBackground.propTypes = {
 }
 
 ChartBackground.defaultProps = {
-  theme: THEME,
   xShowLabel: true,
   yShowLabel: true,
 }

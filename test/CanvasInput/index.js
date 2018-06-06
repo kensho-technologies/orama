@@ -10,7 +10,7 @@ import CanvasInput, {getMouseFromEvent} from '../../src/CanvasInput'
 
 test('CanvasInput', () => {
   const rootProps = {width: 500, height: 500}
-  assert(shallowRender(<CanvasInput onUpdate={() => undefined} rootProps={rootProps} />))
+  assert(shallowRender(<CanvasInput onUpdate={() => undefined} rootProps={rootProps} theme={{}} />))
 })
 
 test('CanvasInput/getMouseFromEvent 1', () => {

@@ -17,7 +17,7 @@ import ChartBackground, {
 } from '../../src/ChartBackground'
 
 test('ChartBackground', () => {
-  assert(shallowRender(<ChartBackground />))
+  assert(shallowRender(<ChartBackground plotRect={{}} theme={theme} />))
 })
 
 test('ChartBackground.getBackground', () => {

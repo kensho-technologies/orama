@@ -3,10 +3,8 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-import {THEME, WIDTH, HEIGHT} from '../defaults'
+import {WIDTH, HEIGHT} from '../defaults'
 import scaleRatio from '../constants/scaleRatio'
-
-import basicRender from './basicRender'
 
 /**
  * Component create a Canvas and use the renderData for drawing geometries on it.
@@ -17,18 +15,16 @@ export default class CanvasRender extends React.PureComponent {
     clip: PropTypes.bool,
     height: PropTypes.number,
     plotRect: PropTypes.object,
-    render: PropTypes.func,
+    render: PropTypes.func.isRequired,
     renderData: PropTypes.array,
     renderLayers: PropTypes.array,
-    theme: PropTypes.object,
+    theme: PropTypes.object.isRequired,
     width: PropTypes.number,
   }
 
   static defaultProps = {
-    render: basicRender,
     width: WIDTH,
     height: HEIGHT,
-    theme: THEME,
   }
 
   canvasRef = React.createRef()

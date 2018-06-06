@@ -3,33 +3,26 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-import {THEME} from '../defaults'
-
 // component that positions and styles the bottom label of the `Chart` component
 export default function BottomLabel(props) {
+  const {plotRect, text, theme} = props
   const style = {
     bottom: 0,
-    fontSize: props.theme.axisLabelFontSize,
-    fontWeight: props.theme.axisLabelFontWeight,
-    left: props.plotRect.x,
+    fontSize: theme.axisLabelFontSize,
+    fontWeight: theme.axisLabelFontWeight,
+    left: plotRect.x,
     overflow: 'hidden',
     position: 'absolute',
     textAlign: 'center',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    width: props.plotRect.width,
+    width: plotRect.width,
   }
-  return <div style={style}>{props.text}</div>
+  return <div style={style}>{text}</div>
 }
 
 BottomLabel.propTypes = {
-  plotRect: PropTypes.object,
+  plotRect: PropTypes.object.isRequired,
   text: PropTypes.string,
-  theme: PropTypes.object,
-}
-
-BottomLabel.defaultProps = {
-  plotRect: {x: 0, y: 0, width: 0, height: 0},
-  text: '',
-  theme: THEME,
+  theme: PropTypes.object.isRequired,
 }

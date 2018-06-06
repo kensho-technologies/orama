@@ -9,6 +9,6 @@ import Tooltip from '../../src/tooltips/Tooltip'
 import shallowRender from '../helpers/shallowRender'
 
 test('Tooltip', () => {
-  const component = shallowRender(<Tooltip hoverData={{}} layerProps={{}} />)
+  const component = shallowRender(<Tooltip hoverData={{}} layerProps={{}} theme={{}} />)
   assert.deepEqual(component.type.displayName, undefined)
 })

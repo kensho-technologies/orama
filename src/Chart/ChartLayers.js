@@ -6,20 +6,20 @@ import {map} from 'lodash'
 
 import basicRender from '../CanvasRender/basicRender'
 import CanvasRender from '../CanvasRender'
-import {THEME} from '../defaults'
 
 export default function ChartLayers(props) {
-  return map(props.renderLayers, (renderLayer, i) => (
-    <CanvasRender // basicRender
+  const {renderLayers, rootProps, theme} = props
+  return map(renderLayers, (renderLayer, i) => (
+    <CanvasRender
       clip
-      height={props.rootProps.height}
+      height={rootProps.height}
       key={i}
       layerProps={renderLayer.layerProps}
-      plotRect={props.rootProps.plotRect}
+      plotRect={rootProps.plotRect}
       render={basicRender}
       renderData={renderLayer.renderData}
-      theme={props.theme}
-      width={props.rootProps.width}
+      theme={theme}
+      width={rootProps.width}
     />
   ))
 }
@@ -27,9 +27,5 @@ export default function ChartLayers(props) {
 ChartLayers.propTypes = {
   renderLayers: PropTypes.array,
   rootProps: PropTypes.object,
-  theme: PropTypes.object,
-}
-
-ChartLayers.defaultProps = {
-  theme: THEME,
+  theme: PropTypes.object.isRequired,
 }

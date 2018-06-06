@@ -34,7 +34,7 @@ function handleCanvasInput(props, childProps) {
 }
 
 function Chart(props) {
-  const {memoizers, theme} = props
+  const {memoizers} = props
   const rootProps = chartTransformFlow(
     props,
     getTheme,
@@ -50,9 +50,9 @@ function Chart(props) {
   )
   const renderLayers = memoizers.getRenderLayers(rootProps)
   const style = {
-    background: theme.backgroundFill,
-    color: theme.textFill,
-    fontFamily: theme.fontFamily,
+    background: rootProps.theme.backgroundFill,
+    color: rootProps.theme.textFill,
+    fontFamily: rootProps.theme.fontFamily,
     height: rootProps.height,
     position: 'relative',
     userSelect: 'none',
@@ -82,7 +82,6 @@ Chart.propTypes = {
 
 Chart.defaultProps = {
   proportion: PROPORTION,
-  theme: THEME,
   width: WIDTH,
 }
 

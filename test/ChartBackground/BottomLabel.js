@@ -9,6 +9,6 @@ import shallowRender from '../helpers/shallowRender'
 import BottomLabel from '../../src/ChartBackground/BottomLabel'
 
 test('BottomLabel', () => {
-  const component = shallowRender(<BottomLabel />)
+  const component = shallowRender(<BottomLabel plotRect={{}} theme={{}} />)
   assert.deepEqual(component.type, 'div')
 })
