@@ -1,3 +1,5 @@
+// Copyright 2018 Kensho Technologies, LLC.
+
 import {each, memoize, reduce} from 'lodash'
 
 import {ACCESSORS_GROUPS} from '../defaults'
