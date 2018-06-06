@@ -34,12 +34,9 @@ test('getDataUnderMouse.findSecondPass', () => {
 
 test('getDataUnderMouse.findInRenderLayers', () => {
   assert.deepEqual(
-    findInRenderLayers({
-      ctx: ctxMock,
-      localMouse: {x: 0, y: 0},
-      renderLayers: [{type: 'area', layerProps: {}}],
-      findFunc: () => ({type: 'area'}),
-    }),
+    findInRenderLayers(ctxMock, {x: 0, y: 0}, [{type: 'area', layerProps: {}}], () => ({
+      type: 'area',
+    })),
     {
       renderDatum: {type: 'area'},
       hoverRenderData: [{type: 'area'}],
