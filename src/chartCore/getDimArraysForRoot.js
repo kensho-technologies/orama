@@ -2,7 +2,7 @@
 
 import {flatten, head, isEmpty, isString, map, mergeWith, reduce} from 'lodash'
 
-import compactData from './compactData'
+import compactData from '../utils/compactData'
 
 const checkUndefinedAccessor = value => !isString(value) || value === ''
 
