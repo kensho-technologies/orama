@@ -8,8 +8,6 @@ import {THEME} from '../defaults'
 // component that positions and styles the left label of the `Chart` component
 export default function LeftLabel(props) {
   const style = {
-    color: props.theme.textFill,
-    fontFamily: props.theme.fontFamily,
     fontSize: props.theme.axisLabelFontSize,
     fontWeight: props.theme.axisLabelFontWeight,
     left: 0,

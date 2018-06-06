@@ -9,8 +9,6 @@ import {THEME} from '../defaults'
 export default function BottomLabel(props) {
   const style = {
     bottom: 0,
-    color: props.theme.textFill,
-    fontFamily: props.theme.fontFamily,
     fontSize: props.theme.axisLabelFontSize,
     fontWeight: props.theme.axisLabelFontWeight,
     left: props.plotRect.x,

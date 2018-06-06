@@ -51,6 +51,8 @@ function Chart(props) {
   const renderLayers = memoizers.getRenderLayers(rootProps)
   const style = {
     background: theme.backgroundFill,
+    color: theme.textFill,
+    fontFamily: theme.fontFamily,
     height: rootProps.height,
     position: 'relative',
     userSelect: 'none',
