@@ -205,8 +205,8 @@ StatelessBrush.propTypes = {
   fillValue: PropTypes.number,
   lineWidthValue: PropTypes.number,
   strokeValue: PropTypes.string,
-  xDomain: PropTypes.array,
-  yDomain: PropTypes.array,
+  xDomain: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+  yDomain: PropTypes.array, // eslint-disable-line react/forbid-prop-types
 }
 
 StatelessBrush.defaultProps = {

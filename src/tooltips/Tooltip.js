@@ -4,6 +4,8 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import {map} from 'lodash'
 
+import * as CustomPropTypes from '../CustomPropTypes'
+
 import extractTooltipData from './extractTooltipData'
 
 const MAX_WIDTH = 320
@@ -13,9 +15,9 @@ const getPadding = theme => theme.tooltipFontSize / 2
 class TooltipInner extends React.Component {
   static propTypes = {
     showKeys: PropTypes.bool,
-    theme: PropTypes.object.isRequired,
+    theme: CustomPropTypes.theme.isRequired,
     title: PropTypes.string,
-    values: PropTypes.array,
+    values: PropTypes.arrayOf(PropTypes.object),
   }
 
   static defaultProps = {
@@ -83,6 +85,6 @@ export default function Tooltip(props) {
 
 Tooltip.propTypes = {
   hoverData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  layerProps: PropTypes.object,
-  theme: PropTypes.object,
+  layerProps: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  theme: CustomPropTypes.theme,
 }

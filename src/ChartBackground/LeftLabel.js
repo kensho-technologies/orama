@@ -3,6 +3,8 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
+import * as CustomPropTypes from '../CustomPropTypes'
+
 // component that positions and styles the left label of the `Chart` component
 export default function LeftLabel(props) {
   const {plotRect, text, theme} = props
@@ -24,7 +26,7 @@ export default function LeftLabel(props) {
 }
 
 LeftLabel.propTypes = {
-  plotRect: PropTypes.object.isRequired,
+  plotRect: CustomPropTypes.plotRect.isRequired,
   text: PropTypes.string,
-  theme: PropTypes.object.isRequired,
+  theme: CustomPropTypes.theme.isRequired,
 }

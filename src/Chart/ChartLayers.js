@@ -4,6 +4,7 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import {map} from 'lodash'
 
+import * as CustomPropTypes from '../CustomPropTypes'
 import basicRender from '../CanvasRender/basicRender'
 import CanvasRender from '../CanvasRender'
 
@@ -25,7 +26,7 @@ export default function ChartLayers(props) {
 }
 
 ChartLayers.propTypes = {
-  renderLayers: PropTypes.array,
-  rootProps: PropTypes.object,
-  theme: PropTypes.object.isRequired,
+  renderLayers: PropTypes.arrayOf(PropTypes.object),
+  rootProps: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  theme: CustomPropTypes.theme.isRequired,
 }

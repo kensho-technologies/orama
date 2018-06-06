@@ -3,6 +3,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
+import * as CustomPropTypes from '../CustomPropTypes'
 import isBrowser from '../constants/isBrowser'
 import withControlledState from '../enhancers/withControlledState'
 
@@ -52,10 +53,10 @@ function TooltipWrapper(props) {
 TooltipWrapper.propTypes = {
   height: PropTypes.number,
   hoverData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  layerProps: PropTypes.object,
-  mouse: PropTypes.object,
+  layerProps: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  mouse: PropTypes.shape({x: PropTypes.number, y: PropTypes.number}),
   onState: PropTypes.func.isRequired,
-  theme: PropTypes.object,
+  theme: CustomPropTypes.theme,
   width: PropTypes.number,
 }
 

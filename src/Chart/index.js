@@ -3,6 +3,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
+import * as CustomPropTypes from '../CustomPropTypes'
 import {THEME, PROPORTION, WIDTH} from '../defaults'
 import chartTransformFlow from '../chartCore/chartTransformFlow'
 import getLayers from '../chartCore/getLayers'
@@ -73,10 +74,10 @@ function Chart(props) {
 }
 
 Chart.propTypes = {
-  memoizers: PropTypes.object,
+  memoizers: PropTypes.objectOf(PropTypes.func),
   onUpdate: PropTypes.func,
   proportion: PropTypes.number,
-  theme: PropTypes.object,
+  theme: CustomPropTypes.theme,
   width: PropTypes.number,
 }
 

@@ -4,6 +4,7 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import {compact, findLast, filter, flatten, includes, map, sum} from 'lodash'
 
+import * as CustomPropTypes from '../CustomPropTypes'
 import {BACKGROUND_OFFSET} from '../defaults'
 import getPath2D from '../utils/getPath2D'
 import getTicks from '../chartCore/getTicks'
@@ -162,8 +163,8 @@ export default function ChartBackground(props) {
 ChartBackground.propTypes = {
   height: PropTypes.number,
   onUpdate: PropTypes.func,
-  plotRect: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
+  plotRect: CustomPropTypes.plotRect.isRequired,
+  theme: CustomPropTypes.theme.isRequired,
   width: PropTypes.number,
   x: PropTypes.string,
   xName: PropTypes.string,

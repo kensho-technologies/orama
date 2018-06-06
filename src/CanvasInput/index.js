@@ -3,6 +3,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
+import * as CustomPropTypes from '../CustomPropTypes'
 import hoverRender from '../CanvasRender/hoverRender'
 import TooltipWrapper from '../tooltips/TooltipWrapper'
 import CanvasRender from '../CanvasRender'
@@ -22,9 +23,9 @@ Get hovered and clicked data on renderData using a <canvas /> element
 export default class CanvasInput extends React.Component {
   static propTypes = {
     onUpdate: PropTypes.func.isRequired,
-    renderLayers: PropTypes.array,
-    rootProps: PropTypes.object,
-    theme: PropTypes.object,
+    renderLayers: PropTypes.arrayOf(PropTypes.object),
+    rootProps: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    theme: CustomPropTypes.theme,
   }
 
   static defaultProps = {
