@@ -104,7 +104,7 @@ function getRightMargin(props) {
   return backgroundOffset
 }
 
-export function getPlotRect(props) {
+export default function getPlotRect(props) {
   if (props.plotRect) return props
   const {
     backgroundOffset = BACKGROUND_OFFSET,

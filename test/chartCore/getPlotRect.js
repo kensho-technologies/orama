@@ -5,7 +5,7 @@ import assert from 'assert'
 import {it as test} from 'mocha'
 
 import {BACKGROUND_OFFSET as backgroundOffset, THEME} from '../../src/defaults'
-import {getMaxTextWidth, getPlotRect} from '../../src/chartCore/getPlotRect'
+import getPlotRect, {getMaxTextWidth} from '../../src/chartCore/getPlotRect'
 
 test('Chart/getPlotRect.getMaxTextWidth', () => {
   const ticks = [{value: 'a', text: 'a'}, {value: 'amadeus', text: 'amadeus'}]
