@@ -3,6 +3,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
+import isBrowser from './constants/isBrowser'
 import withControlledState from './enhancers/withControlledState'
 import BlockSize from './utilComponents/BlockSize'
 import Portal from './utilComponents/Portal'
@@ -20,8 +21,8 @@ function handleBlockSizeUpdate(props, childProps) {
 export function getTooltipPosition(props) {
   const {mouse, width, height} = props
   if (!width || !height) return {}
-  const innerHeight = typeof window === 'object' ? window.innerHeight : 1000
-  const innerWidth = typeof window === 'object' ? window.innerWidth : 1000
+  const innerHeight = isBrowser ? window.innerHeight : 1000
+  const innerWidth = isBrowser ? window.innerWidth : 1000
   const pos = {}
   if (mouse.x + width + TOOLTIP_MARGIN * 2 + 1 > innerWidth) {
     if (width + TOOLTIP_MARGIN * 2 > mouse.x) {

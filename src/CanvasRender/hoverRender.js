@@ -1,17 +1,15 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {each} from 'lodash'
+import {forEach} from 'lodash'
 
 import clearAndClip from './clearAndClip'
 
 export default function hoverRender(props, ctx) {
   const {renderData = [], theme} = props
-
   ctx.save()
   ctx.lineJoin = 'round'
   clearAndClip(props, ctx)
-
-  each(renderData, d => {
+  forEach(renderData, d => {
     if (!d) return
     if (d.type === 'line') {
       ctx.globalAlpha = d.hoverAlpha || 0.5

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import * as React from 'react'
 import {createPortal} from 'react-dom'
 
-const isBrowser = typeof document === 'object'
+import isBrowser from '../constants/isBrowser'
 
 export default class Portal extends React.Component {
   static propTypes = {

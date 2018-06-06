@@ -4,9 +4,9 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 
 import {THEME, WIDTH, HEIGHT} from '../defaults'
+import scaleRatio from '../constants/scaleRatio'
 
 import basicRender from './basicRender'
-import SCALE_RATIO from './scaleRatio'
 
 /**
  * Component create a Canvas and use the renderData for drawing geometries on it.
@@ -45,7 +45,7 @@ export default class CanvasRender extends React.PureComponent {
     if (!this.canvasRef.current) return
     const ctx = this.canvasRef.current.getContext('2d')
     ctx.save()
-    ctx.scale(SCALE_RATIO, SCALE_RATIO)
+    ctx.scale(scaleRatio, scaleRatio)
     this.props.render(this.props, ctx)
     ctx.restore()
   }
@@ -55,10 +55,10 @@ export default class CanvasRender extends React.PureComponent {
     const style = {display: 'block', position: 'absolute', height, width}
     return (
       <canvas
-        height={height * SCALE_RATIO}
+        height={height * scaleRatio}
         ref={this.canvasRef}
         style={style}
-        width={width * SCALE_RATIO}
+        width={width * scaleRatio}
       />
     )
   }

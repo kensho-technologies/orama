@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-const isBrowser = typeof document === 'object'
+import isBrowser from '../constants/isBrowser'
 
 // a shared, cached offscreen canvas
 const ctx = isBrowser && document.createElement('canvas').getContext('2d')

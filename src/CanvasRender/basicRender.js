@@ -1,6 +1,6 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {each, flatMap} from 'lodash'
+import {forEach, flatMap} from 'lodash'
 
 import notDatum from '../utils/notDatum'
 
@@ -19,9 +19,7 @@ function stroke(theme, ctx, d) {
   ctx.globalAlpha = d.strokeAlpha || d.alpha || theme.plotAlpha
   ctx.lineWidth = d.lineWidth || theme.plotLineWidth
   ctx.strokeStyle = d.stroke || theme.plotFill
-  if (d.lineDash) {
-    ctx.setLineDash(d.lineDash)
-  }
+  if (d.lineDash) ctx.setLineDash(d.lineDash)
   ctx.stroke(d.path2D)
 }
 
@@ -30,7 +28,7 @@ export default function basicRender(props, ctx) {
   ctx.save()
   ctx.lineJoin = 'round'
   clearAndClip(props, ctx)
-  each(getRenderObjects(props), d => {
+  forEach(getRenderObjects(props), d => {
     if (!d) return
     if (d.type === 'line') {
       stroke(theme, ctx, d)
