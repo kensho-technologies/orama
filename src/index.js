@@ -1,7 +1,5 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-export {THEME as DEFAULT_THEME} from './defaults'
-
 export {default as getTicks} from './chartCore/getTicks'
 export {default as labeler} from './utils/labeler'
 export {default as withCachedContext} from './utils/withCachedContext'
