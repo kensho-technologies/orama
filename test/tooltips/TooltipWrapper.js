@@ -4,23 +4,23 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {getTooltipPosition} from '../../src/tooltips/TooltipWrapper'
+import {getTooltipTransform} from '../../src/tooltips/TooltipWrapper'
 
-test('TooltipWrapper.getTooltipPosition 1', () => {
-  assert.deepEqual(getTooltipPosition(), {})
+test('TooltipWrapper.getTooltipTransform 1', () => {
+  assert.deepEqual(getTooltipTransform(), {})
 })
 
-test('TooltipWrapper.getTooltipPosition 2', () => {
-  const result = getTooltipPosition({x: 0, y: 0}, 400, 400)
-  assert.deepEqual(result, {left: 0, top: 0})
+test('TooltipWrapper.getTooltipTransform 2', () => {
+  const result = getTooltipTransform({x: 0, y: 0}, 400, 400)
+  assert.deepEqual(result, 'translate(15px, 15px)')
 })
 
-test('TooltipWrapper.getTooltipPosition 3', () => {
-  const result = getTooltipPosition({x: 900, y: 0}, 400, 400)
-  assert.deepEqual(result, {right: 100, top: 0})
+test('TooltipWrapper.getTooltipTransform 3', () => {
+  const result = getTooltipTransform({x: 900, y: 0}, 400, 400)
+  assert.deepEqual(result, 'translate(485px, 15px)')
 })
 
-test('TooltipWrapper.getTooltipPosition 4', () => {
-  const result = getTooltipPosition({x: 0, y: 900}, 400, 400)
-  assert.deepEqual(result, {bottom: 100, left: 0})
+test('TooltipWrapper.getTooltipTransform 4', () => {
+  const result = getTooltipTransform({x: 0, y: 900}, 400, 400)
+  assert.deepEqual(result, 'translate(15px, 485px)')
 })

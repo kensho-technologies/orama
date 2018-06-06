@@ -17,12 +17,13 @@ export default class Portal extends React.Component {
 
   componentDidMount() {
     if (isBrowser) {
-      this.containerElement = document.createElement('div')
-      this.containerElement.position = 'absolute'
-      this.containerElement.top = 0
-      this.containerElement.left = 0
-      this.containerElement.right = 0
-      document.body.appendChild(this.containerElement)
+      const containerElement = document.createElement('div')
+      containerElement.style.position = 'absolute'
+      containerElement.style.top = 0
+      containerElement.style.left = 0
+      containerElement.style.right = 0
+      document.body.appendChild(containerElement)
+      this.containerElement = containerElement
       this.setState({hasMounted: true})
     }
   }

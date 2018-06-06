@@ -58,6 +58,7 @@ function Chart(props) {
     position: 'relative',
     userSelect: 'none',
     width: '100%',
+    willChange: 'transform',
   }
   return (
     <div style={style}>
