@@ -11,7 +11,7 @@ import {THEME} from '../defaults'
 // used inside <Chart />
 export default function ChartRender(props) {
   return (
-    <div>
+    <React.Fragment>
       {map(props.renderLayers, (renderLayer, i) => (
         <CanvasRender // basicRender
           clip
@@ -25,7 +25,7 @@ export default function ChartRender(props) {
           width={props.rootProps.width}
         />
       ))}
-    </div>
+    </React.Fragment>
   )
 }
 

@@ -139,7 +139,7 @@ function getLabelText(props, key) {
 export default function ChartBackground(props) {
   const {height, plotRect, theme, width, xShowLabel, yShowLabel} = props
   return (
-    <div>
+    <React.Fragment>
       <CanvasRender
         height={height}
         plotRect={plotRect}
@@ -153,7 +153,7 @@ export default function ChartBackground(props) {
       {xShowLabel ? (
         <BottomLabel plotRect={plotRect} text={getLabelText(props, 'x')} theme={theme} />
       ) : null}
-    </div>
+    </React.Fragment>
   )
 }
 

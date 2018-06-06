@@ -186,7 +186,7 @@ export default class CanvasInput extends React.Component {
     const {rootProps, theme} = this.props
     const {hoverRenderData, hoverData, layerProps, mouse} = this.state
     return (
-      <div>
+      <React.Fragment>
         <CanvasRender // hoverRender
           clip
           height={rootProps.height}
@@ -226,7 +226,7 @@ export default class CanvasInput extends React.Component {
             theme={theme}
           />
         ) : null}
-      </div>
+      </React.Fragment>
     )
   }
 }

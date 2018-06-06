@@ -9,12 +9,8 @@ import shallowRender from '../helpers/shallowRender'
 import CanvasInput, {getMouseFromEvent} from '../../src/CanvasInput'
 
 test('CanvasInput', () => {
-  const rootProps = {
-    width: 500,
-    height: 500,
-  }
-  const component = shallowRender(<CanvasInput onUpdate={() => undefined} rootProps={rootProps} />)
-  assert.strictEqual(component.type, 'div')
+  const rootProps = {width: 500, height: 500}
+  assert(shallowRender(<CanvasInput onUpdate={() => undefined} rootProps={rootProps} />))
 })
 
 test('CanvasInput/getMouseFromEvent 1', () => {

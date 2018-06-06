@@ -17,15 +17,16 @@ import ChartBackground, {
 } from '../../src/ChartBackground'
 
 test('ChartBackground', () => {
-  const component = shallowRender(<ChartBackground />)
-  assert.deepEqual(component.type, 'div')
+  assert(shallowRender(<ChartBackground />))
 })
+
 test('ChartBackground.getBackground', () => {
   const props = {theme}
   const background = getBackground(props)
   assert.deepEqual(background.type, 'area')
   assert.deepEqual(background.fill, theme.plotBackgroundFill)
 })
+
 test('ChartBackground.getXGuides', () => {
   const props = {
     theme,
@@ -37,6 +38,7 @@ test('ChartBackground.getXGuides', () => {
   const xGuides = getXGuides(props)
   assert.deepEqual(xGuides[0].type, 'line')
 })
+
 test('ChartBackground.getYGuides', () => {
   const props = {
     theme,
@@ -48,6 +50,7 @@ test('ChartBackground.getYGuides', () => {
   const yGuides = getYGuides(props)
   assert.deepEqual(yGuides[0].type, 'line')
 })
+
 test('ChartBackground.getXText', () => {
   const props = {
     theme,
@@ -59,6 +62,7 @@ test('ChartBackground.getXText', () => {
   const xGuides = getXText(props)
   assert.deepEqual(xGuides[0].type, 'text')
 })
+
 test('ChartBackground.getYText', () => {
   const props = {
     theme,
@@ -70,6 +74,7 @@ test('ChartBackground.getYText', () => {
   const yGuides = getYText(props)
   assert.deepEqual(yGuides[0].type, 'text')
 })
+
 test('ChartBackground.getBackgroundRenderData', () => {
   const props = {
     theme,
