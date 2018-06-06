@@ -22,7 +22,7 @@ import {
   getMemoizeTypes,
 } from '../chartCore/memoize'
 
-import ChartRender from './ChartRender'
+import ChartLayers from './ChartLayers'
 
 function getTheme(props) {
   const theme = {...THEME, ...props.theme}
@@ -59,7 +59,7 @@ function Chart(props) {
   return (
     <div style={style}>
       <ChartBackground {...rootProps} />
-      <ChartRender renderLayers={renderLayers} rootProps={rootProps} theme={rootProps.theme} />
+      <ChartLayers renderLayers={renderLayers} rootProps={rootProps} theme={rootProps.theme} />
       <CanvasInput
         onUpdate={childProps => handleCanvasInput(props, childProps)}
         renderLayers={renderLayers}
