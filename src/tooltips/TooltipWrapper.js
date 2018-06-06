@@ -36,7 +36,7 @@ function TooltipWrapper(props) {
   const {Tooltip = DefaultTooltip} = layerProps
   const style = {
     pointerEvents: 'none',
-    position: 'absolute',
+    position: 'fixed',
     zIndex: 999999,
     transform: getTooltipTransform(mouse, height, width),
   }
