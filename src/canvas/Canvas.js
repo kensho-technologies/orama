@@ -4,24 +4,18 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 
 import * as CustomPropTypes from '../CustomPropTypes'
-import {WIDTH, HEIGHT} from '../defaults'
 import scaleRatio from '../constants/scaleRatio'
 
 export default class Canvas extends React.Component {
   static propTypes = {
     clip: PropTypes.bool,
-    height: PropTypes.number,
+    height: PropTypes.number.isRequired,
     plotRect: CustomPropTypes.plotRect,
     render: PropTypes.func.isRequired,
     renderData: PropTypes.array, // eslint-disable-line react/forbid-prop-types
     renderLayers: PropTypes.arrayOf(PropTypes.object),
     theme: CustomPropTypes.theme.isRequired,
-    width: PropTypes.number,
-  }
-
-  static defaultProps = {
-    width: WIDTH,
-    height: HEIGHT,
+    width: PropTypes.number.isRequired,
   }
 
   canvasRef = React.createRef()

@@ -4,12 +4,12 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 
 import * as CustomPropTypes from '../CustomPropTypes'
-import {THEME, PROPORTION, WIDTH} from '../defaults'
+import {THEME} from '../defaults'
+import safeInvoke from '../utils/safeInvoke'
 import chartTransformFlow from '../chartCore/chartTransformFlow'
 import getLayers from '../chartCore/getLayers'
 import getLocalKeys from '../chartCore/getLocalKeys'
 import withComputedWidth from '../enhancers/withComputedWidth'
-import withControlledState from '../enhancers/withControlledState'
 import CanvasInput from '../CanvasInput'
 import ChartBackground from '../ChartBackground'
 import {
@@ -30,74 +30,78 @@ function getTheme(props) {
   return {theme}
 }
 
-function handleCanvasInput(props, childProps) {
-  props.onUpdate(childProps)
-}
-
-function Chart(props) {
-  const {memoizers} = props
-  const rootProps = chartTransformFlow(
-    props,
-    getTheme,
-    getLayers,
-    getLocalKeys,
-    memoizers.getDimArrays,
-    memoizers.getTypes,
-    memoizers.getDomains,
-    memoizers.getPlotRect,
-    memoizers.getRanges,
-    memoizers.getTickCounts,
-    memoizers.getScales
-  )
-  const renderLayers = memoizers.getRenderLayers(rootProps)
-  const style = {
-    background: rootProps.theme.backgroundFill,
-    color: rootProps.theme.textFill,
-    fontFamily: rootProps.theme.fontFamily,
-    height: rootProps.height,
-    position: 'relative',
-    userSelect: 'none',
-    width: '100%',
-    willChange: 'transform',
+class Chart extends React.Component {
+  static propTypes = {
+    height: PropTypes.number,
+    onUpdate: PropTypes.func,
+    proportion: PropTypes.number,
+    theme: CustomPropTypes.theme,
+    width: PropTypes.number.isRequired,
   }
-  return (
-    <div style={style}>
-      <ChartBackground {...rootProps} />
-      <ChartLayers renderLayers={renderLayers} rootProps={rootProps} theme={rootProps.theme} />
-      <CanvasInput
-        onUpdate={childProps => handleCanvasInput(props, childProps)}
-        renderLayers={renderLayers}
-        rootProps={rootProps}
-        theme={rootProps.theme}
-      />
-    </div>
-  )
+
+  static defaultProps = {
+    proportion: 0.5,
+  }
+
+  handleUpdate = childProps => {
+    safeInvoke(this.props.onUpdate, childProps)
+  }
+
+  getDimArrays = getMemoizeDimArrays()
+
+  getTypes = getMemoizeTypes()
+
+  getDomains = getMemoizeDomains()
+
+  getPlotRect = getMemoizePlotRect()
+
+  getRanges = getMemoizeRanges()
+
+  getTickCounts = getMemoizeTickCounts()
+
+  getScales = getMemoizeScales()
+
+  getRenderLayers = getMemoizeRenderLayers()
+
+  render() {
+    const rootProps = chartTransformFlow(
+      this.props,
+      getTheme,
+      getLayers,
+      getLocalKeys,
+      this.getDimArrays,
+      this.getTypes,
+      this.getDomains,
+      this.getPlotRect,
+      this.getRanges,
+      this.getTickCounts,
+      this.getScales
+    )
+    const renderLayers = this.getRenderLayers(rootProps)
+    const {height, theme, width} = rootProps
+    const style = {
+      background: theme.backgroundFill,
+      color: theme.textFill,
+      fontFamily: theme.fontFamily,
+      height,
+      position: 'relative',
+      userSelect: 'none',
+      width,
+      willChange: 'transform',
+    }
+    return (
+      <div style={style}>
+        <ChartBackground {...rootProps} />
+        <ChartLayers renderLayers={renderLayers} rootProps={rootProps} theme={theme} />
+        <CanvasInput
+          onUpdate={this.handleUpdate}
+          renderLayers={renderLayers}
+          rootProps={rootProps}
+          theme={theme}
+        />
+      </div>
+    )
+  }
 }
 
-Chart.propTypes = {
-  memoizers: PropTypes.objectOf(PropTypes.func),
-  onUpdate: PropTypes.func,
-  proportion: PropTypes.number,
-  theme: CustomPropTypes.theme,
-  width: PropTypes.number,
-}
-
-Chart.defaultProps = {
-  proportion: PROPORTION,
-  width: WIDTH,
-}
-
-const ControlledChart = withControlledState(Chart, () => ({
-  memoizers: {
-    getDimArrays: getMemoizeDimArrays(),
-    getTypes: getMemoizeTypes(),
-    getDomains: getMemoizeDomains(),
-    getPlotRect: getMemoizePlotRect(),
-    getRanges: getMemoizeRanges(),
-    getTickCounts: getMemoizeTickCounts(),
-    getScales: getMemoizeScales(),
-    getRenderLayers: getMemoizeRenderLayers(),
-  },
-}))
-
-export default withComputedWidth(ControlledChart)
+export default withComputedWidth(Chart)

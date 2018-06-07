@@ -61,9 +61,6 @@ export const JS_TO_VIS_TYPE = {
   date: 'time',
 }
 
-export const WIDTH = 500
-export const HEIGHT = 500
-export const PROPORTION = 0.5
 export const BACKGROUND_OFFSET = 15
 export const RANGE = [0, 1]
 export const DOMAIN = [0, 1]
