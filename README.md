@@ -28,7 +28,7 @@ $ npm install orama
 ```js
 import {Chart, Lines} from 'orama'
 
-var data = [
+const data = [
   {date: new Date('2010-01-01'), value: 10},
   {date: new Date('2010-02-01'), value: 17},
   {date: new Date('2010-03-01'), value: 9},
@@ -36,7 +36,7 @@ var data = [
   {date: new Date('2010-05-01'), value: 20},
 ]
 
-var MyChart = () => (
+const chart = (
   <Chart>
     <Lines data={data} x="date" y="value" />
   </Chart>
@@ -56,13 +56,13 @@ To map the values from the key `date` in the data objects to the `x` position of
 ```js
 import {Chart, Points} from 'orama'
 
-var data = [
+const data = [
   {date: new Date('2010-01-01')},
   {date: new Date('2010-02-01')},
   {date: new Date('2010-03-01')},
 ]
 
-var MyChart = () => (
+const chart = (
   <Chart>
     <Points data={data} x="date" />
   </Chart>
@@ -142,7 +142,7 @@ It accepts the following dimensions: `x`, `y`, `fill`, `stroke`, `lineWidth`, `l
 ```js
 import {Chart, Lines} from 'orama'
 
-var data = [
+const data = [
   [
     {date: new Date('2010-01-01'), value: 10, name: 'A'},
     {date: new Date('2010-02-01'), value: 17, name: 'A'},
@@ -155,7 +155,7 @@ var data = [
   ],
 ]
 
-var MyChart = () => (
+const chart = (
   <Chart>
     <Lines data={data} x="date" y="value" stroke="name" />
   </Chart>
@@ -174,13 +174,13 @@ To map the lower bound of the area to the data, use the `x0` or `y0` accessors.
 ```js
 import {Chart, Areas} from 'orama'
 
-var data = [
+const data = [
   {date: new Date('2010-01-01'), value: 10},
   {date: new Date('2010-02-01'), value: 17},
   {date: new Date('2010-03-01'), value: 3},
 ]
 
-var MyChart = () => (
+const chart = (
   <Chart yZeroBased>
     <Areas data={data} x="date" y="value" />
   </Chart>
@@ -197,13 +197,13 @@ It accepts the following dimensions: `x`, `y`, `radius`, `fill`, `stroke`, `line
 ```js
 import {Chart, Points} from 'orama'
 
-var data = [
+const data = [
   {value1: 16, value2: 10, size: 1},
   {value1: 13, value2: 17, size: 5},
   {value1: 15, value2: 14, size: 10},
 ]
 
-var MyChart = () => (
+const chart = (
   <Chart>
     <Points data={data} x="value1" y="value2" radius="size" />
   </Chart>
@@ -222,13 +222,13 @@ You can define the exact start and end of the bars by using the `x1`, `x2`, `y1`
 ```js
 import {Chart, Bars} from 'orama'
 
-var data = [
+const data = [
   {type: 'type 1', value: 10},
   {type: 'type 2', value: 20},
   {type: 'type 3', value: -7},
 ]
 
-var MyChart = () => (
+const chart = (
   <Chart yZeroBased>
     <Bars data={data} x="type" y="value" />
   </Chart>
@@ -245,9 +245,9 @@ It accepts the following dimensions: `x`, `y`, `stroke`, `lineWidth`, `lineDash`
 ```js
 import {Chart, Guides} from 'orama'
 
-var data = [{x: 1}, {x: 5}, {x: 8}, {x: 10}, {y: 1}, {y: 5}, {y: 8}, {y: 10}]
+const data = [{x: 1}, {x: 5}, {x: 8}, {x: 10}, {y: 1}, {y: 5}, {y: 8}, {y: 10}]
 
-var MyChart = () => (
+const chart = (
   <Chart yZeroBased>
     <Guides
       data={data}
@@ -270,14 +270,14 @@ It accepts the following dimensions: `x1`, `x2`, `y1`, `y2`, `fill`, `stroke`, `
 ```js
 import {Chart, Ranges} from 'orama'
 
-var data = [
+const data = [
   {start: 1, end: 5},
   {start: 10, end: 20},
   {start: 40, end: 50},
   {start: 60, end: 80},
 ]
 
-var MyChart = () => (
+const chart = (
   <Chart>
     <Ranges
       data={data}
@@ -301,13 +301,13 @@ It accepts the following dimensions: `x`, `y`, `alpha`, `text`, `textAlign`, `xO
 ```js
 import {Chart, Points, Text} from 'orama'
 
-var data = [
+const data = [
   {date: new Date('2010-01-01'), value: 10, letter: 'A'},
   {date: new Date('2010-02-01'), value: 17, letter: 'B'},
   {date: new Date('2010-03-01'), value: 9, letter: 'C'},
 ]
 
-var MyChart = () => (
+const chart = (
   <Chart>
     <Points data={data} x="date" y="value" />
     <Text
@@ -331,7 +331,7 @@ The theme can be configured by passing a `theme` prop to the `<Chart />` compone
 ```js
 import {Chart, Points} from 'orama'
 
-var data = [
+const data = [
   {date: new Date('2010-01-01'), value: 10},
   {date: new Date('2010-02-01'), value: 17},
   {date: new Date('2010-03-01'), value: 9},
@@ -339,7 +339,7 @@ var data = [
   {date: new Date('2010-05-01'), value: 10},
 ]
 
-var theme = {
+const theme = {
   textFill: 'white',
   backgroundFill: 'black',
   plotBackgroundFill: 'hsl(0, 0%, 20%)',
@@ -348,7 +348,7 @@ var theme = {
   plotFill: 'white',
 }
 
-var MyChart = () => (
+const chart = (
   <Chart theme={theme}>
     <Points data={data} x="date" y="value" />
   </Chart>
