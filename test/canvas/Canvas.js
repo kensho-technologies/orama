@@ -6,9 +6,9 @@ import {it as test} from 'mocha'
 import * as React from 'react'
 
 import shallowRender from '../helpers/shallowRender'
-import CanvasRender from '../../src/CanvasRender'
+import Canvas from '../../src/canvas/Canvas'
 
-test('CanvasRender', () => {
-  const component = shallowRender(<CanvasRender render={() => {}} theme={{}} />)
+test('Canvas', () => {
+  const component = shallowRender(<Canvas render={() => {}} theme={{}} />)
   assert.strictEqual(component.type, 'canvas')
 })

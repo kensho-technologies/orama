@@ -4,9 +4,9 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 
 import * as CustomPropTypes from '../CustomPropTypes'
-import hoverRender from '../CanvasRender/hoverRender'
+import Canvas from '../canvas/Canvas'
+import hoverRender from '../canvas/hoverRender'
 import TooltipWrapper from '../tooltips/TooltipWrapper'
-import CanvasRender from '../CanvasRender'
 
 import getDataUnderMouse from './getDataUnderMouse'
 import runHoverSolverOn from './runHoverSolverOn'
@@ -169,7 +169,7 @@ export default class CanvasInput extends React.Component {
     const {hoverRenderData, hoverData, layerProps, mouse} = this.state
     return (
       <React.Fragment>
-        <CanvasRender
+        <Canvas
           clip
           height={rootProps.height}
           plotRect={rootProps.plotRect}

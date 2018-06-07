@@ -7,11 +7,7 @@ import * as CustomPropTypes from '../CustomPropTypes'
 import {WIDTH, HEIGHT} from '../defaults'
 import scaleRatio from '../constants/scaleRatio'
 
-/**
- * Component create a Canvas and use the renderData for drawing geometries on it.
- * The renderData follows a specific format.
- */
-export default class CanvasRender extends React.PureComponent {
+export default class Canvas extends React.Component {
   static propTypes = {
     clip: PropTypes.bool,
     height: PropTypes.number,

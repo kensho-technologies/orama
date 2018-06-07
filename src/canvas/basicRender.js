@@ -6,12 +6,10 @@ import notDatum from '../utils/notDatum'
 
 import clearAndClip from './clearAndClip'
 
-const extractRenderDataFromLayers = renderLayers => flatMap(renderLayers, 'renderData')
-
 function getRenderObjects(props) {
   const {renderData, renderLayers} = props
   if (renderData) return renderData
-  if (renderLayers) return extractRenderDataFromLayers(renderLayers)
+  if (renderLayers) return flatMap(renderLayers, 'renderData')
   return []
 }
 

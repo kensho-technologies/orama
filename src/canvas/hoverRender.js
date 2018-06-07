@@ -5,7 +5,7 @@ import {forEach} from 'lodash'
 import clearAndClip from './clearAndClip'
 
 export default function hoverRender(props, ctx) {
-  const {renderData = [], theme} = props
+  const {renderData, theme} = props
   ctx.save()
   ctx.lineJoin = 'round'
   clearAndClip(props, ctx)

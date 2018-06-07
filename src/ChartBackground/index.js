@@ -9,8 +9,8 @@ import {BACKGROUND_OFFSET} from '../defaults'
 import getPath2D from '../utils/getPath2D'
 import getTicks from '../chartCore/getTicks'
 import inset from '../utils/rect/inset'
-import CanvasRender from '../CanvasRender'
-import basicRender from '../CanvasRender/basicRender'
+import Canvas from '../canvas/Canvas'
+import basicRender from '../canvas/basicRender'
 
 import BottomLabel from './BottomLabel'
 import LeftLabel from './LeftLabel'
@@ -142,7 +142,7 @@ export default function ChartBackground(props) {
   const {height, plotRect, theme, width, xShowLabel, yShowLabel} = props
   return (
     <React.Fragment>
-      <CanvasRender
+      <Canvas
         height={height}
         plotRect={plotRect}
         render={basicRender}
@@ -150,12 +150,12 @@ export default function ChartBackground(props) {
         theme={theme}
         width={width}
       />
-      {yShowLabel ? (
+      {yShowLabel && (
         <LeftLabel plotRect={plotRect} text={getLabelText(props, 'y')} theme={theme} />
-      ) : null}
-      {xShowLabel ? (
-        <BottomLabel plotRect={plotRect} text={getLabelText(props, 'x')} theme={theme} />
-      ) : null}
+      )}
+      {xShowLabel && (
+        <BottomLabel plotRect={plotRect} text={getLabelText(props, 'y')} theme={theme} />
+      )}
     </React.Fragment>
   )
 }

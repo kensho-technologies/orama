@@ -5,7 +5,7 @@ import assert from 'assert'
 import {it as test} from 'mocha'
 
 import ctxMock from '../helpers/ctxMock'
-import clearAndClip from '../../src/CanvasRender/clearAndClip'
+import clearAndClip from '../../src/canvas/clearAndClip'
 
 const plotRect = {x: 0, y: 0, width: 500, height: 500}
 
