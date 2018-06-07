@@ -156,7 +156,6 @@ export default class CanvasInput extends React.Component {
   handleMouseLeave = () => {
     this.props.onUpdate({action: 'mouseLeave'})
     this.setState({
-      mouse: null,
       hoverRenderData: null,
       hoverData: null,
       layerProps: null,
