@@ -111,7 +111,7 @@ export default class CanvasInput extends React.Component {
       prevState => {
         const mouseDelta = prevState.mouse
           ? {x: prevState.mouse.x - mouse.x, y: prevState.mouse.y - mouse.y}
-          : null
+          : {x: 0, y: 0}
         return {
           mouseDrag: !!prevState.mouseDown,
           mouse,
