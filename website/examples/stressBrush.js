@@ -15,14 +15,12 @@ class StressBrush extends React.Component {
 
   render() {
     const {xDomain} = this.state
-    const filteredData = data.filter(
-      ({date}) => (xDomain ? +date >= +xDomain[0] && +date <= xDomain[1] : true)
-    )
+    const selectedData = data.filter(d => xDomain && d.date >= xDomain[0] && d.date <= xDomain[1])
     return (
       <React.Fragment>
         <Chart height={224}>
-          <Lines data={filteredData} x="date" y="value" strokeValue="steelblue" interpolate />
-          <Points data={filteredData} x="date" y="value" fillValue="steelblue" />
+          <Lines data={selectedData} x="date" y="value" strokeValue="steelblue" interpolate />
+          <Points data={selectedData} x="date" y="value" fillValue="steelblue" />
         </Chart>
         <Brush onUpdate={this.handleBrush} xDomain={xDomain} fillAlphaValue={0.2}>
           <Chart

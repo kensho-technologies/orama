@@ -154,7 +154,7 @@ export default function ChartBackground(props) {
         <LeftLabel plotRect={plotRect} text={getLabelText(props, 'y')} theme={theme} />
       )}
       {xShowLabel && (
-        <BottomLabel plotRect={plotRect} text={getLabelText(props, 'y')} theme={theme} />
+        <BottomLabel plotRect={plotRect} text={getLabelText(props, 'x')} theme={theme} />
       )}
     </React.Fragment>
   )
