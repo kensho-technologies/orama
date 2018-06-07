@@ -13,10 +13,12 @@ import interpolatedLines from './examples/interpolatedLines'
 import lines from './examples/lines'
 import linesAndPoints from './examples/linesAndPoints'
 import multiYAreas from './examples/multiYAreas'
-import points from './examples/points'
 import overrideValues from './examples/overrideValues'
+import points from './examples/points'
 import ranges from './examples/ranges'
 import splitAreas from './examples/splitAreas'
+import stress from './examples/stress'
+import stressBrush from './examples/stressBrush'
 import text from './examples/text'
 import unevenBars from './examples/unevenBars'
 
@@ -57,6 +59,8 @@ export default function App() {
         <Example title="Custom theme" content={customTheme} />
         <Example title="Gaps in Areas" content={splitAreas} />
         <Example title="Brush" content={brush} />
+        <Example title="Large data set" content={stress} />
+        <Example title="Complex interaction" content={stressBrush} />
       </div>
     </React.StrictMode>
   )
