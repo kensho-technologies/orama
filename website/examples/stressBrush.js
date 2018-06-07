@@ -15,7 +15,9 @@ class StressBrush extends React.Component {
 
   render() {
     const {xDomain} = this.state
-    const selectedData = data.filter(d => xDomain && d.date >= xDomain[0] && d.date <= xDomain[1])
+    const selectedData = xDomain
+      ? data.filter(d => d.date >= xDomain[0] && d.date <= xDomain[1])
+      : data
     return (
       <React.Fragment>
         <Chart height={224}>
