@@ -2,6 +2,13 @@
 
 import PropTypes from 'prop-types'
 
+export const margin = PropTypes.shape({
+  bottom: PropTypes.number,
+  left: PropTypes.number,
+  right: PropTypes.number,
+  top: PropTypes.number,
+})
+
 export const plotRect = PropTypes.shape({
   height: PropTypes.number,
   width: PropTypes.number,

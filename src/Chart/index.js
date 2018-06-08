@@ -34,6 +34,7 @@ class Chart extends React.Component {
   static propTypes = {
     backgroundOffset: PropTypes.number,
     height: PropTypes.number,
+    margin: CustomPropTypes.margin,
     onUpdate: PropTypes.func,
     proportion: PropTypes.number,
     theme: CustomPropTypes.theme,
@@ -46,6 +47,7 @@ class Chart extends React.Component {
 
   static defaultProps = {
     backgroundOffset: 15,
+    margin: {},
     proportion: 0.5,
     xShowLabel: true,
     xShowTicks: true,

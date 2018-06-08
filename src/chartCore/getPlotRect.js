@@ -30,7 +30,7 @@ export function getMaxTextWidth(theme, ticks) {
 }
 
 function getTopMargin(props) {
-  const {backgroundOffset, margin = {}, theme, y, yShowTicks} = props
+  const {backgroundOffset, margin, theme, y, yShowTicks} = props
   if (margin.top !== undefined) return margin.top + backgroundOffset
   if (yShowTicks === false || !y) return backgroundOffset
   return Math.max(backgroundOffset, theme.axisTickFontSize / 2)
@@ -41,7 +41,7 @@ function getBottomMargin(props) {
   const {
     backgroundOffset,
     groupedKeys,
-    margin = {},
+    margin,
     xShowTicks,
     xShowLabel,
     xTickOffset = theme.axisTickFontSize * (theme.lineHeight - 0.75),
@@ -61,7 +61,7 @@ function getLeftMargin(props) {
   const {
     backgroundOffset,
     groupedKeys,
-    margin = {},
+    margin,
     yShowTicks,
     yShowLabel,
     yTickOffset = theme.axisTickFontSize * (theme.lineHeight - 0.75),
@@ -85,7 +85,7 @@ function getLeftMargin(props) {
 }
 
 function getRightMargin(props) {
-  const {backgroundOffset, margin = {}, x, xShowTicks} = props
+  const {backgroundOffset, margin, x, xShowTicks} = props
   if (margin.right !== undefined) return margin.right + backgroundOffset
   if (!x || !xShowTicks) return backgroundOffset
   return backgroundOffset

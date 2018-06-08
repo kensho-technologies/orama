@@ -19,6 +19,7 @@ test('chartCore/getPlotRect', () => {
     backgroundOffset: 15,
     width: 500,
     height: 500,
+    margin: {},
     theme: THEME,
     yDomain: [0, 100],
     yType: 'linear',

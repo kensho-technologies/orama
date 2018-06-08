@@ -4,6 +4,7 @@ import * as React from 'react'
 import areas from './examples/areas'
 import bars from './examples/bars'
 import brush from './examples/brush'
+import customMargin from './examples/customMargin'
 import customTheme from './examples/customTheme'
 import functionValues from './examples/functionValues'
 import guides from './examples/guides'
@@ -56,6 +57,7 @@ export default function App() {
         <Example title="Override values" content={overrideValues} />
         <Example title="Function values" content={functionValues} />
         <Example title="Hover effect" content={hoverEffect} />
+        <Example title="Custom margin" content={customMargin} />
         <Example title="Custom theme" content={customTheme} />
         <Example title="Gaps in Areas" content={splitAreas} />
         <Example title="Brush" content={brush} />
