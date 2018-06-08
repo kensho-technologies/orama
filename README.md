@@ -5,11 +5,11 @@
 
 Plug and play [React](https://facebook.github.io/react/) charts.
 
-* Responsive layout
-* Automatic data type extraction
-* Freely composable marks
-* Canvas rendering and caching optimizations
-* Configurable theme
+- Responsive layout
+- Automatic data type extraction
+- Freely composable marks
+- Canvas rendering and caching optimizations
+- Configurable theme
 
 Orama has been powering [Kensho](https://kensho.com)'s charts in production for more than a year.
 
@@ -87,7 +87,7 @@ The chart component can be configured with the following properties:
 | `proportion`       | **Number = 0.5**<br />The height of the chart is calculated by multiplying the `width` by the `proportion` value. If `height` is defined, this value is ignored.                                                                                                                                                                                                                                                          |
 | `height`           | **Number**<br />If height is not defined, its value is calculated by multiplying the `width` the `proportion`. If `height` is defined, the `proportion` is ignored.                                                                                                                                                                                                                                                       |
 | `margin`           | **Object**<br />Overrides the margins of the chart. The margins are automatically calculated so that the axis labels can fit inside of the chart. <br /> `<Chart margin={{top: 20, left: 20, bottom: 20, right: 20}} />`                                                                                                                                                                                                  |
-| `theme`            | **Object = DEFAULT_THEME**<br />Customizes the theme of the chart. [See the theme object schema](#chart-theme-configuration)                                                                                                                                                                                                                                                                                              |
+| `theme`            | **Object = DEFAULT_THEME**<br />Customizes the theme of the chart. [See the theme object schema](#theme-configuration)                                                                                                                                                                                                                                                                                                    |
 | `[dim]Name`        | **String**<br />The name to be used for the dimension axis label and tooltip. Defaults to the accessor key.                                                                                                                                                                                                                                                                                                               |
 | `[dim]ZeroBased`   | **boolean = false**<br />Sets if the domain of the dimension should include zero.                                                                                                                                                                                                                                                                                                                                         |
 | `[dim]Type`        | **String**<br />Overrides the type of the dimension. Accepted values are: `linear`, `ordinal`, `time` and `log`.                                                                                                                                                                                                                                                                                                          |
@@ -162,7 +162,6 @@ const chart = (
 )
 ```
 
-
 ## `<Areas />`
 
 Mark for drawing areas on the charts.
@@ -187,7 +186,6 @@ const chart = (
 )
 ```
 
-
 ## `<Points />`
 
 Mark for drawing circles on the charts.
@@ -209,7 +207,6 @@ const chart = (
   </Chart>
 )
 ```
-
 
 ## `<Bars />`
 
@@ -235,7 +232,6 @@ const chart = (
 )
 ```
 
-
 ## `<Guides />`
 
 Mark for drawing vertical or horizontal guides on the charts.
@@ -259,7 +255,6 @@ const chart = (
   </Chart>
 )
 ```
-
 
 ## `<Ranges />`
 
@@ -290,7 +285,6 @@ const chart = (
   </Chart>
 )
 ```
-
 
 ## `<Text />`
 
@@ -323,7 +317,6 @@ const chart = (
 )
 ```
 
-
 ## Theme configuration
 
 The theme can be configured by passing a `theme` prop to the `<Chart />` component, which will be merged with the [default theme](https://github.com/kensho-technologies/orama/blob/01b204d61dde0058c79f5f286a57bf4ea7e3d566/src/defaults.js#L82-L130).
@@ -354,7 +347,6 @@ const chart = (
   </Chart>
 )
 ```
-
 
 ## Acknowledgment
 
