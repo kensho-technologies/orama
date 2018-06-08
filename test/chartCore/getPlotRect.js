@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {BACKGROUND_OFFSET as backgroundOffset, THEME} from '../../src/defaults'
+import {THEME} from '../../src/defaults'
 import getPlotRect, {getMaxTextWidth} from '../../src/chartCore/getPlotRect'
 
 test('Chart/getPlotRect.getMaxTextWidth', () => {
@@ -16,17 +16,21 @@ test('Chart/getPlotRect.getMaxTextWidth', () => {
 
 test('chartCore/getPlotRect', () => {
   const props = {
-    backgroundOffset,
+    backgroundOffset: 15,
     width: 500,
     height: 500,
     theme: THEME,
     yDomain: [0, 100],
     yType: 'linear',
     groupedKeys: ['x', 'y'],
+    xShowLabel: true,
+    xShowTicks: true,
+    yShowLabel: true,
+    yShowTicks: true,
   }
   const actual = getPlotRect(props)
   const expected = {
-    backgroundOffset,
+    backgroundOffset: 15,
     height: 500,
     width: 500,
     plotRect: {x: 56.5, y: 15, width: 428.5, height: 424.5},

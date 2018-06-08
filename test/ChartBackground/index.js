@@ -6,7 +6,7 @@ import {it as test} from 'mocha'
 import * as React from 'react'
 
 import shallowRender from '../helpers/shallowRender'
-import {PLOT_RECT, THEME as theme} from '../../src/defaults'
+import {THEME as theme} from '../../src/defaults'
 import ChartBackground, {
   getBackground,
   getXGuides,
@@ -16,8 +16,10 @@ import ChartBackground, {
   getBackgroundRenderData,
 } from '../../src/ChartBackground'
 
+const plotRect = {x: 10, y: 10, width: 480, height: 480}
+
 test('ChartBackground', () => {
-  assert(shallowRender(<ChartBackground plotRect={{}} theme={theme} />))
+  assert(shallowRender(<ChartBackground height={50} plotRect={{}} theme={theme} width={50} />))
 })
 
 test('ChartBackground.getBackground', () => {
@@ -33,7 +35,7 @@ test('ChartBackground.getXGuides', () => {
     groupedKeys: ['x'],
     xTicks: [{value: 10}],
     xScale: d => d,
-    plotRect: PLOT_RECT,
+    plotRect,
   }
   const xGuides = getXGuides(props)
   assert.deepEqual(xGuides[0].type, 'line')
@@ -45,7 +47,7 @@ test('ChartBackground.getYGuides', () => {
     groupedKeys: ['y'],
     yTicks: [{value: 10}],
     yScale: d => d,
-    plotRect: PLOT_RECT,
+    plotRect,
   }
   const yGuides = getYGuides(props)
   assert.deepEqual(yGuides[0].type, 'line')
@@ -57,7 +59,7 @@ test('ChartBackground.getXText', () => {
     groupedKeys: ['x'],
     xTicks: [{value: 10}],
     xScale: d => d,
-    plotRect: PLOT_RECT,
+    plotRect,
   }
   const xGuides = getXText(props)
   assert.deepEqual(xGuides[0].type, 'text')
@@ -69,16 +71,14 @@ test('ChartBackground.getYText', () => {
     groupedKeys: ['y'],
     yTicks: [{value: 10}],
     yScale: d => d,
-    plotRect: PLOT_RECT,
+    plotRect,
   }
   const yGuides = getYText(props)
   assert.deepEqual(yGuides[0].type, 'text')
 })
 
 test('ChartBackground.getBackgroundRenderData', () => {
-  const props = {
-    theme,
-  }
+  const props = {theme}
   const backgroundRenderData = getBackgroundRenderData(props)
   assert.deepEqual(backgroundRenderData[0].type, 'area')
 })

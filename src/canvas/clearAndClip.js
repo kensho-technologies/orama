@@ -1,9 +1,7 @@
 // Copyright 2018 Kensho Technologies, LLC.
 
-import {BACKGROUND_OFFSET} from '../defaults'
-
 export default function clearAndClip(props, ctx) {
-  const {width, height, backgroundOffset = BACKGROUND_OFFSET} = props
+  const {width, height, backgroundOffset} = props
   ctx.clearRect(0, 0, width, height)
   if (props.layerProps && props.layerProps.clipPlot === false) return
   if (props.plotRect && props.clip) {

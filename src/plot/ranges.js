@@ -3,12 +3,11 @@
 import {map, flatten, isNumber} from 'lodash'
 
 import getPath2D from '../utils/getPath2D'
-import {BACKGROUND_OFFSET} from '../defaults'
 
 import getPlotValues from './getPlotValues'
 
 function rangesRender(props, datum, idx) {
-  const {backgroundOffset = BACKGROUND_OFFSET, plotRect} = props
+  const {backgroundOffset, plotRect} = props
   const path2D = getPath2D()
   const values = getPlotValues(props, datum, idx)
   if (isNumber(values.x1) && isNumber(values.x2) && isNumber(values.y1) && isNumber(values.y2)) {

@@ -4,13 +4,6 @@ import {includes, sum} from 'lodash'
 
 import withCachedContext from '../utils/withCachedContext'
 import marginInset from '../utils/rect/marginInset'
-import {
-  AXIS_LABEL_OFFSET,
-  AXIS_TICK_OFFSET,
-  BACKGROUND_OFFSET,
-  SHOW_LABELS,
-  SHOW_TICKS,
-} from '../defaults'
 
 import getRange from './getRange'
 import getTicks from './getTicks'
@@ -37,13 +30,7 @@ export function getMaxTextWidth(theme, ticks) {
 }
 
 function getTopMargin(props) {
-  const {
-    backgroundOffset = BACKGROUND_OFFSET,
-    margin = {},
-    theme,
-    y,
-    yShowTicks = SHOW_TICKS,
-  } = props
+  const {backgroundOffset, margin = {}, theme, y, yShowTicks} = props
   if (margin.top !== undefined) return margin.top + backgroundOffset
   if (yShowTicks === false || !y) return backgroundOffset
   return Math.max(backgroundOffset, theme.axisTickFontSize / 2)
@@ -52,13 +39,13 @@ function getTopMargin(props) {
 function getBottomMargin(props) {
   const {theme} = props
   const {
-    backgroundOffset = BACKGROUND_OFFSET,
+    backgroundOffset,
     groupedKeys,
     margin = {},
-    xShowTicks = SHOW_TICKS,
-    xShowLabel = SHOW_LABELS,
-    xTickOffset = AXIS_TICK_OFFSET(theme),
-    xLabelOffset = AXIS_LABEL_OFFSET(theme),
+    xShowTicks,
+    xShowLabel,
+    xTickOffset = theme.axisTickFontSize * (theme.lineHeight - 0.75),
+    xLabelOffset = theme.axisLabelFontSize * (theme.lineHeight - 0.75),
   } = props
   if (margin.bottom !== undefined) return margin.bottom + backgroundOffset
   if (!includes(groupedKeys, 'x')) return backgroundOffset
@@ -72,13 +59,13 @@ function getBottomMargin(props) {
 function getLeftMargin(props) {
   const {theme} = props
   const {
-    backgroundOffset = BACKGROUND_OFFSET,
+    backgroundOffset,
     groupedKeys,
     margin = {},
-    yShowTicks = SHOW_TICKS,
-    yShowLabel = SHOW_LABELS,
-    yTickOffset = AXIS_TICK_OFFSET(theme),
-    yLabelOffset = AXIS_LABEL_OFFSET(theme),
+    yShowTicks,
+    yShowLabel,
+    yTickOffset = theme.axisTickFontSize * (theme.lineHeight - 0.75),
+    yLabelOffset = theme.axisLabelFontSize * (theme.lineHeight - 0.75),
   } = props
   if (margin.left !== undefined) return margin.left + backgroundOffset
   if (!includes(groupedKeys, 'y')) return backgroundOffset
@@ -98,7 +85,7 @@ function getLeftMargin(props) {
 }
 
 function getRightMargin(props) {
-  const {backgroundOffset = BACKGROUND_OFFSET, margin = {}, x, xShowTicks = SHOW_TICKS} = props
+  const {backgroundOffset, margin = {}, x, xShowTicks} = props
   if (margin.right !== undefined) return margin.right + backgroundOffset
   if (!x || !xShowTicks) return backgroundOffset
   return backgroundOffset
@@ -106,12 +93,7 @@ function getRightMargin(props) {
 
 export default function getPlotRect(props) {
   if (props.plotRect) return props
-  const {
-    backgroundOffset = BACKGROUND_OFFSET,
-    groupedKeys,
-    width,
-    height = props.width * props.proportion,
-  } = props
+  const {backgroundOffset, groupedKeys, width, height = props.width * props.proportion} = props
 
   const top = getTopMargin(props)
   const bottom = getBottomMargin(props)

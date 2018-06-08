@@ -4,8 +4,10 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {PLOT_RECT as plotRect, THEME as theme} from '../../src/defaults'
+import {THEME as theme} from '../../src/defaults'
 import text from '../../src/plot/text'
+
+const plotRect = {x: 10, y: 10, width: 480, height: 480}
 
 test('Chart/text 1', () => {
   const renderData = text({

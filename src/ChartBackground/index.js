@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import {compact, findLast, filter, flatten, includes, map, sum} from 'lodash'
 
 import * as CustomPropTypes from '../CustomPropTypes'
-import {BACKGROUND_OFFSET} from '../defaults'
 import getPath2D from '../utils/getPath2D'
 import getTicks from '../chartCore/getTicks'
 import inset from '../utils/rect/inset'
@@ -17,7 +16,7 @@ import LeftLabel from './LeftLabel'
 
 export function getBackground(props) {
   if (props.backgroundShow === false) return undefined
-  const {backgroundOffset = BACKGROUND_OFFSET, plotRect, theme} = props
+  const {backgroundOffset, plotRect, theme} = props
   const backgroundRect = inset(-backgroundOffset, plotRect)
   const backgroundPath = getPath2D()
   backgroundPath.rect(
@@ -37,7 +36,7 @@ export function getBackground(props) {
 export function getXGuides(props, thick) {
   if (!includes(props.groupedKeys, 'x')) return undefined
   if (props.xShowGuides === false) return undefined
-  const {backgroundOffset = BACKGROUND_OFFSET, plotRect, theme, xScale, xTicks} = props
+  const {backgroundOffset, plotRect, theme, xScale, xTicks} = props
   return map(xTicks, d => {
     const linePath = getPath2D()
     const x = xScale(d.value)
@@ -55,7 +54,7 @@ export function getXGuides(props, thick) {
 export function getYGuides(props, thick) {
   if (!includes(props.groupedKeys, 'y')) return undefined
   if (props.yShowGuides === false) return undefined
-  const {backgroundOffset = BACKGROUND_OFFSET, plotRect, theme, yScale, yTicks} = props
+  const {backgroundOffset, plotRect, theme, yScale, yTicks} = props
   return map(yTicks, d => {
     const linePath = getPath2D()
     const y = yScale(d.value)
@@ -75,13 +74,7 @@ export function getXText(props) {
   if (props.xShowTicks === false) return undefined
   const {theme} = props
   const defaultOffset = theme.axisTickFontSize * (theme.lineHeight - 1)
-  const {
-    backgroundOffset = BACKGROUND_OFFSET,
-    plotRect,
-    xScale,
-    xTickOffset = defaultOffset,
-    xTicks,
-  } = props
+  const {backgroundOffset, plotRect, xScale, xTickOffset = defaultOffset, xTicks} = props
   return map(xTicks, d => ({
     type: 'text',
     text: d.text,
@@ -98,13 +91,7 @@ export function getYText(props) {
   if (props.yShowTicks === false) return undefined
   const {theme} = props
   const defaultOffset = theme.axisTickFontSize * (theme.lineHeight - 1)
-  const {
-    backgroundOffset = BACKGROUND_OFFSET,
-    plotRect,
-    yScale,
-    yTickOffset = defaultOffset,
-    yTicks,
-  } = props
+  const {backgroundOffset, plotRect, yScale, yTickOffset = defaultOffset, yTicks} = props
   return map(yTicks, d => ({
     type: 'text',
     text: d.text,
@@ -172,9 +159,4 @@ ChartBackground.propTypes = {
   y: PropTypes.string,
   yName: PropTypes.string,
   yShowLabel: PropTypes.bool,
-}
-
-ChartBackground.defaultProps = {
-  xShowLabel: true,
-  yShowLabel: true,
 }

@@ -4,13 +4,14 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import {PLOT_RECT} from '../../src/defaults'
 import guides from '../../src/plot/guides'
+
+const plotRect = {x: 10, y: 10, width: 480, height: 480}
 
 test('Chart.guides', () => {
   const renderData = guides({
     data: [{x: 1, y: 1}],
-    plotRect: PLOT_RECT,
+    plotRect,
     xScale: d => d,
     yScale: d => d,
   })
@@ -23,7 +24,7 @@ test('Chart.guides', () => {
 test('Chart.guides missing yMap', () => {
   const renderData = guides({
     data: [{x: 1, y: 1}],
-    plotRect: PLOT_RECT,
+    plotRect,
     xScale: d => d,
   })
   assert.deepEqual(renderData[0], {
@@ -35,7 +36,7 @@ test('Chart.guides missing yMap', () => {
 test('Chart.guides grouped data', () => {
   const renderData = guides({
     data: [[{x: 1, y: 1}]],
-    plotRect: PLOT_RECT,
+    plotRect,
     xScale: d => d,
     yScale: d => d,
   })

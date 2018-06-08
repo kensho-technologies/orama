@@ -7,12 +7,11 @@ import getMaxX from '../utils/rect/getMaxX'
 import getMinY from '../utils/rect/getMinY'
 import getMaxY from '../utils/rect/getMaxY'
 import getPath2D from '../utils/getPath2D'
-import {BACKGROUND_OFFSET} from '../defaults'
 
 import getPlotValues from './getPlotValues'
 
 function getGuideRenderData(props, datum, idx) {
-  const {backgroundOffset = BACKGROUND_OFFSET, plotRect} = props
+  const {backgroundOffset, plotRect} = props
   const path2D = getPath2D()
   const values = getPlotValues(props, datum, idx)
   if (isNumber(values.x)) {

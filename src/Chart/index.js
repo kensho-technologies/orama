@@ -32,15 +32,25 @@ function getTheme(props) {
 
 class Chart extends React.Component {
   static propTypes = {
+    backgroundOffset: PropTypes.number,
     height: PropTypes.number,
     onUpdate: PropTypes.func,
     proportion: PropTypes.number,
     theme: CustomPropTypes.theme,
     width: PropTypes.number.isRequired,
+    xShowLabel: PropTypes.bool,
+    xShowTicks: PropTypes.bool,
+    yShowLabel: PropTypes.bool,
+    yShowTicks: PropTypes.bool,
   }
 
   static defaultProps = {
+    backgroundOffset: 15,
     proportion: 0.5,
+    xShowLabel: true,
+    xShowTicks: true,
+    yShowLabel: true,
+    yShowTicks: true,
   }
 
   handleUpdate = childProps => {
@@ -92,7 +102,7 @@ class Chart extends React.Component {
     return (
       <div style={style}>
         <ChartBackground {...rootProps} />
-        <ChartLayers renderLayers={renderLayers} rootProps={rootProps} theme={theme} />
+        <ChartLayers {...rootProps} renderLayers={renderLayers} />
         <CanvasInput
           onUpdate={this.handleUpdate}
           renderLayers={renderLayers}

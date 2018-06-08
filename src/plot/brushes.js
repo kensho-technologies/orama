@@ -2,7 +2,6 @@
 
 import {map, flatten, isNumber} from 'lodash'
 
-import {BACKGROUND_OFFSET} from '../defaults'
 import getPath2D from '../utils/getPath2D'
 
 import {
@@ -25,7 +24,7 @@ import {
 import getPlotValues from './getPlotValues'
 
 function brushesRender(props, datum) {
-  const {backgroundOffset = BACKGROUND_OFFSET, plotRect} = props
+  const {backgroundOffset, plotRect} = props
   const stroke = props.strokeValue
   const fill = props.fillValue
   const fillAlpha = props.fillAlphaValue || 0.4

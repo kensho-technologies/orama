@@ -168,15 +168,7 @@ export default class CanvasInput extends React.Component {
     const {hoverRenderData, hoverData, layerProps, mouse} = this.state
     return (
       <React.Fragment>
-        <Canvas
-          clip
-          height={rootProps.height}
-          plotRect={rootProps.plotRect}
-          render={hoverRender}
-          renderData={hoverRenderData}
-          theme={theme}
-          width={rootProps.width}
-        />
+        <Canvas {...rootProps} clip render={hoverRender} renderData={hoverRenderData} />
         <canvas
           height={rootProps.height}
           onClick={this.handleClick}

@@ -9,24 +9,28 @@ import Canvas from '../canvas/Canvas'
 import basicRender from '../canvas/basicRender'
 
 export default function ChartLayers(props) {
-  const {renderLayers, rootProps, theme} = props
+  const {backgroundOffset, height, plotRect, renderLayers, theme, width} = props
   return map(renderLayers, (renderLayer, i) => (
     <Canvas
+      backgroundOffset={backgroundOffset}
       clip
-      height={rootProps.height}
+      height={height}
       key={i}
       layerProps={renderLayer.layerProps}
-      plotRect={rootProps.plotRect}
+      plotRect={plotRect}
       render={basicRender}
       renderData={renderLayer.renderData}
       theme={theme}
-      width={rootProps.width}
+      width={width}
     />
   ))
 }
 
 ChartLayers.propTypes = {
+  backgroundOffset: PropTypes.number,
+  height: PropTypes.number,
+  plotRect: CustomPropTypes.plotRect.isRequired,
   renderLayers: PropTypes.arrayOf(PropTypes.object),
-  rootProps: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   theme: CustomPropTypes.theme.isRequired,
+  width: PropTypes.number,
 }

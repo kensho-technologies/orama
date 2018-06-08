@@ -61,7 +61,6 @@ export const JS_TO_VIS_TYPE = {
   date: 'time',
 }
 
-export const BACKGROUND_OFFSET = 15
 export const RANGE = [0, 1]
 export const DOMAIN = [0, 1]
 export const TYPE = 'linear'
@@ -69,12 +68,6 @@ export const NICE = false
 export const TICK_COUNT = 1
 export const TICK_X_SPACE = 150
 export const TICK_Y_SPACE = 75
-export const SHOW_TICKS = true
-export const SHOW_LABELS = true
-export const AXIS_LABEL_OFFSET = theme => theme.axisLabelFontSize * (theme.lineHeight - 0.75)
-export const AXIS_TICK_OFFSET = theme => theme.axisTickFontSize * (theme.lineHeight - 0.75)
-export const PLOT_RECT = {x: 10, y: 10, width: 480, height: 480}
-export const MARGIN_RIGHT = 15
 
 export const THEME = {
   fontFamily:

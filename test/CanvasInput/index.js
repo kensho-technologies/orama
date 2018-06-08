@@ -9,7 +9,7 @@ import shallowRender from '../helpers/shallowRender'
 import CanvasInput, {getMouseFromEvent} from '../../src/CanvasInput'
 
 test('CanvasInput', () => {
-  const rootProps = {width: 500, height: 500}
+  const rootProps = {width: 500, height: 500, theme: {}}
   assert(shallowRender(<CanvasInput onUpdate={() => undefined} rootProps={rootProps} theme={{}} />))
 })
 
