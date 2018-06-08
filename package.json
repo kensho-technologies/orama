@@ -4,9 +4,12 @@
   "description": "Plug and play React charts",
   "main": "lib",
   "module": "es",
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "start": "webpack-serve",
+    "build:website": "webpack",
     "prepublishOnly": "rm -rf lib es && babel src -d es && BABEL_ENV=cjs babel src -d lib",
     "test": "eslint . && NODE_ENV=test nyc mocha --require @babel/register -R dot --recursive"
   },
@@ -43,6 +46,7 @@
     "react-test-renderer": "^16.4.0",
     "style-loader": "^0.21.0",
     "webpack": "^4.12.0",
+    "webpack-command": "^0.2.1",
     "webpack-serve": "^1.0.4"
   },
   "peerDependencies": {

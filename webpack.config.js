@@ -1,10 +1,12 @@
 const HtmlPlugin = require('html-webpack-plugin')
 
+const {WEBPACK_SERVE} = process.env
+
 module.exports = {
   entry: `${__dirname}/website`,
   plugins: [new HtmlPlugin({title: 'Orama'})],
-  devtool: 'cheap-module-source-map',
-  mode: 'development',
+  devtool: WEBPACK_SERVE ? 'cheap-module-source-map' : 'source-map',
+  mode: WEBPACK_SERVE ? 'development' : 'production',
   module: {
     rules: [
       {
