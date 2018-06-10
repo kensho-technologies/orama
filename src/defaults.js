@@ -55,12 +55,6 @@ export const ACCESSORS_TOOLTIP_ORDER = {
   lineWidth: 12,
 }
 
-export const JS_TO_VIS_TYPE = {
-  string: 'ordinal',
-  number: 'linear',
-  date: 'time',
-}
-
 export const RANGE = [0, 1]
 export const DOMAIN = [0, 1]
 export const TYPE = 'linear'

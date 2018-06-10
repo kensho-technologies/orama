@@ -2,7 +2,11 @@
 
 import {countBy, maxBy} from 'lodash'
 
-import {JS_TO_VIS_TYPE} from '../defaults'
+const JS_TO_VIS_TYPE = {
+  string: 'ordinal',
+  number: 'linear',
+  date: 'time',
+}
 
 export function toType(value) {
   if (value instanceof Date) return 'date'
