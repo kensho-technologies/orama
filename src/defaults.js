@@ -40,21 +40,6 @@ export const ACCESSORS_GROUPS = {
   y: ['y', 'y0', 'y1', 'y2'],
 }
 
-export const ACCESSORS_TOOLTIP_ORDER = {
-  y: 1,
-  y0: 2,
-  y1: 3,
-  y2: 4,
-  x: 5,
-  x0: 6,
-  x1: 7,
-  x2: 8,
-  radius: 9,
-  fill: 10,
-  stroke: 11,
-  lineWidth: 12,
-}
-
 export const RANGE = [0, 1]
 export const DOMAIN = [0, 1]
 export const TYPE = 'linear'
