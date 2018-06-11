@@ -6,14 +6,14 @@ import {it as test} from 'mocha'
 import * as React from 'react'
 
 import shallowRender from '../helpers/shallowRender'
-import ChartBackground from '../../src/ChartBackground'
+import Background from '../../src/Chart/Background'
 
 const plotRect = {x: 10, y: 10, width: 480, height: 480}
 
-test('ChartBackground', () => {
+test('Background', () => {
   assert(
     shallowRender(
-      <ChartBackground
+      <Background
         backgroundOffset={20}
         backgroundShow
         height={50}

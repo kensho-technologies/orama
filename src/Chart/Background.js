@@ -11,10 +11,10 @@ import inset from '../utils/rect/inset'
 import Canvas from '../canvas/Canvas'
 import basicRender from '../canvas/basicRender'
 
-import BottomLabel from './BottomLabel'
-import LeftLabel from './LeftLabel'
+import LabelBottom from './LabelBottom'
+import LabelLeft from './LabelLeft'
 
-export default class ChartBackground extends React.Component {
+export default class Background extends React.Component {
   static propTypes = {
     backgroundShow: PropTypes.bool.isRequired,
     backgroundOffset: PropTypes.number.isRequired,
@@ -163,10 +163,10 @@ export default class ChartBackground extends React.Component {
           width={width}
         />
         {yShowLabel && (
-          <LeftLabel plotRect={plotRect} text={this.getLabelText('y')} theme={theme} />
+          <LabelLeft plotRect={plotRect} text={this.getLabelText('y')} theme={theme} />
         )}
         {xShowLabel && (
-          <BottomLabel plotRect={plotRect} text={this.getLabelText('x')} theme={theme} />
+          <LabelBottom plotRect={plotRect} text={this.getLabelText('x')} theme={theme} />
         )}
       </React.Fragment>
     )

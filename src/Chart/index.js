@@ -11,7 +11,6 @@ import getLayers from '../chartCore/getLayers'
 import getLocalKeys from '../chartCore/getLocalKeys'
 import withComputedWidth from '../enhancers/withComputedWidth'
 import CanvasInput from '../CanvasInput'
-import ChartBackground from '../ChartBackground'
 import {
   getMemoizeDimArrays,
   getMemoizeDomains,
@@ -23,7 +22,8 @@ import {
   getMemoizeTypes,
 } from '../chartCore/memoize'
 
-import ChartLayers from './ChartLayers'
+import Background from './Background'
+import Layers from './Layers'
 
 function getTheme(props) {
   const theme = {...THEME, ...props.theme}
@@ -105,8 +105,8 @@ class Chart extends React.Component {
     }
     return (
       <div style={style}>
-        <ChartBackground {...rootProps} />
-        <ChartLayers {...rootProps} renderLayers={renderLayers} />
+        <Background {...rootProps} />
+        <Layers {...rootProps} renderLayers={renderLayers} />
         <CanvasInput
           onUpdate={this.handleUpdate}
           renderLayers={renderLayers}

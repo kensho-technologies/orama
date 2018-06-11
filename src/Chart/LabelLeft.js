@@ -5,25 +5,27 @@ import PropTypes from 'prop-types'
 
 import * as CustomPropTypes from '../CustomPropTypes'
 
-// component that positions and styles the bottom label of the `Chart` component
-export default function BottomLabel(props) {
+// component that positions and styles the left label of the `Chart` component
+export default function LabelLeft(props) {
   const {plotRect, text, theme} = props
   const style = {
-    bottom: 0,
     fontSize: theme.axisLabelFontSize,
     fontWeight: theme.axisLabelFontWeight,
-    left: plotRect.x,
+    left: 0,
     overflow: 'hidden',
     position: 'absolute',
     textAlign: 'center',
     textOverflow: 'ellipsis',
+    top: plotRect.y,
+    transform: 'translate(-100%) rotate(-90deg)',
+    transformOrigin: '100% 0',
     whiteSpace: 'nowrap',
-    width: plotRect.width,
+    width: plotRect.height,
   }
   return <div style={style}>{text}</div>
 }
 
-BottomLabel.propTypes = {
+LabelLeft.propTypes = {
   plotRect: CustomPropTypes.plotRect.isRequired,
   text: PropTypes.string,
   theme: CustomPropTypes.theme.isRequired,

@@ -8,7 +8,7 @@ import * as CustomPropTypes from '../CustomPropTypes'
 import Canvas from '../canvas/Canvas'
 import basicRender from '../canvas/basicRender'
 
-export default function ChartLayers(props) {
+export default function Layers(props) {
   const {backgroundOffset, height, plotRect, renderLayers, theme, width} = props
   return map(renderLayers, (renderLayer, i) => (
     <Canvas
@@ -26,7 +26,7 @@ export default function ChartLayers(props) {
   ))
 }
 
-ChartLayers.propTypes = {
+Layers.propTypes = {
   backgroundOffset: PropTypes.number,
   height: PropTypes.number,
   plotRect: CustomPropTypes.plotRect.isRequired,

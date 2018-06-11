@@ -6,9 +6,9 @@ import {it as test} from 'mocha'
 import * as React from 'react'
 
 import shallowRender from '../helpers/shallowRender'
-import LeftLabel from '../../src/ChartBackground/LeftLabel'
+import LabelLeft from '../../src/Chart/LabelLeft'
 
-test('LeftLabel', () => {
-  const component = shallowRender(<LeftLabel plotRect={{}} theme={{}} />)
+test('LabelLeft', () => {
+  const component = shallowRender(<LabelLeft plotRect={{}} theme={{}} />)
   assert.strictEqual(component.type, 'div')
 })
