@@ -16,7 +16,7 @@ import LeftLabel from './LeftLabel'
 
 export default class ChartBackground extends React.Component {
   static propTypes = {
-    backgroundShow: PropTypes.bool,
+    backgroundShow: PropTypes.bool.isRequired,
     backgroundOffset: PropTypes.number.isRequired,
     groupedKeys: PropTypes.arrayOf(PropTypes.string),
     height: PropTypes.number,
@@ -44,7 +44,7 @@ export default class ChartBackground extends React.Component {
 
   getBackground() {
     const {backgroundShow, backgroundOffset, plotRect, theme} = this.props
-    if (backgroundShow === false) return undefined
+    if (!backgroundShow) return undefined
     const {height, width, x, y} = inset(-backgroundOffset, plotRect)
     const path2D = getPath2D()
     path2D.rect(x, y, width, height)

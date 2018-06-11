@@ -32,6 +32,7 @@ function getTheme(props) {
 
 class Chart extends React.Component {
   static propTypes = {
+    backgroundShow: PropTypes.bool,
     backgroundOffset: PropTypes.number,
     height: PropTypes.number,
     margin: CustomPropTypes.margin,
@@ -46,6 +47,7 @@ class Chart extends React.Component {
   }
 
   static defaultProps = {
+    backgroundShow: true,
     backgroundOffset: 15,
     margin: {},
     proportion: 0.5,
