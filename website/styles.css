@@ -11,6 +11,15 @@ h3 {
   margin-top: 0;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .grid {
   margin: -40px;
   display: flex;
