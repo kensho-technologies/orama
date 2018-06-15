@@ -57,7 +57,7 @@ export const THEME = {
   lineHeight: 1.5,
   textFill: 'hsl(0, 0%, 0%)',
 
-  backgroundFill: 'hsl(0, 0%, 100%)',
+  backgroundFill: 'hsla(0, 0%, 100%, 0)',
   plotBackgroundFill: 'hsl(0, 0%, 100%)',
 
   guideStroke: 'hsl(0, 0%, 80%)',
