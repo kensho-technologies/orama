@@ -5,7 +5,7 @@ import * as React from 'react'
 export default function getLayers(props) {
   const layers = React.Children.map(
     props.children,
-    child => (child.props.plot ? child.props : undefined)
+    child => (child && child.props.plot ? child.props : undefined)
   )
   return {layers}
 }
