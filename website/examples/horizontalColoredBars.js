@@ -12,6 +12,6 @@ const data = [
 
 export default (
   <Chart xZeroBased>
-    <Bars data={data} x="value" y="type" fill="value" />
+    <Bars data={data} x="value" y="type" fill="value" tooltipShowKeys />
   </Chart>
 )

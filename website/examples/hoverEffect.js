@@ -14,6 +14,7 @@ export default (
       alphaValue={0.4}
       hoverAlphaValue={1}
       hoverFillValue="crimson"
+      tooltipShowKeys
     />
   </Chart>
 )

@@ -6,6 +6,14 @@ const data = [{start: 1, end: 5}, {start: 10, end: 20}, {start: 40, end: 50}, {s
 
 export default (
   <Chart>
-    <Ranges data={data} x1="start" x2="end" y1="start" y2="end" fillValue="lightgray" />
+    <Ranges
+      data={data}
+      x1="start"
+      x2="end"
+      y1="start"
+      y2="end"
+      fillValue="lightgray"
+      tooltipShowKeys
+    />
   </Chart>
 )

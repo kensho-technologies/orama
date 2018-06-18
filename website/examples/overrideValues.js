@@ -20,6 +20,7 @@ export default (
       radiusValue={30}
       strokeValue="black"
       lineDashValue={[5, 5]}
+      tooltipShowKeys
     />
   </Chart>
 )
