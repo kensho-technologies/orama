@@ -55,8 +55,8 @@
   },
   "dependencies": {
     "@babel/runtime": "7.0.0-beta.51",
-    "d3-scale": "^2.0.0",
+    "d3-scale": "^2.1.0",
     "lodash": "^4.17.10",
-    "prop-types": "^15.6.1"
+    "prop-types": "^15.6.2"
   }
 }
