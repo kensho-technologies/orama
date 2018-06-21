@@ -4,9 +4,9 @@ import assert from 'assert'
 
 import {it as test} from 'mocha'
 
-import plotValue, {isDatum} from '../../src/plot/plotValue'
+import plotValue from '../../src/plot/plotValue'
 
-test('Chart/plotValue, <key>Value on the props', () => {
+test('plot/plotValue, <key>Value on the props', () => {
   const props = {
     xScale: () => 'mapped',
     x: 'x',
@@ -16,7 +16,8 @@ test('Chart/plotValue, <key>Value on the props', () => {
   const expected = 'a'
   assert.deepEqual(actual, expected)
 })
-test('Chart/plotValue, scaled data accessed with the accessor', () => {
+
+test('plot/plotValue, scaled data accessed with the accessor', () => {
   const props = {
     xScale: () => 'mapped',
     x: 'x',
@@ -26,7 +27,8 @@ test('Chart/plotValue, scaled data accessed with the accessor', () => {
   const expected = 'mapped'
   assert.deepEqual(actual, expected)
 })
-test('Chart/plotValue, <key>Value on the data 1', () => {
+
+test('plot/plotValue, <key>Value on the data 1', () => {
   const props = {
     xScale: () => null,
     x: 'prop1',
@@ -36,7 +38,8 @@ test('Chart/plotValue, <key>Value on the data 1', () => {
   const expected = 20
   assert.deepEqual(actual, expected)
 })
-test('Chart/plotValue, <key>Value on the data 2', () => {
+
+test('plot/plotValue, <key>Value on the data 2', () => {
   const props = {
     x: 'prop1',
   }
@@ -44,7 +47,8 @@ test('Chart/plotValue, <key>Value on the data 2', () => {
   const expected = 20
   assert.deepEqual(actual, expected)
 })
-test('Chart/plotValue, <key>Value on the data 3', () => {
+
+test('plot/plotValue, <key>Value on the data 3', () => {
   const props = {
     x: 'x',
   }
@@ -53,27 +57,14 @@ test('Chart/plotValue, <key>Value on the data 3', () => {
   assert.deepEqual(actual, expected)
 })
 
-test('Chart/plotValue, all undefined', () => {
+test('plot/plotValue, all undefined', () => {
   const actual = plotValue({}, 10, undefined, 'x', 20)
   const expected = 20
   assert.deepEqual(actual, expected)
 })
 
-test('Chart/plotValue, function as value', () => {
+test('plot/plotValue, function as value', () => {
   const actual = plotValue({xValue: (p, d, i) => i * 2}, {}, 1, 'x')
   const expected = 2
   assert.deepEqual(actual, expected)
-})
-
-test('plotValue.isDatum NaN', () => {
-  assert.equal(isDatum(NaN), false)
-})
-test('plotValue.isDatum "a"', () => {
-  assert.equal(isDatum('a'), true)
-})
-test('plotValue.isDatum undefined', () => {
-  assert.equal(isDatum(undefined), false)
-})
-test('plotValue.isDatum 32', () => {
-  assert.equal(isDatum(32), true)
 })

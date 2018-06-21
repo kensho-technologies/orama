@@ -2,7 +2,7 @@
 
 import {forEach, flatMap} from 'lodash'
 
-import notDatum from '../utils/notDatum'
+import isDatum from '../utils/isDatum'
 
 import clearAndClip from './clearAndClip'
 
@@ -36,7 +36,7 @@ export default function basicRender(props, ctx) {
       ctx.fill(d.path2D)
       if (d.stroke) stroke(theme, ctx, d)
     } else if (d.type === 'text') {
-      if (notDatum(d.text)) return
+      if (!isDatum(d.text)) return
       ctx.save()
       ctx.globalAlpha = d.alpha
       ctx.font = d.font || `${d.fontSize || theme.plotFontSize}px ${theme.fontFamilyMono}`
