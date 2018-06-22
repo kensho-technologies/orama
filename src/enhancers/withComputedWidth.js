@@ -17,7 +17,7 @@ export default function withComputedWidth(BaseComponent) {
 
     divRef = React.createRef()
 
-    state = {width: null}
+    state = {measuredWidth: null}
 
     componentDidMount() {
       window.addEventListener('resize', this.handleResize)
@@ -36,16 +36,20 @@ export default function withComputedWidth(BaseComponent) {
 
     updateWidth() {
       if (this.divRef.current) {
-        const width = this.divRef.current.clientWidth
-        this.setState(prevState => (prevState.width === width ? null : {width}))
+        const measuredWidth = this.divRef.current.clientWidth
+        this.setState(
+          prevState => (prevState.measuredWidth === measuredWidth ? null : {measuredWidth})
+        )
       }
     }
 
     render() {
-      const width = this.props.width != null ? this.props.width : this.state.width
+      const {width} = this.props
+      const {measuredWidth} = this.state
+      const resolvedWidth = width != null ? width : measuredWidth
       return (
         <div ref={this.divRef}>
-          {width != null && <BaseComponent {...this.props} width={width} />}
+          {resolvedWidth != null && <BaseComponent {...this.props} width={resolvedWidth} />}
         </div>
       )
     }

@@ -54,6 +54,8 @@ function getExtraTooltipValues(props, datum) {
     : tooltipValuesForObjects(tooltipExtraDimensions, datum)
 }
 
+/* eslint-disable react/destructuring-assignment */
+
 export default function extractTooltipData(props, hoverData) {
   const {localKeys, tooltipKeys, accessorsTooltipOrder = ACCESSORS_TOOLTIP_ORDER} = props
 

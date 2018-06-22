@@ -18,8 +18,9 @@ class BrushExample extends React.Component {
   handleBrushUpdate = ({xDomain}) => this.setState({xDomain})
 
   render() {
+    const {xDomain} = this.state
     return (
-      <Brush xDomain={this.state.xDomain} onUpdate={this.handleBrushUpdate}>
+      <Brush xDomain={xDomain} onUpdate={this.handleBrushUpdate}>
         <Chart yZeroBased>
           <Bars data={data} x="type" y="value" />
         </Chart>

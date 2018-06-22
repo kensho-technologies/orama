@@ -19,12 +19,13 @@ function getIsolatedExample() {
 }
 
 function Example(props) {
+  const {content, title, url} = props
   return (
     <div className="example">
       <h3>
-        <a href={`#${props.url}`}>{props.title}</a>
+        <a href={`#${url}`}>{title}</a>
       </h3>
-      {props.content}
+      {content}
     </div>
   )
 }

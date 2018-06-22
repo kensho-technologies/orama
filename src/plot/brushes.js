@@ -320,9 +320,11 @@ function brushesRender(props, datum) {
       rightTopLine(renderArgs),
       rightBottomLine(renderArgs),
     ]
-  } else if (isNumber(values.x1) && isNumber(values.x2)) {
+  }
+  if (isNumber(values.x1) && isNumber(values.x2)) {
     return [verticalArea(renderArgs), leftVerticalLine(renderArgs), rightVerticalLine(renderArgs)]
-  } else if (isNumber(values.y1) && isNumber(values.y2)) {
+  }
+  if (isNumber(values.y1) && isNumber(values.y2)) {
     return [
       horizontalArea(renderArgs),
       topHorizontalLine(renderArgs),

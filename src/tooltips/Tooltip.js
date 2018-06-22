@@ -30,8 +30,9 @@ export default class Tooltip extends React.PureComponent {
 
   measure() {
     if (!this.divRef.current) return
+    const {onMeasure} = this.props
     const {offsetHeight: height, offsetWidth: width} = this.divRef.current
-    this.props.onMeasure(height, width)
+    onMeasure(height, width)
   }
 
   renderRow = (d, i) => {

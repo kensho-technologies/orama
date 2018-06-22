@@ -37,6 +37,8 @@ export const getMemoizeTickCounts = () => getMemoize(rerunCheckGetTickCounts, ge
 export const getMemoizeScales = () => getMemoize(rerunCheckGetScales, getScales)
 export const getMemoizeRenderLayer = () => getMemoize(rerunCheckGetRenderLayers, getLayer)
 
+/* eslint-disable react/destructuring-assignment */
+
 export function getMemoizeRenderLayers() {
   const layersMemoize = []
   return function memoizeForLayers(props) {

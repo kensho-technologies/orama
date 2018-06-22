@@ -58,7 +58,8 @@ class Chart extends React.Component {
   }
 
   handleUpdate = childProps => {
-    safeInvoke(this.props.onUpdate, childProps)
+    const {onUpdate} = this.props
+    safeInvoke(onUpdate, childProps)
   }
 
   getDimArrays = getMemoizeDimArrays()

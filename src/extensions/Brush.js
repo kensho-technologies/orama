@@ -74,7 +74,7 @@ export default class Brush extends React.Component {
 
   handleMouseDown(childProps) {
     const {localMouse, renderDatum, rootProps} = childProps
-    const {xDomain, yDomain} = this.props
+    const {onUpdate, xDomain, yDomain} = this.props
     const brushElementName = renderDatum && renderDatum.name
     if (BRUSH_ELEMENT_NAMES.has(brushElementName)) {
       const bounds = domainToBounds(rootProps, xDomain, yDomain)
@@ -82,7 +82,7 @@ export default class Brush extends React.Component {
     } else {
       const bounds = {x1: localMouse.x, y1: localMouse.y}
       this.setState({bounds, brushElementName})
-      this.props.onUpdate({xDomain: undefined, yDomain: undefined})
+      onUpdate({xDomain: undefined, yDomain: undefined})
     }
   }
 
@@ -117,11 +117,13 @@ export default class Brush extends React.Component {
     return {x2: x, y2: y}
   }
 
-  updateBounds(bounds, rootProps) {
+  updateBounds(nextBounds, rootProps) {
+    const {onUpdate} = this.props
+    const {bounds} = this.state
     const {plotRect, xScale, yScale} = rootProps
-    const nextBounds = reorder({...this.state.bounds, ...bounds})
-    const constrainedBounds = constrainToPlotRect(nextBounds, plotRect)
-    this.props.onUpdate(boundsToDomain(constrainedBounds, xScale, yScale))
+    const orderedBounds = reorder({...bounds, ...nextBounds})
+    const constrainedBounds = constrainToPlotRect(orderedBounds, plotRect)
+    onUpdate(boundsToDomain(constrainedBounds, xScale, yScale))
   }
 
   render() {

@@ -30,10 +30,11 @@ export default class Canvas extends React.Component {
 
   handleUpdate() {
     if (!this.canvasRef.current) return
+    const {render} = this.props
     const ctx = this.canvasRef.current.getContext('2d')
     ctx.save()
     ctx.scale(scaleRatio, scaleRatio)
-    this.props.render(this.props, ctx)
+    render(this.props, ctx)
     ctx.restore()
   }
 

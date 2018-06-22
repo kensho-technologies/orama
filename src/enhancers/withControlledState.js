@@ -20,12 +20,13 @@ export default function withControlledState(BaseComponent, getInitialState) {
     }
 
     render() {
+      const {onUpdate} = this.props
       return (
         <BaseComponent
           {...this.props}
           {...this.state}
           onState={this.handleChildUpdate}
-          onUpdate={this.props.onUpdate || this.handleChildUpdate}
+          onUpdate={onUpdate || this.handleChildUpdate}
         />
       )
     }

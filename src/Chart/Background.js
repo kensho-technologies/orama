@@ -128,21 +128,23 @@ export default class Background extends React.Component {
   }
 
   getBackgroundRenderData() {
+    const {xTicks, yTicks} = this.props
     const background = this.getBackground()
-    const xTicks = this.props.xTicks || getTicks(this.props, 'x')
-    const yTicks = this.props.yTicks || getTicks(this.props, 'y')
-    const xGuides = this.getXGuides(xTicks)
-    const yGuides = this.getYGuides(yTicks)
-    const xText = this.getXText(xTicks)
-    const yText = this.getYText(yTicks)
-    const thickXGuide = this.getXGuides(filter(xTicks, d => d.value === 0), true)
-    const thickYGuide = this.getYGuides(filter(yTicks, d => d.value === 0), true)
+    const computedXTicks = xTicks || getTicks(this.props, 'x')
+    const computedYTicks = yTicks || getTicks(this.props, 'y')
+    const xGuides = this.getXGuides(computedXTicks)
+    const yGuides = this.getYGuides(computedYTicks)
+    const xText = this.getXText(computedXTicks)
+    const yText = this.getYText(computedYTicks)
+    const thickXGuide = this.getXGuides(filter(computedXTicks, d => d.value === 0), true)
+    const thickYGuide = this.getYGuides(filter(computedYTicks, d => d.value === 0), true)
     return flatten(compact([background, xGuides, yGuides, thickXGuide, thickYGuide, xText, yText]))
   }
 
   getLabelText(key) {
     const {layers} = this.props
     const keyName = `${key}Name`
+    // eslint-disable-next-line react/destructuring-assignment
     const text = this.props[keyName] || this.props[key]
     if (text) return text
     const layer = findLast(layers, d => d[keyName] || d[key])

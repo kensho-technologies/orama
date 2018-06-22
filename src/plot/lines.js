@@ -32,6 +32,8 @@ const getHoverSolverObj = (props, renderDatum, hoverData) => ({
   hoverData,
 })
 
+/* eslint-disable react/destructuring-assignment */
+
 export function hoverSolver(props, _hoverData, renderDatum, localMouse) {
   const xRaw = props.xScale.invert(localMouse.x)
   if (props.xType === 'ordinal') {

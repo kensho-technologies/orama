@@ -17,6 +17,8 @@ function shallowEqual(objA, objB) {
   return true
 }
 
+/* eslint-disable react/destructuring-assignment */
+
 export const getRerunCheckForNames = (keyNames, rootNames) => (props, prevProps) => {
   const checkRootNames = some(rootNames, name => props[`${name}`] !== prevProps[`${name}`])
   if (checkRootNames) return true

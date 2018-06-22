@@ -14,6 +14,8 @@ Functions to be used on the Chart props transformation flow.
 The transformation flow starts with the <Chart /> props and successively adds the variables needed for plotting, the transformed props are used for generating render data.
 */
 
+/* eslint-disable react/destructuring-assignment */
+
 export function getForProps(value, getFunc) {
   return props =>
     reduce(
