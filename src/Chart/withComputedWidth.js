@@ -4,7 +4,10 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import {throttle} from 'lodash'
 
-import wrapDisplayName from './wrapDisplayName'
+function wrapDisplayName(prefix, Component) {
+  const displayName = Component.displayName || Component.name || 'Component'
+  return `${prefix}(${displayName})`
+}
 
 // this HOC wraps `BaseComponent` and adds a width prop when it's not present
 export default function withComputedWidth(BaseComponent) {

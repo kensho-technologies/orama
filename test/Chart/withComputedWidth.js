@@ -6,9 +6,9 @@ import {it as test} from 'mocha'
 import * as React from 'react'
 
 import shallowRender from '../helpers/shallowRender'
-import withComputedWidth from '../../src/enhancers/withComputedWidth'
+import withComputedWidth from '../../src/Chart/withComputedWidth'
 
-test('enhancers/withComputedWidth', () => {
+test('Chart/withComputedWidth', () => {
   const BaseComponent = () => <div />
   const WithComputedWidth = withComputedWidth(BaseComponent)
   const component = shallowRender(<WithComputedWidth />)
