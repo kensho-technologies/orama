@@ -8,36 +8,24 @@ import * as CustomPropTypes from '../CustomPropTypes'
 
 import extractTooltipData from './extractTooltipData'
 
+const MAX_WIDTH = 320
+
 const getPadding = theme => theme.tooltipFontSize / 2
 
-export default class Tooltip extends React.PureComponent {
+class TooltipInner extends React.Component {
   static propTypes = {
-    hoverData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-    layerProps: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    onMeasure: PropTypes.func.isRequired,
+    showKeys: PropTypes.bool,
     theme: CustomPropTypes.theme.isRequired,
+    title: PropTypes.string,
+    values: PropTypes.arrayOf(PropTypes.object),
   }
 
-  divRef = React.createRef()
-
-  componentDidMount() {
-    this.measure()
-  }
-
-  componentDidUpdate() {
-    this.measure()
-  }
-
-  measure() {
-    if (!this.divRef.current) return
-    const {onMeasure} = this.props
-    const {offsetHeight: height, offsetWidth: width} = this.divRef.current
-    onMeasure(height, width)
+  static defaultProps = {
+    showKeys: false,
   }
 
   renderRow = (d, i) => {
-    const {layerProps, theme} = this.props
-    const showKeys = !!layerProps.tooltipShowKeys
+    const {showKeys, theme} = this.props
     const padding = getPadding(theme)
     const style = {
       background: i % 2 ? theme.tooltipBackgroundFill : theme.tooltipEvenBackgroundFill,
@@ -61,15 +49,14 @@ export default class Tooltip extends React.PureComponent {
   }
 
   render() {
-    const {hoverData, layerProps, theme} = this.props
-    const {title, values} = extractTooltipData(layerProps, hoverData)
+    const {title, theme, values} = this.props
     const style = {
       background: theme.tooltipBackgroundFill,
       boxShadow: `1px 1px 1px ${theme.tooltipBoxShadowFill}`,
       color: theme.tooltipTextFill,
       fontFamily: theme.fontFamily,
       fontSize: theme.tooltipFontSize,
-      maxWidth: 320,
+      maxWidth: MAX_WIDTH,
       opacity: 0.96,
     }
     const titleStyle = {
@@ -80,7 +67,7 @@ export default class Tooltip extends React.PureComponent {
       verticalAlign: 'top',
     }
     return (
-      <div ref={this.divRef} style={style}>
+      <div style={style}>
         {!!title && <div style={titleStyle}>{title}</div>}
         <table style={{width: '100%', borderCollapse: 'collapse'}}>
           <tbody>{map(values, this.renderRow)}</tbody>
@@ -88,4 +75,16 @@ export default class Tooltip extends React.PureComponent {
       </div>
     )
   }
+}
+
+export default function Tooltip(props) {
+  const {hoverData, layerProps, theme} = props
+  const tooltipData = extractTooltipData(layerProps, hoverData)
+  return <TooltipInner showKeys={layerProps.tooltipShowKeys} theme={theme} {...tooltipData} />
+}
+
+Tooltip.propTypes = {
+  hoverData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  layerProps: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  theme: CustomPropTypes.theme,
 }

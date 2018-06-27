@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import * as CustomPropTypes from '../CustomPropTypes'
 import Canvas from '../canvas/Canvas'
 import hoverRender from '../canvas/hoverRender'
-import TooltipContainer from '../tooltips/TooltipContainer'
+import TooltipWrapper from '../tooltips/TooltipWrapper'
 
 import getDataUnderMouse from './getDataUnderMouse'
 import runHoverSolverOn from './runHoverSolverOn'
@@ -185,12 +185,14 @@ export default class CanvasInput extends React.Component {
           }}
           width={rootProps.width}
         />
-        <TooltipContainer
-          hoverData={hoverData}
-          layerProps={layerProps}
-          mouse={mouse}
-          theme={theme}
-        />
+        {mouse && hoverData ? (
+          <TooltipWrapper
+            hoverData={hoverData}
+            layerProps={layerProps}
+            mouse={mouse}
+            theme={theme}
+          />
+        ) : null}
       </React.Fragment>
     )
   }
