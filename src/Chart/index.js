@@ -9,7 +9,6 @@ import safeInvoke from '../utils/safeInvoke'
 import chartTransformFlow from '../chartCore/chartTransformFlow'
 import getLayers from '../chartCore/getLayers'
 import getLocalKeys from '../chartCore/getLocalKeys'
-import withComputedWidth from '../enhancers/withComputedWidth'
 import CanvasInput from '../CanvasInput'
 import {
   getMemoizeDimArrays,
@@ -22,6 +21,7 @@ import {
   getMemoizeTypes,
 } from '../chartCore/memoize'
 
+import withComputedWidth from './withComputedWidth'
 import Background from './Background'
 import Layers from './Layers'
 
