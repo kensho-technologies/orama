@@ -8,6 +8,7 @@ import isBrowser from '../constants/isBrowser'
 
 import Portal from './Portal'
 import DefaultTooltip from './Tooltip'
+import MeasuredContainer from './MeasuredContainer'
 
 export default class TooltipContainer extends React.Component {
   static propTypes = {
@@ -69,12 +70,9 @@ export default class TooltipContainer extends React.Component {
     }
     return (
       <div style={style}>
-        <Tooltip
-          hoverData={hoverData}
-          layerProps={layerProps}
-          onMeasure={this.handleMeasure}
-          theme={theme}
-        />
+        <MeasuredContainer onMeasure={this.handleMeasure}>
+          <Tooltip hoverData={hoverData} layerProps={layerProps} theme={theme} />
+        </MeasuredContainer>
       </div>
     )
   }

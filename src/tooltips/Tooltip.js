@@ -14,25 +14,7 @@ export default class Tooltip extends React.PureComponent {
   static propTypes = {
     hoverData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     layerProps: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    onMeasure: PropTypes.func.isRequired,
-    theme: CustomPropTypes.theme.isRequired,
-  }
-
-  divRef = React.createRef()
-
-  componentDidMount() {
-    this.measure()
-  }
-
-  componentDidUpdate() {
-    this.measure()
-  }
-
-  measure() {
-    if (!this.divRef.current) return
-    const {onMeasure} = this.props
-    const {offsetHeight: height, offsetWidth: width} = this.divRef.current
-    onMeasure(height, width)
+    theme: CustomPropTypes.theme,
   }
 
   renderRow = (d, i) => {
@@ -80,7 +62,7 @@ export default class Tooltip extends React.PureComponent {
       verticalAlign: 'top',
     }
     return (
-      <div ref={this.divRef} style={style}>
+      <div style={style}>
         {!!title && <div style={titleStyle}>{title}</div>}
         <table style={{width: '100%', borderCollapse: 'collapse'}}>
           <tbody>{map(values, this.renderRow)}</tbody>
