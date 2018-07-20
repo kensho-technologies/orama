@@ -24,7 +24,7 @@ module.exports = {
     alias: {orama: `${__dirname}/src`},
   },
   serve: {
-    dev: {logLevel: 'warn'},
+    devMiddleware: {logLevel: 'warn'},
     open: true,
   },
 }
