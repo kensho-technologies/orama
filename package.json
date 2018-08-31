@@ -32,7 +32,7 @@
     "@babel/core": "^7.0.0",
     "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.0",
-    "babel-preset-kensho": "^4.0.0",
+    "babel-preset-kensho": "^4.1.0",
     "css-loader": "^1.0.0",
     "eslint": "^5.4.0",
     "eslint-config-kensho": "^6.1.2",
