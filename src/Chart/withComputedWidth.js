@@ -40,8 +40,8 @@ export default function withComputedWidth(BaseComponent) {
     updateWidth() {
       if (this.divRef.current) {
         const measuredWidth = this.divRef.current.clientWidth
-        this.setState(
-          prevState => (prevState.measuredWidth === measuredWidth ? null : {measuredWidth})
+        this.setState(prevState =>
+          prevState.measuredWidth === measuredWidth ? null : {measuredWidth}
         )
       }
     }

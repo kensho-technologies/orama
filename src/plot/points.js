@@ -44,11 +44,9 @@ function getPointRenderData(props, datum, idx) {
 // main entry point, if there's only `xMap` or `yMap` it will output a one dimension plot
 export default function points(props) {
   if (!props.xScale && !props.yScale) return undefined
-  return flatMap(
-    props.data,
-    (datum, idx) =>
-      Array.isArray(datum)
-        ? map(datum, (d, i) => getPointRenderData(props, d, i))
-        : getPointRenderData(props, datum, idx)
+  return flatMap(props.data, (datum, idx) =>
+    Array.isArray(datum)
+      ? map(datum, (d, i) => getPointRenderData(props, d, i))
+      : getPointRenderData(props, datum, idx)
   )
 }
