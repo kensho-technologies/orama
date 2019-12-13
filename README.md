@@ -1,7 +1,9 @@
-# Orama
+# Orama [DEPRECATED]
 
 [![travis](https://img.shields.io/travis/kensho-technologies/orama.svg)](https://travis-ci.org/kensho-technologies/orama)
 [![npm](https://img.shields.io/npm/v/orama.svg)](https://npm.im/orama)
+
+> This package has been deprecated as it is no longer used by Kensho internally and we do not plan to continue maintaining it. We hope it can serve as inspiration for other data visualization libraries!
 
 Plug and play [React](https://facebook.github.io/react/) charts.
 
@@ -245,13 +247,7 @@ const data = [{x: 1}, {x: 5}, {x: 8}, {x: 10}, {y: 1}, {y: 5}, {y: 8}, {y: 10}]
 
 const chart = (
   <Chart yZeroBased>
-    <Guides
-      data={data}
-      x="x"
-      y="y"
-      strokeValue="steelblue"
-      lineDashValue={[5, 5]}
-    />
+    <Guides data={data} x="x" y="y" strokeValue="steelblue" lineDashValue={[5, 5]} />
   </Chart>
 )
 ```
@@ -274,14 +270,7 @@ const data = [
 
 const chart = (
   <Chart>
-    <Ranges
-      data={data}
-      x1="start"
-      x2="end"
-      y1="start"
-      y2="end"
-      fillValue="lightgray"
-    />
+    <Ranges data={data} x1="start" x2="end" y1="start" y2="end" fillValue="lightgray" />
   </Chart>
 )
 ```
